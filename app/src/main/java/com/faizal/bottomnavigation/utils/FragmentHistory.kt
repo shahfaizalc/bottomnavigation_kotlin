@@ -25,8 +25,6 @@ class FragmentHistory {
      */
     init {
         stackArr = ArrayList()
-
-
     }
 
     /**

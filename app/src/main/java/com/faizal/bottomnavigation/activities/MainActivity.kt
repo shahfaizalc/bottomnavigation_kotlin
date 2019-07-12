@@ -124,31 +124,10 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
     }
 
 
-    public override fun onStart() {
-        super.onStart()
-    }
-
-    public override fun onStop() {
-
-        super.onStop()
-    }
-
-
     private fun switchTab(position: Int) {
         mNavController!!.switchTab(position)
 
-
-        //        updateToolbarTitle(position);
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-
-    override fun onPause() {
-        super.onPause()
+        updateToolbarTitle(position);
     }
 
 
@@ -207,11 +186,7 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
 
         for (i in TABS.indices) {
             val selectedTab = bottomTabLayout!!.getTabAt(i)
-            if (currentTab != i) {
-                selectedTab!!.customView!!.isSelected = false
-            } else {
-                selectedTab!!.customView!!.isSelected = true
-            }
+            selectedTab!!.customView!!.isSelected = currentTab == i
         }
     }
 
@@ -268,19 +243,16 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
         throw IllegalStateException("Need to send an index that we know")
     }
 
+    fun updateToolbarTitle( position:Int){
+        supportActionBar!!.title = TABS.get(position)
 
-    //    private void updateToolbarTitle(int position){
-    //
-    //
-    //        getSupportActionBar().setTitle(TABS[position]);
-    //
-    //    }
+    }
 
 
     fun updateToolbarTitle(title: String) {
 
 
-        supportActionBar!!.setTitle(title)
+        supportActionBar!!.title= title
 
     }
 }
