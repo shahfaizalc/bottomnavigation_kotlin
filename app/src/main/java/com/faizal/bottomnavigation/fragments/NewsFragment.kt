@@ -47,7 +47,7 @@ class NewsFragment : BaseFragment() {
 
         btnClickMe!!.setOnClickListener {
             if (mFragmentNavigation != null) {
-                mFragmentNavigation.pushFragment(NewsFragment.newInstance(fragCount + 1))
+               // mFragmentNavigation.pushFragment(NewsFragment.newInstance(fragCount + 1), bundle)
 
 
             }

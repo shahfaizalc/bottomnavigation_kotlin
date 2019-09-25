@@ -1,0 +1,334 @@
+package com.faizal.bottomnavigation
+
+import android.databinding.BindingAdapter
+import android.databinding.ObservableList
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SearchView
+import android.util.Log
+import android.view.View
+import android.view.WindowManager
+import android.widget.AutoCompleteTextView
+import android.widget.Button
+import android.widget.ListView
+import android.widget.PopupWindow
+import com.faizal.bottomnavigation.adapter.CategoryFlexboxAdapter
+import com.faizal.bottomnavigation.adapter.CountriesRecyclerViewAdapter
+import com.faizal.bottomnavigation.adapter.PeopleAdapter
+import com.faizal.bottomnavigation.handler.RecyclerLoadMoreCountryHandler
+import com.faizal.bottomnavigation.model.CountriesInfoModel
+import com.faizal.bottomnavigation.viewmodel.AdSearchModel
+import com.faizal.bottomnavigation.viewmodel.PostAdViewModel
+import com.google.android.flexbox.AlignItems
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
+
+
+//@BindingAdapter("setUpWithViewpager")
+//fun setUpWithViewpager(tabLayout: TabLayout, viewPager: ViewPager) {
+//    viewPager.addOnAdapterChangeListener(ViewPager.OnAdapterChangeListener { viewPager, oldAdapter, newAdapter ->
+//        if (oldAdapter == null && newAdapter == null) {
+//            return@OnAdapterChangeListener
+//        }
+//        Log.i("TAG", "onAdapterChanged")
+//        tabLayout.setupWithViewPager(viewPager)
+//    })
+//}
+//
+//@BindingAdapter("imageUrl")
+//fun loadImage(view: ImageView, imageUrl: String) {
+//    val i = TextUtils.isEmpty(imageUrl)
+//    if (i) {
+//        view.setImageDrawable(view.context.getDrawable(R.drawable.placeholder_profile))
+//
+//    } else {
+//        Picasso.with(view.context)
+//                .load(imageUrl)
+//                .resize(240, 240)
+//                .error(R.drawable.placeholder_profile)
+//                .placeholder(R.drawable.placeholder_profile)
+//                .into(view)
+//    }
+//}
+//
+//@BindingAdapter("adapterRecycle")
+//fun loadAdapter(recyclerView: RecyclerView, profileInfoViewModel: ProfileInfoViewModel) {
+//    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+//    val adapter = ProfileItemRecyclerAdpater(profileInfoViewModel.itemList, profileInfoViewModel.createItemListIcon())
+//    recyclerView.adapter = adapter
+//}
+//
+//@BindingAdapter("adapterFlex")
+//fun loadAdapterFlex(recyclerView: RecyclerView, profileInfoViewModel: ProfileInfoViewModel) {
+//    if (profileInfoViewModel.hobbiesList.size > 0) {
+//        val layoutManager = FlexboxLayoutManager(recyclerView.context)
+//        layoutManager.flexDirection = FlexDirection.ROW
+//        layoutManager.justifyContent = JustifyContent.SPACE_AROUND
+//        layoutManager.alignItems = AlignItems.FLEX_START
+//        recyclerView.layoutManager = layoutManager
+//        val adapter = FlexboxAdapter(recyclerView.context, profileInfoViewModel.hobbiesList)
+//        recyclerView.adapter = adapter
+//    }
+//}
+//
+//@BindingAdapter("autoAdapter")
+//fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: ProfileEditViewModel) {
+//    //  val autoFillTextAdapter = ProductListAdapter(view.context, pArrayAdapter.roleAdapter!!)
+//    val autoFillTextAdapter = PeopleAdapter(view.context, R.layout.content_profileedit, R.id.text_title, pArrayAdapter.roleAdapter!!)
+//
+//    view.setAdapter(autoFillTextAdapter)
+//    var cityName: String
+//    if (pArrayAdapter.cityName.isNullOrBlank()) {
+//        cityName = ""
+//    } else {
+//        cityName = pArrayAdapter.cityName
+//    }
+//    view.setText(cityName)
+//}
+//
+//@BindingAdapter("gender_array")
+//fun setGenderArray(view: Spinner, pArrayAdapter: ProfileEditViewModel) {
+//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
+//            pArrayAdapter.singleAttribute!!.gender!!, EnumSingleAttribute.GENDER)
+//    view.adapter = spinnerAdapter
+//
+//    view.onItemSelectedListener = object : OnItemSelectedListener {
+//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+//            pArrayAdapter.itemPositionGender = position
+//        }
+//
+//        override fun onNothingSelected(parent: AdapterView<*>) {
+//
+//        }
+//    }
+//}
+//
+//@BindingAdapter("ethnic_array")
+//fun setEthnicArray(view: Spinner, pArrayAdapter: ProfileEditViewModel) {
+//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
+//            pArrayAdapter.singleAttribute!!.ethnicity!!, EnumSingleAttribute.ETHINICITY)
+//    view.adapter = spinnerAdapter
+//
+//    view.onItemSelectedListener = object : OnItemSelectedListener {
+//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+//            pArrayAdapter.itemPositionEthnic = position
+//        }
+//
+//        override fun onNothingSelected(parent: AdapterView<*>) {
+//
+//        }
+//    }
+//
+//}
+//
+//@BindingAdapter("religion_array")
+//fun setReligionArray(view: Spinner, pArrayAdapter: ProfileEditViewModel) {
+//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
+//            pArrayAdapter.singleAttribute!!.religion!!, EnumSingleAttribute.RELIGION)
+//    view.adapter = spinnerAdapter
+//    view.onItemSelectedListener = object : OnItemSelectedListener {
+//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+//            pArrayAdapter.itemPositionReligion = position
+//        }
+//
+//        override fun onNothingSelected(parent: AdapterView<*>) {
+//
+//        }
+//    }
+//
+//}
+//
+//@BindingAdapter("figure_array")
+//fun setFigureArray(view: Spinner, pArrayAdapter: ProfileEditViewModel) {
+//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
+//            pArrayAdapter.singleAttribute!!.figure!!, EnumSingleAttribute.FIGURE)
+//    view.adapter = spinnerAdapter
+//
+//    view.onItemSelectedListener = object : OnItemSelectedListener {
+//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+//            pArrayAdapter.itemPositionFigure = position
+//        }
+//
+//        override fun onNothingSelected(parent: AdapterView<*>) {
+//
+//        }
+//    }
+//
+//}
+//
+//@BindingAdapter("martial_array")
+//fun setMartialArray(view: Spinner, pArrayAdapter: ProfileEditViewModel) {
+//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
+//            pArrayAdapter.singleAttribute!!.maritalStatus!!, EnumSingleAttribute.MARTIALSTATUS)
+//    view.adapter = spinnerAdapter
+//
+//    view.onItemSelectedListener = object : OnItemSelectedListener {
+//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+//            pArrayAdapter.itemPositionMartialStatus = position
+//        }
+//
+//        override fun onNothingSelected(parent: AdapterView<*>) {
+//
+//        }
+//    }
+//
+//}
+//
+//@BindingAdapter("category_array")
+//fun setCategory(view: Spinner, pArrayAdapter: PostAdViewModel) {
+//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
+//            pArrayAdapter.singleAttribute!!.category, EnumSingleAttribute.CATEGORY)
+//    view.adapter = spinnerAdapter
+//    pArrayAdapter.itemPositionCategory = 0
+//
+//    view.onItemSelectedListener = object : OnItemSelectedListener {
+//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+//            pArrayAdapter.itemPositionCategory = position
+//        }
+//
+//        override fun onNothingSelected(parent: AdapterView<*>) {
+//
+//        }
+//    }
+//}
+//
+//@BindingAdapter("myAdsRecyclerView")
+//fun myAdsRecyclerViewAdapter(recyclerView: RecyclerView, profileInfoViewModel: MyAdsListViewModel) {
+//    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+//    recyclerView.adapter = MyAdsLstItemRecyclerAdpater(profileInfoViewModel)
+//}
+//
+//
+//@BindingAdapter("autoAdapter")
+//fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: NewAddressViewModel) {
+//    //  val autoFillTextAdapter = ProductListAdapter(view.context, pArrayAdapter.roleAdapter!!)
+//    val address = pArrayAdapter.roleAdapterAddress;
+//    val autoText = view;
+//    val autoFillTextAdapter = PeopleAdapter(view.context, R.layout.content_profileedit, R.id.text_title, address)
+//
+//    autoText.setAdapter(autoFillTextAdapter)
+//    autoText.setText("")
+//    autoText.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
+//
+//        Log.d("user", "citycodechange")
+//
+//        for (strr in address!!) {
+//            Log.d("user", "citycodechange" + strr.cityname + " " + autoText.text.toString())
+//
+//            if (strr.cityname.equals(autoText.text.toString())) {
+//                pArrayAdapter.cityCode = strr.citycode
+//                break
+//            } else {
+//                pArrayAdapter.cityCode = "0"
+//
+//            }
+//        }
+//
+//    }
+//}
+
+//@BindingAdapter("focusId", "focusTarget")
+//fun requestFocusFromTouch(view: View, id: Int, target: Int) {
+//    if (target == 0 || id != target) {
+//        return
+//    }
+//    view.requestFocusFromTouch()
+//}
+//
+//
+
+
+@BindingAdapter("autoAdapter")
+fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: AdSearchModel) {
+    //  val autoFillTextAdapter = ProductListAdapter(view.context, pArrayAdapter.roleAdapter!!)
+    val address = pArrayAdapter.roleAdapterAddress;
+    val autoText = view;
+    val autoFillTextAdapter = PeopleAdapter(view.context, R.layout.autofilitem, R.id.text_title, address)
+
+    autoText.setAdapter(autoFillTextAdapter)
+    autoText.setText("")
+    autoText.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
+
+        Log.d("user", "citycodechange")
+
+        for (strr in address!!) {
+            Log.d("user", "citycodechange" + strr.cityname + " " + autoText.text.toString())
+
+            if (strr.cityname.equals(autoText.text.toString())) {
+                pArrayAdapter.cityCode = strr.citycode
+                break
+            } else {
+                pArrayAdapter.cityCode = "0"
+
+            }
+        }
+
+    }
+}
+
+
+@BindingAdapter("app:serachAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView, countriesViewModel: AdSearchModel, recyclerView: RecyclerView) {
+
+    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
+    val listAdapter = CountriesRecyclerViewAdapter(countriesViewModel)
+    val bindingAdapter = RecyclerLoadMoreCountryHandler(countriesViewModel, listAdapter)
+
+    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
+    recyclerView.adapter = listAdapter
+    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+    bindingAdapter.initRequest(recyclerView)
+
+    val searchClose = searchView.findViewById<View>(android.support.v7.appcompat.R.id.search_close_btn)
+    searchClose.setOnClickListener({ searchView.setQuery("", true) })
+
+    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(s: String?): Boolean {
+            return false
+        }
+
+        override fun onQueryTextChange(query: String): Boolean {
+            countriesViewModel.searchQuery = query
+            return false
+        }
+    })
+
+    countriesViewModel.countriesInfoModel.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach1")
+        }
+
+        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+            Log.d("rach", "rach2")
+        }
+
+        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach3")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach4")
+        }
+
+        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+            Log.d("rach", "rach5")
+        }
+
+    });
+}
+@BindingAdapter("adapterFlex")
+fun loadAdapterFlex2(recyclerView: RecyclerView, pArrayAdapter: PostAdViewModel) {
+    val catergories = pArrayAdapter.singleAttribute!!.category
+    if (catergories.size > 0) {
+        val layoutManager = FlexboxLayoutManager(recyclerView.context)
+        layoutManager.flexDirection = FlexDirection.ROW
+        layoutManager.justifyContent = JustifyContent.SPACE_AROUND
+        layoutManager.alignItems = AlignItems.FLEX_START
+        recyclerView.layoutManager = layoutManager
+        val adapter = CategoryFlexboxAdapter(recyclerView.context, catergories,pArrayAdapter)
+        recyclerView.adapter = adapter
+    }
+}
+

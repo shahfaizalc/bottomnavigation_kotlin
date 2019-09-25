@@ -47,10 +47,7 @@ class HomeFragment : BaseFragment() {
 
 
         btnClickMe!!.setOnClickListener {
-            if (mFragmentNavigation != null) {
-                mFragmentNavigation.pushFragment(HomeFragment.newInstance(fragCount + 1))
-
-            }
+           // mFragmentNavigation.pushFragment(newInstance(fragCount + 1, this, bundle))
         }
 
 
@@ -62,15 +59,4 @@ class HomeFragment : BaseFragment() {
         super.onDestroyView()
     }
 
-    companion object {
-
-
-        fun newInstance(instance: Int): HomeFragment {
-            val args = Bundle()
-            args.putInt(BaseFragment.Companion.ARGS_INSTANCE, instance)
-            val fragment = HomeFragment()
-            fragment.arguments = args
-            return fragment
-        }
-    }
 }// Required empty public constructor

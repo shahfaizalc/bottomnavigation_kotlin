@@ -12,17 +12,19 @@ import android.widget.ImageView
 
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.fragments.NewsFragment
-import com.faizal.bottomnavigation.fragments.HomeFragment
-import com.faizal.bottomnavigation.fragments.ShareFragment
-import com.faizal.bottomnavigation.fragments.ProfileFragment
-import com.faizal.bottomnavigation.fragments.SearchFragment
 import com.faizal.bottomnavigation.utils.FragmentHistory
 import com.faizal.bottomnavigation.utils.Utils
 import com.faizal.bottomnavigation.views.FragNavController
 
 import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.view.FragmentAdSearch
+import com.faizal.bottomnavigation.view.FragmentHome
+import com.faizal.bottomnavigation.view.FragmentHomePage
+import com.faizal.bottomnavigation.view.FragmentPostAd
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener {
+
 
 
     internal var contentFrame: FrameLayout? = null
@@ -39,6 +41,9 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
     private var mNavController: FragNavController? = null
 
     private var fragmentHistory: FragmentHistory? = null
+
+    private lateinit var mAuth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +74,6 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
                 .build()
 
 
-        switchTab(0)
 
         bottomTabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -95,6 +99,20 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
             }
         })
 
+        showTab()
+
+
+    }
+
+    private fun showTab() {
+        mAuth = FirebaseAuth.getInstance()
+        if(mAuth.currentUser != null) {
+            switchTab(0)
+            updateTabSelection(0)
+        }else{
+            switchTab(4)
+            updateTabSelection(4)
+        }
     }
 
     private fun initToolbar() {
@@ -124,10 +142,11 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
     }
 
 
-    private fun switchTab(position: Int) {
-        mNavController!!.switchTab(position)
 
-        updateToolbarTitle(position);
+
+    override fun switchTab(position: Int) {
+        mNavController!!.switchTab(position)
+        updateTabSelection(position);
     }
 
 
@@ -234,11 +253,11 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
     override fun getRootFragment(index: Int): Fragment {
         when (index) {
 
-            FragNavController.TAB1 -> return HomeFragment()
-            FragNavController.TAB2 -> return SearchFragment()
-            FragNavController.TAB3 -> return ShareFragment()
+            FragNavController.TAB1 -> return FragmentHomePage()
+            FragNavController.TAB2 -> return FragmentAdSearch()
+            FragNavController.TAB3 -> return FragmentPostAd()
             FragNavController.TAB4 -> return NewsFragment()
-            FragNavController.TAB5 -> return ProfileFragment()
+            FragNavController.TAB5 -> return FragmentHome()
         }
         throw IllegalStateException("Need to send an index that we know")
     }

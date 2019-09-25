@@ -27,12 +27,21 @@ open class BaseFragment : Fragment() {
 
     interface FragmentNavigation {
         fun pushFragment(fragment: Fragment)
+        fun switchTab(position : Int)
     }
 
     companion object {
 
         val ARGS_INSTANCE = "com.faizal.bottomnavigation"
     }
+
+    fun newInstance(instance: Int, fragment: BaseFragment, bundle: Bundle): BaseFragment {
+        val args = bundle
+        args.putInt(ARGS_INSTANCE, instance)
+        fragment.arguments = args
+        return fragment
+    }
+
 
 
 }

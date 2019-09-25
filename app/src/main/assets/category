@@ -1,0 +1,24 @@
+{
+  "category": [
+    {
+      "id": "9c6ddf44-01ae-4fdb-acc9-b97f2882e4ef",
+      "name": "Movies"
+    },
+    {
+      "id": "ae32676c-4275-4536-a6e0-188100b97148",
+      "name": "Plays"
+    },
+    {
+      "id": "16fbde03-13e5-4a8b-a24f-153b4388002f",
+      "name": "Sports"
+    },
+    {
+      "id": "b5e4720e-bc9a-4e56-a301-31a6f667adc2",
+      "name": "Events"
+    },
+    {
+      "id": "e9feac11-3861-4bf4-bbde-0db67a60544d",
+      "name": "Others"
+    }
+  ]
+}
