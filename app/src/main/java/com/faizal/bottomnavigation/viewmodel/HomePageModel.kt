@@ -16,40 +16,6 @@ class HomePageModel(activity: FragmentActivity, internal val fragmentProfileInfo
         private val TAG = "HomePageModel"
     }
 
-    @Override
-    fun onAdSearchViewClick() = View.OnClickListener() {
-        if (!handleMultipleClicks()) {
-            Log.d(TAG, "onSearchclick");
-          //  fragmentProfileInfo.newInstance(0, FragmentAdSearch(), bundle)
-        }
-    }
 
-    @Override
-    fun onMyAdsClick() = View.OnClickListener() {
-        if (!handleMultipleClicks()) {
-            Log.d(TAG, "onSearchclick");
-           // fragmentProfileInfo.registrationFragment!!.addFragment(FragmentMyAdsList())
-        }
-    }
-
-    @Override
-    fun onPostAdClick() = View.OnClickListener() {
-        if (!handleMultipleClicks()) {
-            Log.d(TAG, "onSearchclick");
-          //  fragmentProfileInfo.registrationFragment!!.addFragment(FragmentPostAd())
-        }
-    }
-
-    @Override
-    fun onProfileClick() = View.OnClickListener() {
-        if (!handleMultipleClicks()) {
-            Log.d(TAG, "onSearchclick");
-         //   fragmentProfileInfo.registrationFragment!!.addFragment(FragmentProfile())
-        }
-    }
-
-    private fun handleMultipleClicks(): Boolean {
-        return MultipleClickHandler.handleMultipleClicks()
-    }
 
 }

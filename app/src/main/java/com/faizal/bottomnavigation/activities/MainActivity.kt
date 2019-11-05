@@ -17,10 +17,7 @@ import com.faizal.bottomnavigation.utils.Utils
 import com.faizal.bottomnavigation.views.FragNavController
 
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.view.FragmentAdSearch
-import com.faizal.bottomnavigation.view.FragmentHome
-import com.faizal.bottomnavigation.view.FragmentHomePage
-import com.faizal.bottomnavigation.view.FragmentPostAd
+import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener {
@@ -50,7 +47,6 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
         setContentView(R.layout.activity_main)
 
 
-
         bottomTabLayout = findViewById(R.id.bottom_tab_layout)
         TABS = ArrayList();
         TABS.add("Home")
@@ -74,14 +70,12 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
                 .build()
 
 
-
         bottomTabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
 
                 fragmentHistory!!.push(tab.position)
 
                 switchTab(tab.position)
-
 
             }
 
@@ -94,7 +88,6 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
                 mNavController!!.clearStack()
 
                 switchTab(tab.position)
-
 
             }
         })
@@ -110,6 +103,7 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
             switchTab(0)
             updateTabSelection(0)
         }else{
+            bottomTabLayout!!.visibility = View.GONE
             switchTab(4)
             updateTabSelection(4)
         }
@@ -118,7 +112,6 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
     private fun initToolbar() {
 
         setSupportActionBar(toolbar)
-
 
     }
 
@@ -154,15 +147,12 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
 
         when (item.itemId) {
 
-
             android.R.id.home -> {
-
 
                 onBackPressed()
                 return true
             }
         }
-
 
         return super.onOptionsItemSelected(item)
 
@@ -177,7 +167,6 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
             if (fragmentHistory!!.isEmpty) {
                 super.onBackPressed()
             } else {
-
 
                 if (fragmentHistory!!.stackSize > 1) {
 
@@ -196,7 +185,6 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
                     fragmentHistory!!.emptyStack()
                 }
             }
-
         }
     }
 
@@ -257,7 +245,7 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
             FragNavController.TAB2 -> return FragmentAdSearch()
             FragNavController.TAB3 -> return FragmentPostAd()
             FragNavController.TAB4 -> return NewsFragment()
-            FragNavController.TAB5 -> return FragmentHome()
+            FragNavController.TAB5 -> return FragmentCountry()
         }
         throw IllegalStateException("Need to send an index that we know")
     }
@@ -267,6 +255,10 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
 
     }
 
+
+    fun bottomLayout(bottomlayout: Int){
+        bottomTabLayout!!.visibility = bottomlayout;
+    }
 
     fun updateToolbarTitle(title: String) {
 
