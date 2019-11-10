@@ -6,15 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.databinding.FragmentHome2Binding
+import com.faizal.bottomnavigation.databinding.FragmentRegistrationBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
-import com.faizal.bottomnavigation.viewmodel.HomeViewModel
+import com.faizal.bottomnavigation.viewmodel.RegistrationModel
 
 
-class FragmentHome : BaseFragment() {
-
-    @Transient
-    lateinit internal var areaViewModel: HomeViewModel
+class FragmentRegistration : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -22,19 +19,10 @@ class FragmentHome : BaseFragment() {
     }
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        val binding = DataBindingUtil.inflate<FragmentHome2Binding>(inflater, R.layout.fragment_home2, container, false)
-        areaViewModel = HomeViewModel(this.context!!, this)
+        val binding = DataBindingUtil.inflate<FragmentRegistrationBinding>(inflater, R.layout.fragment_registration, container, false)
+        val areaViewModel = RegistrationModel(activity!!, this)
         binding.homeData = areaViewModel
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        areaViewModel.registerListeners()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        areaViewModel.unRegisterListeners()
-    }
 }

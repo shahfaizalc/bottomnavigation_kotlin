@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.activities.MainActivity
+import com.faizal.bottomnavigation.activities.Main2Activity
 
 
 
@@ -24,7 +24,7 @@ class ShareFragment : BaseFragment() {
         val view = inflater.inflate(R.layout.fragment_share, container, false)
 
 
-        (activity as MainActivity).updateToolbarTitle("Share")
+        (activity as Main2Activity).updateToolbarTitle("Share")
 
 
         return view

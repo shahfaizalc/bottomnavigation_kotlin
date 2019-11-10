@@ -20,7 +20,7 @@ import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener {
+class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener {
 
 
 
@@ -28,7 +28,8 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
 
     internal var toolbar: Toolbar? = null
 
-    private val mTabIconsSelected = intArrayOf(R.drawable.tab_home, R.drawable.tab_search, R.drawable.tab_share, R.drawable.tab_news, R.drawable.tab_profile)
+    private val mTabIconsSelected = intArrayOf(R.drawable.tab_home, R.drawable.tab_search,
+            R.drawable.tab_share, R.drawable.tab_news, R.drawable.tab_profile)
 
 
     internal lateinit var TABS: ArrayList<String>
@@ -128,9 +129,9 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
 
 
     private fun getTabView(position: Int): View {
-        val view = LayoutInflater.from(this@MainActivity).inflate(R.layout.tab_item_bottom, null)
+        val view = LayoutInflater.from(this@Main2Activity).inflate(R.layout.tab_item_bottom, null)
         val icon = view.findViewById(R.id.tab_icon) as ImageView
-        icon.setImageDrawable(Utils.setDrawableSelector(this@MainActivity, mTabIconsSelected[position], mTabIconsSelected[position]))
+        icon.setImageDrawable(Utils.setDrawableSelector(this@Main2Activity, mTabIconsSelected[position], mTabIconsSelected[position]))
         return view
     }
 
@@ -245,7 +246,7 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
             FragNavController.TAB2 -> return FragmentAdSearch()
             FragNavController.TAB3 -> return FragmentPostAd()
             FragNavController.TAB4 -> return NewsFragment()
-            FragNavController.TAB5 -> return FragmentCountry()
+            FragNavController.TAB5 -> return FragmentWelcome()
         }
         throw IllegalStateException("Need to send an index that we know")
     }
@@ -266,4 +267,6 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCon
         supportActionBar!!.title= title
 
     }
+
+
 }

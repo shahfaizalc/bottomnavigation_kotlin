@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.activities.MainActivity
+import com.faizal.bottomnavigation.activities.Main2Activity
 
 
 
@@ -24,7 +24,7 @@ class SearchFragment : BaseFragment() {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
 
-        (activity as MainActivity).updateToolbarTitle("Search")
+        (activity as Main2Activity).updateToolbarTitle("Search")
 
 
         return view

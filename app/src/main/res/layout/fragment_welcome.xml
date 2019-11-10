@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="homeData"
+            type="com.faizal.bottomnavigation.viewmodel.WelcomeViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="@string/home_welcomestring"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/dimen_36"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:layout_marginBottom="@dimen/dimen_20"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/home_welcomestring2"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/dimen_20" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginLeft="@dimen/dimen_16"
+                android:layout_marginRight="@dimen/dimen_16"
+                android:background="@drawable/circular_bg_blue"
+                android:onClick="@{() -> homeData.signUpUserClicked()}"
+                android:text="Sign Up"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16"
+                android:background="@drawable/circular_bg_blue"
+                android:onClick="@{() -> homeData.signInUserClicked()}"
+                android:text="Sign In"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.activities.MainActivity
+import com.faizal.bottomnavigation.activities.Main2Activity
 
 
 class HomeFragment : BaseFragment() {
@@ -51,7 +51,7 @@ class HomeFragment : BaseFragment() {
         }
 
 
-        (activity as MainActivity).updateToolbarTitle(if (fragCount == 0) "Home" else "Child Home $fragCount")
+        (activity as Main2Activity).updateToolbarTitle(if (fragCount == 0) "Home" else "Child Home $fragCount")
 
     }
 

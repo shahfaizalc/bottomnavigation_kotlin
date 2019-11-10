@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.databinding.ListItemCountryBinding
-import com.faizal.bottomnavigation.listeners.CountriesEventListener
+import com.faizal.bottomnavigation.databinding.ListItemAdsearchBinding
+import com.faizal.bottomnavigation.listeners.AdSearchEventListener
 import com.faizal.bottomnavigation.util.getAddress
 import com.faizal.bottomnavigation.util.offerPrice
 import com.faizal.bottomnavigation.viewmodel.AdSearchModel
@@ -17,20 +17,20 @@ import com.faizal.bottomnavigation.viewmodel.AdSearchModel
 /**
  * Country recycler view adapter to view list of items
  */
-class CountriesRecyclerViewAdapter(private val countriesViewModel: AdSearchModel) :
-        CountriesEventListener,RecyclerView.Adapter<CountriesRecyclerViewAdapter.ViewHolder>(){
+class AdSearchRecyclerViewAdapter(private val adSearchModel: AdSearchModel) :
+        AdSearchEventListener,RecyclerView.Adapter<AdSearchRecyclerViewAdapter.ViewHolder>(){
 
     private val TAG = "ArtistRecyclerAdapter"
 
     lateinit var context:Context
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int)
-            = ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_country,
+            = ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_adsearch,
             viewGroup, false))
 
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val viewModel = countriesViewModel
+        val viewModel = adSearchModel
 
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!) {
@@ -47,21 +47,21 @@ class CountriesRecyclerViewAdapter(private val countriesViewModel: AdSearchModel
         viewHolder.binding!!.setItemClickListener(this)
     }
 
-    override fun getItemCount()= countriesViewModel.countriesInfoModelFilter.size
+    override fun getItemCount()= adSearchModel.countriesInfoModelFilter.size
 
     override fun getItemId(position: Int) = position.toLong()
 
     override fun getItemViewType(position: Int) = position.let { position }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding: ListItemCountryBinding? = null
+        var binding: ListItemAdsearchBinding? = null
 
         init {
             binding = DataBindingUtil.bind(itemView)
         }
     }
 
-    override fun onClickCountriesListItem(countriesViewModel: AdSearchModel, position: Int) {
+    override fun onClickAdSearchListItem(countriesViewModel: AdSearchModel, position: Int) {
         Log.d(TAG,"Click: "+ countriesViewModel.countriesInfoModelFilter[position].address!!.city)
         countriesViewModel.openFragment(countriesViewModel.countriesInfoModelFilter[position])
 

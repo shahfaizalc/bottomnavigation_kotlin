@@ -7,18 +7,16 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
 import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.ListView
-import android.widget.PopupWindow
 import com.faizal.bottomnavigation.adapter.CategoryFlexboxAdapter
-import com.faizal.bottomnavigation.adapter.CountriesRecyclerViewAdapter
+import com.faizal.bottomnavigation.adapter.AdSearchRecyclerViewAdapter
 import com.faizal.bottomnavigation.adapter.PeopleAdapter
+import com.faizal.bottomnavigation.adapter.UserAdapter
 import com.faizal.bottomnavigation.handler.RecyclerLoadMoreCountryHandler
 import com.faizal.bottomnavigation.model.CountriesInfoModel
 import com.faizal.bottomnavigation.viewmodel.AdSearchModel
 import com.faizal.bottomnavigation.viewmodel.PostAdViewModel
+import com.faizal.bottomnavigation.viewmodel.UserViewModel
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -272,7 +270,7 @@ fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: AdSearchModel) {
 fun adapter(searchView: SearchView, countriesViewModel: AdSearchModel, recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
-    val listAdapter = CountriesRecyclerViewAdapter(countriesViewModel)
+    val listAdapter = AdSearchRecyclerViewAdapter(countriesViewModel)
     val bindingAdapter = RecyclerLoadMoreCountryHandler(countriesViewModel, listAdapter)
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
@@ -318,6 +316,7 @@ fun adapter(searchView: SearchView, countriesViewModel: AdSearchModel, recyclerV
 
     });
 }
+
 @BindingAdapter("adapterFlex")
 fun loadAdapterFlex2(recyclerView: RecyclerView, pArrayAdapter: PostAdViewModel) {
     val catergories = pArrayAdapter.singleAttribute!!.category
@@ -327,8 +326,17 @@ fun loadAdapterFlex2(recyclerView: RecyclerView, pArrayAdapter: PostAdViewModel)
         layoutManager.justifyContent = JustifyContent.SPACE_AROUND
         layoutManager.alignItems = AlignItems.FLEX_START
         recyclerView.layoutManager = layoutManager
-        val adapter = CategoryFlexboxAdapter(recyclerView.context, catergories,pArrayAdapter)
+        val adapter = CategoryFlexboxAdapter(recyclerView.context, catergories, pArrayAdapter)
         recyclerView.adapter = adapter
     }
+}
+
+
+@BindingAdapter("app:data")
+fun loadAdapterx(recyclerView: RecyclerView, profileInfoViewModel: UserViewModel) {
+    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+    val adapter = UserAdapter()
+    recyclerView.adapter = adapter
+    (recyclerView.adapter as UserAdapter).setData(profileInfoViewModel.userIds)
 }
 

@@ -17,11 +17,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.faizal.bottomnavigation.adapter.CountriesRecyclerViewAdapter" />
+            type="com.faizal.bottomnavigation.adapter.AdSearchRecyclerViewAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.faizal.bottomnavigation.listeners.CountriesEventListener" />
+            type="com.faizal.bottomnavigation.listeners.AdSearchEventListener" />
 
         <variable
             name="priceActual"
@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
-        android:onClick="@{() -> itemClickListener.onClickCountriesListItem(mainDataModel,itemPosition)}">
+        android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}">
 
         <android.support.v7.widget.CardView
             android:id="@+id/card_view"

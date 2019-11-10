@@ -3,7 +3,7 @@ package com.faizal.bottomnavigation.handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import com.faizal.bottomnavigation.adapter.CountriesRecyclerViewAdapter
+import com.faizal.bottomnavigation.adapter.AdSearchRecyclerViewAdapter
 import com.faizal.bottomnavigation.utils.EndlessRecyclerViewScrollListener
 import com.faizal.bottomnavigation.viewmodel.AdSearchModel
 import com.google.android.gms.tasks.OnCompleteListener
@@ -18,7 +18,7 @@ import kotlinx.coroutines.runBlocking
  *  Class to handle recyclerview scroll listner and to initiate server call
  */
 class RecyclerLoadMoreCountryHandler(private val countriesViewModel: AdSearchModel,
-                                     private val listViewAdapter: CountriesRecyclerViewAdapter) {
+                                     private val listViewAdapter: AdSearchRecyclerViewAdapter) {
 
     private val TAG = "CountryHandler"
 

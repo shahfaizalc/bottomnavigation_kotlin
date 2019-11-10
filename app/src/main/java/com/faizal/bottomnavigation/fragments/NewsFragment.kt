@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.activities.MainActivity
+import com.faizal.bottomnavigation.activities.Main2Activity
 
 
 class NewsFragment : BaseFragment() {
@@ -54,7 +54,7 @@ class NewsFragment : BaseFragment() {
         }
 
 
-        (activity as MainActivity).updateToolbarTitle(if (fragCount == 0) "News" else "Sub News $fragCount")
+        (activity as Main2Activity).updateToolbarTitle(if (fragCount == 0) "News" else "Sub News $fragCount")
 
 
     }

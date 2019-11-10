@@ -13,10 +13,10 @@ import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.utils.EnumValidator
 import com.faizal.bottomnavigation.utils.Validator
-import com.faizal.bottomnavigation.view.FragmentHome
+import com.faizal.bottomnavigation.view.FragmentSignin
 import com.google.firebase.auth.FirebaseAuth
 
-class HomeViewModel(private val context: Context, private val fragmentHome: FragmentHome) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class HomeViewModel(private val context: Context, private val fragmentSignin: FragmentSignin) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
     private val mAuth: FirebaseAuth
     private var networkStateHandler: NetworkChangeHandler? = null
     @get:Bindable
@@ -52,7 +52,7 @@ class HomeViewModel(private val context: Context, private val fragmentHome: Frag
     private fun launchChildFragment(mapFragment: BaseFragment) {
         val bundle = Bundle()
         mapFragment.arguments = bundle
-        fragmentHome.newInstance(1, mapFragment, bundle)
+        fragmentSignin.newInstance(1, mapFragment, bundle)
     }
 
     private fun validateInput(): Boolean {
@@ -107,7 +107,7 @@ class HomeViewModel(private val context: Context, private val fragmentHome: Frag
                             showToast(R.string.loginSucess)
 
                       //      launchChildFragment(FragmentHomePage())
-                            fragmentHome.mFragmentNavigation.switchTab(0)
+                            fragmentSignin.mFragmentNavigation.switchTab(0)
                         }
                     }.addOnFailureListener {
                         Log.d("TAG","Exception"+it.message)

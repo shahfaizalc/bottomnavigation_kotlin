@@ -1,22 +1,26 @@
 package com.faizal.bottomnavigation.viewmodel
 
-import android.content.Context
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
+import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.EnumValidator
 import com.faizal.bottomnavigation.utils.Validator
-import com.faizal.bottomnavigation.view.FragmentCountry
+import com.faizal.bottomnavigation.view.FragmentHomePage
+import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
 
-class CountryViewModel(private val context: Context, private val fragmentHome: FragmentCountry) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+
+class RegistrationModel(internal val activity: FragmentActivity, internal val fragmentSignin: FragmentRegistration)// To show list of user images (Gallery)
+    :  BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
     private val mAuth: FirebaseAuth
     private var networkStateHandler: NetworkChangeHandler? = null
     @get:Bindable
@@ -36,7 +40,7 @@ class CountryViewModel(private val context: Context, private val fragmentHome: F
     init {
         mAuth = FirebaseAuth.getInstance()
         if (mAuth.currentUser != null) {
-           // launchChildFragment(FragmentHomePage())
+            // launchChildFragment(FragmentHomePage())
         }
         networkHandler()
     }
@@ -52,7 +56,7 @@ class CountryViewModel(private val context: Context, private val fragmentHome: F
     private fun launchChildFragment(mapFragment: BaseFragment) {
         val bundle = Bundle()
         mapFragment.arguments = bundle
-        fragmentHome.newInstance(1, mapFragment, bundle)
+        fragmentSignin.newInstance(1, mapFragment, bundle)
     }
 
     private fun validateInput(): Boolean {
@@ -71,12 +75,12 @@ class CountryViewModel(private val context: Context, private val fragmentHome: F
     }
 
     fun registerListeners() {
-        networkStateHandler!!.registerNetWorkStateBroadCast(context)
+        networkStateHandler!!.registerNetWorkStateBroadCast(activity.applicationContext)
         networkStateHandler!!.setNetworkStateListener(this)
     }
 
     fun unRegisterListeners() {
-        networkStateHandler!!.unRegisterNetWorkStateBroadCast(context)
+        networkStateHandler!!.unRegisterNetWorkStateBroadCast(activity.applicationContext)
     }
 
     override fun networkChangeReceived(state: Boolean) {
@@ -93,7 +97,7 @@ class CountryViewModel(private val context: Context, private val fragmentHome: F
         } else {
 
             mAuth.signInWithEmailAndPassword(email!!, password!!)
-                    .addOnCompleteListener(context as FragmentActivity) { task ->
+                    .addOnCompleteListener(activity.applicationContext as FragmentActivity) { task ->
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
@@ -106,8 +110,8 @@ class CountryViewModel(private val context: Context, private val fragmentHome: F
                         } else {
                             showToast(R.string.loginSucess)
 
-                      //      launchChildFragment(FragmentHomePage())
-                            fragmentHome.mFragmentNavigation.switchTab(0)
+                            //      launchChildFragment(FragmentHomePage())
+                            fragmentSignin.mFragmentNavigation.switchTab(0)
                         }
                     }.addOnFailureListener {
                         Log.d("TAG","Exception"+it.message)
@@ -118,6 +122,6 @@ class CountryViewModel(private val context: Context, private val fragmentHome: F
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(activity.applicationContext, activity.applicationContext.resources.getString(id), Toast.LENGTH_LONG).show()
     }
 }

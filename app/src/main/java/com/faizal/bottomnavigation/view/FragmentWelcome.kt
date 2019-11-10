@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.databinding.FragmentCountryBinding
+import com.faizal.bottomnavigation.databinding.FragmentWelcomeBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
-import com.faizal.bottomnavigation.viewmodel.CountryViewModel
+import com.faizal.bottomnavigation.viewmodel.WelcomeViewModel
 
 
-class FragmentCountry : BaseFragment() {
+class FragmentWelcome : BaseFragment() {
 
     @Transient
-    lateinit internal var areaViewModel: CountryViewModel
+    lateinit internal var areaViewModel: WelcomeViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -22,12 +22,10 @@ class FragmentCountry : BaseFragment() {
     }
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        val binding = DataBindingUtil.inflate<FragmentCountryBinding>(inflater, R.layout.fragment_country, container, false)
-        areaViewModel = CountryViewModel(this.context!!, this)
+        val binding = DataBindingUtil.inflate<FragmentWelcomeBinding>(inflater, R.layout.fragment_welcome, container, false)
+        areaViewModel = WelcomeViewModel(this.context!!, this)
         binding.homeData = areaViewModel
-        showInfoDialog(areaViewModel)
         return binding.root
-
     }
 
     override fun onResume() {
@@ -38,10 +36,5 @@ class FragmentCountry : BaseFragment() {
     override fun onStop() {
         super.onStop()
         areaViewModel.unRegisterListeners()
-    }
-
-    fun showInfoDialog(countriesInfoModel: CountryViewModel) {
-        val alert = CountriesInfoDialog()
-        alert.showDialog(this.activity, countriesInfoModel)
     }
 }
