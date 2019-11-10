@@ -1,12 +1,13 @@
 package com.faizal.bottomnavigation.viewmodel
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import android.databinding.ObservableArrayList
+
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
 import android.util.Log
 import android.view.View
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.databinding.ObservableArrayList
+import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.model.IndiaItem
 import com.faizal.bottomnavigation.model.PostAdModel
 import com.faizal.bottomnavigation.view.FragmentAdSearch
@@ -79,7 +80,7 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
     @Override
     fun datePickerClick() = View.OnClickListener() {
         if (!handleMultipleClicks()) {
-            DatePickerEvent().onDatePickerClick(fragmentProfileInfo.context!!, object : DateListener {
+            DatePickerEvent().onDatePickerClick(activity.applicationContext!!, object : DateListener {
                 override fun onDateSet(result: String) {
                     showDate = result
                 }

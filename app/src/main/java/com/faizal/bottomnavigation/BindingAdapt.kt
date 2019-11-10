@@ -1,13 +1,13 @@
 package com.faizal.bottomnavigation
 
-import android.databinding.BindingAdapter
-import android.databinding.ObservableList
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.SearchView
 import android.util.Log
 import android.view.View
 import android.widget.AutoCompleteTextView
+import androidx.appcompat.widget.SearchView
+import androidx.databinding.BindingAdapter
+import androidx.databinding.ObservableList
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.faizal.bottomnavigation.adapter.CategoryFlexboxAdapter
 import com.faizal.bottomnavigation.adapter.AdSearchRecyclerViewAdapter
 import com.faizal.bottomnavigation.adapter.PeopleAdapter
@@ -278,7 +278,7 @@ fun adapter(searchView: SearchView, countriesViewModel: AdSearchModel, recyclerV
     bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
     bindingAdapter.initRequest(recyclerView)
 
-    val searchClose = searchView.findViewById<View>(android.support.v7.appcompat.R.id.search_close_btn)
+    val searchClose = searchView.findViewById<View>(R.id.search_close_btn)
     searchClose.setOnClickListener({ searchView.setQuery("", true) })
 
     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

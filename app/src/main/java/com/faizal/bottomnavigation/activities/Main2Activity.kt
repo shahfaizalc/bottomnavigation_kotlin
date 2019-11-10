@@ -1,14 +1,14 @@
 package com.faizal.bottomnavigation.activities
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v7.widget.Toolbar
+
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.fragments.NewsFragment
@@ -18,6 +18,7 @@ import com.faizal.bottomnavigation.views.FragNavController
 
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.view.*
+import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 
 class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener {

@@ -1,9 +1,9 @@
 package com.faizal.bottomnavigation.view
 
 import android.app.Dialog
-import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.Window
+import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.databinding.DialogLocationpickerBinding
 import com.faizal.bottomnavigation.viewmodel.LocationViewModel
 

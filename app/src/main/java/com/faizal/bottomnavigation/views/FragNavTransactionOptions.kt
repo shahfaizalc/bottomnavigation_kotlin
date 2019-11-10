@@ -1,10 +1,9 @@
 package com.faizal.bottomnavigation.views
 
-import android.support.annotation.AnimRes
-import android.support.annotation.StyleRes
-import android.support.v4.app.FragmentTransaction
-import android.support.v4.util.Pair
 import android.view.View
+import androidx.annotation.AnimRes
+import androidx.annotation.StyleRes
+import androidx.fragment.app.FragmentTransaction
 
 import java.util.ArrayList
 

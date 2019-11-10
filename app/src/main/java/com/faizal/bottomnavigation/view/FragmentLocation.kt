@@ -2,17 +2,17 @@ package com.faizal.bottomnavigation.view
 
 import android.Manifest
 import android.app.Activity
-import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
-import android.databinding.DataBindingUtil
 import android.location.Location
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.databinding.FragmentLocationBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment

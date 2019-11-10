@@ -1,20 +1,18 @@
 package com.faizal.bottomnavigation.viewmodel
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
+
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
 import android.util.Log
-import android.view.View
 import android.widget.Toast
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
-import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.EnumValidator
 import com.faizal.bottomnavigation.utils.Validator
-import com.faizal.bottomnavigation.view.FragmentHomePage
 import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
 

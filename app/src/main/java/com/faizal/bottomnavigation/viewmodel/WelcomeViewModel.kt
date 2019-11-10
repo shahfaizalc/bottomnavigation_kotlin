@@ -1,9 +1,9 @@
 package com.faizal.bottomnavigation.viewmodel
 
 import android.content.Context
-import android.databinding.BaseObservable
 import android.os.Bundle
 import android.widget.Toast
+import androidx.databinding.BaseObservable
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.utils.Constants

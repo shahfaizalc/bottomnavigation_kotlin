@@ -1,8 +1,8 @@
 package com.faizal.bottomnavigation.handler
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.faizal.bottomnavigation.adapter.AdSearchRecyclerViewAdapter
 import com.faizal.bottomnavigation.utils.EndlessRecyclerViewScrollListener
 import com.faizal.bottomnavigation.viewmodel.AdSearchModel

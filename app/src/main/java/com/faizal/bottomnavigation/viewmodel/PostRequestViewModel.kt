@@ -1,10 +1,10 @@
 package com.faizal.bottomnavigation.viewmodel
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import android.support.v4.app.FragmentActivity
 import android.view.View
 import android.widget.CompoundButton
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.model.Address
 import com.faizal.bottomnavigation.model.PostAdModel

@@ -1,10 +1,8 @@
 package com.faizal.bottomnavigation.viewmodel
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import android.os.Handler
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
 import com.faizal.bottomnavigation.BR
-import java.util.*
 
 class UserViewModel : BaseObservable() {
 

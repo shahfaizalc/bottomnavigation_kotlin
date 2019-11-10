@@ -1,9 +1,9 @@
 package com.faizal.bottomnavigation.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
 import android.content.Context
-import android.databinding.BaseObservable
 import android.widget.Toast
+import androidx.databinding.BaseObservable
+import androidx.lifecycle.MutableLiveData
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.view.FragmentLocation

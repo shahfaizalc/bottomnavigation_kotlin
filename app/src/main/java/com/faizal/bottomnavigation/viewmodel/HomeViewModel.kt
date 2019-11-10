@@ -1,12 +1,12 @@
 package com.faizal.bottomnavigation.viewmodel
 
 import android.content.Context
-import android.databinding.BaseObservable
-import android.databinding.Bindable
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
 import android.util.Log
 import android.widget.Toast
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.fragments.BaseFragment

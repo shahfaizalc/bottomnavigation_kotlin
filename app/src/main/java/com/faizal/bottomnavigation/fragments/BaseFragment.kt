@@ -2,7 +2,7 @@ package com.faizal.bottomnavigation.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 
 /**
  */
@@ -18,7 +18,7 @@ open class BaseFragment : Fragment() {
     }
 
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is FragmentNavigation) {
             mFragmentNavigation = context

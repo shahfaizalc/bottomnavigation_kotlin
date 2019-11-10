@@ -1,10 +1,10 @@
 package com.faizal.bottomnavigation.view
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.databinding.ContentRequestcompleteBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment

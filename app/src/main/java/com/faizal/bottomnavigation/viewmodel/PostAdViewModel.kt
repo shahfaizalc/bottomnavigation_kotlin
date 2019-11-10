@@ -1,10 +1,8 @@
 package com.faizal.bottomnavigation.viewmodel
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
+
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
@@ -26,6 +24,9 @@ import android.widget.ListView
 import android.widget.TextView
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.R
 
 
