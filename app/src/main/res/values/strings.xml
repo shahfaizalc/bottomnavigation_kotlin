@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tickets</string>
+    <string name="app_name">Vroom</string>
 
     <array name="tab_name">
         <item>Home</item>
@@ -11,6 +11,12 @@
     <string name="home_welcomestring">vrooom</string>
 
     <string name="home_welcomestring2">Sharing memories not only journey</string>
+
+    <string name="home_welcomestring3">Start a journey</string>
+
+    <string name="home_welcomestring4">Hand to hand travel diaries</string>
+
+
 
     <string name="app_title">Ticket Exchange</string>
 
@@ -47,8 +53,10 @@
     <string name="mandatoryField">Please fill the mandatory fields</string>
     <string name="soldout">SOLD OUT</string>
     <string name="ticketAvailability">Ticket Availability</string>
-    <string name="terms">By signing up, I agree to Vroom %s</string>
-    <string name="termslink">Terms and conditions</string>
+    <string name="terms">By signing up, I agree to Vroom\'s %s</string>
+    <string name="termslink">Terms and Conditions</string>
 
+    <string name="defaultDate">dd/mm/yyyy</string>
+    <string name="defaultTime">mm:hh</string>
 
 </resources>

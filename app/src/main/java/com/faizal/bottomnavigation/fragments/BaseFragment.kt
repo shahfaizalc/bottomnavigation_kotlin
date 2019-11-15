@@ -28,6 +28,7 @@ open class BaseFragment : Fragment() {
     interface FragmentNavigation {
         fun pushFragment(fragment: Fragment)
         fun switchTab(position : Int)
+        fun viewBottom(viewState : Int)
     }
 
     companion object {

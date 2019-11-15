@@ -243,7 +243,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
     override fun getRootFragment(index: Int): Fragment {
         when (index) {
 
-            FragNavController.TAB1 -> return FragmentHomePage()
+            FragNavController.TAB1 -> return FragmentRide()
             FragNavController.TAB2 -> return FragmentAdSearch()
             FragNavController.TAB3 -> return FragmentPostAd()
             FragNavController.TAB4 -> return NewsFragment()
@@ -257,11 +257,9 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
 
     }
 
-
-    fun bottomLayout(bottomlayout: Int){
-        bottomTabLayout!!.visibility = bottomlayout;
+    override fun viewBottom(viewState: Int) {
+        bottomTabLayout!!.visibility = viewState;
     }
-
     fun updateToolbarTitle(title: String) {
 
 

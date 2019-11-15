@@ -19,7 +19,8 @@ class FragmentRegistration : BaseFragment() {
     }
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        val binding = DataBindingUtil.inflate<FragmentRegistrationBinding>(inflater, R.layout.fragment_registration, container, false)
+        val binding = DataBindingUtil.inflate<FragmentRegistrationBinding>(inflater,
+                R.layout.fragment_registration, container, false)
         val areaViewModel = RegistrationModel(activity!!, this)
         binding.homeData = areaViewModel
         return binding.root

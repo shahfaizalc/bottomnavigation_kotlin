@@ -6,16 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.activities.Main2Activity
-import com.faizal.bottomnavigation.databinding.FragmentHome2Binding
+import com.faizal.bottomnavigation.databinding.FragmentFindrideBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
-import com.faizal.bottomnavigation.viewmodel.HomeViewModel
+import com.faizal.bottomnavigation.viewmodel.FindViewModel
 
 
-class FragmentSignin : BaseFragment() {
+class FragmentFineRide : BaseFragment() {
 
     @Transient
-    lateinit internal var areaViewModel: HomeViewModel
+    lateinit internal var areaViewModel: FindViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -23,8 +22,8 @@ class FragmentSignin : BaseFragment() {
     }
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        val binding = DataBindingUtil.inflate<FragmentHome2Binding>(inflater, R.layout.fragment_home2, container, false)
-        areaViewModel = HomeViewModel(this.context!!, this)
+        val binding = DataBindingUtil.inflate<FragmentFindrideBinding>(inflater, R.layout.fragment_findride, container, false)
+        areaViewModel = FindViewModel(this.context!!, this)
         binding.homeData = areaViewModel
         return binding.root
     }

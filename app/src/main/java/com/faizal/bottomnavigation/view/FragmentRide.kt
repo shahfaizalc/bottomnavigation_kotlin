@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.activities.Main2Activity
-import com.faizal.bottomnavigation.databinding.FragmentHome2Binding
+import com.faizal.bottomnavigation.databinding.FragmentRideBinding
+import com.faizal.bottomnavigation.databinding.FragmentWelcomeBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
-import com.faizal.bottomnavigation.viewmodel.HomeViewModel
+import com.faizal.bottomnavigation.viewmodel.RideViewModel
+import com.faizal.bottomnavigation.viewmodel.WelcomeViewModel
 
 
-class FragmentSignin : BaseFragment() {
+class FragmentRide : BaseFragment() {
 
     @Transient
-    lateinit internal var areaViewModel: HomeViewModel
+    lateinit internal var areaViewModel: RideViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -23,8 +24,8 @@ class FragmentSignin : BaseFragment() {
     }
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        val binding = DataBindingUtil.inflate<FragmentHome2Binding>(inflater, R.layout.fragment_home2, container, false)
-        areaViewModel = HomeViewModel(this.context!!, this)
+        val binding = DataBindingUtil.inflate<FragmentRideBinding>(inflater, R.layout.fragment_ride, container, false)
+        areaViewModel = RideViewModel(this.context!!, this)
         binding.homeData = areaViewModel
         return binding.root
     }
@@ -38,10 +39,4 @@ class FragmentSignin : BaseFragment() {
         super.onStop()
         areaViewModel.unRegisterListeners()
     }
-
-//    fun showBottom(){
-//
-//        (activity as Main2Activity).bottomLayout(View.VISIBLE)
-//
-//    }
 }

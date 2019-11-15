@@ -3,6 +3,7 @@ package com.faizal.bottomnavigation.viewmodel
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -108,6 +109,7 @@ class HomeViewModel(private val context: Context, private val fragmentSignin: Fr
 
                       //      launchChildFragment(FragmentHomePage())
                             fragmentSignin.mFragmentNavigation.switchTab(0)
+                            fragmentSignin.mFragmentNavigation.viewBottom(View.VISIBLE)
                         }
                     }.addOnFailureListener {
                         Log.d("TAG","Exception"+it.message)

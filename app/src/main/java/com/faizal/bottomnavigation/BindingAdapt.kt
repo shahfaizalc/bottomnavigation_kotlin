@@ -1,8 +1,10 @@
 package com.faizal.bottomnavigation
 
+import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.widget.AutoCompleteTextView
+import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableList
@@ -16,11 +18,20 @@ import com.faizal.bottomnavigation.handler.RecyclerLoadMoreCountryHandler
 import com.faizal.bottomnavigation.model.CountriesInfoModel
 import com.faizal.bottomnavigation.viewmodel.AdSearchModel
 import com.faizal.bottomnavigation.viewmodel.PostAdViewModel
+import com.faizal.bottomnavigation.viewmodel.RegistrationModel
 import com.faizal.bottomnavigation.viewmodel.UserViewModel
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
+import androidx.databinding.adapters.TextViewBindingAdapter.setText
+import android.text.method.LinkMovementMethod
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.style.ClickableSpan
+import android.text.SpannableString
+
+
 
 
 //@BindingAdapter("setUpWithViewpager")
@@ -338,5 +349,34 @@ fun loadAdapterx(recyclerView: RecyclerView, profileInfoViewModel: UserViewModel
     val adapter = UserAdapter()
     recyclerView.adapter = adapter
     (recyclerView.adapter as UserAdapter).setData(profileInfoViewModel.userIds)
+}
+
+@BindingAdapter("app:data")
+fun loadAdapterx(recyclerView: TextView, profileInfoViewModel: UserViewModel) {
+
+
+}
+
+@BindingAdapter("app:clickableString")
+fun loadAdapterx(textView: TextView, profileInfoViewModel: RegistrationModel) {
+    val ss = SpannableString(textView.getText())
+
+    val clickableSpan = object : ClickableSpan() {
+        override fun onClick(textView: View) {
+            Log.d("tag", "onSpecialClick: ")
+        }
+
+        override fun updateDrawState(ds: TextPaint) {
+            super.updateDrawState(ds)
+            ds.isUnderlineText = true
+            ds.color = Color.BLUE
+        }
+    }
+
+    ss.setSpan(clickableSpan, 34, ss.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    textView.setMovementMethod(LinkMovementMethod.getInstance())
+    textView.setText(ss)
+
+
 }
 
