@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="postAdViewData"
-            type="com.faizal.bottomnavigation.viewmodel.PostAdViewModel" />
+            name="postAdPricing"
+            type="com.faizal.bottomnavigation.viewmodel.AdressViewModel" />
     </data>
 
     <RelativeLayout
@@ -27,79 +28,98 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ad Title"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="Number"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Blue star cricket tournament"
-                    android:maxLines="70"
-                    android:text="@={postAdViewData.title}"
-                    android:textColor="@color/colorBlacklight"
-                    android:textColorHint="@color/colorSmoke" />
+                    android:hint=""
+                    android:text="@={postAdPricing.number}"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+
+                              <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="Street"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={postAdPricing.street}"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_16"
-                    android:text="Description"
+                    android:text="Landmark"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Prize and other information"
-                    android:maxLength="240"
-                    android:text="@={postAdViewData.description}"
+                    android:text="@={postAdPricing.landmark}"
                     android:textColor="@color/colorBlack"
-                    android:textColorHint="@color/colorSmoke" />
+                    android:textStyle="bold" />
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="Village/Town"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dimen_16"
-                    android:drawableEnd="@drawable/calendar_range"
-                    android:focusable="false"
-                    android:onClick="@{postAdViewData.datePickerClick() }"
-                    android:hint="@string/defaultDate"
-                    android:text="@{postAdViewData.showDate}"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Time"
+                    android:text="@={postAdPricing.town}"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
-                    android:drawableEnd="@drawable/clock_outline"
-                    android:focusable="false"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dimen_16"
-                    android:onClick="@{postAdViewData.timePickerClick()}"
-                    android:hint="@string/defaultTime"
-                    android:text="@{postAdViewData.showTime}"
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="City"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_4"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:hint="City/Near City"
+                    android:maxLines="70"
+                    android:padding="@dimen/dimen_8"
+                    android:text="@={postAdPricing.city}"
+                    android:textColor="@color/colorBlack"
+                    app:autoAdapter="@{postAdPricing}" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorBlack" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_4"
-                    android:text="@string/ad_notification"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="@string/addressNotification"
                     android:textColor="@color/colorBlack" />
+
 
             </LinearLayout>
         </ScrollView>
@@ -111,7 +131,7 @@
             android:layout_gravity="bottom"
             android:layout_marginTop="@dimen/dimen_32"
             android:background="@color/yellow"
-            android:onClick="@{postAdViewData.onNextButtonClick}"
+            android:onClick="@{postAdPricing.onNextButtonClick}"
             android:text="NEXT"
             android:textColor="@color/colorWhite"
             android:textStyle="bold" />

@@ -26,7 +26,8 @@ class RideViewModel(private val context: Context, private val fragmentSignin: Fr
         val fragment = FragmentFineRide()
         val bundle = Bundle()
         fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+        fragmentSignin.mFragmentNavigation.switchTab(1);
+
 
     }
 
@@ -35,7 +36,8 @@ class RideViewModel(private val context: Context, private val fragmentSignin: Fr
         val fragment = FragmentFineRide()
         val bundle = Bundle()
         fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+        fragmentSignin.mFragmentNavigation.switchTab(2);
+
 
     }
 

@@ -10,28 +10,19 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.faizal.bottomnavigation.adapter.CategoryFlexboxAdapter
-import com.faizal.bottomnavigation.adapter.AdSearchRecyclerViewAdapter
-import com.faizal.bottomnavigation.adapter.PeopleAdapter
-import com.faizal.bottomnavigation.adapter.UserAdapter
 import com.faizal.bottomnavigation.handler.RecyclerLoadMoreCountryHandler
 import com.faizal.bottomnavigation.model.CountriesInfoModel
-import com.faizal.bottomnavigation.viewmodel.AdSearchModel
-import com.faizal.bottomnavigation.viewmodel.PostAdViewModel
-import com.faizal.bottomnavigation.viewmodel.RegistrationModel
-import com.faizal.bottomnavigation.viewmodel.UserViewModel
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
-import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import android.text.method.LinkMovementMethod
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.text.SpannableString
-
-
+import com.faizal.bottomnavigation.adapter.*
+import com.faizal.bottomnavigation.viewmodel.*
 
 
 //@BindingAdapter("setUpWithViewpager")
@@ -208,34 +199,34 @@ import android.text.SpannableString
 //    recyclerView.adapter = MyAdsLstItemRecyclerAdpater(profileInfoViewModel)
 //}
 //
-//
-//@BindingAdapter("autoAdapter")
-//fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: NewAddressViewModel) {
-//    //  val autoFillTextAdapter = ProductListAdapter(view.context, pArrayAdapter.roleAdapter!!)
-//    val address = pArrayAdapter.roleAdapterAddress;
-//    val autoText = view;
-//    val autoFillTextAdapter = PeopleAdapter(view.context, R.layout.content_profileedit, R.id.text_title, address)
-//
-//    autoText.setAdapter(autoFillTextAdapter)
-//    autoText.setText("")
-//    autoText.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
-//
-//        Log.d("user", "citycodechange")
-//
-//        for (strr in address!!) {
-//            Log.d("user", "citycodechange" + strr.cityname + " " + autoText.text.toString())
-//
-//            if (strr.cityname.equals(autoText.text.toString())) {
-//                pArrayAdapter.cityCode = strr.citycode
-//                break
-//            } else {
-//                pArrayAdapter.cityCode = "0"
-//
-//            }
-//        }
-//
-//    }
-//}
+
+@BindingAdapter("autoAdapter")
+fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: AdressViewModel) {
+    //  val autoFillTextAdapter = ProductListAdapter(view.context, pArrayAdapter.roleAdapter!!)
+    val address = pArrayAdapter.roleAdapterAddress;
+    val autoText = view;
+    val autoFillTextAdapter = PeopleAdapter(view.context, R.layout.autofilitem, R.id.text_title, address)
+
+    autoText.setAdapter(autoFillTextAdapter)
+    autoText.setText("")
+    autoText.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
+
+        Log.d("user", "citycodechange")
+
+        for (strr in address!!) {
+            Log.d("user", "citycodechange" + strr.cityname + " " + autoText.text.toString())
+
+            if (strr.cityname.equals(autoText.text.toString())) {
+                pArrayAdapter.cityCode = strr.citycode
+                break
+            } else {
+                pArrayAdapter.cityCode = "0"
+
+            }
+        }
+
+    }
+}
 
 //@BindingAdapter("focusId", "focusTarget")
 //fun requestFocusFromTouch(view: View, id: Int, target: Int) {
@@ -328,19 +319,19 @@ fun adapter(searchView: SearchView, countriesViewModel: AdSearchModel, recyclerV
     });
 }
 
-@BindingAdapter("adapterFlex")
-fun loadAdapterFlex2(recyclerView: RecyclerView, pArrayAdapter: PostAdViewModel) {
-    val catergories = pArrayAdapter.singleAttribute!!.category
-    if (catergories.size > 0) {
-        val layoutManager = FlexboxLayoutManager(recyclerView.context)
-        layoutManager.flexDirection = FlexDirection.ROW
-        layoutManager.justifyContent = JustifyContent.SPACE_AROUND
-        layoutManager.alignItems = AlignItems.FLEX_START
-        recyclerView.layoutManager = layoutManager
-        val adapter = CategoryFlexboxAdapter(recyclerView.context, catergories, pArrayAdapter)
-        recyclerView.adapter = adapter
-    }
-}
+//@BindingAdapter("adapterFlex")
+//fun loadAdapterFlex2(recyclerView: RecyclerView, pArrayAdapter: PostAdViewModel) {
+//    val catergories = pArrayAdapter.singleAttribute!!.category
+//    if (catergories.size > 0) {
+//        val layoutManager = FlexboxLayoutManager(recyclerView.context)
+//        layoutManager.flexDirection = FlexDirection.ROW
+//        layoutManager.justifyContent = JustifyContent.SPACE_AROUND
+//        layoutManager.alignItems = AlignItems.FLEX_START
+//        recyclerView.layoutManager = layoutManager
+//        val adapter = CategoryFlexboxAdapter(recyclerView.context, catergories, pArrayAdapter)
+//        recyclerView.adapter = adapter
+//    }
+//}
 
 
 @BindingAdapter("app:data")
@@ -352,10 +343,14 @@ fun loadAdapterx(recyclerView: RecyclerView, profileInfoViewModel: UserViewModel
 }
 
 @BindingAdapter("app:data")
-fun loadAdapterx(recyclerView: TextView, profileInfoViewModel: UserViewModel) {
-
-
+fun loadAdapterx(recyclerView: RecyclerView, profileInfoViewModel: GameChooserModel) {
+    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+    val adapter = GameChooserAdapter()
+    recyclerView.adapter = adapter
+    (recyclerView.adapter as GameChooserAdapter).setModel(profileInfoViewModel)
+    (recyclerView.adapter as GameChooserAdapter).setData(profileInfoViewModel.userIds)
 }
+
 
 @BindingAdapter("app:clickableString")
 fun loadAdapterx(textView: TextView, profileInfoViewModel: RegistrationModel) {

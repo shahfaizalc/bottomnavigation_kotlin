@@ -28,13 +28,10 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.view.FragmentAddress
 
 
-
-
-
-
-class PostAdViewModel(internal  var activity: FragmentActivity, internal val fragmentProfileInfo: FragmentPostAd)
+class PostAdViewModel(internal var activity: FragmentActivity, internal val fragmentProfileInfo: FragmentPostAd, internal var postAdModel: PostAdModel)
     : BaseObservable() {
 
     var singleAttribute: Category? = null
@@ -64,13 +61,6 @@ class PostAdViewModel(internal  var activity: FragmentActivity, internal val fra
         }
 
     @get:Bindable
-    var itemPositionCategory: Int = 0
-        set(itemPositionCategory) {
-            field = itemPositionCategory
-            notifyPropertyChanged(BR.itemPositionCategory)
-        }
-
-    @get:Bindable
     var title: String? = null
         set(title) {
             field = title
@@ -89,14 +79,11 @@ class PostAdViewModel(internal  var activity: FragmentActivity, internal val fra
         if(!(title.isNullOrEmpty()|| description.isNullOrEmpty()||showDate.isNullOrEmpty()|| showTime.isNullOrEmpty())) {
 
             if (!handleMultipleClicks()) {
-                val postAdModel = PostAdModel();
                 postAdModel.title = title
                 postAdModel.description = description
                 postAdModel.showDate = showDate
                 postAdModel.showTime = showTime
-                postAdModel.categorySelect = itemPositionCategory
-
-                val fragment = FragmentPostAdPricing()
+                val fragment = FragmentAddress()
                 val bundle = Bundle()
                 bundle.putParcelable(POSTAD_OBJECT, postAdModel)
                 fragment.setArguments(bundle)

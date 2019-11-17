@@ -19,8 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:gravity="center"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/home_welcomestring"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/dimen_36"
@@ -29,9 +29,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/dimen_20"
             android:layout_weight="1"
             android:gravity="bottom"
-            android:layout_marginBottom="@dimen/dimen_20"
             android:orientation="vertical">
 
             <TextView
@@ -46,30 +46,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/dimen_20"
                 android:text="@string/home_welcomestring4"
-                android:textColor="@color/colorBlack"
-                android:layout_marginBottom="@dimen/dimen_20"/>
+                android:textColor="@color/colorBlack" />
 
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginLeft="@dimen/dimen_16"
-                android:layout_marginRight="@dimen/dimen_16"
-                android:background="@drawable/circular_bg_blue"
-                android:onClick="@{() -> homeData.signUpUserClicked()}"
-                android:text="Post a ride"
-                android:textStyle="bold" />
+                android:layout_margin="@dimen/dimen_12"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_16"
-                android:background="@drawable/circular_bg_blue"
-                android:onClick="@{() -> homeData.signInUserClicked()}"
-                android:text="Find a ride"
-                android:textStyle="bold" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_4"
+                    android:layout_weight="1"
+                    android:background="@drawable/circular_bg_blue"
+                    android:onClick="@{() -> homeData.signUpUserClicked()}"
+                    android:paddingTop="@dimen/dimen_24"
+                    android:paddingBottom="@dimen/dimen_24"
+                    android:text="Post an Event"
+                    android:textSize="@dimen/dimen_16"
+                    android:textStyle="bold" />
 
+                <Button
+                    android:textSize="@dimen/dimen_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_4"
+                    android:layout_weight="1"
+                    android:background="@drawable/circular_bg_blue"
+                    android:onClick="@{() -> homeData.signInUserClicked()}"
+                    android:paddingTop="@dimen/dimen_24"
+                    android:paddingBottom="@dimen/dimen_24"
+                    android:text="Find an Event"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

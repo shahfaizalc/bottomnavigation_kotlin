@@ -90,7 +90,6 @@
                     android:layout_marginBottom="@dimen/dimen_16"
                     android:onClick="@{homeData.datePickerClick()}"
                     android:text="@{homeData.showDate ?? @string/defaultDate}"
-
                     android:textColor="@color/green" />
 
             </LinearLayout>

@@ -4,17 +4,26 @@
     <data>
 
         <variable
-            name="balanceTicket"
-            type="java.lang.String" />
+            name="listener"
+            type="com.faizal.bottomnavigation.listeners.ChooserEventListener" />
 
+        <variable
+            name="itemPosition"
+            type="java.lang.Integer" />
+
+        <variable
+            name="gameChooserModel"
+            type="com.faizal.bottomnavigation.viewmodel.GameChooserModel" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        android:onClick="@{() -> listener.onClickAdSearchListItem(gameChooserModel,itemPosition)}">
 
-        <androidx.cardview.widget.CardView
+
+    <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +37,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorSkyBlue"
+                android:background="@drawable/circular_bg_blue"
                 android:orientation="vertical">
 
                 <TextView
@@ -36,8 +45,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dimen_8"
-                    android:textColor="@color/white"
+                    android:padding="@dimen/dimen_16"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
 
