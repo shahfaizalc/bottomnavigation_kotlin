@@ -1,5 +1,6 @@
 package com.faizal.bottomnavigation.viewmodel
 
+import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
@@ -12,7 +13,9 @@ import com.faizal.bottomnavigation.model.IndiaItem
 import com.faizal.bottomnavigation.model.PostAdModel
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
+import com.faizal.bottomnavigation.utils.Constants.POSTAD_OBJECT
 import com.faizal.bottomnavigation.view.FragmentAddress
+import com.faizal.bottomnavigation.view.FragmentRequestComplete
 import java.util.*
 
 class AdressViewModel(internal val activity: FragmentActivity, internal val fragmentProfileInfo: FragmentAddress, internal val postAdObj: PostAdModel)// To show list of user images (Gallery)
@@ -48,12 +51,6 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
             notifyPropertyChanged(BR.roleAdapterAddress)
         }
 
-    @get:Bindable
-    var number: String = ""
-        set(price) {
-            field = price
-            notifyPropertyChanged(BR.number)
-        }
 
     @get:Bindable
     var street: String = ""
@@ -79,23 +76,25 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
 
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
-        if (!(number.isEmpty() || street.isEmpty()|| landmark.isEmpty()|| town.isEmpty())) {
+        if (!( street.isEmpty()|| landmark.isEmpty()|| town.isEmpty())) {
 
-//            val ddks = Address();
-//            ddks.locationname = landmark;
-//            ddks.streetName = street
-//            ddks.town = town
+            val address = Address();
+            address.locationname = landmark;
+            address.streetName = street
+            address.town = town
+            address.cityCode = cityCode
 
+            postAdObj.address = address
 
             if (!handleMultipleClicks()) {
                 val postAdModel = postAdObj
                 postAdModel.address
 
-//                val fragment = FragmentNewAddress()
-//                val bundle = Bundle()
-//                bundle.putParcelable(Constants.POSTAD_OBJECT, postAdModel)
-//                fragment.setArguments(bundle)
-//                fragmentProfileInfo.newInstance(1,fragment);
+                val fragment = FragmentRequestComplete()
+                val bundle = Bundle()
+                bundle.putParcelable(POSTAD_OBJECT, postAdModel)
+                fragment.setArguments(bundle)
+                fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
 
             }
         } else {

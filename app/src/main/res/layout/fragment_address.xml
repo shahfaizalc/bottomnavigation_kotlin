@@ -29,19 +29,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_16"
-                    android:text="Number"
+                    android:text="Landmark"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint=""
-                    android:text="@={postAdPricing.number}"
+                    android:text="@={postAdPricing.landmark}"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
-                              <TextView
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_16"
@@ -53,21 +53,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@={postAdPricing.street}"
-                    android:textColor="@color/colorBlack"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:text="Landmark"
-                    android:textColor="@color/colorBlack"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@={postAdPricing.landmark}"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
@@ -91,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_16"
-                    android:text="City"
+                    android:text="City/Near City"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
