@@ -63,10 +63,10 @@
                     android:layout_margin="@dimen/dimen_4"
                     android:layout_weight="1"
                     android:background="@drawable/circular_bg_blue"
-                    android:onClick="@{() -> homeData.signUpUserClicked()}"
+                    android:onClick="@{() -> homeData.findClicked()}"
                     android:paddingTop="@dimen/dimen_24"
                     android:paddingBottom="@dimen/dimen_24"
-                    android:text="Post an Event"
+                    android:text="Be a Trainer"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
 
@@ -77,10 +77,10 @@
                     android:layout_margin="@dimen/dimen_4"
                     android:layout_weight="1"
                     android:background="@drawable/circular_bg_blue"
-                    android:onClick="@{() -> homeData.signInUserClicked()}"
+                    android:onClick="@{() -> homeData.beClicked()}"
                     android:paddingTop="@dimen/dimen_24"
                     android:paddingBottom="@dimen/dimen_24"
-                    android:text="Find an Event"
+                    android:text="Find an Trainer"
                     android:textStyle="bold" />
             </LinearLayout>
 

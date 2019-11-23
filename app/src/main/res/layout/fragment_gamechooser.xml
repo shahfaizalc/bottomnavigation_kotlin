@@ -11,12 +11,38 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <RelativeLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:data="@{gameChooserModel}" />
+            android:animateLayoutChanges="true">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@color/colorSmoke"
+                android:clickable="true"
+                app:searchAdapter="@{gameChooserModel}"
+                app:searchRecycler="@{recylerView}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/search1"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:paddingStart="@dimen/dimen_8"
+                android:paddingEnd="@dimen/dimen_8"
+                android:scrollbars="vertical" />
+
+        </RelativeLayout>
     </LinearLayout>
 </layout>

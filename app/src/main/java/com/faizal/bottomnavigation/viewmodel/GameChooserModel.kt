@@ -24,8 +24,10 @@ class GameChooserModel(internal val fragmentGameChooser: FragmentGameChooser) : 
     }
 
     private fun addValues() {
-        userIds = listOf("Cricket", "Football", "Tennis", "Badminton",
-                "Volleyball", "Hockey", "Music", "Others")
+        userIds = listOf("Archery", "Badminton", "Basketball", "Baseball",
+                "Boxing", "Cricket", "Football", "Golf", "Gymnastics", "Hockey",
+                "Judo", "Kabaddi", "Karate", "Music", "Rugby", "Racing",
+                "Table Tennis", "Tennis", "Volleyball", "Wrestling", "Others")
     }
 
 

@@ -1,28 +1,30 @@
 package com.faizal.bottomnavigation
 
 import android.graphics.Color
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.TextUtils
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.View
 import android.widget.AutoCompleteTextView
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.faizal.bottomnavigation.adapter.AdSearchRecyclerViewAdapter
+import com.faizal.bottomnavigation.adapter.GameChooserAdapter
+import com.faizal.bottomnavigation.adapter.PeopleAdapter
+import com.faizal.bottomnavigation.adapter.UserAdapter
 import com.faizal.bottomnavigation.handler.RecyclerLoadMoreCountryHandler
 import com.faizal.bottomnavigation.model.CountriesInfoModel
-import com.google.android.flexbox.AlignItems
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.flexbox.JustifyContent
-import android.text.method.LinkMovementMethod
-import android.text.Spanned
-import android.text.TextPaint
-import android.text.style.ClickableSpan
-import android.text.SpannableString
-import com.faizal.bottomnavigation.adapter.*
 import com.faizal.bottomnavigation.viewmodel.*
+import com.squareup.picasso.Picasso
 
 
 //@BindingAdapter("setUpWithViewpager")
@@ -342,13 +344,44 @@ fun loadAdapterx(recyclerView: RecyclerView, profileInfoViewModel: UserViewModel
     (recyclerView.adapter as UserAdapter).setData(profileInfoViewModel.userIds)
 }
 
-@BindingAdapter("app:data")
-fun loadAdapterx(recyclerView: RecyclerView, profileInfoViewModel: GameChooserModel) {
+@BindingAdapter("app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView, profileInfoViewModel: GameChooserModel, recyclerView: RecyclerView) {
+
+    val emptySting = "";
     recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
     val adapter = GameChooserAdapter()
     recyclerView.adapter = adapter
     (recyclerView.adapter as GameChooserAdapter).setModel(profileInfoViewModel)
     (recyclerView.adapter as GameChooserAdapter).setData(profileInfoViewModel.userIds)
+
+    // Search view clear query
+    val searchClear = searchView.findViewById<View>(R.id.search_close_btn)
+    searchClear.setOnClickListener({ searchView.setQuery(emptySting, true) })
+
+    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(s: String?): Boolean {
+            return false
+        }
+
+        override fun onQueryTextChange(query: String): Boolean {
+            if (!query.isEmpty()) {
+                //Kotlin filter to filter the query results
+                val model =
+                        profileInfoViewModel.userIds.filter {
+                            it.toLowerCase().startsWith(query.toLowerCase())
+                        }
+
+                (recyclerView.adapter as GameChooserAdapter).setData(model)
+
+            } else {
+                (recyclerView.adapter as GameChooserAdapter).setData(profileInfoViewModel.userIds)
+
+            }
+            return false
+        }
+    })
+
+
 }
 
 
@@ -374,4 +407,22 @@ fun loadAdapterx(textView: TextView, profileInfoViewModel: RegistrationModel) {
 
 
 }
+
+@BindingAdapter("app:imageUrl")
+fun loadImage(view: ImageView, imageUrl: String?) {
+    val i = TextUtils.isEmpty(imageUrl)
+
+
+    if (i) {
+        view.setImageDrawable(view.getContext().getDrawable(R.drawable.placeholder_profile))
+    } else {
+        Picasso.get()
+                .load(imageUrl)
+                .resize(50, 50)
+                .error(R.drawable.placeholder_profile)
+                .placeholder(R.drawable.placeholder_profile)
+                .into(view)
+    }
+}
+
 

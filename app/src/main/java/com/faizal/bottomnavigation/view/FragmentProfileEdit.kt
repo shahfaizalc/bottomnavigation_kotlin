@@ -6,17 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.databinding.FragmentProfileBinding
+import com.faizal.bottomnavigation.databinding.FragmentProfileeditBinding
 import com.faizal.bottomnavigation.databinding.FragmentWelcomeBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.utils.Constants
+import com.faizal.bottomnavigation.viewmodel.ProfileEditViewModel
+import com.faizal.bottomnavigation.viewmodel.ProfileViewModel
 import com.faizal.bottomnavigation.viewmodel.WelcomeViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 
-class FragmentWelcome : BaseFragment() {
+class FragmentProfileEdit : BaseFragment() {
 
     @Transient
-    lateinit internal var areaViewModel: WelcomeViewModel
+    lateinit internal var areaViewModel: ProfileEditViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -24,27 +28,12 @@ class FragmentWelcome : BaseFragment() {
     }
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        val binding = DataBindingUtil.inflate<FragmentWelcomeBinding>(inflater, R.layout.fragment_welcome, container, false)
-        areaViewModel = WelcomeViewModel(this.context!!, this)
+        val binding = DataBindingUtil.inflate<FragmentProfileeditBinding>(inflater, R.layout.fragment_profileedit, container, false)
+        areaViewModel = ProfileEditViewModel(this.context!!, this)
         binding.homeData = areaViewModel
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
-        mAuth.currentUser?.run {
-            isUserSignedIN()
-        }
-
-   }
-
-   fun isUserSignedIN(){
-        val fragment = FragmentProfile()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        this.mFragmentNavigation.replaceFragment(this.newInstance(0,fragment,bundle));
-    }
     override fun onResume() {
         super.onResume()
         areaViewModel.registerListeners()

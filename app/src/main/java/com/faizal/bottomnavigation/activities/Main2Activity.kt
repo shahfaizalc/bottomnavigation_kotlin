@@ -48,7 +48,6 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         bottomTabLayout = findViewById(R.id.bottom_tab_layout)
         TABS = ArrayList();
         TABS.add("Home")
@@ -211,6 +210,11 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
             mNavController!!.pushFragment(fragment)
         }
     }
+
+    override fun replaceFragment(fragment: Fragment) {
+        if (mNavController != null) {
+            mNavController!!.replaceFragment(fragment)
+        }    }
 
 
     override fun onTabTransaction(fragment: Fragment?, index: Int) {

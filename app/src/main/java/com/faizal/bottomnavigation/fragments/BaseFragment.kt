@@ -17,7 +17,6 @@ open class BaseFragment : Fragment() {
 
     }
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is FragmentNavigation) {
@@ -27,6 +26,7 @@ open class BaseFragment : Fragment() {
 
     interface FragmentNavigation {
         fun pushFragment(fragment: Fragment)
+        fun replaceFragment(fragment: Fragment)
         fun switchTab(position : Int)
         fun viewBottom(viewState : Int)
     }

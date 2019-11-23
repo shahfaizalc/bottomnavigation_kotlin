@@ -2,6 +2,8 @@ package com.faizal.bottomnavigation.viewmodel
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import com.faizal.bottomnavigation.R
@@ -10,7 +12,7 @@ import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
 
-class RideViewModel(private val context: Context, private val fragmentSignin: FragmentRide) :
+class ProfileViewModel(private val context: Context, private val fragmentSignin: FragmentProfile) :
         BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
@@ -21,24 +23,20 @@ class RideViewModel(private val context: Context, private val fragmentSignin: Fr
         networkHandler()
     }
 
-    fun findClicked() {
 
-
-        val fragment = FragmentFineRide()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.switchTab(1);
-    }
-
-    fun beClicked() {
-        val fragment = FragmentFineRide()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.switchTab(4);
-    }
+    var imgUrl =""
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
+    }
+
+    fun findClickded()
+    {
+        Log.d("tag","taggg")
+        val fragment = FragmentProfileEdit()
+        val bundle = Bundle()
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
     }
 
     fun registerListeners() {

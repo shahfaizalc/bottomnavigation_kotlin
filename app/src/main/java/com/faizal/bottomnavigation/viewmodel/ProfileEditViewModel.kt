@@ -10,7 +10,7 @@ import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
 
-class RideViewModel(private val context: Context, private val fragmentSignin: FragmentRide) :
+class ProfileEditViewModel(private val context: Context, private val fragmentSignin: FragmentProfileEdit) :
         BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
@@ -21,21 +21,8 @@ class RideViewModel(private val context: Context, private val fragmentSignin: Fr
         networkHandler()
     }
 
-    fun findClicked() {
 
-
-        val fragment = FragmentFineRide()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.switchTab(1);
-    }
-
-    fun beClicked() {
-        val fragment = FragmentFineRide()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.switchTab(4);
-    }
+    var imgUrl =""
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
