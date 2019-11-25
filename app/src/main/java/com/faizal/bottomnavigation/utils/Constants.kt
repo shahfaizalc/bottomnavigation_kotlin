@@ -16,8 +16,7 @@ object Constants {
     val BASEURL_COLLECTION_PROFILEPIC = "user_profilepic/"
     val BASEURL_COLLECTION_GEN_PROFILEINFO = "userinfo/general/"
     val BASEURL_COLLECTION_HOBBIES_PROFILEINFO = "userinfo_general"
-    val BASEURL_POST_AD = "ads/"
-
+    val BASEURL_POST_AD  = "userinfo/postad/"
 
     val POSTAD_OBJECT = "POSTAD"
     val AD_DOCID = "DOCID"

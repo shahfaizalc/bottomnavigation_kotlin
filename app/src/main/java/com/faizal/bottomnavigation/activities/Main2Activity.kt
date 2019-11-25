@@ -205,6 +205,11 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
         }
     }
 
+    override fun popFragment(fragment: Int) {
+        if (mNavController != null) {
+            mNavController!!.popFragments(fragment)
+        }    }
+
     override fun pushFragment(fragment: Fragment) {
         if (mNavController != null) {
             mNavController!!.pushFragment(fragment)

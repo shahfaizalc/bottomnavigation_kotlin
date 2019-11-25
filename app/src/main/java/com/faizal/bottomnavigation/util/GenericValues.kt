@@ -3,10 +3,8 @@ package com.faizal.bottomnavigation.util
 import android.content.Context
 import android.graphics.drawable.Drawable
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.model.Category
-import com.faizal.bottomnavigation.model.CitiesIndia
-import com.faizal.bottomnavigation.model.IndiaItem
-import com.faizal.bottomnavigation.model.SingleAttribute
+import com.faizal.bottomnavigation.model.*
+import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.utils.Constants.FILENAME_CATEGORY
 import com.faizal.bottomnavigation.utils.Constants.FILENAME_SINGLE_CHOICE_ATTR
@@ -47,4 +45,21 @@ class GenericValues {
         return ReadAssetFile().readAssetFile(fileName, context)
     }
 
+      fun profileToString(profile : Profile) : String{
+        val gson  = Gson();
+       return gson.toJson(profile)
+    }
+    fun getProfile(fileName: String,context: Context): Profile {
+        val gson = Gson()
+        return gson.fromJson(fileName, Profile::class.java)
+    }
+
+    fun addressToString(profile : Address) : String{
+        val gson  = Gson();
+        return gson.toJson(profile)
+    }
+    fun getAddress(fileName: String,context: Context): Address {
+        val gson = Gson()
+        return gson.fromJson(fileName, Address::class.java)
+    }
 }

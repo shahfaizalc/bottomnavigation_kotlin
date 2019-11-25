@@ -28,11 +28,12 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.listeners.MultipleClickListener
 import com.faizal.bottomnavigation.view.FragmentAddress
 
 
 class PostAdViewModel(internal var activity: FragmentActivity, internal val fragmentProfileInfo: FragmentPostAd, internal var postAdModel: PostAdModel)
-    : BaseObservable() {
+    : BaseObservable() , MultipleClickListener {
 
     var singleAttribute: Category? = null
 
@@ -196,7 +197,7 @@ class PostAdViewModel(internal var activity: FragmentActivity, internal val frag
         singleAttribute = c.readCategory(fragmentProfileInfo.context!!)
     }
 
-    private fun handleMultipleClicks(): Boolean {
+    override fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()
     }
 }

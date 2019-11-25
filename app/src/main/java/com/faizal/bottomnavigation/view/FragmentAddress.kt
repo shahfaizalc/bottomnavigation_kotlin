@@ -19,12 +19,12 @@ import com.google.type.PostalAddress
 class FragmentAddress : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val postAdObj  = arguments!!.getParcelable<PostAdModel>(POSTAD_OBJECT)
+        val postAdObj  = arguments!!.getString(POSTAD_OBJECT)
 
         return bindView(inflater, container,postAdObj)
     }
 
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: PostAdModel): View {
+    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String): View {
         val binding = DataBindingUtil.inflate<FragmentAddressBinding>(inflater, R.layout.fragment_address, container, false)
         val areaViewModel = AdressViewModel(activity!!, this,postAdObj)
         binding.postAdPricing = areaViewModel

@@ -16,7 +16,8 @@ import java.util.List;
 public class PeopleAdapter extends ArrayAdapter<IndiaItem> {
 
     private Context context;
-    private List<IndiaItem> items, tempItems, suggestions;
+    private List<IndiaItem> items, tempItems;
+    public List<IndiaItem> suggestions;
 
     public PeopleAdapter(Context context, int resource, int textViewResourceId, List<IndiaItem> items) {
         super(context, resource, textViewResourceId, items);
@@ -35,9 +36,10 @@ public class PeopleAdapter extends ArrayAdapter<IndiaItem> {
         }
         IndiaItem people = items.get(position);
         if (people != null) {
-            TextView lblName = (TextView) view.findViewById(R.id.text_title);
+            TextView lblName = view.findViewById(R.id.text_title);
             if (lblName != null)
                 lblName.setText(people.getCityname());
+
         }
         return view;
     }
@@ -53,8 +55,7 @@ public class PeopleAdapter extends ArrayAdapter<IndiaItem> {
     private Filter nameFilter = new Filter() {
         @Override
         public CharSequence convertResultToString(Object resultValue) {
-            String str = ((IndiaItem) resultValue).getCityname();
-            return str;
+            return ((IndiaItem) resultValue).getCityname();
         }
 
         @Override

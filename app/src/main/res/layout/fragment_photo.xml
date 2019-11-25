@@ -7,7 +7,7 @@
 
         <variable
             name="homeData"
-            type="com.faizal.bottomnavigation.viewmodel.ProfileEditViewModel" />
+            type="com.faizal.bottomnavigation.viewmodel.PhotoViewModel" />
     </data>
 
     <ScrollView
@@ -106,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.userName}"
+                    android:text="@{homeData.userName}"
                     android:textColor="@color/colorBlack" />
 
             </LinearLayout>
@@ -130,7 +130,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.userEmail}"
+                    android:text="@{homeData.userEmail}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
@@ -152,7 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.userPhone}"
+                    android:text="@{homeData.userPhone}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
@@ -174,7 +174,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.userTitle}"
+                    android:text="@{homeData.userTitle}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
@@ -196,7 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.userDesc}"
+                    android:text="@{homeData.userDesc}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
@@ -219,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.userMoreInfo}"
+                    android:text="@{homeData.userMoreInfo}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
@@ -241,7 +241,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.keys}"
+                    android:text="@{homeData.keys}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 

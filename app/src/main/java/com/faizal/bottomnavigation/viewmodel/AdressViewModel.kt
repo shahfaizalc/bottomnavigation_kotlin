@@ -1,31 +1,33 @@
 package com.faizal.bottomnavigation.viewmodel
 
-import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
+import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.model.Address
 import com.faizal.bottomnavigation.model.IndiaItem
-import com.faizal.bottomnavigation.model.PostAdModel
+import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.utils.Constants.POSTAD_OBJECT
 import com.faizal.bottomnavigation.view.FragmentAddress
-import com.faizal.bottomnavigation.view.FragmentRequestComplete
+import org.greenrobot.eventbus.EventBus
 import java.util.*
 
-class AdressViewModel(internal val activity: FragmentActivity, internal val fragmentProfileInfo: FragmentAddress, internal val postAdObj: PostAdModel)// To show list of user images (Gallery)
+class AdressViewModel(internal val activity: FragmentActivity, internal val fragmentProfileInfo: FragmentAddress,
+                      internal val postAdObj: String)// To show list of user images (Gallery)
     : BaseObservable() {
     companion object {
         private val TAG = "ProfileGalleryViewModel"
     }
 
+    var profile = Profile()
     init {
         readAutoFillItems()
+        profile = GenericValues().getProfile(postAdObj,activity.applicationContext)
     }
 
     var cityCode: String? = "0"
@@ -76,6 +78,7 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
 
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
+
         if (!( street.isEmpty()|| landmark.isEmpty()|| town.isEmpty())) {
 
             val address = Address();
@@ -83,18 +86,14 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
             address.streetName = street
             address.town = town
             address.cityCode = cityCode
+            address.city = city
+            profile.address =  address
 
-            postAdObj.address = address
 
             if (!handleMultipleClicks()) {
-                val postAdModel = postAdObj
-                postAdModel.address
 
-                val fragment = FragmentRequestComplete()
-                val bundle = Bundle()
-                bundle.putParcelable(POSTAD_OBJECT, postAdModel)
-                fragment.setArguments(bundle)
-                fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+               activity.onBackPressed();
+                EventBus.getDefault().post( MyCustomEvent(profile));
 
             }
         } else {

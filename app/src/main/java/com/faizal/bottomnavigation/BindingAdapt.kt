@@ -9,9 +9,8 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.View
-import android.widget.AutoCompleteTextView
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableList
@@ -211,22 +210,21 @@ fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: AdressViewModel) {
 
     autoText.setAdapter(autoFillTextAdapter)
     autoText.setText("")
-    autoText.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
+    autoText.onItemClickListener = object : OnItemSelectedListener, AdapterView.OnItemClickListener {
 
-        Log.d("user", "citycodechange")
-
-        for (strr in address!!) {
-            Log.d("user", "citycodechange" + strr.cityname + " " + autoText.text.toString())
-
-            if (strr.cityname.equals(autoText.text.toString())) {
-                pArrayAdapter.cityCode = strr.citycode
-                break
-            } else {
-                pArrayAdapter.cityCode = "0"
-
-            }
+        override fun onNothingSelected(parent: AdapterView<*>?) {
         }
 
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            Log.d("user", "slecgt" + autoFillTextAdapter.suggestions.get(position))
+        }
+
+        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            Toast.makeText(parent!!.context, "Spinner item 1! " + autoFillTextAdapter.suggestions.get(position), Toast.LENGTH_SHORT).show()
+            Log.d("user", "slecgt" + autoFillTextAdapter.suggestions.get(position))
+            pArrayAdapter.cityCode = autoFillTextAdapter.suggestions.get(position).citycode
+            pArrayAdapter.city = autoFillTextAdapter.suggestions.get(position).cityname
+        }
     }
 }
 

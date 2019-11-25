@@ -6,17 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.databinding.FragmentPhotoBinding
 import com.faizal.bottomnavigation.databinding.FragmentProfileeditBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
+import com.faizal.bottomnavigation.viewmodel.PhotoViewModel
 import com.faizal.bottomnavigation.viewmodel.ProfileEditViewModel
 
 
-class FragmentProfileEdit : BaseFragment() {
+class FragmentPhoto : BaseFragment() {
 
-    var binding: FragmentProfileeditBinding? = null
+    var binding: FragmentPhotoBinding? = null
 
     @Transient
-    lateinit internal var areaViewModel: ProfileEditViewModel
+    lateinit internal var areaViewModel: PhotoViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return bindView(inflater, container)
@@ -24,8 +26,8 @@ class FragmentProfileEdit : BaseFragment() {
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
         if (binding == null) {
-            binding = DataBindingUtil.inflate<FragmentProfileeditBinding>(inflater, R.layout.fragment_profileedit, container, false)
-            areaViewModel = ProfileEditViewModel(this.context!!, this)
+            binding = DataBindingUtil.inflate<FragmentPhotoBinding>(inflater, R.layout.fragment_photo, container, false)
+            areaViewModel = PhotoViewModel(this.context!!, this)
             binding!!.homeData = areaViewModel
         }
         return binding!!.root

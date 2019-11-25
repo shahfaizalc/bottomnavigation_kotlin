@@ -8,6 +8,9 @@ import android.widget.Toast
 import androidx.databinding.BaseObservable
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
+import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
+import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.network.FirbaseReadHandler
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +24,17 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
 
     init {
         networkHandler()
+
+        FirbaseReadHandler().getUserInfo(object:UseInfoGeneralResultListener{
+            override fun onSuccess(userInfoGeneral: Profile) {
+
+                Log.d("shalini","paney"+userInfoGeneral.address)
+
+            }
+
+            override fun onFailure(e: Exception) {
+            }
+        })
     }
 
 

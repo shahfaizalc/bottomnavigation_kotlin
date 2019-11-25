@@ -35,7 +35,7 @@ class PostAdModel() : Parcelable {
         status = parcel.readInt()
         showPhoneNumber = parcel.readInt()
         priceFixed = parcel.readByte() != 0.toByte()
-        address = parcel.readParcelable(Address::class.java.classLoader)
+      //  address = parcel.readParcelable(Address::class.java.classLoader)
         adCreationTime = parcel.readLong()
 
     }
@@ -54,7 +54,7 @@ class PostAdModel() : Parcelable {
         parcel.writeInt(status)
         parcel.writeInt(showPhoneNumber)
         parcel.writeByte(if (priceFixed) 1 else 0)
-        parcel.writeParcelable(address, flags)
+       // parcel.writeParcelable(address, flags)
         parcel.writeLong(adCreationTime)
     }
 

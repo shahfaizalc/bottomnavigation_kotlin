@@ -25,6 +25,7 @@ open class BaseFragment : Fragment() {
     }
 
     interface FragmentNavigation {
+        fun popFragment(depth: Int)
         fun pushFragment(fragment: Fragment)
         fun replaceFragment(fragment: Fragment)
         fun switchTab(position : Int)

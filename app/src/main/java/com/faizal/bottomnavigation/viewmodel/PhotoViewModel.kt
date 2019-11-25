@@ -8,32 +8,26 @@ import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.faizal.bottomnavigation.BR
-import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
-import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.MultipleClickListener
 import com.faizal.bottomnavigation.model2.Profile
-import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
-import com.faizal.bottomnavigation.view.FragmentAddress
-import com.faizal.bottomnavigation.view.FragmentProfileEdit
+import com.faizal.bottomnavigation.view.*
+import com.google.firebase.auth.FirebaseAuth
 import org.greenrobot.eventbus.EventBus
+import com.faizal.bottomnavigation.Events.MyCustomEvent
 import org.greenrobot.eventbus.Subscribe
 
 
-class ProfileEditViewModel(private val context: Context, private val fragmentSignin: FragmentProfileEdit) :
+class PhotoViewModel(private val context: Context, private val fragmentSignin: FragmentPhoto) :
         BaseObservable(), NetworkChangeHandler.NetworkChangeListener, MultipleClickListener {
-
-    private val TAG = "ProfileEditViewModel"
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
     private var isInternetConnected: Boolean = false
-
-    var profile = Profile();
 
     init {
         networkHandler()
@@ -47,19 +41,19 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     @Subscribe
     fun customEventReceived(event: MyCustomEvent) {
 
-        profile = event.data
-        val addressVal = " " + profile.address!!.locationname + "\n " + profile.address!!.streetName + "\n " + profile.address!!.town
+        val profile = event.data.address
+        val addressVal = profile!!.locationname +"\n "+profile.streetName+"\n "+profile.town
         userAddress = addressVal
-        Log.d("dddd", "dddd " + userTitle)
+        Log.d("dddd","dddd "+ userTitle)
+
     }
 
-    var imgUrl = ""
+    var imgUrl =""
 
     @get:Bindable
     var userName: String = ""
         set(price) {
             field = price
-            profile.name = price
             notifyPropertyChanged(BR.userName)
 
         }
@@ -68,7 +62,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     var userEmail: String = ""
         set(price) {
             field = price
-            profile.email = price
             notifyPropertyChanged(BR.userEmail)
 
         }
@@ -78,7 +71,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     var userTitle: String = ""
         set(price) {
             field = price
-            profile.title = price
             notifyPropertyChanged(BR.userTitle)
 
         }
@@ -87,7 +79,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     var userPhone: String = ""
         set(price) {
             field = price
-            profile.phone = price
             notifyPropertyChanged(BR.userPhone)
 
         }
@@ -96,13 +87,12 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     var userDesc: String = ""
         set(price) {
             field = price
-            profile.desc = price
             notifyPropertyChanged(BR.userDesc)
 
         }
 
     @get:Bindable
-    var userAddress: String = ""
+    var userAddress: String = "Your Address"
         set(price) {
             field = price
             notifyPropertyChanged(BR.userAddress)
@@ -113,7 +103,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     var userMoreInfo: String = ""
         set(price) {
             field = price
-            profile.moreInformation = price
             notifyPropertyChanged(BR.userMoreInfo)
 
         }
@@ -128,37 +117,28 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
     fun datePickerClick() = View.OnClickListener {
 
-
-        if (!handleMultipleClicks()) {
-
-            if (profile.name != "" && profile.email != "" && profile.phone != "" && profile.title != "") {
-                val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateUserInfo(profile, object : EmptyResultListener {
-                    override fun onFailure(e: Exception) {
-                        Log.d(TAG, "DocumentSnapshot onFailure " + e.message)
-                        Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-
-                    }
-
-                    override fun onSuccess() {
-                        Log.d(TAG, "DocumentSnapshot onSuccess ")
-                    }
-                })
-            } else {
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
-            }
-        }
+        showToast(R.string.network_ErrorMsg)
+        Log.d("dddd","dddd "+ userTitle)
 
     }
 
-    fun updateAddress() = View.OnClickListener {
+    fun updateAddress()=View.OnClickListener{
         showToast(R.string.network_ErrorMsg)
+
+        val profile = Profile()
+        profile.name = userName
+        profile.email = userEmail
+        profile.phone = userPhone
+        profile.title = userTitle
+        profile.desc = userDesc
+        profile.moreInformation = userMoreInfo
         val fragment = FragmentAddress()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
         fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
         userAddress = "DDUE"
-        Log.d("dddd", "dddd " + userTitle)
+        Log.d("dddd","dddd "+ userTitle)
 
 
     }
