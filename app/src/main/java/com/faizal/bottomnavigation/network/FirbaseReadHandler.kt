@@ -29,7 +29,7 @@ class FirbaseReadHandler {
                 if (document!!.exists()) {
                     val gson = GsonBuilder().create()
                     val json = gson.toJson(document.data)
-                    
+
                     val userInfoGeneral = gson.fromJson<Profile>(json, Profile::class.java )
                     useInfoGeneralResultListener.onSuccess(userInfoGeneral)
 

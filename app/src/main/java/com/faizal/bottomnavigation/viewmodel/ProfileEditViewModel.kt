@@ -24,7 +24,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
 
-class ProfileEditViewModel(private val context: Context, private val fragmentSignin: FragmentProfileEdit) :
+class ProfileEditViewModel(private val context: Context, private val fragmentSignin: FragmentProfileEdit, postAdObj: String) :
         BaseObservable(), NetworkChangeHandler.NetworkChangeListener, MultipleClickListener {
 
     private val TAG = "ProfileEditViewModel"
@@ -38,9 +38,9 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     init {
         networkHandler()
         EventBus.getDefault().register(this);
-
+        profile = (GenericValues().getProfile(postAdObj,fragmentSignin.context!!))
     }
-
+    
     /*
    Method will act as the event handler for MyCustomEvent.kt
    */
@@ -56,7 +56,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     var imgUrl = ""
 
     @get:Bindable
-    var userName: String = ""
+    var userName: String = profile.name!!
         set(price) {
             field = price
             profile.name = price
@@ -65,7 +65,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var userEmail: String = ""
+    var userEmail: String = profile.email!!
         set(price) {
             field = price
             profile.email = price
@@ -73,9 +73,8 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
         }
 
-
     @get:Bindable
-    var userTitle: String = ""
+    var userTitle: String = profile.title!!
         set(price) {
             field = price
             profile.title = price
@@ -84,7 +83,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var userPhone: String = ""
+    var userPhone: String = profile.phone!!
         set(price) {
             field = price
             profile.phone = price
@@ -93,7 +92,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var userDesc: String = ""
+    var userDesc: String = profile.desc!!
         set(price) {
             field = price
             profile.desc = price
@@ -110,7 +109,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var userMoreInfo: String = ""
+    var userMoreInfo: String = profile.moreInformation!!
         set(price) {
             field = price
             profile.moreInformation = price

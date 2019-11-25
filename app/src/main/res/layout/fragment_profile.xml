@@ -67,7 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Name"
+                        android:text="@={homeData.userName}"
                         android:textColor="@color/colorBlack"
                         android:textStyle="bold" />
 
@@ -75,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Email"
+                        android:text="@={homeData.userEmail}"
                         android:textColor="@color/colorBlack"
                         android:textStyle="bold" />
 
@@ -83,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Phone"
+                        android:text="@={homeData.userPhone}"
                         android:textColor="@color/colorBlack"
                         android:textStyle="bold" />
 
@@ -118,7 +118,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/home_welcomestring"
+                    android:text="@={homeData.userTitle}"
                     android:textColor="@color/colorBlack" />
 
             </LinearLayout>
@@ -149,7 +149,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/home_welcomestring"
+                    android:text="@={homeData.userDesc}"
                     android:textColor="@color/colorBlack" />
 
             </LinearLayout>
@@ -206,7 +206,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/home_welcomestring"
+                    android:text="@={homeData.userName}"
                     android:textColor="@color/colorBlack" />
 
 
@@ -238,7 +238,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/home_welcomestring"
+                    android:text="@={homeData.userMoreInfo}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
