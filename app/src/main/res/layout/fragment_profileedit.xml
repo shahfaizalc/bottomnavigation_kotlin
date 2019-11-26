@@ -82,6 +82,7 @@
                 <Switch
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checked="@={homeData.userAvailability}"
                     android:text="Availability"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
@@ -237,11 +238,12 @@
                     android:text="Keywords"
                     android:textColor="@color/colorBlack" />
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{homeData.updateKeyWords()}"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.keys}"
+                    android:text="@{homeData.keys}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
@@ -260,9 +262,9 @@
                     android:textColor="@color/colorBlack" />
 
                 <TextView
-                    android:onClick="@{homeData.updateAddress()}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{homeData.updateAddress()}"
                     android:paddingBottom="@dimen/dimen_16"
                     android:text="@{homeData.userAddress}"
                     android:textColor="@color/colorBlack" />

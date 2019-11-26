@@ -19,6 +19,7 @@ import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.FragmentAddress
+import com.faizal.bottomnavigation.view.FragmentKeyWords
 import com.faizal.bottomnavigation.view.FragmentProfileEdit
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -40,7 +41,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         EventBus.getDefault().register(this);
         profile = (GenericValues().getProfile(postAdObj,fragmentSignin.context!!))
     }
-    
+
     /*
    Method will act as the event handler for MyCustomEvent.kt
    */
@@ -48,15 +49,28 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     fun customEventReceived(event: MyCustomEvent) {
 
         profile = event.data
-        val addressVal = " " + profile.address!!.locationname + "\n " + profile.address!!.streetName + "\n " + profile.address!!.town
-        userAddress = addressVal
+        userAddress = getAddress()
         Log.d("dddd", "dddd " + userTitle)
     }
+
+    private fun getAddress() =" " + profile.address?.locationname + "\n " + profile.address?.streetName +
+            "\n " + profile.address?.town + "\n " + profile.address?.city
+
 
     var imgUrl = ""
 
     @get:Bindable
-    var userName: String = profile.name!!
+    var userAvailability: Boolean = profile.availability
+        set(price) {
+            field = price
+            profile.availability = price
+            notifyPropertyChanged(BR.userAvailability)
+
+        }
+
+
+    @get:Bindable
+    var userName: String? = profile.name
         set(price) {
             field = price
             profile.name = price
@@ -65,7 +79,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var userEmail: String = profile.email!!
+    var userEmail: String? = profile.email
         set(price) {
             field = price
             profile.email = price
@@ -74,7 +88,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var userTitle: String = profile.title!!
+    var userTitle: String? = profile.title
         set(price) {
             field = price
             profile.title = price
@@ -83,7 +97,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var userPhone: String = profile.phone!!
+    var userPhone: String? = profile.phone
         set(price) {
             field = price
             profile.phone = price
@@ -92,7 +106,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var userDesc: String = profile.desc!!
+    var userDesc: String? = profile.desc
         set(price) {
             field = price
             profile.desc = price
@@ -101,7 +115,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var userAddress: String = ""
+    var userAddress: String? = getAddress()
         set(price) {
             field = price
             notifyPropertyChanged(BR.userAddress)
@@ -109,7 +123,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var userMoreInfo: String = profile.moreInformation!!
+    var userMoreInfo: String? = profile.moreInformation
         set(price) {
             field = price
             profile.moreInformation = price
@@ -150,17 +164,21 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     }
 
     fun updateAddress() = View.OnClickListener {
-        showToast(R.string.network_ErrorMsg)
         val fragment = FragmentAddress()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
         fragment.setArguments(bundle)
         fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
-        userAddress = "DDUE"
-        Log.d("dddd", "dddd " + userTitle)
-
-
     }
+
+    fun updateKeyWords() = View.OnClickListener {
+        val fragment = FragmentKeyWords()
+        val bundle = Bundle()
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+    }
+
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()

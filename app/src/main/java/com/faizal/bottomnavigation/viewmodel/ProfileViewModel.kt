@@ -31,16 +31,16 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
         networkHandler()
 
         FirbaseReadHandler().getUserInfo(object : UseInfoGeneralResultListener {
+
             override fun onSuccess(profile1: Profile) {
-
                 profile = profile1
-                Log.d("shalini", "paney " + profile1.address)
-
                 userName = profile1.name!!
                 userEmail = profile1.email!!
                 userTitle = profile1.phone!!
                 userDesc = profile1.desc!!
                 userMoreInfo = profile1.moreInformation!!
+                userAvailability = profile1.availability
+                userAddress = getAddress()
             }
 
             override fun onFailure(e: Exception) {
@@ -48,12 +48,24 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
         })
     }
 
+    private fun getAddress() = " " + profile.address!!.locationname + "\n " + profile.address!!.streetName +
+            "\n " + profile.address!!.town + "\n " + profile.address!!.city
 
     var imgUrl = ""
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
     }
+
+
+    @get:Bindable
+    var userAvailability: Boolean = profile.availability
+        set(price) {
+            field = price
+            profile.availability = price
+            notifyPropertyChanged(BR.userAvailability)
+
+        }
 
     @get:Bindable
     var userName: String = ""
