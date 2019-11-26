@@ -11,6 +11,8 @@ object Constants {
     internal val FILENAME_SINGLE_CHOICE_ATTR = "single_choice_attributes.json"
     internal val FILENAME_CATEGORY = "category";
     internal val FILENAME_CITIES = "india.json"
+    internal val FILENAME_COACH = "coach.json"
+
     val BROADCAST_FILE_UPDATE = "com.sparks.android.USER_ACTION"
 
     val BASEURL_COLLECTION_PROFILEPIC = "user_profilepic/"

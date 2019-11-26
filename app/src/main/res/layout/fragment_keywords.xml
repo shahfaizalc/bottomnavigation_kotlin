@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -26,13 +25,56 @@
                 android:orientation="vertical">
 
 
-                <TextView
-                    android:layout_width="match_parent"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:text="City/Near City"
-                    android:textColor="@color/colorBlack"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="16dp">
+
+<!--                    <com.google.android.material.chip.Chip-->
+<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="This"-->
+<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
+
+<!--                    <com.google.android.material.chip.Chip-->
+<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="is"-->
+<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
+
+<!--                    <com.google.android.material.chip.Chip-->
+<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="a"-->
+<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
+
+<!--                    <com.google.android.material.chip.Chip-->
+<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="because"-->
+<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
+
+<!--                    <com.google.android.material.chip.Chip-->
+<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="chip"-->
+<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
+
+<!--                    <com.google.android.material.chip.Chip-->
+<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="group"-->
+<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
+
+
+                </com.google.android.material.chip.ChipGroup>
 
             </LinearLayout>
         </ScrollView>

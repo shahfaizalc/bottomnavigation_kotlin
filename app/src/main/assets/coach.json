@@ -1,0 +1,88 @@
+{
+  "india": [
+    {
+      "categorycode": "1",
+      "categoryname": "Archery"
+    },
+    {
+      "categorycode": "2",
+      "categoryname": "Badminton"
+    },
+    {
+      "categorycode": "3",
+      "categoryname": "Baseketball"
+    },
+    {
+      "categorycode": "4",
+      "categoryname": "BaseBall"
+    },
+    {
+      "categorycode": "5",
+      "categoryname": "Boxing"
+    },
+    {
+      "categorycode": "6",
+      "categoryname": "Cricket"
+    },
+    {
+      "categorycode": "7",
+      "categoryname": "Football"
+    },
+    {
+      "categorycode": "8",
+      "categoryname": "Golf"
+    },
+    {
+      "categorycode": "9",
+      "categoryname": "Gymnastics"
+    },
+    {
+      "categorycode": "10",
+      "categoryname": "Hockey"
+    },
+    {
+      "categorycode": "11",
+      "categoryname": "Judo"
+    },
+    {
+      "categorycode": "12",
+      "categoryname": "Kabaddi"
+    },
+    {
+      "categorycode": "13",
+      "categoryname": "Karate"
+    },
+    {
+      "categorycode": "14",
+      "categoryname": "Music"
+    },
+    {
+      "categorycode": "15",
+      "categoryname": "Rugby"
+    },
+    {
+      "categorycode": "16",
+      "categoryname": "Racing"
+    },
+    {
+      "categorycode": "17",
+      "categoryname": "Table Tennis"
+    },
+    {
+      "categorycode": "18",
+      "categoryname": "Tennis"
+    },
+    {
+      "categorycode": "19",
+      "categoryname": "Others"
+    },
+    {
+      "categorycode": "20",
+      "categoryname": "Volleyball"
+    },
+    {
+      "categorycode": "21",
+      "categoryname": "Wrestling"
+    }
+  ]
+}

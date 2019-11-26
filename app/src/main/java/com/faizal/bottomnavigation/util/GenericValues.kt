@@ -30,6 +30,13 @@ class GenericValues {
         return staff.india as ArrayList<IndiaItem>
     }
 
+    fun readCoachItems(context: Context): ArrayList<CoachItem> {
+        val fileString = getFileString(Constants.FILENAME_COACH, context)
+        val gson = Gson()
+        val staff = gson.fromJson(fileString, Coaches::class.java)
+        return staff.india as ArrayList<CoachItem>
+    }
+
     fun readSingleAttribute(context: Context): SingleAttribute {
         val fileString = getFileString(FILENAME_SINGLE_CHOICE_ATTR, context)
         val gson = Gson()

@@ -9,6 +9,7 @@ import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.model.Address
+import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.IndiaItem
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
@@ -34,11 +35,11 @@ class KeyWordsViewModel(internal val activity: FragmentActivity, internal val fr
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        roleAdapterAddress = c.readAutoFillItems(activity.applicationContext)
+        roleAdapterAddress = c.readCoachItems(activity.applicationContext)
     }
 
     @get:Bindable
-    var roleAdapterAddress: ArrayList<IndiaItem>? = null
+    var roleAdapterAddress: ArrayList<CoachItem>? = null
         private set(roleAdapterAddress) {
             field = roleAdapterAddress
             notifyPropertyChanged(BR.roleAdapterAddress)
