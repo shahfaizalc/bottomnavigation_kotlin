@@ -2,6 +2,7 @@ package com.faizal.bottomnavigation.viewmodel
 
 
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import androidx.databinding.BaseObservable
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import com.faizal.bottomnavigation.BR
+import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
@@ -31,8 +33,8 @@ import java.util.*
 class AdSearchModel(internal var activity: FragmentActivity, internal val fragmentProfileInfo: FragmentAdSearch)// To show list of user images (Gallery)
     : BaseObservable() {
 
-    var countriesInfoModel: ObservableArrayList<PostAdModel>
-    var countriesInfoModelFilter: ObservableArrayList<PostAdModel>
+    var countriesInfoModel: ObservableArrayList<Profile>
+    var countriesInfoModelFilter: ObservableArrayList<Profile>
     var searchQuery = ""
     private val mAuth: FirebaseAuth
 
@@ -64,13 +66,6 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
     }
 
     @get:Bindable
-    var showDate: String? = null
-        set(showDate) {
-            field = showDate
-            notifyPropertyChanged(BR.showDate)
-        }
-
-    @get:Bindable
     var city: String? = null
         set(city) {
             field = city
@@ -78,20 +73,9 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
         }
 
     @Override
-    fun datePickerClick() = View.OnClickListener() {
-        if (!handleMultipleClicks()) {
-            DatePickerEvent().onDatePickerClick(activity.applicationContext!!, object : DateListener {
-                override fun onDateSet(result: String) {
-                    showDate = result
-                }
-            })
-        }
-    }
-
-    @Override
     fun searchAdClick() = View.OnClickListener() {
         if (!handleMultipleClicks()) {
-            if (searchQuery.isEmpty() || showDate.isNullOrEmpty() || city.isNullOrEmpty()) {
+            if (city.isNullOrEmpty()) {
                 Log.d(TAG, "Fill all values ")
 
             } else {
@@ -101,12 +85,12 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
         }
     }
 
-    fun openFragment(postAdModel: PostAdModel) {
-        val fragment = FragmentRequestComplete()
-        val bundle = Bundle()
-        bundle.putParcelable(Constants.POSTAD_OBJECT, postAdModel)
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.newInstance(1, fragmentProfileInfo, bundle);
+    fun openFragment(postAdModel: Profile) {
+//        val fragment = FragmentRequestComplete()
+//        val bundle = Bundle()
+//        bundle.putParcelable(Constants.POSTAD_OBJECT, postAdModel)
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.newInstance(1, fragmentProfileInfo, bundle);
     }
 
     private fun handleMultipleClicks(): Boolean {
@@ -117,7 +101,7 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
     fun getVal() {
 
         val db = FirebaseFirestore.getInstance()
-        val query = db.collection("ads");
+        val query = db.collection("userinfo");
         query.whereEqualTo("address.city", city)//.whereEqualTo("showDate", showDate)
                 .get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
@@ -130,14 +114,20 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
                         Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
                     }
                 }).addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
-                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu.size()) })
+                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
     }
 
     fun addListItem(document: QueryDocumentSnapshot) {
-        val adModel = document.toObject(PostAdModel::class.java)
-        if (adModel.userId.equals(mAuth.currentUser!!.uid) && adModel.title!!.contains(searchQuery)) {
+        val adModel = document.toObject(Profile::class.java)
 
-            countriesInfoModel.add(adModel)
-        }
+        Log.d(TAG, "Success getting documents: " + adModel.name)
+
+        countriesInfoModel.add(adModel)
+
+
+//        if (adModel.userId.equals(mAuth.currentUser!!.uid) && adModel.title!!.contains(searchQuery)) {
+//
+//            countriesInfoModel.add(adModel)
+//        }
     }
 }

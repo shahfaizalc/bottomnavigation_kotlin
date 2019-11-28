@@ -42,8 +42,8 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
 
     fun updateUserInfo(userInfo: Profile, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
-        val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO + currentFirebaseUser!!.uid)
-        collection.document(currentFirebaseUser.uid).set(userInfo)
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
+        collection.document(currentFirebaseUser!!.uid).set(userInfo)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
 

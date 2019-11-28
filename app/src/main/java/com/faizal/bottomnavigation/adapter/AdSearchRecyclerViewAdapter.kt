@@ -35,11 +35,11 @@ class AdSearchRecyclerViewAdapter(private val adSearchModel: AdSearchModel) :
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!) {
             countriesInfoModel = viewModel.countriesInfoModelFilter[position]
-            priceActual = ""+countriesInfoModel!!.price+" x "+countriesInfoModel!!.price
-            priceDiscount = ""+countriesInfoModel!!.discount
+            priceActual = ""+countriesInfoModel!!.name+" x "+countriesInfoModel!!.name
+            priceDiscount = ""+countriesInfoModel!!.name
             priceTotal = offerPrice(countriesInfoModel!!)
             address = getAddress(countriesInfoModel!!.address)
-            balanceTicket = countriesInfoModel!!.balanceTicket.toString()
+            balanceTicket = countriesInfoModel!!.name.toString()
             itemPosition = position
             mainDataModel = viewModel
             executePendingBindings()

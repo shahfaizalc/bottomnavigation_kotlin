@@ -16,8 +16,6 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.SearchView
-            app:searchRecycler="@{recylerView}"
-            app:serachAdapter="@{adSearchModel}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -26,7 +24,9 @@
             android:layout_marginEnd="@dimen/dimen_16"
             android:background="@color/colorWhite"
             android:focusable="false"
-            app:queryHint="Enter search text" />
+            app:queryHint="Enter search text"
+            app:searchRecycler="@{recylerView}"
+            app:serachAdapter="@{adSearchModel}" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,49 +37,38 @@
             android:orientation="horizontal"
             android:weightSum="2">
 
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_4"
-                android:layout_weight="1"
-                android:background="@color/colorWhite"
-                android:drawableEnd="@drawable/calendar_range"
-                android:focusable="false"
-                android:hint="Event date"
-                android:onClick="@{adSearchModel.datePickerClick()}"
-                android:padding="@dimen/dimen_8"
-                android:text="@{adSearchModel.showDate}"
-                android:textColor="@color/colorBlack" />
-
             <AutoCompleteTextView
+                android:layout_gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_4"
+                android:layout_margin="@dimen/dimen_2"
                 android:layout_weight="1"
                 android:background="@color/colorWhite"
                 android:hint="City/Near City"
                 android:maxLines="70"
-                android:padding="@dimen/dimen_8"
+                android:padding="@dimen/dimen_12"
                 android:text="@={adSearchModel.city}"
                 android:textColor="@color/colorBlack"
                 app:autoAdapter="@{adSearchModel}" />
+
+            <Button
+                android:layout_margin="@dimen/dimen_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:onClick="@{adSearchModel.searchAdClick()}"
+                android:padding="@dimen/dimen_4"
+                android:text="Search"
+                android:textStyle="bold" />
         </LinearLayout>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:background="@color/colorWhite"
-            android:onClick="@{adSearchModel.searchAdClick()}"
-            android:text="Search"
-            android:textStyle="bold" />
-
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="@dimen/dimen_8"
             android:id="@+id/recylerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_8"
             android:background="@color/colorWhite"
             android:paddingStart="@dimen/dimen_8"
             android:paddingEnd="@dimen/dimen_8"

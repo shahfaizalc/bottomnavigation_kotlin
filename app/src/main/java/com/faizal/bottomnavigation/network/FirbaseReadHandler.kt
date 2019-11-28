@@ -4,6 +4,7 @@ import android.util.Log
 import android.util.NoSuchPropertyException
 import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
 import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -21,7 +22,7 @@ class FirbaseReadHandler {
 
     fun getUserInfo(useInfoGeneralResultListener: UseInfoGeneralResultListener) {
         val myDB = FirebaseFirestore.getInstance()
-        val docRef = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO + currentFirebaseUser!!.uid).document(currentFirebaseUser.uid)
+        val docRef = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO).document(currentFirebaseUser!!.uid)
 
         docRef.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -66,13 +67,13 @@ class FirbaseReadHandler {
 //
 //
 //    fun getMyAds(strList: ArrayList<String>, adsResultListener: AdsResultListener) {
-//        var postAdModel = ArrayList<PostAdModel>()
+//        var postAdModel = ArrayList<Profile>()
 //        var idsSize = strList.size
 //
 //        for (ids: String in strList) {
 //
 //            val myDB = FirebaseFirestore.getInstance()
-//            val docs = myDB.collection(Constants.BASEURL_POST_AD + currentFirebaseUser!!.uid)
+//            val docs = myDB.collection(Constants.BASEURL_COLLECTION_GEN_PROFILEINFO + currentFirebaseUser!!.uid)
 //            val docRef = docs.document(ids)
 //
 //            docRef.get().addOnCompleteListener { task ->

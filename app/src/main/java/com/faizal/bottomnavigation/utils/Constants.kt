@@ -16,7 +16,7 @@ object Constants {
     val BROADCAST_FILE_UPDATE = "com.sparks.android.USER_ACTION"
 
     val BASEURL_COLLECTION_PROFILEPIC = "user_profilepic/"
-    val BASEURL_COLLECTION_GEN_PROFILEINFO = "userinfo/general/"
+    val BASEURL_COLLECTION_GEN_PROFILEINFO = "userinfo/"
     val BASEURL_COLLECTION_HOBBIES_PROFILEINFO = "userinfo_general"
     val BASEURL_POST_AD  = "userinfo/postad/"
 
