@@ -13,6 +13,7 @@ import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.MultipleClickListener
+import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.GenericValues
@@ -23,6 +24,7 @@ import com.faizal.bottomnavigation.view.FragmentKeyWords
 import com.faizal.bottomnavigation.view.FragmentProfileEdit
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import java.util.ArrayList
 
 
 class ProfileEditViewModel(private val context: Context, private val fragmentSignin: FragmentProfileEdit, postAdObj: String) :
@@ -39,7 +41,14 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     init {
         networkHandler()
         EventBus.getDefault().register(this);
-        profile = (GenericValues().getProfile(postAdObj,fragmentSignin.context!!))
+        profile = (GenericValues().getProfile(postAdObj, fragmentSignin.context!!))
+        readAutoFillItems()
+    }
+
+    private fun readAutoFillItems() {
+        val c = GenericValues()
+        listOfCoachings = c.readCoachItems(context)
+
     }
 
     /*
@@ -50,11 +59,34 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
         profile = event.data
         userAddress = getAddress()
-        Log.d("dddd", "dddd " + userTitle)
+        keys = getKeyWords()
     }
 
-    private fun getAddress() =" " + profile.address?.locationname + "\n " + profile.address?.streetName +
+    private fun getAddress() = " " + profile.address?.locationname + "\n " + profile.address?.streetName +
             "\n " + profile.address?.town + "\n " + profile.address?.city
+
+    private fun getKeyWords(): String {
+
+        var result = ""
+
+        val numbersIterator = profile.keyWords?.iterator()
+        numbersIterator?.let {
+            while (numbersIterator.hasNext()) {
+                var value = (numbersIterator.next())
+                result += " " + listOfCoachings!!.get(value - 1).categoryname
+            }
+        }
+
+        return result;
+    }
+
+
+    @get:Bindable
+    var listOfCoachings: ArrayList<CoachItem>? = null
+        private set(roleAdapterAddress) {
+            field = roleAdapterAddress
+            notifyPropertyChanged(BR.roleAdapterAddress)
+        }
 
 
     var imgUrl = ""
@@ -132,7 +164,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var keys: String = ""
+    var keys: String? = getKeyWords()
         set(price) {
             field = price
             notifyPropertyChanged(BR.keys)

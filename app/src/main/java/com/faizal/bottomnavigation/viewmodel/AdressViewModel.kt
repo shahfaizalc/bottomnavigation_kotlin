@@ -9,6 +9,7 @@ import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.model.Address
+import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.IndiaItem
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
@@ -25,26 +26,26 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
     }
 
     var profile = Profile()
+
     init {
         readAutoFillItems()
-        profile = GenericValues().getProfile(postAdObj,activity.applicationContext)
+        profile = GenericValues().getProfile(postAdObj, activity.applicationContext)
     }
 
     var cityCode: String? = "0"
 
+    private fun readAutoFillItems() {
+        val c = GenericValues()
+        roleAdapterAddress = c.readAutoFillItems(activity.applicationContext)
+
+    }
 
     @get:Bindable
-    var city: String? = null
+    var city: String? = profile.address?.city
         set(city) {
             field = city
             notifyPropertyChanged(BR.city)
         }
-
-
-    private fun readAutoFillItems() {
-        val c = GenericValues()
-        roleAdapterAddress = c.readAutoFillItems(activity.applicationContext)
-    }
 
     @get:Bindable
     var roleAdapterAddress: ArrayList<IndiaItem>? = null
@@ -54,22 +55,23 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
         }
 
 
+
     @get:Bindable
-    var street: String = ""
+    var street: String? = profile.address?.streetName
         set(price) {
             field = price
             notifyPropertyChanged(BR.street)
         }
 
     @get:Bindable
-    var landmark: String = ""
+    var landmark: String? = profile.address?.locationname
         set(price) {
             field = price
             notifyPropertyChanged(BR.landmark)
         }
 
     @get:Bindable
-    var town: String = ""
+    var town: String? = profile.address?.town
         set(price) {
             field = price
             notifyPropertyChanged(BR.town)
@@ -79,7 +81,7 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
 
-        if (!( street.isEmpty()|| landmark.isEmpty()|| town.isEmpty())) {
+        if (!(street!!.isEmpty() || landmark!!.isEmpty() || town!!.isEmpty())) {
 
             val address = Address();
             address.locationname = landmark;
@@ -87,13 +89,13 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
             address.town = town
             address.cityCode = cityCode
             address.city = city
-            profile.address =  address
+            profile.address = address
 
 
             if (!handleMultipleClicks()) {
 
-               activity.onBackPressed();
-                EventBus.getDefault().post( MyCustomEvent(profile));
+                activity.onBackPressed();
+                EventBus.getDefault().post(MyCustomEvent(profile));
 
             }
         } else {

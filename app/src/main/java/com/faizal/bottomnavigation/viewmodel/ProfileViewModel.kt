@@ -10,12 +10,14 @@ import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
+import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.network.FirbaseReadHandler
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.FragmentProfile
 import com.faizal.bottomnavigation.view.FragmentProfileEdit
+import java.util.ArrayList
 
 class ProfileViewModel(private val context: Context, private val fragmentSignin: FragmentProfile) :
         BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -30,6 +32,7 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
     init {
         networkHandler()
 
+        readAutoFillItems()
         FirbaseReadHandler().getUserInfo(object : UseInfoGeneralResultListener {
 
             override fun onSuccess(profile1: Profile) {
@@ -41,11 +44,40 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
                 userMoreInfo = profile1.moreInformation!!
                 userAvailability = profile1.availability
                 userAddress = getAddress()
+                keywords = getKeyWords(profile1.keyWords)
             }
 
             override fun onFailure(e: Exception) {
             }
         })
+    }
+
+    private fun readAutoFillItems() {
+        val c = GenericValues()
+        listOfCoachings = c.readCoachItems(context)
+
+    }
+
+    @get:Bindable
+    var listOfCoachings: ArrayList<CoachItem>? = null
+        private set(roleAdapterAddress) {
+            field = roleAdapterAddress
+            notifyPropertyChanged(BR.roleAdapterAddress)
+        }
+
+    private fun getKeyWords(keyWords: MutableList<Int>?): String {
+
+        var result = ""
+
+        val numbersIterator = profile.keyWords?.iterator()
+        numbersIterator?.let {
+            while (numbersIterator.hasNext()) {
+                var value = (numbersIterator.next())
+                result += " " + listOfCoachings!!.get(value - 1).categoryname
+            }
+        }
+
+        return result;
     }
 
     private fun getAddress() = " " + profile.address!!.locationname + "\n " + profile.address!!.streetName +
@@ -125,10 +157,10 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
         }
 
     @get:Bindable
-    var keys: String = ""
+    var keywords: String = ""
         set(price) {
             field = price
-            notifyPropertyChanged(BR.keys)
+            notifyPropertyChanged(BR.keywords)
 
         }
 

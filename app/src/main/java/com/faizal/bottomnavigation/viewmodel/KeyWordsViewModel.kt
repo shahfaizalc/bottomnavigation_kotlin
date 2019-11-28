@@ -8,18 +8,16 @@ import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.model.Address
 import com.faizal.bottomnavigation.model.CoachItem
-import com.faizal.bottomnavigation.model.IndiaItem
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.view.FragmentAddress
 import com.faizal.bottomnavigation.view.FragmentKeyWords
 import org.greenrobot.eventbus.EventBus
 import java.util.*
 
-class KeyWordsViewModel(internal val activity: FragmentActivity, internal val fragmentProfileInfo: FragmentKeyWords,
+class KeyWordsViewModel(internal val activity: FragmentActivity,
+                        internal val fragmentProfileInfo: FragmentKeyWords,
                         internal val postAdObj: String)// To show list of user images (Gallery)
     : BaseObservable() {
     companion object {
@@ -27,36 +25,44 @@ class KeyWordsViewModel(internal val activity: FragmentActivity, internal val fr
     }
 
     var profile = Profile()
+
     init {
         readAutoFillItems()
-        profile = GenericValues().getProfile(postAdObj,activity.applicationContext)
+        profile = GenericValues().getProfile(postAdObj, activity.applicationContext)
     }
 
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        roleAdapterAddress = c.readCoachItems(activity.applicationContext)
+        listOfCoachings = c.readCoachItems(activity.applicationContext)
     }
 
     @get:Bindable
-    var roleAdapterAddress: ArrayList<CoachItem>? = null
+    var listOfCoachings: ArrayList<CoachItem>? = null
         private set(roleAdapterAddress) {
             field = roleAdapterAddress
             notifyPropertyChanged(BR.roleAdapterAddress)
         }
 
+    @get:Bindable
+    var listOfCoachingsSelected: MutableList<Int>? =  if (profile.keyWords!=null) profile.keyWords else mutableListOf<Int>()
+        private set(roleAdapterAddress) {
+            field = roleAdapterAddress
+            notifyPropertyChanged(BR.listOfCoachingsSelected)
+        }
+
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
 
-        if (true) {
-          if (!handleMultipleClicks()) {
+        if (!handleMultipleClicks()) {
+            activity.onBackPressed();
+            profile.keyWords = listOfCoachingsSelected
 
-               activity.onBackPressed();
-                EventBus.getDefault().post( MyCustomEvent(profile));
-
-            }
+            EventBus.getDefault().post(MyCustomEvent(profile));
         } else {
-            Toast.makeText(fragmentProfileInfo.context, fragmentProfileInfo.context!!.resources.getText(R.string.mandatoryField), Toast.LENGTH_SHORT).show()
+            Toast.makeText(fragmentProfileInfo.context,
+                    fragmentProfileInfo.context!!.resources.getText(R.string.mandatoryField),
+                    Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -34,14 +34,26 @@ class FragmentKeyWords : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val chipGroup: ChipGroup = view.findViewById(R.id.chipGroup)
-        val tagList = binding.postAdPricing?.roleAdapterAddress
+        val tagList = binding.postAdPricing?.listOfCoachings
+
+        val extractKeyWords = binding.postAdPricing?.profile?.keyWords
+
         for (index in tagList!!.indices) {
             val tagName = tagList[index].categoryname
             val chip = layoutInflater.inflate(R.layout.chips_item, chipGroup, false) as Chip
             chip.text = tagName
+            chip.isChecked =  if(extractKeyWords!=null)  extractKeyWords.contains(index+1) else  false
+
             chip.setOnCheckedChangeListener { buttonView, isChecked ->
                 Toast.makeText(activity?.applicationContext, "" + buttonView.text, Toast.LENGTH_LONG).show()
-                Log.d("tAG", "" + index + " index " + buttonView.text);
+                Log.d("tAG", tagList[index].categorycode + " " + tagList[index].categoryname);
+                if (isChecked) {
+                    binding.postAdPricing?.listOfCoachingsSelected?.add(tagList[index].categorycode.toInt())
+                } else {
+                    binding.postAdPricing?.listOfCoachingsSelected?.remove(tagList[index].categorycode.toInt())
+                }
+                Log.d("tAG", " "+binding.postAdPricing!!.listOfCoachingsSelected);
+
             }
 
             chipGroup.addView(chip)

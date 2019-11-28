@@ -24,57 +24,11 @@
                 android:layout_margin="@dimen/dimen_16"
                 android:orientation="vertical">
 
-
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp">
-
-<!--                    <com.google.android.material.chip.Chip-->
-<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="This"-->
-<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
-
-<!--                    <com.google.android.material.chip.Chip-->
-<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="is"-->
-<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
-
-<!--                    <com.google.android.material.chip.Chip-->
-<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="a"-->
-<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
-
-<!--                    <com.google.android.material.chip.Chip-->
-<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="because"-->
-<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
-
-<!--                    <com.google.android.material.chip.Chip-->
-<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="chip"-->
-<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
-
-<!--                    <com.google.android.material.chip.Chip-->
-<!--                        style="@style/Widget.MaterialComponents.Chip.Filter"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="group"-->
-<!--                        android:theme="@style/Theme.MaterialComponents.Light" />-->
-
-
-                </com.google.android.material.chip.ChipGroup>
+                    android:layout_marginTop="16dp" />
 
             </LinearLayout>
         </ScrollView>
@@ -87,7 +41,7 @@
             android:layout_marginTop="@dimen/dimen_32"
             android:background="@color/yellow"
             android:onClick="@{postAdPricing.onNextButtonClick}"
-            android:text="NEXT"
+            android:text="SAVE"
             android:textColor="@color/colorWhite"
             android:textStyle="bold" />
     </RelativeLayout>

@@ -273,7 +273,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/home_welcomestring"
+                        android:text="@={homeData.keywords}"
                         android:textColor="@color/colorBlack" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
