@@ -22,19 +22,11 @@ class RideViewModel(private val context: Context, private val fragmentSignin: Fr
     }
 
     fun findClicked() {
-
-
-        val fragment = FragmentFineRide()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.switchTab(1);
+        fragmentSignin.mFragmentNavigation.switchTab(4);
     }
 
     fun beClicked() {
-        val fragment = FragmentFineRide()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.switchTab(4);
+        fragmentSignin.mFragmentNavigation.switchTab(1);
     }
 
     private fun networkHandler() {

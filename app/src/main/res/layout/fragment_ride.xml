@@ -10,6 +10,7 @@
     </data>
 
     <LinearLayout
+        android:background="@color/colorWhite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -57,18 +58,7 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_4"
-                    android:layout_weight="1"
-                    android:background="@drawable/circular_bg_blue"
-                    android:onClick="@{() -> homeData.findClicked()}"
-                    android:paddingTop="@dimen/dimen_24"
-                    android:paddingBottom="@dimen/dimen_24"
-                    android:text="Be a Trainer"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
+
 
                 <Button
                     android:textSize="@dimen/dimen_16"
@@ -81,6 +71,18 @@
                     android:paddingTop="@dimen/dimen_24"
                     android:paddingBottom="@dimen/dimen_24"
                     android:text="Find an Trainer"
+                    android:textStyle="bold" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_4"
+                    android:layout_weight="1"
+                    android:background="@drawable/circular_bg_blue"
+                    android:onClick="@{() -> homeData.findClicked()}"
+                    android:paddingTop="@dimen/dimen_24"
+                    android:paddingBottom="@dimen/dimen_24"
+                    android:text="Be a Trainer"
+                    android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
             </LinearLayout>
 
