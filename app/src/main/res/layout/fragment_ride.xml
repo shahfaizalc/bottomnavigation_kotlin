@@ -50,6 +50,10 @@
                 android:layout_marginBottom="@dimen/dimen_20"
                 android:text="@string/home_welcomestring4"
                 android:textColor="@color/colorBlack" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> homeData.signout()}"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,8 +61,6 @@
                 android:layout_margin="@dimen/dimen_12"
                 android:orientation="horizontal"
                 android:weightSum="2">
-
-
 
                 <Button
                     android:textSize="@dimen/dimen_16"

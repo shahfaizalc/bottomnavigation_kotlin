@@ -8,23 +8,21 @@ import androidx.databinding.DataBindingUtil
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.databinding.ContentRequestcompleteBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
-import com.faizal.bottomnavigation.model.PostAdModel
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.viewmodel.PostRequestViewModel
-
 
 class FragmentRequestComplete : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val postAdObj = arguments!!.getParcelable<PostAdModel>(Constants.POSTAD_OBJECT)
+        val postAdObj  = arguments!!.getString(Constants.POSTAD_OBJECT)
         return bindView(inflater, container, postAdObj)
     }
 
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: PostAdModel?): View {
+    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String): View {
         val binding = DataBindingUtil.inflate<ContentRequestcompleteBinding>(inflater, R.layout.content_requestcomplete, container, false)
         val areaViewModel = PostRequestViewModel(activity!!, this, postAdObj)
-        binding.postCompleteData = areaViewModel
+        binding.mainDataModel = areaViewModel
         return binding.root
     }
 

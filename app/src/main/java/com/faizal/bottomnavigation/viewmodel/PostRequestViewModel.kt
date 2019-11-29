@@ -6,38 +6,38 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
+import com.faizal.bottomnavigation.listeners.AdSearchEventListener
 import com.faizal.bottomnavigation.model.Address
-import com.faizal.bottomnavigation.model.PostAdModel
+import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.view.FragmentRequestComplete
 
-class PostRequestViewModel(internal val activity: FragmentActivity, internal val fragmentProfileInfo: FragmentRequestComplete, internal val postAdObj: PostAdModel?)
+class PostRequestViewModel(internal val activity: FragmentActivity, internal val fragmentProfileInfo: FragmentRequestComplete, internal val postAdObj: String)
     : BaseObservable() {
     companion object {
 
         private val TAG = "ProfileGalleryViewModel"
     }
 
-
+    var profile: Profile
     init {
+
+        profile = (GenericValues().getProfile(postAdObj, fragmentProfileInfo.context!!))
+
         setUpCardDetails();
 
     }
 
     private fun setUpCardDetails() {
-        title = postAdObj!!.title
-        address = getAddress(postAdObj.address)
-        date = postAdObj.showDate
-        time = postAdObj.showTime
-        price = postAdObj.ticketCount.toString() + " x " + postAdObj.price.toString()
-        discount = postAdObj.discount.toString()
-        offer = offerPrice(postAdObj)
-        description = postAdObj.description.toString()
+        title = profile.title
+        address = getAddress(profile.address)
+        date = profile.moreInformation
+        time = profile.name
+        price = profile.desc
+        discount = profile.title
+        description = profile.email
     }
-
-    private fun offerPrice(postAdObj: PostAdModel) =
-            (((postAdObj.ticketCount * postAdObj.price).toDouble()) -
-                    ((postAdObj.ticketCount * postAdObj.price).toDouble() * (postAdObj.discount.toDouble() / 100))).toString()
 
     private fun getAddress(address: Address?) = address!!.locationname + ", " + address.streetName + ", " + address.town  + ", " + address.city + ", " + address.state
 
@@ -121,17 +121,11 @@ class PostRequestViewModel(internal val activity: FragmentActivity, internal val
         }
     }
 
-    @Override
-    fun onGenderChange(): CompoundButton.OnCheckedChangeListener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-        if (isChecked) {
-            phonenumberVisible = View.VISIBLE
-        } else {
-            phonenumberVisible = View.GONE
-        }
-    }
-
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()
+    }
+
+    fun updateKeyWords() = View.OnClickListener {
     }
 }
 

@@ -86,11 +86,12 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
     }
 
     fun openFragment(postAdModel: Profile) {
-//        val fragment = FragmentRequestComplete()
-//        val bundle = Bundle()
-//        bundle.putParcelable(Constants.POSTAD_OBJECT, postAdModel)
-//        fragment.setArguments(bundle)
-//        fragmentProfileInfo.newInstance(1, fragmentProfileInfo, bundle);
+        val fragment = FragmentRequestComplete()
+        val bundle = Bundle()
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(postAdModel))
+        fragment.setArguments(bundle)
+        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+
     }
 
     private fun handleMultipleClicks(): Boolean {
