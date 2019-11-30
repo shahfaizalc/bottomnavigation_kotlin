@@ -1,12 +1,8 @@
 package com.faizal.bottomnavigation.viewmodel
 
-import android.util.Log
 import android.view.View
 import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
 import androidx.fragment.app.FragmentActivity
-import com.faizal.bottomnavigation.BR
-import com.faizal.bottomnavigation.model.Address
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
@@ -22,10 +18,13 @@ class PostRequestViewModel(internal val activity: FragmentActivity,
 
     var profile: Profile
 
+    var ratings: Float = 1.0f
+
+
     init {
         profile = (GenericValues().getProfile(postAdObj, fragmentProfileInfo.context!!))
     }
-    
+
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
         if (!handleMultipleClicks()) {

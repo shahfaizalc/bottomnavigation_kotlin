@@ -201,6 +201,15 @@ import com.squareup.picasso.Picasso
 //}
 //
 
+
+@BindingAdapter("rating")
+fun setRating(ratingBar: RatingBar, ratings: PostRequestViewModel) {
+    ratingBar.rating = ratings.ratings
+    ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+        ratings.ratings = rating
+    }
+}
+
 @BindingAdapter("autoAdapter")
 fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: AdressViewModel) {
     //  val autoFillTextAdapter = ProductListAdapter(view.context, pArrayAdapter.roleAdapter!!)

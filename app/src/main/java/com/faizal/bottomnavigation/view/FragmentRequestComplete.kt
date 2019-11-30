@@ -28,14 +28,13 @@ class FragmentRequestComplete : BaseFragment() {
         binding = DataBindingUtil.inflate<ContentRequestcompleteBinding>(inflater, R.layout.content_requestcomplete, container, false)
         val areaViewModel = PostRequestViewModel(activity!!, this, postAdObj)
         binding.mainDataModel = areaViewModel
-        binding.countriesInfoModel = Profile()
+        binding.profile = Profile()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.countriesInfoModel = binding.mainDataModel!!.profile
-        Log.d("the address", "The address " + binding.countriesInfoModel!!.address?.city)
+        binding.profile = binding.mainDataModel!!.profile
 
     }
 }
