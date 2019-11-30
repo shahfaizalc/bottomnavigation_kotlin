@@ -47,6 +47,8 @@ class FirbaseReadHandler {
     }
 
 
+
+
 //    fun getMarkers(param: StringListListener) {
 //        val myDB = FirebaseFirestore.getInstance()
 //        myDB.collection(Constants.BASEURL_POST_AD + currentFirebaseUser!!.uid).

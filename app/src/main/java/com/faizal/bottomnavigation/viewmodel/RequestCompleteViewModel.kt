@@ -15,7 +15,12 @@ import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.view.FragmentRequestComplete
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 
 class RequestCompleteViewModel(internal val activity: FragmentActivity,
                                internal val fragmentProfileInfo: FragmentRequestComplete,
@@ -24,13 +29,12 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
     private val mAuth: FirebaseAuth
 
     companion object {
-        private val TAG = "RequestComplete"
+        private val TAG = "RequestComplete  "
     }
 
     var profile: Profile
 
     var ratings: Float = 1.0f
-
 
 
     @get:Bindable
@@ -44,6 +48,7 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
     init {
         profile = (GenericValues().getProfile(postAdObj, fragmentProfileInfo.context!!))
         mAuth = FirebaseAuth.getInstance()
+        getVal()
     }
 
 
@@ -51,22 +56,46 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
         return MultipleClickHandler.handleMultipleClicks()
     }
 
+    fun getVal() {
+
+        val db = FirebaseFirestore.getInstance()
+        val query = db.collection("review");
+        query.whereEqualTo("userId", "Kq2vQqdWlCTsy5BKTFcjCnc88a62")//.whereEqualTo("showDate", showDate)
+                .get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    val any = if (task.isSuccessful) {
+                        Log.d(TAG, "Error getting saanu: " )
+                        for (document in task.result!!) {
+                            Log.d(TAG, "Error getting saanu: " +document.id)
+                        }
+
+                    } else {
+                        Log.d(TAG, "Error getting saanu: " + task.exception!!.message)
+                    }
+                }).addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
+                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
+    }
     fun updateReview() = View.OnClickListener {
-        val reviews : Reviews = Reviews()
-        reviews.userId = adDocid
-        reviews.ratedBy = mAuth.uid
-        reviews.review = "saanvvi"
-        val firbaseWriteHandler = FirbaseWriteHandler(fragmentProfileInfo).updateReview(reviews, object : EmptyResultListener {
-            override fun onFailure(e: Exception) {
-                Log.d(TAG, "DocumentSnapshot onFailure " + e.message)
-                Toast.makeText(fragmentProfileInfo.context, fragmentProfileInfo.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
 
-            }
+        if (!handleMultipleClicks()) {
 
-            override fun onSuccess() {
-                Log.d(TAG, "DocumentSnapshot onSuccess ")
-            }
-        })
+            val reviews: Reviews = Reviews()
+            reviews.userId = adDocid
+            reviews.ratedBy = mAuth.uid
+            reviews.review = review
+            val firbaseWriteHandler = FirbaseWriteHandler(fragmentProfileInfo).updateReview(reviews, object : EmptyResultListener {
+                override fun onFailure(e: Exception) {
+                    Log.d(TAG, "DocumentSnapshot onFailure " + e.message)
+                    Toast.makeText(fragmentProfileInfo.context, fragmentProfileInfo.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+
+                }
+
+                override fun onSuccess() {
+                    Log.d(TAG, "DocumentSnapshot onSuccess ")
+                }
+            })
+
+        }
     }
 
     fun updateRating() = View.OnClickListener {
