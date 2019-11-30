@@ -85,7 +85,9 @@
                     android:paddingStart="@dimen/dimen_16"
                     android:paddingEnd="@dimen/dimen_16"
                     android:paddingBottom="@dimen/dimen_8"
-                    android:text="@{address}"
+                    android:text="@{countriesInfoModel.address.locationname+
+                     ` ` + countriesInfoModel.address.streetName+ ` ` +countriesInfoModel.address.locationname+
+                     ` ` +countriesInfoModel.address.town+ ` ` +countriesInfoModel.address.city}"
                     android:textColor="@color/colorBlacklight"
                     android:textSize="@dimen/dimen_16" />
 
