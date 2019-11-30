@@ -6,7 +6,9 @@ import android.widget.Toast
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.model2.Reviews
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
+import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_REVIEW
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_PROFILEPIC
 
 import com.google.firebase.auth.FirebaseAuth
@@ -54,6 +56,25 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                     Log.w(TAG, "Error in adding document", e)
                 }
     }
+
+
+    fun updateReview(userInfo: Reviews, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_REVIEW)
+        collection.document(currentFirebaseUser!!.uid).set(userInfo)
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
+
+
+
 
 //    fun postAnAd(userInfo: PostAdModel, emptyResultListener: EmptyResultListener) {
 //        val myDB = FirebaseFirestore.getInstance()

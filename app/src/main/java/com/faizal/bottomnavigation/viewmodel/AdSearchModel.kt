@@ -21,6 +21,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.model2.Ratings
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
@@ -34,7 +35,8 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
     : BaseObservable() {
 
     var countriesInfoModel: ObservableArrayList<Profile>
-    var countriesInfoModelFilter: ObservableArrayList<Profile>
+    var ratings: ObservableArrayList<String>
+
     var searchQuery = ""
     private val mAuth: FirebaseAuth
 
@@ -48,7 +50,7 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
     init {
         readAutoFillItems()
         countriesInfoModel = ObservableArrayList()
-        countriesInfoModelFilter = ObservableArrayList()
+        ratings = ObservableArrayList()
         mAuth = FirebaseAuth.getInstance()
 
     }
@@ -85,9 +87,10 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
         }
     }
 
-    fun openFragment(postAdModel: Profile) {
+    fun openFragment(postAdModel: Profile, position: Int) {
         val fragment = FragmentRequestComplete()
         val bundle = Bundle()
+        bundle.putString(Constants.AD_DOCID, ratings.get(position));
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(postAdModel))
         fragment.setArguments(bundle)
         fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
@@ -119,11 +122,15 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
     }
 
     fun addListItem(document: QueryDocumentSnapshot) {
+
         val adModel = document.toObject(Profile::class.java)
 
         Log.d(TAG, "Success getting documents: " + adModel.name)
 
         countriesInfoModel.add(adModel)
+        ratings.add(document.id)
+
+        Log.d(TAG, "Success getting : " + document.id)
 
 
 //        if (adModel.userId.equals(mAuth.currentUser!!.uid) && adModel.title!!.contains(searchQuery)) {

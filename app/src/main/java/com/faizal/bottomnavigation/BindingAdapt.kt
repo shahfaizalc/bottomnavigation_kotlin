@@ -203,7 +203,7 @@ import com.squareup.picasso.Picasso
 
 
 @BindingAdapter("rating")
-fun setRating(ratingBar: RatingBar, ratings: PostRequestViewModel) {
+fun setRating(ratingBar: RatingBar, ratings: RequestCompleteViewModel) {
     ratingBar.rating = ratings.ratings
     ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
         ratings.ratings = rating

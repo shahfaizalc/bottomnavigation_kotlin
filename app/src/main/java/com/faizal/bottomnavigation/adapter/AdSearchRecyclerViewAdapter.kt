@@ -34,7 +34,7 @@ class AdSearchRecyclerViewAdapter(private val adSearchModel: AdSearchModel) :
 
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!) {
-            countriesInfoModel = viewModel.countriesInfoModelFilter[position]
+            countriesInfoModel = viewModel.countriesInfoModel[position]
             priceActual = ""+countriesInfoModel!!.name+" x "+countriesInfoModel!!.name
             priceDiscount = ""+countriesInfoModel!!.name
             priceTotal = offerPrice(countriesInfoModel!!)
@@ -47,7 +47,7 @@ class AdSearchRecyclerViewAdapter(private val adSearchModel: AdSearchModel) :
         viewHolder.binding!!.setItemClickListener(this)
     }
 
-    override fun getItemCount()= adSearchModel.countriesInfoModelFilter.size
+    override fun getItemCount()= adSearchModel.countriesInfoModel.size
 
     override fun getItemId(position: Int) = position.toLong()
 
@@ -62,8 +62,8 @@ class AdSearchRecyclerViewAdapter(private val adSearchModel: AdSearchModel) :
     }
 
     override fun onClickAdSearchListItem(countriesViewModel: AdSearchModel, position: Int) {
-        Log.d(TAG,"Click: "+ countriesViewModel.countriesInfoModelFilter[position].address!!.city)
-        countriesViewModel.openFragment(countriesViewModel.countriesInfoModelFilter[position])
+        Log.d(TAG,"Click: "+ countriesViewModel.countriesInfoModel[position].address!!.city)
+        countriesViewModel.openFragment(countriesViewModel.countriesInfoModel[position],position)
 
     }
 }

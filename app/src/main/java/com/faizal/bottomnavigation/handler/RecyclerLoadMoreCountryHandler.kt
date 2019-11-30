@@ -63,8 +63,8 @@ class RecyclerLoadMoreCountryHandler(private val countriesViewModel: AdSearchMod
     }
 
     fun resetRecycleView(recyclerView: RecyclerView) {
-        countriesViewModel.countriesInfoModelFilter = countriesViewModel.countriesInfoModel
-        notifyAdapter(recyclerView, countriesViewModel.countriesInfoModelFilter.size)
+        countriesViewModel.countriesInfoModel = countriesViewModel.countriesInfoModel
+        notifyAdapter(recyclerView, countriesViewModel.countriesInfoModel.size)
     }
 
 
