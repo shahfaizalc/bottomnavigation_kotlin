@@ -278,6 +278,16 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <Button
+                android:background="@color/red_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/dimen_8"
+                android:onClick="@{() -> homeData.logout()}"
+                android:padding="@dimen/dimen_8"
+                android:text="Logout"/>
+
         </LinearLayout>
     </ScrollView>
 </layout>

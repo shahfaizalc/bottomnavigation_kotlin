@@ -14,10 +14,11 @@ import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.utils.EnumValidator
 import com.faizal.bottomnavigation.utils.Validator
+import com.faizal.bottomnavigation.view.FragmentProfile
 import com.faizal.bottomnavigation.view.FragmentSignin
 import com.google.firebase.auth.FirebaseAuth
 
-class HomeViewModel(private val context: Context, private val fragmentSignin: FragmentSignin) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class SignInViewModel(private val context: Context, private val fragmentSignin: FragmentSignin) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
     private val mAuth: FirebaseAuth
     private var networkStateHandler: NetworkChangeHandler? = null
     @get:Bindable
@@ -37,7 +38,7 @@ class HomeViewModel(private val context: Context, private val fragmentSignin: Fr
     init {
         mAuth = FirebaseAuth.getInstance()
         if (mAuth.currentUser != null) {
-           // launchChildFragment(FragmentHomePage())
+            // launchChildFragment(FragmentHomePage())
         }
         networkHandler()
     }
@@ -99,7 +100,7 @@ class HomeViewModel(private val context: Context, private val fragmentSignin: Fr
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
 
-                        Log.d("TAG","Exception success"+task.isSuccessful)
+                        Log.d("TAG", "Exception success" + task.isSuccessful)
 
                         if (!task.isSuccessful) {
                             // there was an error
@@ -107,13 +108,18 @@ class HomeViewModel(private val context: Context, private val fragmentSignin: Fr
                         } else {
                             showToast(R.string.loginSucess)
 
-                      //      launchChildFragment(FragmentHomePage())
+                            val fragment = FragmentProfile()
+                            val bundle = Bundle()
+                            fragment.setArguments(bundle)
+                            fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
+
                             fragmentSignin.mFragmentNavigation.switchTab(0)
                             fragmentSignin.mFragmentNavigation.viewBottom(View.VISIBLE)
                         }
                     }.addOnFailureListener {
-                        Log.d("TAG","Exception"+it.message)
-                        showToast(R.string.loginFailed) }
+                        Log.d("TAG", "Exception" + it.message)
+                        showToast(R.string.loginFailed)
+                    }
         }
 
 

@@ -3,6 +3,7 @@ package com.faizal.bottomnavigation.viewmodel
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -17,6 +18,8 @@ import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.FragmentProfile
 import com.faizal.bottomnavigation.view.FragmentProfileEdit
+import com.faizal.bottomnavigation.view.FragmentWelcome
+import com.google.firebase.auth.FirebaseAuth
 import java.util.ArrayList
 
 class ProfileViewModel(private val context: Context, private val fragmentSignin: FragmentProfile) :
@@ -171,6 +174,16 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
         fragment.setArguments(bundle)
         fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+    }
+
+    fun logout() {
+        FirebaseAuth.getInstance().signOut();
+        val fragment = FragmentWelcome()
+        Log.d("tag", "logout")
+        val bundle = Bundle()
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(0,fragment,bundle));
+        fragmentSignin.mFragmentNavigation.viewBottom(View.GONE)
     }
 
     fun registerListeners() {

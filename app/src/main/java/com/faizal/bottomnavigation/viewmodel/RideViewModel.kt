@@ -29,9 +29,6 @@ class RideViewModel(private val context: Context, private val fragmentSignin: Fr
         fragmentSignin.mFragmentNavigation.switchTab(1);
     }
 
-    fun signout(){
-        FirebaseAuth.getInstance().signOut();
-    }
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
