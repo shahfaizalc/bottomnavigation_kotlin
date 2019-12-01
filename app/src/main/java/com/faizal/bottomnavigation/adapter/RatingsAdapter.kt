@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.faizal.bottomnavigation.databinding.RatingItemBinding
+import com.faizal.bottomnavigation.model2.Reviews
 import com.faizal.bottomnavigation.viewmodel.RequestCompleteViewModel
 
 class RatingsAdapter() : RecyclerView.Adapter<RatingsAdapter.UserHolder>() {
@@ -16,12 +17,12 @@ class RatingsAdapter() : RecyclerView.Adapter<RatingsAdapter.UserHolder>() {
         profileInfoViewModel = model;
     }
 
-    fun setData(items: List<String>) {
+    fun setData(items: List<Reviews>) {
         userIds = items
         notifyDataSetChanged()
     }
 
-    var userIds = emptyList<String>()
+    var userIds = emptyList<Reviews>()
 
     lateinit var profileInfoViewModel : RequestCompleteViewModel
 
@@ -34,7 +35,10 @@ class RatingsAdapter() : RecyclerView.Adapter<RatingsAdapter.UserHolder>() {
     override fun getItemCount() = userIds.size
 
     override fun onBindViewHolder(holder: UserHolder, position: Int) {
-        holder.binding.userText.text = userIds.get(position)
+        holder.binding.userText.text = userIds.get(position).userId
+        holder.binding.review.text = userIds.get(position).review
+        holder.binding.date.text = userIds.get(position).date
+
         holder.binding.gameChooserModel = profileInfoViewModel
     }
 

@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
@@ -37,12 +36,12 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
 
     var profile: Profile
 
-    var ratings: Float = 1.0f
+    var ratings: Float = 0.0f
     var adapter = RatingsAdapter()
 
 
     @get:Bindable
-    var userIds: MutableLiveData<List<String>> = MutableLiveData<List<String>>()
+    var userIds: MutableLiveData<List<Reviews>> = MutableLiveData<List<Reviews>>()
         private set(value) {
             field = value
             notifyPropertyChanged(BR.userIds)
@@ -76,15 +75,15 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
                 .get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                     val any = if (task.isSuccessful) {
-                        Log.d(TAG, "Error getting saanu: " )
-                        var listOfRating = emptyList<String>().toMutableList()
-
+                        Log.d(TAG, "Error getting saanu: ")
+                        val listOfRating = emptyList<Reviews>().toMutableList()
                         for (document in task.result!!) {
-                            Log.d(TAG, "Error getting saanu: " +document.id)
-                            if(document.id == mAuth.uid ){
+                            Log.d(TAG, "Error getting saanu: " + document.id)
+                            if (document.get("ratedBy").toString() == mAuth.uid) {
                                 review = document.get("review").toString()
+                            } else {
+                                listOfRating.add(document.toObject(Reviews::class.java))
                             }
-                            listOfRating.add(document.get("review").toString())
                         }
                         userIds.value = listOfRating
 
@@ -105,6 +104,7 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
             reviews.userId = adDocid
             reviews.ratedBy = mAuth.uid
             reviews.review = review
+            reviews.date = System.currentTimeMillis().toString()
             val firbaseWriteHandler = FirbaseWriteHandler(fragmentProfileInfo).updateReview(reviews, object : EmptyResultListener {
                 override fun onFailure(e: Exception) {
                     Log.d(TAG, "DocumentSnapshot onFailure " + e.message)

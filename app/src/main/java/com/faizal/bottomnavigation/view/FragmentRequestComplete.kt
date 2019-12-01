@@ -12,6 +12,7 @@ import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.databinding.ContentRequestcompleteBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.model2.Reviews
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.viewmodel.RequestCompleteViewModel
 
@@ -38,8 +39,8 @@ class FragmentRequestComplete : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.profile = binding.mainDataModel!!.profile
-        binding.mainDataModel?.userIds?.observe(this, object: Observer<List<String>>{
-            override fun onChanged(t: List<String>?) {
+        binding.mainDataModel?.userIds?.observe(this, object: Observer<List<Reviews>>{
+            override fun onChanged(t: List<Reviews>?) {
 
                 if (t != null) {
                     binding.mainDataModel?.adapter?.setData(t)

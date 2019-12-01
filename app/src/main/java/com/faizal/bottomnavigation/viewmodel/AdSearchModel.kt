@@ -21,13 +21,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.model2.Profile
-import com.faizal.bottomnavigation.model2.Ratings
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.FragmentRequestComplete
-import com.itravis.ticketexchange.listeners.DateListener
-import com.itravis.ticketexchange.utils.DatePickerEvent
 
 import java.util.*
 

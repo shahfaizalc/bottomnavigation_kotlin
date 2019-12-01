@@ -61,7 +61,7 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
     fun updateReview(userInfo: Reviews, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_REVIEW)
-        collection.document(currentFirebaseUser!!.uid).set(userInfo)
+        collection.document(userInfo.date!!).set(userInfo)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
 

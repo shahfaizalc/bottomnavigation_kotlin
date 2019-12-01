@@ -31,6 +31,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserHolder>() {
 
         fun bind(userId: String) {
             itemView.userText.text = "$userId"
+
         }
     }
 }
