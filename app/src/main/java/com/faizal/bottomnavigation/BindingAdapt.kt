@@ -16,10 +16,7 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.faizal.bottomnavigation.adapter.AdSearchRecyclerViewAdapter
-import com.faizal.bottomnavigation.adapter.GameChooserAdapter
-import com.faizal.bottomnavigation.adapter.PeopleAdapter
-import com.faizal.bottomnavigation.adapter.UserAdapter
+import com.faizal.bottomnavigation.adapter.*
 import com.faizal.bottomnavigation.handler.RecyclerLoadMoreCountryHandler
 import com.faizal.bottomnavigation.model.CountriesInfoModel
 import com.faizal.bottomnavigation.viewmodel.*
@@ -414,6 +411,23 @@ fun loadAdapterx(textView: TextView, profileInfoViewModel: RegistrationModel) {
 
 
 }
+
+
+
+@BindingAdapter("app:searchRecycler")
+fun adapter(recyclerView: RecyclerView, profileInfoViewModel: RequestCompleteViewModel ) {
+
+    val emptySting = "";
+    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+    val adapter = RatingsAdapter()
+    recyclerView.adapter = adapter
+    (recyclerView.adapter as RatingsAdapter).setModel(profileInfoViewModel)
+   // (recyclerView.adapter as RatingsAdapter).setData(profileInfoViewModel.userIds)
+
+    profileInfoViewModel.adapter = recyclerView.adapter as RatingsAdapter
+
+}
+
 
 @BindingAdapter("app:imageUrl")
 fun loadImage(view: ImageView, imageUrl: String?) {

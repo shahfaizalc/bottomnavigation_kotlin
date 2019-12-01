@@ -6,8 +6,11 @@ import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.adapter.RatingsAdapter
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.model2.Reviews
@@ -35,6 +38,15 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
     var profile: Profile
 
     var ratings: Float = 1.0f
+    var adapter = RatingsAdapter()
+
+
+    @get:Bindable
+    var userIds: MutableLiveData<List<String>> = MutableLiveData<List<String>>()
+        private set(value) {
+            field = value
+            notifyPropertyChanged(BR.userIds)
+        }
 
 
     @get:Bindable
@@ -65,9 +77,17 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                     val any = if (task.isSuccessful) {
                         Log.d(TAG, "Error getting saanu: " )
+                        var listOfRating = emptyList<String>().toMutableList()
+
                         for (document in task.result!!) {
                             Log.d(TAG, "Error getting saanu: " +document.id)
+                            if(document.id == mAuth.uid ){
+                                review = document.get("review").toString()
+                            }
+                            listOfRating.add(document.get("review").toString())
                         }
+                        userIds.value = listOfRating
+
 
                     } else {
                         Log.d(TAG, "Error getting saanu: " + task.exception!!.message)
@@ -75,6 +95,8 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
                 }).addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
                 .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
     }
+
+
     fun updateReview() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {

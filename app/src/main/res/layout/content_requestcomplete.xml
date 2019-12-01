@@ -266,13 +266,13 @@
                             android:layout_height="wrap_content">
 
                             <EditText
-                                android:text="@={mainDataModel.review}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="@dimen/dimen_8"
                                 android:layout_toLeftOf="@+id/postReview"
                                 android:background="@drawable/circular_bg_border"
-                                android:padding="@dimen/dimen_12" />
+                                android:padding="@dimen/dimen_12"
+                                android:text="@={mainDataModel.review}" />
 
                             <Button
                                 android:id="@+id/postReview"
@@ -297,9 +297,12 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </androidx.recyclerview.widget.RecyclerView>
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:paddingStart="@dimen/dimen_8"
+                        android:paddingEnd="@dimen/dimen_8"
+                        android:scrollbars="vertical"
+                        app:searchRecycler="@{mainDataModel}" />
 
                 </LinearLayout>
 

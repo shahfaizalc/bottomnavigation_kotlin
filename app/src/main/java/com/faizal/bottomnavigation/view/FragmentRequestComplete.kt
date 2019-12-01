@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.databinding.ContentRequestcompleteBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
@@ -35,6 +38,15 @@ class FragmentRequestComplete : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.profile = binding.mainDataModel!!.profile
+        binding.mainDataModel?.userIds?.observe(this, object: Observer<List<String>>{
+            override fun onChanged(t: List<String>?) {
 
+                if (t != null) {
+                    binding.mainDataModel?.adapter?.setData(t)
+                }
+            }
+        } )
     }
 }
+
+
