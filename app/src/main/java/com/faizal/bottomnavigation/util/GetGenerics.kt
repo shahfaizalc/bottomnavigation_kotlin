@@ -1,8 +1,6 @@
 package com.faizal.bottomnavigation.util
 
-import android.provider.ContactsContract
 import com.faizal.bottomnavigation.model.Address
-import com.faizal.bottomnavigation.model.PostAdModel
 import com.faizal.bottomnavigation.model2.Profile
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,4 +18,8 @@ fun convertLongToTime(time: Long): String {
  val date = Date(time)
  val format = SimpleDateFormat("dd/MM/yyyy")
  return format.format(date)
+}
+
+fun <T : Any> T?.notNull(function: (it: T) -> Unit) {
+ if (this != null) function(this)
 }

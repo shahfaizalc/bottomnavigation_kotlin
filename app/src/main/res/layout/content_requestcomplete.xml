@@ -30,15 +30,6 @@
             android:layout_height="wrap_content"
             android:background="@color/colorWhite">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/dimen_8"
-                card_view:cardCornerRadius="@dimen/dimen_8"
-                card_view:cardElevation="@dimen/dimen_4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -61,8 +52,8 @@
                         android:layout_height="wrap_content"
                         android:paddingStart="@dimen/dimen_16"
                         android:paddingEnd="@dimen/dimen_16"
-                        android:paddingBottom="@dimen/dimen_8"
-                        android:text="@{profile.address.locationname+`\n` + profile.address.streetName+ `,` +profile.address.locationname+ `\n` +profile.address.town+ `,` +profile.address.city}"
+                        android:paddingBottom="@dimen/dimen_4"
+                        android:text="@{profile.address.locationname+`\n` + profile.address.streetName+ `,` +profile.address.locationname+ `,` +profile.address.town+ `,` +profile.address.city}"
                         android:textColor="@color/colorBlacklight" />
 
                     <View
@@ -227,16 +218,16 @@
                             android:layout_height="wrap_content"
                             android:isIndicator="false"
                             android:numStars="5"
-                            android:stepSize="0.5"
                             android:rating="@={mainDataModel.ratings}"
+                            android:stepSize="0.5"
                             app:rating="@{mainDataModel}" />
 
 
                         <RelativeLayout
-                            android:layout_marginBottom="@dimen/dimen_8"
-                            android:layout_marginTop="@dimen/dimen_8"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_8"
+                            android:layout_marginBottom="@dimen/dimen_8">
 
                             <EditText
                                 android:layout_width="match_parent"
@@ -244,6 +235,9 @@
                                 android:layout_marginRight="@dimen/dimen_8"
                                 android:layout_toLeftOf="@+id/postReview"
                                 android:background="@drawable/circular_bg_border"
+                                android:enabled="@{mainDataModel.reviewBtnEnable}"
+                                android:hint="@string/review_hint"
+                                android:onTextChanged="@{mainDataModel.onTextChanged}"
                                 android:padding="@dimen/dimen_12"
                                 android:text="@={mainDataModel.review}" />
 
@@ -255,7 +249,8 @@
                                 android:layout_alignParentEnd="true"
                                 android:background="@drawable/circular_bg_border"
                                 android:onClick="@{mainDataModel.updateReview()}"
-                                android:text="post" />
+                                android:text="@={mainDataModel.reviewbtnText }"
+                                android:visibility="@{mainDataModel.reviewBtnVisisblity}" />
 
                         </RelativeLayout>
 
@@ -266,7 +261,7 @@
                         android:layout_height="1dp"
                         android:background="@color/colorSmoke"
                         android:paddingStart="@dimen/dimen_32"
-                        android:paddingEnd="@dimen/dimen_32"></View>
+                        android:paddingEnd="@dimen/dimen_32" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
@@ -280,7 +275,6 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
         </RelativeLayout>
     </ScrollView>
 

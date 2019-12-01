@@ -53,7 +53,9 @@
     <string name="defaultDate">dd/mm/yyyy</string>
     <string name="defaultTime">mm:hh</string>
     <string name="addressNotification">Make sure the address is correct</string>
-
+    <string name="review_post">POST</string>
+    <string name="review_edit">EDIT</string>
+    <string name="review_hint">Write your review</string>
 
 
 </resources>
