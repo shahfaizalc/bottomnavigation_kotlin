@@ -25,85 +25,75 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_margin="@dimen/dimen_8"
+                android:layout_margin="@dimen/dimen_4"
                 android:onClick="@{() -> homeData.findClickded()}"
                 android:padding="@dimen/dimen_8"
-                android:src="@drawable/account_edit"/>
+                android:src="@drawable/account_edit" />
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                app:cardBackgroundColor="@color/colorSmoke"
-                app:cardCornerRadius="@dimen/dimen_8"
-                app:cardElevation="@dimen/dimen_8">
+                android:background="@drawable/circular_bg_border"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_8"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_8"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <com.faizal.bottomnavigation.utils.ImageViewRounded
-                            android:id="@+id/header2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:scaleType="fitXY"
-                            app:imageUrl="@{homeData.imgUrl}" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <com.faizal.bottomnavigation.utils.ImageViewRounded
+                        android:id="@+id/header2"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/dimen_16"
-                        android:layout_weight="3"
-                        android:orientation="vertical">
+                        android:layout_gravity="center"
+                        android:scaleType="fitXY"
+                        app:imageUrl="@{homeData.imgUrl}" />
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@={homeData.userName}"
-                            android:textColor="@color/colorBlack"
-                            android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/dimen_16"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@={homeData.userEmail}"
-                            android:textColor="@color/colorBlack"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@={homeData.userName}"
+                        android:textColor="@color/darkBlue" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@={homeData.userPhone}"
-                            android:textColor="@color/colorBlack"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@={homeData.userEmail}"
+                        android:textColor="@color/darkBlue" />
 
-                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@={homeData.userPhone}"
+                        android:textColor="@color/darkBlue" />
 
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
 
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorSmoke"
-                app:cardCornerRadius="@dimen/dimen_8"
-                app:cardElevation="@dimen/dimen_8">
+                app:cardBackgroundColor="@color/colorGreyLight"
+                app:cardCornerRadius="@dimen/dimen_4"
+                app:cardElevation="@dimen/dimen_4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -116,14 +106,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Title"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
+                        android:textColor="@color/primary_text" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={homeData.userTitle}"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/darkBlue" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -132,9 +121,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorSmoke"
-                app:cardCornerRadius="@dimen/dimen_8"
-                app:cardElevation="@dimen/dimen_8">
+                app:cardBackgroundColor="@color/colorGreyLight"
+                app:cardCornerRadius="@dimen/dimen_4"
+                app:cardElevation="@dimen/dimen_4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -147,14 +136,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Short Desc"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
+                        android:textColor="@color/primary_text" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={homeData.userDesc}"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/darkBlue" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -164,9 +152,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorSmoke"
-                app:cardCornerRadius="@dimen/dimen_8"
-                app:cardElevation="@dimen/dimen_8">
+                app:cardBackgroundColor="@color/colorGreyLight"
+                app:cardCornerRadius="@dimen/dimen_4"
+                app:cardElevation="@dimen/dimen_4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -179,8 +167,7 @@
                         android:layout_height="wrap_content"
                         android:checked="@={homeData.userAvailability}"
                         android:text="Availability"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
+                        android:textColor="@color/primary_text" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -190,9 +177,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorSmoke"
-                app:cardCornerRadius="@dimen/dimen_8"
-                app:cardElevation="@dimen/dimen_8">
+                app:cardBackgroundColor="@color/colorGreyLight"
+                app:cardCornerRadius="@dimen/dimen_4"
+                app:cardElevation="@dimen/dimen_4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -205,14 +192,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Address"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
+                        android:textColor="@color/primary_text" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={homeData.userAddress}"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/darkBlue" />
 
 
                 </LinearLayout>
@@ -222,9 +208,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorSmoke"
-                app:cardCornerRadius="@dimen/dimen_8"
-                app:cardElevation="@dimen/dimen_8">
+                app:cardBackgroundColor="@color/colorGreyLight"
+                app:cardCornerRadius="@dimen/dimen_4"
+                app:cardElevation="@dimen/dimen_4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -237,14 +223,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="More Information"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
+                        android:textColor="@color/primary_text" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={homeData.userMoreInfo}"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/darkBlue" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -252,9 +237,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorSmoke"
-                app:cardCornerRadius="@dimen/dimen_8"
-                app:cardElevation="@dimen/dimen_8">
+                app:cardBackgroundColor="@color/colorGreyLight"
+                app:cardCornerRadius="@dimen/dimen_4"
+                app:cardElevation="@dimen/dimen_4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -267,26 +252,27 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Key Words"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
+                        android:textColor="@color/primary_text" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={homeData.keywords}"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/darkBlue" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:background="@color/red_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_margin="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_12"
+                android:background="@drawable/circular_bg_red"
                 android:onClick="@{() -> homeData.logout()}"
                 android:padding="@dimen/dimen_8"
-                android:text="Logout"/>
+                android:text="Logout"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
