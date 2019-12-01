@@ -13,16 +13,21 @@ import com.faizal.bottomnavigation.viewmodel.AdSearchModel
 
 class FragmentAdSearch : BaseFragment() {
 
+
+     var binding: ContentAdsearchBinding? = null;
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         return bindView(inflater, container)
     }
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        val binding = DataBindingUtil.inflate<ContentAdsearchBinding>(inflater, R.layout.content_adsearch, container, false)
-        val areaViewModel = AdSearchModel(activity!!, this)
-        binding.adSearchModel = areaViewModel
-        return binding.root
+        if (binding == null) {
+            binding = DataBindingUtil.inflate<ContentAdsearchBinding>(inflater, R.layout.content_adsearch, container, false)
+            val areaViewModel = AdSearchModel(activity!!, this)
+            binding?.adSearchModel = areaViewModel
+        }
+        return binding!!.root
     }
 
 }

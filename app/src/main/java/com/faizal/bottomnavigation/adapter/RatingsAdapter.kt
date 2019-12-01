@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.faizal.bottomnavigation.databinding.RatingItemBinding
 import com.faizal.bottomnavigation.model2.Reviews
+import com.faizal.bottomnavigation.util.convertLongToTime
 import com.faizal.bottomnavigation.viewmodel.RequestCompleteViewModel
 
 class RatingsAdapter() : RecyclerView.Adapter<RatingsAdapter.UserHolder>() {
@@ -37,7 +38,8 @@ class RatingsAdapter() : RecyclerView.Adapter<RatingsAdapter.UserHolder>() {
     override fun onBindViewHolder(holder: UserHolder, position: Int) {
         holder.binding.userText.text = userIds.get(position).userId
         holder.binding.review.text = userIds.get(position).review
-        holder.binding.date.text = userIds.get(position).date
+        holder.binding.date.text =  convertLongToTime( userIds.get(position).date!!.toLong())
+        holder.binding.rates.rating = userIds.get(position).rating!!.toFloat()
 
         holder.binding.gameChooserModel = profileInfoViewModel
     }
