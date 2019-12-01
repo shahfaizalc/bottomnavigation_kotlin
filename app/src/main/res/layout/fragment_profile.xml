@@ -66,21 +66,21 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@={homeData.userName}"
-                        android:textColor="@color/darkBlue" />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@={homeData.userEmail}"
-                        android:textColor="@color/darkBlue" />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@={homeData.userPhone}"
-                        android:textColor="@color/darkBlue" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -106,13 +106,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Title"
-                        android:textColor="@color/primary_text" />
+                        android:textColor="@color/darkBlue" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={homeData.userTitle}"
-                        android:textColor="@color/darkBlue" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -136,13 +136,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Short Desc"
-                        android:textColor="@color/primary_text" />
+                        android:textColor="@color/darkBlue" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={homeData.userDesc}"
-                        android:textColor="@color/darkBlue" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -167,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:checked="@={homeData.userAvailability}"
                         android:text="Availability"
-                        android:textColor="@color/primary_text" />
+                        android:textColor="@color/darkBlue" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -192,13 +192,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Address"
-                        android:textColor="@color/primary_text" />
+                        android:textColor="@color/darkBlue" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={homeData.userAddress}"
-                        android:textColor="@color/darkBlue" />
+                        android:textColor="@color/black" />
 
 
                 </LinearLayout>
@@ -223,13 +223,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="More Information"
-                        android:textColor="@color/primary_text" />
+                        android:textColor="@color/darkBlue" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={homeData.userMoreInfo}"
-                        android:textColor="@color/darkBlue" />
+                        android:textColor="@color/black" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -252,13 +252,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Key Words"
-                        android:textColor="@color/primary_text" />
+                        android:textColor="@color/darkBlue" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={homeData.keywords}"
-                        android:textColor="@color/darkBlue" />
+                        android:textColor="@color/black" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
