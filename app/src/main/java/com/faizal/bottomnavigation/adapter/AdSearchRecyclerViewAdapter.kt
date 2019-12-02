@@ -11,7 +11,7 @@ import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.databinding.ListItemAdsearchBinding
 import com.faizal.bottomnavigation.listeners.AdSearchEventListener
 import com.faizal.bottomnavigation.util.getAddress
-import com.faizal.bottomnavigation.util.offerPrice
+import com.faizal.bottomnavigation.util.getKeys
 import com.faizal.bottomnavigation.viewmodel.AdSearchModel
 
 /**
@@ -35,17 +35,16 @@ class AdSearchRecyclerViewAdapter(private val adSearchModel: AdSearchModel) :
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!) {
             countriesInfoModel = viewModel.countriesInfoModel[position]
-            priceActual = ""+countriesInfoModel!!.name+" x "+countriesInfoModel!!.name
-            priceDiscount = ""+countriesInfoModel!!.name
-            priceTotal = offerPrice(countriesInfoModel!!)
             address = getAddress(countriesInfoModel!!.address)
-            balanceTicket = countriesInfoModel!!.name.toString()
+            keyWordsTag = getKeys(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
             itemPosition = position
             mainDataModel = viewModel
             executePendingBindings()
         }
         viewHolder.binding!!.setItemClickListener(this)
     }
+
+
 
     override fun getItemCount()= adSearchModel.countriesInfoModel.size
 

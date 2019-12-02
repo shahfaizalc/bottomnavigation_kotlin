@@ -24,25 +24,11 @@
             type="com.faizal.bottomnavigation.listeners.AdSearchEventListener" />
 
         <variable
-            name="priceActual"
-            type="java.lang.String" />
-
-        <variable
-            name="priceDiscount"
-            type="java.lang.String" />
-
-        <variable
-            name="priceTotal"
-            type="java.lang.String" />
-
-        <variable
             name="address"
             type="java.lang.String" />
-
         <variable
-            name="balanceTicket"
+            name="keyWordsTag"
             type="java.lang.String" />
-
 
     </data>
 
@@ -61,8 +47,8 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/dimen_8"
             card_view:cardBackgroundColor="@color/colorGreyLight"
-            card_view:cardCornerRadius="@dimen/dimen_8"
-            card_view:cardElevation="@dimen/dimen_4">
+            card_view:cardCornerRadius="@dimen/dimen_2"
+            card_view:cardElevation="@dimen/dimen_2">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,21 +62,21 @@
                     android:paddingEnd="@dimen/dimen_16">
 
                     <Switch
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
                         android:checked="@{countriesInfoModel.availability}"
                         android:scaleX=".5"
                         android:scaleY=".5" />
 
                     <RatingBar
-                        android:layout_centerVertical="true"
                         android:id="@+id/simpleRatingBar"
                         style="@style/Widget.AppCompat.RatingBar.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
                         android:numStars="5"
                         android:rating="3.5"
                         android:stepSize="0.5" />
@@ -135,10 +121,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
+                        android:ellipsize="end"
+                        android:maxLines="2"
                         android:text="@{countriesInfoModel.desc}"
-                        android:textColor="@color/colorBlacklight"
-                        android:textSize="@dimen/dimen_24"
-                        android:textStyle="bold" />
+                        android:textColor="@color/colorBlacklight" />
 
                 </LinearLayout>
 
@@ -148,7 +134,7 @@
                     android:layout_height="1dp"
                     android:background="@color/colorSmoke"
                     android:paddingStart="@dimen/dimen_32"
-                    android:paddingEnd="@dimen/dimen_32"></View>
+                    android:paddingEnd="@dimen/dimen_32" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -159,7 +145,7 @@
                     android:paddingTop="@dimen/dimen_4"
                     android:paddingEnd="@dimen/dimen_16"
                     android:paddingBottom="@dimen/dimen_4"
-                    android:text="@{countriesInfoModel.keyWords.toString()}"
+                    android:text="@{keyWordsTag}"
                     android:textColor="@color/colorBlacklight"
                     android:textStyle="bold" />
 
@@ -168,20 +154,20 @@
                     android:layout_height="1dp"
                     android:background="@color/colorSmoke"
                     android:paddingStart="@dimen/dimen_32"
-                    android:paddingEnd="@dimen/dimen_32"></View>
+                    android:paddingEnd="@dimen/dimen_32" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorSmoke"
-                    android:paddingTop="@dimen/dimen_12">
+                    android:paddingTop="@dimen/dimen_8">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
                         android:paddingStart="@dimen/dimen_16"
-                        android:paddingTop="@dimen/dimen_4"
                         android:paddingEnd="@dimen/dimen_16"
                         android:paddingBottom="@dimen/dimen_4"
                         android:text="Contact:"
@@ -192,8 +178,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
                         android:paddingStart="@dimen/dimen_16"
-                        android:paddingTop="@dimen/dimen_4"
                         android:paddingEnd="@dimen/dimen_16"
                         android:paddingBottom="@dimen/dimen_4"
                         android:text="@{countriesInfoModel.phone}"

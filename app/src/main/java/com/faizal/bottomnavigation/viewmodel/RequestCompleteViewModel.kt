@@ -16,6 +16,7 @@ import com.faizal.bottomnavigation.model2.Reviews
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
+import com.faizal.bottomnavigation.util.getKeys
 import com.faizal.bottomnavigation.util.notNull
 import com.faizal.bottomnavigation.view.FragmentRequestComplete
 import com.google.android.gms.tasks.OnCompleteListener
@@ -83,12 +84,20 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
             notifyPropertyChanged(BR.ratings)
         }
 
+    @get:Bindable
+    var tags: String? = null
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.tags)
+        }
+
     fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         Log.w("tag", "onTextChanged $s")
     }
 
     init {
         profile = (GenericValues().getProfile(postAdObj, fragmentProfileInfo.context!!))
+        tags = getKeys(profile.keyWords,fragmentProfileInfo.context!!)
         mAuth = FirebaseAuth.getInstance()
         getVal()
     }
