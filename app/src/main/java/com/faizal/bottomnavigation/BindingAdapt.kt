@@ -274,8 +274,8 @@ fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: AdSearchModel) {
 }
 
 
-@BindingAdapter("app:serachAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView, countriesViewModel: AdSearchModel, recyclerView: RecyclerView) {
+@BindingAdapter( "app:searchRecycler")
+fun adapter(recyclerView: RecyclerView, countriesViewModel: AdSearchModel) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = AdSearchRecyclerViewAdapter(countriesViewModel)
@@ -285,20 +285,6 @@ fun adapter(searchView: SearchView, countriesViewModel: AdSearchModel, recyclerV
     recyclerView.adapter = listAdapter
     bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
     bindingAdapter.initRequest(recyclerView)
-
-    val searchClose = searchView.findViewById<View>(R.id.search_close_btn)
-    searchClose.setOnClickListener({ searchView.setQuery("", true) })
-
-    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(s: String?): Boolean {
-            return false
-        }
-
-        override fun onQueryTextChange(query: String): Boolean {
-            countriesViewModel.searchQuery = query
-            return false
-        }
-    })
 
     countriesViewModel.countriesInfoModel.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
         override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {

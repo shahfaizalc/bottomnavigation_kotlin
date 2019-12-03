@@ -72,7 +72,7 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
 
         var result = ""
 
-        val numbersIterator = profile.keyWords?.iterator()
+        val numbersIterator = keyWords!!.iterator()
         numbersIterator?.let {
             while (numbersIterator.hasNext()) {
                 var value = (numbersIterator.next())

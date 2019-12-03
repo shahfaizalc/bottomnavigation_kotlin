@@ -15,18 +15,18 @@
         android:background="@color/colorSkyBlue"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.SearchView
+        <Button
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginEnd="@dimen/dimen_16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/dimen_16"
-            android:layout_marginTop="@dimen/dimen_16"
-            android:layout_marginEnd="@dimen/dimen_16"
+            android:layout_gravity="center"
             android:background="@color/colorWhite"
-            android:focusable="false"
-            app:queryHint="Enter search text"
-            app:searchRecycler="@{recylerView}"
-            app:serachAdapter="@{adSearchModel}" />
+            android:onClick="@{adSearchModel.searchKeyWords()}"
+            android:padding="@dimen/dimen_4"
+            android:text="@={adSearchModel.keyyWords}"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,7 +64,9 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+
         <androidx.recyclerview.widget.RecyclerView
+            app:searchRecycler="@{adSearchModel}"
             android:id="@+id/recylerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

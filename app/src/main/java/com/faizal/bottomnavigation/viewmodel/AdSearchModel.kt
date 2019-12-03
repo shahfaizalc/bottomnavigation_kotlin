@@ -20,11 +20,17 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import com.faizal.bottomnavigation.BR
+import com.faizal.bottomnavigation.Events.MyCustomEvent
+import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
+import com.faizal.bottomnavigation.view.FragmentKeyWords
 import com.faizal.bottomnavigation.view.FragmentRequestComplete
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 import java.util.*
 
@@ -83,6 +89,61 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
 
         }
     }
+
+    @Override
+    fun searchKeyWords() = View.OnClickListener() {
+        if (!handleMultipleClicks()) {
+            openKeyWordsFragment()
+
+        }
+    }
+
+    fun openKeyWordsFragment() {
+        EventBus.getDefault().register(this);
+        val fragment = FragmentKeyWords()
+        val bundle = Bundle()
+        val profile = Profile()
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragment.setArguments(bundle)
+        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+    }
+    /*
+      Method will act as the event handler for MyCustomEvent.kt
+      */
+    @Subscribe
+    fun customEventReceived(event: MyCustomEvent) {
+        EventBus.getDefault().unregister(this)
+        val profile = event.data
+        keyyWords = getKeyWords(profile.keyWords)
+
+    }
+
+    private fun getKeyWords(keyWords: MutableList<Int>?): String {
+
+        val c = GenericValues()
+        var listOfCoachings: ArrayList<CoachItem>? = null
+        listOfCoachings = c.readCoachItems(fragmentProfileInfo.context!!)
+
+        var result = ""
+
+        val numbersIterator = keyWords!!.iterator()
+        numbersIterator.let {
+            while (numbersIterator.hasNext()) {
+                var value = (numbersIterator.next())
+                result += " " + listOfCoachings.get(value - 1).categoryname
+            }
+        }
+
+        return result;
+    }
+
+    @get:Bindable
+    var keyyWords: String? = fragmentProfileInfo.context!!.getString(R.string.search_hint)
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.keyyWords)
+        }
+
 
     fun openFragment(postAdModel: Profile, position: Int) {
         val fragment = FragmentRequestComplete()

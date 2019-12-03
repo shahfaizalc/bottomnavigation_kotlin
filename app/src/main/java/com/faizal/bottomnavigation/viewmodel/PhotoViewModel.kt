@@ -31,8 +31,6 @@ class PhotoViewModel(private val context: Context, private val fragmentSignin: F
 
     init {
         networkHandler()
-        EventBus.getDefault().register(this);
-
     }
 
     /*
@@ -40,7 +38,7 @@ class PhotoViewModel(private val context: Context, private val fragmentSignin: F
    */
     @Subscribe
     fun customEventReceived(event: MyCustomEvent) {
-
+        EventBus.getDefault().unregister(this)
         val profile = event.data.address
         val addressVal = profile!!.locationname +"\n "+profile.streetName+"\n "+profile.town
         userAddress = addressVal
@@ -123,7 +121,7 @@ class PhotoViewModel(private val context: Context, private val fragmentSignin: F
     }
 
     fun updateAddress()=View.OnClickListener{
-        showToast(R.string.network_ErrorMsg)
+        EventBus.getDefault().register(this);
 
         val profile = Profile()
         profile.name = userName

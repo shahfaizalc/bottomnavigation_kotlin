@@ -40,7 +40,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
     init {
         networkHandler()
-        EventBus.getDefault().register(this);
         profile = (GenericValues().getProfile(postAdObj, fragmentSignin.context!!))
         readAutoFillItems()
     }
@@ -56,7 +55,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
    */
     @Subscribe
     fun customEventReceived(event: MyCustomEvent) {
-
+        EventBus.getDefault().unregister(this)
         profile = event.data
         userAddress = getAddress()
         keys = getKeyWords()
@@ -196,6 +195,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     }
 
     fun updateAddress() = View.OnClickListener {
+        EventBus.getDefault().register(this);
         val fragment = FragmentAddress()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
@@ -204,6 +204,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     }
 
     fun updateKeyWords() = View.OnClickListener {
+        EventBus.getDefault().register(this);
         val fragment = FragmentKeyWords()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
