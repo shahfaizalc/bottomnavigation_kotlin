@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -12,21 +13,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/home_welcomestring"
-            android:textSize="@dimen/dimen_32"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:gravity="start"
+            android:text="@string/signInText"
+            android:textSize="@dimen/dimen_20"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="@dimen/dimen_16"
             android:layout_marginEnd="@dimen/dimen_16"
             android:orientation="horizontal">
@@ -36,14 +37,19 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/account" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:hint="E-mail"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:text="@={homeData.dataUsername}" />
+                android:layout_marginStart="@dimen/dimen_16"
+                android:layout_marginEnd="@dimen/dimen_16">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/emailHint"
+                    android:text="@={homeData.dataUsername}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -59,33 +65,42 @@
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/password" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:hint="Password"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:text="@={homeData.dataPassword}" />
+                android:layout_marginStart="@dimen/dimen_16"
+                android:layout_marginEnd="@dimen/dimen_16"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@android:color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="textPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/passwordHint"
+                    android:text="@={homeData.dataPassword}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
+
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16"
             android:background="@drawable/circular_bg_blue"
-            android:onClick="@{() -> homeData.signInUserClicked()}"
-            android:text="Log in"
+            android:onClick="@{() -> homeData.doSignInUser()}"
+            android:text="@string/signInText"
             android:textSize="@dimen/dimen_16"
             android:textStyle="bold" />
 
         <TextView
-            android:gravity="end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16"
-            android:onClick="@{() -> homeData.signInUserClicked()}"
+            android:gravity="end"
+            android:onClick="@{() -> homeData.forgotPaswwordFragment()}"
             android:text="@string/forgotPasswordTxt"
             android:textStyle="bold" />
 

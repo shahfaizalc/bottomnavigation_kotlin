@@ -51,6 +51,13 @@
     <string name="terms">By signing up, I agree to Vroom\'s %s</string>
     <string name="termslink">Terms and Conditions</string>
     <string name="forgotPasswordTxt">Forgot Password</string>
+    <string name="sendEmailTxt">Send Email</string>
+    <string name="resetPasswordTxt">Reset Password</string>
+    <string name="passwordHint">Password (Min 8 Character)</string>
+    <string name="emailHint">Email</string>
+
+    <string name="signInText">Sign In</string>
+    <string name="signUpText">Sign Up</string>
 
     <string name="defaultDate">dd/mm/yyyy</string>
     <string name="defaultTime">mm:hh</string>

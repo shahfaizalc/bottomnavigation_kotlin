@@ -20,7 +20,8 @@ import com.faizal.bottomnavigation.view.FragmentSignin
 import com.faizal.bottomnavigation.view.FragmentVerification
 import com.google.firebase.auth.FirebaseAuth
 
-class SignInViewModel(private val context: Context, private val fragmentSignin: FragmentSignin) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class SignInViewModel(private val context: Context, private val fragmentSignin: FragmentSignin)
+    : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
     private val mAuth: FirebaseAuth
     private var networkStateHandler: NetworkChangeHandler? = null
     @get:Bindable
@@ -45,16 +46,16 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
         networkHandler()
     }
 
-    fun signInUserClicked() {
+    fun forgotPaswwordFragment() {
         val fragment = FragmentForgotPassword()
         val bundle = Bundle()
         fragment.setArguments(bundle)
         fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(0,fragment,bundle));
     }
 
-    fun forgotClicked() {
+    fun doSignInUser() {
         if (validateInput())
-            signInUser(dataUsername, dataPassword)
+            doSignInUser(dataUsername, dataPassword)
         else
             showToast(R.string.loginValidtionErrorMsg)
     }
@@ -97,7 +98,7 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
         }
     }
 
-    private fun signInUser(email: String?, password: String?) {
+    private fun doSignInUser(email: String?, password: String?) {
 
         if (isInternetConnected) {
             showToast(R.string.network_ErrorMsg)

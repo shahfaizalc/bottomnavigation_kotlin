@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="Password"
+            android:hint="@string/passwordHint"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:text="@={homeData.dataPassword}" />
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="Password"
+            android:hint="@string/passwordHint"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:text="@={homeData.dataPassword}" />
@@ -76,7 +76,7 @@
             android:layout_margin="@dimen/dimen_16"
             android:background="@drawable/circular_bg_blue"
             android:onClick="@{() -> homeData.signInUserClicked()}"
-            android:text="Sign Up"
+            android:text="@string/signUpText"
             android:textSize="@dimen/dimen_16"
             android:textStyle="bold" />
 

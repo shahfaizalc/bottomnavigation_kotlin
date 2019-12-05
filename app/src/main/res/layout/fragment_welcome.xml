@@ -51,7 +51,7 @@
                 android:layout_marginRight="@dimen/dimen_16"
                 android:background="@drawable/circular_bg_blue"
                 android:onClick="@{() -> homeData.signUpUserClicked()}"
-                android:text="Sign Up"
+                android:text="@string/signUpText"
                 android:textStyle="bold" />
 
             <Button
@@ -60,7 +60,7 @@
                 android:layout_margin="@dimen/dimen_16"
                 android:background="@drawable/circular_bg_blue"
                 android:onClick="@{() -> homeData.signInUserClicked()}"
-                android:text="Sign In"
+                android:text="@string/signInText"
                 android:textStyle="bold" />
 
 

@@ -46,7 +46,7 @@ class ForgotPasswordViewModel(private val context: Context, private val fragment
         networkHandler()
     }
 
-    fun signInUserClicked() {
+    fun sendEmail() {
         if (validateInput())
             signInUser(dataUsername)
         else
