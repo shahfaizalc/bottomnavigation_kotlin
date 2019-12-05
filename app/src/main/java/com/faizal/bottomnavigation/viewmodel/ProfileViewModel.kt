@@ -89,9 +89,6 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
             ?:  "") + "\n " + (it?.town ?:  "") + "\n " + (it?.city ?: "") }
 
 
-//    private fun getAddress() = " " + profile.address!!.locationname + "\n " + profile.address!!.streetName +
-//            "\n " + profile.address!!.town + "\n " + profile.address!!.city
-
     var imgUrl = ""
 
     private fun networkHandler() {

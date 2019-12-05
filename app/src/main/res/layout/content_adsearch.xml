@@ -10,24 +10,24 @@
     </data>
 
     <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <EditText
-            android:layout_marginStart="@dimen/dimen_16"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:layout_marginEnd="@dimen/dimen_16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginEnd="@dimen/dimen_16"
+            android:background="@drawable/circular_bg_border"
             android:focusable="false"
-            android:background="@drawable/circular_bg_white_4"
+            android:hint="@string/search_hint"
             android:onClick="@{adSearchModel.searchKeyWords()}"
             android:padding="@dimen/dimen_8"
-            android:hint="@string/search_hint"
-            android:text="@={adSearchModel.keyyWords}"
-            />
+            android:text="@={adSearchModel.keyyWords}" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,12 +39,12 @@
             android:weightSum="2">
 
             <AutoCompleteTextView
-                android:layout_gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="@dimen/dimen_2"
                 android:layout_weight="1"
-                android:background="@drawable/circular_bg_white_4"
+                android:background="@drawable/circular_bg_border"
                 android:hint="City/Near City"
                 android:maxLines="70"
                 android:padding="@dimen/dimen_12"
@@ -53,10 +53,10 @@
                 app:autoAdapter="@{adSearchModel}" />
 
             <Button
-                android:layout_margin="@dimen/dimen_2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_margin="@dimen/dimen_2"
                 android:layout_weight="1"
                 android:background="@drawable/circular_bg_red"
                 android:onClick="@{adSearchModel.searchAdClick()}"
@@ -64,13 +64,14 @@
                 android:text="Search"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <View
+            android:layout_marginTop="@dimen/dimen_8"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@drawable/bottom_shadow" />
+            android:background="@drawable/bottom_line" />
 
         <androidx.recyclerview.widget.RecyclerView
-            app:searchRecycler="@{adSearchModel}"
             android:id="@+id/recylerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -78,7 +79,8 @@
             android:background="@color/colorWhite"
             android:paddingStart="@dimen/dimen_8"
             android:paddingEnd="@dimen/dimen_8"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            app:searchRecycler="@{adSearchModel}" />
 
     </LinearLayout>
 

@@ -21,6 +21,7 @@ import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.FragmentAddress
 import com.faizal.bottomnavigation.view.FragmentKeyWords
+import com.faizal.bottomnavigation.view.FragmentProfile
 import com.faizal.bottomnavigation.view.FragmentProfileEdit
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -185,6 +186,12 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
                     override fun onSuccess() {
                         Log.d(TAG, "DocumentSnapshot onSuccess ")
+                        val fragment = FragmentProfile()
+                        val bundle = Bundle()
+                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+                        fragment.setArguments(bundle)
+                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+
                     }
                 })
             } else {
