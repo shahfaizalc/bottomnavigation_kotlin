@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="homeData"
+            type="com.faizal.bottomnavigation.viewmodel.VerifiedViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <ScrollView
+            android:id="@+id/usr_activation_rootLayout_scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:color/transparent">
+
+            <LinearLayout
+                android:id="@+id/usr_reg_root_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/dimen_16"
+                android:layout_marginRight="@dimen/dimen_16"
+                android:paddingBottom="@dimen/dimen_16">
+
+                <TextView
+                    android:id="@+id/usr_activation_title_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_16"
+                    android:text="@string/USR_DLS_Verify_Email_Title_Txt"
+                    android:textSize="@dimen/dimen_20"
+                    fontPath="fonts/centralesansbold.ttf"/>
+
+                <TextView
+                    android:id="@+id/usr_activation_email_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_16"
+                    android:text="@string/USR_DLS_Verify_Email_Sent_Txt"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_16"
+                    android:text="@string/USR_DLS_Verify_Email_Explainary_Txt"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_16"
+                    android:text="@string/USR_DLS_Verify_Email_Security_Txt"
+                    />
+
+                <Button
+                    android:background="@drawable/circular_bg_blue"
+                    android:id="@+id/usr_activation_emailVerified_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> homeData.accountVerfied()}"
+                    android:layout_marginTop="@dimen/dimen_24"
+                    android:layout_marginBottom="@dimen/dimen_12"
+                    android:text="@string/USR_DLS_Verify_Email_Verified_Btn_Title_Txt"/>
+
+                <Button
+                    android:background="@drawable/circular_bg"
+                    android:onClick="@{() -> homeData.resendMail()}"
+                    android:id="@+id/usr_activation_emailNotReceived_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_12"
+                    android:text="@string/USR_DLS_Verify_Email_Resend_Btn_Title_Txt"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

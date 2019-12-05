@@ -129,8 +129,8 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
         val numbersIterator = keyWords!!.iterator()
         numbersIterator.let {
             while (numbersIterator.hasNext()) {
-                var value = (numbersIterator.next())
-                result += " " + listOfCoachings.get(value - 1).categoryname
+                val value = (numbersIterator.next())
+                result += " " + listOfCoachings.get(value - 1).categoryname +", "
             }
         }
 
@@ -138,7 +138,7 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
     }
 
     @get:Bindable
-    var keyyWords: String? = fragmentProfileInfo.context!!.getString(R.string.search_hint)
+    var keyyWords: String? = ""
         set(city) {
             field = city
             notifyPropertyChanged(BR.keyyWords)

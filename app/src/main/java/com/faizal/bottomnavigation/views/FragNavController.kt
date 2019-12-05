@@ -407,7 +407,7 @@ private constructor(internal var builder: Builder, savedInstanceState: Bundle?) 
             //Commit our transactions
             ft.commit()
 
-            executePendingTransactions()
+           // executePendingTransactions()
 
             fragmentStack.push(fragment)
             mCurrentFrag = fragment

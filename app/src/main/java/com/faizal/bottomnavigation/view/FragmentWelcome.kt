@@ -1,6 +1,7 @@
 package com.faizal.bottomnavigation.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.databinding.FragmentWelcomeBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
-import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.viewmodel.WelcomeViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -34,13 +34,23 @@ class FragmentWelcome : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
         mAuth.currentUser?.run {
-            isUserSignedIN()
+            if(mAuth.currentUser?.isEmailVerified!!)
+                isUserSignedIN()
+            else
+                isuserVerified()
         }
 
    }
 
    fun isUserSignedIN(){
         val fragment = FragmentProfile()
+        val bundle = Bundle()
+        fragment.setArguments(bundle)
+        this.mFragmentNavigation.replaceFragment(this.newInstance(0,fragment,bundle));
+    }
+
+    fun isuserVerified(){
+        val fragment = FragmentVerification()
         val bundle = Bundle()
         fragment.setArguments(bundle)
         this.mFragmentNavigation.replaceFragment(this.newInstance(0,fragment,bundle));

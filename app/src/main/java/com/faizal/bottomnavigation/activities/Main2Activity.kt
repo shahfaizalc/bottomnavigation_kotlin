@@ -100,7 +100,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
 
     private fun showTab() {
         mAuth = FirebaseAuth.getInstance()
-        if(mAuth.currentUser != null) {
+        if(mAuth.currentUser != null && mAuth.currentUser!!.isEmailVerified) {
             switchTab(0)
             updateTabSelection(0)
         }else{

@@ -16,6 +16,7 @@ import com.faizal.bottomnavigation.utils.EnumValidator
 import com.faizal.bottomnavigation.utils.Validator
 import com.faizal.bottomnavigation.view.FragmentProfile
 import com.faizal.bottomnavigation.view.FragmentSignin
+import com.faizal.bottomnavigation.view.FragmentVerification
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInViewModel(private val context: Context, private val fragmentSignin: FragmentSignin) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -108,21 +109,35 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
                         } else {
                             showToast(R.string.loginSucess)
 
-                            val fragment = FragmentProfile()
-                            val bundle = Bundle()
-                            fragment.setArguments(bundle)
-                            fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
-
-                            fragmentSignin.mFragmentNavigation.switchTab(0)
-                            fragmentSignin.mFragmentNavigation.viewBottom(View.VISIBLE)
+                            mAuth.currentUser?.run {
+                                if(mAuth.currentUser?.isEmailVerified!!)
+                                    launchProfile()
+                                else
+                                    isuserVerified()
+                            }
                         }
                     }.addOnFailureListener {
                         Log.d("TAG", "Exception" + it.message)
                         showToast(R.string.loginFailed)
                     }
         }
+    }
+
+    fun isuserVerified(){
+        val fragment = FragmentVerification()
+        val bundle = Bundle()
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(0,fragment,bundle));
+    }
 
 
+    private fun launchProfile() {
+        val fragment = FragmentProfile()
+        val bundle = Bundle()
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
+        fragmentSignin.mFragmentNavigation.switchTab(0)
+        fragmentSignin.mFragmentNavigation.viewBottom(View.VISIBLE)
     }
 
     private fun showToast(id: Int) {

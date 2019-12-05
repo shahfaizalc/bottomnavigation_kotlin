@@ -1,9 +1,13 @@
 package com.faizal.bottomnavigation.viewmodel
 
 
+import android.app.Activity
+import android.content.Intent
+import android.content.Intent.getIntent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.fragment.app.FragmentActivity
@@ -13,12 +17,16 @@ import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.utils.EnumValidator
 import com.faizal.bottomnavigation.utils.Validator
-import com.faizal.bottomnavigation.view.*
+import com.faizal.bottomnavigation.view.FragmentProfile
+import com.faizal.bottomnavigation.view.FragmentRegistration
+import com.faizal.bottomnavigation.view.FragmentVerification
 import com.google.firebase.auth.FirebaseAuth
 
 
 class RegistrationModel(internal val activity: FragmentActivity, internal val fragmentSignin: FragmentRegistration)// To show list of user images (Gallery)
     :  BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+
+    var TAG = "RegistrationModel"
     private val mAuth: FirebaseAuth
     private var networkStateHandler: NetworkChangeHandler? = null
     @get:Bindable
@@ -94,29 +102,50 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
             showToast(R.string.network_ErrorMsg)
         } else {
 
-            mAuth.signInWithEmailAndPassword(email!!, password!!)
-                    .addOnCompleteListener(activity.applicationContext as FragmentActivity) { task ->
+            mAuth.createUserWithEmailAndPassword(email!!, password!!)
+                    .addOnCompleteListener(activity) { task ->
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
 
-                        Log.d("TAG","Exception success"+task.isSuccessful)
+                        Log.d(TAG,"Exception success "+task.isSuccessful)
 
                         if (!task.isSuccessful) {
                             // there was an error
+                            Log.d(TAG,"Exception success"+task.isSuccessful)
                             showToast(R.string.loginFailed)
                         } else {
+                            Log.d(TAG,"Exception success "+task.isSuccessful)
                             showToast(R.string.loginSucess)
 
                             //      launchChildFragment(FragmentHomePage())
-                            fragmentSignin.mFragmentNavigation.switchTab(0)
+                            sendVerificationEmail()
                         }
                     }.addOnFailureListener {
-                        Log.d("TAG","Exception"+it.message)
-                        showToast(R.string.loginFailed) }
+                        Log.d(TAG,"Exception ->"+it.message)
+                        showToast(R.string.loginFailed)
+                    }
         }
 
 
+    }
+
+    private fun sendVerificationEmail() {
+        val user = FirebaseAuth.getInstance().currentUser
+        user!!.sendEmailVerification()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) { // email sent
+
+                        val fragment = FragmentVerification()
+                        val bundle = Bundle()
+                        fragment.setArguments(bundle)
+                        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
+
+
+                    } else {
+
+                    }
+                }
     }
 
     private fun showToast(id: Int) {

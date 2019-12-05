@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TeamUp</string>
+    <string name="app_name">TeamsUp</string>
 
     <array name="tab_name">
         <item>Home</item>
@@ -56,8 +56,15 @@
     <string name="review_post">POST</string>
     <string name="review_edit">EDIT</string>
     <string name="review_hint">Write your review</string>
-    <string name="search_hint"></string>
+    <string name="search_hint">Enter the keywords</string>
+    <string name="find_btn">Find A Coach / Mate</string>
+    <string name="be_btn">Be A Coach / Mate</string>
 
-
+    <string name="USR_DLS_Verify_Email_Title_Txt">Confirm your email</string>
+    <string name="USR_DLS_Verify_Email_Sent_Txt">We\'ve just sent you an email to %s.</string>
+    <string name="USR_DLS_Verify_Email_Explainary_Txt">Please check your email and activate your account.</string>
+    <string name="USR_DLS_Verify_Email_Resend_Btn_Title_Txt">I haven\'t received an email</string>
+    <string name="USR_DLS_Verify_Email_Security_Txt">We go through this process for your security.</string>
+    <string name="USR_DLS_Verify_Email_Verified_Btn_Title_Txt">I\'ve already verified</string>
 
 </resources>

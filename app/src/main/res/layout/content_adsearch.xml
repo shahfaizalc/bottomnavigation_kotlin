@@ -12,19 +12,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorSkyBlue"
         android:orientation="vertical">
 
-        <Button
+        <EditText
             android:layout_marginStart="@dimen/dimen_16"
             android:layout_marginTop="@dimen/dimen_8"
             android:layout_marginEnd="@dimen/dimen_16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/colorWhite"
+            android:focusable="false"
+            android:background="@drawable/circular_bg_white_4"
             android:onClick="@{adSearchModel.searchKeyWords()}"
-            android:padding="@dimen/dimen_4"
+            android:padding="@dimen/dimen_8"
+            android:hint="@string/search_hint"
             android:text="@={adSearchModel.keyyWords}"
             />
 
@@ -43,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_2"
                 android:layout_weight="1"
-                android:background="@color/colorWhite"
+                android:background="@drawable/circular_bg_white_4"
                 android:hint="City/Near City"
                 android:maxLines="70"
                 android:padding="@dimen/dimen_12"
@@ -57,13 +58,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/colorWhite"
+                android:background="@drawable/circular_bg_red"
                 android:onClick="@{adSearchModel.searchAdClick()}"
                 android:padding="@dimen/dimen_4"
                 android:text="Search"
                 android:textStyle="bold" />
         </LinearLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/bottom_shadow" />
 
         <androidx.recyclerview.widget.RecyclerView
             app:searchRecycler="@{adSearchModel}"

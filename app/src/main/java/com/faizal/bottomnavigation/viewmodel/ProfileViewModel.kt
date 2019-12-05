@@ -15,6 +15,7 @@ import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.network.FirbaseReadHandler
 import com.faizal.bottomnavigation.util.GenericValues
+import com.faizal.bottomnavigation.util.notNull
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.FragmentProfile
 import com.faizal.bottomnavigation.view.FragmentProfileEdit
@@ -40,11 +41,11 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
 
             override fun onSuccess(profile1: Profile) {
                 profile = profile1
-                userName = profile1.name!!
-                userEmail = profile1.email!!
-                userTitle = profile1.phone!!
-                userDesc = profile1.desc!!
-                userMoreInfo = profile1.moreInformation!!
+                userName = profile1.name ?: ""
+                userEmail = profile1.email?: ""
+                userTitle = profile1.phone?: ""
+                userDesc = profile1.desc?: ""
+                userMoreInfo = profile1.moreInformation?: ""
                 userAvailability = profile1.availability
                 userAddress = getAddress()
                 keywords = getKeyWords(profile1.keyWords)
@@ -72,19 +73,24 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
 
         var result = ""
 
-        val numbersIterator = keyWords!!.iterator()
-        numbersIterator?.let {
-            while (numbersIterator.hasNext()) {
-                var value = (numbersIterator.next())
-                result += " " + listOfCoachings!!.get(value - 1).categoryname
+        keyWords.notNull {
+            val numbersIterator = it.iterator()
+            numbersIterator.let {
+                while (numbersIterator.hasNext()) {
+                    val value = (numbersIterator.next())
+                    result += " " + listOfCoachings!!.get(value - 1).categoryname
+                }
             }
         }
-
         return result;
     }
 
-    private fun getAddress() = " " + profile.address!!.locationname + "\n " + profile.address!!.streetName +
-            "\n " + profile.address!!.town + "\n " + profile.address!!.city
+    private fun getAddress() = " " + profile.address.let { " " + (it?.locationname ?:  "") + "\n " + (it?.streetName
+            ?:  "") + "\n " + (it?.town ?:  "") + "\n " + (it?.city ?: "") }
+
+
+//    private fun getAddress() = " " + profile.address!!.locationname + "\n " + profile.address!!.streetName +
+//            "\n " + profile.address!!.town + "\n " + profile.address!!.city
 
     var imgUrl = ""
 
