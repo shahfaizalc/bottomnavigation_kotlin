@@ -40,6 +40,7 @@
     <string name="loginValidtionErrorMsg">Please provide valid inputs</string>
     <string name="loginFailed">Please check your username and password</string>
     <string name="loginSucess">Authentication successful</string>
+    <string name="forgotPasswordSuccess">We\'ve just sent you an email to reset your password.</string>
     <string name="errorMsgGeneric">Something went wrong.Please try again later.</string>
     <string name="hobbies_headline"> I enjoy these activities the most:</string>
     <string name="like">Like</string>
@@ -49,6 +50,7 @@
     <string name="ticketAvailability">Ticket Availability</string>
     <string name="terms">By signing up, I agree to Vroom\'s %s</string>
     <string name="termslink">Terms and Conditions</string>
+    <string name="forgotPasswordTxt">Forgot Password</string>
 
     <string name="defaultDate">dd/mm/yyyy</string>
     <string name="defaultTime">mm:hh</string>

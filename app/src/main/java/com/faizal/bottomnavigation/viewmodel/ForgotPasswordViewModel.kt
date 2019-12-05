@@ -7,34 +7,35 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
+import com.faizal.bottomnavigation.util.notNull
 import com.faizal.bottomnavigation.utils.EnumValidator
 import com.faizal.bottomnavigation.utils.Validator
 import com.faizal.bottomnavigation.view.FragmentForgotPassword
 import com.faizal.bottomnavigation.view.FragmentProfile
-import com.faizal.bottomnavigation.view.FragmentSignin
 import com.faizal.bottomnavigation.view.FragmentVerification
 import com.google.firebase.auth.FirebaseAuth
 
-class SignInViewModel(private val context: Context, private val fragmentSignin: FragmentSignin) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+
+class ForgotPasswordViewModel(private val context: Context, private val fragmentSignin: FragmentForgotPassword) :
+        BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+    companion object {
+        private val TAG = "ProfileGalleryViewModel"
+    }
+
     private val mAuth: FirebaseAuth
     private var networkStateHandler: NetworkChangeHandler? = null
+
     @get:Bindable
     var dataUsername: String? = null
         set(username) {
             field = username
             notifyPropertyChanged(BR.dataUsername)
         }
-    @get:Bindable
-    var dataPassword: String? = null
-        set(password) {
-            field = password
-            notifyPropertyChanged(BR.dataPassword)
-        }
+
     private var isInternetConnected: Boolean = false
 
     init {
@@ -46,15 +47,8 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
     }
 
     fun signInUserClicked() {
-        val fragment = FragmentForgotPassword()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(0,fragment,bundle));
-    }
-
-    fun forgotClicked() {
         if (validateInput())
-            signInUser(dataUsername, dataPassword)
+            signInUser(dataUsername)
         else
             showToast(R.string.loginValidtionErrorMsg)
     }
@@ -68,10 +62,10 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
 
     private fun validateInput(): Boolean {
 
-        if (dataUsername == null && dataPassword == null) {
+        if (dataUsername == null) {
             return false
         }
-        return if (dataUsername!!.length < 1 && dataPassword!!.length < 1) {
+        return if (dataUsername!!.length < 1) {
             false
         } else Validator().validate(dataUsername, EnumValidator.EMAIL_PATTERN)
 
@@ -97,45 +91,32 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
         }
     }
 
-    private fun signInUser(email: String?, password: String?) {
+    private fun signInUser(email: String?) {
 
         if (isInternetConnected) {
             showToast(R.string.network_ErrorMsg)
         } else {
 
-            mAuth.signInWithEmailAndPassword(email!!, password!!)
-                    .addOnCompleteListener(context as FragmentActivity) { task ->
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-
-                        Log.d("TAG", "Exception success" + task.isSuccessful)
-
-                        if (!task.isSuccessful) {
-                            // there was an error
-                            showToast(R.string.loginFailed)
-                        } else {
-                            showToast(R.string.loginSucess)
-
-                            mAuth.currentUser?.run {
-                                if(mAuth.currentUser?.isEmailVerified!!)
-                                    launchProfile()
-                                else
-                                    isuserVerified()
+            email?.notNull {
+                mAuth.sendPasswordResetEmail(it)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d(TAG, "Email sent.")
+                                showToast(R.string.forgotPasswordSuccess)
                             }
+                        }.addOnFailureListener {
+                            Log.d(TAG, "Exception" + it.message)
+                            Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                         }
-                    }.addOnFailureListener {
-                        Log.d("TAG", "Exception" + it.message)
-                        showToast(R.string.loginFailed)
-                    }
+            }
         }
     }
 
-    fun isuserVerified(){
+    fun isuserVerified() {
         val fragment = FragmentVerification()
         val bundle = Bundle()
         fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(0,fragment,bundle));
+        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(0, fragment, bundle));
     }
 
 

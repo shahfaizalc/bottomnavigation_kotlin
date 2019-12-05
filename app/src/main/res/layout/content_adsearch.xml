@@ -58,7 +58,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/dimen_2"
                 android:layout_weight="1"
-                android:background="@drawable/circular_bg_red"
+                android:background="@drawable/circular_bg_palegreen"
                 android:onClick="@{adSearchModel.searchAdClick()}"
                 android:padding="@dimen/dimen_4"
                 android:text="Search"
@@ -68,7 +68,7 @@
         <View
             android:layout_marginTop="@dimen/dimen_8"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:background="@drawable/bottom_line" />
 
         <androidx.recyclerview.widget.RecyclerView
