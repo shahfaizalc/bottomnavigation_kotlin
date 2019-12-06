@@ -9,7 +9,7 @@
         <item>Profile</item>
     </array>
 
-    <string name="ad_notification">Your ad will stay online during the date and time indicated above or until you remove it.</string>
+    <string name="ad_notification">Your ad will stay online during the date indicated above or until you remove it.</string>
     <string name="ad_notification2">Your ad will stay online during the date and time indicated above or until you remove it. If you sold the item, kindly delete the ad</string>
     <string name="home_welcomestring">Team Up</string>
     <string name="home_welcomestring2">Sharing memories not only journey</string>
@@ -57,6 +57,7 @@
     <string name="emailHint">Email</string>
     <string name="passwordtxt">Password</string>
     <string name="doneTxt">Done</string>
+    <string name="expiryDate">Expiry Date</string>
 
 
     <string name="signInText">Sign In</string>

@@ -43,7 +43,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_16"
                     android:text="Description"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
@@ -61,14 +60,15 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date"
+                    android:text="@string/expiryDate"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
+
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dimen_16"
+                    android:layout_marginBottom="@dimen/dimen_8"
                     android:drawableEnd="@drawable/calendar_range"
                     android:focusable="false"
                     android:onClick="@{postAdViewData.datePickerClick() }"
@@ -79,25 +79,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Time"
-                    android:textColor="@color/colorBlack"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:drawableEnd="@drawable/clock_outline"
-                    android:focusable="false"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dimen_16"
-                    android:onClick="@{postAdViewData.timePickerClick()}"
-                    android:hint="@string/defaultTime"
-                    android:text="@{postAdViewData.showTime}"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_4"
                     android:text="@string/ad_notification"
                     android:textColor="@color/colorBlack" />
 

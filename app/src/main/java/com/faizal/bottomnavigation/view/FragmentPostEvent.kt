@@ -18,14 +18,14 @@ import com.faizal.bottomnavigation.viewmodel.PostEventViewModel
 class FragmentPostEvent : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val postAdObj  = arguments!!.getParcelable<PostAdModel>(Constants.POSTAD_OBJECT)
+//        val postAdObj  = arguments!!.getParcelable<PostAdModel>(Constants.POSTAD_OBJECT)
 
-        return bindView(inflater, container,postAdObj)
+        return bindView(inflater, container)
     }
 
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: PostAdModel): View {
+    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
         val binding = DataBindingUtil.inflate<ContentPostEventBinding>(inflater, R.layout.content_post_event, container, false)
-        val areaViewModel = PostEventViewModel(activity!!, this,postAdObj)
+        val areaViewModel = PostEventViewModel(activity!!, this)
         binding.postAdViewData = areaViewModel
         return binding.root
     }

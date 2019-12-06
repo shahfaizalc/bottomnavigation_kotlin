@@ -34,8 +34,7 @@ import com.faizal.bottomnavigation.view.FragmentPostEvent
 
 
 class PostEventViewModel(internal var activity: FragmentActivity,
-                         internal val fragmentProfileInfo: FragmentPostEvent,
-                         internal var postAdModel: PostAdModel)
+                         internal val fragmentProfileInfo: FragmentPostEvent)
     : BaseObservable() , MultipleClickListener {
 
     var singleAttribute: Category? = null
@@ -80,34 +79,19 @@ class PostEventViewModel(internal var activity: FragmentActivity,
 
     @Override
     fun onNextButtonClick() = OnClickListener() {
-        if(!(title.isNullOrEmpty()|| description.isNullOrEmpty()||showDate.isNullOrEmpty()|| showTime.isNullOrEmpty())) {
 
-            if (!handleMultipleClicks()) {
-                postAdModel.title = title
-                postAdModel.description = description
-                postAdModel.showDate = showDate
-                postAdModel.showTime = showTime
-                val fragment = FragmentAddress()
-                val bundle = Bundle()
-                bundle.putParcelable(POSTAD_OBJECT, postAdModel)
-                fragment.setArguments(bundle)
-                fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
-            }
-        } else{
-            Toast.makeText(fragmentProfileInfo.context,fragmentProfileInfo.context!!.resources.getText(R.string.mandatoryField),Toast.LENGTH_SHORT).show()
-        }
     }
 
-    @Override
-    fun timePickerClick() = OnClickListener() {
-        if (!handleMultipleClicks()) {
-            TimePickerEvent().onTimePickerClick(fragmentProfileInfo.context!!, object : TimeListener {
-                override fun onTimeSet(result: String) {
-                    showTime = result;
-                }
-            })
-        }
-    }
+//    @Override
+//    fun timePickerClick() = OnClickListener() {
+//        if (!handleMultipleClicks()) {
+//            TimePickerEvent().onTimePickerClick(fragmentProfileInfo.context!!, object : TimeListener {
+//                override fun onTimeSet(result: String) {
+//                    showTime = result;
+//                }
+//            })
+//        }
+//    }
 
     @Override
     fun datePickerClick() = OnClickListener() {
