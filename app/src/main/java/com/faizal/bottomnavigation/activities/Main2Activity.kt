@@ -254,7 +254,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
 
             FragNavController.TAB1 -> return FragmentRide()
             FragNavController.TAB2 -> return FragmentAdSearch()
-            FragNavController.TAB3 -> return FragmentPostEvent()
+            FragNavController.TAB3 -> return FragmentEvents()
             FragNavController.TAB4 -> return NewsFragment()
             FragNavController.TAB5 -> return FragmentWelcome()
         }
