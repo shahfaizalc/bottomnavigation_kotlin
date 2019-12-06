@@ -56,6 +56,8 @@
     <string name="passwordHint">Password (Min 8 Character)</string>
     <string name="emailHint">Email</string>
     <string name="passwordtxt">Password</string>
+    <string name="doneTxt">Done</string>
+
 
     <string name="signInText">Sign In</string>
     <string name="signUpText">Sign Up</string>

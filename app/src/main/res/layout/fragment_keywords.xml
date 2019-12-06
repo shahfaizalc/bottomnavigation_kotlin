@@ -41,7 +41,7 @@
             android:layout_marginTop="@dimen/dimen_32"
             android:background="@color/yellow"
             android:onClick="@{postAdPricing.onNextButtonClick}"
-            android:text="SAVE"
+            android:text="@string/doneTxt"
             android:textColor="@color/colorWhite"
             android:textStyle="bold" />
     </RelativeLayout>
