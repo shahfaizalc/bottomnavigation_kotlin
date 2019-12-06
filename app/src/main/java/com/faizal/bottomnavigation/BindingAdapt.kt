@@ -374,8 +374,48 @@ fun adapter(searchView: SearchView, profileInfoViewModel: GameChooserModel, recy
 
 }
 
+@BindingAdapter("app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView, profileInfoViewModel: EventListModel, recyclerView: RecyclerView) {
 
-@BindingAdapter("app:clickableString")
+    val emptySting = "";
+    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+    val adapter = EventListAdapter()
+    recyclerView.adapter = adapter
+    (recyclerView.adapter as EventListAdapter).setModel(profileInfoViewModel)
+    (recyclerView.adapter as EventListAdapter).setData(profileInfoViewModel.userIds)
+
+    // Search view clear query
+    val searchClear = searchView.findViewById<View>(R.id.search_close_btn)
+    searchClear.setOnClickListener({ searchView.setQuery(emptySting, true) })
+
+    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(s: String?): Boolean {
+            return false
+        }
+
+        override fun onQueryTextChange(query: String): Boolean {
+            if (!query.isEmpty()) {
+                //Kotlin filter to filter the query results
+                val model =
+                        profileInfoViewModel.userIds.filter {
+                            it.toLowerCase().startsWith(query.toLowerCase())
+                        }
+
+                (recyclerView.adapter as EventListAdapter).setData(model)
+
+            } else {
+                (recyclerView.adapter as EventListAdapter).setData(profileInfoViewModel.userIds)
+
+            }
+            return false
+        }
+    })
+
+}
+
+
+
+    @BindingAdapter("app:clickableString")
 fun loadAdapterx(textView: TextView, profileInfoViewModel: RegistrationModel) {
     val ss = SpannableString(textView.getText())
 

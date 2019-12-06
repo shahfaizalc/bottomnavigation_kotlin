@@ -65,8 +65,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/circular_bg_blue"
                     android:onClick="@{() -> homeData.beClicked()}"
-                    android:paddingTop="@dimen/dimen_24"
-                    android:paddingBottom="@dimen/dimen_24"
+                    android:paddingTop="@dimen/dimen_16"
+                    android:paddingBottom="@dimen/dimen_16"
                     android:text="@string/find_btn"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
@@ -78,8 +78,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/circular_bg_blue"
                     android:onClick="@{() -> homeData.findClicked()}"
-                    android:paddingTop="@dimen/dimen_24"
-                    android:paddingBottom="@dimen/dimen_24"
+                    android:paddingTop="@dimen/dimen_16"
+                    android:paddingBottom="@dimen/dimen_16"
                     android:text="@string/be_btn"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
