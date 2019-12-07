@@ -21,6 +21,9 @@ object Constants {
     val BASEURL_POST_AD  = "userinfo/postad/"
     val BASEURL_COLLECTION_GEN_REVIEW= "review/"
 
+    val BASEURL_COLLECTION_GEN_POSTEVVENT = "events/"
+
+
 
     val POSTAD_OBJECT = "POSTAD"
     val AD_DOCID = "DOCID"

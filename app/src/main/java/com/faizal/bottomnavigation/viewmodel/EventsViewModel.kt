@@ -14,12 +14,14 @@ import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.MultipleClickListener
 import com.faizal.bottomnavigation.model.CoachItem
+import com.faizal.bottomnavigation.model2.PostEvents
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
+import com.google.firebase.auth.FirebaseAuth
 import com.itravis.ticketexchange.listeners.DateListener
 import com.itravis.ticketexchange.utils.DatePickerEvent
 import org.greenrobot.eventbus.EventBus
@@ -37,10 +39,12 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
     private var isInternetConnected: Boolean = false
 
     var profile = Profile();
+    var postEvents = PostEvents();
 
     init {
         networkHandler()
         profile = Profile()
+        postEvents = PostEvents();
         readAutoFillItems()
     }
 
@@ -57,8 +61,11 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
     fun customEventReceived(event: MyCustomEvent) {
         EventBus.getDefault().unregister(this)
         profile = event.data
+        postEvents.address = profile.address
+        postEvents.keyWords = profile.keyWords
         userAddress = getAddress()
         keys = getKeyWords()
+
     }
 
     private fun getAddress() = " " + profile.address?.locationname + "\n " + profile.address?.streetName +
@@ -84,6 +91,7 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
     var showDate: String? = null
         set(showDate) {
             field = showDate
+            postEvents.expiryDate = field
             notifyPropertyChanged(BR.showDate)
         }
 
@@ -113,8 +121,9 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
     var userTitle: String? = profile.title
         set(price) {
             field = price
-            profile.title = price
+            postEvents.title = field
             notifyPropertyChanged(BR.userTitle)
+
 
         }
 
@@ -122,7 +131,7 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
     var userPhone: String? = profile.phone
         set(price) {
             field = price
-            profile.phone = price
+            postEvents.contactInfo = field
             notifyPropertyChanged(BR.userPhone)
 
         }
@@ -131,7 +140,7 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
     var userDesc: String? = profile.desc
         set(price) {
             field = price
-            profile.desc = price
+            postEvents.desc = field
             notifyPropertyChanged(BR.userDesc)
 
         }
@@ -141,15 +150,6 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
         set(price) {
             field = price
             notifyPropertyChanged(BR.userAddress)
-
-        }
-
-    @get:Bindable
-    var userMoreInfo: String? = profile.moreInformation
-        set(price) {
-            field = price
-            profile.moreInformation = price
-            notifyPropertyChanged(BR.userMoreInfo)
 
         }
 
@@ -166,8 +166,10 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
 
         if (!handleMultipleClicks()) {
 
-            if (profile.name != "" && profile.email != "" && profile.phone != "" && profile.title != "") {
-                val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateUserInfo(profile, object : EmptyResultListener {
+            if (""== "") {
+                postEvents.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+                postEvents.postedDate = System.currentTimeMillis().toString()
+                val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateEvents(postEvents, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot onFailure " + e.message)
                         Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
@@ -176,11 +178,11 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
 
                     override fun onSuccess() {
                         Log.d(TAG, "DocumentSnapshot onSuccess ")
-                        val fragment = FragmentProfile()
-                        val bundle = Bundle()
-                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-                        fragment.setArguments(bundle)
-                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+//                        val fragment = FragmentProfile()
+//                        val bundle = Bundle()
+//                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//                        fragment.setArguments(bundle)
+//                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
 
                     }
                 })

@@ -4,7 +4,7 @@ import com.faizal.bottomnavigation.model.Address
 import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.EventStatus
 
-class Events{
+class PostEvents{
 
     var title: String? = null
     var desc: String? = null
