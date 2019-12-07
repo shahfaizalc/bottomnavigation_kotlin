@@ -20,13 +20,15 @@ import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
-import com.faizal.bottomnavigation.view.*
+import com.faizal.bottomnavigation.view.FragmentAddress
+import com.faizal.bottomnavigation.view.FragmentEvents
+import com.faizal.bottomnavigation.view.FragmentKeyWords
 import com.google.firebase.auth.FirebaseAuth
 import com.itravis.ticketexchange.listeners.DateListener
 import com.itravis.ticketexchange.utils.DatePickerEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import java.util.ArrayList
+import java.util.*
 
 
 class EventsViewModel(private val context: Context, private val fragmentSignin: FragmentEvents) :
@@ -165,10 +167,15 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
 
 
         if (!handleMultipleClicks()) {
+            if (postEvents.address == null && postEvents.keyWords == null &&
+                    postEvents.title == null && postEvents.expiryDate == null) {
+                return@OnClickListener
+            }
 
-            if (""== "") {
+            if (postEvents.address?.cityCode!!.toInt() > 0 && postEvents.keyWords!!.size > 0 && postEvents.title!!.length > 3 && postEvents.expiryDate!!.length  > 3) {
                 postEvents.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
                 postEvents.postedDate = System.currentTimeMillis().toString()
+                Log.d(TAG, "DocumentSnapshot onFailure i am in "  )
                 val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateEvents(postEvents, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot onFailure " + e.message)

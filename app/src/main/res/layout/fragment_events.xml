@@ -25,147 +25,115 @@
                 android:orientation="vertical"
                 android:padding="@dimen/dimen_16">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_4"
+                    android:text="Publish an advertisement of any event or talent request"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="@dimen/dimen_20"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_8"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="@dimen/dimen_4"
+                    android:gravity="center"
+                    android:text="Title"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimen_4"
-                        android:gravity="center"
-                        android:text="Title"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/dimen_8"
-                        android:text="@={homeData.userTitle}"
-                        android:textColor="@color/colorBlack" />
-                </LinearLayout>
-
-                <LinearLayout
+                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dimen_8"
+                    android:text="@={homeData.userTitle}"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimen_4"
-                        android:gravity="center"
-                        android:text="@string/desc"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_4"
+                    android:gravity="center"
+                    android:text="@string/desc"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/dimen_8"
-                        android:text="@={homeData.userDesc}"
-                        android:textColor="@color/colorBlack" />
-                </LinearLayout>
-
-                <LinearLayout
+                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dimen_8"
+                    android:text="@={homeData.userDesc}"
+                    android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimen_4"
-                        android:gravity="center"
-                        android:text="@string/expiryDate"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_4"
+                    android:gravity="center"
+                    android:text="@string/expiryDate"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dimen_8"
-                        android:drawableEnd="@drawable/calendar_range"
-                        android:focusable="false"
-                        android:hint="@string/defaultDate"
-                        android:onClick="@{homeData.datePickerClick() }"
-                        android:text="@{homeData.showDate}"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-                <LinearLayout
+                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:drawableEnd="@drawable/calendar_range"
+                    android:focusable="false"
+                    android:hint="@string/defaultDate"
+                    android:onClick="@{homeData.datePickerClick() }"
+                    android:text="@{homeData.showDate}"
+                    android:textColor="@color/black" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimen_4"
-                        android:gravity="center"
-                        android:text="Tags"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_4"
+                    android:gravity="center"
+                    android:text="Tags"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{homeData.updateKeyWords()}"
-                        android:paddingBottom="@dimen/dimen_8"
-                        android:text="@{homeData.keys}"
-                        android:textColor="@color/colorBlack" />
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:onClick="@{homeData.updateKeyWords()}"
+                    android:paddingBottom="@dimen/dimen_8"
+                    android:text="@{homeData.keys}"
+                    android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimen_4"
-                        android:gravity="center"
-                        android:text="Address"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_4"
+                    android:gravity="center"
+                    android:text="Address"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{homeData.updateAddress()}"
-                        android:paddingBottom="@dimen/dimen_8"
-                        android:text="@{homeData.userAddress}"
-                        android:textColor="@color/colorBlack" />
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:onClick="@{homeData.updateAddress()}"
+                    android:paddingBottom="@dimen/dimen_8"
+                    android:text="@{homeData.userAddress}"
+                    android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimen_4"
-                        android:gravity="center"
-                        android:text="Phone"
-                        android:textColor="@color/colorBlack"
-                        android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_4"
+                    android:gravity="center"
+                    android:text="Phone"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/dimen_8"
-                        android:text="@={homeData.userPhone}"
-                        android:textColor="@color/colorBlack" />
-                </LinearLayout>
-
-
-
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dimen_8"
+                    android:text="@={homeData.userPhone}"
+                    android:textColor="@color/colorBlack" />
 
             </LinearLayout>
         </ScrollView>
@@ -180,7 +148,7 @@
             android:src="@drawable/check_circle_outline"
             android:text="@string/review_post"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
