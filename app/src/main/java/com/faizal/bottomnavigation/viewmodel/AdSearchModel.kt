@@ -2,16 +2,26 @@ package com.faizal.bottomnavigation.viewmodel
 
 
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.FragmentActivity
+import com.faizal.bottomnavigation.BR
+import com.faizal.bottomnavigation.Events.MyCustomEvent
+import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.IndiaItem
-import com.faizal.bottomnavigation.model.PostAdModel
+import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.util.GenericValues
+import com.faizal.bottomnavigation.util.MultipleClickHandler
+import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.FragmentAdSearch
+import com.faizal.bottomnavigation.view.FragmentKeyWords
+import com.faizal.bottomnavigation.view.FragmentRequestComplete
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -19,19 +29,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
-import com.faizal.bottomnavigation.BR
-import com.faizal.bottomnavigation.Events.MyCustomEvent
-import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.model.CoachItem
-import com.faizal.bottomnavigation.model2.Profile
-import com.faizal.bottomnavigation.util.GenericValues
-import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.utils.Constants
-import com.faizal.bottomnavigation.view.FragmentKeyWords
-import com.faizal.bottomnavigation.view.FragmentRequestComplete
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-
 import java.util.*
 
 class AdSearchModel(internal var activity: FragmentActivity, internal val fragmentProfileInfo: FragmentAdSearch)// To show list of user images (Gallery)
@@ -76,6 +75,24 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
             field = city
             notifyPropertyChanged(BR.city)
         }
+    @get:Bindable
+    var finderTitle: String? = activity.resources.getString(R.string.finderEventTitle)
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.finderTitle)
+        }
+
+
+    fun onSplitTypeChanged(radioGroup: RadioGroup, id: Int) {
+        when((id)){
+            R.id.radio1->{
+                finderTitle = activity.resources.getString(R.string.finderEventTitle)
+            }
+            R.id.radio2 ->{
+                finderTitle = activity.resources.getString(R.string.finderPersonTitle)
+            }
+        }
+    }
 
     @Override
     fun searchAdClick() = View.OnClickListener() {
@@ -107,6 +124,7 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
         fragment.setArguments(bundle)
         fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
     }
+
     /*
       Method will act as the event handler for MyCustomEvent.kt
       */
@@ -130,7 +148,7 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
         numbersIterator.let {
             while (numbersIterator.hasNext()) {
                 val value = (numbersIterator.next())
-                result += " " + listOfCoachings.get(value - 1).categoryname +", "
+                result += " " + listOfCoachings.get(value - 1).categoryname + ", "
             }
         }
 

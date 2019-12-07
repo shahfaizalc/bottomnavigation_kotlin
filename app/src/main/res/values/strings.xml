@@ -59,7 +59,7 @@
     <string name="doneTxt">Done</string>
     <string name="expiryDate">Expiry Date</string>
 
-<string name="desc">Description</string>
+    <string name="desc">Description</string>
 
     <string name="signInText">Sign In</string>
     <string name="signUpText">Sign Up</string>
@@ -70,15 +70,16 @@
     <string name="review_post">POST</string>
     <string name="review_edit">EDIT</string>
     <string name="review_hint">Write your review</string>
-    <string name="search_hint">Enter the keywords</string>
+    <string name="search_hint">Enter the tags</string>
     <string name="find_btn">Find A Coach / Mate</string>
     <string name="be_btn">Be A Coach / Mate</string>
-
     <string name="USR_DLS_Verify_Email_Title_Txt">Confirm your email</string>
     <string name="USR_DLS_Verify_Email_Sent_Txt">We\'ve just sent you an email to %s.</string>
     <string name="USR_DLS_Verify_Email_Explainary_Txt">Please check your email and activate your account.</string>
     <string name="USR_DLS_Verify_Email_Resend_Btn_Title_Txt">I haven\'t received an email</string>
     <string name="USR_DLS_Verify_Email_Security_Txt">We go through this process for your security.</string>
     <string name="USR_DLS_Verify_Email_Verified_Btn_Title_Txt">I\'ve already verified</string>
+    <string name="finderPersonTitle">Find your next mate or trainer</string>
+    <string name="finderEventTitle">Find the next happening in your city</string>
 
 </resources>

@@ -10,9 +10,9 @@
     </data>
 
     <LinearLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <TextView
@@ -20,12 +20,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/dimen_16"
-            android:padding="@dimen/dimen_2"
-            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_16"
             android:layout_marginEnd="@dimen/dimen_16"
-            android:text="Find your next mate or trainer"
-            android:textColor="@color/black"
-           />
+            android:padding="@dimen/dimen_2"
+            android:textStyle="bold"
+            android:text="@{adSearchModel.finderTitle}"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/dimen_20" />
 
 
         <EditText
@@ -78,10 +79,37 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onCheckedChanged="@{adSearchModel.onSplitTypeChanged}"
+
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Event" />
+
+            <RadioButton
+                android:id="@+id/radio2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Talent" />
+        </RadioGroup>
+
+
         <View
-            android:layout_marginTop="@dimen/dimen_8"
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginTop="@dimen/dimen_8"
             android:background="@drawable/bottom_line" />
 
         <androidx.recyclerview.widget.RecyclerView

@@ -30,7 +30,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_4"
                     android:text="Publish an advertisement of any event or talent request"
-                    android:textColor="@color/darkBlue"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold"
                     android:textSize="@dimen/dimen_20"/>
 
                 <TextView
