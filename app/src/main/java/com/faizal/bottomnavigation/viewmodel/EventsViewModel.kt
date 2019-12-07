@@ -62,7 +62,7 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
     }
 
     private fun getAddress() = " " + profile.address?.locationname + "\n " + profile.address?.streetName +
-            "\n " + profile.address?.town + "\n " + profile.address?.city
+            "\n " + profile.address?.town + ", " + profile.address?.city
 
     private fun getKeyWords(): String {
 
@@ -88,7 +88,7 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
         }
 
     @Override
-    fun datePickerrClick() = View.OnClickListener() {
+    fun datePickerClick() = View.OnClickListener() {
         if (!handleMultipleClicks()) {
             DatePickerEvent().onDatePickerClick(context!!, object : DateListener {
                 override fun onDateSet(result: String) {
@@ -161,7 +161,7 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
 
         }
 
-    fun datePickerClick() = View.OnClickListener {
+    fun doPostEvents() = View.OnClickListener {
 
 
         if (!handleMultipleClicks()) {

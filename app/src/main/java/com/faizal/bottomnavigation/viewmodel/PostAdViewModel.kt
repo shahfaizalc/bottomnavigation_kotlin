@@ -142,9 +142,6 @@ class PostAdViewModel(internal var activity: FragmentActivity, internal val frag
         val stockArr = arrayOf(dogsList.size)
 
 
-
-
-
         // set our adapter and pass our pop up window contents
         listViewDogs.setAdapter(dogsAdapter(dogsList.toArray() as Array<String>))
 
