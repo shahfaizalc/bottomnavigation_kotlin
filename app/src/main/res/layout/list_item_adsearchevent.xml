@@ -9,7 +9,7 @@
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.bottomnavigation.model2.Profile" />
+            type="com.faizal.bottomnavigation.model2.PostEvents" />
 
         <variable
             name="itemPosition"
@@ -17,7 +17,7 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.faizal.bottomnavigation.adapter.SearchTalentsAdapter" />
+            type="com.faizal.bottomnavigation.adapter.EventsListAdapter" />
 
         <variable
             name="itemClickListener"
@@ -66,7 +66,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:checked="@{countriesInfoModel.availability}"
                         android:scaleX=".5"
                         android:scaleY=".5" />
 
@@ -88,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="@dimen/dimen_16"
                     android:paddingEnd="@dimen/dimen_16"
-                    android:text="@{countriesInfoModel.name}"
+                    android:text="@{countriesInfoModel.title}"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/dimen_20"
                     android:textStyle="bold" />
@@ -182,7 +181,7 @@
                         android:paddingStart="@dimen/dimen_16"
                         android:paddingEnd="@dimen/dimen_16"
                         android:paddingBottom="@dimen/dimen_4"
-                        android:text="@{countriesInfoModel.phone}"
+                        android:text="@{countriesInfoModel.desc}"
                         android:textColor="@color/colorAccent"
                         android:textStyle="bold" />
                 </RelativeLayout>

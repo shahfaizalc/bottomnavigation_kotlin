@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.databinding.ListItemAdsearchBinding
+import com.faizal.bottomnavigation.databinding.ListItemAdsearcheventBinding
 import com.faizal.bottomnavigation.listeners.AdSearchEventListener
 import com.faizal.bottomnavigation.util.getAddress
 import com.faizal.bottomnavigation.util.getKeys
@@ -17,15 +17,15 @@ import com.faizal.bottomnavigation.viewmodel.AdSearchModel
 /**
  * Country recycler view adapter to view list of items
  */
-class AdSearchRecyclerViewAdapter(private val adSearchModel: AdSearchModel) :
-        AdSearchEventListener, RecyclerView.Adapter<AdSearchRecyclerViewAdapter.ViewHolder>(){
+class EventsListAdapter(private val adSearchModel: AdSearchModel) :
+        AdSearchEventListener, RecyclerView.Adapter<EventsListAdapter.ViewHolder>(){
 
     private val TAG = "ArtistRecyclerAdapter"
 
     lateinit var context:Context
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int)
-            = ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_adsearch,
+            = ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_adsearchevent,
             viewGroup, false))
 
 
@@ -34,7 +34,7 @@ class AdSearchRecyclerViewAdapter(private val adSearchModel: AdSearchModel) :
 
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!) {
-            countriesInfoModel = viewModel.countriesInfoModel[position]
+            countriesInfoModel = viewModel.eventsList[position]
             address = getAddress(countriesInfoModel!!.address)
             keyWordsTag = getKeys(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
             itemPosition = position
@@ -46,14 +46,14 @@ class AdSearchRecyclerViewAdapter(private val adSearchModel: AdSearchModel) :
 
 
 
-    override fun getItemCount()= adSearchModel.countriesInfoModel.size
+    override fun getItemCount()= adSearchModel.eventsList.size
 
     override fun getItemId(position: Int) = position.toLong()
 
     override fun getItemViewType(position: Int) = position.let { position }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding: ListItemAdsearchBinding? = null
+        var binding: ListItemAdsearcheventBinding? = null
 
         init {
             binding = DataBindingUtil.bind(itemView)
@@ -61,8 +61,8 @@ class AdSearchRecyclerViewAdapter(private val adSearchModel: AdSearchModel) :
     }
 
     override fun onClickAdSearchListItem(countriesViewModel: AdSearchModel, position: Int) {
-        Log.d(TAG,"Click: "+ countriesViewModel.countriesInfoModel[position].address!!.city)
-        countriesViewModel.openFragment(countriesViewModel.countriesInfoModel[position],position)
+        Log.d(TAG,"Click: "+ countriesViewModel.eventsList[position].address!!.city)
+        countriesViewModel.openFragment(countriesViewModel.eventsList[position],position)
 
     }
 }

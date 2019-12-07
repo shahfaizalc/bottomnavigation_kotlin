@@ -113,15 +113,24 @@
             android:background="@drawable/bottom_line" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recylerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_8"
             android:background="@color/colorWhite"
             android:paddingStart="@dimen/dimen_8"
             android:paddingEnd="@dimen/dimen_8"
             android:scrollbars="vertical"
             app:searchRecycler="@{adSearchModel}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:background="@color/colorWhite"
+            android:paddingStart="@dimen/dimen_8"
+            android:paddingEnd="@dimen/dimen_8"
+            android:scrollbars="vertical"
+            app:searchRecycler2="@{adSearchModel}" />
 
     </LinearLayout>
 

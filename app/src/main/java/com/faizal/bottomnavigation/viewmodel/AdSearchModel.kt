@@ -4,7 +4,6 @@ package com.faizal.bottomnavigation.viewmodel
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -15,13 +14,13 @@ import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.IndiaItem
+import com.faizal.bottomnavigation.model2.PostEvents
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.FragmentAdSearch
 import com.faizal.bottomnavigation.view.FragmentKeyWords
-import com.faizal.bottomnavigation.view.FragmentRequestComplete
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -36,7 +35,9 @@ import java.util.*
 class AdSearchModel(internal var activity: FragmentActivity, internal val fragmentProfileInfo: FragmentAdSearch)// To show list of user images (Gallery)
     : BaseObservable() {
 
-    var countriesInfoModel: ObservableArrayList<Profile>
+    var eventsList: ObservableArrayList<PostEvents>
+    var talentProfilesList: ObservableArrayList<Profile>
+
     var ratings: ObservableArrayList<String>
 
     var searchQuery = ""
@@ -51,7 +52,8 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
 
     init {
         readAutoFillItems()
-        countriesInfoModel = ObservableArrayList()
+        eventsList = ObservableArrayList()
+        talentProfilesList = ObservableArrayList()
         ratings = ObservableArrayList()
         mAuth = FirebaseAuth.getInstance()
 
@@ -82,14 +84,17 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
             notifyPropertyChanged(BR.finderTitle)
         }
 
+    var isEvent = true
 
     fun onSplitTypeChanged(radioGroup: RadioGroup, id: Int) {
         when((id)){
             R.id.radio1->{
                 finderTitle = activity.resources.getString(R.string.finderEventTitle)
+                isEvent = true
             }
             R.id.radio2 ->{
                 finderTitle = activity.resources.getString(R.string.finderPersonTitle)
+                isEvent = false
             }
         }
     }
@@ -100,8 +105,10 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
             if (city.isNullOrEmpty()) {
                 Log.d(TAG, "Fill all values ")
 
+            } else if(isEvent){
+                doGetEvents()
             } else {
-                getVal()
+                doGetTalents()
             }
 
         }
@@ -163,13 +170,23 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
         }
 
 
-    fun openFragment(postAdModel: Profile, position: Int) {
-        val fragment = FragmentRequestComplete()
-        val bundle = Bundle()
-        bundle.putString(Constants.AD_DOCID, ratings.get(position));
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(postAdModel))
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+    fun openFragment(postAdModel: PostEvents, position: Int) {
+//        val fragment = FragmentRequestComplete()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.AD_DOCID, ratings.get(position));
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(postAdModel))
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+
+    }
+
+    fun openFragment2(postAdModel: Profile, position: Int) {
+//        val fragment = FragmentRequestComplete()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.AD_DOCID, ratings.get(position));
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(postAdModel))
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 
     }
 
@@ -178,17 +195,18 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
     }
 
 
-    fun getVal() {
+    fun doGetEvents() {
 
         val db = FirebaseFirestore.getInstance()
-        val query = db.collection("userinfo");
+        val query = db.collection("events");
         query.whereEqualTo("address.city", city)//.whereEqualTo("showDate", showDate)
                 .get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                     val any = if (task.isSuccessful) {
-                        countriesInfoModel.clear()
+                        talentProfilesList.clear()
+                        eventsList.clear()
                         for (document in task.result!!) {
-                            addListItem(document)
+                            addEventsItems(document)
                         }
                     } else {
                         Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
@@ -197,13 +215,13 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
                 .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
     }
 
-    fun addListItem(document: QueryDocumentSnapshot) {
+    fun addEventsItems(document: QueryDocumentSnapshot) {
 
-        val adModel = document.toObject(Profile::class.java)
+        val adModel = document.toObject(PostEvents::class.java)
 
-        Log.d(TAG, "Success getting documents: " + adModel.name)
+        Log.d(TAG, "Success getting documents: " + adModel.title)
 
-        countriesInfoModel.add(adModel)
+        eventsList.add(adModel)
         ratings.add(document.id)
 
         Log.d(TAG, "Success getting : " + document.id)
@@ -212,6 +230,44 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
 //        if (adModel.userId.equals(mAuth.currentUser!!.uid) && adModel.title!!.contains(searchQuery)) {
 //
 //            countriesInfoModel.add(adModel)
+//        }
+    }
+
+    fun doGetTalents() {
+
+        val db = FirebaseFirestore.getInstance()
+        val query = db.collection("userinfo");
+        query.whereEqualTo("address.city", city)//.whereEqualTo("showDate", showDate)
+                .get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    val any = if (task.isSuccessful) {
+                        eventsList.clear()
+                        talentProfilesList.clear()
+                        for (document in task.result!!) {
+                            addTalentsItems(document)
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
+                    }
+                }).addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
+                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
+    }
+
+    fun addTalentsItems(document: QueryDocumentSnapshot) {
+
+        val adModel = document.toObject(Profile::class.java)
+
+        Log.d(TAG, "Success getting documents: " + adModel.title)
+
+        talentProfilesList.add(adModel)
+        ratings.add(document.id)
+
+        Log.d(TAG, "Success getting : " + document.id)
+
+
+//        if (adModel.userId.equals(mAuth.currentUser!!.uid) && adModel.title!!.contains(searchQuery)) {
+//
+//            countriesInfoModel2.add(adModel)
 //        }
     }
 }
