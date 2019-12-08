@@ -54,7 +54,7 @@ class NewsFragment : BaseFragment() {
         }
 
 
-        (activity as Main2Activity).updateToolbarTitle(if (fragCount == 0) "News" else "Sub News $fragCount")
+      //  (activity as Main2Activity).updateToolbarTitle(if (fragCount == 0) "News" else "Sub News $fragCount")
 
 
     }

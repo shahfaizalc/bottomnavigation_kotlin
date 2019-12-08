@@ -17,7 +17,10 @@ import android.provider.Settings
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 
 /**
  */
@@ -78,18 +81,18 @@ object Utils {
 
         val state_pressed = ContextCompat.getDrawable(context, selected)
 
-
-        val state_normal_bitmap = (state_normal as BitmapDrawable).bitmap
+        val state_normal_bitmap = AppCompatResources.getDrawable(context, normal)!!.toBitmap()
 
         // Setting alpha directly just didn't work, so we draw a new bitmap!
         val disabledBitmap = Bitmap.createBitmap(
-                state_normal.intrinsicWidth,
-                state_normal.intrinsicHeight, Bitmap.Config.ARGB_8888)
+                state_normal!!.intrinsicWidth,
+                state_normal!!.intrinsicHeight, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(disabledBitmap)
 
         val paint = Paint()
         paint.alpha = 126
         canvas.drawBitmap(state_normal_bitmap, 0f, 0f, paint)
+
 
         val state_normal_drawable = BitmapDrawable(context.resources, disabledBitmap)
 

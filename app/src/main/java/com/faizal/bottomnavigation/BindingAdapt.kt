@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.faizal.bottomnavigation.adapter.*
 import com.faizal.bottomnavigation.handler.RecyclerLoadMoreEventsHandler
+import com.faizal.bottomnavigation.handler.RecyclerLoadMoreMyAdsHandler
 import com.faizal.bottomnavigation.handler.RecyclerLoadMoreTalentsHandler
 import com.faizal.bottomnavigation.model.CountriesInfoModel
 import com.faizal.bottomnavigation.viewmodel.*
@@ -312,6 +313,47 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: AdSearchModel) {
     });
 }
 
+
+@BindingAdapter( "app:searchRecycler")
+fun adapter(recyclerView: RecyclerView, countriesViewModel: MyAdsModel) {
+
+    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
+    val listAdapter = MyAdsAdapter(countriesViewModel)
+    val bindingAdapter = RecyclerLoadMoreMyAdsHandler(countriesViewModel, listAdapter)
+
+
+    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
+    recyclerView.adapter = listAdapter
+    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+    bindingAdapter.initRequest(recyclerView)
+
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach1")
+        }
+
+        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+            Log.d("rach", "rach2")
+        }
+
+        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach3")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach4")
+        }
+
+        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+            Log.d("rach", "rach5")
+        }
+
+    });
+}
+
+
+
 @BindingAdapter( "app:searchRecycler2")
 fun adapter2(recyclerView: RecyclerView, countriesViewModel: AdSearchModel) {
 
@@ -411,46 +453,6 @@ fun adapter(searchView: SearchView, profileInfoViewModel: GameChooserModel, recy
 
 
 }
-
-@BindingAdapter("app:searchAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView, profileInfoViewModel: EventListModel, recyclerView: RecyclerView) {
-
-    val emptySting = "";
-    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-    val adapter = EventListAdapter()
-    recyclerView.adapter = adapter
-    (recyclerView.adapter as EventListAdapter).setModel(profileInfoViewModel)
-    (recyclerView.adapter as EventListAdapter).setData(profileInfoViewModel.userIds)
-
-    // Search view clear query
-    val searchClear = searchView.findViewById<View>(R.id.search_close_btn)
-    searchClear.setOnClickListener({ searchView.setQuery(emptySting, true) })
-
-    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(s: String?): Boolean {
-            return false
-        }
-
-        override fun onQueryTextChange(query: String): Boolean {
-            if (!query.isEmpty()) {
-                //Kotlin filter to filter the query results
-                val model =
-                        profileInfoViewModel.userIds.filter {
-                            it.toLowerCase().startsWith(query.toLowerCase())
-                        }
-
-                (recyclerView.adapter as EventListAdapter).setData(model)
-
-            } else {
-                (recyclerView.adapter as EventListAdapter).setData(profileInfoViewModel.userIds)
-
-            }
-            return false
-        }
-    })
-
-}
-
 
 
     @BindingAdapter("app:clickableString")

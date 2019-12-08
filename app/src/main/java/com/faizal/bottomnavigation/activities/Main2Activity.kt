@@ -29,8 +29,8 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
 
     internal var toolbar: Toolbar? = null
 
-    private val mTabIconsSelected = intArrayOf(R.drawable.tab_home, R.drawable.tab_search,
-            R.drawable.tab_share, R.drawable.tab_news, R.drawable.tab_profile)
+    private val mTabIconsSelected = intArrayOf(R.drawable.tab_home, R.drawable.tab_magnify,
+            R.drawable.tab_plus, R.drawable.tab_heart, R.drawable.tab_account)
 
 
     internal lateinit var TABS: ArrayList<String>
@@ -50,11 +50,14 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
 
         bottomTabLayout = findViewById(R.id.bottom_tab_layout)
         TABS = ArrayList();
-        TABS.add("Home")
-        TABS.add("Search")
-        TABS.add("Share")
-        TABS.add("News")
-        TABS.add("Profile")
+        TABS.apply {
+            add("Home")
+            add("Search")
+            add("Share")
+            add("News")
+            add("Profile")
+        }
+
 
         toolbar = findViewById(R.id.toolbar)
 
@@ -254,7 +257,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
 
             FragNavController.TAB1 -> return FragmentRide()
             FragNavController.TAB2 -> return FragmentAdSearch()
-            FragNavController.TAB3 -> return FragmentEvents()
+            FragNavController.TAB3 -> return FragmentMyAds()
             FragNavController.TAB4 -> return NewsFragment()
             FragNavController.TAB5 -> return FragmentWelcome()
         }
