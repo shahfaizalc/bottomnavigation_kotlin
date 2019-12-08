@@ -89,7 +89,7 @@ class MyAdsModel(internal var activity: FragmentActivity, internal val fragmentP
 
         val db = FirebaseFirestore.getInstance()
         val query = db.collection("events");
-        query//.whereEqualTo("showDate", showDate)
+        query.whereEqualTo("postedBy", mAuth.currentUser!!.uid)
                 .get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                     val any = if (task.isSuccessful) {
