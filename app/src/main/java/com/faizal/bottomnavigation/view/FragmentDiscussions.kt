@@ -6,15 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.databinding.ContentDiscussionBinding
 import com.faizal.bottomnavigation.databinding.ContentMyadsBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
+import com.faizal.bottomnavigation.viewmodel.DiscussionModel
 import com.faizal.bottomnavigation.viewmodel.MyAdsModel
 
 
-class FragmentMyAds : BaseFragment() {
+class FragmentDiscussions : BaseFragment() {
 
 
-    var binding: ContentMyadsBinding? = null;
+    var binding: ContentDiscussionBinding? = null;
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -23,8 +25,8 @@ class FragmentMyAds : BaseFragment() {
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
         if (binding == null) {
-            binding = DataBindingUtil.inflate<ContentMyadsBinding>(inflater, R.layout.content_myads, container, false)
-            val areaViewModel = MyAdsModel(activity!!, this)
+            binding = DataBindingUtil.inflate<ContentDiscussionBinding>(inflater, R.layout.content_discussion, container, false)
+            val areaViewModel = DiscussionModel(activity!!, this)
             binding?.adSearchModel = areaViewModel
         }
         return binding!!.root

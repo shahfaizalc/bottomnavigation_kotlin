@@ -20,7 +20,11 @@
         <item name="tabPaddingEnd">0dp</item>
         <item name="tabGravity">fill</item>
         <item name="tabMode">fixed</item>
+    </style>
 
+    <style name="chipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

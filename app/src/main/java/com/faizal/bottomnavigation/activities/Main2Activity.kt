@@ -255,7 +255,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
     override fun getRootFragment(index: Int): Fragment {
         when (index) {
 
-            FragNavController.TAB1 -> return FragmentRide()
+            FragNavController.TAB1 -> return FragmentDiscussions()
             FragNavController.TAB2 -> return FragmentAdSearch()
             FragNavController.TAB3 -> return FragmentMyAds()
             FragNavController.TAB4 -> return NewsFragment()
