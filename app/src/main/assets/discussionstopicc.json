@@ -1,0 +1,52 @@
+{
+  "india": [
+    {
+      "categorycode": "1",
+      "categoryname": "Exam Prepartion"
+    },
+    {
+      "categorycode": "2",
+      "categoryname": "Exam dates"
+    },
+    {
+      "categorycode": "3",
+      "categoryname": "Course Information"
+    },
+    {
+      "categorycode": "4",
+      "categoryname": "Course Confusion"
+    },
+    {
+      "categorycode": "5",
+      "categoryname": "College Information"
+    },
+    {
+      "categorycode": "6",
+      "categoryname": "College Confusion"
+    },
+    {
+      "categorycode": "7",
+      "categoryname": "Counselling Information"
+    },
+    {
+      "categorycode": "8",
+      "categoryname": "Applicatin Information"
+    },
+    {
+      "categorycode": "9",
+      "categoryname": "Admission Information"
+    },
+    {
+      "categorycode": "10",
+      "categoryname": "Education Loan"
+    },
+    {
+      "categorycode": "10",
+      "categoryname": "Fee Structure"
+    },
+    {
+      "categorycode": "10",
+      "categoryname": "Others"
+    }
+  ]
+}

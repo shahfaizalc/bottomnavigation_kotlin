@@ -19,10 +19,7 @@ import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
-import com.faizal.bottomnavigation.view.FragmentAdSearch
-import com.faizal.bottomnavigation.view.FragmentDiscussions
-import com.faizal.bottomnavigation.view.FragmentKeyWords
-import com.faizal.bottomnavigation.view.FragmentMyAds
+import com.faizal.bottomnavigation.view.*
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -68,7 +65,9 @@ class DiscussionModel(internal var activity: FragmentActivity, internal val frag
     @Subscribe
     fun customEventReceived(event: MyCustomEvent) {
         EventBus.getDefault().unregister(this)
+        profile = event.data
     }
+    var profile = Profile();
 
 
     fun openFragment2(postAdModel: Profile, position: Int) {
@@ -85,7 +84,15 @@ class DiscussionModel(internal var activity: FragmentActivity, internal val frag
         return MultipleClickHandler.handleMultipleClicks()
     }
 
+    @Override
+    fun onNextButtonClick() = View.OnClickListener() {
 
+        val fragment = FragmentNewDiscusssion()
+        val bundle = Bundle()
+        fragment.setArguments(bundle)
+        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+
+    }
     fun doGetTalents() {
 
         val db = FirebaseFirestore.getInstance()

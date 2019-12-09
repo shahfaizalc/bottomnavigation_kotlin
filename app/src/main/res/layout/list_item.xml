@@ -29,15 +29,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/dimen_4"
-            card_view:cardBackgroundColor="@color/colorGreyLight"
+            android:layout_margin="@dimen/dimen_2"
             card_view:cardCornerRadius="@dimen/dimen_8"
             card_view:cardElevation="@dimen/dimen_4">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/circular_bg_blue"
+                android:background="@drawable/bg_gradiant_blue"
                 android:orientation="vertical">
 
                 <TextView
@@ -45,8 +44,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dimen_16"
-                    android:textColor="@color/black"
+                    android:padding="@dimen/dimen_12"
+                    android:textColor="@color/white_transparent_80"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
 

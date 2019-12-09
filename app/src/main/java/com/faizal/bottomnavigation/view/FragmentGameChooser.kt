@@ -13,7 +13,6 @@ import com.faizal.bottomnavigation.viewmodel.GameChooserModel
 class FragmentGameChooser : BaseFragment() {
 
 
-    private val viewModel = GameChooserModel(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -22,7 +21,7 @@ class FragmentGameChooser : BaseFragment() {
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
         val binding = DataBindingUtil.inflate<FragmentGamechooserBinding>(inflater, R.layout.fragment_gamechooser, container, false)
-        val areaViewModel = GameChooserModel(this)
+        val areaViewModel = GameChooserModel(activity!!, this)
         binding.gameChooserModel = areaViewModel
         return binding.root
     }

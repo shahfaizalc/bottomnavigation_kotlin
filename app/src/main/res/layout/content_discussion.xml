@@ -9,37 +9,57 @@
             type="com.faizal.bottomnavigation.viewmodel.DiscussionModel" />
     </data>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_gradiant_green"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search1"
+
+        <LinearLayout
+            android:id="@+id/viewA"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_gradiant_green"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@drawable/circular_bg_white"
+                android:clickable="true"
+                app:queryHint="Search Discussion" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:background="@drawable/bottom_line" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@android:color/transparent"
+                android:scrollbars="vertical"
+                app:searchRecycler="@{adSearchModel}" />
+
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:onClick="@{adSearchModel.onNextButtonClick}"
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:layout_marginEnd="@dimen/dimen_8"
-            android:background="@drawable/circular_bg_white"
-            android:clickable="true"
-            app:queryHint="Search Discussion" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:background="@drawable/bottom_line" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:background="@android:color/transparent"
-            android:layout_marginStart="@dimen/dimen_8"
-            android:layout_marginEnd="@dimen/dimen_8"
-            android:scrollbars="vertical"
-            app:searchRecycler="@{adSearchModel}" />
-
-    </LinearLayout>
+            android:layout_margin="16dp"
+            app:layout_anchor="@id/viewA"
+            android:tint="@color/white"
+            app:layout_anchorGravity="bottom|right|end"
+            app:srcCompat="@drawable/plus" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

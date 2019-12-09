@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.faizal.bottomnavigation.databinding.ListItemBinding
 import com.faizal.bottomnavigation.listeners.ChooserEventListener
+import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.viewmodel.GameChooserModel
 
 class GameChooserAdapter() : RecyclerView.Adapter<GameChooserAdapter.UserHolder>() , ChooserEventListener{
@@ -17,12 +18,14 @@ class GameChooserAdapter() : RecyclerView.Adapter<GameChooserAdapter.UserHolder>
         profileInfoViewModel = model;
     }
 
-    fun setData(items: List<String>) {
-        userIds = items
+    fun setData(items: ArrayList<CoachItem>?) {
+        if (items != null) {
+            userIds = items
+        }
         notifyDataSetChanged()
     }
 
-    var userIds = emptyList<String>()
+    var userIds = ArrayList<CoachItem>()
 
     lateinit var profileInfoViewModel : GameChooserModel
 
@@ -35,7 +38,7 @@ class GameChooserAdapter() : RecyclerView.Adapter<GameChooserAdapter.UserHolder>
     override fun getItemCount() = userIds.size
 
     override fun onBindViewHolder(holder: UserHolder, position: Int) {
-        holder.binding.userText.text = userIds.get(position)
+        holder.binding.userText.text = userIds.get(position).categoryname
         holder.binding.itemPosition = position
         holder.binding.listener = this
         holder.binding.gameChooserModel = profileInfoViewModel
@@ -44,7 +47,7 @@ class GameChooserAdapter() : RecyclerView.Adapter<GameChooserAdapter.UserHolder>
     class UserHolder(internal val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onClickAdSearchListItem(countriesViewModel: GameChooserModel, position: Int) {
-        Log.d(TAG,"Category "+countriesViewModel.userIds.get(position))
+        Log.d(TAG,"Category "+countriesViewModel.listOfCoachings!!.get(position))
 
         countriesViewModel.onNextButtonClick(position)
     }

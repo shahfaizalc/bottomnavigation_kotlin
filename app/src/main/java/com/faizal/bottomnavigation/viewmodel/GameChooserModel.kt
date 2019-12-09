@@ -1,47 +1,62 @@
 package com.faizal.bottomnavigation.viewmodel
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
+import com.faizal.bottomnavigation.Events.MyCustomEvent
+import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.PostAdModel
+import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.FragmentGameChooser
 import com.faizal.bottomnavigation.view.FragmentPostAd
+import org.greenrobot.eventbus.EventBus
+import java.util.ArrayList
 
-class GameChooserModel(internal val fragmentGameChooser: FragmentGameChooser) : BaseObservable() {
+class GameChooserModel(internal val activity: FragmentActivity,
+                       internal val fragmentGameChooser: FragmentGameChooser) : BaseObservable() {
 
-    @get:Bindable
-    var userIds: List<String> = emptyList()
-        private set(value) {
-            field = value
-            notifyPropertyChanged(BR.userIds)
-        }
+    var profile = Profile()
+     var keyWord: MutableList<Int>
 
     init {
-        addValues()
+        readAutoFillItems()
+        profile = Profile()
+        keyWord = mutableListOf()
+
+    }
+    private fun readAutoFillItems() {
+        val values = GenericValues()
+        listOfCoachings = values.readDisuccsionTopics(activity.applicationContext)
     }
 
-    private fun addValues() {
-        userIds = listOf("Archery", "Badminton", "Basketball", "Baseball",
-                "Boxing", "Cricket", "Football", "Golf", "Gymnastics", "Hockey",
-                "Judo", "Kabaddi", "Karate", "Music", "Rugby", "Racing",
-                "Table Tennis", "Tennis", "Volleyball", "Wrestling", "Others")
-    }
+    @get:Bindable
+    var listOfCoachings: ArrayList<CoachItem>? = null
+        private set(roleAdapterAddress) {
+            field = roleAdapterAddress
+            notifyPropertyChanged(BR.roleAdapterAddress)
+        }
 
 
     fun onNextButtonClick(category: Int) {
 
-        if (!handleMultipleClicks()) {
-            val postAdModel = PostAdModel();
-            postAdModel.categorySelect = category
-            val fragment = FragmentPostAd()
-            val bundle = Bundle()
-            bundle.putParcelable(Constants.POSTAD_OBJECT, postAdModel)
-            fragment.setArguments(bundle)
-            fragmentGameChooser.mFragmentNavigation.pushFragment(fragmentGameChooser.newInstance(2, fragment, bundle));
-        }
+            if (!handleMultipleClicks()) {
+                activity.onBackPressed();
+                keyWord.add(category)
+                profile.keyWords = keyWord
+
+                EventBus.getDefault().post(MyCustomEvent(profile));
+            } else {
+                Toast.makeText(fragmentGameChooser.context,
+                        fragmentGameChooser.context!!.resources.getText(R.string.mandatoryField),
+                        Toast.LENGTH_SHORT).show()
+            }
 
     }
 

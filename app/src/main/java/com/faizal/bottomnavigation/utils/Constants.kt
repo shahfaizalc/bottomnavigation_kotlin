@@ -12,6 +12,7 @@ object Constants {
     internal val FILENAME_CATEGORY = "category";
     internal val FILENAME_CITIES = "india.json"
     internal val FILENAME_COACH = "coach.json"
+    internal val FILENAME_DISCUSSION = "discussionstopicc.json"
 
     val BROADCAST_FILE_UPDATE = "com.sparks.android.USER_ACTION"
 
@@ -22,8 +23,6 @@ object Constants {
     val BASEURL_COLLECTION_GEN_REVIEW= "review/"
 
     val BASEURL_COLLECTION_GEN_POSTEVVENT = "events/"
-
-
 
     val POSTAD_OBJECT = "POSTAD"
     val AD_DOCID = "DOCID"

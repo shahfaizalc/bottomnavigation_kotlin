@@ -21,6 +21,7 @@ import com.faizal.bottomnavigation.handler.RecyclerLoadMoreDiscussionHandler
 import com.faizal.bottomnavigation.handler.RecyclerLoadMoreEventsHandler
 import com.faizal.bottomnavigation.handler.RecyclerLoadMoreMyAdsHandler
 import com.faizal.bottomnavigation.handler.RecyclerLoadMoreTalentsHandler
+import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.CountriesInfoModel
 import com.faizal.bottomnavigation.viewmodel.*
 import com.squareup.picasso.Picasso
@@ -461,7 +462,7 @@ fun adapter(searchView: SearchView, profileInfoViewModel: GameChooserModel, recy
     val adapter = GameChooserAdapter()
     recyclerView.adapter = adapter
     (recyclerView.adapter as GameChooserAdapter).setModel(profileInfoViewModel)
-    (recyclerView.adapter as GameChooserAdapter).setData(profileInfoViewModel.userIds)
+    (recyclerView.adapter as GameChooserAdapter).setData(profileInfoViewModel.listOfCoachings)
 
     // Search view clear query
     val searchClear = searchView.findViewById<View>(R.id.search_close_btn)
@@ -476,14 +477,14 @@ fun adapter(searchView: SearchView, profileInfoViewModel: GameChooserModel, recy
             if (!query.isEmpty()) {
                 //Kotlin filter to filter the query results
                 val model =
-                        profileInfoViewModel.userIds.filter {
-                            it.toLowerCase().startsWith(query.toLowerCase())
+                        profileInfoViewModel.listOfCoachings!!.filter {
+                            it.categoryname.toLowerCase().startsWith(query.toLowerCase())
                         }
 
-                (recyclerView.adapter as GameChooserAdapter).setData(model)
+                (recyclerView.adapter as GameChooserAdapter).setData(model as ArrayList<CoachItem> )
 
             } else {
-                (recyclerView.adapter as GameChooserAdapter).setData(profileInfoViewModel.userIds)
+                (recyclerView.adapter as GameChooserAdapter).setData(profileInfoViewModel.listOfCoachings)
 
             }
             return false
