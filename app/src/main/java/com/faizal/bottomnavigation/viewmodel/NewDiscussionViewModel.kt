@@ -32,22 +32,17 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
 
     private var isInternetConnected: Boolean = false
 
-    var postEvents = PostDiscussion();
 
     init {
         networkHandler()
-        postEvents = PostDiscussion();
     }
 
 
     @get:Bindable
-    var userTitle: String? = postEvents.title ?: ""
+    var userTitle: String? =  ""
         set(price) {
             field = price
-            postEvents.title = field
             notifyPropertyChanged(BR.userTitle)
-
-
         }
 
 
@@ -58,15 +53,12 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
 //                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.infoMsg), Toast.LENGTH_LONG).show()
 //                return@OnClickListener
 //            }
-
-            postEvents.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-            postEvents.postedDate = System.currentTimeMillis().toString()
             Log.d(TAG, "DocumentSnapshot onFailure i am in ")
 
             Log.d(TAG, "DocumentSnapshot onSuccess ")
             val fragment = FragmentGameChooser()
             val bundle = Bundle()
-            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postEvents))
+            bundle.putString(Constants.POSTAD_OBJECT, userTitle)
 
             fragment.setArguments(bundle)
             fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));

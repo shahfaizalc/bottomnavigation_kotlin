@@ -2,6 +2,7 @@ package com.faizal.bottomnavigation.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.faizal.bottomnavigation.databinding.ListItemBinding
@@ -10,6 +11,8 @@ import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.viewmodel.GameChooserModel
 
 class GameChooserAdapter() : RecyclerView.Adapter<GameChooserAdapter.UserHolder>() , ChooserEventListener{
+
+    var selectedItem = -1;
 
     companion object {
         private val TAG = "GameChooserAdapter"
@@ -40,13 +43,15 @@ class GameChooserAdapter() : RecyclerView.Adapter<GameChooserAdapter.UserHolder>
         holder.binding.itemPosition = position
         holder.binding.listener = this
         holder.binding.gameChooserModel = profileInfoViewModel
+        holder.binding.userText2.visibility =  if(!position.equals(selectedItem))  View.INVISIBLE else View.VISIBLE
     }
 
     class UserHolder(internal val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onClickAdSearchListItem(countriesViewModel: GameChooserModel, position: Int) {
         Log.d(TAG,"Category "+countriesViewModel.listOfCoachings!!.get(position))
-
         countriesViewModel.onNextButtonClick(position)
+        selectedItem = position
+        notifyDataSetChanged()
     }
 }

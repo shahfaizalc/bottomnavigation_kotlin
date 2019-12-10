@@ -12,4 +12,5 @@ class PostDiscussion{
     var postedBy : String? = null
     var likes :String? = null
     var eventState: EventStatus = EventStatus.SHOWING
+    var comments: ArrayList<Comments>? = null
 }

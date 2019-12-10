@@ -14,48 +14,51 @@
         android:layout_height="match_parent"
         android:background="@color/colorWhite">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <RelativeLayout
-            android:id="@+id/content"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:animateLayoutChanges="true">
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:background="@color/colorSmoke"
+            android:clickable="true"
+            app:searchAdapter="@{gameChooserModel}"
+            app:searchRecycler="@{recylerView}" />
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="@dimen/dimen_8"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginEnd="@dimen/dimen_8"
-                android:background="@color/colorSmoke"
-                android:clickable="true"
-                app:searchAdapter="@{gameChooserModel}"
-                app:searchRecycler="@{recylerView}" />
+        <ScrollView
+            android:layout_above="@+id/doneBtn"
+            android:layout_below="@+id/search1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recylerView"
+            <RelativeLayout
+                android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/search1"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:paddingStart="@dimen/dimen_8"
-                android:paddingEnd="@dimen/dimen_8"
-                android:scrollbars="vertical" />
+                android:animateLayoutChanges="true">
 
-        </RelativeLayout>
-    </ScrollView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recylerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:paddingStart="@dimen/dimen_8"
+                    android:paddingEnd="@dimen/dimen_8"
+                    android:scrollbars="vertical" />
+
+            </RelativeLayout>
+        </ScrollView>
 
         <Button
+            android:id="@+id/doneBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@color/yellow"
-            android:onClick="@{gameChooserModel.doPostEvents()}"
+            android:onClick="@{gameChooserModel.doDiscussionWrrite()}"
             android:padding="@dimen/dimen_8"
             android:src="@drawable/check_circle_outline"
             android:text="@string/review_post"

@@ -9,6 +9,7 @@ import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.model2.PostEvents
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.model2.Reviews
+import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_DISCUSSION
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_POSTEVVENT
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_REVIEW
@@ -94,7 +95,7 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
 
     fun updateDiscussion(userInfo: PostDiscussion, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
-        val collection = myDB.collection(BASEURL_COLLECTION_GEN_POSTEVVENT)
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)
         collection.document(userInfo.postedDate!!).set(userInfo)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()

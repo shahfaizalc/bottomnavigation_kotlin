@@ -28,15 +28,16 @@ class GameChooserModel(internal val activity: FragmentActivity,
     var keyWord: MutableList<Int>
 
     init {
-        readAutoFillItems()
         profile = PostDiscussion()
         keyWord = mutableListOf()
+        readAutoFillItems()
+
     }
 
     private fun readAutoFillItems() {
         val values = GenericValues()
         listOfCoachings = values.readDisuccsionTopics(activity.applicationContext)
-        profile = values.getDisccussion(postAdObj!!, activity.applicationContext)
+        profile.title = postAdObj
     }
 
     @get:Bindable
@@ -46,18 +47,14 @@ class GameChooserModel(internal val activity: FragmentActivity,
             notifyPropertyChanged(BR.roleAdapterAddress)
         }
 
-    @get:Bindable
-    var selectedItem: Int = View.GONE
-        private set(roleAdapterAddress) {
-            field = roleAdapterAddress
-            notifyPropertyChanged(BR.roleAdapterAddress)
-        }
-
-
 
     fun onNextButtonClick(category: Int) {
 
         if (!handleMultipleClicks()) {
+            keyWord.clear()
+
+            Toast.makeText(fragmentGameChooser.context,""+ profile.title,
+                    Toast.LENGTH_SHORT).show()
             keyWord.add(category + 1)
             profile.keyWords = keyWord
         } else {
@@ -69,27 +66,28 @@ class GameChooserModel(internal val activity: FragmentActivity,
     }
 
 
-    fun doPostEvents() = View.OnClickListener {
+    fun doDiscussionWrrite() = View.OnClickListener {
 
 
         if (!handleMultipleClicks()) {
-            if ( profile.keyWords.isNullOrEmpty() && profile.title.isNullOrEmpty() ) {
+            if ( profile.keyWords.isNullOrEmpty() || profile.title.isNullOrEmpty() ) {
+                Toast.makeText(fragmentGameChooser.context, fragmentGameChooser.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
 
             if ( profile.keyWords!!.size > 0 && profile.title!!.length > 3 ) {
                 profile.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
                 profile.postedDate = System.currentTimeMillis().toString()
-                Log.d(TAG, "DocumentSnapshot onFailure i am in "  )
+                Log.d(TAG, "DocumentSnapshot  doDiscussionWrrite "  )
                 val firbaseWriteHandler = FirbaseWriteHandler(fragmentGameChooser).updateDiscussion(profile, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
-                        Log.d(TAG, "DocumentSnapshot onFailure " + e.message)
+                        Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                         Toast.makeText(fragmentGameChooser.context, fragmentGameChooser.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
 
                     }
 
                     override fun onSuccess() {
-                        Log.d(TAG, "DocumentSnapshot onSuccess ")
+                        Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
 //                        val fragment = FragmentProfile()
 //                        val bundle = Bundle()
 //                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
@@ -98,8 +96,6 @@ class GameChooserModel(internal val activity: FragmentActivity,
 
                     }
                 })
-            } else {
-                Toast.makeText(fragmentGameChooser.context, fragmentGameChooser.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
             }
         }
 
