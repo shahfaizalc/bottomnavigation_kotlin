@@ -14,7 +14,9 @@ import com.faizal.bottomnavigation.databinding.ListItemMyadsBinding
 import com.faizal.bottomnavigation.listeners.AdSearchEventListener
 import com.faizal.bottomnavigation.listeners.DiscussionEventListener
 import com.faizal.bottomnavigation.listeners.MyAdsEventListener
+import com.faizal.bottomnavigation.util.convertLongToTime
 import com.faizal.bottomnavigation.util.getAddress
+import com.faizal.bottomnavigation.util.getDiscussionKeys
 import com.faizal.bottomnavigation.util.getKeys
 import com.faizal.bottomnavigation.viewmodel.AdSearchModel
 import com.faizal.bottomnavigation.viewmodel.DiscussionModel
@@ -41,8 +43,9 @@ class DiscussionAdapter(private val adSearchModel: DiscussionModel) :
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!) {
             countriesInfoModel = viewModel.talentProfilesList[position]
-            address = getAddress(countriesInfoModel!!.address)
-            keyWordsTag = getKeys(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
+            keyWordsTag = getDiscussionKeys(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
+           postDate= viewModel.talentProfilesList[position].postedDate?.toLong()?.let { convertLongToTime(it) }
+
             itemPosition = position
             mainDataModel = viewModel
             executePendingBindings()
@@ -67,8 +70,8 @@ class DiscussionAdapter(private val adSearchModel: DiscussionModel) :
     }
 
     override fun onClickAdSearchListItem(countriesViewModel: DiscussionModel, position: Int) {
-        Log.d(TAG,"Click: "+ countriesViewModel.talentProfilesList[position].address!!.city)
-        countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position],position)
+     //   Log.d(TAG,"Click: "+ countriesViewModel.talentProfilesList[position].address!!.city)
+       // countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position],position)
 
     }
 }

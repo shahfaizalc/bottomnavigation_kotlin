@@ -84,5 +84,6 @@
     <string name="finderPersonTitle">Find your next mate or trainer</string>
     <string name="finderEventTitle">Find the next happening in your city</string>
     <string name="infoMsg">Please write your question</string>
+    <string name="likes">%s likes</string>
 
 </resources>

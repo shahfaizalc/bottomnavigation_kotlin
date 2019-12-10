@@ -16,7 +16,7 @@ fun getAddress(address: Address?) = address!!.locationname +
 
 fun convertLongToTime(time: Long): String {
     val date = Date(time)
-    val format = SimpleDateFormat("dd/MM/yyyy")
+    val format = SimpleDateFormat("dd MMM yyyy")
     return format.format(date)
 }
 
@@ -46,4 +46,28 @@ fun getKeys(keyWords: MutableList<Int>?, context: Context): String? {
 private fun readAutoFillItems(context: Context): ArrayList<CoachItem> {
     val c = GenericValues()
     return c.readCoachItems(context)
+}
+
+fun getDiscussionKeys(keyWords: MutableList<Int>?, context: Context): String? {
+
+    var keyTag = "";
+
+    val keysCoach: ArrayList<CoachItem> = readDisscussions(context)
+
+    val numbersIterator = keyWords!!.iterator()
+    numbersIterator.let {
+        while (numbersIterator.hasNext()) {
+            var value = (numbersIterator.next())
+            keyTag += " " + keysCoach.get(value).categoryname
+
+        }
+    }
+    return keyTag;
+
+}
+
+
+private fun readDisscussions(context: Context): ArrayList<CoachItem> {
+    val c = GenericValues()
+    return c.readDisuccsionTopics(context)
 }

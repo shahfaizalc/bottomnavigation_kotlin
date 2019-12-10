@@ -14,6 +14,7 @@ import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.IndiaItem
+import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.model2.PostEvents
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
@@ -34,7 +35,7 @@ import java.util.*
 class DiscussionModel(internal var activity: FragmentActivity, internal val fragmentProfileInfo: FragmentDiscussions)// To show list of user images (Gallery)
     : BaseObservable() {
 
-    var talentProfilesList: ObservableArrayList<Profile>
+    var talentProfilesList: ObservableArrayList<PostDiscussion>
 
 
     private val mAuth: FirebaseAuth
@@ -95,10 +96,11 @@ class DiscussionModel(internal var activity: FragmentActivity, internal val frag
     }
     fun doGetTalents() {
 
-        val db = FirebaseFirestore.getInstance()
-        val query = db.collection("events");
-        query.whereEqualTo("postedBy", mAuth.currentUser!!.uid)
-                .get()
+
+
+       val db = FirebaseFirestore.getInstance()
+        val query = db.collection("discussion");
+        query.get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                     val any = if (task.isSuccessful) {
                         talentProfilesList.clear()
@@ -114,7 +116,7 @@ class DiscussionModel(internal var activity: FragmentActivity, internal val frag
 
     fun addTalentsItems(document: QueryDocumentSnapshot) {
 
-        val adModel = document.toObject(Profile::class.java)
+        val adModel = document.toObject(PostDiscussion::class.java)
 
         Log.d(TAG, "Success getting documents: " + adModel.title)
 

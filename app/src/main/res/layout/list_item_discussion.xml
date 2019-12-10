@@ -9,7 +9,7 @@
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.bottomnavigation.model2.Profile" />
+            type="com.faizal.bottomnavigation.model2.PostDiscussion" />
 
         <variable
             name="itemPosition"
@@ -26,14 +26,20 @@
         <variable
             name="address"
             type="java.lang.String" />
+
         <variable
             name="keyWordsTag"
             type="java.lang.String" />
+        <variable
+            name="postDate"
+            type="java.lang.String" />
+
 
     </data>
 
 
     <RelativeLayout
+        android:layout_marginBottom="@dimen/dimen_12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}">
@@ -44,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_gravity="center"
-            android:padding="@dimen/dimen_8"
+            card_view:contentPadding="@dimen/dimen_8"
             card_view:cardBackgroundColor="@color/white"
             card_view:cardCornerRadius="@dimen/dimen_8"
             card_view:cardElevation="@dimen/dimen_8">
@@ -56,97 +62,57 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingEnd="@dimen/dimen_16">
+                    android:layout_height="wrap_content">
 
-                    <Switch
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:checked="@{countriesInfoModel.availability}"
-                        android:scaleX=".5"
-                        android:scaleY=".5" />
+                        android:paddingBottom="@dimen/dimen_4"
+                        android:text="saanvi"
+                        android:textColor="@color/colorBlacklight"
+                        android:textStyle="bold" />
 
-                    <RatingBar
-                        android:id="@+id/simpleRatingBar"
-                        style="@style/Widget.AppCompat.RatingBar.Small"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:numStars="5"
-                        android:rating="3.5"
-                        android:stepSize="0.5" />
-
+                        android:paddingBottom="@dimen/dimen_4"
+                        android:text="@={postDate}" />
                 </RelativeLayout>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/dimen_16"
-                    android:paddingEnd="@dimen/dimen_16"
-                    android:text="@{countriesInfoModel.name}"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/dimen_20"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/dimen_16"
-                    android:paddingEnd="@dimen/dimen_16"
-                    android:paddingBottom="@dimen/dimen_8"
-                    android:text="@{address}"
-                    android:textColor="@color/colorBlacklight"
-                    android:textSize="@dimen/dimen_16" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
                     android:background="@color/colorWhite"
-                    android:orientation="vertical"
-                    android:paddingStart="@dimen/dimen_16"
                     android:paddingTop="@dimen/dimen_4"
-                    android:paddingEnd="@dimen/dimen_16"
-                    android:paddingBottom="@dimen/dimen_4">
-
-                    <TextView
-                        android:id="@+id/showDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:ellipsize="end"
-                        android:maxLines="2"
-                        android:text="@{countriesInfoModel.desc}"
-                        android:textColor="@color/colorBlacklight" />
-
-                </LinearLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorSmoke"
-                    android:paddingStart="@dimen/dimen_32"
-                    android:paddingEnd="@dimen/dimen_32" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:background="@color/colorWhite"
-                    android:paddingStart="@dimen/dimen_16"
-                    android:paddingTop="@dimen/dimen_4"
-                    android:paddingEnd="@dimen/dimen_16"
                     android:paddingBottom="@dimen/dimen_4"
-                    android:text="@{keyWordsTag}"
-                    android:textColor="@color/colorBlacklight"
-                    android:textStyle="bold" />
+                    android:layout_gravity="end"
+                    android:drawableTint="@color/grey"
+                    android:drawableLeft="@drawable/tag"
+                    android:text="@={keyWordsTag}"
+                    android:textColor="@color/green" />
+
+
+                <TextView
+                    android:maxLines="7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{countriesInfoModel.title}"
+                    android:textColor="@color/colorBlacklight" />
+
+
+                <TextView
+                    android:id="@+id/showDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{@string/likes(countriesInfoModel.likes)}"
+                    android:textColor="@color/colorBlacklight" />
+
 
                 <View
                     android:layout_width="match_parent"
@@ -158,31 +124,29 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/dimen_8">
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:paddingLeft="@dimen/dimen_8"
+                    android:paddingRight="@dimen/dimen_8">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:paddingStart="@dimen/dimen_16"
-                        android:paddingEnd="@dimen/dimen_16"
-                        android:paddingBottom="@dimen/dimen_4"
-                        android:text="Contact:"
-                        android:textColor="@color/colorBlacklight"
-                        android:textSize="@dimen/dimen_16" />
+                        android:drawablePadding="@dimen/dimen_4"
+                        android:drawableTint="@color/grey"
+                        android:drawableLeft="@drawable/comment"
+                        android:text="COMMENT" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:paddingStart="@dimen/dimen_16"
-                        android:paddingEnd="@dimen/dimen_16"
-                        android:paddingBottom="@dimen/dimen_4"
-                        android:text="@{countriesInfoModel.phone}"
-                        android:textColor="@color/colorAccent"
-                        android:textStyle="bold" />
+                        android:drawableTint="@color/grey"
+                        android:drawablePadding="@dimen/dimen_4"
+                        android:drawableLeft="@drawable/share"
+                        android:text="SHARE" />
                 </RelativeLayout>
             </LinearLayout>
 
