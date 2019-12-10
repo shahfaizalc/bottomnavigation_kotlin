@@ -11,19 +11,15 @@ import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
-import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.MultipleClickListener
 import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model2.PostEvents
 import com.faizal.bottomnavigation.model2.Profile
-import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
-import com.itravis.ticketexchange.listeners.DateListener
-import com.itravis.ticketexchange.utils.DatePickerEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.*
@@ -61,14 +57,10 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
     fun customEventReceived(event: MyCustomEvent) {
         EventBus.getDefault().unregister(this)
         profile = event.data
-        postEvents.address = profile.address
         postEvents.keyWords = profile.keyWords
         keys = getKeyWords()
 
     }
-
-    private fun getAddress() = " " + profile.address?.locationname + "\n " + profile.address?.streetName +
-            "\n " + profile.address?.town + ", " + profile.address?.city
 
     private fun getKeyWords(): String {
 
@@ -125,27 +117,21 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
                 return@OnClickListener
             }
 
-            if (postEvents.address?.cityCode!!.toInt() > 0 && postEvents.keyWords!!.size > 0 && postEvents.title!!.length > 3 && postEvents.expiryDate!!.length  > 3) {
+            if (postEvents.keyWords!!.size > 0 && postEvents.title!!.length > 0) {
                 postEvents.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
                 postEvents.postedDate = System.currentTimeMillis().toString()
-                Log.d(TAG, "DocumentSnapshot onFailure i am in "  )
-                val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateEvents(postEvents, object : EmptyResultListener {
-                    override fun onFailure(e: Exception) {
-                        Log.d(TAG, "DocumentSnapshot onFailure " + e.message)
-                        Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                Log.d(TAG, "DocumentSnapshot onFailure i am in ")
 
-                    }
+                Log.d(TAG, "DocumentSnapshot onSuccess ")
+                        val fragment = FragmentSimiliarDiscussion()
+                        val bundle = Bundle()
+                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
 
-                    override fun onSuccess() {
-                        Log.d(TAG, "DocumentSnapshot onSuccess ")
-//                        val fragment = FragmentProfile()
-//                        val bundle = Bundle()
-//                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-//                        fragment.setArguments(bundle)
-//                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+                fragment.setArguments(bundle)
+                fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 
-                    }
-                })
+
+
             } else {
                 Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
             }

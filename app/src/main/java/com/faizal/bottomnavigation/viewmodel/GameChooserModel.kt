@@ -48,7 +48,7 @@ class GameChooserModel(internal val activity: FragmentActivity,
 
             if (!handleMultipleClicks()) {
                 activity.onBackPressed();
-                keyWord.add(category)
+                keyWord.add(category+1)
                 profile.keyWords = keyWord
 
                 EventBus.getDefault().post(MyCustomEvent(profile));
