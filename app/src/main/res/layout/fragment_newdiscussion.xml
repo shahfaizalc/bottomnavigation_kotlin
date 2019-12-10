@@ -34,18 +34,8 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/dimen_20"/>
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:layout_marginLeft="@dimen/dimen_4"
-                    android:gravity="center"
-                    android:text="Title"
-                    android:textColor="@color/colorBlack"
-                    android:textStyle="bold" />
-
                 <EditText
+                    android:layout_marginLeft="@dimen/dimen_4"
                     android:background="@android:color/transparent"
                     android:gravity="top"
                     android:layout_width="match_parent"
@@ -53,23 +43,6 @@
                     android:paddingBottom="@dimen/dimen_8"
                     android:hint="@string/newDiscussionTitle"
                     android:text="@={homeData.userTitle}"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_4"
-                    android:gravity="center"
-                    android:text="Topic"
-                    android:textColor="@color/colorBlack"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{homeData.updateKeyWords()}"
-                    android:paddingBottom="@dimen/dimen_8"
-                    android:text="@={homeData.keys}"
-                    android:textColor="@color/colorBlack" />
 
 
             </LinearLayout>
@@ -83,7 +56,7 @@
             android:onClick="@{homeData.doPostEvents()}"
             android:padding="@dimen/dimen_8"
             android:src="@drawable/check_circle_outline"
-            android:text="@string/review_post"
+            android:text="@string/review_next"
             android:textColor="@color/colorWhite"
             android:textStyle="bold" />
 

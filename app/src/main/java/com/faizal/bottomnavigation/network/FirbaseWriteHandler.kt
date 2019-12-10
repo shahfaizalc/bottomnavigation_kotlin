@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
+import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.model2.PostEvents
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.model2.Reviews
@@ -91,6 +92,20 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 }
     }
 
+    fun updateDiscussion(userInfo: PostDiscussion, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_POSTEVVENT)
+        collection.document(userInfo.postedDate!!).set(userInfo)
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
 
 
 

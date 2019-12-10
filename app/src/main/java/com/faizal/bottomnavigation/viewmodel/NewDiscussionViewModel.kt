@@ -8,21 +8,19 @@ import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.faizal.bottomnavigation.BR
-import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.MultipleClickListener
-import com.faizal.bottomnavigation.model.CoachItem
+import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.model2.PostEvents
-import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.utils.Constants
-import com.faizal.bottomnavigation.view.*
+import com.faizal.bottomnavigation.view.FragmentGameChooser
+import com.faizal.bottomnavigation.view.FragmentNewDiscusssion
+import com.faizal.bottomnavigation.view.FragmentSimiliarDiscussion
 import com.google.firebase.auth.FirebaseAuth
 import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import java.util.*
 
 
 class NewDiscussionViewModel(private val context: Context, private val fragmentSignin: FragmentNewDiscusssion) :
@@ -34,63 +32,16 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
 
     private var isInternetConnected: Boolean = false
 
-    var profile = Profile();
-    var postEvents = PostEvents();
+    var postEvents = PostDiscussion();
 
     init {
         networkHandler()
-        profile = Profile()
-        postEvents = PostEvents();
-        readAutoFillItems()
-    }
-
-    private fun readAutoFillItems() {
-        val c = GenericValues()
-        listOfCoachings = c.readDisuccsionTopics(context)
-
-    }
-
-    /*
-   Method will act as the event handler for MyCustomEvent.kt
-   */
-    @Subscribe
-    fun customEventReceived(event: MyCustomEvent) {
-        EventBus.getDefault().unregister(this)
-        profile = event.data
-        postEvents.keyWords = profile.keyWords
-        keys = getKeyWords()
-
-    }
-
-    private fun getKeyWords(): String {
-
-        var result = ""
-
-        val numbersIterator = profile.keyWords?.iterator()
-        numbersIterator?.let {
-            while (numbersIterator.hasNext()) {
-                var value = (numbersIterator.next())
-                result += " " + listOfCoachings!!.get(value - 1).categoryname
-            }
-        }
-
-        return result;
+        postEvents = PostDiscussion();
     }
 
 
     @get:Bindable
-    var listOfCoachings: ArrayList<CoachItem>? = null
-        private set(roleAdapterAddress) {
-            field = roleAdapterAddress
-            notifyPropertyChanged(BR.roleAdapterAddress)
-        }
-
-
-    var imgUrl = ""
-
-
-    @get:Bindable
-    var userTitle: String? = profile.title
+    var userTitle: String? = postEvents.title ?: ""
         set(price) {
             field = price
             postEvents.title = field
@@ -100,61 +51,27 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
         }
 
 
-    @get:Bindable
-    var keys: String? = getKeyWords()
-        set(price) {
-            field = price
-            notifyPropertyChanged(BR.keys)
-
-        }
-
     fun doPostEvents() = View.OnClickListener {
 
-
         if (!handleMultipleClicks()) {
-            if (postEvents.address == null && postEvents.keyWords == null &&
-                    postEvents.title == null && postEvents.expiryDate == null) {
-                return@OnClickListener
-            }
+//            if (postEvents.title.isNullOrEmpty()) {
+//                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.infoMsg), Toast.LENGTH_LONG).show()
+//                return@OnClickListener
+//            }
 
-            if (postEvents.keyWords!!.size > 0 && postEvents.title!!.length > 0) {
-                postEvents.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-                postEvents.postedDate = System.currentTimeMillis().toString()
-                Log.d(TAG, "DocumentSnapshot onFailure i am in ")
+            postEvents.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+            postEvents.postedDate = System.currentTimeMillis().toString()
+            Log.d(TAG, "DocumentSnapshot onFailure i am in ")
 
-                Log.d(TAG, "DocumentSnapshot onSuccess ")
-                        val fragment = FragmentSimiliarDiscussion()
-                        val bundle = Bundle()
-                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+            Log.d(TAG, "DocumentSnapshot onSuccess ")
+            val fragment = FragmentGameChooser()
+            val bundle = Bundle()
+            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postEvents))
 
-                fragment.setArguments(bundle)
-                fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
-
-
-
-            } else {
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
-            }
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
         }
 
-    }
-
-    fun updateAddress() = View.OnClickListener {
-        EventBus.getDefault().register(this);
-        val fragment = FragmentAddress()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
-    }
-
-    fun updateKeyWords() = View.OnClickListener {
-        EventBus.getDefault().register(this);
-        val fragment = FragmentGameChooser()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
     }
 
 

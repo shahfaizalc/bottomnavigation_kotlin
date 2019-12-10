@@ -19,9 +19,7 @@ class GameChooserAdapter() : RecyclerView.Adapter<GameChooserAdapter.UserHolder>
     }
 
     fun setData(items: ArrayList<CoachItem>?) {
-        if (items != null) {
-            userIds = items
-        }
+        userIds = items!!
         notifyDataSetChanged()
     }
 

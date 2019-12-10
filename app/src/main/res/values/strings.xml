@@ -9,7 +9,7 @@
         <item>Profile</item>
     </array>
 
-    <string name="newDiscussionTitle">Ask your question with \'What\', \'How\', \'When\' and so on. \nExample.What is the cutoff mark for Mechanical Enggineering MIT, Chennai</string>
+    <string name="newDiscussionTitle">Ask your question here with \'What\', \'How\', \'When\' and so on. \n\nExample.What is the cutoff mark for Mechanical Engineering in MIT, Chennai</string>
     <string name="ad_notification">Your ad will stay online during the date indicated above or until you remove it.</string>
     <string name="ad_notification2">Your ad will stay online during the date and time indicated above or until you remove it. If you sold the item, kindly delete the ad</string>
     <string name="home_welcomestring">Team Up</string>
@@ -69,6 +69,7 @@
     <string name="defaultTime">mm:hh</string>
     <string name="addressNotification">Make sure the address is correct</string>
     <string name="review_post">POST</string>
+    <string name="review_next">NEXT</string>
     <string name="review_edit">EDIT</string>
     <string name="review_hint">Write your review</string>
     <string name="search_hint">Enter the tags</string>
@@ -82,5 +83,6 @@
     <string name="USR_DLS_Verify_Email_Verified_Btn_Title_Txt">I\'ve already verified</string>
     <string name="finderPersonTitle">Find your next mate or trainer</string>
     <string name="finderEventTitle">Find the next happening in your city</string>
+    <string name="infoMsg">Please write your question</string>
 
 </resources>

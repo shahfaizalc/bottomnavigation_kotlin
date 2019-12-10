@@ -16,42 +16,35 @@
             type="com.faizal.bottomnavigation.viewmodel.GameChooserModel" />
     </data>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        android:onClick="@{() -> listener.onClickAdSearchListItem(gameChooserModel,itemPosition)}">
-
-
-    <androidx.cardview.widget.CardView
-            android:id="@+id/card_view"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/dimen_2"
-            card_view:cardCornerRadius="@dimen/dimen_8"
-            card_view:cardElevation="@dimen/dimen_4">
+            android:background="@drawable/bg_gradiant_blue"
+            android:onClick="@{() -> listener.onClickAdSearchListItem(gameChooserModel,itemPosition)}">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <TextView
+                android:id="@+id/userText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_gradiant_blue"
-                android:orientation="vertical">
+                android:layout_gravity="center_vertical"
+                android:padding="@dimen/dimen_12"
+                android:textColor="@color/white_transparent_80"
+                android:textSize="@dimen/dimen_16"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/userText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/dimen_12"
-                    android:textColor="@color/white_transparent_80"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
 
-            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:padding="@dimen/dimen_12"
+                android:src="@drawable/check"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_16"
+                android:textStyle="bold"
+                android:tint="@color/white_transparent_80" />
 
-        </androidx.cardview.widget.CardView>
+        </FrameLayout>
 
-    </RelativeLayout>
 </layout>
