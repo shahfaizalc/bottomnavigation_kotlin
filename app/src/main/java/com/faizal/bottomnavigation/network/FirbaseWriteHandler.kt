@@ -108,6 +108,21 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 }
     }
 
+    fun addComment(userInfo: PostDiscussion, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)
+        collection.document(userInfo.postedDate!!).update("comments",userInfo.comments)
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
+
 
 
 //    fun postAnAd(userInfo: PostAdModel, emptyResultListener: EmptyResultListener) {
