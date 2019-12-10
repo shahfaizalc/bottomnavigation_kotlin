@@ -71,13 +71,12 @@ class DiscussionModel(internal var activity: FragmentActivity, internal val frag
     var profile = Profile();
 
 
-    fun openFragment2(postAdModel: Profile, position: Int) {
-//        val fragment = FragmentRequestComplete()
-//        val bundle = Bundle()
-//        bundle.putString(Constants.AD_DOCID, ratings.get(position));
-//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(postAdModel))
-//        fragment.setArguments(bundle)
-//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+    fun openFragment2(postAdModel: PostDiscussion, position: Int) {
+        val fragment = FragmentOneDiscussion()
+        val bundle = Bundle()
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+        fragment.setArguments(bundle)
+        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 
     }
 

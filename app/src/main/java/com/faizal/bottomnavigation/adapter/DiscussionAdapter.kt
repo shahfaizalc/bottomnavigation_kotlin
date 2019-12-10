@@ -70,8 +70,8 @@ class DiscussionAdapter(private val adSearchModel: DiscussionModel) :
     }
 
     override fun onClickAdSearchListItem(countriesViewModel: DiscussionModel, position: Int) {
-     //   Log.d(TAG,"Click: "+ countriesViewModel.talentProfilesList[position].address!!.city)
-       // countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position],position)
+        Log.d(TAG,"Click: "+ countriesViewModel.talentProfilesList[position].postedBy)
+        countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position],position)
 
     }
 }
