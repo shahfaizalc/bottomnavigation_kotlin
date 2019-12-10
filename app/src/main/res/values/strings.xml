@@ -71,6 +71,7 @@
     <string name="review_post">POST</string>
     <string name="review_next">NEXT</string>
     <string name="review_edit">EDIT</string>
+    <string name="cooment_hint">Write your comment here</string>
     <string name="review_hint">Write your review</string>
     <string name="search_hint">Enter the tags</string>
     <string name="find_btn">Find A Coach / Mate</string>

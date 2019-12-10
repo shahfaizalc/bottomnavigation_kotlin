@@ -9,6 +9,8 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.adapter.CommentsAdapter
+import com.faizal.bottomnavigation.adapter.RatingsAdapter
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
 import com.faizal.bottomnavigation.model.CoachItem
@@ -42,6 +44,17 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
         readAutoFillItems()
 
     }
+
+    @get:Bindable
+    var review: String? = null
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.review)
+        }
+    fun updateReview() = View.OnClickListener {
+    }
+
+    var adapter = CommentsAdapter()
 
     private fun readAutoFillItems() {
         val c = GenericValues()
@@ -78,8 +91,6 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
             notifyPropertyChanged(BR.postedDate)
 
         }
-
-
 
 
 //    fun findClickded() {
