@@ -45,7 +45,7 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
             override fun onSuccess(profile1: Profile) {
                 profile = profile1
                 userName = profile1.name ?: ""
-                storeUserName(context,mAuth.currentUser?.uid!!,userName)
+                storeUserName(context,mAuth.currentUser?.uid!!,profile)
                 userEmail = profile1.email?: ""
                 userTitle = profile1.phone?: ""
                 userDesc = profile1.desc?: ""

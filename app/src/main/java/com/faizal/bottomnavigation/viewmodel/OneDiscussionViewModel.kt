@@ -13,14 +13,18 @@ import com.faizal.bottomnavigation.adapter.CommentsAdapter
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.model2.Comments
+import com.faizal.bottomnavigation.model2.Follow
 import com.faizal.bottomnavigation.model2.PostDiscussion
+import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.view.FragmentOneDiscussion
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlin.system.measureTimeMillis
 
 
 class OneDiscussionViewModel(private val context: Context,
@@ -33,11 +37,13 @@ class OneDiscussionViewModel(private val context: Context,
     private var networkStateHandler: NetworkChangeHandler? = null
 
     private var isInternetConnected: Boolean = false
+    var str = Profile()
 
 
     init {
         networkHandler()
         readAutoFillItems()
+        str = getUserName(context,FirebaseAuth.getInstance().currentUser!!.uid);
     }
 
     @get:Bindable
@@ -107,12 +113,44 @@ class OneDiscussionViewModel(private val context: Context,
         })
     }
 
+
+
+    fun addFollowers() = View.OnClickListener {
+        if (!handleMultipleClicks()) {
+            val follw = Follow();
+            follw.followedId = listOfCoachings!!.postedBy!!
+            follw.followedOn = System.currentTimeMillis().toString()
+
+
+            if (str.followed.isNullOrEmpty()) {
+                str.followed = ArrayList<Follow>()
+            }
+            str.followed?.add(follw)
+
+            FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowed(str, object : EmptyResultListener {
+                override fun onFailure(e: Exception) {
+                    Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                    Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onSuccess() {
+
+                    storeUserName(context,FirebaseAuth.getInstance().currentUser!!.uid, str)
+                    Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
+                    getVal(listOfCoachings?.comments)
+                    review = ""
+                }
+            })
+        }
+    }
+
+
     private fun getComment(): ArrayList<Comments> {
         val comments = Comments()
         comments.commment = review ?: ""
         comments.commentedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         comments.commentedOn = System.currentTimeMillis().toString()
-        comments.commentedUserName = getUserName(context,FirebaseAuth.getInstance().currentUser?.uid!!)
+        comments.commentedUserName = getUserName(context,FirebaseAuth.getInstance().currentUser?.uid!!).name!!
         val comments2 = ArrayList<Comments>()
         comments2.add(comments)
         return comments2
@@ -123,7 +161,6 @@ class OneDiscussionViewModel(private val context: Context,
     private fun readAutoFillItems() {
         val c = GenericValues()
         listOfCoachings = c.getDisccussion(postAdObj, context)
-
         getVal(listOfCoachings?.comments)
 
     }

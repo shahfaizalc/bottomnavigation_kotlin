@@ -114,6 +114,7 @@
                         />
 
                     <TextView
+                        android:onClick="@{mainDataModel.addFollowers()}"
                         android:padding="@dimen/dimen_4"
                         android:background="@drawable/circular_bg_border"
                         android:layout_width="wrap_content"

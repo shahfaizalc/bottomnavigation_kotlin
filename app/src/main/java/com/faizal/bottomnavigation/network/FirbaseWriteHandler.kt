@@ -17,6 +17,7 @@ import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_PROFILEPIC
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserInfo
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -112,6 +113,36 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)
         collection.document(userInfo.postedDate!!).update("comments",userInfo.comments)
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
+
+    fun updateUserInfoFollowed(userInfo: Profile, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
+        collection.document(currentFirebaseUser!!.uid).update("followed",userInfo.followed)
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
+
+    fun updateUserInfoFollowing(userInfo: Profile, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
+        collection.document(currentFirebaseUser!!.uid).update("following",userInfo.following)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
 

@@ -79,7 +79,7 @@ class GameChooserModel(internal val activity: FragmentActivity,
             if ( postDiscussion.keyWords!!.size > 0 && postDiscussion.title!!.length > 3 ) {
                 postDiscussion.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
                 postDiscussion.postedDate = System.currentTimeMillis().toString()
-                postDiscussion.postedByName = getUserName(activity.applicationContext, FirebaseAuth.getInstance().currentUser?.uid!!)
+                postDiscussion.postedByName = getUserName(activity.applicationContext, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
                 Log.d(TAG, "DocumentSnapshot  doDiscussionWrrite "  )
                 val firbaseWriteHandler = FirbaseWriteHandler(fragmentGameChooser).updateDiscussion(postDiscussion, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {

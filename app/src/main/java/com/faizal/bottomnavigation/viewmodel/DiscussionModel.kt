@@ -117,16 +117,10 @@ class DiscussionModel(internal var activity: FragmentActivity, internal val frag
 
         val adModel = document.toObject(PostDiscussion::class.java)
 
-        Log.d(TAG, "Success getting documents: " + adModel.title)
+        Log.d(TAG, "Success getting documents: " + adModel.postedBy)
 
-        talentProfilesList.add(adModel)
-
-        Log.d(TAG, "Success getting : " + document.id)
-
-
-//        if (adModel.userId.equals(mAuth.currentUser!!.uid) && adModel.title!!.contains(searchQuery)) {
-//
-//            countriesInfoModel2.add(adModel)
-//        }
+        if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
+            talentProfilesList.add(adModel)
+        }
     }
 }

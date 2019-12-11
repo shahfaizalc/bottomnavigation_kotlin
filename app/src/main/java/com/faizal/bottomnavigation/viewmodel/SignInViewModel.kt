@@ -145,7 +145,7 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
         val bundle = Bundle()
         fragment.setArguments(bundle)
         fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
-        fragmentSignin.mFragmentNavigation.switchTab(0)
+      //  fragmentSignin.mFragmentNavigation.switchTab(0)
         fragmentSignin.mFragmentNavigation.viewBottom(View.VISIBLE)
     }
 

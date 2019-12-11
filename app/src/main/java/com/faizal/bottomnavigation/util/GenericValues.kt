@@ -61,10 +61,7 @@ class GenericValues {
         return ReadAssetFile().readAssetFile(fileName, context)
     }
 
-      fun profileToString(profile : Profile) : String{
-        val gson  = Gson();
-       return gson.toJson(profile)
-    }
+
 
     fun eventsToString(profile : PostEvents) : String{
         val gson  = Gson();
@@ -82,6 +79,11 @@ class GenericValues {
     fun getDisccussion(fileName: String,context: Context): PostDiscussion {
         val gson = Gson()
         return gson.fromJson(fileName, PostDiscussion::class.java)
+    }
+
+    fun profileToString(profile : Profile) : String{
+        val gson  = Gson();
+        return gson.toJson(profile)
     }
 
     fun getProfile(fileName: String,context: Context): Profile {

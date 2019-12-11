@@ -1,8 +1,10 @@
 package com.faizal.bottomnavigation.util
 
 import android.content.Context
+import android.provider.ContactsContract
 import com.faizal.bottomnavigation.model.Address
 import com.faizal.bottomnavigation.model.CoachItem
+import com.faizal.bottomnavigation.model2.Profile
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,16 +26,16 @@ fun <T : Any> T?.notNull(function: (it: T) -> Unit) {
     if (this != null) function(this)
 }
 
-fun storeUserName(context: Context, id:String, name:String){
+fun storeUserName(context: Context, id:String, name: Profile){
     val sharedPreference =  context.getSharedPreferences("USER",Context.MODE_PRIVATE)
     val editor = sharedPreference.edit()
-    editor.putString(id,name)
+    editor.putString(id,GenericValues().profileToString(name))
     editor.apply()
 }
 
-fun getUserName(context: Context, id:String) :String  {
+fun getUserName(context: Context, id:String) :Profile  {
     val sharedPreference =  context.getSharedPreferences("USER",Context.MODE_PRIVATE)
-    return sharedPreference.getString(id,"")
+    return GenericValues().getProfile(sharedPreference.getString(id,""),context)
 }
 
 

@@ -17,5 +17,7 @@ class Profile{
     var rating: Double = 0.0
     var views: Int = 0
     var desc : String? = null
+    var following: ArrayList<Follow>? = null
+    var followed: ArrayList<Follow>? = null
 
 }

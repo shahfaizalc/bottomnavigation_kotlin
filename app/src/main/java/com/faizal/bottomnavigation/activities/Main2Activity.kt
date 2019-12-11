@@ -120,7 +120,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
     private fun updateName() {
         val ksk = getUserName(this.applicationContext, mAuth.currentUser?.uid!!);
 
-        if (ksk.isEmpty()) {
+        if (ksk.name == null) {
             FirbaseReadHandler().storeUserNamePreference(this.applicationContext)
         }
     }

@@ -71,7 +71,8 @@ class FirbaseReadHandler {
 
         var posts  = document.result?.toObject(Profile::class.java)
 
-        storeUserName(context, currentFirebaseUser!!.uid, posts?.name!! )
+            storeUserName(context, currentFirebaseUser!!.uid, posts!! )
+
 
     }
 
