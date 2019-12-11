@@ -23,29 +23,21 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-class OneDiscussionViewModel(private val context: Context, private val fragmentSignin: FragmentOneDiscussion, internal val postAdObj: String) :
-        BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class OneDiscussionViewModel(private val context: Context,
+                             private val fragmentSignin: FragmentOneDiscussion,
+                             internal val postAdObj: String) : BaseObservable(),
+        NetworkChangeHandler.NetworkChangeListener {
 
-    companion object {
-        private val TAG = "RequestComplete  "
-    }
+    private val TAG = "RequestComplete  "
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
     private var isInternetConnected: Boolean = false
 
-    private var comments : Comments
-    private var comments2 : ArrayList<Comments>
-
 
     init {
         networkHandler()
-        comments = Comments()
-        comments2 = ArrayList<Comments>()
-
         readAutoFillItems()
-
-
     }
 
     @get:Bindable
@@ -60,12 +52,10 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
     var review: String? = null
         set(city) {
             field = city
-            comments.commment = review ?: ""
             notifyPropertyChanged(BR.review)
         }
 
     fun updateReview() = View.OnClickListener {
-
 
         if (!handleMultipleClicks()) {
             if (listOfCoachings?.postedBy.isNullOrEmpty() || listOfCoachings?.postedDate.isNullOrEmpty() || review.isNullOrEmpty()) {
@@ -73,11 +63,8 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
                 return@OnClickListener
             }
 
-            comments.commentedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-            comments.commentedOn = System.currentTimeMillis().toString()
-            comments2.add(comments)
-
-            listOfCoachings?.comments = comments2
+            val comments2 = getComment()
+            listOfCoachings?.comments?.addAll(comments2)
 
             val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).addComment(listOfCoachings!!, object : EmptyResultListener {
                 override fun onFailure(e: Exception) {
@@ -88,6 +75,8 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
 
                 override fun onSuccess() {
                     Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
+                    getVal(listOfCoachings?.comments)
+                    review = ""
 //                        val fragment = FragmentProfile()
 //                        val bundle = Bundle()
 //                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
@@ -96,10 +85,17 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
 
                 }
             })
-
         }
+    }
 
-
+    private fun getComment(): ArrayList<Comments> {
+        val comments = Comments()
+        comments.commment = review ?: ""
+        comments.commentedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        comments.commentedOn = System.currentTimeMillis().toString()
+        val comments2 = ArrayList<Comments>()
+        comments2.add(comments)
+        return comments2
     }
 
     var adapter = CommentsAdapter()
@@ -109,7 +105,6 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
         listOfCoachings = c.getDisccussion(postAdObj, context)
 
         getVal(listOfCoachings?.comments)
-
 
     }
 
@@ -140,7 +135,6 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
         set(price) {
             field = price
             notifyPropertyChanged(BR.postedDate)
-
         }
 
     fun getVal(postedDat: ArrayList<Comments>?) {

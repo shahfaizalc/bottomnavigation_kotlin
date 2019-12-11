@@ -30,11 +30,11 @@
                 android:layout_marginEnd="@dimen/dimen_8"
                 android:background="@drawable/circular_bg_white"
                 android:clickable="true"
-                app:queryHint="Search Discussion" />
+                app:queryHint="Search Discussion"/>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:background="@drawable/bottom_line" />
 
