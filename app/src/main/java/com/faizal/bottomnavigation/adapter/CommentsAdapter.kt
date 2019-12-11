@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.faizal.bottomnavigation.databinding.CommentItemBinding
 import com.faizal.bottomnavigation.databinding.RatingItemBinding
+import com.faizal.bottomnavigation.model2.Comments
 import com.faizal.bottomnavigation.model2.Reviews
 import com.faizal.bottomnavigation.util.convertLongToTime
 import com.faizal.bottomnavigation.util.notNull
@@ -21,12 +22,12 @@ class CommentsAdapter() : RecyclerView.Adapter<CommentsAdapter.UserHolder>() {
         profileInfoViewModel = model;
     }
 
-    fun setData(items: List<Reviews>) {
+    fun setData(items: List<Comments>) {
         userIds = items
         notifyDataSetChanged()
     }
 
-    var userIds = emptyList<Reviews>()
+    var userIds = emptyList<Comments>()
 
     lateinit var profileInfoViewModel : OneDiscussionViewModel
 
@@ -39,10 +40,10 @@ class CommentsAdapter() : RecyclerView.Adapter<CommentsAdapter.UserHolder>() {
     override fun getItemCount() = userIds.size
 
     override fun onBindViewHolder(holder: UserHolder, position: Int) {
-        holder.binding.userText.text = userIds.get(position).userId
-        holder.binding.review.text = userIds.get(position).review
-        holder.binding.date.text =  convertLongToTime( userIds.get(position).date!!.toLong())
-        userIds.get(position).rating.notNull { holder.binding.rates.rating  = it.toFloat() }
+        holder.binding.userText.text = userIds.get(position).commentedBy
+        holder.binding.review.text = userIds.get(position).commment
+        holder.binding.date.text =  convertLongToTime( userIds.get(position).commentedOn.toLong())
+      //  userIds.get(position).rating.notNull { holder.binding.rates.rating  = it.toFloat() }
 
         holder.binding.gameChooserModel = profileInfoViewModel
     }

@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.lifecycle.MutableLiveData
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.adapter.CommentsAdapter
@@ -19,10 +20,19 @@ import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.util.convertLongToTime
 import com.faizal.bottomnavigation.util.getDiscussionKeys
 import com.faizal.bottomnavigation.view.FragmentOneDiscussion
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.GsonBuilder
+
 
 class OneDiscussionViewModel(private val context: Context, private val fragmentSignin: FragmentOneDiscussion, internal val postAdObj: String) :
         BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+
+    companion object {
+        private val TAG = "RequestComplete  "
+    }
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
@@ -39,7 +49,16 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
 
         readAutoFillItems()
 
+
     }
+
+    @get:Bindable
+    var userIds: MutableLiveData<List<Comments>> = MutableLiveData<List<Comments>>()
+        private set(value) {
+            field = value
+            notifyPropertyChanged(BR.userIds)
+        }
+
 
     @get:Bindable
     var review: String? = null
@@ -93,6 +112,9 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
         val c = GenericValues()
         listOfCoachings = c.getDisccussion(postAdObj, context)
 
+        getVal(listOfCoachings?.postedDate)
+
+
     }
 
     @get:Bindable
@@ -124,6 +146,47 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
             notifyPropertyChanged(BR.postedDate)
 
         }
+
+    fun getVal(postedDat: String?) {
+
+        val db = FirebaseFirestore.getInstance()
+        val query = db.collection("discussion").document(postedDat!!)
+
+        query.get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    val listOfRating = emptyList<Comments>().toMutableList()
+
+
+                    val document = task.result
+                    if (document!!.exists()) {
+                        val gson = GsonBuilder().create()
+                        val json = gson.toJson(document.data)
+
+                        val userInfoGeneral = gson.fromJson<PostDiscussion>(json, PostDiscussion::class.java )
+                        Log.d(TAG, "sucess getting saanu: " +userInfoGeneral.comments)
+
+                        val iterator: Iterator<Comments> = userInfoGeneral.comments!!.iterator()
+
+                        while (iterator.hasNext()) {
+                            Log.d(TAG, "sucess getting saanu: " )
+                            listOfRating.add(iterator.next())
+                        }
+                        userIds.value = listOfRating
+
+
+                        Log.d(TAG, "getUserInfo success ")
+                    } else {
+                        Log.d(TAG, "getUserInfo success : document not exist")
+                    }
+
+                } else {
+                    Log.d(TAG, "Error getting saanu: " + task.exception!!.message)
+                }
+
+        }.addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
+                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
+    }
 
 
 //    fun findClickded() {
