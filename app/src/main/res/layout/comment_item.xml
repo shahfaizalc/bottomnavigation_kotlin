@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite">
+        android:layout_marginBottom="@dimen/dimen_8">
 
 
         <androidx.cardview.widget.CardView
@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/dimen_4"
             card_view:cardBackgroundColor="@color/white"
             card_view:cardCornerRadius="@dimen/dimen_4"
             card_view:cardElevation="@dimen/dimen_4">
@@ -31,12 +30,26 @@
                 android:orientation="vertical"
                 android:padding="@dimen/dimen_4">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/userText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black" />
+                    <TextView
+                        android:id="@+id/userText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/paleGreen" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:textColor="@color/black" />
+
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/review"
@@ -44,12 +57,6 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black" />
 
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:textColor="@color/black" />
 
             </LinearLayout>
 

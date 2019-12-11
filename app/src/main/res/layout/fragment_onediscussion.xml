@@ -24,6 +24,7 @@
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
+            android:layout_marginTop="@dimen/dimen_12"
             android:layout_marginEnd="@dimen/dimen_12"
             android:layout_marginStart="@dimen/dimen_12"
             android:id="@+id/card_view"
@@ -68,7 +69,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorWhite"
-                    android:paddingTop="@dimen/dimen_4"
                     android:paddingBottom="@dimen/dimen_4"
                     android:layout_gravity="end"
                     android:drawableTint="@color/grey"
@@ -135,7 +135,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/dimen_12"
-            android:paddingEnd="@dimen/dimen_8"
             android:scrollbars="vertical"
             app:searchRecycler="@{mainDataModel}" />
 

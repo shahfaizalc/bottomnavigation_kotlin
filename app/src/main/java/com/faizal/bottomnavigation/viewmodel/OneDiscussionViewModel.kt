@@ -15,16 +15,12 @@ import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.model2.Comments
 import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
-import com.faizal.bottomnavigation.util.GenericValues
-import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.util.convertLongToTime
-import com.faizal.bottomnavigation.util.getDiscussionKeys
+import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.view.FragmentOneDiscussion
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.gson.GsonBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class OneDiscussionViewModel(private val context: Context, private val fragmentSignin: FragmentOneDiscussion, internal val postAdObj: String) :
@@ -112,7 +108,7 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
         val c = GenericValues()
         listOfCoachings = c.getDisccussion(postAdObj, context)
 
-        getVal(listOfCoachings?.postedDate)
+        getVal(listOfCoachings?.comments)
 
 
     }
@@ -147,66 +143,13 @@ class OneDiscussionViewModel(private val context: Context, private val fragmentS
 
         }
 
-    fun getVal(postedDat: String?) {
-
-        val db = FirebaseFirestore.getInstance()
-        val query = db.collection("discussion").document(postedDat!!)
-
-        query.get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-
-                    val listOfRating = emptyList<Comments>().toMutableList()
-
-
-                    val document = task.result
-                    if (document!!.exists()) {
-                        val gson = GsonBuilder().create()
-                        val json = gson.toJson(document.data)
-
-                        val userInfoGeneral = gson.fromJson<PostDiscussion>(json, PostDiscussion::class.java )
-                        Log.d(TAG, "sucess getting saanu: " +userInfoGeneral.comments)
-
-                        val iterator: Iterator<Comments> = userInfoGeneral.comments!!.iterator()
-
-                        while (iterator.hasNext()) {
-                            Log.d(TAG, "sucess getting saanu: " )
-                            listOfRating.add(iterator.next())
-                        }
-                        userIds.value = listOfRating
-
-
-                        Log.d(TAG, "getUserInfo success ")
-                    } else {
-                        Log.d(TAG, "getUserInfo success : document not exist")
-                    }
-
-                } else {
-                    Log.d(TAG, "Error getting saanu: " + task.exception!!.message)
-                }
-
-        }.addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
-                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
+    fun getVal(postedDat: ArrayList<Comments>?) {
+        GlobalScope.launch(context = Dispatchers.Main) {
+            while (userIds == null){}
+            userIds.value = postedDat
+        }
     }
 
-
-//    fun findClickded() {
-//        Log.d("tag", "taggg")
-//        val fragment = FragmentProfileEdit()
-//        val bundle = Bundle()
-//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-//        fragment.setArguments(bundle)
-//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
-//    }
-//
-//    fun logout() {
-//        FirebaseAuth.getInstance().signOut();
-//        val fragment = FragmentWelcome()
-//        Log.d("tag", "logout")
-//        val bundle = Bundle()
-//        fragment.setArguments(bundle)
-//        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(0,fragment,bundle));
-//        fragmentSignin.mFragmentNavigation.viewBottom(View.GONE)
-//    }
 
     fun registerListeners() {
         networkStateHandler!!.registerNetWorkStateBroadCast(context)
