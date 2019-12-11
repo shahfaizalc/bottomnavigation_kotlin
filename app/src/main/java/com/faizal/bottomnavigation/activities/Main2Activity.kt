@@ -17,6 +17,8 @@ import com.faizal.bottomnavigation.utils.Utils
 import com.faizal.bottomnavigation.views.FragNavController
 
 import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.network.FirbaseReadHandler
+import com.faizal.bottomnavigation.util.getUserName
 import com.faizal.bottomnavigation.view.*
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -104,12 +106,22 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
     private fun showTab() {
         mAuth = FirebaseAuth.getInstance()
         if(mAuth.currentUser != null && mAuth.currentUser!!.isEmailVerified) {
+
+            updateName()
             switchTab(0)
             updateTabSelection(0)
         }else{
             bottomTabLayout!!.visibility = View.GONE
             switchTab(4)
             updateTabSelection(4)
+        }
+    }
+
+    private fun updateName() {
+        val ksk = getUserName(this.applicationContext, mAuth.currentUser?.uid!!);
+
+        if (ksk.isEmpty()) {
+            FirbaseReadHandler().storeUserNamePreference(this.applicationContext)
         }
     }
 

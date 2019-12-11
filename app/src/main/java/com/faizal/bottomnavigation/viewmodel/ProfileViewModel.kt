@@ -16,6 +16,7 @@ import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.network.FirbaseReadHandler
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.notNull
+import com.faizal.bottomnavigation.util.storeUserName
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.FragmentProfile
 import com.faizal.bottomnavigation.view.FragmentProfileEdit
@@ -30,11 +31,13 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
 
     private var isInternetConnected: Boolean = false
 
+    private val mAuth: FirebaseAuth
     var profile = Profile()
 
 
     init {
         networkHandler()
+        mAuth = FirebaseAuth.getInstance()
 
         readAutoFillItems()
         FirbaseReadHandler().getUserInfo(object : UseInfoGeneralResultListener {
@@ -42,6 +45,7 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
             override fun onSuccess(profile1: Profile) {
                 profile = profile1
                 userName = profile1.name ?: ""
+                storeUserName(context,mAuth.currentUser?.uid!!,userName)
                 userEmail = profile1.email?: ""
                 userTitle = profile1.phone?: ""
                 userDesc = profile1.desc?: ""

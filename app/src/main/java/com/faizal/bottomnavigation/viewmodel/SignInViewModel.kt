@@ -126,7 +126,7 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
                             }
                         }
                     }.addOnFailureListener {
-                        Log.d("TAG", "Exception" + it.message)
+                        Log.d("TAG", "c" + it.message)
                         showToast(R.string.loginFailed)
                     }
         }

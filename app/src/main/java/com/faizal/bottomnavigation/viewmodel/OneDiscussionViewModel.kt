@@ -64,28 +64,47 @@ class OneDiscussionViewModel(private val context: Context,
             }
 
             val comments2 = getComment()
-            listOfCoachings?.comments?.addAll(comments2)
 
-            val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).addComment(listOfCoachings!!, object : EmptyResultListener {
-                override fun onFailure(e: Exception) {
-                    Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                    Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+            if(listOfCoachings?.comments.isNullOrEmpty()){
+                listOfCoachings?.comments = ArrayList<Comments>()
+                listOfCoachings?.comments?.addAll(comments2)
+                 updateComment()}
+            else {
+                listOfCoachings?.comments?.addAll(comments2)
+                addcomment()
+            }
 
-                }
-
-                override fun onSuccess() {
-                    Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
-                    getVal(listOfCoachings?.comments)
-                    review = ""
-//                        val fragment = FragmentProfile()
-//                        val bundle = Bundle()
-//                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-//                        fragment.setArguments(bundle)
-//                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
-
-                }
-            })
         }
+    }
+
+    private fun updateComment() {
+        FirbaseWriteHandler(fragmentSignin).updateDiscussion(listOfCoachings!!, object : EmptyResultListener {
+            override fun onFailure(e: Exception) {
+                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onSuccess() {
+                Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
+                getVal(listOfCoachings?.comments)
+                review = ""
+            }
+        })
+    }
+
+    private fun addcomment() {
+         FirbaseWriteHandler(fragmentSignin).addComment(listOfCoachings!!, object : EmptyResultListener {
+            override fun onFailure(e: Exception) {
+                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onSuccess() {
+                Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
+                getVal(listOfCoachings?.comments)
+                review = ""
+            }
+        })
     }
 
     private fun getComment(): ArrayList<Comments> {
@@ -93,6 +112,7 @@ class OneDiscussionViewModel(private val context: Context,
         comments.commment = review ?: ""
         comments.commentedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         comments.commentedOn = System.currentTimeMillis().toString()
+        comments.commentedUserName = getUserName(context,FirebaseAuth.getInstance().currentUser?.uid!!)
         val comments2 = ArrayList<Comments>()
         comments2.add(comments)
         return comments2

@@ -1,16 +1,22 @@
 package com.faizal.bottomnavigation.network
 
+import android.content.Context
 import android.util.Log
 import android.util.NoSuchPropertyException
 import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
+import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.model2.Profile
-import com.faizal.bottomnavigation.utils.Constants
+import com.faizal.bottomnavigation.util.storeUserName
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.GsonBuilder
-import java.lang.reflect.Type
 
 
 class FirbaseReadHandler {
@@ -46,8 +52,28 @@ class FirbaseReadHandler {
         }
     }
 
+    fun storeUserNamePreference(context: Context) {
 
+        val db = FirebaseFirestore.getInstance()
+        val query = db.collection("userinfo").document(currentFirebaseUser!!.uid);
+        query.get()
+                .addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
+                    if (task.isSuccessful) {
+                        addTalentsItems(context,task)
+                    } else {
+                        Log.d("TAG", "Error getting documentss: " + task.exception!!.message)
+                    }
+                }).addOnFailureListener(OnFailureListener { exception -> Log.d("TAG", "Failure getting documents: " + exception.localizedMessage) })
+                .addOnSuccessListener(OnSuccessListener { valu -> Log.d("TAG", "Success getting documents: " + valu) })
+    }
 
+    fun addTalentsItems(context: Context,document: Task<DocumentSnapshot>) {
+
+        var posts  = document.result?.toObject(Profile::class.java)
+
+        storeUserName(context, currentFirebaseUser!!.uid, posts?.name!! )
+
+    }
 
 //    fun getMarkers(param: StringListListener) {
 //        val myDB = FirebaseFirestore.getInstance()

@@ -14,6 +14,6 @@ class PostEvents{
     var expiryDate : String? = null
     var postedDate: String? = null
     var postedBy : String? = null
-    var likes :String? = null
+    var likes :Int? = 0
     var eventState: EventStatus = EventStatus.SHOWING
 }

@@ -24,6 +24,19 @@ fun <T : Any> T?.notNull(function: (it: T) -> Unit) {
     if (this != null) function(this)
 }
 
+fun storeUserName(context: Context, id:String, name:String){
+    val sharedPreference =  context.getSharedPreferences("USER",Context.MODE_PRIVATE)
+    val editor = sharedPreference.edit()
+    editor.putString(id,name)
+    editor.apply()
+}
+
+fun getUserName(context: Context, id:String) :String  {
+    val sharedPreference =  context.getSharedPreferences("USER",Context.MODE_PRIVATE)
+    return sharedPreference.getString(id,"")
+}
+
+
 fun getKeys(keyWords: MutableList<Int>?, context: Context): String? {
 
     var keyTag = "";
