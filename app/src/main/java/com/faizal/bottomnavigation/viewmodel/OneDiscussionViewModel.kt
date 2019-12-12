@@ -13,10 +13,7 @@ import com.faizal.bottomnavigation.adapter.CommentsAdapter
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
-import com.faizal.bottomnavigation.model2.Comments
-import com.faizal.bottomnavigation.model2.Follow
-import com.faizal.bottomnavigation.model2.PostDiscussion
-import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.network.FirbaseReadHandler
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.*
@@ -62,11 +59,79 @@ class OneDiscussionViewModel(private val context: Context,
         }
 
     @get:Bindable
+    var likesState: Boolean? = true
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.likesState)
+        }
+
+    @get:Bindable
     var sponsored: Boolean? = true
         set(city) {
             field = city
             notifyPropertyChanged(BR.sponsored)
         }
+
+    fun updateLikes() = View.OnClickListener {
+
+        if (!handleMultipleClicks()) {
+            var isExist = false
+            var comments2 = getLikes()
+            if (postDiscussion?.likes.isNullOrEmpty()) {
+                postDiscussion?.likes = ArrayList<Likes>()
+            } else {
+                val it: MutableIterator<Likes> = postDiscussion?.likes!!.iterator()
+                while (it.hasNext()) {
+                    val name = it.next()
+                    if (name.likedBy.equals(comments2.likedBy)) {
+                        isExist = true
+                        comments2 = name
+                    }
+                }
+
+
+            }
+
+            if(isExist){
+                postDiscussion?.likes?.remove(comments2)
+            } else {
+                postDiscussion?.likes?.add(comments2)
+            }
+
+            updatelike(isExist)
+
+        }
+    }
+
+    private fun updatelike(exist: Boolean) {
+        FirbaseWriteHandler(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
+            override fun onFailure(e: Exception) {
+                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onSuccess() {
+                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
+
+                likesState = exist
+//                getVal(postDiscussion?.comments)
+//                review = ""
+            }
+        })
+    }
+
+    private fun getLikes(): Likes {
+        val comments = Likes()
+        comments.likedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        comments.likedOn = System.currentTimeMillis().toString()
+        comments.likedUserName = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+//        val comments2 = ArrayList<Likes>()
+//        comments2.add(comments)
+        return comments
+    }
+
+
+
 
     fun updateReview() = View.OnClickListener {
 
