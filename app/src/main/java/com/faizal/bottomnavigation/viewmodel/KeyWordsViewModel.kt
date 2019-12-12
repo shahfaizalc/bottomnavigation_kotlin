@@ -34,7 +34,7 @@ class KeyWordsViewModel(internal val activity: FragmentActivity,
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        listOfCoachings = c.readCoachItems(activity.applicationContext)
+        listOfCoachings = c.readCourseCategory(activity.applicationContext)
     }
 
     @get:Bindable

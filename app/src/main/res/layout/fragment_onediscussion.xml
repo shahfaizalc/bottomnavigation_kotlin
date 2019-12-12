@@ -79,9 +79,12 @@
                     android:paddingEnd="@dimen/dimen_32" />
 
                 <TextView
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginBottom="@dimen/dimen_8"
+
                     android:maxLines="7"
                     android:layout_width="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textAppearance="?android:attr/textAppearanceMediumInverse"
                     android:layout_height="wrap_content"
                     android:text="@{countriesInfoModel.title}"
                     android:textColor="@color/colorBlacklight"/>

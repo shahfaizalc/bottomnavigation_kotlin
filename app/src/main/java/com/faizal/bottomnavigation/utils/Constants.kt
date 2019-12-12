@@ -13,6 +13,7 @@ object Constants {
     internal val FILENAME_CITIES = "india.json"
     internal val FILENAME_COACH = "coach.json"
     internal val FILENAME_DISCUSSION = "discussionstopicc.json"
+    internal val FILENAME_COURSE_CATEGORY = "courses_category.json";
 
     val BROADCAST_FILE_UPDATE = "com.sparks.android.USER_ACTION"
 

@@ -47,7 +47,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        listOfCoachings = c.readCoachItems(context)
+        listOfCoachings = c.readCourseCategory(context)
 
     }
 
@@ -73,7 +73,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         numbersIterator?.let {
             while (numbersIterator.hasNext()) {
                 var value = (numbersIterator.next())
-                result += " " + listOfCoachings!!.get(value - 1).categoryname
+                result += "" + listOfCoachings!!.get(value - 1).categoryname +", "
             }
         }
 

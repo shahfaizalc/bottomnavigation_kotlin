@@ -1,0 +1,139 @@
+{
+  "india": [
+    {
+      "categorycode": "1",
+      "categoryname": "Aerospace Engineering"
+    },
+    {
+      "categorycode": "2",
+      "categoryname": "Architecture"
+    },
+    {
+      "categorycode": "3",
+      "categoryname": "Arts and Media"
+    },
+    {
+      "categorycode": "4",
+      "categoryname": "Biological / Agricultural"
+    },
+    {
+      "categorycode": "5",
+      "categoryname": "Biomedical Engineering"
+    },
+    {
+      "categorycode": "6",
+      "categoryname": "Business Analytics"
+    },
+    {
+      "categorycode": "7",
+      "categoryname": "Chemical / Petroleum"
+    },
+    {
+      "categorycode": "8",
+      "categoryname": "Civil Engineering"
+    },
+    {
+      "categorycode": "9",
+      "categoryname": "Commerce / Finance / Actuarial"
+    },
+    {
+      "categorycode": "10",
+      "categoryname": "Computer Science / Computer Science Engineering"
+    },
+    {
+      "categorycode": "11",
+      "categoryname": "Data Science and Analytics"
+    },
+    {
+      "categorycode": "12",
+      "categoryname": "Dental"
+    },
+    {
+      "categorycode": "13",
+      "categoryname": "Education / Languages / Counselling"
+    },
+    {
+      "categorycode": "14",
+      "categoryname": "Electrical / Electronics / Telecom"
+    },
+    {
+      "categorycode": "15",
+      "categoryname": "Engineering Management (MEM)"
+    },
+    {
+      "categorycode": "16",
+      "categoryname": "Environmental / Mining"
+    },
+    {
+      "categorycode": "17",
+      "categoryname": "Financial Engineering"
+    },
+    {
+      "categorycode": "18",
+      "categoryname": "General Law / International Law"
+    },
+    {
+      "categorycode": "19",
+      "categoryname": "Government / Administrative"
+    },
+    {
+      "categorycode": "20",
+      "categoryname": "Healthcare"
+    },
+    {
+      "categorycode": "21",
+      "categoryname": "Human Resources"
+    },
+    {
+      "categorycode": "22",
+      "categoryname": "Humanities / Journalism"
+    },
+    {
+      "categorycode": "23",
+      "categoryname": "Industrial Engineering and Operations"
+    }
+    ,
+    {
+      "categorycode": "24",
+      "categoryname": "International Management"
+    },
+    {
+      "categorycode": "25",
+      "categoryname": "Management Information System (MIS)"
+    },
+    {
+      "categorycode": "26",
+      "categoryname": "Marketing"
+    },
+    {
+      "categorycode": "27",
+      "categoryname": "Material Science and Engineering"
+    },
+    {
+      "categorycode": "28",
+      "categoryname": "BBA / MBA / Management"
+    },
+    {
+      "categorycode": "29",
+      "categoryname": "Mechanical and Automobile Engineering"
+    }, {
+      "categorycode": "30",
+      "categoryname": "Nano / Nuclear / Power"
+    }, {
+      "categorycode": "31",
+      "categoryname": "Nursing"
+    }, {
+      "categorycode": "32",
+      "categoryname": "Pharmacy"
+    }, {
+      "categorycode": "33",
+      "categoryname": "Pure Science"
+    }, {
+      "categorycode": "34",
+      "categoryname": "Veterinary Science"
+    }, {
+      "categorycode": "35",
+      "categoryname": "Physics / Chemistry / Mathematics"
+    }
+  ]
+}

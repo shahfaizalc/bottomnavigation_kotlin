@@ -39,6 +39,15 @@ class GenericValues {
         return staff.india as ArrayList<CoachItem>
     }
 
+    fun readCourseCategory(context: Context): ArrayList<CoachItem> {
+        val fileString = getFileString(Constants.FILENAME_COURSE_CATEGORY, context)
+        val gson = Gson()
+        val staff = gson.fromJson(fileString, Coaches::class.java)
+        return staff.india as ArrayList<CoachItem>
+    }
+
+
+
     fun readDisuccsionTopics(context: Context): ArrayList<CoachItem> {
         val fileString = getFileString(Constants.FILENAME_DISCUSSION, context)
         val gson = Gson()
