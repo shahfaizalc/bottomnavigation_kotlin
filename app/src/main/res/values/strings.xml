@@ -87,4 +87,7 @@
     <string name="infoMsg">Please write your question</string>
     <string name="likes">%s likes</string>
 
+    <string name="follow">Follow</string>
+    <string name="following">Following</string>
+
 </resources>

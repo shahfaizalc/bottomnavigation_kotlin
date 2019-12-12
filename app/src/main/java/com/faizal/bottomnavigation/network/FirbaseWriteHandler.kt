@@ -5,10 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
-import com.faizal.bottomnavigation.model2.PostDiscussion
-import com.faizal.bottomnavigation.model2.PostEvents
-import com.faizal.bottomnavigation.model2.Profile
-import com.faizal.bottomnavigation.model2.Reviews
+import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_DISCUSSION
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_POSTEVVENT
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
@@ -139,10 +136,10 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 }
     }
 
-    fun updateUserInfoFollowing(userInfo: Profile, emptyResultListener: EmptyResultListener) {
+    fun updateUserInfoFollowing(id:String, userInfo: ArrayList<Follow>, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
-        collection.document(currentFirebaseUser!!.uid).update("following",userInfo.following)
+        collection.document(id).update("following",userInfo)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
 

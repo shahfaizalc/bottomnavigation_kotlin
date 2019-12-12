@@ -116,12 +116,15 @@
                     <TextView
                         android:onClick="@{mainDataModel.addFollowers()}"
                         android:padding="@dimen/dimen_4"
-                        android:background="@drawable/circular_bg_border"
+                        android:background="@{mainDataModel.sponsored ? @drawable/circular_bg_border : @drawable/circular_bg_border_green}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="Follow" />
+                        android:textStyle="bold"
+                        android:textColor="@{mainDataModel.sponsored ? @color/colorGrey : @color/paleGreen}"
+                        android:text="@{mainDataModel.sponsored ? @string/follow : @string/following}"
+                        />
                 </RelativeLayout>
             </LinearLayout>
 

@@ -20,11 +20,9 @@ import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.view.FragmentOneDiscussion
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.UserInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlin.system.measureTimeMillis
 
 
 class OneDiscussionViewModel(private val context: Context,
@@ -43,7 +41,7 @@ class OneDiscussionViewModel(private val context: Context,
     init {
         networkHandler()
         readAutoFillItems()
-        str = getUserName(context,FirebaseAuth.getInstance().currentUser!!.uid);
+        str = getUserName(context, FirebaseAuth.getInstance().currentUser!!.uid);
     }
 
     @get:Bindable
@@ -61,6 +59,13 @@ class OneDiscussionViewModel(private val context: Context,
             notifyPropertyChanged(BR.review)
         }
 
+    @get:Bindable
+    var sponsored: Boolean? = false
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.sponsored)
+        }
+
     fun updateReview() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
@@ -71,13 +76,13 @@ class OneDiscussionViewModel(private val context: Context,
 
             val comments2 = getComment()
 
-            if(listOfCoachings?.comments.isNullOrEmpty()){
+            if (listOfCoachings?.comments.isNullOrEmpty()) {
                 listOfCoachings?.comments = ArrayList<Comments>()
                 listOfCoachings?.comments?.addAll(comments2)
-                 updateComment()}
-            else {
+                updateComment()
+            } else {
                 listOfCoachings?.comments?.addAll(comments2)
-                addcomment()
+                updateComment()
             }
 
         }
@@ -98,34 +103,50 @@ class OneDiscussionViewModel(private val context: Context,
         })
     }
 
-    private fun addcomment() {
-         FirbaseWriteHandler(fragmentSignin).addComment(listOfCoachings!!, object : EmptyResultListener {
-            override fun onFailure(e: Exception) {
-                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onSuccess() {
-                Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
-                getVal(listOfCoachings?.comments)
-                review = ""
-            }
-        })
-    }
-
+//    private fun addcomment() {
+//         FirbaseWriteHandler(fragmentSignin).addComment(listOfCoachings!!, object : EmptyResultListener {
+//            override fun onFailure(e: Exception) {
+//                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+//                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+//            }
+//
+//            override fun onSuccess() {
+//                Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
+//                getVal(listOfCoachings?.comments)
+//                review = ""
+//            }
+//        })
+//    }
 
 
     fun addFollowers() = View.OnClickListener {
         if (!handleMultipleClicks()) {
-            val follw = Follow();
+
+            var follw = Follow();
             follw.followedId = listOfCoachings!!.postedBy!!
             follw.followedOn = System.currentTimeMillis().toString()
+            follw.followedBy = listOfCoachings!!.postedByName ?: ""
 
-
+            var isExist = false
             if (str.followed.isNullOrEmpty()) {
                 str.followed = ArrayList<Follow>()
+            } else {
+                val it: MutableIterator<Follow> = str.followed!!.iterator()
+                while (it.hasNext()) {
+                    val name = it.next()
+                    if (name.followedId.equals(listOfCoachings!!.postedBy)) {
+                        isExist = true
+                        follw = name
+
+                    }
+                }
             }
-            str.followed?.add(follw)
+
+            if(isExist){
+                str.followed?.remove(follw)
+            } else {
+                str.followed?.add(follw)
+            }
 
             FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowed(str, object : EmptyResultListener {
                 override fun onFailure(e: Exception) {
@@ -135,10 +156,12 @@ class OneDiscussionViewModel(private val context: Context,
 
                 override fun onSuccess() {
 
-                    storeUserName(context,FirebaseAuth.getInstance().currentUser!!.uid, str)
+                    storeUserName(context, FirebaseAuth.getInstance().currentUser!!.uid, str)
                     Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
                     getVal(listOfCoachings?.comments)
                     review = ""
+                    sponsored = isExist
+
                 }
             })
         }
@@ -150,7 +173,7 @@ class OneDiscussionViewModel(private val context: Context,
         comments.commment = review ?: ""
         comments.commentedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         comments.commentedOn = System.currentTimeMillis().toString()
-        comments.commentedUserName = getUserName(context,FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+        comments.commentedUserName = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
         val comments2 = ArrayList<Comments>()
         comments2.add(comments)
         return comments2
@@ -196,7 +219,8 @@ class OneDiscussionViewModel(private val context: Context,
 
     fun getVal(postedDat: ArrayList<Comments>?) {
         GlobalScope.launch(context = Dispatchers.Main) {
-            while (userIds == null){}
+            while (userIds == null) {
+            }
             userIds.value = postedDat
         }
     }
