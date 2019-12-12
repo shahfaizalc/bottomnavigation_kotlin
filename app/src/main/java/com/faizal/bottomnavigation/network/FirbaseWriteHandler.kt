@@ -14,7 +14,6 @@ import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_PROFILEPIC
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserInfo
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -122,6 +121,8 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
     }
 
     fun updateUserInfoFollowed(userInfo: Profile, emptyResultListener: EmptyResultListener) {
+        Log.d(TAG, "DocumentSnapshot added ID Current "+currentFirebaseUser!!.uid)
+
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
         collection.document(currentFirebaseUser!!.uid).update("followed",userInfo.followed)
@@ -136,10 +137,13 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 }
     }
 
-    fun updateUserInfoFollowing(id:String, userInfo: ArrayList<Follow>, emptyResultListener: EmptyResultListener) {
+    fun updateUserInfoFollowing(parentid:String, userInfo: Profile, emptyResultListener: EmptyResultListener) {
+        Log.d(TAG, "DocumentSnapshot added ID Currentid "+parentid)
+
+
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
-        collection.document(id).update("following",userInfo)
+        collection.document(parentid).update("following",userInfo.following)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
 

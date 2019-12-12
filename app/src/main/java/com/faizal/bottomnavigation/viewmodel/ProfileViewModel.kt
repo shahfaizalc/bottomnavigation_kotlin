@@ -40,7 +40,7 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
         mAuth = FirebaseAuth.getInstance()
 
         readAutoFillItems()
-        FirbaseReadHandler().getUserInfo(object : UseInfoGeneralResultListener {
+        FirbaseReadHandler().getCurrentUserInfo(object : UseInfoGeneralResultListener {
 
             override fun onSuccess(profile1: Profile) {
                 profile = profile1

@@ -12,10 +12,12 @@ import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.adapter.CommentsAdapter
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
+import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
 import com.faizal.bottomnavigation.model2.Comments
 import com.faizal.bottomnavigation.model2.Follow
 import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.network.FirbaseReadHandler
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.view.FragmentOneDiscussion
@@ -35,13 +37,13 @@ class OneDiscussionViewModel(private val context: Context,
     private var networkStateHandler: NetworkChangeHandler? = null
 
     private var isInternetConnected: Boolean = false
-    var str = Profile()
+    var userProfile = Profile()
 
 
     init {
         networkHandler()
         readAutoFillItems()
-        str = getUserName(context, FirebaseAuth.getInstance().currentUser!!.uid);
+        userProfile = getUserName(context, FirebaseAuth.getInstance().currentUser!!.uid);
     }
 
     @get:Bindable
@@ -60,7 +62,7 @@ class OneDiscussionViewModel(private val context: Context,
         }
 
     @get:Bindable
-    var sponsored: Boolean? = false
+    var sponsored: Boolean? = true
         set(city) {
             field = city
             notifyPropertyChanged(BR.sponsored)
@@ -69,19 +71,19 @@ class OneDiscussionViewModel(private val context: Context,
     fun updateReview() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
-            if (listOfCoachings?.postedBy.isNullOrEmpty() || listOfCoachings?.postedDate.isNullOrEmpty() || review.isNullOrEmpty()) {
+            if (postDiscussion?.postedBy.isNullOrEmpty() || postDiscussion?.postedDate.isNullOrEmpty() || review.isNullOrEmpty()) {
                 Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
 
             val comments2 = getComment()
 
-            if (listOfCoachings?.comments.isNullOrEmpty()) {
-                listOfCoachings?.comments = ArrayList<Comments>()
-                listOfCoachings?.comments?.addAll(comments2)
+            if (postDiscussion?.comments.isNullOrEmpty()) {
+                postDiscussion?.comments = ArrayList<Comments>()
+                postDiscussion?.comments?.addAll(comments2)
                 updateComment()
             } else {
-                listOfCoachings?.comments?.addAll(comments2)
+                postDiscussion?.comments?.addAll(comments2)
                 updateComment()
             }
 
@@ -89,7 +91,7 @@ class OneDiscussionViewModel(private val context: Context,
     }
 
     private fun updateComment() {
-        FirbaseWriteHandler(fragmentSignin).updateDiscussion(listOfCoachings!!, object : EmptyResultListener {
+        FirbaseWriteHandler(fragmentSignin).updateDiscussion(postDiscussion!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                 Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
@@ -97,7 +99,7 @@ class OneDiscussionViewModel(private val context: Context,
 
             override fun onSuccess() {
                 Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
-                getVal(listOfCoachings?.comments)
+                getVal(postDiscussion?.comments)
                 review = ""
             }
         })
@@ -122,49 +124,104 @@ class OneDiscussionViewModel(private val context: Context,
     fun addFollowers() = View.OnClickListener {
         if (!handleMultipleClicks()) {
 
-            var follw = Follow();
-            follw.followedId = listOfCoachings!!.postedBy!!
-            follw.followedOn = System.currentTimeMillis().toString()
-            follw.followedBy = listOfCoachings!!.postedByName ?: ""
+            var currentTime = System.currentTimeMillis().toString()
+
+            var follow = Follow();
+            follow.followedId = postDiscussion!!.postedBy!!
+            follow.followedOn = currentTime
+            follow.followedBy = postDiscussion!!.postedByName ?: ""
 
             var isExist = false
-            if (str.followed.isNullOrEmpty()) {
-                str.followed = ArrayList<Follow>()
+            if (userProfile.followed.isNullOrEmpty()) {
+                userProfile.followed = ArrayList<Follow>()
             } else {
-                val it: MutableIterator<Follow> = str.followed!!.iterator()
+                val it: MutableIterator<Follow> = userProfile.followed!!.iterator()
                 while (it.hasNext()) {
                     val name = it.next()
-                    if (name.followedId.equals(listOfCoachings!!.postedBy)) {
+                    if (name.followedId.equals(postDiscussion!!.postedBy)) {
                         isExist = true
-                        follw = name
+                        follow = name
 
                     }
                 }
             }
 
             if(isExist){
-                str.followed?.remove(follw)
+                userProfile.followed?.remove(follow)
             } else {
-                str.followed?.add(follw)
+                userProfile.followed?.add(follow)
             }
 
-            FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowed(str, object : EmptyResultListener {
+            FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowed(userProfile, object : EmptyResultListener {
                 override fun onFailure(e: Exception) {
-                    Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                    Log.d("TAG", "DocumentSnapshot addFollowers onFailure " + e.message)
                     Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onSuccess() {
 
-                    storeUserName(context, FirebaseAuth.getInstance().currentUser!!.uid, str)
-                    Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
-                    getVal(listOfCoachings?.comments)
+                    storeUserName(context, FirebaseAuth.getInstance().currentUser!!.uid, userProfile)
+                    Log.d("TAG", "DocumentSnapshot onSuccess addFollowers")
+                    getVal(postDiscussion?.comments)
                     review = ""
                     sponsored = isExist
+
+                    addFollowing(currentTime)
 
                 }
             })
         }
+    }
+
+    private fun addFollowing(currentTime: String) {
+
+        var follow = Follow();
+        follow.followedId = FirebaseAuth.getInstance().currentUser!!.uid
+        follow.followedOn = currentTime
+        follow.followedBy = userProfile.name ?: ""
+
+        FirbaseReadHandler().getSepcificUserInfo(postDiscussion?.postedBy!! ,object : UseInfoGeneralResultListener {
+
+            override fun onSuccess(profile1: Profile) {
+
+                var isExist = false
+                if (profile1.following.isNullOrEmpty()) {
+                    profile1.following = ArrayList<Follow>()
+                } else {
+                    val it: MutableIterator<Follow> = profile1.following!!.iterator()
+                    while (it.hasNext()) {
+                        val name = it.next()
+                        if (name.followedId.equals(follow.followedId)) {
+                            isExist = true
+                            follow = name
+
+                        }
+                    }
+                }
+
+                if(isExist){
+                    profile1.following?.remove(follow)
+                } else {
+                    profile1.following?.add(follow)
+                }
+
+                FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowing(postDiscussion!!.postedBy!!,profile1, object : EmptyResultListener {
+                    override fun onFailure(e: Exception) {
+                        Log.d("TAG", "DocumentSnapshot addFollowing onFailure " + e.message)
+                        Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onSuccess() {
+                        Log.d("TAG", "DocumentSnapshot onSuccess addFollowing")
+                    }
+                })
+
+            }
+
+            override fun onFailure(e: Exception) {
+            }
+        })
+
     }
 
 
@@ -183,13 +240,13 @@ class OneDiscussionViewModel(private val context: Context,
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        listOfCoachings = c.getDisccussion(postAdObj, context)
-        getVal(listOfCoachings?.comments)
+        postDiscussion = c.getDisccussion(postAdObj, context)
+        getVal(postDiscussion?.comments)
 
     }
 
     @get:Bindable
-    var listOfCoachings: PostDiscussion? = null
+    var postDiscussion: PostDiscussion? = null
         private set(roleAdapterAddress) {
             field = roleAdapterAddress
             notifyPropertyChanged(BR.roleAdapterAddress)
@@ -203,7 +260,7 @@ class OneDiscussionViewModel(private val context: Context,
     }
 
     @get:Bindable
-    var keyWordsTagg: String? = getDiscussionKeys(listOfCoachings!!.keyWords, context).toString()
+    var keyWordsTagg: String? = getDiscussionKeys(postDiscussion!!.keyWords, context).toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.keyWordsTagg)
@@ -211,7 +268,7 @@ class OneDiscussionViewModel(private val context: Context,
 
 
     @get:Bindable
-    var postedDate: String? = listOfCoachings!!.postedDate?.toLong()?.let { convertLongToTime(it) }.toString()
+    var postedDate: String? = postDiscussion!!.postedDate?.toLong()?.let { convertLongToTime(it) }.toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.postedDate)

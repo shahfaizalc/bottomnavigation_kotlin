@@ -26,9 +26,17 @@ class FirbaseReadHandler {
         currentFirebaseUser = FirebaseAuth.getInstance().currentUser
     }
 
-    fun getUserInfo(useInfoGeneralResultListener: UseInfoGeneralResultListener) {
+    fun getCurrentUserInfo(useInfoGeneralResultListener: UseInfoGeneralResultListener) {
+        getProfile(currentFirebaseUser!!.uid, useInfoGeneralResultListener)
+    }
+
+    fun getSepcificUserInfo(id:String , useInfoGeneralResultListener: UseInfoGeneralResultListener) {
+        getProfile(id, useInfoGeneralResultListener)
+    }
+
+    private fun getProfile(id : String, useInfoGeneralResultListener: UseInfoGeneralResultListener) {
         val myDB = FirebaseFirestore.getInstance()
-        val docRef = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO).document(currentFirebaseUser!!.uid)
+        val docRef = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO).document(id)
 
         docRef.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -37,7 +45,7 @@ class FirbaseReadHandler {
                     val gson = GsonBuilder().create()
                     val json = gson.toJson(document.data)
 
-                    val userInfoGeneral = gson.fromJson<Profile>(json, Profile::class.java )
+                    val userInfoGeneral = gson.fromJson<Profile>(json, Profile::class.java)
                     useInfoGeneralResultListener.onSuccess(userInfoGeneral)
 
                     Log.d(TAG, "getUserInfo success ")
@@ -51,6 +59,8 @@ class FirbaseReadHandler {
             }
         }
     }
+
+
 
     fun storeUserNamePreference(context: Context) {
 
