@@ -140,7 +140,7 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
 
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
-        collection.document(currentFirebaseUser!!.uid).update("followed",userInfo.followed)
+        collection.document(currentFirebaseUser!!.uid).update("following",userInfo.following)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
 
@@ -158,7 +158,7 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
 
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
-        collection.document(parentid).update("following",userInfo.following)
+        collection.document(parentid).update("followers",userInfo.followers)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
 

@@ -59,18 +59,54 @@ class OneDiscussionViewModel(private val context: Context,
         }
 
     @get:Bindable
-    var likesState: Boolean? = true
+    var likesState: Boolean? = isLiked()
         set(city) {
             field = city
             notifyPropertyChanged(BR.likesState)
         }
 
+
+
     @get:Bindable
-    var sponsored: Boolean? = true
+    var sponsored: Boolean? = isFollowed()
         set(city) {
             field = city
             notifyPropertyChanged(BR.sponsored)
         }
+
+    private fun isLiked(): Boolean? {
+
+        var isFollow = false
+        postDiscussion?.likes.notNull {
+            val it: MutableIterator<Likes> = it.iterator()
+            while (it.hasNext()) {
+                val name = it.next()
+                if (name.likedBy.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
+                    isFollow = true
+                }
+            }
+        }
+
+        return isFollow
+    }
+
+    private fun isFollowed(): Boolean? {
+
+        var isFollow = false
+        val user = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!);
+
+        user.following.notNull {
+            val it: MutableIterator<Follow> = it.iterator()
+            while (it.hasNext()) {
+                val name = it.next()
+                if (name.userId.equals(postDiscussion?.postedBy)) {
+                    isFollow = true
+                }
+            }
+        }
+
+        return isFollow
+    }
 
     fun updateLikes() = View.OnClickListener {
 
@@ -88,7 +124,6 @@ class OneDiscussionViewModel(private val context: Context,
                         comments2 = name
                     }
                 }
-
 
             }
 
@@ -130,9 +165,6 @@ class OneDiscussionViewModel(private val context: Context,
         return comments
     }
 
-
-
-
     fun updateReview() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
@@ -170,40 +202,24 @@ class OneDiscussionViewModel(private val context: Context,
         })
     }
 
-//    private fun addcomment() {
-//         FirbaseWriteHandler(fragmentSignin).addComment(listOfCoachings!!, object : EmptyResultListener {
-//            override fun onFailure(e: Exception) {
-//                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-//                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-//            }
-//
-//            override fun onSuccess() {
-//                Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
-//                getVal(listOfCoachings?.comments)
-//                review = ""
-//            }
-//        })
-//    }
-
-
     fun addFollowers() = View.OnClickListener {
         if (!handleMultipleClicks()) {
 
             var currentTime = System.currentTimeMillis().toString()
 
             var follow = Follow();
-            follow.followedId = postDiscussion!!.postedBy!!
-            follow.followedOn = currentTime
-            follow.followedBy = postDiscussion!!.postedByName ?: ""
+            follow.userId = postDiscussion!!.postedBy!!
+            follow.fromDate = currentTime
+            follow.userName = postDiscussion!!.postedByName ?: ""
 
             var isExist = false
-            if (userProfile.followed.isNullOrEmpty()) {
-                userProfile.followed = ArrayList<Follow>()
+            if (userProfile.following.isNullOrEmpty()) {
+                userProfile.following = ArrayList<Follow>()
             } else {
-                val it: MutableIterator<Follow> = userProfile.followed!!.iterator()
+                val it: MutableIterator<Follow> = userProfile.following!!.iterator()
                 while (it.hasNext()) {
                     val name = it.next()
-                    if (name.followedId.equals(postDiscussion!!.postedBy)) {
+                    if (name.userId.equals(postDiscussion!!.postedBy)) {
                         isExist = true
                         follow = name
 
@@ -212,9 +228,9 @@ class OneDiscussionViewModel(private val context: Context,
             }
 
             if(isExist){
-                userProfile.followed?.remove(follow)
+                userProfile.following?.remove(follow)
             } else {
-                userProfile.followed?.add(follow)
+                userProfile.following?.add(follow)
             }
 
             FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowed(userProfile, object : EmptyResultListener {
@@ -229,7 +245,7 @@ class OneDiscussionViewModel(private val context: Context,
                     Log.d("TAG", "DocumentSnapshot onSuccess addFollowers")
                     getVal(postDiscussion?.comments)
                     review = ""
-                    sponsored = isExist
+                    sponsored = !isExist
 
                     addFollowing(currentTime)
 
@@ -241,22 +257,22 @@ class OneDiscussionViewModel(private val context: Context,
     private fun addFollowing(currentTime: String) {
 
         var follow = Follow();
-        follow.followedId = FirebaseAuth.getInstance().currentUser!!.uid
-        follow.followedOn = currentTime
-        follow.followedBy = userProfile.name ?: ""
+        follow.userId = FirebaseAuth.getInstance().currentUser!!.uid
+        follow.fromDate = currentTime
+        follow.userName = userProfile.name ?: ""
 
         FirbaseReadHandler().getSepcificUserInfo(postDiscussion?.postedBy!! ,object : UseInfoGeneralResultListener {
 
             override fun onSuccess(profile1: Profile) {
 
                 var isExist = false
-                if (profile1.following.isNullOrEmpty()) {
-                    profile1.following = ArrayList<Follow>()
+                if (profile1.followers.isNullOrEmpty()) {
+                    profile1.followers = ArrayList<Follow>()
                 } else {
-                    val it: MutableIterator<Follow> = profile1.following!!.iterator()
+                    val it: MutableIterator<Follow> = profile1.followers!!.iterator()
                     while (it.hasNext()) {
                         val name = it.next()
-                        if (name.followedId.equals(follow.followedId)) {
+                        if (name.userId.equals(follow.userId)) {
                             isExist = true
                             follow = name
 
@@ -265,9 +281,9 @@ class OneDiscussionViewModel(private val context: Context,
                 }
 
                 if(isExist){
-                    profile1.following?.remove(follow)
+                    profile1.followers?.remove(follow)
                 } else {
-                    profile1.following?.add(follow)
+                    profile1.followers?.add(follow)
                 }
 
                 FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowing(postDiscussion!!.postedBy!!,profile1, object : EmptyResultListener {
@@ -288,7 +304,6 @@ class OneDiscussionViewModel(private val context: Context,
         })
 
     }
-
 
     private fun getComment(): ArrayList<Comments> {
         val comments = Comments()
