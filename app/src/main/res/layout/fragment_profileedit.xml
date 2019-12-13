@@ -129,11 +129,34 @@
                     android:textColor="@color/darkBlue" />
 
                 <EditText
-                    android:editable="false"
+                    android:enabled="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
                     android:text="@={homeData.userEmail}"
+                    android:textColor="@color/colorBlack" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_4"
+                    android:gravity="center"
+                    android:text="User id"
+                    android:textColor="@color/darkBlue" />
+
+                <EditText
+                    android:digits="0,1,2,3,4,5,6,7,8,9,abcdefghijklmnopqrstuvwxyz,_"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dimen_16"
+                    android:text="@={homeData.userTitle}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
@@ -159,30 +182,6 @@
                     android:text="@={homeData.userPhone}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/dimen_4"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_4"
-                    android:gravity="center"
-                    android:text="Title"
-
-                    android:textColor="@color/darkBlue" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.userTitle}"
-                    android:textColor="@color/colorBlack" />
-            </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
