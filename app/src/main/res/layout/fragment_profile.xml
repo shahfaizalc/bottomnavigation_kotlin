@@ -17,23 +17,70 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/colorSmoke"
             android:orientation="vertical"
-            android:padding="@dimen/dimen_16">
+            android:paddingEnd="@dimen/dimen_16"
+            android:paddingStart="@dimen/dimen_16"
+            android:paddingTop="@dimen/dimen_8"
+            android:paddingBottom="@dimen/dimen_16">
+
+
+        <LinearLayout
+            android:background="@drawable/circular_bg_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:weightSum="4"
+            android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_margin="@dimen/dimen_4"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> homeData.findClickded()}"
+                android:padding="@dimen/dimen_8"
+                android:src="@drawable/help_circle" />
+
+
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> homeData.findClickded()}"
+                android:padding="@dimen/dimen_8"
+                android:src="@drawable/information" />
+
+
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> homeData.findClickded()}"
+                android:padding="@dimen/dimen_8"
+                android:src="@drawable/settings" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:onClick="@{() -> homeData.findClickded()}"
                 android:padding="@dimen/dimen_8"
                 android:src="@drawable/account_edit" />
 
+
+        </LinearLayout>
+
+
+
             <LinearLayout
+                android:layout_marginTop="@dimen/dimen_8"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@drawable/circular_bg_border"
+                android:background="@drawable/circular_bg_white"
                 android:orientation="horizontal"
                 android:weightSum="4">
 
@@ -56,8 +103,8 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/dimen_16"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_8"
                     android:layout_weight="3"
                     android:orientation="vertical">
 
@@ -73,6 +120,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@={homeData.userEmail}"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="userId"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -117,61 +171,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorGreyLight"
-                app:cardCornerRadius="@dimen/dimen_4"
-                app:cardElevation="@dimen/dimen_4">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dimen_8">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Short Desc"
-                        android:textColor="@color/darkBlue" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@={homeData.userDesc}"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorGreyLight"
-                app:cardCornerRadius="@dimen/dimen_4"
-                app:cardElevation="@dimen/dimen_4">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dimen_8">
-
-                    <Switch
-                        android:clickable="false"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checked="@={homeData.userAvailability}"
-                        android:text="Availability"
-                        android:textColor="@color/darkBlue" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
 
             <androidx.cardview.widget.CardView
@@ -205,34 +205,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorGreyLight"
-                app:cardCornerRadius="@dimen/dimen_4"
-                app:cardElevation="@dimen/dimen_4">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dimen_8">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="More Information"
-                        android:textColor="@color/darkBlue" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@={homeData.userMoreInfo}"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -252,7 +225,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Key Words"
+                        android:text="Course"
                         android:textColor="@color/darkBlue" />
 
                     <TextView

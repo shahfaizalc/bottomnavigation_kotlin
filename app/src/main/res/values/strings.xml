@@ -90,4 +90,17 @@
     <string name="follow">Follow</string>
     <string name="following">Following</string>
 
+
+    <string name="course">Course</string>
+    <string name="dreamOrg">Dream University \/ College</string>
+    <string name="admission_merit">Merit</string>
+    <string name="admission_management">Management</string>
+    <string name="admission_both">Merit and Management</string>
+    <string name="admission">Admission</string>
+    <string name="course_typeBachelors">Bachelors</string>
+    <string name="course_typeMasters">Masters</string>
+    <string name="course_type">Interests of Course </string>
+    <string name="course_typeDoctorate">Doctorate</string>
+
+
 </resources>

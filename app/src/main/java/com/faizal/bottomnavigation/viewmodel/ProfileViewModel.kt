@@ -47,7 +47,8 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
                 userName = profile1.name ?: ""
                 storeUserName(context,mAuth.currentUser?.uid!!,profile)
                 userEmail = profile1.email?: ""
-                userTitle = profile1.phone?: ""
+                userTitle = profile1.title?: ""
+                userPhone = profile1.phone?: ""
                 userDesc = profile1.desc?: ""
                 userMoreInfo = profile1.moreInformation?: ""
                 userAvailability = profile1.availability
@@ -90,7 +91,7 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
     }
 
     private fun getAddress() = " " + profile.address.let { " " + (it?.locationname ?:  "") + "\n " + (it?.streetName
-            ?:  "") + "\n " + (it?.town ?:  "") + "\n " + (it?.city ?: "") }
+            ?:  "") + ", " + (it?.town ?:  "") + "\n " + (it?.city ?: "") }
 
 
     var imgUrl = ""
