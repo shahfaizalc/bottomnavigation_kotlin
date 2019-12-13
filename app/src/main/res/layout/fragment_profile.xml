@@ -33,32 +33,45 @@
             android:weightSum="5"
             android:orientation="horizontal">
 
+
             <TextView
-                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/account_edit"
                 android:gravity="center_horizontal"
+                android:onClick="@{() -> homeData.findClickded()}"
+                android:padding="@dimen/dimen_8"
+                android:text="Edit Account"
                 android:textSize="@dimen/dimen_8"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/forum"
+                android:gravity="center_horizontal"
+                android:onClick="@{() -> homeData.myDiscussionsClicked()}"
+                android:padding="@dimen/dimen_8"
                 android:text="My Discussions"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:onClick="@{() -> homeData.findClickded()}"
-                android:padding="@dimen/dimen_8"
-                android:drawableTop="@drawable/forum" />
+                android:textSize="@dimen/dimen_8"
+                android:textStyle="bold" />
 
             <TextView
-                android:textStyle="bold"
-                android:textSize="@dimen/dimen_8"
-                android:gravity="center_horizontal"
-                android:text="Help"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/help_circle"
+                android:gravity="center_horizontal"
                 android:onClick="@{() -> homeData.findClickded()}"
                 android:padding="@dimen/dimen_8"
-                android:drawableTop="@drawable/help_circle" />
-
+                android:text="Help"
+                android:textSize="@dimen/dimen_8"
+                android:textStyle="bold" />
 
             <TextView
                 android:text="Information"
@@ -87,22 +100,7 @@
                 android:padding="@dimen/dimen_8"
                 android:drawableTop="@drawable/settings" />
 
-            <TextView
-                android:gravity="center_horizontal"
-                android:textStyle="bold"
-                android:text="Edit Account"
-                android:layout_width="0dp"
-                android:textSize="@dimen/dimen_8"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:onClick="@{() -> homeData.findClickded()}"
-                android:padding="@dimen/dimen_8"
-                android:drawableTop="@drawable/account_edit" />
-
-
         </LinearLayout>
-
 
 
             <LinearLayout

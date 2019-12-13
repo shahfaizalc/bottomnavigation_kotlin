@@ -91,7 +91,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
 
     var imgUrl = ""
-    
+
 
     @get:Bindable
     var userEmail: String? = FirebaseAuth.getInstance().currentUser?.email

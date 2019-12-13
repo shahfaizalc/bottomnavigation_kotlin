@@ -18,6 +18,7 @@ import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.notNull
 import com.faizal.bottomnavigation.util.storeUserName
 import com.faizal.bottomnavigation.utils.Constants
+import com.faizal.bottomnavigation.view.FragmentMyDiscussions
 import com.faizal.bottomnavigation.view.FragmentProfile
 import com.faizal.bottomnavigation.view.FragmentProfileEdit
 import com.faizal.bottomnavigation.view.FragmentWelcome
@@ -178,6 +179,16 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
     fun findClickded() {
         Log.d("tag", "taggg")
         val fragment = FragmentProfileEdit()
+        val bundle = Bundle()
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+    }
+
+
+    fun myDiscussionsClicked() {
+        Log.d("tag", "taggg")
+        val fragment = FragmentMyDiscussions()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
         fragment.setArguments(bundle)
