@@ -8,6 +8,10 @@
         <variable
             name="homeData"
             type="com.faizal.bottomnavigation.viewmodel.ProfileEditViewModel" />
+
+        <variable
+            name="profile"
+            type="com.faizal.bottomnavigation.model2.Profile" />
     </data>
 
     <ScrollView
@@ -82,7 +86,7 @@
                 <Switch
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="@={homeData.userAvailability}"
+                    android:checked="@={profile.availability}"
                     android:text="Availability"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
@@ -107,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.userName}"
+                    android:text="@={profile.name}"
                     android:textColor="@color/colorBlack" />
 
             </LinearLayout>
@@ -156,7 +160,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.userTitle}"
+                    android:text="@={profile.title}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
@@ -179,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.userPhone}"
+                    android:text="@={profile.phone}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
@@ -202,7 +206,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_16"
-                    android:text="@={homeData.userMoreInfo}"
+                    android:text="@={profile.moreInformation}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 

@@ -30,6 +30,7 @@ class FragmentProfileEdit : BaseFragment() {
             binding = DataBindingUtil.inflate<FragmentProfileeditBinding>(inflater, R.layout.fragment_profileedit, container, false)
             areaViewModel = ProfileEditViewModel(this.context!!, this,postAdObj)
             binding!!.homeData = areaViewModel
+            binding!!.profile = areaViewModel.profile
         }
         return binding!!.root
     }

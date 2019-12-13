@@ -91,25 +91,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
 
     var imgUrl = ""
-
-    @get:Bindable
-    var userAvailability: Boolean = profile.availability
-        set(price) {
-            field = price
-            profile.availability = price
-            notifyPropertyChanged(BR.userAvailability)
-
-        }
-
-
-    @get:Bindable
-    var userName: String? = profile.name
-        set(price) {
-            field = price
-            profile.name = price
-            notifyPropertyChanged(BR.userName)
-
-        }
+    
 
     @get:Bindable
     var userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
@@ -120,47 +102,12 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
         }
 
-    @get:Bindable
-    var userTitle: String? = profile.title
-        set(price) {
-            field = price
-            profile.title = price
-            notifyPropertyChanged(BR.userTitle)
-
-        }
-
-    @get:Bindable
-    var userPhone: String? = profile.phone
-        set(price) {
-            field = price
-            profile.phone = price
-            notifyPropertyChanged(BR.userPhone)
-
-        }
-
-    @get:Bindable
-    var userDesc: String? = profile.desc
-        set(price) {
-            field = price
-            profile.desc = price
-            notifyPropertyChanged(BR.userDesc)
-
-        }
 
     @get:Bindable
     var userAddress: String? = getAddress()
         set(price) {
             field = price
             notifyPropertyChanged(BR.userAddress)
-
-        }
-
-    @get:Bindable
-    var userMoreInfo: String? = profile.moreInformation
-        set(price) {
-            field = price
-            profile.moreInformation = price
-            notifyPropertyChanged(BR.userMoreInfo)
 
         }
 
