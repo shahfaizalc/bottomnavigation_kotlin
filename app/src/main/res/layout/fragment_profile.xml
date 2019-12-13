@@ -12,12 +12,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorSmoke"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_gradiant_green"
             android:orientation="vertical"
             android:paddingEnd="@dimen/dimen_16"
             android:paddingStart="@dimen/dimen_16"
@@ -26,50 +26,79 @@
 
 
         <LinearLayout
-            android:background="@drawable/circular_bg_border"
+            android:background="@drawable/circular_bg_border_smoke"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:weightSum="4"
+            android:weightSum="5"
             android:orientation="horizontal">
 
-            <ImageView
+            <TextView
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/dimen_8"
+                android:text="My Discussions"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:onClick="@{() -> homeData.findClickded()}"
                 android:padding="@dimen/dimen_8"
-                android:src="@drawable/help_circle" />
+                android:drawableTop="@drawable/forum" />
 
-
-            <ImageView
+            <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/dimen_8"
+                android:gravity="center_horizontal"
+                android:text="Help"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:onClick="@{() -> homeData.findClickded()}"
                 android:padding="@dimen/dimen_8"
-                android:src="@drawable/information" />
+                android:drawableTop="@drawable/help_circle" />
 
 
-            <ImageView
+            <TextView
+                android:text="Information"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/dimen_8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> homeData.findClickded()}"
+                android:padding="@dimen/dimen_8"
+                android:drawableTop="@drawable/information" />
+
+
+            <TextView
+                android:textSize="@dimen/dimen_8"
+                android:textStyle="bold"
+                android:text="Settings"
+                android:gravity="center_horizontal"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:onClick="@{() -> homeData.findClickded()}"
                 android:padding="@dimen/dimen_8"
-                android:src="@drawable/settings" />
+                android:drawableTop="@drawable/settings" />
 
-            <ImageView
+            <TextView
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:text="Edit Account"
                 android:layout_width="0dp"
+                android:textSize="@dimen/dimen_8"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:onClick="@{() -> homeData.findClickded()}"
                 android:padding="@dimen/dimen_8"
-                android:src="@drawable/account_edit" />
+                android:drawableTop="@drawable/account_edit" />
 
 
         </LinearLayout>
@@ -141,15 +170,10 @@
             </LinearLayout>
 
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorGreyLight"
-                app:cardCornerRadius="@dimen/dimen_4"
-                app:cardElevation="@dimen/dimen_4">
 
                 <LinearLayout
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:background="@drawable/circular_bg_white"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -169,21 +193,11 @@
                         android:textColor="@color/black" />
 
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorGreyLight"
-                app:cardCornerRadius="@dimen/dimen_4"
-                app:cardElevation="@dimen/dimen_4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:background="@drawable/circular_bg_white"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="@dimen/dimen_8">
@@ -203,21 +217,11 @@
 
 
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8"
-                app:cardBackgroundColor="@color/colorGreyLight"
-                app:cardCornerRadius="@dimen/dimen_4"
-                app:cardElevation="@dimen/dimen_4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/circular_bg_white"
                     android:orientation="vertical"
                     android:padding="@dimen/dimen_8">
 
@@ -234,7 +238,6 @@
                         android:text="@={homeData.keywords}"
                         android:textColor="@color/black" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
             <Button
                 android:layout_width="match_parent"

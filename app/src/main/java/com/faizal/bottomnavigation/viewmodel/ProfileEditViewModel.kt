@@ -23,6 +23,7 @@ import com.faizal.bottomnavigation.view.FragmentAddress
 import com.faizal.bottomnavigation.view.FragmentKeyWords
 import com.faizal.bottomnavigation.view.FragmentProfile
 import com.faizal.bottomnavigation.view.FragmentProfileEdit
+import com.google.firebase.auth.FirebaseAuth
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.ArrayList
@@ -63,7 +64,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     }
 
     private fun getAddress() = " " + profile.address?.locationname + "\n " + profile.address?.streetName +
-            "\n " + profile.address?.town + "\n " + profile.address?.city
+            ", " + profile.address?.town + "\n " + profile.address?.city
 
     private fun getKeyWords(): String {
 
@@ -111,7 +112,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var userEmail: String? = profile.email
+    var userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
         set(price) {
             field = price
             profile.email = price

@@ -46,7 +46,7 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
                 profile = profile1
                 userName = profile1.name ?: ""
                 storeUserName(context,mAuth.currentUser?.uid!!,profile)
-                userEmail = profile1.email?: ""
+                userEmail = mAuth.currentUser?.email ?: ""
                 userTitle = profile1.title?: ""
                 userPhone = profile1.phone?: ""
                 userDesc = profile1.desc?: ""
