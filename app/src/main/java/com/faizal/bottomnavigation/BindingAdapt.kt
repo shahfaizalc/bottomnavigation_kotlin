@@ -627,6 +627,22 @@ fun adapter(recyclerView: RecyclerView, profileInfoViewModel: OneDiscussionViewM
 
 }
 
+
+@BindingAdapter("app:searchRecycler")
+fun adapter(recyclerView: RecyclerView, profileInfoViewModel: MyOneDiscussionViewModel ) {
+
+    val emptySting = "";
+    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+    val adapter = Comments2Adapter()
+    recyclerView.adapter = adapter
+    (recyclerView.adapter as Comments2Adapter).setModel(profileInfoViewModel)
+    // (recyclerView.adapter as RatingsAdapter).setData(profileInfoViewModel.userIds)
+
+    profileInfoViewModel.adapter = recyclerView.adapter as Comments2Adapter
+
+}
+
+
 @BindingAdapter("app:imageUrl")
 fun loadImage(view: ImageView, imageUrl: String?) {
     val i = TextUtils.isEmpty(imageUrl)

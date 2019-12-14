@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.RadioGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
@@ -53,6 +54,7 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
     }
 
 
+
     @get:Bindable
     var finderTitle: String? = activity.resources.getString(R.string.finderEventTitle)
         set(city) {
@@ -72,7 +74,7 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
 
 
     fun openFragment2(postAdModel: PostDiscussion, position: Int) {
-        val fragment = FragmentOneDiscussion()
+        val fragment = FragmentMyOneDiscussion()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
         fragment.setArguments(bundle)
@@ -93,6 +95,8 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
         fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
 
     }
+
+
     fun doGetTalents() {
 
 
