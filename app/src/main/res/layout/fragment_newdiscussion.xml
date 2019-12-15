@@ -20,7 +20,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical"
                 android:padding="@dimen/dimen_16">
@@ -28,14 +28,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_4"
-                    android:text="Start a new discussion"
+                    android:text="@string/startdiscussion"
                     android:textColor="@color/orange"
                     android:textStyle="bold"
                     android:textSize="@dimen/dimen_20"/>
 
                 <EditText
-                    android:layout_marginLeft="@dimen/dimen_4"
                     android:background="@android:color/transparent"
                     android:gravity="top"
                     android:layout_width="match_parent"

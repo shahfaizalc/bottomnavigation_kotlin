@@ -2,11 +2,11 @@
   "india": [
     {
       "categorycode": "1",
-      "categoryname": "Exam Prepartion"
+      "categoryname": "Application Information"
     },
     {
       "categorycode": "2",
-      "categoryname": "Exam dates"
+      "categoryname": "Admission Information"
     },
     {
       "categorycode": "3",
@@ -30,22 +30,22 @@
     },
     {
       "categorycode": "8",
-      "categoryname": "Applicatin Information"
-    },
-    {
-      "categorycode": "9",
-      "categoryname": "Admission Information"
-    },
-    {
-      "categorycode": "10",
       "categoryname": "Education Loan"
     },
     {
-      "categorycode": "10",
-      "categoryname": "Fee Structure"
+      "categorycode": "9",
+      "categoryname": "Exam Preparation"
     },
     {
       "categorycode": "10",
+      "categoryname": "Exam dates"
+    },
+    {
+      "categorycode": "11",
+      "categoryname": "Fee Structure"
+    },
+    {
+      "categorycode": "12",
       "categoryname": "Others"
     }
   ]

@@ -104,6 +104,7 @@
     <string name="course_type">Interests of Courses</string>
 
     <string name="graduation_type">Interests of Graduation</string>
+    <string name="startdiscussion">Start a new discussion</string>
 
     <string-array name="graduation_type">
         <item>Bachelors</item>
