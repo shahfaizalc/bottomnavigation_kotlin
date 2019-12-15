@@ -110,11 +110,23 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="@dimen/dimen_4"
-                        android:background="@{mainDataModel.likesState ? @drawable/circular_bg_border_green : @drawable/circular_bg_border  }"
+                        android:background="@drawable/circular_bg_border_green"
                         android:drawableLeft="@drawable/like"
-                        android:textColor="@{mainDataModel.likesState ? @color/paleGreen : @color/colorGrey  }"
+                        android:textColor="@color/paleGreen"
                         android:textStyle="bold"
                         android:text="@{Integer.toString(countriesInfoModel.likes.size())}"
+                        />
+                    <TextView
+                        android:padding="@dimen/dimen_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/circular_bg_border_red"
+                        android:textColor="@color/red"
+                        android:textStyle="bold"
+                        android:text="Delete"
+                        android:onClick="@{mainDataModel.deletepost()}"
                         />
 
                 </RelativeLayout>

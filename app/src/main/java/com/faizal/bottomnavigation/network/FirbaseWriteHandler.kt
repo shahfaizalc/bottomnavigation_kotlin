@@ -90,13 +90,12 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 }
     }
 
-    fun updateDiscussion(userInfo: PostDiscussion, emptyResultListener: EmptyResultListener) {
+    fun updateDiscussion(discussion: PostDiscussion, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)
-        collection.document(userInfo.postedDate!!).set(userInfo)
+        collection.document(discussion.postedDate!!).set(discussion)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
-
                     Log.d(TAG, "DocumentSnapshot added ")
                 }
                 .addOnFailureListener { e ->
@@ -105,6 +104,19 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 }
     }
 
+    fun deleteDiscussion(discussion: PostDiscussion, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)
+        collection.document(discussion.postedDate!!).delete()
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
 
     fun updateLikes(userInfo: PostDiscussion, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()

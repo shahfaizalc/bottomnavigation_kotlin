@@ -31,7 +31,7 @@ class MyOneDiscussionViewModel(private val context: Context,
                                internal val postAdObj: String) : BaseObservable(),
         NetworkChangeHandler.NetworkChangeListener {
 
-    private val TAG = "RequestComplete  "
+    private val TAG = "MyOneDiscussion"
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
@@ -60,55 +60,24 @@ class MyOneDiscussionViewModel(private val context: Context,
             notifyPropertyChanged(BR.review)
         }
 
-    @get:Bindable
-    var likesState: Boolean? = isLiked()
-        set(city) {
-            field = city
-            notifyPropertyChanged(BR.likesState)
-        }
+   fun deletepost()= View.OnClickListener{
 
+       if (!handleMultipleClicks()) {
+           FirbaseWriteHandler(fragmentSignin).deleteDiscussion(postDiscussion!!, object : EmptyResultListener {
+               override fun onFailure(e: Exception) {
+                   Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                   Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+               }
 
+               override fun onSuccess() {
+                   Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
+                   getVal(postDiscussion?.comments)
+                   review = ""
+               }
+           })
 
-    @get:Bindable
-    var sponsored: Boolean? = isFollowed()
-        set(city) {
-            field = city
-            notifyPropertyChanged(BR.sponsored)
-        }
-
-    private fun isLiked(): Boolean? {
-
-        var isFollow = false
-        postDiscussion?.likes.notNull {
-            val it: MutableIterator<Likes> = it.iterator()
-            while (it.hasNext()) {
-                val name = it.next()
-                if (name.likedBy.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
-                    isFollow = true
-                }
-            }
-        }
-
-        return isFollow
-    }
-
-    private fun isFollowed(): Boolean? {
-
-        var isFollow = false
-        val user = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!);
-
-        user.following.notNull {
-            val it: MutableIterator<Follow> = it.iterator()
-            while (it.hasNext()) {
-                val name = it.next()
-                if (name.userId.equals(postDiscussion?.postedBy)) {
-                    isFollow = true
-                }
-            }
-        }
-
-        return isFollow
-    }
+       }
+   }
 
 
     fun updateReview() = View.OnClickListener {
