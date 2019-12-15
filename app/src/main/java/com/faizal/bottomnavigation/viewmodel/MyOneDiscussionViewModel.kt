@@ -147,7 +147,7 @@ class MyOneDiscussionViewModel(private val context: Context,
             }
         })
     }
-    
+
     private fun getComment(): ArrayList<Comments> {
         val comments = Comments()
         comments.commment = review ?: ""

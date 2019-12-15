@@ -14,5 +14,6 @@ class PostDiscussion{
     var eventState: EventStatus = EventStatus.SHOWING
     var comments: ArrayList<Comments>? = null
     var likes: ArrayList<Likes>? = null
+    var bookmarks: ArrayList<Bookmarks>? = null
 
 }

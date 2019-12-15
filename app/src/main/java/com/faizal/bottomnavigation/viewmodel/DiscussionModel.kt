@@ -4,7 +4,6 @@ package com.faizal.bottomnavigation.viewmodel
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.RadioGroup
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
@@ -12,13 +11,12 @@ import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.model.CoachItem
-import com.faizal.bottomnavigation.model.IndiaItem
+import com.faizal.bottomnavigation.model2.Likes
 import com.faizal.bottomnavigation.model2.PostDiscussion
-import com.faizal.bottomnavigation.model2.PostEvents
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
+import com.faizal.bottomnavigation.util.notNull
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.android.gms.tasks.OnCompleteListener
@@ -30,9 +28,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import java.util.*
 
-class DiscussionModel(internal var activity: FragmentActivity, internal val fragmentProfileInfo: FragmentDiscussions)// To show list of user images (Gallery)
+class DiscussionModel(internal var activity: FragmentActivity,
+                      internal val fragmentProfileInfo: FragmentDiscussions)// To show list of user images (Gallery)
     : BaseObservable() {
 
     var talentProfilesList: ObservableArrayList<PostDiscussion>
@@ -122,5 +120,20 @@ class DiscussionModel(internal var activity: FragmentActivity, internal val frag
         if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
             talentProfilesList.add(adModel)
         }
+    }
+
+    fun isBookmarked(postDiscussion: PostDiscussion): Boolean? {
+        var isFollow = false
+        postDiscussion.likes.notNull {
+            val likes: MutableIterator<Likes> = it.iterator()
+            while (likes.hasNext()) {
+                val name = likes.next()
+                if (name.likedBy.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
+                    isFollow = true
+                }
+            }
+        }
+
+        return isFollow
     }
 }

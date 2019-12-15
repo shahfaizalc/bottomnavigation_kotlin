@@ -20,6 +20,8 @@ import com.faizal.bottomnavigation.adapter.*
 import com.faizal.bottomnavigation.handler.*
 import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.CountriesInfoModel
+import com.faizal.bottomnavigation.model2.PostDiscussion
+import com.faizal.bottomnavigation.util.notNull
 import com.faizal.bottomnavigation.viewmodel.*
 import com.squareup.picasso.Picasso
 
@@ -660,4 +662,12 @@ fun loadImage(view: ImageView, imageUrl: String?) {
     }
 }
 
+@BindingAdapter("app:broken","app:position","app:viewModel")
+fun loadImage(view: ImageView, imageUrl: DiscussionModel, position: Int,postDiscussion: PostDiscussion) {
+
+    view.isSelected = imageUrl.isBookmarked(postDiscussion)!!
+    postDiscussion.bookmarks.notNull {  }
+    view.setOnClickListener({ it.isSelected = !it.isSelected })
+
+}
 

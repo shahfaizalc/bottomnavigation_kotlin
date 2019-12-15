@@ -104,6 +104,7 @@
                     android:paddingRight="@dimen/dimen_8">
 
                     <TextView
+                        android:id="@+id/likethumb"
                         android:padding="@dimen/dimen_4"
                         android:onClick="@{mainDataModel.updateLikes()}"
                         android:layout_width="wrap_content"
@@ -115,8 +116,24 @@
                         android:drawableLeft="@drawable/like"
                         android:textColor="@{mainDataModel.likesState ? @color/paleGreen : @color/colorGrey  }"
                         android:textStyle="bold"
-                        android:text="@{Integer.toString(countriesInfoModel.likes.size())}"
-                        />
+                        android:text="@{Integer.toString(countriesInfoModel.likes.size())}" />
+
+                    <TextView
+                        android:layout_marginStart="@dimen/dimen_4"
+                        android:layout_toEndOf="@+id/likethumb"
+                        android:padding="@dimen/dimen_4"
+                        android:onClick="@{mainDataModel.updateLikes()}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawablePadding="@dimen/dimen_4"
+                        android:background="@{mainDataModel.likesState ? @drawable/circular_bg_border_green : @drawable/circular_bg_border  }"
+                        android:drawableStart="@{mainDataModel.likesState ? @drawable/bookmark : @drawable/bookmark_green  }"
+                        android:textColor="@{mainDataModel.likesState ? @color/paleGreen : @color/red  }"
+                        android:textStyle="bold"
+                        android:text="@{mainDataModel.likesState ? @string/saved : @string/save}" />
+
+
 
                     <TextView
                         android:onClick="@{mainDataModel.addFollowers()}"

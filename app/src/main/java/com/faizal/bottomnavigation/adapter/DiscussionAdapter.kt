@@ -44,8 +44,7 @@ class DiscussionAdapter(private val adSearchModel: DiscussionModel) :
         with(viewHolder.binding!!) {
             countriesInfoModel = viewModel.talentProfilesList[position]
             keyWordsTag = getDiscussionKeys(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
-           postDate= viewModel.talentProfilesList[position].postedDate?.toLong()?.let { convertLongToTime(it) }
-
+            postDate= viewModel.talentProfilesList[position].postedDate?.toLong()?.let { convertLongToTime(it) }
             itemPosition = position
             mainDataModel = viewModel
             executePendingBindings()
