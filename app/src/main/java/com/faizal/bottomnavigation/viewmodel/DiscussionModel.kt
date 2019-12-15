@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.model2.Bookmarks
 import com.faizal.bottomnavigation.model2.Likes
 import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.model2.Profile
@@ -124,11 +125,11 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
     fun isBookmarked(postDiscussion: PostDiscussion): Boolean? {
         var isFollow = false
-        postDiscussion.likes.notNull {
-            val likes: MutableIterator<Likes> = it.iterator()
+        postDiscussion.bookmarks.notNull {
+            val likes: MutableIterator<Bookmarks> = it.iterator()
             while (likes.hasNext()) {
                 val name = likes.next()
-                if (name.likedBy.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
+                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
                     isFollow = true
                 }
             }

@@ -127,11 +127,11 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:drawablePadding="@dimen/dimen_4"
-                        android:background="@{mainDataModel.likesState ? @drawable/circular_bg_border_green : @drawable/circular_bg_border  }"
-                        android:drawableStart="@{mainDataModel.likesState ? @drawable/bookmark : @drawable/bookmark_green  }"
-                        android:textColor="@{mainDataModel.likesState ? @color/paleGreen : @color/red  }"
+                        android:background="@{mainDataModel.bookmarkState ? @drawable/circular_bg_border_green : @drawable/circular_bg_border  }"
+                        android:drawableStart="@{mainDataModel.bookmarkState ? @drawable/bookmark_green : @drawable/bookmark  }"
+                        android:textColor="@{mainDataModel.bookmarkState ? @color/paleGreen : @color/colorGrey  }"
                         android:textStyle="bold"
-                        android:text="@{mainDataModel.likesState ? @string/saved : @string/save}" />
+                        android:text="@{mainDataModel.bookmarkState ? @string/saved : @string/save}" />
 
 
 

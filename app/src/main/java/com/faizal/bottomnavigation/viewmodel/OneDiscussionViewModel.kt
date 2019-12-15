@@ -64,7 +64,12 @@ class OneDiscussionViewModel(private val context: Context,
             field = city
             notifyPropertyChanged(BR.likesState)
         }
-
+    @get:Bindable
+    var bookmarkState: Boolean? = isBookmarked()
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.bookmarkState)
+        }
 
 
     @get:Bindable
@@ -74,13 +79,31 @@ class OneDiscussionViewModel(private val context: Context,
             notifyPropertyChanged(BR.sponsored)
         }
 
+
+    private fun isBookmarked(): Boolean? {
+
+        var isFollow = false
+        postDiscussion?.bookmarks.notNull {
+            val bookmarks: MutableIterator<Bookmarks> = it.iterator()
+            while (bookmarks.hasNext()) {
+                val name = bookmarks.next()
+                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
+                    isFollow = true
+                }
+            }
+        }
+
+        return isFollow
+    }
+
+
     private fun isLiked(): Boolean? {
 
         var isFollow = false
         postDiscussion?.likes.notNull {
-            val it: MutableIterator<Likes> = it.iterator()
-            while (it.hasNext()) {
-                val name = it.next()
+            val likes: MutableIterator<Likes> = it.iterator()
+            while (likes.hasNext()) {
+                val name = likes.next()
                 if (name.likedBy.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
                     isFollow = true
                 }
@@ -108,6 +131,68 @@ class OneDiscussionViewModel(private val context: Context,
         return isFollow
     }
 
+
+    fun updateBookmarks() = View.OnClickListener {
+
+        if (!handleMultipleClicks()) {
+            var isExist = false
+            var comments2 = getBookmmarks()
+            if (postDiscussion?.bookmarks.isNullOrEmpty()) {
+                postDiscussion?.bookmarks = ArrayList<Bookmarks>()
+            } else {
+                val it: MutableIterator<Bookmarks> = postDiscussion?.bookmarks!!.iterator()
+                while (it.hasNext()) {
+                    val name = it.next()
+                    if (name.markedById.equals(comments2.markedById)) {
+                        isExist = true
+                        comments2 = name
+                    }
+                }
+
+            }
+
+            if(isExist){
+                postDiscussion?.bookmarks?.remove(comments2)
+            } else {
+                postDiscussion?.bookmarks?.add(comments2)
+            }
+
+            updateBookmark(isExist)
+
+        }
+    }
+
+    private fun updateBookmark(exist: Boolean) {
+        FirbaseWriteHandler(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
+            override fun onFailure(e: Exception) {
+                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onSuccess() {
+                Log.d("TAG", "DocumentSnapshot onSuccess bookmarks")
+
+                bookmarkState = exist
+//                getVal(postDiscussion?.comments)
+//                review = ""
+            }
+        })
+    }
+
+    private fun getBookmmarks(): Bookmarks {
+        val comments = Bookmarks()
+        comments.markedById = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        comments.markedOn = System.currentTimeMillis().toString()
+        comments.markedByUser = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+//        val comments2 = ArrayList<Likes>()
+//        comments2.add(comments)
+        return comments
+    }
+
+
+
+
+
     fun updateLikes() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
@@ -116,9 +201,9 @@ class OneDiscussionViewModel(private val context: Context,
             if (postDiscussion?.likes.isNullOrEmpty()) {
                 postDiscussion?.likes = ArrayList<Likes>()
             } else {
-                val it: MutableIterator<Likes> = postDiscussion?.likes!!.iterator()
-                while (it.hasNext()) {
-                    val name = it.next()
+                val likes: MutableIterator<Likes> = postDiscussion?.likes!!.iterator()
+                while (likes.hasNext()) {
+                    val name = likes.next()
                     if (name.likedBy.equals(comments2.likedBy)) {
                         isExist = true
                         comments2 = name
