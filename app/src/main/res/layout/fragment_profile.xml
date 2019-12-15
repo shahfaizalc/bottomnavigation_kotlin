@@ -19,95 +19,95 @@
             android:layout_height="match_parent"
             android:background="@drawable/bg_gradiant_violet"
             android:orientation="vertical"
-            android:paddingEnd="@dimen/dimen_8"
             android:paddingStart="@dimen/dimen_8"
             android:paddingTop="@dimen/dimen_8"
+            android:paddingEnd="@dimen/dimen_8"
             android:paddingBottom="@dimen/dimen_16">
 
 
-        <LinearLayout
-            android:background="@drawable/circular_bg_border_smoke"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:weightSum="5"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/account_edit"
-                android:gravity="center_horizontal"
-                android:onClick="@{() -> homeData.findClickded()}"
-                android:padding="@dimen/dimen_8"
-                android:text="Edit Account"
-                android:textSize="@dimen/dimen_8"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/forum"
-                android:gravity="center_horizontal"
-                android:onClick="@{() -> homeData.myDiscussionsClicked()}"
-                android:padding="@dimen/dimen_8"
-                android:text="My Discussions"
-                android:textSize="@dimen/dimen_8"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/help_circle"
-                android:gravity="center_horizontal"
-                android:onClick="@{() -> homeData.findClickded()}"
-                android:padding="@dimen/dimen_8"
-                android:text="Help"
-                android:textSize="@dimen/dimen_8"
-                android:textStyle="bold" />
-
-            <TextView
-                android:text="Information"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:textSize="@dimen/dimen_8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:onClick="@{() -> homeData.findClickded()}"
-                android:padding="@dimen/dimen_8"
-                android:drawableTop="@drawable/information" />
+                android:layout_gravity="end"
+                android:background="@drawable/circular_bg_border_smoke"
+                android:orientation="horizontal"
+                android:weightSum="5">
 
 
-            <TextView
-                android:textSize="@dimen/dimen_8"
-                android:textStyle="bold"
-                android:text="Settings"
-                android:gravity="center_horizontal"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:onClick="@{() -> homeData.findClickded()}"
-                android:padding="@dimen/dimen_8"
-                android:drawableTop="@drawable/settings" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/account_edit"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{() -> homeData.findClickded()}"
+                    android:padding="@dimen/dimen_8"
+                    android:text="Edit Account"
+                    android:textSize="@dimen/dimen_8"
+                    android:textStyle="bold" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/forum"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{() -> homeData.myDiscussionsClicked()}"
+                    android:padding="@dimen/dimen_8"
+                    android:text="My Discussions"
+                    android:textSize="@dimen/dimen_8"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/help_circle"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{() -> homeData.findClickded()}"
+                    android:padding="@dimen/dimen_8"
+                    android:text="Help"
+                    android:textSize="@dimen/dimen_8"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/information"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{() -> homeData.findClickded()}"
+                    android:padding="@dimen/dimen_8"
+                    android:text="Information"
+                    android:textSize="@dimen/dimen_8"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/settings"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{() -> homeData.findClickded()}"
+                    android:padding="@dimen/dimen_8"
+                    android:text="Settings"
+                    android:textSize="@dimen/dimen_8"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginTop="@dimen/dimen_8"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@drawable/circular_bg_white"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:background="@drawable/circular_bg_white_4"
                 android:orientation="horizontal"
                 android:weightSum="4">
 
@@ -120,6 +120,7 @@
                     android:orientation="horizontal">
 
                     <com.faizal.bottomnavigation.utils.ImageViewRounded
+                        android:background="@color/white"
                         android:id="@+id/header2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -166,78 +167,91 @@
                 </LinearLayout>
 
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorSmoke"
+                android:layout_marginStart="@dimen/dimen_4"
+                android:layout_marginEnd="@dimen/dimen_4" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/circular_bg_white_4"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_8">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Title"
+                    android:textColor="@color/darkBlue" />
 
-                <LinearLayout
-                    android:layout_marginBottom="@dimen/dimen_4"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:background="@drawable/circular_bg_white"
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dimen_8">
+                    android:layout_height="wrap_content"
+                    android:text="@={homeData.userTitle}"
+                    android:textColor="@color/black" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Title"
-                        android:textColor="@color/darkBlue" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@={homeData.userTitle}"
-                        android:textColor="@color/black" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/dimen_4"
+                android:layout_marginEnd="@dimen/dimen_4"
+                android:background="@color/colorSmoke" />
 
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/circular_bg_white_4"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_8">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Address"
+                    android:textColor="@color/darkBlue" />
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:background="@drawable/circular_bg_white"
-                    android:layout_marginBottom="@dimen/dimen_4"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dimen_8">
+                    android:layout_height="wrap_content"
+                    android:text="@={homeData.userAddress}"
+                    android:textColor="@color/black" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Address"
-                        android:textColor="@color/darkBlue" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@={homeData.userAddress}"
-                        android:textColor="@color/black" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/dimen_4"
+                android:layout_marginEnd="@dimen/dimen_4"
+                android:background="@color/colorSmoke" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/circular_bg_white_4"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_8">
 
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Course"
+                    android:textColor="@color/darkBlue" />
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/circular_bg_white"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dimen_8">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Course"
-                        android:textColor="@color/darkBlue" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@={homeData.keywords}"
-                        android:textColor="@color/black" />
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:text="@={homeData.keywords}"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
             <Button
                 android:layout_width="match_parent"
