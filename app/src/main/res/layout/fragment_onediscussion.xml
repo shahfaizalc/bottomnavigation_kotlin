@@ -122,7 +122,7 @@
                         android:layout_marginStart="@dimen/dimen_4"
                         android:layout_toEndOf="@+id/likethumb"
                         android:padding="@dimen/dimen_4"
-                        android:onClick="@{mainDataModel.updateLikes()}"
+                        android:onClick="@{mainDataModel.updateBookmarks()}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"

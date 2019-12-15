@@ -64,6 +64,7 @@ class OneDiscussionViewModel(private val context: Context,
             field = city
             notifyPropertyChanged(BR.likesState)
         }
+
     @get:Bindable
     var bookmarkState: Boolean? = isBookmarked()
         set(city) {
@@ -136,13 +137,13 @@ class OneDiscussionViewModel(private val context: Context,
 
         if (!handleMultipleClicks()) {
             var isExist = false
-            var comments2 = getBookmmarks()
+            var comments2 = getbookmarks()
             if (postDiscussion?.bookmarks.isNullOrEmpty()) {
                 postDiscussion?.bookmarks = ArrayList<Bookmarks>()
             } else {
-                val it: MutableIterator<Bookmarks> = postDiscussion?.bookmarks!!.iterator()
-                while (it.hasNext()) {
-                    val name = it.next()
+                val bookmarks: MutableIterator<Bookmarks> = postDiscussion?.bookmarks!!.iterator()
+                while (bookmarks.hasNext()) {
+                    val name = bookmarks.next()
                     if (name.markedById.equals(comments2.markedById)) {
                         isExist = true
                         comments2 = name
@@ -157,12 +158,12 @@ class OneDiscussionViewModel(private val context: Context,
                 postDiscussion?.bookmarks?.add(comments2)
             }
 
-            updateBookmark(isExist)
+            updateBookmmarks(isExist)
 
         }
     }
 
-    private fun updateBookmark(exist: Boolean) {
+    private fun updateBookmmarks(exist: Boolean) {
         FirbaseWriteHandler(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
@@ -170,16 +171,16 @@ class OneDiscussionViewModel(private val context: Context,
             }
 
             override fun onSuccess() {
-                Log.d("TAG", "DocumentSnapshot onSuccess bookmarks")
+                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
 
-                bookmarkState = exist
+                bookmarkState = !exist
 //                getVal(postDiscussion?.comments)
 //                review = ""
             }
         })
     }
 
-    private fun getBookmmarks(): Bookmarks {
+    private fun getbookmarks(): Bookmarks {
         val comments = Bookmarks()
         comments.markedById = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         comments.markedOn = System.currentTimeMillis().toString()
@@ -233,7 +234,7 @@ class OneDiscussionViewModel(private val context: Context,
             override fun onSuccess() {
                 Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
 
-                likesState = exist
+                likesState = !exist
 //                getVal(postDiscussion?.comments)
 //                review = ""
             }
