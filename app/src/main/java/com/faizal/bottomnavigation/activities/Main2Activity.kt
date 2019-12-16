@@ -32,7 +32,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
     internal var toolbar: Toolbar? = null
 
     private val mTabIconsSelected = intArrayOf(R.drawable.tab_home, R.drawable.tab_magnify,
-            R.drawable.tab_plus, R.drawable.tab_heart, R.drawable.tab_account)
+            R.drawable.tab_group, R.drawable.tab_heart, R.drawable.tab_account)
 
 
     internal lateinit var TABS: ArrayList<String>
@@ -269,7 +269,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
 
             FragNavController.TAB1 -> return FragmentDiscussions()
             FragNavController.TAB2 -> return FragmentAdSearch()
-            FragNavController.TAB3 -> return FragmentMyAds()
+            FragNavController.TAB3 -> return FragmentGroups()
             FragNavController.TAB4 -> return NewsFragment()
             FragNavController.TAB5 -> return FragmentWelcome()
         }

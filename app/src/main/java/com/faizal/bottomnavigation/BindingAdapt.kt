@@ -671,3 +671,65 @@ fun loadImage(view: ImageView, imageUrl: DiscussionModel, position: Int,postDisc
 
 }
 
+
+@BindingAdapter("app:broken","app:position","app:viewModel")
+fun loadImage(view: ImageView, imageUrl: GroupsModel, position: Int,postDiscussion: PostDiscussion) {
+
+    view.isSelected = imageUrl.isBookmarked(postDiscussion)!!
+    postDiscussion.bookmarks.notNull {  }
+    view.setOnClickListener({ it.isSelected = !it.isSelected })
+
+}
+
+
+@BindingAdapter("app:searchRecycler")
+fun adapter(recyclerView: RecyclerView, profileInfoViewModel: GroupViewModel ) {
+
+    val emptySting = "";
+    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+    val adapter = GroupAdapter()
+    recyclerView.adapter = adapter
+    (recyclerView.adapter as GroupAdapter).setModel(profileInfoViewModel)
+    // (recyclerView.adapter as RatingsAdapter).setData(profileInfoViewModel.userIds)
+
+    profileInfoViewModel.adapter = recyclerView.adapter as CommentsAdapter
+
+}
+
+@BindingAdapter( "app:searchRecycler")
+fun adapter(recyclerView: RecyclerView, countriesViewModel: GroupsModel) {
+
+    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
+    val listAdapter = GroupsAdapter(countriesViewModel)
+    val bindingAdapter = RecyclerLoadMoreGroupsHandler(countriesViewModel, listAdapter)
+
+
+    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
+    recyclerView.adapter = listAdapter
+    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+    bindingAdapter.initRequest(recyclerView)
+
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach1")
+        }
+
+        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+            Log.d("rach", "rach2")
+        }
+
+        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach3")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach4")
+        }
+
+        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+            Log.d("rach", "rach5")
+        }
+
+    });
+}
