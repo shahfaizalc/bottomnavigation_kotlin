@@ -20,6 +20,7 @@ import com.faizal.bottomnavigation.adapter.*
 import com.faizal.bottomnavigation.handler.*
 import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.CountriesInfoModel
+import com.faizal.bottomnavigation.model2.Groups
 import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.util.notNull
 import com.faizal.bottomnavigation.viewmodel.*
@@ -673,7 +674,7 @@ fun loadImage(view: ImageView, imageUrl: DiscussionModel, position: Int,postDisc
 
 
 @BindingAdapter("app:broken","app:position","app:viewModel")
-fun loadImage(view: ImageView, imageUrl: GroupsModel, position: Int,postDiscussion: PostDiscussion) {
+fun loadImage(view: ImageView, imageUrl: GroupsModel, position: Int,postDiscussion: Groups) {
 
     view.isSelected = imageUrl.isBookmarked(postDiscussion)!!
     postDiscussion.bookmarks.notNull {  }

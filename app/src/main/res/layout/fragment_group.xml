@@ -11,7 +11,7 @@
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.bottomnavigation.model2.PostDiscussion" />
+            type="com.faizal.bottomnavigation.model2.Groups" />
 
     </data>
 

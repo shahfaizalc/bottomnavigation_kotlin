@@ -90,6 +90,22 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 }
     }
 
+    fun updateGroups(discussion: Groups, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)
+        collection.document(discussion.postedDate!!).set(discussion)
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
+
+
+
     fun updateDiscussion(discussion: PostDiscussion, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)
@@ -103,6 +119,9 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                     Log.w(TAG, "Error in adding document", e)
                 }
     }
+
+
+
 
     fun deleteDiscussion(discussion: PostDiscussion, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
@@ -132,6 +151,24 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                     Log.w(TAG, "Error in adding document", e)
                 }
     }
+
+    fun updateJoin(userInfo: Groups, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)
+        collection.document(userInfo.postedDate!!).set(userInfo)
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
+
+
+
     fun addComment(userInfo: PostDiscussion, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)

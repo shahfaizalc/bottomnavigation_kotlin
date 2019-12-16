@@ -11,10 +11,7 @@ import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.model2.Bookmarks
-import com.faizal.bottomnavigation.model2.Likes
-import com.faizal.bottomnavigation.model2.PostDiscussion
-import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.util.notNull
@@ -34,7 +31,7 @@ class GroupsModel(internal var activity: FragmentActivity,
                   internal val fragmentProfileInfo: FragmentGroups)// To show list of user images (Gallery)
     : BaseObservable() {
 
-    var talentProfilesList: ObservableArrayList<PostDiscussion>
+    var talentProfilesList: ObservableArrayList<Groups>
 
 
     private val mAuth: FirebaseAuth
@@ -70,10 +67,10 @@ class GroupsModel(internal var activity: FragmentActivity,
     var profile = Profile();
 
 
-    fun openFragment2(postAdModel: PostDiscussion, position: Int) {
-        val fragment = FragmentOneDiscussion()
+    fun openFragment2(postAdModel: Groups, position: Int) {
+        val fragment = FragmentGroup()
         val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().groupToString(postAdModel))
         fragment.setArguments(bundle)
         fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 
@@ -94,10 +91,8 @@ class GroupsModel(internal var activity: FragmentActivity,
     }
     fun doGetTalents() {
 
-
-
        val db = FirebaseFirestore.getInstance()
-        val query = db.collection("discussion");
+        val query = db.collection("groups");
         query.get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                     val any = if (task.isSuccessful) {
@@ -114,7 +109,7 @@ class GroupsModel(internal var activity: FragmentActivity,
 
     fun addTalentsItems(document: QueryDocumentSnapshot) {
 
-        val adModel = document.toObject(PostDiscussion::class.java)
+        val adModel = document.toObject(Groups::class.java)
 
         Log.d(TAG, "Success getting documents: " + adModel.postedBy)
 
@@ -123,7 +118,7 @@ class GroupsModel(internal var activity: FragmentActivity,
         }
     }
 
-    fun isBookmarked(postDiscussion: PostDiscussion): Boolean? {
+    fun isBookmarked(postDiscussion: Groups): Boolean? {
         var isFollow = false
         postDiscussion.bookmarks.notNull {
             val likes: MutableIterator<Bookmarks> = it.iterator()

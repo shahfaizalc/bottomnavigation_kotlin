@@ -18,7 +18,6 @@ import com.faizal.bottomnavigation.network.FirbaseReadHandler
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.view.FragmentGroup
-import com.faizal.bottomnavigation.view.FragmentOneDiscussion
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -85,7 +84,7 @@ class GroupViewModel(private val context: Context,
     private fun isBookmarked(): Boolean? {
 
         var isFollow = false
-        postDiscussion?.bookmarks.notNull {
+        groups?.bookmarks.notNull {
             val bookmarks: MutableIterator<Bookmarks> = it.iterator()
             while (bookmarks.hasNext()) {
                 val name = bookmarks.next()
@@ -102,7 +101,7 @@ class GroupViewModel(private val context: Context,
     private fun isLiked(): Boolean? {
 
         var isFollow = false
-        postDiscussion?.likes.notNull {
+        groups?.likes.notNull {
             val likes: MutableIterator<Likes> = it.iterator()
             while (likes.hasNext()) {
                 val name = likes.next()
@@ -124,7 +123,7 @@ class GroupViewModel(private val context: Context,
             val it: MutableIterator<Follow> = it.iterator()
             while (it.hasNext()) {
                 val name = it.next()
-                if (name.userId.equals(postDiscussion?.postedBy)) {
+                if (name.userId.equals(groups?.postedBy)) {
                     isFollow = true
                 }
             }
@@ -139,10 +138,10 @@ class GroupViewModel(private val context: Context,
         if (!handleMultipleClicks()) {
             var isExist = false
             var comments2 = getbookmarks()
-            if (postDiscussion?.bookmarks.isNullOrEmpty()) {
-                postDiscussion?.bookmarks = ArrayList<Bookmarks>()
+            if (groups?.bookmarks.isNullOrEmpty()) {
+                groups?.bookmarks = ArrayList<Bookmarks>()
             } else {
-                val bookmarks: MutableIterator<Bookmarks> = postDiscussion?.bookmarks!!.iterator()
+                val bookmarks: MutableIterator<Bookmarks> = groups?.bookmarks!!.iterator()
                 while (bookmarks.hasNext()) {
                     val name = bookmarks.next()
                     if (name.markedById.equals(comments2.markedById)) {
@@ -154,9 +153,9 @@ class GroupViewModel(private val context: Context,
             }
 
             if(isExist){
-                postDiscussion?.bookmarks?.remove(comments2)
+                groups?.bookmarks?.remove(comments2)
             } else {
-                postDiscussion?.bookmarks?.add(comments2)
+                groups?.bookmarks?.add(comments2)
             }
 
             updateBookmmarks(isExist)
@@ -165,7 +164,7 @@ class GroupViewModel(private val context: Context,
     }
 
     private fun updateBookmmarks(exist: Boolean) {
-        FirbaseWriteHandler(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
+        FirbaseWriteHandler(fragmentSignin).updateJoin(groups!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                 Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
@@ -200,10 +199,10 @@ class GroupViewModel(private val context: Context,
         if (!handleMultipleClicks()) {
             var isExist = false
             var comments2 = getLikes()
-            if (postDiscussion?.likes.isNullOrEmpty()) {
-                postDiscussion?.likes = ArrayList<Likes>()
+            if (groups?.likes.isNullOrEmpty()) {
+                groups?.likes = ArrayList<Likes>()
             } else {
-                val likes: MutableIterator<Likes> = postDiscussion?.likes!!.iterator()
+                val likes: MutableIterator<Likes> = groups?.likes!!.iterator()
                 while (likes.hasNext()) {
                     val name = likes.next()
                     if (name.likedBy.equals(comments2.likedBy)) {
@@ -215,9 +214,9 @@ class GroupViewModel(private val context: Context,
             }
 
             if(isExist){
-                postDiscussion?.likes?.remove(comments2)
+                groups?.likes?.remove(comments2)
             } else {
-                postDiscussion?.likes?.add(comments2)
+                groups?.likes?.add(comments2)
             }
 
             updatelike(isExist)
@@ -226,20 +225,7 @@ class GroupViewModel(private val context: Context,
     }
 
     private fun updatelike(exist: Boolean) {
-        FirbaseWriteHandler(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
-            override fun onFailure(e: Exception) {
-                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-            }
 
-            override fun onSuccess() {
-                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
-
-                likesState = !exist
-//                getVal(postDiscussion?.comments)
-//                review = ""
-            }
-        })
     }
 
     private fun getLikes(): Likes {
@@ -255,19 +241,19 @@ class GroupViewModel(private val context: Context,
     fun updateReview() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
-            if (postDiscussion?.postedBy.isNullOrEmpty() || postDiscussion?.postedDate.isNullOrEmpty() || review.isNullOrEmpty()) {
+            if (groups?.postedBy.isNullOrEmpty() || groups?.postedDate.isNullOrEmpty() || review.isNullOrEmpty()) {
                 Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
 
             val comments2 = getComment()
 
-            if (postDiscussion?.comments.isNullOrEmpty()) {
-                postDiscussion?.comments = ArrayList<Comments>()
-                postDiscussion?.comments?.addAll(comments2)
+            if (groups?.comments.isNullOrEmpty()) {
+                groups?.comments = ArrayList<Comments>()
+                groups?.comments?.addAll(comments2)
                 updateComment()
             } else {
-                postDiscussion?.comments?.addAll(comments2)
+                groups?.comments?.addAll(comments2)
                 updateComment()
             }
 
@@ -275,7 +261,7 @@ class GroupViewModel(private val context: Context,
     }
 
     private fun updateComment() {
-        FirbaseWriteHandler(fragmentSignin).updateDiscussion(postDiscussion!!, object : EmptyResultListener {
+        FirbaseWriteHandler(fragmentSignin).updateGroups(groups!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                 Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
@@ -283,7 +269,7 @@ class GroupViewModel(private val context: Context,
 
             override fun onSuccess() {
                 Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
-                getVal(postDiscussion?.comments)
+                getVal(groups?.comments)
                 review = ""
             }
         })
@@ -295,9 +281,9 @@ class GroupViewModel(private val context: Context,
             var currentTime = System.currentTimeMillis().toString()
 
             var follow = Follow();
-            follow.userId = postDiscussion!!.postedBy!!
+            follow.userId = groups!!.postedBy!!
             follow.fromDate = currentTime
-            follow.userName = postDiscussion!!.postedByName ?: ""
+            follow.userName = groups!!.postedByName ?: ""
 
             var isExist = false
             if (userProfile.following.isNullOrEmpty()) {
@@ -306,7 +292,7 @@ class GroupViewModel(private val context: Context,
                 val it: MutableIterator<Follow> = userProfile.following!!.iterator()
                 while (it.hasNext()) {
                     val name = it.next()
-                    if (name.userId.equals(postDiscussion!!.postedBy)) {
+                    if (name.userId.equals(groups!!.postedBy)) {
                         isExist = true
                         follow = name
 
@@ -330,7 +316,7 @@ class GroupViewModel(private val context: Context,
 
                     storeUserName(context, FirebaseAuth.getInstance().currentUser!!.uid, userProfile)
                     Log.d("TAG", "DocumentSnapshot onSuccess addFollowers")
-                    getVal(postDiscussion?.comments)
+                    getVal(groups?.comments)
                     review = ""
                     sponsored = !isExist
 
@@ -348,7 +334,7 @@ class GroupViewModel(private val context: Context,
         follow.fromDate = currentTime
         follow.userName = userProfile.name ?: ""
 
-        FirbaseReadHandler().getSepcificUserInfo(postDiscussion?.postedBy!! ,object : UseInfoGeneralResultListener {
+        FirbaseReadHandler().getSepcificUserInfo(groups?.postedBy!! ,object : UseInfoGeneralResultListener {
 
             override fun onSuccess(profile1: Profile) {
 
@@ -373,7 +359,7 @@ class GroupViewModel(private val context: Context,
                     profile1.followers?.add(follow)
                 }
 
-                FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowing(postDiscussion!!.postedBy!!,profile1, object : EmptyResultListener {
+                FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowing(groups!!.postedBy!!,profile1, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d("TAG", "DocumentSnapshot addFollowing onFailure " + e.message)
                         Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
@@ -407,13 +393,13 @@ class GroupViewModel(private val context: Context,
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        postDiscussion = c.getDisccussion(postAdObj, context)
-        getVal(postDiscussion?.comments)
+        groups = c.getGroups(postAdObj, context)
+        getVal(groups?.comments)
 
     }
 
     @get:Bindable
-    var postDiscussion: PostDiscussion? = null
+    var groups: Groups? = null
         private set(roleAdapterAddress) {
             field = roleAdapterAddress
             notifyPropertyChanged(BR.roleAdapterAddress)
@@ -427,7 +413,7 @@ class GroupViewModel(private val context: Context,
     }
 
     @get:Bindable
-    var keyWordsTagg: String? = getDiscussionKeys(postDiscussion!!.keyWords, context).toString()
+    var keyWordsTagg: String? = getDiscussionKeys(groups!!.keyWords, context).toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.keyWordsTagg)
@@ -435,7 +421,7 @@ class GroupViewModel(private val context: Context,
 
 
     @get:Bindable
-    var postedDate: String? = postDiscussion!!.postedDate?.toLong()?.let { convertLongToTime(it) }.toString()
+    var postedDate: String? = groups!!.postedDate?.toLong()?.let { convertLongToTime(it) }.toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.postedDate)

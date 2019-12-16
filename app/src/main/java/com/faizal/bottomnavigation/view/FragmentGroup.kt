@@ -8,12 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.databinding.FragmentGroupBinding
-import com.faizal.bottomnavigation.databinding.FragmentOnediscussionBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.model2.Comments
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.viewmodel.GroupViewModel
-import com.faizal.bottomnavigation.viewmodel.OneDiscussionViewModel
 
 
 class FragmentGroup : BaseFragment() {
@@ -34,7 +32,7 @@ class FragmentGroup : BaseFragment() {
         binding = DataBindingUtil.inflate<FragmentGroupBinding>(inflater, R.layout.fragment_group, container, false)
         areaViewModel = GroupViewModel(this.context!!, this,postAdObj)
         binding.mainDataModel = areaViewModel
-        binding.countriesInfoModel = areaViewModel.postDiscussion
+        binding.countriesInfoModel = areaViewModel.groups
         return binding.root
     }
 
