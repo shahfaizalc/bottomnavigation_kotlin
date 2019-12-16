@@ -100,6 +100,14 @@
     <string name="admission_management">Management</string>
     <string name="admission_both">Merit and Management</string>
     <string name="admission">Admission</string>
+    <string name="group_name">Group Name</string>
+    <string name="group_makepublic">Make this Group Public</string>
+
+    <string name="group_title">What is this group about?</string>
+
+
+
+    <string name="group_desc">Group Description (max 140 characters)</string>
 
     <string name="course_type">Interests of Courses</string>
 

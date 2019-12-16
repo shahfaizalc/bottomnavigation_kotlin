@@ -57,14 +57,7 @@ class GroupViewModel(private val context: Context,
             field = city
             notifyPropertyChanged(BR.review)
         }
-
-    @get:Bindable
-    var likesState: Boolean? = isLiked()
-        set(city) {
-            field = city
-            notifyPropertyChanged(BR.likesState)
-        }
-
+    
     @get:Bindable
     var bookmarkState: Boolean? = isBookmarked()
         set(city) {
@@ -98,21 +91,6 @@ class GroupViewModel(private val context: Context,
     }
 
 
-    private fun isLiked(): Boolean? {
-
-        var isFollow = false
-        groups?.likes.notNull {
-            val likes: MutableIterator<Likes> = it.iterator()
-            while (likes.hasNext()) {
-                val name = likes.next()
-                if (name.likedBy.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
-                    isFollow = true
-                }
-            }
-        }
-
-        return isFollow
-    }
 
     private fun isFollowed(): Boolean? {
 
@@ -190,39 +168,6 @@ class GroupViewModel(private val context: Context,
         return comments
     }
 
-
-
-
-
-    fun updateLikes() = View.OnClickListener {
-
-        if (!handleMultipleClicks()) {
-            var isExist = false
-            var comments2 = getLikes()
-            if (groups?.likes.isNullOrEmpty()) {
-                groups?.likes = ArrayList<Likes>()
-            } else {
-                val likes: MutableIterator<Likes> = groups?.likes!!.iterator()
-                while (likes.hasNext()) {
-                    val name = likes.next()
-                    if (name.likedBy.equals(comments2.likedBy)) {
-                        isExist = true
-                        comments2 = name
-                    }
-                }
-
-            }
-
-            if(isExist){
-                groups?.likes?.remove(comments2)
-            } else {
-                groups?.likes?.add(comments2)
-            }
-
-            updatelike(isExist)
-
-        }
-    }
 
     private fun updatelike(exist: Boolean) {
 

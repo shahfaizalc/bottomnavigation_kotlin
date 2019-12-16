@@ -83,7 +83,7 @@ class GroupsModel(internal var activity: FragmentActivity,
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
 
-        val fragment = FragmentNewDiscusssion()
+        val fragment = FragmentNewGroup()
         val bundle = Bundle()
         fragment.setArguments(bundle)
         fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));

@@ -117,17 +117,6 @@
                     android:textColor="@color/colorBlacklight" />
 
 
-                <TextView
-                    android:layout_marginTop="@dimen/dimen_4"
-                    android:layout_marginBottom="@dimen/dimen_4"
-                    android:id="@+id/showDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="@{@string/likes(countriesInfoModel.likes.size())}"
-                    android:textColor="@color/colorBlacklight" />
-
 
                 <View
                     android:layout_width="match_parent"
