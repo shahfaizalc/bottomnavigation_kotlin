@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="adSearchModel"
+            type="com.faizal.bottomnavigation.viewmodel.MyGroupsModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/viewA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_gradiant_violet"
+            android:orientation="vertical">
+
+            <TextView
+                android:onClick="@{adSearchModel.doFindGroups}"
+                android:padding="@dimen/dimen_8"
+                android:id="@+id/search1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@drawable/circular_bg_white"
+                android:drawableLeft="@drawable/magnify"
+                android:textStyle="bold"
+                android:text="Find a Group"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:background="@drawable/bottom_line" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@android:color/transparent"
+                android:scrollbars="vertical"
+                app:searchRecycler="@{adSearchModel}" />
+
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:onClick="@{adSearchModel.onNextButtonClick}"
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_anchor="@id/viewA"
+            android:tint="@color/white"
+            app:layout_anchorGravity="bottom|right|end"
+            app:srcCompat="@drawable/plus" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
