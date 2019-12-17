@@ -26,6 +26,7 @@ object Constants {
     val BASEURL_COLLECTION_GEN_POSTEVVENT = "events/"
     val BASEURL_COLLECTION_GEN_DISCUSSION = "discussion/"
 
+    val BASEURL_COLLECTION_GEN_GROUPS = "groups/"
 
 
     val POSTAD_OBJECT = "POSTAD"

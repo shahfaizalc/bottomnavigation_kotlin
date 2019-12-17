@@ -101,7 +101,7 @@ class GroupsModel(internal var activity: FragmentActivity,
                             addTalentsItems(document)
                         }
                     } else {
-                        Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
+                        Log.d(TAG, "Error getting documentss:groups " + task.exception!!.message)
                     }
                 }).addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
                 .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
@@ -111,16 +111,16 @@ class GroupsModel(internal var activity: FragmentActivity,
 
         val adModel = document.toObject(Groups::class.java)
 
-        Log.d(TAG, "Success getting documents: " + adModel.postedBy)
+        Log.d(TAG, "Success getting documents:groups " + adModel.postedBy)
 
-        if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
+        if (adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
             talentProfilesList.add(adModel)
         }
     }
 
     fun isBookmarked(postDiscussion: Groups): Boolean? {
         var isFollow = false
-        postDiscussion.bookmarks.notNull {
+        postDiscussion.members.notNull {
             val likes: MutableIterator<Bookmarks> = it.iterator()
             while (likes.hasNext()) {
                 val name = likes.next()

@@ -47,7 +47,7 @@
                     android:layout_height="100dp"
                     android:paddingBottom="@dimen/dimen_8"
                     android:hint="@string/group_desc"
-                    android:text="@={homeData.userTitle}"/>
+                    android:text="@={homeData.userDesc}"/>
 
                 <Switch
                     android:textColor="@color/colorBlacklight"

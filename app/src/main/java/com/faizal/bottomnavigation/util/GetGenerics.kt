@@ -67,14 +67,18 @@ fun getDiscussionKeys(keyWords: MutableList<Int>?, context: Context): String? {
 
     var keyTag = "";
 
-    val keysCoach: ArrayList<CoachItem> = readDisscussions(context)
 
-    val numbersIterator = keyWords!!.iterator()
-    numbersIterator.let {
-        while (numbersIterator.hasNext()) {
-            var value = (numbersIterator.next())
-            keyTag += " " + keysCoach.get(value).categoryname
+    keyWords.notNull {
 
+        val keysCoach: ArrayList<CoachItem> = readDisscussions(context)
+
+        val numbersIterator = keyWords!!.iterator()
+        numbersIterator.let {
+            while (numbersIterator.hasNext()) {
+                var value = (numbersIterator.next())
+                keyTag += " " + keysCoach.get(value).categoryname
+
+            }
         }
     }
     return keyTag;

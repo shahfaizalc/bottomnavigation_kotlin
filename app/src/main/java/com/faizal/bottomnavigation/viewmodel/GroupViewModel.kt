@@ -57,7 +57,7 @@ class GroupViewModel(private val context: Context,
             field = city
             notifyPropertyChanged(BR.review)
         }
-    
+
     @get:Bindable
     var bookmarkState: Boolean? = isBookmarked()
         set(city) {
@@ -77,7 +77,7 @@ class GroupViewModel(private val context: Context,
     private fun isBookmarked(): Boolean? {
 
         var isFollow = false
-        groups?.bookmarks.notNull {
+        groups?.members.notNull {
             val bookmarks: MutableIterator<Bookmarks> = it.iterator()
             while (bookmarks.hasNext()) {
                 val name = bookmarks.next()
@@ -116,10 +116,10 @@ class GroupViewModel(private val context: Context,
         if (!handleMultipleClicks()) {
             var isExist = false
             var comments2 = getbookmarks()
-            if (groups?.bookmarks.isNullOrEmpty()) {
-                groups?.bookmarks = ArrayList<Bookmarks>()
+            if (groups?.members.isNullOrEmpty()) {
+                groups?.members = ArrayList<Bookmarks>()
             } else {
-                val bookmarks: MutableIterator<Bookmarks> = groups?.bookmarks!!.iterator()
+                val bookmarks: MutableIterator<Bookmarks> = groups?.members!!.iterator()
                 while (bookmarks.hasNext()) {
                     val name = bookmarks.next()
                     if (name.markedById.equals(comments2.markedById)) {
@@ -131,9 +131,9 @@ class GroupViewModel(private val context: Context,
             }
 
             if(isExist){
-                groups?.bookmarks?.remove(comments2)
+                groups?.members?.remove(comments2)
             } else {
-                groups?.bookmarks?.add(comments2)
+                groups?.members?.add(comments2)
             }
 
             updateBookmmarks(isExist)

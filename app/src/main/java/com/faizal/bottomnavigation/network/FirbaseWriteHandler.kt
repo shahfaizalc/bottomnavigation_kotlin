@@ -7,6 +7,7 @@ import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_DISCUSSION
+import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_GROUPS
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_POSTEVVENT
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_REVIEW
@@ -92,7 +93,7 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
 
     fun updateGroups(discussion: Groups, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
-        val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_GROUPS)
         collection.document(discussion.postedDate!!).set(discussion)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
