@@ -106,6 +106,7 @@
     <string name="group_title">What is this group about?</string>
 
 
+    <string name="group_members"> %s</string>
 
     <string name="group_desc">Group Description (max 140 characters)</string>
 

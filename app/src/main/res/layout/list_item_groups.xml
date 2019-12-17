@@ -98,7 +98,7 @@
                         android:drawablePadding="@dimen/dimen_4"
                         android:drawableTint="@color/grey"
                         android:drawableLeft="@drawable/account_multiple_outline"
-                        android:text="@{@string/likes(countriesInfoModel.members!= null ? countriesInfoModel.members.size() : 0)}"
+                        android:text="@{@string/group_members(countriesInfoModel.members!= null ? countriesInfoModel.members.size() : 0)}"
                         />
 
                     <TextView
