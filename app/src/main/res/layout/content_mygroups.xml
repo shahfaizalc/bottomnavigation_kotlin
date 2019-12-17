@@ -42,7 +42,7 @@
                 android:background="@drawable/bottom_line" />
 
             <TextView
-                android:textColor="@color/white_transparent_80"
+                android:textColor="@color/white"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -10,6 +10,8 @@ import androidx.lifecycle.MutableLiveData
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.adapter.CommentsAdapter
+import com.faizal.bottomnavigation.adapter.GroupAdapter
+import com.faizal.bottomnavigation.adapter.GroupsAdapter
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
@@ -58,131 +60,6 @@ class GroupViewModel(private val context: Context,
             notifyPropertyChanged(BR.review)
         }
 
-    @get:Bindable
-    var bookmarkState: Boolean? = isBookmarked()
-        set(city) {
-            field = city
-            notifyPropertyChanged(BR.bookmarkState)
-        }
-
-
-    @get:Bindable
-    var sponsored: Boolean? = isFollowed()
-        set(city) {
-            field = city
-            notifyPropertyChanged(BR.sponsored)
-        }
-
-
-    private fun isBookmarked(): Boolean? {
-
-        var isFollow = false
-        groups?.members.notNull {
-            val bookmarks: MutableIterator<Bookmarks> = it.iterator()
-            while (bookmarks.hasNext()) {
-                val name = bookmarks.next()
-                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
-                    isFollow = true
-                }
-            }
-        }
-
-        return isFollow
-    }
-
-
-
-    private fun isFollowed(): Boolean? {
-
-        var isFollow = false
-        val user = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!);
-
-        user.following.notNull {
-            val it: MutableIterator<Follow> = it.iterator()
-            while (it.hasNext()) {
-                val name = it.next()
-                if (name.userId.equals(groups?.postedBy)) {
-                    isFollow = true
-                }
-            }
-        }
-
-        return isFollow
-    }
-
-
-    fun updateBookmarks() = View.OnClickListener {
-
-        if (!handleMultipleClicks()) {
-            var isExist = false
-            var comments2 = getbookmarks()
-            if (groups?.members.isNullOrEmpty()) {
-                groups?.members = ArrayList<Bookmarks>()
-            } else {
-                val bookmarks: MutableIterator<Bookmarks> = groups?.members!!.iterator()
-                while (bookmarks.hasNext()) {
-                    val name = bookmarks.next()
-                    if (name.markedById.equals(comments2.markedById)) {
-                        isExist = true
-                        comments2 = name
-                    }
-                }
-
-            }
-
-            if(isExist){
-                groups?.members?.remove(comments2)
-            } else {
-                groups?.members?.add(comments2)
-            }
-
-            updateBookmmarks(isExist)
-
-        }
-    }
-
-    private fun updateBookmmarks(exist: Boolean) {
-        FirbaseWriteHandler(fragmentSignin).updateJoin(groups!!, object : EmptyResultListener {
-            override fun onFailure(e: Exception) {
-                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onSuccess() {
-                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
-
-                bookmarkState = !exist
-//                getVal(postDiscussion?.comments)
-//                review = ""
-            }
-        })
-    }
-
-    private fun getbookmarks(): Bookmarks {
-        val comments = Bookmarks()
-        comments.markedById = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-        comments.markedOn = System.currentTimeMillis().toString()
-        comments.markedByUser = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
-//        val comments2 = ArrayList<Likes>()
-//        comments2.add(comments)
-        return comments
-    }
-
-
-    private fun updatelike(exist: Boolean) {
-
-    }
-
-    private fun getLikes(): Likes {
-        val comments = Likes()
-        comments.likedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-        comments.likedOn = System.currentTimeMillis().toString()
-        comments.likedUserName = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
-//        val comments2 = ArrayList<Likes>()
-//        comments2.add(comments)
-        return comments
-    }
-
     fun updateReview() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
@@ -220,109 +97,6 @@ class GroupViewModel(private val context: Context,
         })
     }
 
-    fun addFollowers() = View.OnClickListener {
-        if (!handleMultipleClicks()) {
-
-            var currentTime = System.currentTimeMillis().toString()
-
-            var follow = Follow();
-            follow.userId = groups!!.postedBy!!
-            follow.fromDate = currentTime
-            follow.userName = groups!!.postedByName ?: ""
-
-            var isExist = false
-            if (userProfile.following.isNullOrEmpty()) {
-                userProfile.following = ArrayList<Follow>()
-            } else {
-                val it: MutableIterator<Follow> = userProfile.following!!.iterator()
-                while (it.hasNext()) {
-                    val name = it.next()
-                    if (name.userId.equals(groups!!.postedBy)) {
-                        isExist = true
-                        follow = name
-
-                    }
-                }
-            }
-
-            if(isExist){
-                userProfile.following?.remove(follow)
-            } else {
-                userProfile.following?.add(follow)
-            }
-
-            FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowed(userProfile, object : EmptyResultListener {
-                override fun onFailure(e: Exception) {
-                    Log.d("TAG", "DocumentSnapshot addFollowers onFailure " + e.message)
-                    Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onSuccess() {
-
-                    storeUserName(context, FirebaseAuth.getInstance().currentUser!!.uid, userProfile)
-                    Log.d("TAG", "DocumentSnapshot onSuccess addFollowers")
-                    getVal(groups?.comments)
-                    review = ""
-                    sponsored = !isExist
-
-                    addFollowing(currentTime)
-
-                }
-            })
-        }
-    }
-
-    private fun addFollowing(currentTime: String) {
-
-        var follow = Follow();
-        follow.userId = FirebaseAuth.getInstance().currentUser!!.uid
-        follow.fromDate = currentTime
-        follow.userName = userProfile.name ?: ""
-
-        FirbaseReadHandler().getSepcificUserInfo(groups?.postedBy!! ,object : UseInfoGeneralResultListener {
-
-            override fun onSuccess(profile1: Profile) {
-
-                var isExist = false
-                if (profile1.followers.isNullOrEmpty()) {
-                    profile1.followers = ArrayList<Follow>()
-                } else {
-                    val it: MutableIterator<Follow> = profile1.followers!!.iterator()
-                    while (it.hasNext()) {
-                        val name = it.next()
-                        if (name.userId.equals(follow.userId)) {
-                            isExist = true
-                            follow = name
-
-                        }
-                    }
-                }
-
-                if(isExist){
-                    profile1.followers?.remove(follow)
-                } else {
-                    profile1.followers?.add(follow)
-                }
-
-                FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowing(groups!!.postedBy!!,profile1, object : EmptyResultListener {
-                    override fun onFailure(e: Exception) {
-                        Log.d("TAG", "DocumentSnapshot addFollowing onFailure " + e.message)
-                        Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-                    }
-
-                    override fun onSuccess() {
-                        Log.d("TAG", "DocumentSnapshot onSuccess addFollowing")
-                    }
-                })
-
-            }
-
-            override fun onFailure(e: Exception) {
-            }
-        })
-
-    }
-
     private fun getComment(): ArrayList<Comments> {
         val comments = Comments()
         comments.commment = review ?: ""
@@ -334,7 +108,7 @@ class GroupViewModel(private val context: Context,
         return comments2
     }
 
-    var adapter = CommentsAdapter()
+    var adapter = GroupAdapter()
 
     private fun readAutoFillItems() {
         val c = GenericValues()

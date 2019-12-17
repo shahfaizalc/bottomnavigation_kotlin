@@ -693,7 +693,7 @@ fun adapter(recyclerView: RecyclerView, profileInfoViewModel: GroupViewModel ) {
     (recyclerView.adapter as GroupAdapter).setModel(profileInfoViewModel)
     // (recyclerView.adapter as RatingsAdapter).setData(profileInfoViewModel.userIds)
 
-    profileInfoViewModel.adapter = recyclerView.adapter as CommentsAdapter
+    profileInfoViewModel.adapter = recyclerView.adapter as GroupAdapter
 
 }
 
