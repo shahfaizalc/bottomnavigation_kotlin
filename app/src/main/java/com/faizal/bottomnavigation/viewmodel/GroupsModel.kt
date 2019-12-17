@@ -118,18 +118,26 @@ class GroupsModel(internal var activity: FragmentActivity,
         }
     }
 
-    fun isBookmarked(postDiscussion: Groups): Boolean? {
-        var isFollow = false
-        postDiscussion.members.notNull {
-            val likes: MutableIterator<Bookmarks> = it.iterator()
-            while (likes.hasNext()) {
-                val name = likes.next()
-                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
-                    isFollow = true
-                }
-            }
-        }
 
-        return isFollow
-    }
+//    @get:Bindable
+//    var membersCount: Int? = isBookmarked()
+//        set(city) {
+//            field = city
+//            notifyPropertyChanged(BR.membersCount)
+//        }
+
+//    fun isBookmarked(postDiscussion: Groups): Int? {
+//        var isFollow = false
+//        postDiscussion.members.notNull {
+//            val likes: MutableIterator<Bookmarks> = it.iterator()
+//            while (likes.hasNext()) {
+//                val name = likes.next()
+//                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
+//                    isFollow = true
+//                }
+//            }
+//        }
+//
+//        return isFollow
+//    }
 }
