@@ -13,7 +13,6 @@ class Groups{
     var postedByName : String? = null
     var members: ArrayList<Bookmarks>? = null
     var availability : Boolean = false
-
     var keyWords: MutableList<Int>? = null
     var eventState: EventStatus = EventStatus.SHOWING
     var comments: ArrayList<Comments>? = null

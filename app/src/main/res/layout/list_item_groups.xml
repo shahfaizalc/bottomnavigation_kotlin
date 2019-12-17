@@ -83,7 +83,6 @@
                     android:layout_height="wrap_content"
                     android:text="@{countriesInfoModel.description}"
                     android:textColor="@color/colorBlacklight" />
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,8 +113,8 @@
                         android:textStyle="bold"
                         android:text="Join" />
                 </RelativeLayout>
-            </LinearLayout>
 
+            </LinearLayout>
 
     </RelativeLayout>
 </layout>

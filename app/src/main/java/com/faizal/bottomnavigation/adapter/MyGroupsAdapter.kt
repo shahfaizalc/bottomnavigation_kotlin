@@ -36,8 +36,8 @@ class MyGroupsAdapter(private val adSearchModel: MyGroupsModel) :
 
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!) {
-            countriesInfoModel = viewModel.talentProfilesList[position]
-            keyWordsTag = getDiscussionKeys(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
+            groupsViewModel = viewModel.talentProfilesList[position]
+            keyWordsTag = getDiscussionKeys(groupsViewModel!!.keyWords,viewHolder.itemView.context)
             postDate= viewModel.talentProfilesList[position].postedDate?.toLong()?.let { convertLongToTime(it) }
             itemPosition = position
             mainDataModel = viewModel
