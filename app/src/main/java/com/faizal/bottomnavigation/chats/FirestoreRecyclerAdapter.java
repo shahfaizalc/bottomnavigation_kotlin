@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.faizal.bottomnavigation.chats.kotlin.ChangeEventListener;
 import com.faizal.bottomnavigation.chats.kotlin.ChangeEventType;
+import com.faizal.bottomnavigation.chats.kotlin.FirestoreArray;
 import com.faizal.bottomnavigation.chats.kotlin.FirestoreRecyclerOptions;
 import com.faizal.bottomnavigation.chats.kotlin.ObservableSnapshotArray;
 import com.google.firebase.firestore.DocumentSnapshot;
