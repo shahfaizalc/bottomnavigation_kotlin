@@ -113,9 +113,8 @@ class GroupsModel(internal var activity: FragmentActivity,
 
         Log.d(TAG, "Success getting documents:groups " + adModel.postedBy)
 
-        if (adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
             talentProfilesList.add(adModel)
-        }
+
     }
 
 
