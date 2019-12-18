@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".database.realtime.RealtimeDbChatActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/emptyTextView"
@@ -25,37 +24,34 @@
         android:padding="16dp"
         tools:listitem="@layout/message" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/footer"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingLeft="16dp"
-        android:orientation="horizontal">
+        android:background="@drawable/circular_bg_border_green"
+        android:layout_margin="@dimen/dimen_8">
 
         <EditText
             android:id="@+id/messageEdit"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="hint_message"
-            android:imeOptions="actionDone"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            tools:ignore="UnusedAttribute" />
+            android:layout_marginRight="@dimen/dimen_8"
+            android:layout_toLeftOf="@+id/postReview"
+            android:background="@android:color/transparent"
+            android:hint="@string/cooment_hint"
+            android:padding="@dimen/dimen_12" />
 
-        <Button
+        <ImageButton
+            android:background="@android:color/transparent"
             android:id="@+id/sendButton"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:text="send" />
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/send"
+            android:tint="@color/paleGreen"/>
 
-    </LinearLayout>
-
+    </RelativeLayout>
+    
 </RelativeLayout>

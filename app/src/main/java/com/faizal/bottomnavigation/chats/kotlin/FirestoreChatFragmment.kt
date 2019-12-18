@@ -5,10 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,7 +39,7 @@ class FirestoreChatFragmment : Fragment(), AuthStateListener {
     }
 
     private var mRecyclerView: RecyclerView? = null
-    private var mSendButton: Button? = null
+    private var mSendButton: ImageButton? = null
     private var mMessageEdit: EditText? = null
     private var mEmptyListMessage: TextView? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
