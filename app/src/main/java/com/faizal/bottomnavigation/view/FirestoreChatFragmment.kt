@@ -1,4 +1,4 @@
-package com.faizal.bottomnavigation.chats.kotlin
+package com.faizal.bottomnavigation.view
 
 import android.os.Bundle
 import android.util.Log
@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.chats.*
+import com.faizal.bottomnavigation.chats.kotlin.*
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.getUserName
@@ -77,7 +77,7 @@ class FirestoreChatFragmment : BaseFragment(), AuthStateListener {
                 mRecyclerView!!.postDelayed(Runnable { mRecyclerView!!.smoothScrollToPosition(0) }, 100)
             }
         })
-        ImeHelper.setImeOnDoneListener(mMessageEdit!!, object: ImeHelper.DonePressedListener{
+        ImeHelper.setImeOnDoneListener(mMessageEdit!!, object : ImeHelper.DonePressedListener {
             override fun onDonePressed() {
                 setMessageValue()
             }

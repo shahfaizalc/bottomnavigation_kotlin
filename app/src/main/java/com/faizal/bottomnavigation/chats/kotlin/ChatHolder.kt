@@ -46,7 +46,10 @@ class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             mLeftArrow.visibility = View.GONE
             mRightArrow.visibility = View.VISIBLE
             mMessageContainer.gravity = Gravity.END
+            mMessage.gravity = Gravity.END
+
         } else {
+            mMessage.gravity = Gravity.START
             color = mGray300
             mLeftArrow.visibility = View.VISIBLE
             mRightArrow.visibility = View.GONE
@@ -66,7 +69,7 @@ class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         mRightArrow = itemView.findViewById(R.id.right_arrow)
         mMessageContainer = itemView.findViewById(R.id.message_container)
         mMessage = itemView.findViewById(R.id.message)
-        mGreen300 = ContextCompat.getColor(itemView.context, R.color.paleGreen)
+        mGreen300 = ContextCompat.getColor(itemView.context, R.color.green2)
         mGray300 = ContextCompat.getColor(itemView.context, R.color.colorPrimaryDark)
     }
 }

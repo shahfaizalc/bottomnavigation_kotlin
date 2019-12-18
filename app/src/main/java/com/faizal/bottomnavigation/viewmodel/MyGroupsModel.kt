@@ -11,16 +11,13 @@ import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.chats.kotlin.FirestoreChatFragmment
+import com.faizal.bottomnavigation.view.FirestoreChatFragmment
 import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.util.notNull
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -115,9 +112,9 @@ class MyGroupsModel(internal var activity: FragmentActivity,
 
         Log.d(TAG, "Success getting documents:groups " + adModel.postedBy)
 
-        if (adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
+      //  if (adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
             talentProfilesList.add(adModel)
-        }
+      //  }
     }
 
     @Override
