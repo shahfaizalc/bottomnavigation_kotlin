@@ -9,6 +9,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.faizal.bottomnavigation.chats.kotlin.FirestoreChatFragmment
 
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.fragments.NewsFragment
@@ -269,7 +270,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
 
             FragNavController.TAB1 -> return FragmentDiscussions()
             FragNavController.TAB2 -> return FragmentAdSearch()
-            FragNavController.TAB3 -> return FragmentMyGroups()
+            FragNavController.TAB3 -> return FirestoreChatFragmment()
             FragNavController.TAB4 -> return NewsFragment()
             FragNavController.TAB5 -> return FragmentWelcome()
         }

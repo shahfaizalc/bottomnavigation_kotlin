@@ -52,4 +52,5 @@ class GroupAdapter() : RecyclerView.Adapter<GroupAdapter.UserHolder>() {
 
     class UserHolder(internal val binding: GroupItemBinding) : RecyclerView.ViewHolder(binding.root)
 
+
 }

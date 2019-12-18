@@ -121,4 +121,8 @@
         <item>Doctorate</item>
         <item>Others</item>
     </string-array>
+
+    <string name="sign_out">Sign out</string>
+    <string name="enter_text">Enter text</string>
+
 </resources>
