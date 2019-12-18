@@ -62,12 +62,15 @@ class FirestoreChatFragmment : Fragment(), AuthStateListener {
                 mRecyclerView!!.postDelayed(Runnable { mRecyclerView!!.smoothScrollToPosition(0) }, 100)
             }
         })
-        ImeHelper.setImeOnDoneListener(mMessageEdit){
-            val uid = FirebaseAuth.getInstance().currentUser!!.uid
-            val name = "User " + uid.substring(0, 6)
-            onAddMessage(Chat(name, mMessageEdit!!.getText().toString(), uid))
-            mMessageEdit!!.setText("")
-        }
+        ImeHelper.setImeOnDoneListener(mMessageEdit!!, object: ImeHelper.DonePressedListener{
+            override fun onDonePressed() {
+                val uid = FirebaseAuth.getInstance().currentUser!!.uid
+                val name = "User " + uid.substring(0, 6)
+                onAddMessage(Chat(name, mMessageEdit!!.getText().toString(), uid))
+                mMessageEdit!!.setText("")            }
+        })
+
+
         return view
     }
 

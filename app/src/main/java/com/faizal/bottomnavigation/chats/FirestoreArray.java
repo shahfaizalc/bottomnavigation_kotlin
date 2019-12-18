@@ -1,6 +1,7 @@
 package com.faizal.bottomnavigation.chats;
 
 import com.faizal.bottomnavigation.chats.kotlin.ChangeEventType;
+import com.faizal.bottomnavigation.chats.kotlin.ObservableSnapshotArray;
 import com.faizal.bottomnavigation.chats.kotlin.SnapshotParser;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
