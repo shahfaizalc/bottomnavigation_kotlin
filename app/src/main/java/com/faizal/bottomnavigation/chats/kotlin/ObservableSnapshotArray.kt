@@ -11,4 +11,4 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 abstract class ObservableSnapshotArray<T>
 /**
  * @see BaseObservableSnapshotArray.BaseObservableSnapshotArray
- */(parser: SnapshotParser<T?>) : BaseObservableSnapshotArray<DocumentSnapshot?, FirebaseFirestoreException?, ChangeEventListener?, T>(CachingSnapshotParser<T>(parser))
+ */(parser: SnapshotParser<T>) : BaseObservableSnapshotArray<DocumentSnapshot?, FirebaseFirestoreException?, ChangeEventListener?, T>(CachingSnapshotParser<T>(parser))
