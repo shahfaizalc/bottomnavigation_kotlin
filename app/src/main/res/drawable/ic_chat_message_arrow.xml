@@ -8,8 +8,8 @@
     <shape
         android:shape="rectangle">
         <stroke
-            android:width="10dp"
+            android:width="@dimen/dimen_8"
             android:color="@android:color/transparent" />
-        <solid android:color="@color/grey" />
+        <solid android:color="@color/colorPrimaryDark" />
     </shape>
 </rotate>

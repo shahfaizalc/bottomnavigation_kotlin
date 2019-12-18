@@ -20,10 +20,7 @@ import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.util.getUserName
 import com.faizal.bottomnavigation.utils.Constants
-import com.faizal.bottomnavigation.view.FragmentGameChooser
-import com.faizal.bottomnavigation.view.FragmentNewDiscusssion
-import com.faizal.bottomnavigation.view.FragmentNewGroup
-import com.faizal.bottomnavigation.view.FragmentSimiliarDiscussion
+import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
 import org.greenrobot.eventbus.EventBus
 
@@ -84,11 +81,10 @@ class NewGroupViewModel(private val context: Context, private val fragmentSignin
 
                     override fun onSuccess() {
                         Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-//                        val fragment = FragmentProfile()
-//                        val bundle = Bundle()
-//                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-//                        fragment.setArguments(bundle)
-//                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+                        val fragment = FragmentMyGroups()
+                        val bundle = Bundle()
+                        fragment.setArguments(bundle)
+                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
 
                     }
                 })

@@ -19,8 +19,6 @@ class FragmentMyGroups : BaseFragment() {
     var binding: ContentMygroupsBinding? = null;
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        
         return bindView(inflater, container)
     }
 

@@ -67,6 +67,6 @@ class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         mMessageContainer = itemView.findViewById(R.id.message_container)
         mMessage = itemView.findViewById(R.id.message)
         mGreen300 = ContextCompat.getColor(itemView.context, R.color.paleGreen)
-        mGray300 = ContextCompat.getColor(itemView.context, R.color.grey)
+        mGray300 = ContextCompat.getColor(itemView.context, R.color.colorPrimaryDark)
     }
 }

@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentActivity
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
+import com.faizal.bottomnavigation.chats.kotlin.FirestoreChatFragmment
 import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
@@ -68,7 +69,7 @@ class MyGroupsModel(internal var activity: FragmentActivity,
 
 
     fun openFragment2(postAdModel: Groups, position: Int) {
-        val fragment = FragmentGroup()
+        val fragment = FirestoreChatFragmment()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().groupToString(postAdModel))
         fragment.setArguments(bundle)

@@ -12,8 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.chats.*
+import com.faizal.bottomnavigation.fragments.BaseFragment
+import com.faizal.bottomnavigation.util.GenericValues
+import com.faizal.bottomnavigation.util.getUserName
+import com.faizal.bottomnavigation.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
@@ -26,12 +31,9 @@ import com.google.firebase.firestore.Query
  * For a general intro to the RecyclerView, see [Creating
  * Lists](https://developer.android.com/training/material/lists-cards.html).
  */
-class FirestoreChatFragmment : Fragment(), AuthStateListener {
+class FirestoreChatFragmment : BaseFragment(), AuthStateListener {
     companion object {
         private const val TAG = "FirestoreChatFragmment"
-        private val sChatCollection = FirebaseFirestore.getInstance().collection("chats")
-        /** Get the last 50 chat messages ordered by timestamp .  */
-        private val sChatQuery = sChatCollection.orderBy("timestamp", Query.Direction.DESCENDING).limit(50)
 
         init {
             FirebaseFirestore.setLoggingEnabled(true)
@@ -42,9 +44,25 @@ class FirestoreChatFragmment : Fragment(), AuthStateListener {
     private var mSendButton: ImageButton? = null
     private var mMessageEdit: EditText? = null
     private var mEmptyListMessage: TextView? = null
+    private lateinit var sChatCollection :CollectionReference
+    /** Get the last 50 chat messages ordered by timestamp .  */
+    private lateinit var sChatQuery :Query
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.activity_chat, container, false)
+
+        val postAdObj  = arguments!!.getString(Constants.POSTAD_OBJECT)
+        val c = GenericValues()
+        val groups = c.getGroups(postAdObj!!, this.context!!)
+
+        sChatCollection = FirebaseFirestore.getInstance().collection("groups/"+"chats/"+groups.postedDate!!)
+        /** Get the last 50 chat messages ordered by timestamp .  */
+        sChatQuery = sChatCollection.orderBy("timestamp", Query.Direction.DESCENDING).limit(50)
+
+
+
         mRecyclerView = view.findViewById(R.id.messagesList)
         mSendButton = view.findViewById(R.id.sendButton)
         mMessageEdit = view.findViewById(R.id.messageEdit)
@@ -61,10 +79,8 @@ class FirestoreChatFragmment : Fragment(), AuthStateListener {
         })
         ImeHelper.setImeOnDoneListener(mMessageEdit!!, object: ImeHelper.DonePressedListener{
             override fun onDonePressed() {
-                val uid = FirebaseAuth.getInstance().currentUser!!.uid
-                val name = "User " + uid.substring(0, 6)
-                onAddMessage(Chat(name, mMessageEdit!!.getText().toString(), uid))
-                mMessageEdit!!.setText("")            }
+                setMessageValue()
+            }
         })
 
 
@@ -82,10 +98,7 @@ class FirestoreChatFragmment : Fragment(), AuthStateListener {
     override fun onAuthStateChanged(auth: FirebaseAuth) {
         mSendButton!!.isEnabled = isSignedIn
         mSendButton!!.setOnClickListener {
-            val uid = FirebaseAuth.getInstance().currentUser!!.uid
-            val name = "User " + uid.substring(0, 6)
-            onAddMessage(Chat(name, mMessageEdit!!.text.toString(), uid))
-            mMessageEdit!!.setText("")
+            setMessageValue()
         }
         mMessageEdit!!.isEnabled = isSignedIn
         if (isSignedIn) {
@@ -94,6 +107,13 @@ class FirestoreChatFragmment : Fragment(), AuthStateListener {
             Toast.makeText(this.activity, "signing_in", Toast.LENGTH_SHORT).show()
             auth.signInAnonymously().addOnCompleteListener(SignInResultNotifier(this.activity!!))
         }
+    }
+
+    private fun setMessageValue() {
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        val name = getUserName(activity!!.applicationContext!!, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+        onAddMessage(Chat(name, mMessageEdit!!.text.toString(), uid))
+        mMessageEdit!!.setText("")
     }
 
     private val isSignedIn: Boolean
