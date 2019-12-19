@@ -14,9 +14,7 @@ import com.faizal.bottomnavigation.adapter.CommentsAdapter
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
-import com.faizal.bottomnavigation.model2.Comments
-import com.faizal.bottomnavigation.model2.Groups
-import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.network.FirbaseReadHandler
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.*
@@ -34,7 +32,7 @@ class JoinGroupViewModel(private val context: Context,
                          internal val postAdObj: String) : BaseObservable(),
         NetworkChangeHandler.NetworkChangeListener {
 
-    private val TAG = "MyOneDiscussion"
+    private val TAG = "RequestComplete  "
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
@@ -63,64 +61,94 @@ class JoinGroupViewModel(private val context: Context,
             notifyPropertyChanged(BR.review)
         }
 
-   fun deletepost()= View.OnClickListener{
 
-//       if (!handleMultipleClicks()) {
-//           FirbaseWriteHandler(fragmentSignin).deleteDiscussion(postDiscussion!!, object : EmptyResultListener {
-//               override fun onFailure(e: Exception) {
-//                   Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-//                   Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-//               }
-//
-//               override fun onSuccess() {
-//                   Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
-//                   getVal(postDiscussion?.comments)
-//                   review = ""
-//               }
-//           })
-//
-//       }
-   }
+    @get:Bindable
+    var bookmarkState: Boolean? = isBookmarked()
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.bookmarkState)
+        }
 
 
-    fun updateReview() = View.OnClickListener {
+    private fun isBookmarked(): Boolean? {
+
+        var isFollow = false
+        postDiscussion?.members.notNull {
+            val bookmarks: MutableIterator<Bookmarks> = it.iterator()
+            while (bookmarks.hasNext()) {
+                val name = bookmarks.next()
+                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
+                    isFollow = true
+                }
+            }
+        }
+
+        return isFollow
+    }
+
+
+
+
+    fun updateBookmarks() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
-            if (postDiscussion?.postedBy.isNullOrEmpty() || postDiscussion?.postedDate.isNullOrEmpty() || review.isNullOrEmpty()) {
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
-                return@OnClickListener
-            }
-
-            val comments2 = getComment()
-
-            if (postDiscussion?.comments.isNullOrEmpty()) {
-                postDiscussion?.comments = ArrayList<Comments>()
-                postDiscussion?.comments?.addAll(comments2)
-                updateComment()
+            var isExist = false
+            var comments2 = getbookmarks()
+            if (postDiscussion?.members.isNullOrEmpty()) {
+                postDiscussion?.members = ArrayList<Bookmarks>()
             } else {
-                postDiscussion?.comments?.addAll(comments2)
-                updateComment()
+                val bookmarks: MutableIterator<Bookmarks> = postDiscussion?.members!!.iterator()
+                while (bookmarks.hasNext()) {
+                    val name = bookmarks.next()
+                    if (name.markedById.equals(comments2.markedById)) {
+                        isExist = true
+                        comments2 = name
+                    }
+                }
+
             }
+
+            if(isExist){
+                postDiscussion?.members?.remove(comments2)
+            } else {
+                postDiscussion?.members?.add(comments2)
+            }
+
+            updateBookmmarks(isExist)
 
         }
     }
 
-    private fun updateComment() {
+    private fun updateBookmmarks(exist: Boolean) {
+        FirbaseWriteHandler(fragmentSignin).updateJoin(postDiscussion!!, object : EmptyResultListener {
+            override fun onFailure(e: Exception) {
+                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+            }
 
+            override fun onSuccess() {
+                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
+
+                bookmarkState = !exist
+//                getVal(postDiscussion?.comments)
+//                review = ""
+            }
+        })
     }
 
-    private fun getComment(): ArrayList<Comments> {
-        val comments = Comments()
-        comments.commment = review ?: ""
-        comments.commentedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-        comments.commentedOn = System.currentTimeMillis().toString()
-        comments.commentedUserName = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
-        val comments2 = ArrayList<Comments>()
-        comments2.add(comments)
-        return comments2
+    private fun getbookmarks(): Bookmarks {
+        val comments = Bookmarks()
+        comments.markedById = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        comments.markedOn = System.currentTimeMillis().toString()
+        comments.markedByUser = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+//        val comments2 = ArrayList<Likes>()
+//        comments2.add(comments)
+        return comments
     }
 
-    var adapter = Comments2Adapter()
+
+
+    var adapter = CommentsAdapter()
 
     private fun readAutoFillItems() {
         val c = GenericValues()

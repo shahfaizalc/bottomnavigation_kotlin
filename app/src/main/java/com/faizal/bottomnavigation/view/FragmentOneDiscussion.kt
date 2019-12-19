@@ -21,7 +21,6 @@ class FragmentOneDiscussion : BaseFragment() {
 
     lateinit var binding : FragmentOnediscussionBinding
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val postAdObj  = arguments!!.getString(Constants.POSTAD_OBJECT)
 
@@ -29,7 +28,7 @@ class FragmentOneDiscussion : BaseFragment() {
     }
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String): View {
-        binding = DataBindingUtil.inflate<FragmentOnediscussionBinding>(inflater, R.layout.fragment_onediscussion, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_onediscussion, container, false)
         areaViewModel = OneDiscussionViewModel(this.context!!, this,postAdObj)
         binding.mainDataModel = areaViewModel
         binding.countriesInfoModel = areaViewModel.postDiscussion

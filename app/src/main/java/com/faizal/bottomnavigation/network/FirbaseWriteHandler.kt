@@ -155,7 +155,7 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
 
     fun updateJoin(userInfo: Groups, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
-        val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_GROUPS)
         collection.document(userInfo.postedDate!!).set(userInfo)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
