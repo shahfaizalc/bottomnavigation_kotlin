@@ -88,10 +88,17 @@
     <string name="likes">%s likes</string>
 
     <string name="follow">Follow</string>
-    <string name="following">Following</string>
+    <string name="following">Unfollow</string>
 
     <string name="save">Save</string>
-    <string name="saved">Saved</string>
+    <string name="saved">Unsave</string>
+
+    <string name="join">Join Group</string>
+    <string name="unjoin">Unjoin Group</string>
+    <string name="members">Members</string>
+
+    <string name="creationDate">Since</string>
+    <string name="creationby">Created By : </string>
 
 
     <string name="course">Course</string>

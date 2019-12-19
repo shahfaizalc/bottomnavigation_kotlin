@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -17,9 +16,9 @@
 
 
     <RelativeLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
@@ -27,105 +26,149 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_gravity="center"
-            card_view:contentPadding="@dimen/dimen_8"
             card_view:cardBackgroundColor="@color/white"
             card_view:cardCornerRadius="@dimen/dimen_4"
-            card_view:cardElevation="@dimen/dimen_4">
+            card_view:cardElevation="@dimen/dimen_4"
+            card_view:contentPadding="@dimen/dimen_8">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RelativeLayout
+
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dimen_4"
+                    android:text="@{countriesInfoModel.title}"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/colorBlacklight"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:maxLines="7"
+                    android:text="@{countriesInfoModel.description}"
+                    android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                    android:textColor="@color/colorBlacklight" />
+
+                <LinearLayout
+                    android:layout_gravity="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:paddingBottom="@dimen/dimen_4"
-                        android:text="@={countriesInfoModel.postedByName}"
-                        android:textColor="@color/colorBlacklight"
+                        android:text="@string/creationby"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:paddingBottom="@dimen/dimen_4"
-                        android:text="@={mainDataModel.postedDate}" />
-                </RelativeLayout>
+                        android:maxLines="7"
+                        android:text="@={countriesInfoModel.postedByName}"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/colorBlacklight"
+                        />
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorSmoke"
+                    android:paddingStart="@dimen/dimen_32"
+                    android:paddingEnd="@dimen/dimen_32" />
+
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/creationDate"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_8"
+                            android:layout_marginBottom="@dimen/dimen_8"
+                            android:maxLines="7"
+                            android:text="@={mainDataModel.postedDate}"
+                            android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                            android:textColor="@color/colorBlacklight" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/members"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_8"
+                            android:layout_marginBottom="@dimen/dimen_8"
+                            android:maxLines="7"
+                            android:text="@{@string/group_members(countriesInfoModel.members!= null ? countriesInfoModel.members.size() : 0)}"
+                            android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                            android:textColor="@color/colorBlacklight" />
+
+                    </LinearLayout>
+                </LinearLayout>
 
                 <TextView
+                    android:layout_marginTop="@dimen/dimen_16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorWhite"
-                    android:paddingBottom="@dimen/dimen_4"
-                    android:layout_gravity="end"
-                    android:drawableTint="@color/grey"
-                    android:drawableLeft="@drawable/tag"
-                    android:text="@={mainDataModel.keyWordsTagg}"
-                    android:textColor="@color/green" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorSmoke"
-                    android:paddingStart="@dimen/dimen_32"
-                    android:paddingEnd="@dimen/dimen_32" />
-
-                <TextView
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:layout_marginBottom="@dimen/dimen_8"
-
-                    android:maxLines="7"
-                    android:layout_width="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/dimen_4"
+                    android:background="@{mainDataModel.bookmarkState ? @drawable/circular_bg_border_green : @drawable/circular_bg_border  }"
+                    android:onClick="@{mainDataModel.updateBookmarks()}"
+                    android:padding="@dimen/dimen_4"
+                    android:text="@{mainDataModel.bookmarkState ? @string/unjoin : @string/join}"
                     android:textAppearance="?android:attr/textAppearanceMediumInverse"
-                    android:layout_height="wrap_content"
-                    android:text="@{countriesInfoModel.title}"
-                    android:textColor="@color/colorBlacklight"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorSmoke"
-                    android:paddingStart="@dimen/dimen_32"
-                    android:paddingEnd="@dimen/dimen_32" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:paddingLeft="@dimen/dimen_8"
-                    android:paddingRight="@dimen/dimen_8">
+                    android:textColor="@{mainDataModel.bookmarkState ? @color/paleGreen : @color/colorGrey  }"
+                    android:textStyle="bold" />
 
 
-                    <TextView
-                        android:layout_marginStart="@dimen/dimen_4"
-                        android:layout_toEndOf="@+id/likethumb"
-                        android:padding="@dimen/dimen_4"
-                        android:onClick="@{mainDataModel.updateBookmarks()}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:drawablePadding="@dimen/dimen_4"
-                        android:background="@{mainDataModel.bookmarkState ? @drawable/circular_bg_border_green : @drawable/circular_bg_border  }"
-                        android:drawableStart="@{mainDataModel.bookmarkState ? @drawable/bookmark_green : @drawable/bookmark  }"
-                        android:textColor="@{mainDataModel.bookmarkState ? @color/paleGreen : @color/colorGrey  }"
-                        android:textStyle="bold"
-                        android:text="@{mainDataModel.bookmarkState ? @string/saved : @string/save}" />
-
-
-
-                     </RelativeLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
 
 
     </RelativeLayout>
