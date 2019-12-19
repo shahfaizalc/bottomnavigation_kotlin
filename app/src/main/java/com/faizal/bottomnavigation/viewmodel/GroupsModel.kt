@@ -68,7 +68,7 @@ class GroupsModel(internal var activity: FragmentActivity,
 
 
     fun openFragment2(postAdModel: Groups, position: Int) {
-        val fragment = FragmentGroup()
+        val fragment = FragmentJoinGroup()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().groupToString(postAdModel))
         fragment.setArguments(bundle)
