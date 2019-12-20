@@ -51,6 +51,15 @@
 
         </LinearLayout>
 
-
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:onClick="@{adSearchModel.onNextButtonClick}"
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_anchor="@id/viewA"
+            android:tint="@color/white"
+            app:layout_anchorGravity="bottom|right|end"
+            app:srcCompat="@drawable/plus" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

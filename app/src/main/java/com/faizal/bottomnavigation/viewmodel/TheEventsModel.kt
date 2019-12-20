@@ -107,6 +107,16 @@ class TheEventsModel(internal var activity: FragmentActivity,
     }
 
 
+    @Override
+    fun onNextButtonClick() = View.OnClickListener() {
+
+        val fragment = FragmentNewEvent()
+        val bundle = Bundle()
+        fragment.setArguments(bundle)
+        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+
+    }
+
 //    @get:Bindable
 //    var membersCount: Int? = isBookmarked()
 //        set(city) {
