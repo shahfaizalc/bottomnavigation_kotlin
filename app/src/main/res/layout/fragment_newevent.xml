@@ -102,13 +102,13 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:drawableEnd="@drawable/clock_outline"
-                    android:focusable="false"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dimen_16"
-                    android:onClick="@{homeData.timePickerClick()}"
-                    android:hint="@string/defaultTime"
-                    android:text="@{homeData.showTime}"
+                    android:drawableEnd="@drawable/calendar_range"
+                    android:focusable="false"
+                    android:onClick="@{homeData.datePickerClick() }"
+                    android:hint="@string/defaultDate"
+                    android:text="@{homeData.showDate}"
                     android:textColor="@color/black" />
 
                 <TextView
