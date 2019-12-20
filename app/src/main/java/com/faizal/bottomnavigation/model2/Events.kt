@@ -11,7 +11,7 @@ class Events{
     var address : Address? = null
     var startDate: String? = null
     var endDate: String? = null
-    
+
     var postedDate: String? = null
     var postedBy : String? = null
     var postedByName : String? = null

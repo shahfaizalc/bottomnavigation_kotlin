@@ -4,7 +4,9 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.widget.DatePicker
 import com.itravis.ticketexchange.listeners.DateListener
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 class DatePickerEvent{
 
@@ -23,4 +25,7 @@ class DatePickerEvent{
         datePickerDialog.show();
         datePickerDialog.datePicker.minDate = System.currentTimeMillis()
     }
+
+
+
 }

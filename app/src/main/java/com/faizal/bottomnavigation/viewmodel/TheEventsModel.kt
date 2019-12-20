@@ -31,7 +31,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
                      internal val fragmentProfileInfo: FragmentTheEvents)// To show list of user images (Gallery)
     : BaseObservable() {
 
-    var talentProfilesList: ObservableArrayList<Groups>
+    var talentProfilesList: ObservableArrayList<Events>
 
 
     private val mAuth: FirebaseAuth
@@ -65,10 +65,10 @@ class TheEventsModel(internal var activity: FragmentActivity,
     var profile = Profile();
 
 
-    fun openFragment2(postAdModel: Groups, position: Int) {
+    fun openFragment2(postAdModel: Events, position: Int) {
         val fragment = FragmentEvent()
         val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().groupToString(postAdModel))
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
         fragment.setArguments(bundle)
         fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 
@@ -81,7 +81,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
     fun doGetTalents() {
 
        val db = FirebaseFirestore.getInstance()
-        val query = db.collection("groups");
+        val query = db.collection("events");
         query.get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                     val any = if (task.isSuccessful) {
@@ -98,7 +98,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
 
     fun addTalentsItems(document: QueryDocumentSnapshot) {
 
-        val adModel = document.toObject(Groups::class.java)
+        val adModel = document.toObject(Events::class.java)
 
         Log.d(TAG, "Success getting documents:groups " + adModel.postedBy)
 

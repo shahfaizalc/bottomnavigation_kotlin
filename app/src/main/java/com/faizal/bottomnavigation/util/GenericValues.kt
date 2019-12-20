@@ -4,10 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.model.*
-import com.faizal.bottomnavigation.model2.Groups
-import com.faizal.bottomnavigation.model2.PostDiscussion
-import com.faizal.bottomnavigation.model2.PostEvents
-import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.utils.Constants.FILENAME_CATEGORY
 import com.faizal.bottomnavigation.utils.Constants.FILENAME_SINGLE_CHOICE_ATTR
@@ -91,6 +88,13 @@ class GenericValues {
         val gson  = Gson();
         return gson.toJson(profile)
     }
+
+    fun eventToString(profile : Events) : String{
+        val gson  = Gson();
+        return gson.toJson(profile)
+    }
+
+
     fun getDisccussion(fileName: String,context: Context): PostDiscussion {
         val gson = Gson()
         return gson.fromJson(fileName, PostDiscussion::class.java)
