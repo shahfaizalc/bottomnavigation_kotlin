@@ -1,6 +1,7 @@
 package com.faizal.bottomnavigation.viewmodel
 
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -19,6 +20,7 @@ import com.faizal.bottomnavigation.network.FirbaseReadHandler
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.view.FragmentJoinGroup
+import com.faizal.bottomnavigation.view.FragmentMyGroups
 import com.faizal.bottomnavigation.view.FragmentMyOneDiscussion
 import com.faizal.bottomnavigation.view.FragmentOneDiscussion
 import com.google.firebase.auth.FirebaseAuth
@@ -130,8 +132,13 @@ class JoinGroupViewModel(private val context: Context,
                 Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
 
                 bookmarkState = !exist
-//                getVal(postDiscussion?.comments)
-//                review = ""
+
+                Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
+                val fragment = FragmentMyGroups()
+                val bundle = Bundle()
+                fragment.setArguments(bundle)
+                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+
             }
         })
     }

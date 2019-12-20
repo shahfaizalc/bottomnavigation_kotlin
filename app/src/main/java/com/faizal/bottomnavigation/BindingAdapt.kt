@@ -773,3 +773,40 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: MyGroupsModel) {
     });
 }
 
+@BindingAdapter( "app:searchRecycler")
+fun adapter(recyclerView: RecyclerView, countriesViewModel: TheEventsModel) {
+
+    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
+    val listAdapter = TheEventsAdapter(countriesViewModel)
+    val bindingAdapter = RecyclerLoadMoreTheEvventsHandler(countriesViewModel, listAdapter)
+
+
+    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
+    recyclerView.adapter = listAdapter
+    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+    bindingAdapter.initRequest(recyclerView)
+
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach1")
+        }
+
+        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+            Log.d("rach", "rach2")
+        }
+
+        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach3")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach4")
+        }
+
+        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+            Log.d("rach", "rach5")
+        }
+
+    });
+}

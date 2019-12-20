@@ -1,0 +1,150 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="mainDataModel"
+            type="com.faizal.bottomnavigation.viewmodel.TheEventsModel" />
+
+        <variable
+            name="countriesInfoModel"
+            type="com.faizal.bottomnavigation.model2.Groups" />
+
+        <variable
+            name="itemPosition"
+            type="java.lang.Integer" />
+
+        <variable
+            name="simpleListAdapter"
+            type="com.faizal.bottomnavigation.adapter.TheEventsAdapter" />
+
+        <variable
+            name="itemClickListener"
+            type="com.faizal.bottomnavigation.listeners.TheEventsEventListener" />
+
+        <variable
+            name="keyWordsTag"
+            type="java.lang.String" />
+
+        <variable
+            name="postDate"
+            type="java.lang.String" />
+
+
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_8"
+        android:background="@drawable/circular_bg_border_black"
+        android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@drawable/bg_gradiant_oneside"
+                android:padding="@dimen/dimen_8"
+                android:text="@={postDate}"
+                android:textColor="@color/white_transparent_80"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_8"
+                android:text="@{countriesInfoModel.title}"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/colorBlacklight"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:padding="@dimen/dimen_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_gradiant_bottom"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/calendar_range_small"
+                        android:drawableTint="@color/white_transparent_80" />
+
+                    <TextView
+                        android:gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dimen_8"
+                        android:paddingRight="@dimen/dimen_8"
+                        android:text="@={postDate}"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/map_marker"
+                        android:drawableTint="@color/white_transparent_80"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dimen_8"
+                        android:paddingRight="@dimen/dimen_8"
+                        android:text="Block Manyata Embassy, Outer Ring Rd, Manayata Tech Park, Nagavara, Bengaluru"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/account_multiple_outline"
+                        android:drawableTint="@color/white_transparent_80" />
+
+                    <TextView
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="@dimen/dimen_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dimen_8"
+                        android:paddingRight="@dimen/dimen_8"
+                        android:text="@{countriesInfoModel.description}"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
