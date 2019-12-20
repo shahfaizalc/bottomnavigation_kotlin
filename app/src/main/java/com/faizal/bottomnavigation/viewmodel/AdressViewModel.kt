@@ -81,7 +81,7 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
 
-        if (!(street!!.isEmpty() || landmark!!.isEmpty() || town!!.isEmpty())) {
+        if (!(street.isNullOrEmpty() || landmark.isNullOrEmpty()  || town.isNullOrEmpty() )) {
 
             val address = Address();
             address.locationname = landmark;

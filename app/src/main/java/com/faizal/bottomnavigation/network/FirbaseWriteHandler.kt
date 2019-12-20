@@ -105,7 +105,19 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 }
     }
 
-
+    fun updateEvents(discussion: Events, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_POSTEVVENT)
+        collection.document(discussion.postedDate!!).set(discussion)
+                .addOnSuccessListener {
+                    Log.d(TAG, "DocumentSnapshot added ")
+                    emptyResultListener.onSuccess()
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
 
     fun updateDiscussion(discussion: PostDiscussion, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()

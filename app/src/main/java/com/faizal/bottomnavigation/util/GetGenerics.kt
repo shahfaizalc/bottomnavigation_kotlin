@@ -56,7 +56,12 @@ fun getKeys(keyWords: MutableList<Int>?, context: Context): String? {
     return keyTag;
 
 }
+fun String.onDatePickerClick( ) : Long {
 
+    val formatter = SimpleDateFormat("dd/mm/yyyy")
+    val date = formatter.parse(this) as Date
+    return date.time
+}
 
 private fun readAutoFillItems(context: Context): ArrayList<CoachItem> {
     val c = GenericValues()

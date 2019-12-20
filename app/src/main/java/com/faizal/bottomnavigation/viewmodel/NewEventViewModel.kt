@@ -13,14 +13,12 @@ import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.MultipleClickListener
-import com.faizal.bottomnavigation.model2.Groups
-import com.faizal.bottomnavigation.model2.PostDiscussion
-import com.faizal.bottomnavigation.model2.PostEvents
-import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
 import com.faizal.bottomnavigation.util.getUserName
+import com.faizal.bottomnavigation.util.onDatePickerClick
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
@@ -41,7 +39,8 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
 
     private var isInternetConnected: Boolean = false
 
-    var profile: Profile
+    var profile : Profile
+
 
     init {
         networkHandler()
@@ -69,6 +68,13 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
         set(showDate) {
             field = showDate
             notifyPropertyChanged(BR.showDate)
+        }
+
+    @get:Bindable
+    var expiryDate: String? = null
+        set(showDate) {
+            field = showDate
+            notifyPropertyChanged(BR.expiryDate)
         }
 
     @get:Bindable
@@ -100,8 +106,22 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
         }
     }
 
+    @Override
+    fun expiryDatePickerClick() = View.OnClickListener() {
+        if (!handleMultipleClicks()) {
+            DatePickerEvent().onDatePickerClick(fragmentSignin.context!!, object : DateListener {
+                override fun onDateSet(result: String) {
+                    expiryDate = result
+                }
+            })
+        }
+    }
+
     fun updateAddress() = View.OnClickListener {
-        EventBus.getDefault().register(this);
+
+        if(!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         val fragment = FragmentAddress()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
@@ -124,7 +144,7 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
     fun customEventReceived(event: MyCustomEvent) {
         EventBus.getDefault().unregister(this)
         profile = event.data
-        userAddress = getAddress()
+         userAddress = getAddress()
     }
 
 
@@ -136,22 +156,27 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
     fun doPostEvents() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
-            if ( userTitle.isNullOrEmpty() || !userTitle!!.isValid() || userDesc.isNullOrEmpty() ) {
+            if ( userTitle.isNullOrEmpty() || !userTitle!!.isValid() || userDesc.isNullOrEmpty()
+                    || showDate.isNullOrEmpty()|| expiryDate.isNullOrEmpty()|| showTime.isNullOrEmpty()  ) {
                 Toast.makeText(context, context.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
 
             if ( userTitle!!.isValid() ) {
 
-                val group = Groups();
-                group.title= userTitle
-                group.description = userDesc
-                group.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-                group.postedDate = System.currentTimeMillis().toString()
-                group.postedByName = getUserName(context.applicationContext, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+                val events = Events();
+                events.title= userTitle
+                events.description = userDesc
+                events.address = profile.address
+                events.endDate = expiryDate?.onDatePickerClick().toString()
+                events.startDate = showDate?.onDatePickerClick().toString()
+                events.eventTime = showTime
+                events.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+                events.postedDate = System.currentTimeMillis().toString()
+                events.postedByName = getUserName(context.applicationContext, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
 
                 Log.d(TAG, "DocumentSnapshot  doDiscussionWrrite "  )
-                val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateGroups(group, object : EmptyResultListener {
+                val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateEvents(events, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                         Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
@@ -160,10 +185,10 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
 
                     override fun onSuccess() {
                         Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-                        val fragment = FragmentMyGroups()
-                        val bundle = Bundle()
-                        fragment.setArguments(bundle)
-                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+//                        val fragment = FragmentMyGroups()
+//                        val bundle = Bundle()
+//                        fragment.setArguments(bundle)
+//                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
 
                     }
                 })

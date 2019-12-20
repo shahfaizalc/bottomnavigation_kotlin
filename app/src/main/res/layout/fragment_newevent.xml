@@ -106,9 +106,9 @@
                     android:layout_marginBottom="@dimen/dimen_16"
                     android:drawableEnd="@drawable/calendar_range"
                     android:focusable="false"
-                    android:onClick="@{homeData.datePickerClick() }"
+                    android:onClick="@{homeData.expiryDatePickerClick() }"
                     android:hint="@string/defaultDate"
-                    android:text="@{homeData.showDate}"
+                    android:text="@{homeData.expiryDate}"
                     android:textColor="@color/black" />
 
                 <TextView
