@@ -132,5 +132,7 @@
     <string name="sign_out">Sign out</string>
     <string name="enter_text">Enter text</string>
     <string name="message_hint">Write your message here</string>
+    <string name="addtoCalender">Add to Calender</string>
+    <string name="remmoveFromCalender">Remove from Calender</string>
 
 </resources>

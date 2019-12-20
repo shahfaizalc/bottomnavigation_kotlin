@@ -21,7 +21,7 @@
         android:background="@color/white">
 
             <LinearLayout
-                android:background="@drawable/circular_bg_border_black"
+                android:background="@drawable/circular_bg_border_black_8"
                 android:layout_margin="@dimen/dimen_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -233,7 +233,7 @@
             android:background="@{mainDataModel.bookmarkState ? @drawable/circular_bg_border_green : @drawable/circular_bg_border_blue }"
             android:onClick="@{mainDataModel.updateBookmarks()}"
             android:padding="@dimen/dimen_4"
-            android:text="@{mainDataModel.bookmarkState ? @string/unjoin : @string/join}"
+            android:text="@{mainDataModel.bookmarkState ? @string/remmoveFromCalender : @string/addtoCalender}"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@{mainDataModel.bookmarkState ? @color/paleGreen : @color/colorSkyBlue  }"
             android:textStyle="bold" />
