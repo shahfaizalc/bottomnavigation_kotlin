@@ -41,13 +41,11 @@ class TheEventsModel(internal var activity: FragmentActivity,
         private val TAG = "AdSearchModel"
     }
 
-
     init {
         talentProfilesList = ObservableArrayList()
         mAuth = FirebaseAuth.getInstance()
         doGetTalents()
     }
-
 
     @get:Bindable
     var finderTitle: String? = activity.resources.getString(R.string.finderEventTitle)
@@ -68,7 +66,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
 
 
     fun openFragment2(postAdModel: Groups, position: Int) {
-        val fragment = FragmentJoinGroup()
+        val fragment = FragmentEvent()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().groupToString(postAdModel))
         fragment.setArguments(bundle)
@@ -80,15 +78,6 @@ class TheEventsModel(internal var activity: FragmentActivity,
         return MultipleClickHandler.handleMultipleClicks()
     }
 
-    @Override
-    fun onNextButtonClick() = View.OnClickListener() {
-
-        val fragment = FragmentNewGroup()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
-
-    }
     fun doGetTalents() {
 
        val db = FirebaseFirestore.getInstance()
