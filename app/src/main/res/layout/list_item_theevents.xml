@@ -97,6 +97,34 @@
                         android:textColor="@color/white" />
                 </LinearLayout>
 
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/clock_outline_small"
+                        android:drawableTint="@color/white_transparent_80" />
+
+                    <TextView
+                        android:maxLines="2"
+                        android:layout_gravity="center_vertical"
+                        android:ellipsize="end"
+                        android:textSize="@dimen/dimen_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dimen_8"
+                        android:paddingRight="@dimen/dimen_8"
+                        android:text="@{countriesInfoModel.description}"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -112,35 +140,11 @@
 
                     <TextView
                         android:layout_width="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/dimen_8"
                         android:paddingRight="@dimen/dimen_8"
                         android:text="Block Manyata Embassy, Outer Ring Rd, Manayata Tech Park, Nagavara, Bengaluru"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/account_multiple_outline"
-                        android:drawableTint="@color/white_transparent_80" />
-
-                    <TextView
-                        android:maxLines="2"
-                        android:ellipsize="end"
-                        android:textSize="@dimen/dimen_12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/dimen_8"
-                        android:paddingRight="@dimen/dimen_8"
-                        android:text="@{countriesInfoModel.description}"
                         android:textColor="@color/white" />
                 </LinearLayout>
             </LinearLayout>
