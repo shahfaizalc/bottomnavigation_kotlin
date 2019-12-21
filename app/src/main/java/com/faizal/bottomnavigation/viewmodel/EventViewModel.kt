@@ -180,6 +180,13 @@ class EventViewModel(private val context: Context,
             notifyPropertyChanged(BR.keyWordsTagg)
         }
 
+    @get:Bindable
+    var location: String? = postDiscussion!!.address?.locationname +" "+postDiscussion!!.address?.streetName +" "+postDiscussion!!.address?.town +" "+postDiscussion!!.address?.city
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.location)
+        }
+
 
     @get:Bindable
     var postedDate: String? = postDiscussion!!.postedDate?.toLong()?.let { convertLongToTime(it) }.toString()

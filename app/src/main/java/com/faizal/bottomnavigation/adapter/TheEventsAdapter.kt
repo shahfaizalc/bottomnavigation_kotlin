@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.Bindable
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.databinding.*
 import com.faizal.bottomnavigation.listeners.*
@@ -41,6 +43,9 @@ class TheEventsAdapter(private val adSearchModel: TheEventsModel) :
             postDate= viewModel.talentProfilesList[position].postedDate?.toLong()?.let { convertLongToTime(it) }
             itemPosition = position
             mainDataModel = viewModel
+            location = viewModel.talentProfilesList[position]!!.address?.locationname +" "+viewModel.talentProfilesList[position]!!.address?.streetName +" "+viewModel.talentProfilesList[position]!!.address?.town +" "+viewModel.talentProfilesList[position]!!.address?.city
+
+
             executePendingBindings()
         }
         viewHolder.binding!!.setItemClickListener(this)

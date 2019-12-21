@@ -223,7 +223,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="@dimen/dimen_8"
                             android:paddingRight="@dimen/dimen_8"
-                            android:text="Block Manyata Embassy, Outer Ring Rd, Manayata Tech Park, Nagavara, Bengaluru"
+                            android:text="@={mainDataModel.location}"
                             android:textColor="@color/white" />
                     </LinearLayout>
                 </LinearLayout>
