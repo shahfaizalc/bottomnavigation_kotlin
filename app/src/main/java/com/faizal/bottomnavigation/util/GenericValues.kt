@@ -93,7 +93,10 @@ class GenericValues {
         val gson  = Gson();
         return gson.toJson(profile)
     }
-
+    fun getEventss(fileName: String,context: Context): Events {
+        val gson = Gson()
+        return gson.fromJson(fileName, Events::class.java)
+    }
 
     fun getDisccussion(fileName: String,context: Context): PostDiscussion {
         val gson = Gson()

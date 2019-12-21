@@ -185,10 +185,10 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
 
                     override fun onSuccess() {
                         Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-//                        val fragment = FragmentMyGroups()
-//                        val bundle = Bundle()
-//                        fragment.setArguments(bundle)
-//                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+                        val fragment = FragmentTheEvents()
+                        val bundle = Bundle()
+                        fragment.setArguments(bundle)
+                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
 
                     }
                 })

@@ -176,7 +176,7 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
                 postEvents.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
                 postEvents.postedDate = System.currentTimeMillis().toString()
                 Log.d(TAG, "DocumentSnapshot onFailure i am in "  )
-                val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateEvents(postEvents, object : EmptyResultListener {
+                val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updatepostEvents(postEvents, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot onFailure " + e.message)
                         Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()

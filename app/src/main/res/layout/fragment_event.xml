@@ -10,7 +10,7 @@
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.bottomnavigation.model2.Groups" />
+            type="com.faizal.bottomnavigation.model2.Events" />
 
     </data>
 
@@ -171,7 +171,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="@dimen/dimen_8"
                             android:paddingRight="@dimen/dimen_8"
-                            android:text="@={mainDataModel.postedDate}"
+                            android:text="@={mainDataModel.adDate}"
                             android:textColor="@color/white" />
                     </LinearLayout>
 

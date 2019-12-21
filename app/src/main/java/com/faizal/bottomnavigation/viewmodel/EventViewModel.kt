@@ -118,7 +118,7 @@ class EventViewModel(private val context: Context,
     }
 
     private fun updateBookmmarks(exist: Boolean) {
-        FirbaseWriteHandler(fragmentSignin).updateJoin(postDiscussion!!, object : EmptyResultListener {
+        FirbaseWriteHandler(fragmentSignin).updateEvents(postDiscussion!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                 Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
@@ -130,10 +130,10 @@ class EventViewModel(private val context: Context,
                 bookmarkState = !exist
 
                 Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-                val fragment = FragmentMyGroups()
-                val bundle = Bundle()
-                fragment.setArguments(bundle)
-                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+//                val fragment = FragmentMyGroups()
+//                val bundle = Bundle()
+//                fragment.setArguments(bundle)
+//                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
 
             }
         })
@@ -155,13 +155,12 @@ class EventViewModel(private val context: Context,
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        postDiscussion = c.getGroups(postAdObj, context)
-        getVal(postDiscussion?.comments)
+        postDiscussion = c.getEventss(postAdObj, context)
 
     }
 
     @get:Bindable
-    var postDiscussion: Groups? = null
+    var postDiscussion: Events? = null
         private set(roleAdapterAddress) {
             field = roleAdapterAddress
             notifyPropertyChanged(BR.roleAdapterAddress)
@@ -189,13 +188,13 @@ class EventViewModel(private val context: Context,
             notifyPropertyChanged(BR.postedDate)
         }
 
-    fun getVal(postedDat: ArrayList<Comments>?) {
-        GlobalScope.launch(context = Dispatchers.Main) {
-            while (userIds == null) {
-            }
-            userIds.value = postedDat
+    @get:Bindable
+    var adDate: String? = postDiscussion!!.startDate?.toLong()?.let { convertLongToTime(it) }.toString()+postDiscussion!!.endDate?.toLong()?.let {" - "+ convertLongToTime(it) }.toString()
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.adDate)
         }
-    }
+
 
 
     fun registerListeners() {

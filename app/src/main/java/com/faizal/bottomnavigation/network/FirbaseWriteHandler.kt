@@ -76,7 +76,7 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
 
 
 
-    fun updateEvents(userInfo: PostEvents, emptyResultListener: EmptyResultListener) {
+    fun updatepostEvents(userInfo: PostEvents, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_POSTEVVENT)
         collection.document(userInfo.postedDate!!).set(userInfo)
