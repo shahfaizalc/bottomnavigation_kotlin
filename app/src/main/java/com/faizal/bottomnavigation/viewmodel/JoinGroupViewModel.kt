@@ -10,8 +10,6 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.MutableLiveData
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.adapter.Comments2Adapter
-import com.faizal.bottomnavigation.adapter.CommentsAdapter
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
@@ -21,8 +19,6 @@ import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.view.FragmentJoinGroup
 import com.faizal.bottomnavigation.view.FragmentMyGroups
-import com.faizal.bottomnavigation.view.FragmentMyOneDiscussion
-import com.faizal.bottomnavigation.view.FragmentOneDiscussion
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -47,14 +43,6 @@ class JoinGroupViewModel(private val context: Context,
         readAutoFillItems()
         userProfile = getUserName(context, FirebaseAuth.getInstance().currentUser!!.uid);
     }
-
-    @get:Bindable
-    var userIds: MutableLiveData<List<Comments>> = MutableLiveData<List<Comments>>()
-        private set(value) {
-            field = value
-            notifyPropertyChanged(BR.userIds)
-        }
-
 
     @get:Bindable
     var review: String? = null
@@ -155,12 +143,10 @@ class JoinGroupViewModel(private val context: Context,
 
 
 
-    var adapter = CommentsAdapter()
 
     private fun readAutoFillItems() {
         val c = GenericValues()
         postDiscussion = c.getGroups(postAdObj, context)
-        getVal(postDiscussion?.comments)
 
     }
 
@@ -192,14 +178,6 @@ class JoinGroupViewModel(private val context: Context,
             field = price
             notifyPropertyChanged(BR.postedDate)
         }
-
-    fun getVal(postedDat: ArrayList<Comments>?) {
-        GlobalScope.launch(context = Dispatchers.Main) {
-            while (userIds == null) {
-            }
-            userIds.value = postedDat
-        }
-    }
 
 
     fun registerListeners() {

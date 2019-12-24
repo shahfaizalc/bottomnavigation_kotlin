@@ -6,10 +6,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.lifecycle.MutableLiveData
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.adapter.CommentsAdapter
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
@@ -17,16 +15,14 @@ import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.network.FirbaseReadHandler
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.*
-import com.faizal.bottomnavigation.view.FragmentOneDiscussion
+import com.faizal.bottomnavigation.view.FirestoreDisccussFragmment
+import com.faizal.bottomnavigation.view.FirestoreMyDisccussFragmment
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
-class OneDiscussionViewModel(private val context: Context,
-                             private val fragmentSignin: FragmentOneDiscussion,
-                             internal val postAdObj: String) : BaseObservable(),
+class ActivityMyDiscussionViewModel(private val context: Context,
+                                    private val fragmentSignin: FirestoreMyDisccussFragmment,
+                                    internal val postAdObj: String) : BaseObservable(),
         NetworkChangeHandler.NetworkChangeListener {
 
     private val TAG = "RequestComplete  "
@@ -42,13 +38,6 @@ class OneDiscussionViewModel(private val context: Context,
         readAutoFillItems()
         userProfile = getUserName(context, FirebaseAuth.getInstance().currentUser!!.uid);
     }
-
-    @get:Bindable
-    var userIds: MutableLiveData<List<Comments>> = MutableLiveData<List<Comments>>()
-        private set(value) {
-            field = value
-            notifyPropertyChanged(BR.userIds)
-        }
 
 
     @get:Bindable
@@ -242,51 +231,17 @@ class OneDiscussionViewModel(private val context: Context,
     }
 
     private fun getLikes(): Likes {
-        val comments = Likes()
-        comments.likedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-        comments.likedOn = System.currentTimeMillis().toString()
-        comments.likedUserName = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+        val likes = Likes()
+        likes.likedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        likes.likedOn = System.currentTimeMillis().toString()
+        likes.likedUserName = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
 //        val comments2 = ArrayList<Likes>()
 //        comments2.add(comments)
-        return comments
+        return likes
     }
 
-    fun updateReview() = View.OnClickListener {
 
-        if (!handleMultipleClicks()) {
-            if (postDiscussion?.postedBy.isNullOrEmpty() || postDiscussion?.postedDate.isNullOrEmpty() || review.isNullOrEmpty()) {
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
-                return@OnClickListener
-            }
 
-            val comments2 = getComment()
-
-            if (postDiscussion?.comments.isNullOrEmpty()) {
-                postDiscussion?.comments = ArrayList<Comments>()
-                postDiscussion?.comments?.addAll(comments2)
-                updateComment()
-            } else {
-                postDiscussion?.comments?.addAll(comments2)
-                updateComment()
-            }
-
-        }
-    }
-
-    private fun updateComment() {
-        FirbaseWriteHandler(fragmentSignin).updateDiscussion(postDiscussion!!, object : EmptyResultListener {
-            override fun onFailure(e: Exception) {
-                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onSuccess() {
-                Log.d("TAG", "DocumentSnapshot onSuccess doDiscussionWrrite")
-                getVal(postDiscussion?.comments)
-                review = ""
-            }
-        })
-    }
 
     fun addFollowers() = View.OnClickListener {
         if (!handleMultipleClicks()) {
@@ -329,7 +284,6 @@ class OneDiscussionViewModel(private val context: Context,
 
                     storeUserName(context, FirebaseAuth.getInstance().currentUser!!.uid, userProfile)
                     Log.d("TAG", "DocumentSnapshot onSuccess addFollowers")
-                    getVal(postDiscussion?.comments)
                     review = ""
                     sponsored = !isExist
 
@@ -402,12 +356,10 @@ class OneDiscussionViewModel(private val context: Context,
         return comments2
     }
 
-    var adapter = CommentsAdapter()
 
     private fun readAutoFillItems() {
         val c = GenericValues()
         postDiscussion = c.getDisccussion(postAdObj, context)
-        getVal(postDiscussion?.comments)
 
     }
 
@@ -439,15 +391,6 @@ class OneDiscussionViewModel(private val context: Context,
             field = price
             notifyPropertyChanged(BR.postedDate)
         }
-
-    fun getVal(postedDat: ArrayList<Comments>?) {
-        GlobalScope.launch(context = Dispatchers.Main) {
-            while (userIds == null) {
-            }
-            userIds.value = postedDat
-        }
-    }
-
 
     fun registerListeners() {
         networkStateHandler!!.registerNetWorkStateBroadCast(context)

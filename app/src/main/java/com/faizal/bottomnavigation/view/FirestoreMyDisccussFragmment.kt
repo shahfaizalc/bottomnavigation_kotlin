@@ -15,12 +15,14 @@ import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.chats.*
 import com.faizal.bottomnavigation.chats.kotlin.*
 import com.faizal.bottomnavigation.databinding.ActivityDiscussionBinding
+import com.faizal.bottomnavigation.databinding.ActivityMydiscussionBinding
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.model2.Comments
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.getUserName
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.viewmodel.ActivityDiscussionViewModel
+import com.faizal.bottomnavigation.viewmodel.ActivityMyDiscussionViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.google.firebase.firestore.CollectionReference
@@ -36,7 +38,7 @@ import com.google.firebase.firestore.Query
  * For a general intro to the RecyclerView, see [Creating
  * Lists](https://developer.android.com/training/material/lists-cards.html).
  */
-class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
+class FirestoreMyDisccussFragmment : BaseFragment(), AuthStateListener {
     companion object {
         private const val TAG = "FirestoreChatFragmment"
 
@@ -47,9 +49,9 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
 
 
     @Transient
-    lateinit internal var areaViewModel: ActivityDiscussionViewModel
+    lateinit internal var areaViewModel: ActivityMyDiscussionViewModel
 
-    lateinit var binding : ActivityDiscussionBinding
+    lateinit var binding : ActivityMydiscussionBinding
 
     private var mRecyclerView: RecyclerView? = null
     private var mSendButton: ImageButton? = null
@@ -80,8 +82,8 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
         val c = GenericValues()
         val groups = c.getDisccussion(postAdObj!!, this.context!!)
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.activity_discussion, container, false)
-        areaViewModel = ActivityDiscussionViewModel(this.context!!, this,postAdObj)
+        binding = DataBindingUtil.inflate(inflater, R.layout.activity_mydiscussion, container, false)
+        areaViewModel = ActivityMyDiscussionViewModel(this.context!!, this,postAdObj)
         binding.mainDataModel = areaViewModel
         binding.countriesInfoModel = areaViewModel.postDiscussion
 

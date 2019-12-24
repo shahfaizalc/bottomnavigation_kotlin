@@ -9,7 +9,6 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.MutableLiveData
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.adapter.CommentsAdapter
 import com.faizal.bottomnavigation.adapter.GroupAdapter
 import com.faizal.bottomnavigation.adapter.GroupsAdapter
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler

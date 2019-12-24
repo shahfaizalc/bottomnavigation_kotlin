@@ -10,8 +10,6 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.MutableLiveData
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
-import com.faizal.bottomnavigation.adapter.Comments2Adapter
-import com.faizal.bottomnavigation.adapter.CommentsAdapter
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
@@ -43,14 +41,6 @@ class EventViewModel(private val context: Context,
         readAutoFillItems()
         userProfile = getUserName(context, FirebaseAuth.getInstance().currentUser!!.uid);
     }
-
-    @get:Bindable
-    var userIds: MutableLiveData<List<Comments>> = MutableLiveData<List<Comments>>()
-        private set(value) {
-            field = value
-            notifyPropertyChanged(BR.userIds)
-        }
-
 
     @get:Bindable
     var review: String? = null
@@ -151,7 +141,6 @@ class EventViewModel(private val context: Context,
 
 
 
-    var adapter = CommentsAdapter()
 
     private fun readAutoFillItems() {
         val c = GenericValues()

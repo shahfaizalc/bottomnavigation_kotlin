@@ -13,8 +13,6 @@ import com.faizal.bottomnavigation.model2.Comments
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.viewmodel.EventViewModel
 import com.faizal.bottomnavigation.viewmodel.JoinGroupViewModel
-import com.faizal.bottomnavigation.viewmodel.MyOneDiscussionViewModel
-import com.faizal.bottomnavigation.viewmodel.OneDiscussionViewModel
 
 
 class FragmentEvent : BaseFragment() {
@@ -38,18 +36,6 @@ class FragmentEvent : BaseFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.mainDataModel?.userIds?.observe(this, object: Observer<List<Comments>> {
-            override fun onChanged(t: List<Comments>?) {
-
-                if (t != null) {
-                    binding.mainDataModel?.adapter?.setData(t)
-                }
-            }
-        } )
-
-    }
     override fun onResume() {
         super.onResume()
         areaViewModel.registerListeners()

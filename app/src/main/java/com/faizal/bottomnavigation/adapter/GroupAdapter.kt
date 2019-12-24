@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.faizal.bottomnavigation.databinding.CommentItemBinding
 import com.faizal.bottomnavigation.databinding.GroupItemBinding
 import com.faizal.bottomnavigation.databinding.RatingItemBinding
 import com.faizal.bottomnavigation.model2.Comments
@@ -12,7 +11,6 @@ import com.faizal.bottomnavigation.model2.Reviews
 import com.faizal.bottomnavigation.util.convertLongToTime
 import com.faizal.bottomnavigation.util.notNull
 import com.faizal.bottomnavigation.viewmodel.GroupViewModel
-import com.faizal.bottomnavigation.viewmodel.OneDiscussionViewModel
 import com.faizal.bottomnavigation.viewmodel.RequestCompleteViewModel
 
 class GroupAdapter() : RecyclerView.Adapter<GroupAdapter.UserHolder>() {
