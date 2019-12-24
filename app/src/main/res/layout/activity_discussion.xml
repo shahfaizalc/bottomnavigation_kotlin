@@ -27,12 +27,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_gravity="center"
-            card_view:contentPadding="@dimen/dimen_8"
-            card_view:cardBackgroundColor="@color/white"
+            android:layout_margin="@dimen/dimen_4"
             card_view:cardCornerRadius="@dimen/dimen_4"
-            card_view:cardElevation="@dimen/dimen_4">
+            card_view:cardElevation="@dimen/dimen_12">
 
             <LinearLayout
+                android:padding="@dimen/dimen_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
