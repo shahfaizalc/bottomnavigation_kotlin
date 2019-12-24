@@ -162,7 +162,6 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@+id/card_view"
-            android:background="@drawable/bg_gradiant_white"
             android:id="@+id/messagesList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

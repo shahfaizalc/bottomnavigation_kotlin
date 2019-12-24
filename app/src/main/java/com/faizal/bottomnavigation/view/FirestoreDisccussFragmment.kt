@@ -53,7 +53,6 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
 
     lateinit var binding : ActivityDiscussionBinding
 
-
     private var mRecyclerView: RecyclerView? = null
     private var mSendButton: ImageButton? = null
     private var mMessageEdit: EditText? = null
@@ -62,15 +61,6 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
     /** Get the last 50 chat messages ordered by timestamp .  */
     private lateinit var sChatQuery :Query
 
-
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.activity_discussion, container, false)
-        areaViewModel = ActivityDiscussionViewModel(this.context!!, this,postAdObj)
-        binding.mainDataModel = areaViewModel
-        binding.countriesInfoModel = areaViewModel.postDiscussion
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -188,13 +178,13 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
                 .setQuery(sChatQuery, Chat::class.java)
                 .setLifecycleOwner(this)
                 .build()
-        return object : FirestoreRecyclerAdapter<Chat, ChatHolder>(options) {
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatHolder {
-                return ChatHolder(LayoutInflater.from(parent.context)
-                        .inflate(R.layout.message, parent, false))
+        return object : FirestoreRecyclerAdapter<Chat, DiscussionHolder>(options) {
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscussionHolder {
+                return DiscussionHolder(LayoutInflater.from(parent.context)
+                        .inflate(R.layout.comments_message, parent, false))
             }
 
-            override fun onBindViewHolder(holder: ChatHolder, position: Int, model: Chat) {
+            override fun onBindViewHolder(holder: DiscussionHolder, position: Int, model: Chat) {
                 holder.bind(model)
             }
 
