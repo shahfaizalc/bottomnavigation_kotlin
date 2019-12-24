@@ -71,7 +71,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
 
     fun openFragment2(postAdModel: PostDiscussion, position: Int) {
-        val fragment = FragmentOneDiscussion()
+        val fragment = FirestoreDisccussFragmment()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
         fragment.setArguments(bundle)
@@ -118,9 +118,9 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
         Log.d(TAG, "Success getting documents: " + adModel.postedBy)
 
-        if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
+       // if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
             talentProfilesList.add(adModel)
-        }
+     //   }
     }
 
     fun isBookmarked(postDiscussion: PostDiscussion): Boolean? {

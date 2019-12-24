@@ -1,5 +1,6 @@
 package com.faizal.bottomnavigation.model2
 
+import com.faizal.bottomnavigation.chats.kotlin.Chat
 import com.faizal.bottomnavigation.model.Address
 import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.EventStatus
