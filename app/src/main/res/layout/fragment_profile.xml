@@ -67,7 +67,7 @@
                     android:layout_weight="1"
                     android:drawableTop="@drawable/help_circle"
                     android:gravity="center_horizontal"
-                    android:onClick="@{() -> homeData.findClickded()}"
+                    android:onClick="@{() -> homeData.feedback()}"
                     android:padding="@dimen/dimen_8"
                     android:text="Help"
                     android:textSize="@dimen/dimen_8"

@@ -18,10 +18,7 @@ import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.notNull
 import com.faizal.bottomnavigation.util.storeUserName
 import com.faizal.bottomnavigation.utils.Constants
-import com.faizal.bottomnavigation.view.FragmentMyDiscussions
-import com.faizal.bottomnavigation.view.FragmentProfile
-import com.faizal.bottomnavigation.view.FragmentProfileEdit
-import com.faizal.bottomnavigation.view.FragmentWelcome
+import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
 import java.util.ArrayList
 
@@ -185,6 +182,14 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
         fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
     }
 
+    fun feedback() {
+        Log.d("tag", "taggg")
+        val fragment = FragmentFeedBack()
+        val bundle = Bundle()
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+    }
 
     fun myDiscussionsClicked() {
         Log.d("tag", "taggg")

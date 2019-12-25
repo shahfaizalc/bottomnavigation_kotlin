@@ -133,11 +133,14 @@
         <item>Doctorate</item>
         <item>Others</item>
     </string-array>
+    <string name="submit">Submit</string>
 
     <string name="sign_out">Sign out</string>
     <string name="enter_text">Enter text</string>
     <string name="message_hint">Write your message here</string>
     <string name="addtoCalender">Add to Calender</string>
     <string name="remmoveFromCalender">Remove from Calender</string>
+    <string name="feebackTitleTxt">Feedback</string>
 
+    <string name="feebackHintTxt">What would you like us to improve?</string>
 </resources>
