@@ -1,8 +1,5 @@
 package com.faizal.bottomnavigation.model2
 
-import com.faizal.bottomnavigation.chats.kotlin.Chat
-import com.faizal.bottomnavigation.model.Address
-import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model.EventStatus
 
 class PostDiscussion{
@@ -13,8 +10,8 @@ class PostDiscussion{
     var postedBy : String? = null
     var postedByName : String? = null
     var eventState: EventStatus = EventStatus.SHOWING
-    var comments: ArrayList<Comments>? = null
     var likes: ArrayList<Likes>? = null
     var bookmarks: ArrayList<Bookmarks>? = null
+    var searchTags: List<String>? = null
 
 }

@@ -11,16 +11,16 @@ import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
 import com.faizal.bottomnavigation.listeners.MultipleClickListener
-import com.faizal.bottomnavigation.model2.PostDiscussion
-import com.faizal.bottomnavigation.model2.PostEvents
-import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
+import com.faizal.bottomnavigation.util.searchTags
+import com.faizal.bottomnavigation.util.sentenceToWords
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.FragmentGameChooser
 import com.faizal.bottomnavigation.view.FragmentNewDiscusssion
-import com.faizal.bottomnavigation.view.FragmentSimiliarDiscussion
-import com.google.firebase.auth.FirebaseAuth
-import org.greenrobot.eventbus.EventBus
+import java.util.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+import kotlin.collections.ArrayList
 
 
 class NewDiscussionViewModel(private val context: Context, private val fragmentSignin: FragmentNewDiscusssion) :
@@ -49,11 +49,10 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
     fun doPostEvents() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
-//            if (postEvents.title.isNullOrEmpty()) {
-//                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.infoMsg), Toast.LENGTH_LONG).show()
-//                return@OnClickListener
-//            }
-            Log.d(TAG, "DocumentSnapshot onFailure i am in ")
+            if (userTitle.isNullOrEmpty()) {
+                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.infoMsg), Toast.LENGTH_LONG).show()
+                return@OnClickListener
+            }
 
             Log.d(TAG, "DocumentSnapshot onSuccess ")
             val fragment = FragmentGameChooser()
@@ -63,8 +62,8 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
             fragment.setArguments(bundle)
             fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
         }
-
     }
+
 
 
     private fun networkHandler() {

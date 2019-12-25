@@ -1,5 +1,6 @@
 package com.faizal.bottomnavigation.viewmodel
 
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -12,9 +13,8 @@ import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
-import com.faizal.bottomnavigation.util.GenericValues
-import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.util.getUserName
+import com.faizal.bottomnavigation.util.*
+import com.faizal.bottomnavigation.view.FragmentDiscussions
 import com.faizal.bottomnavigation.view.FragmentGameChooser
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
@@ -66,6 +66,12 @@ class GameChooserModel(internal val activity: FragmentActivity,
 
     }
 
+    private fun compareLIt(): Set<String> {
+        val list1 = postDiscussion.title!!.sentenceToWords()
+        Log.d("list2","indian" + list1)
+        return list1.intersect(searchTags)
+    }
+
 
     fun doDiscussionWrrite() = View.OnClickListener {
 
@@ -77,10 +83,13 @@ class GameChooserModel(internal val activity: FragmentActivity,
             }
 
             if ( postDiscussion.keyWords!!.size > 0 && postDiscussion.title!!.length > 3 ) {
+
+                postDiscussion.searchTags = compareLIt().toList()
+
                 postDiscussion.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
                 postDiscussion.postedDate = System.currentTimeMillis().toString()
                 postDiscussion.postedByName = getUserName(activity.applicationContext, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
-                Log.d(TAG, "DocumentSnapshot  doDiscussionWrrite "  )
+                Log.d(TAG, "DocumentSnapshot  doDiscussionWrrite "  +postDiscussion.searchTags)
                 val firbaseWriteHandler = FirbaseWriteHandler(fragmentGameChooser).updateDiscussion(postDiscussion, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
@@ -90,11 +99,10 @@ class GameChooserModel(internal val activity: FragmentActivity,
 
                     override fun onSuccess() {
                         Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-//                        val fragment = FragmentProfile()
-//                        val bundle = Bundle()
-//                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-//                        fragment.setArguments(bundle)
-//                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+                        val fragment = FragmentDiscussions()
+                        val bundle = Bundle()
+                        fragment.setArguments(bundle)
+                        fragmentGameChooser.mFragmentNavigation.replaceFragment(fragment);
 
                     }
                 })

@@ -181,28 +181,12 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
     }
 
 
-
-    fun addComment(userInfo: PostDiscussion, emptyResultListener: EmptyResultListener) {
-        val myDB = FirebaseFirestore.getInstance()
-        val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)
-        collection.document(userInfo.postedDate!!).update("comments",userInfo.comments)
-                .addOnSuccessListener {
-                    emptyResultListener.onSuccess()
-
-                    Log.d(TAG, "DocumentSnapshot added ")
-                }
-                .addOnFailureListener { e ->
-                    emptyResultListener.onFailure(e)
-                    Log.w(TAG, "Error in adding document", e)
-                }
-    }
-
     fun updateUserInfoFollowed(userInfo: Profile, emptyResultListener: EmptyResultListener) {
         Log.d(TAG, "DocumentSnapshot added ID Current "+currentFirebaseUser!!.uid)
 
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
-        collection.document(currentFirebaseUser!!.uid).update("following",userInfo.following)
+        collection.document(currentFirebaseUser.uid).update("following",userInfo.following)
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
 

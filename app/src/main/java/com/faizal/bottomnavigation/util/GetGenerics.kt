@@ -7,6 +7,8 @@ import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model2.Profile
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 //fun offerPrice(postAdObj: Profile) =
 //        (((postAdObj.ticketCount * postAdObj.price).toDouble()) -
@@ -72,7 +74,6 @@ fun getDiscussionKeys(keyWords: MutableList<Int>?, context: Context): String? {
 
     var keyTag = "";
 
-
     keyWords.notNull {
 
         val keysCoach: ArrayList<CoachItem> = readDisscussions(context)
@@ -94,4 +95,24 @@ fun getDiscussionKeys(keyWords: MutableList<Int>?, context: Context): String? {
 private fun readDisscussions(context: Context): ArrayList<CoachItem> {
     val c = GenericValues()
     return c.readDisuccsionTopics(context)
+}
+
+var searchTags = listOf("university","college","exam","j2ee","neet", "gate",
+        " cat","jee", "clat" ,"bitsat", "srnjee", "viteee", "iit",
+        "engineering", "law", "medicine", "arts", "commerce", "science", "pharmacy", "journalism", "music", "mba",
+        "iim", "iisc", "arts", "computer", "cmat", "xat", "mat", "nift", "film", "fashion",
+        "jnu", "nimcet", "gmat", "toefl", "ielts", "gre", "gpat")
+
+
+ fun String.sentenceToWords(): List<String> {
+    val list1 = ArrayList<String>()
+    val p: Pattern = Pattern.compile("[a-zA-Z]+")
+
+    val m1: Matcher = p.matcher(this.toLowerCase(Locale.getDefault()))
+
+    while (m1.find()) {
+
+        list1.add(m1.group());
+    }
+    return list1;
 }
