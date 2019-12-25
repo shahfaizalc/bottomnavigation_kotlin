@@ -20,6 +20,8 @@ import com.faizal.bottomnavigation.model2.PostEvents
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
+import com.faizal.bottomnavigation.util.searchTags
+import com.faizal.bottomnavigation.util.sentenceToWords
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.android.gms.tasks.OnCompleteListener
@@ -99,8 +101,6 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
 
     fun doGetTalents() {
 
-
-
        val db = FirebaseFirestore.getInstance()
         val query = db.collection("discussion");
         query.get()
@@ -116,6 +116,31 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
                 }).addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
                 .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
     }
+
+    fun doGetTalentsSearch(searchQuery:String) {
+        val db = FirebaseFirestore.getInstance()
+        val query = db.collection("discussion").whereArrayContainsAny("searchTags",compareLIt(searchQuery).toList())
+
+        query.get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    val any = if (task.isSuccessful) {
+                        talentProfilesList.clear()
+                        for (document in task.result!!) {
+                            addTalentsItems(document)
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
+                    }
+                }).addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
+                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
+    }
+
+    private fun compareLIt(s:String): Set<String> {
+        val list1 = s.sentenceToWords()
+        Log.d("list2","indian" + list1)
+        return list1.intersect(searchTags)
+    }
+
 
     fun addTalentsItems(document: QueryDocumentSnapshot) {
 

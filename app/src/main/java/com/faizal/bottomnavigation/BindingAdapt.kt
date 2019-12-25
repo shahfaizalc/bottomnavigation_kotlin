@@ -395,8 +395,8 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: MyAdsModel) {
 }
 
 
-@BindingAdapter( "app:searchRecycler")
-fun adapter(recyclerView: RecyclerView, countriesViewModel: MyDiscussionModel) {
+@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView,countriesViewModel: MyDiscussionModel,recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = MyDiscussionAdapter(countriesViewModel)
@@ -431,6 +431,24 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: MyDiscussionModel) {
         }
 
     });
+
+    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(s: String?): Boolean {
+            if(s.isNullOrEmpty()){
+                countriesViewModel.doGetTalents()
+            } else {
+                countriesViewModel.doGetTalentsSearch(s)
+            }
+            return false
+        }
+
+        override fun onQueryTextChange(strQuery: String): Boolean {
+            if(strQuery.isNullOrEmpty()){
+                countriesViewModel.doGetTalents()
+            }
+            return false
+        }
+    })
 }
 
 

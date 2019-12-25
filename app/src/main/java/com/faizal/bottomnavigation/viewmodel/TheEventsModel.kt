@@ -106,7 +106,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
 
     fun doGetTalentsSearch(searchQuery:String) {
         val db = FirebaseFirestore.getInstance()
-        val query = db.collection("groups").whereArrayContainsAny("searchTags",compareLIt(searchQuery).toList())
+        val query = db.collection("events").whereArrayContainsAny("searchTags",compareLIt(searchQuery).toList())
 
         query.get()
                 .addOnCompleteListener({ task ->
