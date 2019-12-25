@@ -13,6 +13,7 @@ import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.BindingAdapter
+import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -434,9 +435,8 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: MyDiscussionModel) {
 
 
 
-
-@BindingAdapter( "app:searchRecycler")
-fun adapter(recyclerView: RecyclerView, countriesViewModel: DiscussionModel) {
+@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView,countriesViewModel: DiscussionModel,recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = DiscussionAdapter(countriesViewModel)
@@ -471,9 +471,19 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: DiscussionModel) {
         }
 
     });
+
+    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(s: String?): Boolean {
+            countriesViewModel.doGetTalentsSearch(s!!)
+            return false
+        }
+
+        override fun onQueryTextChange(strQuery: String): Boolean {
+
+            return false
+        }
+    })
 }
-
-
 
 @BindingAdapter( "app:searchRecycler2")
 fun adapter2(recyclerView: RecyclerView, countriesViewModel: AdSearchModel) {

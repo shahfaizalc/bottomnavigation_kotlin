@@ -37,6 +37,8 @@
                 android:layout_marginEnd="@dimen/dimen_8"
                 android:background="@drawable/circular_bg_white"
                 android:clickable="true"
+                app:searchRecycler="@{recyclerUser}"
+                app:searchAdapter="@{adSearchModel}"
                 app:queryHint="Search Discussion"/>
 
             <View
@@ -59,14 +61,14 @@
                 android:background="@drawable/bottom_line" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_8"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_marginEnd="@dimen/dimen_8"
                 android:background="@android:color/transparent"
-                android:scrollbars="vertical"
-                app:searchRecycler="@{adSearchModel}" />
+                android:scrollbars="vertical" />
 
 
         </LinearLayout>
