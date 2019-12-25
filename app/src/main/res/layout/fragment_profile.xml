@@ -12,12 +12,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:background="@drawable/bg_gradiant_oneside_violet_lite"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_gradiant_violet"
             android:orientation="vertical"
             android:paddingStart="@dimen/dimen_8"
             android:paddingTop="@dimen/dimen_8"

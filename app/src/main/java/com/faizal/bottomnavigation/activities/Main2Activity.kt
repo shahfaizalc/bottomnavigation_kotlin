@@ -31,8 +31,8 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
 
     internal var toolbar: Toolbar? = null
 
-    private val mTabIconsSelected = intArrayOf(R.drawable.tab_home, R.drawable.tab_magnify,
-            R.drawable.tab_group, R.drawable.tab_heart, R.drawable.tab_account)
+    private val mTabIconsSelected = intArrayOf(R.drawable.tab_home,
+            R.drawable.tab_group, R.drawable.tab_event, R.drawable.tab_account)
 
 
     internal lateinit var TABS: ArrayList<String>
@@ -54,7 +54,6 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
         TABS = ArrayList();
         TABS.apply {
             add("Home")
-            add("Search")
             add("Share")
             add("News")
             add("Profile")
@@ -112,8 +111,8 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
             updateTabSelection(0)
         }else{
             bottomTabLayout!!.visibility = View.GONE
-            switchTab(4)
-            updateTabSelection(4)
+            switchTab(3)
+            updateTabSelection(3)
         }
     }
 
@@ -268,10 +267,9 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
         when (index) {
 
             FragNavController.TAB1 -> return FragmentDiscussions()
-            FragNavController.TAB2 -> return FragmentAdSearch()
-            FragNavController.TAB3 -> return FragmentMyGroups()
-            FragNavController.TAB4 -> return FragmentTheEvents()
-            FragNavController.TAB5 -> return FragmentWelcome()
+            FragNavController.TAB2 -> return FragmentMyGroups()
+            FragNavController.TAB3 -> return FragmentTheEvents()
+            FragNavController.TAB4 -> return FragmentWelcome()
         }
         throw IllegalStateException("Need to send an index that we know")
     }
