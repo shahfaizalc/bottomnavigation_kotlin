@@ -21,14 +21,7 @@
             android:background="@drawable/bg_gradiant_oneside_violet_lite"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:weightSum="5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_gradiant_oneside_violet_lite"
-            android:orientation="horizontal">
             <androidx.appcompat.widget.SearchView
-                android:layout_weight="4"
                 android:id="@+id/search1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,19 +34,7 @@
                 app:searchAdapter="@{adSearchModel}"
                 app:queryHint="Search Discussion"/>
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:background="@color/white" />
-            <ImageView
-                android:tint="@color/white"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_filter"></ImageView>
-        </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
