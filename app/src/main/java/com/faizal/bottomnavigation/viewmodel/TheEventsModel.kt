@@ -12,9 +12,7 @@ import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.model2.*
-import com.faizal.bottomnavigation.util.GenericValues
-import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.util.notNull
+import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.android.gms.tasks.OnCompleteListener
@@ -104,6 +102,30 @@ class TheEventsModel(internal var activity: FragmentActivity,
 
             talentProfilesList.add(adModel)
 
+    }
+
+    fun doGetTalentsSearch(searchQuery:String) {
+        val db = FirebaseFirestore.getInstance()
+        val query = db.collection("groups").whereArrayContainsAny("searchTags",compareLIt(searchQuery).toList())
+
+        query.get()
+                .addOnCompleteListener({ task ->
+                    val any = if (task.isSuccessful) {
+                        talentProfilesList.clear()
+                        for (document in task.result!!) {
+                            addTalentsItems(document)
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
+                    }
+                }).addOnFailureListener( { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
+                .addOnSuccessListener( { valu -> Log.d(TAG, "Success getting documents: " + valu) })
+    }
+
+    private fun compareLIt(s:String): Set<String> {
+        val list1 = s.sentenceToWords()
+        Log.d("list2","indian" + list1)
+        return list1.intersect(searchTags)
     }
 
 

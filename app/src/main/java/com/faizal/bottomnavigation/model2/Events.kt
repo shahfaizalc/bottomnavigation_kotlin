@@ -19,4 +19,5 @@ class Events{
     var keyWords: MutableList<Int>? = null
     var eventState: EventStatus = EventStatus.SHOWING
     var eventTime:String? = null
+    var searchTags: List<String>? = null
 }

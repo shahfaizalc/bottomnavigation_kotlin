@@ -15,10 +15,7 @@ import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.MultipleClickListener
 import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
-import com.faizal.bottomnavigation.util.GenericValues
-import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.util.getUserName
-import com.faizal.bottomnavigation.util.onDatePickerClick
+import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
@@ -166,6 +163,7 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
 
                 val events = Events();
                 events.title= userTitle
+                events.searchTags = compareLIt().toList()
                 events.description = userDesc
                 events.address = profile.address
                 events.endDate = expiryDate?.onDatePickerClick().toString()
@@ -195,6 +193,13 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
             }
         }
     }
+
+    private fun compareLIt(): Set<String> {
+        val list1 = userTitle!!.sentenceToWords()
+        Log.d("list2","indian" + list1)
+        return list1.intersect(searchTags)
+    }
+
 
     fun String.isValid()= this.length > 8
 
