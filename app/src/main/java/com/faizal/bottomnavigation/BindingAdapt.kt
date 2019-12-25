@@ -476,7 +476,9 @@ fun adapter(searchView: SearchView,countriesViewModel: DiscussionModel,recyclerV
         override fun onQueryTextSubmit(s: String?): Boolean {
             if(s.isNullOrEmpty()){
                 countriesViewModel.doGetTalents()
-            } else{ countriesViewModel.doGetTalentsSearch(s)}
+            } else {
+                countriesViewModel.doGetTalentsSearch(s)
+            }
             return false
         }
 
@@ -723,7 +725,9 @@ fun adapter(recyclerView: RecyclerView, profileInfoViewModel: GroupViewModel ) {
         override fun onQueryTextSubmit(s: String?): Boolean {
             if(s.isNullOrEmpty()){
                 countriesViewModel.doGetTalents()
-            } else {countriesViewModel.doGetTalentsSearch(s)}
+            } else {
+                countriesViewModel.doGetTalentsSearch(s)
+            }
             return false
         }
 
@@ -815,7 +819,9 @@ fun adapter(searchView: SearchView,countriesViewModel: TheEventsModel,recyclerVi
 
             if(s.isNullOrEmpty()){
                 countriesViewModel.doGetTalents()
-            } else  {countriesViewModel.doGetTalentsSearch(s)}
+            } else  {
+                countriesViewModel.doGetTalentsSearch(s)
+            }
             return false
         }
 

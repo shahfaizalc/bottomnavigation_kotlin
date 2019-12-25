@@ -52,11 +52,7 @@ class NewGroupViewModel(private val context: Context, private val fragmentSignin
             notifyPropertyChanged(BR.userDesc)
         }
 
-    private fun compareLIt(): Set<String> {
-        val list1 = userTitle!!.sentenceToWords()
-        Log.d("list2","indian" + list1)
-        return list1.intersect(searchTags)
-    }
+    private fun compareLIt(): List<String>  { return userTitle!!.sentenceToWords() }
 
 
     fun doPostEvents() = View.OnClickListener {
@@ -70,7 +66,7 @@ class NewGroupViewModel(private val context: Context, private val fragmentSignin
             if ( userTitle!!.isValid() ) {
 
                 val group = Groups();
-                group.searchTags = compareLIt().toList()
+                group.searchTags = compareLIt()
                 group.title= userTitle
                 group.description = userDesc
                 group.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""

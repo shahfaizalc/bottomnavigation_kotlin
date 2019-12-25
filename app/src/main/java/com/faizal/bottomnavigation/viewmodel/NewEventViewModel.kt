@@ -163,7 +163,7 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
 
                 val events = Events();
                 events.title= userTitle
-                events.searchTags = compareLIt().toList()
+                events.searchTags = compareLIt()
                 events.description = userDesc
                 events.address = profile.address
                 events.endDate = expiryDate?.onDatePickerClick().toString()
@@ -194,11 +194,7 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
         }
     }
 
-    private fun compareLIt(): Set<String> {
-        val list1 = userTitle!!.sentenceToWords()
-        Log.d("list2","indian" + list1)
-        return list1.intersect(searchTags)
-    }
+    private fun compareLIt(): List<String> { return userTitle!!.sentenceToWords()}
 
 
     fun String.isValid()= this.length > 8

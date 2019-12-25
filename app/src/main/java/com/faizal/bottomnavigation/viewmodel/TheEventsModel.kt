@@ -122,10 +122,8 @@ class TheEventsModel(internal var activity: FragmentActivity,
                 .addOnSuccessListener( { valu -> Log.d(TAG, "Success getting documents: " + valu) })
     }
 
-    private fun compareLIt(s:String): Set<String> {
-        val list1 = s.sentenceToWords()
-        Log.d("list2","indian" + list1)
-        return list1.intersect(searchTags)
+    private fun compareLIt(s:String): List<String> {
+        return s.sentenceToWords()
     }
 
 
