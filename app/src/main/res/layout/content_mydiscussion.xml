@@ -18,7 +18,7 @@
             android:id="@+id/viewA"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_gradiant_violet"
+            android:background="@drawable/bg_gradiant_oneside_violet_lite"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.SearchView
