@@ -16,6 +16,5 @@ class Groups{
     var keyWords: MutableList<Int>? = null
     var eventState: EventStatus = EventStatus.SHOWING
     var comments: ArrayList<Comments>? = null
-
-
+    var searchTags: List<String>? = null
 }

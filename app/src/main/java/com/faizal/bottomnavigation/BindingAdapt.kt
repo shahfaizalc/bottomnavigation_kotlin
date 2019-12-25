@@ -677,8 +677,9 @@ fun adapter(recyclerView: RecyclerView, profileInfoViewModel: GroupViewModel ) {
 
 }
 
-@BindingAdapter( "app:searchRecycler")
-fun adapter(recyclerView: RecyclerView, countriesViewModel: GroupsModel) {
+
+    @BindingAdapter( "app:searchAdapter", "app:searchRecycler")
+    fun adapter(searchView: SearchView,countriesViewModel: GroupsModel,recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = GroupsAdapter(countriesViewModel)
@@ -713,6 +714,19 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: GroupsModel) {
         }
 
     });
+
+    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(s: String?): Boolean {
+            countriesViewModel.doGetTalentsSearch(s!!)
+            return false
+        }
+
+        override fun onQueryTextChange(strQuery: String): Boolean {
+
+            return false
+        }
+    })
+
 }
 
 @BindingAdapter( "app:searchRecycler")

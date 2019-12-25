@@ -16,9 +16,7 @@ import com.faizal.bottomnavigation.model2.Groups
 import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.model2.PostEvents
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
-import com.faizal.bottomnavigation.util.GenericValues
-import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.util.getUserName
+import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.firebase.auth.FirebaseAuth
@@ -54,6 +52,13 @@ class NewGroupViewModel(private val context: Context, private val fragmentSignin
             notifyPropertyChanged(BR.userDesc)
         }
 
+    private fun compareLIt(): Set<String> {
+        val list1 = userTitle!!.sentenceToWords()
+        Log.d("list2","indian" + list1)
+        return list1.intersect(searchTags)
+    }
+
+
     fun doPostEvents() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
@@ -65,6 +70,7 @@ class NewGroupViewModel(private val context: Context, private val fragmentSignin
             if ( userTitle!!.isValid() ) {
 
                 val group = Groups();
+                group.searchTags = compareLIt().toList()
                 group.title= userTitle
                 group.description = userDesc
                 group.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
