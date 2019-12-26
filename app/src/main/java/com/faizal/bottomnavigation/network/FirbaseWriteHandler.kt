@@ -7,6 +7,7 @@ import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_DISCUSSION
+import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_FEEDBACK
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_GROUPS
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_POSTEVVENT
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
@@ -133,6 +134,19 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 }
     }
 
+    fun updateFeedback(discussion: Feedback, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_FEEDBACK)
+        collection.document(discussion.feedbackOn).set(discussion)
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
 
 
 

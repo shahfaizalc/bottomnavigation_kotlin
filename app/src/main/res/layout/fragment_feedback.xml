@@ -36,6 +36,7 @@
                     android:textSize="@dimen/dimen_20"/>
 
                 <EditText
+                    android:text="@={homeData.userEmail}"
                     android:layout_marginTop="@dimen/dimen_8"
                     android:background="@android:color/transparent"
                     android:gravity="top"
@@ -49,6 +50,7 @@
         </ScrollView>
 
         <Button
+            android:onClick="@{homeData.datePickerClick()}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

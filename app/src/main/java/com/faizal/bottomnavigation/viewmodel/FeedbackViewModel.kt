@@ -10,13 +10,19 @@ import androidx.databinding.Bindable
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
+import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.listeners.MultipleClickListener
 import com.faizal.bottomnavigation.model.CoachItem
+import com.faizal.bottomnavigation.model2.Feedback
+import com.faizal.bottomnavigation.network.FirbaseWriteHandler
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.view.*
+import com.faizal.bottomnavigation.util.getUserName
+import com.faizal.bottomnavigation.utils.EnumFeedBack
+import com.faizal.bottomnavigation.view.FragmentDiscussions
+import com.faizal.bottomnavigation.view.FragmentFeedBack
 import com.google.firebase.auth.FirebaseAuth
-import java.util.ArrayList
+import java.util.*
 
 
 class FeedbackViewModel(private val context: Context, private val fragmentSignin: FragmentFeedBack) :
@@ -53,7 +59,7 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
 
 
     @get:Bindable
-    var userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
+    var userEmail: String? = ""
         set(price) {
             field = price
             notifyPropertyChanged(BR.userEmail)
@@ -63,7 +69,38 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
 
     fun datePickerClick() = View.OnClickListener {
 
+
         if (!handleMultipleClicks()) {
+
+            val feedBack = Feedback();
+
+            if (userEmail.isNullOrEmpty()) {
+                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
+                return@OnClickListener
+            }
+
+            feedBack.feedback = userEmail!!
+            feedBack.feedbackBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+            feedBack.feedbackOn = System.currentTimeMillis().toString()
+            feedBack.feedbackUsername = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+            feedBack.feebackStatus = EnumFeedBack.NEW
+
+            val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateFeedback(feedBack, object : EmptyResultListener {
+                override fun onFailure(e: Exception) {
+                    Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                    Toast.makeText(context, context.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+
+                }
+
+                override fun onSuccess() {
+                    Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
+                    val fragment = FragmentDiscussions()
+                    val bundle = Bundle()
+                    fragment.setArguments(bundle)
+                    fragmentSignin.mFragmentNavigation.popFragment(1);
+
+                }
+            })
 
         }
     }
