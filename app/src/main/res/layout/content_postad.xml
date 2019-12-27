@@ -5,7 +5,7 @@
 
         <variable
             name="postAdViewData"
-            type="com.faizal.bottomnavigation.viewmodel.PostAdViewModel" />
+            type="com.faizal.guiado.viewmodel.PostAdViewModel" />
     </data>
 
     <RelativeLayout

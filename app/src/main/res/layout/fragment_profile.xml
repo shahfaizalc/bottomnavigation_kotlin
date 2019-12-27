@@ -7,7 +7,7 @@
 
         <variable
             name="homeData"
-            type="com.faizal.bottomnavigation.viewmodel.ProfileViewModel" />
+            type="com.faizal.guiado.viewmodel.ProfileViewModel" />
     </data>
 
     <ScrollView

@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.bottomnavigation.viewmodel.RequestCompleteViewModel" />
+            type="com.faizal.guiado.viewmodel.RequestCompleteViewModel" />
 
         <variable
             name="profile"
-            type="com.faizal.bottomnavigation.model2.Profile" />
+            type="com.faizal.guiado.model2.Profile" />
 
 
         <variable

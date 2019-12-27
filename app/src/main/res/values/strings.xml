@@ -77,7 +77,7 @@
     <string name="find_btn">Find A Coach / Mate</string>
     <string name="be_btn">Be A Coach / Mate</string>
     <string name="USR_DLS_Verify_Email_Title_Txt">Confirm your email</string>
-    <string name="USR_DLS_Verify_Email_Sent_Txt">We\'ve just sent you an email to %s.</string>
+    <string name="USR_DLS_Verify_Email_Sent_Txt">We\'ve just sent you an email to </string>
     <string name="USR_DLS_Verify_Email_Explainary_Txt">Please check your email and activate your account.</string>
     <string name="USR_DLS_Verify_Email_Resend_Btn_Title_Txt">I haven\'t received an email</string>
     <string name="USR_DLS_Verify_Email_Security_Txt">We go through this process for your security.</string>
@@ -86,6 +86,7 @@
     <string name="finderEventTitle">Find the next happening in your city</string>
     <string name="infoMsg">Please write your question</string>
     <string name="likes">%s likes</string>
+    <string name="resnd_Verify_Email_Title_Txt">We have resent the verification mail. Please verify.</string>
 
     <string name="follow">Follow</string>
     <string name="following">Unfollow</string>

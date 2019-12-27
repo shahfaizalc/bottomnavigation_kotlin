@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.faizal.bottomnavigation.viewmodel.RegistrationModel" />
+            type="com.faizal.guiado.viewmodel.RegistrationModel" />
     </data>
 
     <LinearLayout

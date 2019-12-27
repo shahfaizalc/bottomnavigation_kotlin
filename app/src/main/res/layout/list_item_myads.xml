@@ -5,11 +5,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.bottomnavigation.viewmodel.MyAdsModel" />
+            type="com.faizal.guiado.viewmodel.MyAdsModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.bottomnavigation.model2.Profile" />
+            type="com.faizal.guiado.model2.Profile" />
 
         <variable
             name="itemPosition"
@@ -17,11 +17,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.faizal.bottomnavigation.adapter.MyAdsAdapter" />
+            type="com.faizal.guiado.adapter.MyAdsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.faizal.bottomnavigation.listeners.MyAdsEventListener" />
+            type="com.faizal.guiado.listeners.MyAdsEventListener" />
 
         <variable
             name="address"

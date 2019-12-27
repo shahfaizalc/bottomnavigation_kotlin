@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.bottomnavigation.viewmodel.EventViewModel" />
+            type="com.faizal.guiado.viewmodel.EventViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.bottomnavigation.model2.Events" />
+            type="com.faizal.guiado.model2.Events" />
 
     </data>
 

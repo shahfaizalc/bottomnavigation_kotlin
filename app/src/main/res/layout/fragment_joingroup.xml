@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.bottomnavigation.viewmodel.JoinGroupViewModel" />
+            type="com.faizal.guiado.viewmodel.JoinGroupViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.bottomnavigation.model2.Groups" />
+            type="com.faizal.guiado.model2.Groups" />
 
     </data>
 

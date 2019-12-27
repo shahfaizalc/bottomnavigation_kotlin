@@ -6,7 +6,7 @@
 
         <variable
             name="adSearchModel"
-            type="com.faizal.bottomnavigation.viewmodel.AdSearchModel" />
+            type="com.faizal.guiado.viewmodel.AdSearchModel" />
     </data>
 
     <LinearLayout

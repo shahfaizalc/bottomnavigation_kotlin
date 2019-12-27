@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.faizal.bottomnavigation.viewmodel.StopOversViewModel" />
+            type="com.faizal.guiado.viewmodel.StopOversViewModel" />
     </data>
 
     <LinearLayout

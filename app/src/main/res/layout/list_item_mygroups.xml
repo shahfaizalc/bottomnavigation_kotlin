@@ -4,11 +4,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.bottomnavigation.viewmodel.MyGroupsModel" />
+            type="com.faizal.guiado.viewmodel.MyGroupsModel" />
 
         <variable
             name="groupsViewModel"
-            type="com.faizal.bottomnavigation.model2.Groups" />
+            type="com.faizal.guiado.model2.Groups" />
 
         <variable
             name="itemPosition"
@@ -16,11 +16,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.faizal.bottomnavigation.adapter.MyGroupsAdapter" />
+            type="com.faizal.guiado.adapter.MyGroupsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.faizal.bottomnavigation.listeners.MyGroupsEventListener" />
+            type="com.faizal.guiado.listeners.MyGroupsEventListener" />
 
         <variable
             name="keyWordsTag"

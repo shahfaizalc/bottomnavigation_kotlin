@@ -5,11 +5,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.bottomnavigation.viewmodel.MyDiscussionModel" />
+            type="com.faizal.guiado.viewmodel.MyDiscussionModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.bottomnavigation.model2.PostDiscussion" />
+            type="com.faizal.guiado.model2.PostDiscussion" />
 
         <variable
             name="itemPosition"
@@ -17,11 +17,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.faizal.bottomnavigation.adapter.MyDiscussionAdapter" />
+            type="com.faizal.guiado.adapter.MyDiscussionAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.faizal.bottomnavigation.listeners.MyDiscussionEventListener" />
+            type="com.faizal.guiado.listeners.MyDiscussionEventListener" />
 
         <variable
             name="keyWordsTag"

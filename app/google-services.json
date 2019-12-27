@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:789249373279:android:401ec4862ba4c2b2",
+        "mobilesdk_app_id": "1:789249373279:android:4a41db28ef58ad8f0357ea",
         "android_client_info": {
-          "package_name": "com.faizal.bottomnavigation"
+          "package_name": "com.faizal.guiado"
         }
       },
       "oauth_client": [
         {
-          "client_id": "789249373279-tq22ipuc4tvbl9kc3gmkpf7trak69abj.apps.googleusercontent.com",
+          "client_id": "789249373279-lc8odl84dejpgjtlnia0nuk1jcc2odt0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.faizal.bottomnavigation",
+            "package_name": "com.faizal.guiado",
             "certificate_hash": "32661a43b3833acf523a7db28f6b5fdd91081356"
           }
         },

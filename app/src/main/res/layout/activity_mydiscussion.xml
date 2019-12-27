@@ -7,11 +7,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.bottomnavigation.viewmodel.ActivityMyDiscussionViewModel" />
+            type="com.faizal.guiado.viewmodel.ActivityMyDiscussionViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.bottomnavigation.model2.PostDiscussion" />
+            type="com.faizal.guiado.model2.PostDiscussion" />
 
     </data>
 

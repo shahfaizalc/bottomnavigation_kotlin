@@ -5,7 +5,7 @@
 
         <variable
             name="listener"
-            type="com.faizal.bottomnavigation.listeners.ChooserEventListener" />
+            type="com.faizal.guiado.listeners.ChooserEventListener" />
 
         <variable
             name="itemPosition"
@@ -13,7 +13,7 @@
 
         <variable
             name="gameChooserModel"
-            type="com.faizal.bottomnavigation.viewmodel.GameChooserModel" />
+            type="com.faizal.guiado.viewmodel.GameChooserModel" />
     </data>
 
         <FrameLayout

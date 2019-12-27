@@ -6,7 +6,7 @@
 
         <variable
             name="postAdPricing"
-            type="com.faizal.bottomnavigation.viewmodel.AdressViewModel" />
+            type="com.faizal.guiado.viewmodel.AdressViewModel" />
     </data>
 
     <RelativeLayout

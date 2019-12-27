@@ -6,7 +6,7 @@
 
         <variable
             name="adSearchModel"
-            type="com.faizal.bottomnavigation.viewmodel.GroupsModel" />
+            type="com.faizal.guiado.viewmodel.GroupsModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

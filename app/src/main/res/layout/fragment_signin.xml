@@ -7,7 +7,7 @@
 
         <variable
             name="homeData"
-            type="com.faizal.bottomnavigation.viewmodel.SignInViewModel" />
+            type="com.faizal.guiado.viewmodel.SignInViewModel" />
     </data>
 
     <LinearLayout

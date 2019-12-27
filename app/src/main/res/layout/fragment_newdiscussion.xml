@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.faizal.bottomnavigation.viewmodel.NewDiscussionViewModel" />
+            type="com.faizal.guiado.viewmodel.NewDiscussionViewModel" />
     </data>
 
     <RelativeLayout

@@ -4,11 +4,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.bottomnavigation.viewmodel.TheEventsModel" />
+            type="com.faizal.guiado.viewmodel.TheEventsModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.bottomnavigation.model2.Events" />
+            type="com.faizal.guiado.model2.Events" />
 
         <variable
             name="itemPosition"
@@ -16,11 +16,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.faizal.bottomnavigation.adapter.TheEventsAdapter" />
+            type="com.faizal.guiado.adapter.TheEventsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.faizal.bottomnavigation.listeners.TheEventsEventListener" />
+            type="com.faizal.guiado.listeners.TheEventsEventListener" />
 
         <variable
             name="keyWordsTag"

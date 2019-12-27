@@ -5,7 +5,7 @@
 
         <variable
             name="gameChooserModel"
-            type="com.faizal.bottomnavigation.viewmodel.GroupViewModel" />
+            type="com.faizal.guiado.viewmodel.GroupViewModel" />
     </data>
 
     <RelativeLayout
