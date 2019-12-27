@@ -59,9 +59,7 @@ class FirestoreChatFragmment : BaseFragment(), AuthStateListener {
 
         sChatCollection = FirebaseFirestore.getInstance().collection("groups/"+"chats/"+groups.postedDate!!)
         /** Get the last 50 chat messages ordered by timestamp .  */
-        sChatQuery = sChatCollection.orderBy("timestamp", Query.Direction.DESCENDING).limit(50)
-
-
+        sChatQuery = sChatCollection.orderBy("timestamp", Query.Direction.DESCENDING).limit(500)
 
         mRecyclerView = view.findViewById(R.id.messagesList)
         mSendButton = view.findViewById(R.id.sendButton)
@@ -72,11 +70,11 @@ class FirestoreChatFragmment : BaseFragment(), AuthStateListener {
         manager.stackFromEnd = true
         mRecyclerView!!.setHasFixedSize(true)
         mRecyclerView!!.setLayoutManager(manager)
-        mRecyclerView!!.addOnLayoutChangeListener(View.OnLayoutChangeListener { view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
+        mRecyclerView!!.addOnLayoutChangeListener { view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
             if (bottom < oldBottom) {
-                mRecyclerView!!.postDelayed(Runnable { mRecyclerView!!.smoothScrollToPosition(0) }, 100)
+                mRecyclerView!!.postDelayed({ mRecyclerView!!.smoothScrollToPosition(0) }, 100)
             }
-        })
+        }
         ImeHelper.setImeOnDoneListener(mMessageEdit!!, object : ImeHelper.DonePressedListener {
             override fun onDonePressed() {
                 setMessageValue()

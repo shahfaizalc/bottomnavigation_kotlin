@@ -191,6 +191,22 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
         fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
     }
 
+    fun info() {
+        Log.d("tag", "taggg")
+        val fragment = FragmentInfo()
+        val bundle = Bundle()
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+    }
+    fun settings() {
+        Log.d("tag", "taggg")
+        val fragment = FragmentSettings()
+        val bundle = Bundle()
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+    }
     fun myDiscussionsClicked() {
         Log.d("tag", "taggg")
         val fragment = FragmentMyDiscussions()
