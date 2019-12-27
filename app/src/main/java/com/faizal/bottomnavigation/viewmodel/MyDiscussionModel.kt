@@ -18,10 +18,7 @@ import com.faizal.bottomnavigation.model.IndiaItem
 import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.model2.PostEvents
 import com.faizal.bottomnavigation.model2.Profile
-import com.faizal.bottomnavigation.util.GenericValues
-import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.util.searchTags
-import com.faizal.bottomnavigation.util.sentenceToWords
+import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.android.gms.tasks.OnCompleteListener
@@ -102,6 +99,7 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
     fun doGetTalents() {
 
        val db = FirebaseFirestore.getInstance()
+        db.firestoreSettings = firestoreSettings
         val query = db.collection("discussion");
         query.get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
@@ -119,6 +117,7 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
 
     fun doGetTalentsSearch(searchQuery:String) {
         val db = FirebaseFirestore.getInstance()
+        db.firestoreSettings = firestoreSettings
         val query = db.collection("discussion").whereArrayContainsAny("searchTags",compareLIt(searchQuery).toList())
 
         query.get()

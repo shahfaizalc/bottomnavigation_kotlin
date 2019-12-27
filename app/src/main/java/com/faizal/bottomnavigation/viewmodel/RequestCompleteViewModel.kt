@@ -14,10 +14,7 @@ import com.faizal.bottomnavigation.listeners.EmptyResultListener
 import com.faizal.bottomnavigation.model2.Profile
 import com.faizal.bottomnavigation.model2.Reviews
 import com.faizal.bottomnavigation.network.FirbaseWriteHandler
-import com.faizal.bottomnavigation.util.GenericValues
-import com.faizal.bottomnavigation.util.MultipleClickHandler
-import com.faizal.bottomnavigation.util.getKeys
-import com.faizal.bottomnavigation.util.notNull
+import com.faizal.bottomnavigation.util.*
 import com.faizal.bottomnavigation.view.FragmentRequestComplete
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
@@ -110,6 +107,7 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
     fun getVal() {
 
         val db = FirebaseFirestore.getInstance()
+        db.firestoreSettings = firestoreSettings
         val query = db.collection("review");
         query.get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->

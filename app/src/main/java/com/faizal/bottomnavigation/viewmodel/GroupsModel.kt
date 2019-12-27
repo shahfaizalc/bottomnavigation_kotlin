@@ -90,6 +90,8 @@ class GroupsModel(internal var activity: FragmentActivity,
     fun doGetTalents() {
 
        val db = FirebaseFirestore.getInstance()
+        db.firestoreSettings = firestoreSettings
+
         val query = db.collection("groups");
         query.get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
@@ -107,6 +109,7 @@ class GroupsModel(internal var activity: FragmentActivity,
 
     fun doGetTalentsSearch(searchQuery:String) {
         val db = FirebaseFirestore.getInstance()
+        db.firestoreSettings = firestoreSettings
         val query = db.collection("groups").whereArrayContainsAny("searchTags",compareLIt(searchQuery).toList())
 
         query.get()

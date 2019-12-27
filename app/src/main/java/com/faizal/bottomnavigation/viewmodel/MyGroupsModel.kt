@@ -15,6 +15,7 @@ import com.faizal.bottomnavigation.view.FirestoreChatFragmment
 import com.faizal.bottomnavigation.model2.*
 import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
+import com.faizal.bottomnavigation.util.firestoreSettings
 import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.view.*
 import com.google.android.gms.tasks.OnCompleteListener
@@ -91,6 +92,7 @@ class MyGroupsModel(internal var activity: FragmentActivity,
     fun doGetTalents() {
 
        val db = FirebaseFirestore.getInstance()
+        db.firestoreSettings = firestoreSettings
         val query = db.collection("groups");
         query.get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->

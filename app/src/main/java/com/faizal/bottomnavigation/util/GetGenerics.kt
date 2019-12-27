@@ -1,14 +1,15 @@
 package com.faizal.bottomnavigation.util
 
 import android.content.Context
-import android.provider.ContactsContract
 import com.faizal.bottomnavigation.model.Address
 import com.faizal.bottomnavigation.model.CoachItem
 import com.faizal.bottomnavigation.model2.Profile
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+
 
 //fun offerPrice(postAdObj: Profile) =
 //        (((postAdObj.ticketCount * postAdObj.price).toDouble()) -
@@ -116,3 +117,8 @@ var searchTags = listOf("university","college","exam","j2ee","neet", "gate",
     }
     return list1;
 }
+
+var firestoreSettings = FirebaseFirestoreSettings.Builder()
+        .setPersistenceEnabled(true)
+        .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
+        .build()

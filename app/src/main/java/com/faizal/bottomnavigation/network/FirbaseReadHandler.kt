@@ -6,6 +6,7 @@ import android.util.NoSuchPropertyException
 import com.faizal.bottomnavigation.listeners.UseInfoGeneralResultListener
 import com.faizal.bottomnavigation.model2.PostDiscussion
 import com.faizal.bottomnavigation.model2.Profile
+import com.faizal.bottomnavigation.util.firestoreSettings
 import com.faizal.bottomnavigation.util.storeUserName
 import com.faizal.bottomnavigation.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
 import com.google.android.gms.tasks.OnCompleteListener
@@ -36,6 +37,7 @@ class FirbaseReadHandler {
 
     private fun getProfile(id : String, useInfoGeneralResultListener: UseInfoGeneralResultListener) {
         val myDB = FirebaseFirestore.getInstance()
+        myDB.firestoreSettings = firestoreSettings
         val docRef = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO).document(id)
 
         docRef.get().addOnCompleteListener { task ->
@@ -65,6 +67,7 @@ class FirbaseReadHandler {
     fun storeUserNamePreference(context: Context) {
 
         val db = FirebaseFirestore.getInstance()
+        db.firestoreSettings = firestoreSettings
         val query = db.collection("userinfo").document(currentFirebaseUser!!.uid);
         query.get()
                 .addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->

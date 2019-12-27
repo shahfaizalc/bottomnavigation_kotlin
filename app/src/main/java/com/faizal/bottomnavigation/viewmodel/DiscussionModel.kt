@@ -8,6 +8,7 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.FragmentActivity
+import com.facebook.internal.WebDialog
 import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.Events.MyCustomEvent
 import com.faizal.bottomnavigation.R
@@ -21,9 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -96,24 +95,6 @@ class DiscussionModel(internal var activity: FragmentActivity,
         return list1.intersect(searchTags)
     }
 
-    fun doGetTalents() {
-
-       val db = FirebaseFirestore.getInstance()
-        val query = db.collection("discussion");
-        query.get()
-                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                    val any = if (task.isSuccessful) {
-                        talentProfilesList.clear()
-                        for (document in task.result!!) {
-                            addTalentsItems(document)
-                        }
-                    } else {
-                        Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
-                    }
-                }).addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
-                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
-    }
-
     fun doGetTalentsSearch(searchQuery:String) {
         val db = FirebaseFirestore.getInstance()
         val query = db.collection("discussion").whereArrayContainsAny("searchTags",compareLIt(searchQuery).toList())
@@ -144,6 +125,36 @@ class DiscussionModel(internal var activity: FragmentActivity,
      //   }
     }
 
+
+
+    fun doGetTalents() {
+
+    val db = FirebaseFirestore.getInstance()
+    db.firestoreSettings = firestoreSettings
+
+    val query = db.collection("discussion")
+    query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
+        if (e != null) {
+            Log.w(DiscussionModel.TAG, "Listen error", e)
+            return@addSnapshotListener
+        }
+
+        for (change in querySnapshot!!.documentChanges) {
+            if (change.type == DocumentChange.Type.ADDED) {
+                Log.d(DiscussionModel.TAG, "New city: ${change.document.data}")
+            }
+
+            val source = if (querySnapshot.metadata.isFromCache)
+                "local cache"
+            else
+                "server"
+            Log.d(DiscussionModel.TAG, "Data fetched from $source")
+            addTalentsItems(change.document)
+
+
+        }
+    }
+}
     fun isBookmarked(postDiscussion: PostDiscussion): Boolean? {
         var isFollow = false
         postDiscussion.bookmarks.notNull {
@@ -159,3 +170,8 @@ class DiscussionModel(internal var activity: FragmentActivity,
         return isFollow
     }
 }
+
+
+
+
+//
