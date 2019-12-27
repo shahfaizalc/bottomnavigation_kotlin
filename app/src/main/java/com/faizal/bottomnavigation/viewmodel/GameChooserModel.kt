@@ -50,19 +50,9 @@ class GameChooserModel(internal val activity: FragmentActivity,
 
 
     fun onNextButtonClick(category: Int) {
-
-        if (!handleMultipleClicks()) {
-            keyWord.clear()
-
-            Toast.makeText(fragmentGameChooser.context,""+ postDiscussion.title,
-                    Toast.LENGTH_SHORT).show()
-            keyWord.add(category + 1)
-            postDiscussion.keyWords = keyWord
-        } else {
-            Toast.makeText(fragmentGameChooser.context,
-                    fragmentGameChooser.context!!.resources.getText(R.string.mandatoryField),
-                    Toast.LENGTH_SHORT).show()
-        }
+         keyWord.clear()
+         keyWord.add(category + 1)
+         postDiscussion.keyWords = keyWord
 
     }
 
@@ -78,7 +68,7 @@ class GameChooserModel(internal val activity: FragmentActivity,
 
         if (!handleMultipleClicks()) {
             if ( postDiscussion.keyWords.isNullOrEmpty() || postDiscussion.title.isNullOrEmpty() ) {
-                Toast.makeText(fragmentGameChooser.context, fragmentGameChooser.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentGameChooser.context, fragmentGameChooser.context!!.resources.getString(R.string.disussionSelect), Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
 
