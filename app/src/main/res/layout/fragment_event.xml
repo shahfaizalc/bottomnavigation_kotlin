@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.guiado.viewmodel.EventViewModel" />
+            type="com.guiado.grads.viewmodel.EventViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.guiado.model2.Events" />
+            type="com.guiado.grads.model2.Events" />
 
     </data>
 

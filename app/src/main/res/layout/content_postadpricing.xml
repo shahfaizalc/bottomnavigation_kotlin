@@ -5,7 +5,7 @@
 
         <variable
             name="postAdPricing"
-            type="com.faizal.guiado.viewmodel.PostAdPricingViewModel" />
+            type="com.guiado.grads.viewmodel.PostAdPricingViewModel" />
     </data>
 
     <RelativeLayout

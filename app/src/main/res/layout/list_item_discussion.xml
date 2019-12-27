@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.guiado.viewmodel.DiscussionModel" />
+            type="com.guiado.grads.viewmodel.DiscussionModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.guiado.model2.PostDiscussion" />
+            type="com.guiado.grads.model2.PostDiscussion" />
 
         <variable
             name="itemPosition"
@@ -18,11 +18,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.faizal.guiado.adapter.DiscussionAdapter" />
+            type="com.guiado.grads.adapter.DiscussionAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.faizal.guiado.listeners.DiscussionEventListener" />
+            type="com.guiado.grads.listeners.DiscussionEventListener" />
 
         <variable
             name="keyWordsTag"

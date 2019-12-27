@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.faizal.guiado.viewmodel.StopOversViewModel" />
+            type="com.guiado.grads.viewmodel.StopOversViewModel" />
     </data>
 
     <LinearLayout

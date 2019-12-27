@@ -6,7 +6,7 @@
 
         <variable
             name="adSearchModel"
-            type="com.faizal.guiado.viewmodel.DiscussionModel" />
+            type="com.guiado.grads.viewmodel.DiscussionModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

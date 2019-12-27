@@ -7,11 +7,11 @@
 
         <variable
             name="homeData"
-            type="com.faizal.guiado.viewmodel.ProfileEditViewModel" />
+            type="com.guiado.grads.viewmodel.ProfileEditViewModel" />
 
         <variable
             name="profile"
-            type="com.faizal.guiado.model2.Profile" />
+            type="com.guiado.grads.model2.Profile" />
     </data>
 
     <ScrollView
@@ -55,7 +55,7 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <com.faizal.guiado.utils.ImageViewRounded
+                        <com.guiado.grads.utils.ImageViewRounded
                             android:id="@+id/header2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

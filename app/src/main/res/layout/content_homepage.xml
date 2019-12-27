@@ -5,7 +5,7 @@
 
         <variable
             name="homePageModel"
-            type="com.faizal.guiado.viewmodel.HomePageModel" />
+            type="com.guiado.grads.viewmodel.HomePageModel" />
     </data>
 
     <LinearLayout

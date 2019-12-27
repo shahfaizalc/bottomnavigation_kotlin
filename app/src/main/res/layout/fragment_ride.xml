@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.faizal.guiado.viewmodel.RideViewModel" />
+            type="com.guiado.grads.viewmodel.RideViewModel" />
     </data>
 
     <LinearLayout

@@ -4,11 +4,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.guiado.viewmodel.GroupsModel" />
+            type="com.guiado.grads.viewmodel.GroupsModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.guiado.model2.Groups" />
+            type="com.guiado.grads.model2.Groups" />
 
         <variable
             name="itemPosition"
@@ -16,11 +16,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.faizal.guiado.adapter.GroupsAdapter" />
+            type="com.guiado.grads.adapter.GroupsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.faizal.guiado.listeners.GroupsEventListener" />
+            type="com.guiado.grads.listeners.GroupsEventListener" />
 
         <variable
             name="keyWordsTag"

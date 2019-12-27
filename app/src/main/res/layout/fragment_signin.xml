@@ -7,7 +7,7 @@
 
         <variable
             name="homeData"
-            type="com.faizal.guiado.viewmodel.SignInViewModel" />
+            type="com.guiado.grads.viewmodel.SignInViewModel" />
     </data>
 
     <LinearLayout

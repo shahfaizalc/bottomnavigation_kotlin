@@ -5,11 +5,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.faizal.guiado.viewmodel.SimilarDiscussionModel" />
+            type="com.guiado.grads.viewmodel.SimilarDiscussionModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.faizal.guiado.model2.Profile" />
+            type="com.guiado.grads.model2.Profile" />
 
         <variable
             name="itemPosition"
@@ -17,11 +17,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.faizal.guiado.adapter.SimilarAdsAdapter" />
+            type="com.guiado.grads.adapter.SimilarAdsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.faizal.guiado.listeners.SimilarAdsEventListener" />
+            type="com.guiado.grads.listeners.SimilarAdsEventListener" />
 
         <variable
             name="address"

@@ -4,7 +4,7 @@
 
         <variable
             name="mainData"
-            type="com.faizal.guiado.viewmodel.LocationViewModel" />
+            type="com.guiado.grads.viewmodel.LocationViewModel" />
     </data>
 
     <LinearLayout

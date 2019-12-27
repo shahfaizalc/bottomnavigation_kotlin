@@ -6,7 +6,7 @@
 
         <variable
             name="gameChooserModel"
-            type="com.faizal.guiado.viewmodel.GameChooserModel" />
+            type="com.guiado.grads.viewmodel.GameChooserModel" />
     </data>
 
     <RelativeLayout

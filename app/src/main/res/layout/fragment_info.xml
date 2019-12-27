@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.faizal.guiado.viewmodel.InfoViewModel" />
+            type="com.guiado.grads.viewmodel.InfoViewModel" />
 
     </data>
 
