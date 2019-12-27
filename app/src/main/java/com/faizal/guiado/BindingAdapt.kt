@@ -463,7 +463,6 @@ fun adapter(searchView: SearchView,countriesViewModel: DiscussionModel,recyclerV
     recyclerView.adapter = listAdapter
     bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
     bindingAdapter.initRequest(recyclerView)
-
     countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
         override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
@@ -499,9 +498,7 @@ fun adapter(searchView: SearchView,countriesViewModel: DiscussionModel,recyclerV
         }
 
         override fun onQueryTextChange(strQuery: String): Boolean {
-            if(strQuery.isNullOrEmpty()){
-                countriesViewModel.doGetTalents()
-            }
+
             return false
         }
     })

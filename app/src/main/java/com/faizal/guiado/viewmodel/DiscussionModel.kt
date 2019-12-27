@@ -16,7 +16,9 @@ import com.faizal.guiado.model2.PostDiscussion
 import com.faizal.guiado.model2.Profile
 import com.faizal.guiado.util.*
 import com.faizal.guiado.utils.Constants
-import com.faizal.guiado.view.*
+import com.faizal.guiado.view.FirestoreDisccussFragmment
+import com.faizal.guiado.view.FragmentDiscussions
+import com.faizal.guiado.view.FragmentNewDiscusssion
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -62,6 +64,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
         EventBus.getDefault().unregister(this)
         profile = event.data
     }
+
     var profile = Profile();
 
 
@@ -84,19 +87,20 @@ class DiscussionModel(internal var activity: FragmentActivity,
         val fragment = FragmentNewDiscusssion()
         val bundle = Bundle()
         fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 
     }
 
-    private fun compareLIt(s:String): Set<String> {
+    private fun compareLIt(s: String): Set<String> {
         val list1 = s.sentenceToWords()
-        Log.d("list2","indian" + list1)
+        Log.d("list2", "indian" + list1)
         return list1.intersect(searchTags)
     }
 
-    fun doGetTalentsSearch(searchQuery:String) {
+    fun doGetTalentsSearch(searchQuery: String) {
         val db = FirebaseFirestore.getInstance()
-        val query = db.collection("discussion").whereArrayContainsAny("searchTags",compareLIt(searchQuery).toList())
+        val query = db.collection("discussion").whereArrayContainsAny("searchTags", compareLIt(searchQuery).toList())
+        Log.d(TAG, "DOIT doGetTalentsSearch: ")
 
         query.get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
@@ -119,41 +123,44 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
         Log.d(TAG, "Success getting documents: " + adModel.postedBy)
 
-       // if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
-            talentProfilesList.add(adModel)
-     //   }
+        // if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
+        talentProfilesList.add(adModel)
+        //   }
     }
-
 
 
     fun doGetTalents() {
 
-    val db = FirebaseFirestore.getInstance()
-    db.firestoreSettings = firestoreSettings
+        val db = FirebaseFirestore.getInstance()
+        db.firestoreSettings = firestoreSettings
+        Log.d(TAG, "DOIT doGetTalents: ")
 
-    val query = db.collection("discussion")
-    query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
-        if (e != null) {
-            Log.w(DiscussionModel.TAG, "Listen error", e)
-            return@addSnapshotListener
-        }
-
-        for (change in querySnapshot!!.documentChanges) {
-            if (change.type == DocumentChange.Type.ADDED) {
-                Log.d(DiscussionModel.TAG, "New city: ${change.document.data}")
+        talentProfilesList.clear()
+        val query = db.collection("discussion")
+        query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
+            if (e != null) {
+                Log.w(DiscussionModel.TAG, "Listen error", e)
+                return@addSnapshotListener
             }
 
-            val source = if (querySnapshot.metadata.isFromCache)
-                "local cache"
-            else
-                "server"
-            Log.d(DiscussionModel.TAG, "Data fetched from $source")
-            addTalentsItems(change.document)
+            for (change in querySnapshot!!.documentChanges) {
+                if (change.type == DocumentChange.Type.ADDED) {
+                    Log.d(DiscussionModel.TAG, "New city: ${change.document.data}")
+                }
+
+                val source = if (querySnapshot.metadata.isFromCache) {
+                    "local cache"
+                } else{
+                    "server"
+                }
+                Log.d(DiscussionModel.TAG, "Data fetched from $source")
+                addTalentsItems(change.document)
 
 
+            }
         }
     }
-}
+
     fun isBookmarked(postDiscussion: PostDiscussion): Boolean? {
         var isFollow = false
         postDiscussion.bookmarks.notNull {
@@ -169,8 +176,6 @@ class DiscussionModel(internal var activity: FragmentActivity,
         return isFollow
     }
 }
-
-
 
 
 //
