@@ -22,12 +22,11 @@ class FragmentFeedBack : BaseFragment() {
     lateinit internal var areaViewModel: FeedbackViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val postAdObj  = arguments!!.getString(Constants.POSTAD_OBJECT)
 
-        return bindView(inflater, container,postAdObj)
+        return bindView(inflater, container)
     }
 
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String): View {
+    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
         if (binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_feedback, container, false)
             areaViewModel = FeedbackViewModel(this.context!!, this)

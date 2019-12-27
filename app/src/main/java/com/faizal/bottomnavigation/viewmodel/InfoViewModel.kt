@@ -2,6 +2,7 @@ package com.faizal.bottomnavigation.viewmodel
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
@@ -11,9 +12,12 @@ import com.faizal.bottomnavigation.BR
 import com.faizal.bottomnavigation.R
 import com.faizal.bottomnavigation.fragments.BaseFragment
 import com.faizal.bottomnavigation.handler.NetworkChangeHandler
+import com.faizal.bottomnavigation.util.GenericValues
 import com.faizal.bottomnavigation.util.MultipleClickHandler
+import com.faizal.bottomnavigation.utils.Constants
 import com.faizal.bottomnavigation.utils.EnumValidator
 import com.faizal.bottomnavigation.utils.Validator
+import com.faizal.bottomnavigation.view.FragmentFeedBack
 import com.faizal.bottomnavigation.view.FragmentFineRide
 import com.faizal.bottomnavigation.view.FragmentInfo
 import com.faizal.bottomnavigation.view.FragmentLocationPicker
@@ -79,6 +83,13 @@ class InfoViewModel(private val context: Context, private val fragmentSignin: Fr
             fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 
         }
+    }
+    fun feedback() {
+        Log.d("tag", "taggg")
+        val fragment = FragmentFeedBack()
+        val bundle = Bundle()
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
     }
 
 

@@ -81,7 +81,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/creationby"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/white_transparent_80"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                         <TextView
@@ -90,7 +90,7 @@
                             android:maxLines="7"
                             android:text="@={countriesInfoModel.postedByName}"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/white_transparent_80" />
+                            android:textColor="@color/white" />
 
                     </LinearLayout>
 
@@ -161,18 +161,18 @@
         </androidx.cardview.widget.CardView>
         <TextView
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/dimen_4"
+            android:layout_marginBottom="@dimen/dimen_8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/dimen_4"
             android:layout_marginTop="@dimen/dimen_16"
-            android:background="@{mainDataModel.bookmarkState ? @drawable/circular_bg_blue: @drawable/circular_bg_blue }"
+            android:background="@drawable/bg_gradiant_blue_4"
             android:onClick="@{mainDataModel.updateBookmarks()}"
             android:padding="@dimen/dimen_4"
             android:text="@{mainDataModel.bookmarkState ? @string/unjoin : @string/join}"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@{mainDataModel.bookmarkState ? @color/darkBlue : @color/colorBlack  }"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
 

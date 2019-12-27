@@ -52,6 +52,8 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
                 userAvailability = profile1.availability
                 userAddress = getAddress()
                 keywords = getKeyWords(profile1.keyWords)
+                followers = profile1.following!!.size
+                followings = profile1.followers!!.size
             }
 
             override fun onFailure(e: Exception) {
@@ -105,6 +107,22 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
             field = price
             profile.availability = price
             notifyPropertyChanged(BR.userAvailability)
+
+        }
+
+    @get:Bindable
+    var followers: Int = if (profile.followers!=null) profile.followers!!.size else 0
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.followers)
+
+        }
+
+    @get:Bindable
+    var followings: Int =  if (profile.following!=null) profile.following!!.size else 0
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.followings)
 
         }
 
@@ -182,14 +200,14 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
         fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
     }
 
-    fun feedback() {
-        Log.d("tag", "taggg")
-        val fragment = FragmentFeedBack()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
-    }
+//    fun feedback() {
+//        Log.d("tag", "taggg")
+//        val fragment = FragmentFeedBack()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+//    }
 
     fun info() {
         Log.d("tag", "taggg")

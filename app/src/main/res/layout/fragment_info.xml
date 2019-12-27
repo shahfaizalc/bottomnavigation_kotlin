@@ -48,5 +48,14 @@
             android:layout_height="wrap_content"
             android:onClick="@{() -> homeData.signInUserClicked()}"
             android:text="Top Institutions"/>
+
+        <TextView
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginBottom="@dimen/dimen_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> homeData.feedback()}"
+            android:text="Feedback"/>
+
     </LinearLayout>
 </layout>

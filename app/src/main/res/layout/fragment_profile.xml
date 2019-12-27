@@ -12,8 +12,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:background="@drawable/bg_gradiant_oneside_violet_lite"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradiant_oneside_violet_lite">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_gravity="end"
                 android:background="@drawable/circular_bg_border_smoke"
                 android:orientation="horizontal"
-                android:weightSum="5">
+                android:weightSum="4">
 
 
                 <TextView
@@ -60,18 +60,6 @@
                     android:textSize="@dimen/dimen_8"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/help_circle"
-                    android:gravity="center_horizontal"
-                    android:onClick="@{() -> homeData.feedback()}"
-                    android:padding="@dimen/dimen_8"
-                    android:text="Help"
-                    android:textSize="@dimen/dimen_8"
-                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -103,76 +91,95 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:background="@drawable/circular_bg_white_4"
-                android:orientation="horizontal"
-                android:weightSum="4">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:background="@drawable/circular_bg_white_4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_8"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <com.faizal.bottomnavigation.utils.ImageViewRounded
-                        android:background="@color/white"
-                        android:id="@+id/header2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:scaleType="fitXY"
-                        app:imageUrl="@{homeData.imgUrl}" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_8"
-                    android:layout_weight="3"
+                    android:layout_marginTop="@dimen/dimen_8"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_8"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@={homeData.userName}"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:layout_marginStart="@dimen/dimen_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@={homeData.userEmail}"
                         android:textColor="@color/black" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="userId"
-                        android:textColor="@color/black" />
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:weightSum="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/circular_bg_white_4"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@={homeData.userPhone}"
-                        android:textColor="@color/black" />
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/circular_bg_white_4"
+                            android:orientation="vertical">
 
+                            <TextView
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Followers"
+                                android:textColor="@color/darkBlue" />
+
+                            <TextView
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{Integer.toString(homeData.followers)}"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/circular_bg_white_4"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Following"
+                                android:textColor="@color/darkBlue" />
+
+                            <TextView
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{Integer.toString(homeData.followings)}"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
 
-            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/colorSmoke"
                 android:layout_marginStart="@dimen/dimen_4"
-                android:layout_marginEnd="@dimen/dimen_4" />
+                android:layout_marginEnd="@dimen/dimen_4"
+                android:background="@color/colorSmoke" />
 
             <LinearLayout
                 android:layout_width="match_parent"
