@@ -30,12 +30,29 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
             field = username
             notifyPropertyChanged(BR.dataUsername)
         }
+
     @get:Bindable
     var dataPassword: String? = null
         set(password) {
             field = password
             notifyPropertyChanged(BR.dataPassword)
         }
+
+    @get:Bindable
+    var confirmPassword: String? = null
+        set(confirmPassword) {
+            field = confirmPassword
+            notifyPropertyChanged(BR.confirmPassword)
+        }
+
+    @get:Bindable
+    var dataEmail: String? = null
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.dataEmail)
+        }
+
+
     private var isInternetConnected: Boolean = false
 
     init {
@@ -47,8 +64,13 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
     }
 
     fun signInUserClicked() {
-        if (validateInput())
-            signInUser(dataUsername, dataPassword)
+        if (validateInput()){
+            if(confirmPassword.equals(dataPassword)){
+               // signInUser(dataEmail, dataPassword)
+            } else {
+                showToast(R.string.passwordMismatch)
+            }
+        }
         else
             showToast(R.string.loginValidtionErrorMsg)
     }
@@ -62,12 +84,12 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
 
     private fun validateInput(): Boolean {
 
-        if (dataUsername == null && dataPassword == null) {
+        if (dataEmail == null || dataPassword == null) {
             return false
-        }
-        return if (dataUsername!!.length < 1 && dataPassword!!.length < 1) {
-            false
-        } else Validator().validate(dataUsername, EnumValidator.EMAIL_PATTERN)
+        } else if (dataEmail!!.length < 1 || dataPassword!!.length < 1) {
+            return false
+        } else
+            return Validator().validate(dataEmail, EnumValidator.EMAIL_PATTERN)
 
     }
 

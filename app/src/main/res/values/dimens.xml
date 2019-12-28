@@ -11,5 +11,6 @@
     <dimen name="dimen_32">32dp</dimen>
     <dimen name="dimen_36">36dp</dimen>
     <dimen name="dimen_48">48dp</dimen>
+    <dimen name="dimen_100">100dp</dimen>
 
 </resources>

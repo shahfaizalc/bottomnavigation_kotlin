@@ -12,6 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -20,54 +21,66 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/home_welcomestring"
+            android:textColor="@color/black"
             android:textSize="@dimen/dimen_32"
             android:textStyle="bold" />
 
-        <EditText
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="E-mail"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:text="@={homeData.dataUsername}" />
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_16">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/displayName"
+                android:text="@={homeData.dataUsername}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="@string/passwordHint"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:text="@={homeData.dataPassword}" />
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_16">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/emailHint"
+                android:text="@={homeData.dataEmail}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="Name"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:text="@={homeData.dataUsername}" />
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_16">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/passwordHint"
+                android:text="@={homeData.dataPassword}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="Phone number"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:text="@={homeData.dataPassword}" />
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_16">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/confirmpasswordHint"
+                android:text="@={homeData.confirmPassword}" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="@string/passwordHint"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:text="@={homeData.dataPassword}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
@@ -84,9 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text= "@{String.format(@string/terms, @string/termslink)}"
-            app:clickableString="@{homeData}"
-            />
+            android:text="@{String.format(@string/terms, @string/termslink)}"
+            app:clickableString="@{homeData}" />
 
     </LinearLayout>
 
