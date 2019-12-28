@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -16,6 +17,8 @@ import com.guiado.grads.utils.Validator
 import com.guiado.grads.view.FragmentLocationPicker
 import com.guiado.grads.view.FragmentSettings
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.grads.view.FragmentAbout
+import com.guiado.grads.view.FragmentPrivacy
 import com.itravis.ticketexchange.listeners.DateListener
 import com.itravis.ticketexchange.listeners.TimeListener
 import com.itravis.ticketexchange.utils.DatePickerEvent
@@ -71,15 +74,40 @@ class SettingsViewModel(private val context: Context, private val fragmentSignin
 
     fun signInUserClicked() {
         if (!handleMultipleClicks()) {
-            val fragment = FragmentLocationPicker()
+//            val fragment = FragmentLocationPicker()
+//            val bundle = Bundle()
+//            fragment.setArguments(bundle)
+//            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+
+        }
+    }
+
+    fun inviteFriends(){
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.type = "text/plain"
+            val shareBody = context.resources.getString(R.string.shareInfo)
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+            context.startActivity(Intent.createChooser(sharingIntent, "Share via"))
+
+    }
+    fun privacyClicked() {
+        if (!handleMultipleClicks()) {
+            val fragment = FragmentPrivacy()
             val bundle = Bundle()
             fragment.setArguments(bundle)
             fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 
         }
     }
+    fun aboutClicked() {
+        if (!handleMultipleClicks()) {
+            val fragment = FragmentAbout()
+            val bundle = Bundle()
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 
-
+        }
+    }
     private fun launchChildFragment(mapFragment: BaseFragment) {
         val bundle = Bundle()
         mapFragment.arguments = bundle

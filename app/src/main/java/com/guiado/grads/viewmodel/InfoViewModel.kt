@@ -73,10 +73,10 @@ class InfoViewModel(private val context: Context, private val fragmentSignin: Fr
 
     fun signInUserClicked() {
         if (!handleMultipleClicks()) {
-            val fragment = FragmentLocationPicker()
-            val bundle = Bundle()
-            fragment.setArguments(bundle)
-            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+//            val fragment = FragmentLocationPicker()
+//            val bundle = Bundle()
+//            fragment.setArguments(bundle)
+//            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 
         }
     }

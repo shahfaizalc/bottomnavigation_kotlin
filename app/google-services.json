@@ -8,43 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:789249373279:android:4a41db28ef58ad8f0357ea",
-        "android_client_info": {
-          "package_name": "com.faizal.guiado"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "789249373279-lc8odl84dejpgjtlnia0nuk1jcc2odt0.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.faizal.guiado",
-            "certificate_hash": "32661a43b3833acf523a7db28f6b5fdd91081356"
-          }
-        },
-        {
-          "client_id": "789249373279-9egbrttsiou6qti9rjkbd149sigbe836.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDIJJtlcX-beUO9rqHTB0wCoakVv-j8zPU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "789249373279-9egbrttsiou6qti9rjkbd149sigbe836.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:789249373279:android:c090c0421ee4fef70357ea",
         "android_client_info": {
           "package_name": "com.guiado.grads"

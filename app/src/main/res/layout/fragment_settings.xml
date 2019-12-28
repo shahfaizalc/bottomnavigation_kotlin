@@ -31,7 +31,7 @@
             android:layout_marginBottom="@dimen/dimen_8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> homeData.signInUserClicked()}"
+            android:onClick="@{() -> homeData.inviteFriends()}"
             android:text="Invite Friends"/>
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_marginBottom="@dimen/dimen_8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> homeData.signInUserClicked()}"
+            android:onClick="@{() -> homeData.privacyClicked()}"
             android:text="Privacy and Security"/>
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_marginBottom="@dimen/dimen_8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> homeData.signInUserClicked()}"
+            android:onClick="@{() -> homeData.aboutClicked()}"
             android:text="About" />
 
     </LinearLayout>

@@ -34,7 +34,7 @@ open class BaseFragment : Fragment() {
 
     companion object {
 
-        val ARGS_INSTANCE = "com.faizal.guiado"
+        val ARGS_INSTANCE = "com.guiado.grads"
     }
 
     fun newInstance(instance: Int, fragment: BaseFragment, bundle: Bundle): BaseFragment {

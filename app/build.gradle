@@ -12,7 +12,7 @@ androidExtensions {
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.faizal.guiado"
+        applicationId "com.guiado.grads"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
@@ -23,7 +23,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
