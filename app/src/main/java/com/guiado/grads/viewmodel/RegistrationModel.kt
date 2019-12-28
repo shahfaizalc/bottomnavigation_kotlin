@@ -2,6 +2,7 @@ package com.guiado.grads.viewmodel
 
 
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.BaseObservable
@@ -16,6 +17,12 @@ import com.guiado.grads.utils.Validator
 import com.guiado.grads.view.FragmentRegistration
 import com.guiado.grads.view.FragmentVerification
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.grads.listeners.EmptyResultListener
+import com.guiado.grads.model2.Profile
+import com.guiado.grads.network.FirbaseWriteHandler
+import com.guiado.grads.util.GenericValues
+import com.guiado.grads.utils.Constants
+import com.guiado.grads.view.FragmentProfile
 
 
 class RegistrationModel(internal val activity: FragmentActivity, internal val fragmentSignin: FragmentRegistration)// To show list of user images (Gallery)
@@ -57,16 +64,13 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
 
     init {
         mAuth = FirebaseAuth.getInstance()
-        if (mAuth.currentUser != null) {
-            // launchChildFragment(FragmentHomePage())
-        }
         networkHandler()
     }
 
     fun signInUserClicked() {
         if (validateInput()){
             if(confirmPassword.equals(dataPassword)){
-               // signInUser(dataEmail, dataPassword)
+                signInUser(dataEmail, dataPassword)
             } else {
                 showToast(R.string.passwordMismatch)
             }
@@ -121,31 +125,44 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
 
             mAuth.createUserWithEmailAndPassword(email!!, password!!)
                     .addOnCompleteListener(activity) { task ->
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
 
                         Log.d(TAG,"Exception success "+task.isSuccessful)
 
                         if (!task.isSuccessful) {
                             // there was an error
                             Log.d(TAG,"Exception success"+task.isSuccessful)
-                            showToast(R.string.loginFailed)
+                            showToast(R.string.creationFailed)
                         } else {
                             Log.d(TAG,"Exception success "+task.isSuccessful)
                             showToast(R.string.loginSucess)
 
                             //      launchChildFragment(FragmentHomePage())
-                            sendVerificationEmail()
+                            storeUserProfile()
                         }
                     }.addOnFailureListener {
                         Log.d(TAG,"Exception ->"+it.message)
-                        showToast(R.string.loginFailed)
+                        showToast(R.string.creationFailed)
                     }
         }
 
-
     }
+
+   private fun storeUserProfile(){
+
+       val profile = Profile()
+       profile.name = dataUsername
+       profile.email = dataEmail
+       FirbaseWriteHandler(fragmentSignin).updateUserInfo(profile, object : EmptyResultListener {
+           override fun onFailure(e: Exception) {
+               Log.d(TAG, "onFailure storeUserProfile" + e.message)
+               sendVerificationEmail()
+           }
+
+           override fun onSuccess() {
+               sendVerificationEmail()
+           }
+       })
+   }
 
     private fun sendVerificationEmail() {
         val user = FirebaseAuth.getInstance().currentUser
@@ -158,9 +175,8 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
                         fragment.setArguments(bundle)
                         fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
 
-
                     } else {
-
+                        showToast(R.string.creationFailed)
                     }
                 }
     }

@@ -13,7 +13,7 @@
     <string name="ad_notification">Your ad will stay online during the date indicated above or until you remove it.</string>
     <string name="ad_notification2">Your ad will stay online during the date and time indicated above or until you remove it. If you sold the item, kindly delete the ad</string>
     <string name="home_welcomestring">Grads</string>
-    <string name="home_welcomestring2">Sharing memories not only journey</string>
+    <string name="home_welcomestring2">Fly to your dream college</string>
     <string name="home_welcomestring3">Start a journey</string>
     <string name="home_welcomestring4">Hand to hand travel diaries</string>
     <string name="app_title">Ticket Exchange</string>
@@ -57,6 +57,7 @@
     <string name="resetPasswordTxt">Reset Password</string>
     <string name="passwordHint">Password (Min 8 Character)</string>
     <string name="confirmpasswordHint">Confirm Password</string>
+    <string name="creationFailed">Sorry for the inconvenience. Please try again later</string>
 
     <string name="emailHint">Email</string>
     <string name="passwordtxt">Password</string>

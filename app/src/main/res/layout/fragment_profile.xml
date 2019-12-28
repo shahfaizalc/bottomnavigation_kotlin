@@ -99,80 +99,116 @@
                     android:layout_marginTop="@dimen/dimen_8"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_marginStart="@dimen/dimen_8"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@={homeData.userName}"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:layout_marginStart="@dimen/dimen_8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@={homeData.userEmail}"
-                        android:textColor="@color/black" />
-
                     <LinearLayout
-                        android:layout_marginTop="@dimen/dimen_8"
-                        android:weightSum="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/circular_bg_white_4"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_8">
 
-                        <LinearLayout
-                            android:layout_weight="1"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/circular_bg_white_4"
-                            android:orientation="vertical">
+                            android:gravity="center"
+                            android:text="Name "
+                            android:textColor="@color/darkBlue" />
 
-                            <TextView
-                                android:layout_gravity="center_horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="Followers"
-                                android:textColor="@color/darkBlue" />
-
-                            <TextView
-                                android:layout_gravity="center_horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{Integer.toString(homeData.followers)}"
-                                android:textColor="@color/black" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/circular_bg_white_4"
-                            android:orientation="vertical">
+                            android:text="@={homeData.userName}"
+                            android:textColor="@color/black" />
 
-                            <TextView
-                                android:layout_gravity="center_horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="Following"
-                                android:textColor="@color/darkBlue" />
-
-                            <TextView
-                                android:layout_gravity="center_horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{Integer.toString(homeData.followings)}"
-                                android:textColor="@color/black" />
-
-                        </LinearLayout>
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/circular_bg_white_4"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_8">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Email "
+                            android:textColor="@color/darkBlue" />
+
+                        <TextView
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={homeData.userEmail}"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/dimen_4"
+                android:layout_marginEnd="@dimen/dimen_4"
+                android:background="@color/colorSmoke" />
+
+            <LinearLayout
+                android:paddingTop="@dimen/dimen_8"
+                android:weightSum="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/circular_bg_white_4"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circular_bg_white_4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Followers"
+                        android:textColor="@color/darkBlue" />
+
+                    <TextView
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{Integer.toString(homeData.followers)}"
+                        android:textColor="@color/black" />
+
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circular_bg_white_4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Following"
+                        android:textColor="@color/darkBlue" />
+
+                    <TextView
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{Integer.toString(homeData.followings)}"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -198,39 +234,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={homeData.userTitle}"
+                    android:text="@={homeData.userMoreInfo}"
                     android:textColor="@color/black" />
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="@dimen/dimen_4"
-                android:layout_marginEnd="@dimen/dimen_4"
-                android:background="@color/colorSmoke" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/circular_bg_white_4"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_8">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Address"
-                    android:textColor="@color/darkBlue" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@={homeData.userAddress}"
-                    android:textColor="@color/black" />
-
-            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -259,7 +268,34 @@
                     android:text="@={homeData.keywords}"
                     android:textColor="@color/black" />
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/dimen_4"
+                android:layout_marginEnd="@dimen/dimen_4"
+                android:background="@color/colorSmoke" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/circular_bg_white_4"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_8">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Address"
+                    android:textColor="@color/darkBlue" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={homeData.userAddress}"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
