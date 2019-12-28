@@ -47,6 +47,18 @@ class ActivityDiscussionViewModel(private val context: Context,
         }
 
     @get:Bindable
+    var showUserOptions: Int? = getUiState()
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.showUserOptions)
+        }
+
+    private fun getUiState(): Int? {
+        return if(postDiscussion?.postedBy.equals(FirebaseAuth.getInstance().currentUser!!.uid)) View.INVISIBLE else View.VISIBLE
+    }
+
+
+    @get:Bindable
     var likesState: Boolean? = isLiked()
         set(city) {
             field = city

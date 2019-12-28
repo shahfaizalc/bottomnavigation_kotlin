@@ -97,6 +97,7 @@
                     android:paddingEnd="@dimen/dimen_32" />
 
                 <RelativeLayout
+                    android:visibility="@{mainDataModel.showUserOptions}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_8"

@@ -130,8 +130,8 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
         if (isSignedIn) {
             attachRecyclerViewAdapter()
         } else {
-            Toast.makeText(this.activity, "signing_in", Toast.LENGTH_SHORT).show()
-            auth.signInAnonymously().addOnCompleteListener(SignInResultNotifier(this.activity!!))
+//            Toast.makeText(this.activity, "signing_in", Toast.LENGTH_SHORT).show()
+           // auth.signInAnonymously().addOnCompleteListener(SignInResultNotifier(this.activity!!))
         }
     }
 
