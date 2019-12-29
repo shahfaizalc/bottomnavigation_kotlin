@@ -59,16 +59,29 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
-        <Button
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16"
-            android:background="@drawable/circular_bg_blue"
-            android:onClick="@{() -> homeData.doSignInUser()}"
-            android:text="@string/signInText"
-            android:textSize="@dimen/dimen_16"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:visibility="@{homeData.showSignUpBtn}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circular_bg_blue"
+                android:onClick="@{() -> homeData.doSignInUser()}"
+                android:text="@string/signInText"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/dimen_16"
+                android:textStyle="bold"
+                android:id="@+id/loginButton" />
+            <ProgressBar
+                android:visibility="@{homeData.showSignUpProgress}"
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -78,6 +91,15 @@
             android:onClick="@{() -> homeData.forgotPaswwordFragment()}"
             android:text="@string/forgotPasswordTxt"
             android:textStyle="bold" />
+
+        <TextView
+            android:layout_margin="@dimen/dimen_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textColor="@color/red"
+            android:text="@{homeData.errorTxt}" />
+
 
     </LinearLayout>
 </layout>

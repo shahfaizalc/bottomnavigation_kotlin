@@ -36,6 +36,31 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
             field = password
             notifyPropertyChanged(BR.dataPassword)
         }
+
+    @get:Bindable
+    var showSignUpProgress: Int = View.INVISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpProgress)
+        }
+
+    @get:Bindable
+    var showSignUpBtn: Int = View.VISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpBtn)
+        }
+
+    @get:Bindable
+    var errorTxt: String? = null
+        set(password) {
+            field = password
+            notifyPropertyChanged(BR.errorTxt)
+        }
+
+
+
+
     private var isInternetConnected: Boolean = false
 
     init {
@@ -54,6 +79,8 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
     }
 
     fun doSignInUser() {
+        errorTxt = ""
+
         if (validateInput())
             doSignInUser(dataUsername, dataPassword)
         else
@@ -103,6 +130,7 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
         if (isInternetConnected) {
             showToast(R.string.network_ErrorMsg)
         } else {
+            showProgresss(true)
 
             mAuth.signInWithEmailAndPassword(email!!, password!!)
                     .addOnCompleteListener(context as FragmentActivity) { task ->
@@ -110,6 +138,7 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
 
+                        showProgresss(false)
                         Log.d("TAG", "Exception success" + task.isSuccessful)
 
                         if (!task.isSuccessful) {
@@ -126,9 +155,20 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
                             }
                         }
                     }.addOnFailureListener {
+                        showProgresss(false)
                         Log.d("TAG", "c" + it.message)
-                        showToast(R.string.loginFailed)
+                      //  showToast(R.string.loginFailed)
+                        errorTxt = it.message
                     }
+        }
+    }
+    fun showProgresss(isShow : Boolean){
+        if(isShow){
+            showSignUpBtn = View.INVISIBLE
+            showSignUpProgress = View.VISIBLE }
+        else{
+            showSignUpBtn = View.VISIBLE
+            showSignUpProgress = View.INVISIBLE
         }
     }
 
@@ -151,5 +191,6 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
 
     private fun showToast(id: Int) {
         Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        errorTxt =  context.resources.getString(id)
     }
 }

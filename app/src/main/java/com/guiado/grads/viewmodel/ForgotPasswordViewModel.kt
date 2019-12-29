@@ -36,6 +36,31 @@ class ForgotPasswordViewModel(private val context: Context, private val fragment
             notifyPropertyChanged(BR.dataUsername)
         }
 
+
+    @get:Bindable
+    var showSignUpProgress: Int = View.INVISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpProgress)
+        }
+
+    @get:Bindable
+    var showSignUpBtn: Int = View.VISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpBtn)
+        }
+
+    @get:Bindable
+    var errorTxt: String? = null
+        set(password) {
+            field = password
+            notifyPropertyChanged(BR.errorTxt)
+        }
+
+
+
+
     private var isInternetConnected: Boolean = false
 
     init {
@@ -47,6 +72,7 @@ class ForgotPasswordViewModel(private val context: Context, private val fragment
     }
 
     fun sendEmail() {
+        errorTxt = ""
         if (validateInput())
             signInUser(dataUsername)
         else
@@ -96,19 +122,32 @@ class ForgotPasswordViewModel(private val context: Context, private val fragment
         if (isInternetConnected) {
             showToast(R.string.network_ErrorMsg)
         } else {
+            showProgresss(true)
 
             email?.notNull {
                 mAuth.sendPasswordResetEmail(it)
                         .addOnCompleteListener { task ->
+                            showProgresss(false)
                             if (task.isSuccessful) {
                                 Log.d(TAG, "Email sent.")
                                 showToast(R.string.forgotPasswordSuccess)
                             }
                         }.addOnFailureListener {
+                            showProgresss(false)
+                            errorTxt = it.message
                             Log.d(TAG, "Exception" + it.message)
-                            Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+                        //    Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                         }
             }
+        }
+    }
+    fun showProgresss(isShow : Boolean){
+        if(isShow){
+            showSignUpBtn = View.INVISIBLE
+            showSignUpProgress = View.VISIBLE }
+        else{
+            showSignUpBtn = View.VISIBLE
+            showSignUpProgress = View.INVISIBLE
         }
     }
 
@@ -130,6 +169,7 @@ class ForgotPasswordViewModel(private val context: Context, private val fragment
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+       // Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        errorTxt =  context.resources.getString(id)
     }
 }
