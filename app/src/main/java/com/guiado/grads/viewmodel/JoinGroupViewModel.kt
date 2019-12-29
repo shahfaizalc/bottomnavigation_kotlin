@@ -120,6 +120,7 @@ class JoinGroupViewModel(private val context: Context,
                 val bundle = Bundle()
                 fragment.setArguments(bundle)
                 fragmentSignin.mFragmentNavigation.popFragment(2);
+                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
 
             }
         })

@@ -173,19 +173,20 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
                 events.postedDate = System.currentTimeMillis().toString()
                 events.postedByName = getUserName(context.applicationContext, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
 
-                Log.d(TAG, "DocumentSnapshot  doDiscussionWrrite "  )
+                Log.d(TAG, "DocumentSnapshot  doPostEvents "  )
                 val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateEvents(events, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
-                        Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                        Log.d(TAG, "DocumentSnapshot doPostEvents onFailure " + e.message)
                         Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
 
                     }
 
                     override fun onSuccess() {
-                        Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
+                        Log.d(TAG, "DocumentSnapshot onSuccess doPostEvents")
                         val fragment = FragmentTheEvents()
                         val bundle = Bundle()
                         fragment.setArguments(bundle)
+                        fragmentSignin.mFragmentNavigation.popFragment(2);
                         fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
 
                     }
