@@ -83,15 +83,29 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <Button
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16"
-            android:background="@drawable/circular_bg_blue"
-            android:onClick="@{() -> homeData.signInUserClicked()}"
-            android:text="@string/signUpText"
-            android:textSize="@dimen/dimen_16"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:visibility="@{homeData.showSignUpBtn}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/signUpText"
+                android:background="@drawable/circular_bg_blue"
+                android:onClick="@{() -> homeData.signInUserClicked()}"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/dimen_16"
+                android:textStyle="bold"
+                android:id="@+id/loginButton" />
+            <ProgressBar
+                android:visibility="@{homeData.showSignUpProgress}"
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -100,6 +114,13 @@
             android:text="@{String.format(@string/terms, @string/termslink)}"
             app:clickableString="@{homeData}" />
 
+        <TextView
+            android:layout_margin="@dimen/dimen_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textColor="@color/red"
+            android:text="@{homeData.errorTxt}" />
     </LinearLayout>
 
 </layout>

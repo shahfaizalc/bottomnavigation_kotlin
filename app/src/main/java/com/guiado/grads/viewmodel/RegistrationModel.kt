@@ -4,6 +4,7 @@ package com.guiado.grads.viewmodel
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -53,10 +54,31 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
         }
 
     @get:Bindable
+    var showSignUpProgress: Int = View.INVISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpProgress)
+        }
+
+    @get:Bindable
+    var showSignUpBtn: Int = View.VISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpBtn)
+        }
+
+    @get:Bindable
     var dataEmail: String? = null
         set(dataEmail) {
             field = dataEmail
             notifyPropertyChanged(BR.dataEmail)
+        }
+
+    @get:Bindable
+    var errorTxt: String? = null
+        set(password) {
+            field = password
+            notifyPropertyChanged(BR.errorTxt)
         }
 
 
@@ -68,6 +90,8 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
     }
 
     fun signInUserClicked() {
+        errorTxt = ""
+
         if (validateInput()){
             if(confirmPassword.equals(dataPassword)){
                 signInUser(dataEmail, dataPassword)
@@ -123,8 +147,10 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
             showToast(R.string.network_ErrorMsg)
         } else {
 
+            showProgresss(true)
             mAuth.createUserWithEmailAndPassword(email!!, password!!)
                     .addOnCompleteListener(activity) { task ->
+                        showProgresss(false)
 
                         Log.d(TAG,"Exception success "+task.isSuccessful)
 
@@ -140,12 +166,24 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
                             storeUserProfile()
                         }
                     }.addOnFailureListener {
+                        showProgresss(false)
                         Log.d(TAG,"Exception ->"+it.message)
-                        showToast(R.string.creationFailed)
+                        errorTxt = it.message
                     }
         }
 
     }
+
+    fun showProgresss(isShow : Boolean){
+        if(isShow){
+             showSignUpBtn = View.INVISIBLE
+            showSignUpProgress = View.VISIBLE }
+        else{
+            showSignUpBtn = View.VISIBLE
+            showSignUpProgress = View.INVISIBLE
+        }
+    }
+
 
    private fun storeUserProfile(){
 
@@ -182,6 +220,6 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(activity.applicationContext, activity.applicationContext.resources.getString(id), Toast.LENGTH_LONG).show()
+        errorTxt =  activity.applicationContext.resources.getString(id)
     }
 }
