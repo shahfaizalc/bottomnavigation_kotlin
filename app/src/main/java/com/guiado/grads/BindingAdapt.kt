@@ -667,7 +667,7 @@ fun loadImage(view: ImageView, imageUrl: DiscussionModel, position: Int,postDisc
 
     view.isSelected = imageUrl.isBookmarked(postDiscussion)!!
     postDiscussion.bookmarks.notNull {  }
-    view.setOnClickListener({ it.isSelected = !it.isSelected })
+  //  view.setOnClickListener({ it.isSelected = !it.isSelected })
 
 }
 

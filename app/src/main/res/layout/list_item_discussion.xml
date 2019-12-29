@@ -115,18 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{countriesInfoModel.title}"
-                    android:textColor="@color/colorBlacklight" />
-
-
-                <TextView
-                    android:layout_marginTop="@dimen/dimen_4"
                     android:layout_marginBottom="@dimen/dimen_4"
-                    android:id="@+id/showDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="@{@string/likes(countriesInfoModel.likes.size())}"
                     android:textColor="@color/colorBlacklight" />
 
 
@@ -156,14 +145,20 @@
                         android:text="COMMENT" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:drawableTint="@color/grey"
                         android:drawablePadding="@dimen/dimen_4"
-                        android:drawableLeft="@drawable/share"
-                        android:text="SHARE" />
+                        android:drawableLeft="@drawable/like"
+                        android:layout_marginBottom="@dimen/dimen_4"
+                        android:id="@+id/showDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="@{@string/emptyStr(countriesInfoModel.likes.size())}"
+                        android:textColor="@color/colorBlacklight" />
+
                 </RelativeLayout>
             </LinearLayout>
 
