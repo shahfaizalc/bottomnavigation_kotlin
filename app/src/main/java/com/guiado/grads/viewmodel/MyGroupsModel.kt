@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
+import com.guiado.grads.util.notNull
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -114,9 +115,30 @@ class MyGroupsModel(internal var activity: FragmentActivity,
 
         Log.d(TAG, "Success getting documents:groups " + adModel.postedBy)
 
-      //  if (adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
+        if (adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
             talentProfilesList.add(adModel)
-      //  }
+        } else if(getKeyWords(adModel.members)){
+            talentProfilesList.add(adModel)
+        }
+    }
+
+    private fun getKeyWords(keyWords: ArrayList<Bookmarks>?): Boolean {
+
+        var result = false
+
+        keyWords.notNull {
+            val numbersIterator = it.iterator()
+            numbersIterator.let {
+                while (numbersIterator.hasNext()) {
+                    val value = (numbersIterator.next())
+                   if (value.markedById.equals(mAuth.currentUser!!.uid)){
+                       result = true
+                       return@notNull
+                   }
+                }
+            }
+        }
+        return result;
     }
 
     @Override

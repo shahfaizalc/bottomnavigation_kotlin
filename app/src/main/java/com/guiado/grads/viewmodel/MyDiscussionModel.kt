@@ -141,8 +141,8 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
 
         Log.d(TAG, "Success getting documents: " + adModel.postedBy)
 
-      //  if (adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
+        if (adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
             talentProfilesList.add(adModel)
-      //  }
+        }
     }
 }
