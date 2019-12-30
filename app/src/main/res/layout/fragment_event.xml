@@ -72,18 +72,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="creationby"
+                        android:text="created by"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/white_transparent_80"
+                        android:textColor="@color/darkBlue"
                         android:textStyle="bold" />
 
                     <TextView
+
+                        android:layout_marginStart="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/dimen_8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="7"
                         android:text="@={countriesInfoModel.postedByName}"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/white_transparent_80" />
+                        android:textColor="@color/darkBlue"
+                        />
 
                 </LinearLayout>
                 <View

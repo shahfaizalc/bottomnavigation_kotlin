@@ -123,6 +123,11 @@
     <string name="title">Event Title</string>
     <string name="desc">Description</string>
 
+    <string name="delete">Delete</string>
+    <string name="hide">Hide</string>
+    <string name="unhide">Unhide</string>
+    <string name="update">update</string>
+
     <string name="group_members"> %s</string>
 
     <string name="group_desc">Group Description (max 140 characters)</string>
