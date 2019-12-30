@@ -100,8 +100,9 @@ class MyEventsModel(internal var activity: FragmentActivity,
         val adModel = document.toObject(Events::class.java)
 
         Log.d(TAG, "Success getting documents:groups " + adModel.postedBy)
-
+        if (adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
             talentProfilesList.add(adModel)
+        }
 
     }
 
