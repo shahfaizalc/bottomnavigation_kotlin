@@ -64,7 +64,7 @@ class MyEventsModel(internal var activity: FragmentActivity,
 
 
     fun openFragment2(postAdModel: Events, position: Int) {
-        val fragment = FragmentEvent()
+        val fragment = FragmentMyEvent()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
         fragment.setArguments(bundle)
@@ -129,15 +129,15 @@ class MyEventsModel(internal var activity: FragmentActivity,
     }
 
 
-    @Override
-    fun onNextButtonClick() = View.OnClickListener() {
-
-        val fragment = FragmentNewEvent()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
-
-    }
+//    @Override
+//    fun onNextButtonClick() = View.OnClickListener() {
+//
+//        val fragment = FragmentNewEvent()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+//
+//    }
 
 //    @get:Bindable
 //    var membersCount: Int? = isBookmarked()
