@@ -31,7 +31,7 @@
                 android:layout_gravity="end"
                 android:background="@drawable/circular_bg_border_smoke"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="5">
 
 
                 <TextView
@@ -57,6 +57,19 @@
                     android:onClick="@{() -> homeData.myDiscussionsClicked()}"
                     android:padding="@dimen/dimen_8"
                     android:text="My Discussions"
+                    android:textSize="@dimen/dimen_8"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/tab_event"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{() -> homeData.myEventsClicked()}"
+                    android:padding="@dimen/dimen_8"
+                    android:text="My Events"
                     android:textSize="@dimen/dimen_8"
                     android:textStyle="bold" />
 

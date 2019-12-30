@@ -225,9 +225,19 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
         fragment.setArguments(bundle)
         fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
     }
+
     fun myDiscussionsClicked() {
         Log.d("tag", "taggg")
         val fragment = FragmentMyDiscussions()
+        val bundle = Bundle()
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+    }
+
+    fun myEventsClicked() {
+        Log.d("tag", "taggg")
+        val fragment = FragmentMyEvents()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
         fragment.setArguments(bundle)
