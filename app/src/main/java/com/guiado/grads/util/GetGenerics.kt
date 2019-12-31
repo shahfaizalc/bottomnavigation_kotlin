@@ -101,11 +101,11 @@ private fun readDisscussions(context: Context): ArrayList<CoachItem> {
     return c.readDisuccsionTopics(context)
 }
 
-var searchTags = listOf("university","college","exam","j2ee","neet", "gate",
-        " cat","jee", "clat" ,"bitsat", "srnjee", "viteee", "iit",
-        "engineering", "law", "medicine", "arts", "commerce", "science", "pharmacy", "journalism", "music", "mba",
-        "iim", "iisc", "arts", "computer", "cmat", "xat", "mat", "nift", "film", "fashion",
-        "jnu", "nimcet", "gmat", "toefl", "ielts", "gre", "gpat")
+//var searchTags = listOf("university","college","exam","j2ee","neet", "gate",
+//        " cat","jee", "clat" ,"bitsat", "srnjee", "viteee", "iit",
+//        "engineering", "law", "medicine", "arts", "commerce", "science", "pharmacy", "journalism", "music", "mba",
+//        "iim", "iisc", "arts", "computer", "cmat", "xat", "mat", "nift", "film", "fashion",
+//        "jnu", "nimcet", "gmat", "toefl", "ielts", "gre", "gpat")
 
 
  fun String.sentenceToWords(): List<String> {
@@ -118,7 +118,7 @@ var searchTags = listOf("university","college","exam","j2ee","neet", "gate",
 
         list1.add(m1.group());
     }
-    return list1;
+    return list1.toSet().toList();
 }
 
 var firestoreSettings = FirebaseFirestoreSettings.Builder()

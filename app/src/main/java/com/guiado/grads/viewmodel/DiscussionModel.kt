@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
+import com.guiado.grads.model.EventStatus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -32,18 +33,23 @@ class DiscussionModel(internal var activity: FragmentActivity,
     : BaseObservable() {
 
     var talentProfilesList: ObservableArrayList<PostDiscussion>
-
-
+    var query : Query
+    var db :FirebaseFirestore
     private val mAuth: FirebaseAuth
 
     companion object {
 
         private val TAG = "AdSearchModel"
+
+
     }
 
 
     init {
         talentProfilesList = ObservableArrayList()
+        db = FirebaseFirestore.getInstance()
+        db.firestoreSettings = firestoreSettings
+        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
         mAuth = FirebaseAuth.getInstance()
         doGetTalents()
     }
@@ -91,29 +97,22 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
     }
 
-    private fun compareLIt(s: String): Set<String> {
+    private fun getCommbinationWords(s: String): List<String> {
         val list1 = s.sentenceToWords()
         Log.d("list2", "indian" + list1)
-        return list1.intersect(searchTags)
+        return list1
     }
 
     fun doGetTalentsSearch(searchQuery: String) {
-        val db = FirebaseFirestore.getInstance()
-        val query = db.collection("discussion").whereArrayContainsAny("searchTags", compareLIt(searchQuery).toList())
-        Log.d(TAG, "DOIT doGetTalentsSearch: ")
+            query = db.collection("discussion")
+                    .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
+                    .orderBy("postedDate", Query.Direction.DESCENDING)
+                    .limit(5)
 
-        query.get()
-                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                    val any = if (task.isSuccessful) {
-                        talentProfilesList.clear()
-                        for (document in task.result!!) {
-                            addTalentsItems(document)
-                        }
-                    } else {
-                        Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
-                    }
-                }).addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
-                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
+        Log.d(TAG, "DOIT doGetTalentsSearch: ")
+        talentProfilesList.removeAll(talentProfilesList)
+        doGetTalents()
+
     }
 
 
@@ -123,29 +122,37 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
         Log.d(TAG, "Success getting documents: " + adModel.postedBy)
 
-         if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
-             talentProfilesList.add(adModel)
+         if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && (adModel.eventState.ordinal == EventStatus.SHOWING.ordinal)) {
+            if(!talentProfilesList.contains(adModel))
+                 talentProfilesList.add(adModel)
          }
     }
 
 
     fun doGetTalents() {
 
-        val db = FirebaseFirestore.getInstance()
-        db.firestoreSettings = firestoreSettings
         Log.d(TAG, "DOIT doGetTalents: ")
 
-        talentProfilesList.clear()
-        val query = db.collection("discussion")
+       // talentProfilesList.clear()
         query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
             if (e != null) {
-                Log.w(DiscussionModel.TAG, "Listen error", e)
+                Log.w(TAG, "Listen error", e)
                 return@addSnapshotListener
             }
+            Log.d(TAG, "DOIT doGetTalents: "+querySnapshot?.size())
 
-            for (change in querySnapshot!!.documentChanges) {
+            if(querySnapshot!!.size() <= 0){
+                Log.w(TAG, "Listen querySnapshot end")
+                return@addSnapshotListener
+
+            }
+
+            val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
+            query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).startAfter(lastVisible)
+
+            for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {
-                    Log.d(DiscussionModel.TAG, "New city: ${change.document.data}")
+                    Log.d(TAG, "New city: ${change.document.data}")
                 }
 
                 val source = if (querySnapshot.metadata.isFromCache) {
@@ -153,7 +160,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
                 } else{
                     "server"
                 }
-                Log.d(DiscussionModel.TAG, "Data fetched from $source")
+                Log.d(TAG, "Data fetched from $source")
                 addTalentsItems(change.document)
 
 

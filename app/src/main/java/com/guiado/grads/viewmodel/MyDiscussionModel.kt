@@ -138,10 +138,10 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
                 .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
     }
 
-    private fun compareLIt(s:String): Set<String> {
+    private fun compareLIt(s:String): List<String> {
         val list1 = s.sentenceToWords()
         Log.d("list2","indian" + list1)
-        return list1.intersect(searchTags)
+        return list1
     }
 
 

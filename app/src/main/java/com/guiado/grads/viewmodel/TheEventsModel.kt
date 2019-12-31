@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
+import com.guiado.grads.model.EventStatus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -101,6 +102,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
 
         Log.d(TAG, "Success getting documents:groups " + adModel.postedBy)
 
+        if(adModel.eventState.ordinal ==  EventStatus.SHOWING.ordinal)
             talentProfilesList.add(adModel)
 
     }

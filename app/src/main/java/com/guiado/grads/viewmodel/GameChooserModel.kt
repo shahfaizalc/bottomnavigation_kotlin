@@ -56,10 +56,10 @@ class GameChooserModel(internal val activity: FragmentActivity,
 
     }
 
-    private fun compareLIt(): Set<String> {
+    private fun compareLIt(): List<String> {
         val list1 = postDiscussion.title!!.sentenceToWords()
         Log.d("list2","indian" + list1)
-        return list1.intersect(searchTags)
+        return list1
     }
 
 

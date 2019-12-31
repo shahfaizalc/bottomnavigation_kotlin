@@ -20,6 +20,8 @@ class RecyclerLoadMoreMyEventsHandler(private val countriesViewModel: MyEventsMo
 
         val listener = object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+
+
             }
         }
         recyclerView.addOnScrollListener(listener)
