@@ -250,8 +250,7 @@
             <Button
                 android:enabled="@{(countriesInfoModel.eventState.ordinal() &lt; 2)}"
                 android:minHeight="0dp"
-                android:paddingTop="@dimen/dimen_4"
-                android:paddingBottom="@dimen/dimen_4"
+                android:padding="@dimen/dimen_4"
                 android:minWidth="0dp"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -268,8 +267,7 @@
                 android:minWidth="0dp"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
-                android:paddingTop="@dimen/dimen_4"
-                android:paddingBottom="@dimen/dimen_4"
+                android:padding="@dimen/dimen_4"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_16"
                 android:background="@{(countriesInfoModel.eventState.ordinal() &lt; 2) ? @drawable/circular_bg_border_smoke:@drawable/circular_bg_border_disable}"
@@ -286,11 +284,10 @@
                 android:minWidth="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_16"
-                android:paddingTop="@dimen/dimen_4"
-                android:paddingBottom="@dimen/dimen_4"
+                android:padding="@dimen/dimen_4"
                 android:background="@{(countriesInfoModel.eventState.ordinal() &lt; 2) ? @drawable/circular_bg_border_smoke:@drawable/circular_bg_border_disable}"
                 android:onClick="@{mainDataModel.deleteBookmmarks()}"
-                android:text="@string/delete"
+                android:text="@{(countriesInfoModel.eventState.ordinal() &lt; 2) ? @string/delete : @string/deleted}"
                 android:textColor="@color/darkBlue"
                 android:textStyle="bold" />
         </LinearLayout>

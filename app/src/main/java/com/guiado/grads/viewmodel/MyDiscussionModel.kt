@@ -20,9 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -92,22 +90,34 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
 
     fun doGetTalents() {
 
-       val db = FirebaseFirestore.getInstance()
+        val db = FirebaseFirestore.getInstance()
         db.firestoreSettings = firestoreSettings
-        val query = db.collection("discussion");
-        query.get()
-                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                    val any = if (task.isSuccessful) {
-                        talentProfilesList.clear()
-                        for (document in task.result!!) {
-                            addTalentsItems(document)
-                        }
-                    } else {
-                        Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
-                    }
-                }).addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
-                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu) })
-    }
+        Log.d(TAG, "DOIT doGetTalents: ")
+
+        talentProfilesList.clear()
+        val query = db.collection("discussion")
+        query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen error", e)
+                return@addSnapshotListener
+            }
+
+            for (change in querySnapshot!!.documentChanges) {
+                if (change.type == DocumentChange.Type.ADDED) {
+                    Log.d(TAG, "New city: ${change.document.data}")
+                }
+
+                val source = if (querySnapshot.metadata.isFromCache) {
+                    "local cache"
+                } else{
+                    "server"
+                }
+                Log.d(TAG, "Data fetched from $source")
+                addTalentsItems(change.document)
+
+
+            }
+        } }
 
     fun doGetTalentsSearch(searchQuery:String) {
         val db = FirebaseFirestore.getInstance()

@@ -124,6 +124,8 @@
     <string name="desc">Description</string>
 
     <string name="delete">Delete</string>
+    <string name="deleted">Deleted</string>
+
     <string name="hide">Hide</string>
     <string name="unhide">Unhide</string>
     <string name="update">update</string>
