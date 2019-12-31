@@ -120,6 +120,8 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 }
     }
 
+
+
     fun updateDiscussion(discussion: PostDiscussion, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_DISCUSSION)

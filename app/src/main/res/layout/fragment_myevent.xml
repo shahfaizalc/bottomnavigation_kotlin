@@ -10,6 +10,9 @@
         <variable
             name="countriesInfoModel"
             type="com.guiado.grads.model2.Events" />
+        <variable
+            name="status"
+            type="com.guiado.grads.model.EventStatus" />
 
     </data>
 
@@ -245,40 +248,48 @@
             android:orientation="horizontal">
 
             <Button
+                android:enabled="@{(countriesInfoModel.eventState.ordinal() &lt; 2)}"
                 android:minHeight="0dp"
                 android:paddingTop="@dimen/dimen_4"
-                android:paddingBottom="@dimen/dimen_4"   android:minWidth="0dp" android:layout_weight="1"
+                android:paddingBottom="@dimen/dimen_4"
+                android:minWidth="0dp"
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_16"
-                android:background="@drawable/circular_bg_border_smoke"
-                android:onClick="@{mainDataModel.updateBookmarks()}"
+                android:background="@{(countriesInfoModel.eventState.ordinal() &lt; 2) ? @drawable/circular_bg_border_smoke:@drawable/circular_bg_border_disable}"
                 android:text="@string/update"
                 android:textColor="@color/darkBlue"
                 android:textStyle="bold" />
 
             <Button
+                android:enabled="@{(countriesInfoModel.eventState.ordinal() &lt; 2)}"
                 android:minHeight="0dp"
-                android:minWidth="0dp"  android:layout_weight="1"
+                android:minWidth="0dp"
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:paddingTop="@dimen/dimen_4"
-                android:paddingBottom="@dimen/dimen_4"     android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dimen_4"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_16"
-                android:background="@drawable/circular_bg_border_smoke"
-                android:onClick="@{mainDataModel.updateBookmarks()}"
-                android:text="@{mainDataModel.bookmarkState ? @string/hide : @string/unhide}"
+                android:background="@{(countriesInfoModel.eventState.ordinal() &lt; 2) ? @drawable/circular_bg_border_smoke:@drawable/circular_bg_border_disable}"
+                android:onClick="@{mainDataModel.hideBookmmarks()}"
+                android:text="@{(countriesInfoModel.eventState.ordinal() &lt; 1) ? @string/hide : @string/unhide}"
                 android:textColor="@color/darkBlue"
                 android:textStyle="bold" />
 
             <Button
+                android:enabled="@{(countriesInfoModel.eventState.ordinal() &lt; 2)}"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:minHeight="0dp"
-                android:minWidth="0dp"   android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_16"
                 android:paddingTop="@dimen/dimen_4"
-                android:paddingBottom="@dimen/dimen_4"     android:background="@drawable/circular_bg_border_smoke"
-                android:onClick="@{mainDataModel.updateBookmarks()}"
+                android:paddingBottom="@dimen/dimen_4"
+                android:background="@{(countriesInfoModel.eventState.ordinal() &lt; 2) ? @drawable/circular_bg_border_smoke:@drawable/circular_bg_border_disable}"
+                android:onClick="@{mainDataModel.deleteBookmmarks()}"
                 android:text="@string/delete"
                 android:textColor="@color/darkBlue"
                 android:textStyle="bold" />

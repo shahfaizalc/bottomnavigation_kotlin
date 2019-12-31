@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.guiado.grads.R
-import com.guiado.grads.databinding.FragmentEventBinding
 import com.guiado.grads.databinding.FragmentMyeventBinding
 import com.guiado.grads.fragments.BaseFragment
 import com.guiado.grads.utils.Constants
-import com.guiado.grads.viewmodel.EventViewModel
 import com.guiado.grads.viewmodel.MyEventViewModel
 
 
@@ -31,7 +29,7 @@ class FragmentMyEvent : BaseFragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_myevent, container, false)
         areaViewModel = MyEventViewModel(this.context!!, this,postAdObj)
         binding.mainDataModel = areaViewModel
-        binding.countriesInfoModel = areaViewModel.postDiscussion
+        binding.countriesInfoModel = areaViewModel.events
         return binding.root
     }
 

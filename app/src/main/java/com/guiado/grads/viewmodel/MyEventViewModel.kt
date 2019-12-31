@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -15,6 +16,7 @@ import com.guiado.grads.network.FirbaseWriteHandler
 import com.guiado.grads.util.*
 import com.guiado.grads.view.*
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.grads.model.EventStatus
 
 class MyEventViewModel(private val context: Context,
                      private val fragmentSignin: FragmentMyEvent,
@@ -54,7 +56,7 @@ class MyEventViewModel(private val context: Context,
     private fun isBookmarked(): Boolean? {
 
         var isFollow = false
-        postDiscussion?.members.notNull {
+        events?.members.notNull {
             val bookmarks: MutableIterator<Bookmarks> = it.iterator()
             while (bookmarks.hasNext()) {
                 val name = bookmarks.next()
@@ -67,18 +69,56 @@ class MyEventViewModel(private val context: Context,
         return isFollow
     }
 
+     fun deleteBookmmarks() = View.OnClickListener {
+         events!!.eventState = EventStatus.DELETED
+        FirbaseWriteHandler(fragmentSignin).updateEvents(events!!, object : EmptyResultListener {
+            override fun onFailure(e: Exception) {
+                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onSuccess() {
+                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
+
+                Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
+                val fragment = FragmentMyEvents()
+                fragmentSignin.mFragmentNavigation.popFragment(1);
+                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+            }
+        })
+    }
 
 
+    fun hideBookmmarks() = View.OnClickListener {
+
+        events!!.eventState = if(events!!.eventState.equals(EventStatus.HIDDEN) ) EventStatus.SHOWING else EventStatus.HIDDEN
+
+        FirbaseWriteHandler(fragmentSignin).updateEvents(events!!, object : EmptyResultListener {
+            override fun onFailure(e: Exception) {
+                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onSuccess() {
+                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
+
+                Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
+                val fragment = FragmentMyEvents()
+                fragmentSignin.mFragmentNavigation.popFragment(1);
+                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+            }
+        })
+    }
 
     fun updateBookmarks() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
             var isExist = false
             var comments2 = getbookmarks()
-            if (postDiscussion?.members.isNullOrEmpty()) {
-                postDiscussion?.members = ArrayList<Bookmarks>()
+            if (events?.members.isNullOrEmpty()) {
+                events?.members = ArrayList<Bookmarks>()
             } else {
-                val bookmarks: MutableIterator<Bookmarks> = postDiscussion?.members!!.iterator()
+                val bookmarks: MutableIterator<Bookmarks> = events?.members!!.iterator()
                 while (bookmarks.hasNext()) {
                     val name = bookmarks.next()
                     if (name.markedById.equals(comments2.markedById)) {
@@ -90,9 +130,9 @@ class MyEventViewModel(private val context: Context,
             }
 
             if(isExist){
-                postDiscussion?.members?.remove(comments2)
+                events?.members?.remove(comments2)
             } else {
-                postDiscussion?.members?.add(comments2)
+                events?.members?.add(comments2)
             }
 
             updateBookmmarks(isExist)
@@ -101,7 +141,7 @@ class MyEventViewModel(private val context: Context,
     }
 
     private fun updateBookmmarks(exist: Boolean) {
-        FirbaseWriteHandler(fragmentSignin).updateEvents(postDiscussion!!, object : EmptyResultListener {
+        FirbaseWriteHandler(fragmentSignin).updateEvents(events!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                 Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
@@ -137,12 +177,12 @@ class MyEventViewModel(private val context: Context,
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        postDiscussion = c.getEventss(postAdObj, context)
+        events = c.getEventss(postAdObj, context)
 
     }
 
     @get:Bindable
-    var postDiscussion: Events? = null
+    var events: Events? = null
         private set(roleAdapterAddress) {
             field = roleAdapterAddress
             notifyPropertyChanged(BR.roleAdapterAddress)
@@ -156,14 +196,14 @@ class MyEventViewModel(private val context: Context,
     }
 
     @get:Bindable
-    var keyWordsTagg: String? = getDiscussionKeys(postDiscussion!!.keyWords, context).toString()
+    var keyWordsTagg: String? = getDiscussionKeys(events!!.keyWords, context).toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.keyWordsTagg)
         }
 
     @get:Bindable
-    var location: String? = postDiscussion!!.address?.locationname +" "+postDiscussion!!.address?.streetName +" "+postDiscussion!!.address?.town +" "+postDiscussion!!.address?.city
+    var location: String? = events!!.address?.locationname +" "+events!!.address?.streetName +" "+events!!.address?.town +" "+events!!.address?.city
         set(price) {
             field = price
             notifyPropertyChanged(BR.location)
@@ -171,14 +211,14 @@ class MyEventViewModel(private val context: Context,
 
 
     @get:Bindable
-    var postedDate: String? = postDiscussion!!.postedDate?.toLong()?.let { convertLongToTime(it) }.toString()
+    var postedDate: String? = events!!.postedDate?.toLong()?.let { convertLongToTime(it) }.toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.postedDate)
         }
 
     @get:Bindable
-    var adDate: String? = postDiscussion!!.startDate?.toLong()?.let { convertLongToTime(it) }.toString()+postDiscussion!!.endDate?.toLong()?.let {" - "+ convertLongToTime(it) }.toString()
+    var adDate: String? = events!!.startDate?.toLong()?.let { convertLongToTime(it) }.toString()+events!!.endDate?.toLong()?.let {" - "+ convertLongToTime(it) }.toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.adDate)
