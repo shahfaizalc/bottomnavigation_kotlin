@@ -177,14 +177,15 @@
                 android:padding="@dimen/dimen_12" />
 
             <ImageButton
+                android:enabled="@{(countriesInfoModel.eventState.ordinal() &lt; 2) ? true : false}"
                 android:background="@android:color/transparent"
+                android:src="@drawable/send"
                 android:id="@+id/sendButton"
                 style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/send"
-                android:tint="@color/paleGreen"/>
+                android:tint="@{(countriesInfoModel.eventState.ordinal() &lt; 2) ? @color/paleGreen : @color/grey}"/>
 
         </RelativeLayout>
 

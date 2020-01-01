@@ -123,7 +123,6 @@ class FirestoreMyDisccussFragmment : BaseFragment(), AuthStateListener {
     }
 
     override fun onAuthStateChanged(auth: FirebaseAuth) {
-        mSendButton!!.isEnabled = isSignedIn
         mSendButton!!.setOnClickListener {
             setMessageValue()
         }
