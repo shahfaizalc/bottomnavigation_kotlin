@@ -80,6 +80,60 @@ class TheEventsModel(internal var activity: FragmentActivity,
         return MultipleClickHandler.handleMultipleClicks()
     }
 
+
+    private fun getCommbinationWords(s: String): List<String> {
+        val list1 = s.sentenceToWords()
+        Log.d("list2", "indian" + list1)
+        return list1
+    }
+
+    fun doGetTalentsSearch(searchQuery: String) {
+        query = db.collection("discussion")
+                .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
+                .orderBy("postedDate", Query.Direction.DESCENDING)
+                .limit(5)
+
+        Log.d(TAG, "DOIT doGetTalentsSearch: ")
+        talentProfilesList.removeAll(talentProfilesList)
+        doGetTalents()
+
+    }
+
+
+    fun addTalentsItems(document: QueryDocumentSnapshot) {
+
+        val adModel = document.toObject(Events::class.java)
+
+        Log.d(TAG, "Success getting documents: " + adModel.postedBy)
+
+        if (!adModel.postedBy.equals(mAuth.currentUser!!.uid)) {
+
+            talentProfilesList = getKeyWords(talentProfilesList, adModel)
+
+            talentProfilesList.add(adModel)
+
+        }
+
+    }
+
+
+    private fun getKeyWords(keyWords: ObservableArrayList<Events>,keyWord: Events): ObservableArrayList<Events> {
+
+        keyWords.notNull {
+            val numbersIterator = it.iterator()
+            numbersIterator.let {
+                while (numbersIterator.hasNext()) {
+                    val value = (numbersIterator.next())
+                    if (value.postedDate.equals(keyWord.postedDate)){
+                        keyWords.remove(value)
+                        return@notNull
+                    }
+                }
+            }
+        }
+        return keyWords;
+    }
+
     fun doGetTalents() {
 
         Log.d(TAG, "DOIT doGetTalents: ")
@@ -116,33 +170,9 @@ class TheEventsModel(internal var activity: FragmentActivity,
 
 
             }
-        }  }
-
-    fun addTalentsItems(document: QueryDocumentSnapshot) {
-
-        val adModel = document.toObject(Events::class.java)
-
-        Log.d(TAG, "Success getting documents:groups " + adModel.postedBy)
-
-        if(adModel.eventState.ordinal ==  EventStatus.SHOWING.ordinal)
-            talentProfilesList.add(adModel)
-
+        }
     }
 
-    fun doGetTalentsSearch(searchQuery:String) {
-        query = db.collection("events")
-                .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
-                .orderBy("postedDate", Query.Direction.DESCENDING)
-                .limit(5)
-
-        Log.d(TAG, "DOIT doGetTalentsSearch: ")
-        talentProfilesList.removeAll(talentProfilesList)
-        doGetTalents()
- }
-
-    private fun getCommbinationWords(s:String): List<String> {
-        return s.sentenceToWords()
-    }
 
 
     @Override
