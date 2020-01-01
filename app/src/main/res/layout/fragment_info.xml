@@ -30,6 +30,21 @@
             android:layout_marginBottom="@dimen/dimen_8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> homeData.savedEventsClicked()}"
+            android:text="Saved Events"/>
+        <TextView
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginBottom="@dimen/dimen_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> homeData.savedDiscussionsClicked()}"
+            android:text="Saved Discussions"/>
+
+        <TextView
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginBottom="@dimen/dimen_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="@{() -> homeData.signInUserClicked()}"
             android:text="Articles"/>
 

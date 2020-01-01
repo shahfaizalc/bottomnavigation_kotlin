@@ -18,6 +18,7 @@ import com.guiado.grads.view.FragmentFeedBack
 import com.guiado.grads.view.FragmentInfo
 import com.guiado.grads.view.FragmentLocationPicker
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.grads.view.FragmentSavedEvents
 import com.itravis.ticketexchange.listeners.DateListener
 import com.itravis.ticketexchange.listeners.TimeListener
 import com.itravis.ticketexchange.utils.DatePickerEvent
@@ -80,6 +81,27 @@ class InfoViewModel(private val context: Context, private val fragmentSignin: Fr
 
         }
     }
+
+    fun savedDiscussionsClicked() {
+        if (!handleMultipleClicks()) {
+//            val fragment = FragmentLocationPicker()
+//            val bundle = Bundle()
+//            fragment.setArguments(bundle)
+//            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+
+        }
+    }
+    fun savedEventsClicked() {
+        if (!handleMultipleClicks()) {
+            val fragment = FragmentSavedEvents()
+            val bundle = Bundle()
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+
+        }
+    }
+
+
     fun feedback() {
         Log.d("tag", "taggg")
         val fragment = FragmentFeedBack()

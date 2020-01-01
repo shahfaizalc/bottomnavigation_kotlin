@@ -19,9 +19,6 @@ import com.guiado.grads.utils.Constants
 import com.guiado.grads.view.FirestoreDisccussFragmment
 import com.guiado.grads.view.FragmentDiscussions
 import com.guiado.grads.view.FragmentNewDiscusssion
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.guiado.grads.model.EventStatus
@@ -123,11 +120,30 @@ class DiscussionModel(internal var activity: FragmentActivity,
         Log.d(TAG, "Success getting documents: " + adModel.postedBy)
 
          if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && (adModel.eventState.ordinal == EventStatus.SHOWING.ordinal)) {
-            if(!talentProfilesList.contains(adModel))
-                 talentProfilesList.add(adModel)
+
+             talentProfilesList = getKeyWords(talentProfilesList,adModel)
+
+             talentProfilesList.add(adModel)
          }
     }
 
+
+    private fun getKeyWords(keyWords: ObservableArrayList<PostDiscussion>,keyWord: PostDiscussion): ObservableArrayList<PostDiscussion> {
+
+        keyWords.notNull {
+            val numbersIterator = it.iterator()
+            numbersIterator.let {
+                while (numbersIterator.hasNext()) {
+                    val value = (numbersIterator.next())
+                    if (value.postedDate.equals(keyWord.postedDate)){
+                        keyWords.remove(value)
+                        return@notNull
+                    }
+                }
+            }
+        }
+        return keyWords;
+    }
 
     fun doGetTalents() {
 

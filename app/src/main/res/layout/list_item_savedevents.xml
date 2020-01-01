@@ -1,0 +1,110 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="mainDataModel"
+            type="com.guiado.grads.viewmodel.SavedEventsModel" />
+
+        <variable
+            name="countriesInfoModel"
+            type="com.guiado.grads.model2.Events" />
+
+        <variable
+            name="itemPosition"
+            type="java.lang.Integer" />
+
+        <variable
+            name="simpleListAdapter"
+            type="com.guiado.grads.adapter.SavedEventsAdapter" />
+
+        <variable
+            name="itemClickListener"
+            type="com.guiado.grads.listeners.SavedEventsEventListener" />
+
+        <variable
+            name="keyWordsTag"
+            type="java.lang.String" />
+
+        <variable
+            name="postDate"
+            type="java.lang.String" />
+
+        <variable
+            name="location"
+            type="java.lang.String" />
+
+
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_8"
+        android:background="@drawable/circular_bg_border_black_8"
+        android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/bg_gradiant_oneside_reverse"
+                    android:padding="@dimen/dimen_4"
+                    android:text="@{countriesInfoModel.eventState.toString()}"
+                    android:textColor="@color/smoke2"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/bg_gradiant_oneside"
+                    android:padding="@dimen/dimen_4"
+                    android:text="@={postDate}"
+                    android:textColor="@color/smoke2"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dimen_8"
+                android:paddingRight="@dimen/dimen_8"
+                android:paddingTop="@dimen/dimen_4"
+                android:paddingBottom="@dimen/dimen_4"
+                android:text="@{countriesInfoModel.title}"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlacklight"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_marginBottom="@dimen/dimen_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingLeft="@dimen/dimen_8"
+                android:paddingRight="@dimen/dimen_8"
+                android:text="@{countriesInfoModel.description}"
+                android:textColor="@color/darkBlue"
+                android:textSize="@dimen/dimen_12" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

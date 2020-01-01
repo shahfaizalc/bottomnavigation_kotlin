@@ -1,6 +1,5 @@
 package com.guiado.grads.viewmodel
 
-
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,8 +10,7 @@ import androidx.fragment.app.FragmentActivity
 import com.guiado.grads.BR
 import com.guiado.grads.Events.MyCustomEvent
 import com.guiado.grads.R
-import com.guiado.grads.model2.PostDiscussion
-import com.guiado.grads.model2.Profile
+import com.guiado.grads.model2.*
 import com.guiado.grads.util.*
 import com.guiado.grads.utils.Constants
 import com.guiado.grads.view.*
@@ -25,13 +23,15 @@ import com.guiado.grads.model.EventStatus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
-class MyDiscussionModel(internal var activity: FragmentActivity, internal val fragmentProfileInfo: FragmentMyDiscussions)// To show list of user images (Gallery)
+class SavedEventsModel(internal var activity: FragmentActivity,
+                       internal val fragmentProfileInfo: FragmentSavedEvents)// To show list of user images (Gallery)
     : BaseObservable() {
 
-    var talentProfilesList: ObservableArrayList<PostDiscussion>
-
+    var talentProfilesList: ObservableArrayList<Events>
     var query : Query
     var db :FirebaseFirestore
+
+
     private val mAuth: FirebaseAuth
 
     companion object {
@@ -39,17 +39,14 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
         private val TAG = "AdSearchModel"
     }
 
-
     init {
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
         db.firestoreSettings = firestoreSettings
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
+        query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
         mAuth = FirebaseAuth.getInstance()
         doGetTalents()
     }
-
-
 
     @get:Bindable
     var finderTitle: String? = activity.resources.getString(R.string.finderEventTitle)
@@ -69,10 +66,10 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
     var profile = Profile();
 
 
-    fun openFragment2(postAdModel: PostDiscussion, position: Int) {
-        val fragment = FirestoreMyDisccussFragmment()
+    fun openFragment2(postAdModel: Events, position: Int) {
+        val fragment = FragmentMyEvent()
         val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
         fragment.setArguments(bundle)
         fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 
@@ -80,68 +77,6 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
 
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()
-    }
-
-    @Override
-    fun onNextButtonClick() = View.OnClickListener() {
-
-        val fragment = FragmentNewDiscusssion()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
-
-    }
-
-
-    private fun getCommbinationWords(s: String): List<String> {
-        val list1 = s.sentenceToWords()
-        Log.d("list2", "indian" + list1)
-        return list1
-    }
-
-    fun doGetTalentsSearch(searchQuery: String) {
-        query = db.collection("discussion")
-                .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
-                .orderBy("postedDate", Query.Direction.DESCENDING)
-                .limit(5)
-
-        Log.d(TAG, "DOIT doGetTalentsSearch: ")
-        talentProfilesList.removeAll(talentProfilesList)
-        doGetTalents()
-
-    }
-
-
-    fun addTalentsItems(document: QueryDocumentSnapshot) {
-
-        val adModel = document.toObject(PostDiscussion::class.java)
-
-        Log.d(TAG, "Success getting documents: " + adModel.postedBy)
-
-       if (adModel.postedBy.equals(mAuth.currentUser!!.uid)) {
-
-            talentProfilesList = getKeyWords(talentProfilesList,adModel)
-
-            talentProfilesList.add(adModel)
-        }
-    }
-
-
-    private fun getKeyWords(keyWords: ObservableArrayList<PostDiscussion>,keyWord: PostDiscussion): ObservableArrayList<PostDiscussion> {
-
-        keyWords.notNull {
-            val numbersIterator = it.iterator()
-            numbersIterator.let {
-                while (numbersIterator.hasNext()) {
-                    val value = (numbersIterator.next())
-                    if (value.postedDate.equals(keyWord.postedDate)){
-                        keyWords.remove(value)
-                        return@notNull
-                    }
-                }
-            }
-        }
-        return keyWords;
     }
 
     fun doGetTalents() {
@@ -163,7 +98,7 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
             }
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-            query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).startAfter(lastVisible)
+            query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).startAfter(lastVisible)
 
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {
@@ -180,7 +115,64 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
 
 
             }
-        }
+        }  }
+
+    fun addTalentsItems(document: QueryDocumentSnapshot) {
+
+        val adModel = document.toObject(Events::class.java)
+
+        Log.d(TAG, "Success getting documents:groups " + adModel.postedBy)
+
+       // if(adModel.eventState.ordinal ==  EventStatus.SHOWING.ordinal)
+            talentProfilesList.add(adModel)
+
     }
 
+    fun doGetTalentsSearch(searchQuery:String) {
+        query = db.collection("events")
+                .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
+                .orderBy("postedDate", Query.Direction.DESCENDING)
+                .limit(5)
+
+        Log.d(TAG, "DOIT doGetTalentsSearch: ")
+        talentProfilesList.removeAll(talentProfilesList)
+        doGetTalents()
+    }
+
+    private fun getCommbinationWords(s:String): List<String> {
+        return s.sentenceToWords()
+    }
+
+
+//    @Override
+//    fun onNextButtonClick() = View.OnClickListener() {
+//
+//        val fragment = FragmentNewEvent()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+//
+//    }
+
+//    @get:Bindable
+//    var membersCount: Int? = isBookmarked()
+//        set(city) {
+//            field = city
+//            notifyPropertyChanged(BR.membersCount)
+//        }
+
+//    fun isBookmarked(postDiscussion: Groups): Int? {
+//        var isFollow = false
+//        postDiscussion.members.notNull {
+//            val likes: MutableIterator<Bookmarks> = it.iterator()
+//            while (likes.hasNext()) {
+//                val name = likes.next()
+//                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
+//                    isFollow = true
+//                }
+//            }
+//        }
+//
+//        return isFollow
+//    }
 }
