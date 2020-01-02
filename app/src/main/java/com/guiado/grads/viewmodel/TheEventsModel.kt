@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.guiado.grads.model.EventStatus
+import com.guiado.grads.network.FirbaseReadHandler
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -43,7 +44,11 @@ class TheEventsModel(internal var activity: FragmentActivity,
     init {
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
-        db.firestoreSettings = firestoreSettings
+        try {
+            db.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+        }
         query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
         mAuth = FirebaseAuth.getInstance()
         doGetTalents()

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.BR
 import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
@@ -19,8 +20,9 @@ import com.guiado.grads.util.notNull
 import com.guiado.grads.util.storeUserName
 import com.guiado.grads.utils.Constants
 import com.guiado.grads.view.*
-import com.google.firebase.auth.FirebaseAuth
-import java.util.ArrayList
+import java.io.File
+import java.util.*
+
 
 class ProfileViewModel(private val context: Context, private val fragmentSignin: FragmentProfile) :
         BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -270,7 +272,10 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
         }
     }
 
+
     private fun showToast(id: Int) {
         Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
     }
+
+
 }

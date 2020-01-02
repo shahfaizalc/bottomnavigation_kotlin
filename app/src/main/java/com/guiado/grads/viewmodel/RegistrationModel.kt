@@ -150,7 +150,6 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
             showProgresss(true)
             mAuth.createUserWithEmailAndPassword(email!!, password!!)
                     .addOnCompleteListener(activity) { task ->
-                        showProgresss(false)
 
                         Log.d(TAG,"Exception success "+task.isSuccessful)
 
@@ -158,9 +157,9 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
                             // there was an error
                             Log.d(TAG,"Exception success"+task.isSuccessful)
                             showToast(R.string.creationFailed)
+                            showProgresss(false)
                         } else {
                             Log.d(TAG,"Exception success "+task.isSuccessful)
-                            showToast(R.string.loginSucess)
 
                             //      launchChildFragment(FragmentHomePage())
                             storeUserProfile()
@@ -206,7 +205,9 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
         val user = FirebaseAuth.getInstance().currentUser
         user!!.sendEmailVerification()
                 .addOnCompleteListener { task ->
+                    showProgresss(false)
                     if (task.isSuccessful) { // email sent
+                        showToast(R.string.loginSucess)
 
                         val fragment = FragmentVerification()
                         val bundle = Bundle()

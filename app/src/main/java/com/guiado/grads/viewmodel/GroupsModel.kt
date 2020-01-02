@@ -89,7 +89,11 @@ class GroupsModel(internal var activity: FragmentActivity,
     fun doGetTalents() {
 
         val db = FirebaseFirestore.getInstance()
-        db.firestoreSettings = firestoreSettings
+        try {
+            db.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+        }
         Log.d(TAG, "DOIT doGetTalents: ")
 
         talentProfilesList.clear()
@@ -118,7 +122,12 @@ class GroupsModel(internal var activity: FragmentActivity,
 
     fun doGetTalentsSearch(searchQuery:String) {
         val db = FirebaseFirestore.getInstance()
-        db.firestoreSettings = firestoreSettings
+        try {
+            db.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+        }
+
         val query = db.collection("groups").whereArrayContainsAny("searchTags",compareLIt(searchQuery).toList())
 
         query.get()

@@ -107,7 +107,11 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
     fun getVal() {
 
         val db = FirebaseFirestore.getInstance()
-        db.firestoreSettings = firestoreSettings
+        try {
+            db.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+        }
         val query = db.collection("review");
         query.get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->

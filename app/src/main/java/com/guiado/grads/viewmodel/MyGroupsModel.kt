@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
+import com.guiado.grads.network.FirbaseReadHandler
 import com.guiado.grads.util.notNull
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -93,7 +94,12 @@ class MyGroupsModel(internal var activity: FragmentActivity,
     fun doGetTalents() {
 
        val db = FirebaseFirestore.getInstance()
-        db.firestoreSettings = firestoreSettings
+        try {
+            db.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+        }
+
         val query = db.collection("groups");
         query.get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->

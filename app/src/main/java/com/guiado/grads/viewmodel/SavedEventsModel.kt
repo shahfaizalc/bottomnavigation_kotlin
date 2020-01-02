@@ -43,7 +43,11 @@ class SavedEventsModel(internal var activity: FragmentActivity,
         mAuth = FirebaseAuth.getInstance()
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
-        db.firestoreSettings = firestoreSettings
+        try {
+            db.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+        }
         query = db.collection("events")
                 .orderBy("postedDate", Query.Direction.DESCENDING)
                 .limit(5).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)

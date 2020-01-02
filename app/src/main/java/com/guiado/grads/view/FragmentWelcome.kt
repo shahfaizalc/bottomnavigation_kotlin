@@ -1,6 +1,7 @@
 package com.guiado.grads.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.guiado.grads.databinding.FragmentWelcomeBinding
 import com.guiado.grads.fragments.BaseFragment
 import com.guiado.grads.viewmodel.WelcomeViewModel
 import com.google.firebase.auth.FirebaseAuth
+import java.io.File
 
 
 class FragmentWelcome : BaseFragment() {
@@ -40,6 +42,7 @@ class FragmentWelcome : BaseFragment() {
         }
 
    }
+
 
    fun isUserSignedIN(){
         val fragment = FragmentProfile()

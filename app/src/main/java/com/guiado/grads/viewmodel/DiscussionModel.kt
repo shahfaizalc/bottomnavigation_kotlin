@@ -22,6 +22,7 @@ import com.guiado.grads.view.FragmentNewDiscusssion
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.guiado.grads.model.EventStatus
+import com.guiado.grads.network.FirbaseReadHandler
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -45,7 +46,12 @@ class DiscussionModel(internal var activity: FragmentActivity,
     init {
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
-        db.firestoreSettings = firestoreSettings
+        try {
+            db.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+
+        }
         query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
         mAuth = FirebaseAuth.getInstance()
         doGetTalents()

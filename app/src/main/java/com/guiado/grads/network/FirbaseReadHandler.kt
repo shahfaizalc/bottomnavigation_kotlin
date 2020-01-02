@@ -36,7 +36,12 @@ class FirbaseReadHandler {
 
     private fun getProfile(id : String, useInfoGeneralResultListener: UseInfoGeneralResultListener) {
         val myDB = FirebaseFirestore.getInstance()
-        myDB.firestoreSettings = firestoreSettings
+        try {
+            myDB.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+
+        }
         val docRef = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO).document(id)
 
         docRef.get().addOnCompleteListener { task ->
@@ -66,7 +71,12 @@ class FirbaseReadHandler {
     fun storeUserNamePreference(context: Context) {
 
         val db = FirebaseFirestore.getInstance()
-        db.firestoreSettings = firestoreSettings
+        try {
+            db.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+
+        }
         val query = db.collection("userinfo").document(currentFirebaseUser!!.uid);
         query.get()
                 .addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->

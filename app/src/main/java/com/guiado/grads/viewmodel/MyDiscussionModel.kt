@@ -43,7 +43,11 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
     init {
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
-        db.firestoreSettings = firestoreSettings
+        try {
+            db.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+        }
         query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
         mAuth = FirebaseAuth.getInstance()
         doGetTalents()
