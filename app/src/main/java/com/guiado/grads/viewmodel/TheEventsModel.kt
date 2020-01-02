@@ -106,7 +106,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
 
         Log.d(TAG, "Success getting documents: " + adModel.postedBy)
 
-        if (!adModel.postedBy.equals(mAuth.currentUser!!.uid)) {
+        if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && adModel.eventState.ordinal ==  EventStatus.SHOWING.ordinal) {
 
             talentProfilesList = getKeyWords(talentProfilesList, adModel)
 

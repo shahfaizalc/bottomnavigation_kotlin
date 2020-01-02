@@ -40,11 +40,13 @@ class SavedEventsModel(internal var activity: FragmentActivity,
     }
 
     init {
+        mAuth = FirebaseAuth.getInstance()
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
         db.firestoreSettings = firestoreSettings
-        query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
-        mAuth = FirebaseAuth.getInstance()
+        query = db.collection("events")
+                .orderBy("postedDate", Query.Direction.DESCENDING)
+                .limit(5)
         doGetTalents()
     }
 
@@ -67,12 +69,14 @@ class SavedEventsModel(internal var activity: FragmentActivity,
 
 
     fun openFragment2(postAdModel: Events, position: Int) {
-        val fragment = FragmentMyEvent()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+        if(postAdModel.eventState.ordinal < EventStatus.HIDDEN.ordinal) {
+            val fragment = FragmentEvent()
+            val bundle = Bundle()
+            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
+            fragment.setArguments(bundle)
+            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 
+        }
     }
 
     private fun handleMultipleClicks(): Boolean {
@@ -101,13 +105,9 @@ class SavedEventsModel(internal var activity: FragmentActivity,
     fun addTalentsItems(document: QueryDocumentSnapshot) {
 
         val adModel = document.toObject(Events::class.java)
-
         Log.d(TAG, "Success getting documents: " + adModel.postedBy)
-
-
-            talentProfilesList = getKeyWords(talentProfilesList,adModel)
-
-            talentProfilesList.add(adModel)
+        talentProfilesList = getKeyWords(talentProfilesList,adModel)
+        talentProfilesList.add(adModel)
 
     }
 
