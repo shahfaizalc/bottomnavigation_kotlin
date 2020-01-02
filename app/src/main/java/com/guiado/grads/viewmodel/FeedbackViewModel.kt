@@ -63,8 +63,31 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
         set(price) {
             field = price
             notifyPropertyChanged(BR.userEmail)
-
         }
+
+    @get:Bindable
+    var showSignUpProgress: Int = View.INVISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpProgress)
+        }
+
+    @get:Bindable
+    var showSignUpBtn: Int = View.VISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpBtn)
+        }
+
+    fun showProgresss(isShow : Boolean){
+        if(isShow){
+            showSignUpBtn = View.INVISIBLE
+            showSignUpProgress = View.VISIBLE }
+        else{
+            showSignUpBtn = View.VISIBLE
+            showSignUpProgress = View.INVISIBLE
+        }
+    }
 
 
     fun datePickerClick() = View.OnClickListener {
@@ -78,6 +101,7 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
                 Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
+            showProgresss(true)
 
             feedBack.feedback = userEmail!!
             feedBack.feedbackBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
@@ -89,11 +113,12 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
                 override fun onFailure(e: Exception) {
                     Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                     Toast.makeText(context, context.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-
+                    showProgresss(false)
                 }
 
                 override fun onSuccess() {
                     Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
+                    showProgresss(false)
                     val fragment = FragmentDiscussions()
                     val bundle = Bundle()
                     fragment.setArguments(bundle)

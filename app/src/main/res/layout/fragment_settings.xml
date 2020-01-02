@@ -43,7 +43,16 @@
             android:text="Friends"/>
 
         <TextView
+            android:textStyle="bold"
             android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginBottom="@dimen/dimen_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> homeData.feedback()}"
+            android:text="Feedback"/>
+        <TextView
+            android:layout_marginTop="@dimen/dimen_8"
+            android:textStyle="bold"
             android:layout_marginBottom="@dimen/dimen_8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,6 +60,7 @@
             android:text="Privacy and Security"/>
 
         <TextView
+            android:textStyle="bold"
             android:layout_marginTop="@dimen/dimen_8"
             android:layout_marginBottom="@dimen/dimen_8"
             android:layout_width="match_parent"

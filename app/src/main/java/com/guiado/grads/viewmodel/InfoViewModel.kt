@@ -101,16 +101,6 @@ class InfoViewModel(private val context: Context, private val fragmentSignin: Fr
         }
     }
 
-
-    fun feedback() {
-        Log.d("tag", "taggg")
-        val fragment = FragmentFeedBack()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
-    }
-
-
     private fun launchChildFragment(mapFragment: BaseFragment) {
         val bundle = Bundle()
         mapFragment.arguments = bundle

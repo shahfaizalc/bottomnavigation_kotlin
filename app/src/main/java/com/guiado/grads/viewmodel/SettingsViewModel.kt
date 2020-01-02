@@ -3,6 +3,7 @@ package com.guiado.grads.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
@@ -14,11 +15,8 @@ import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.utils.EnumValidator
 import com.guiado.grads.utils.Validator
-import com.guiado.grads.view.FragmentLocationPicker
-import com.guiado.grads.view.FragmentSettings
 import com.google.firebase.auth.FirebaseAuth
-import com.guiado.grads.view.FragmentAbout
-import com.guiado.grads.view.FragmentPrivacy
+import com.guiado.grads.view.*
 import com.itravis.ticketexchange.listeners.DateListener
 import com.itravis.ticketexchange.listeners.TimeListener
 import com.itravis.ticketexchange.utils.DatePickerEvent
@@ -108,6 +106,16 @@ class SettingsViewModel(private val context: Context, private val fragmentSignin
 
         }
     }
+
+
+    fun feedback() {
+        Log.d("tag", "taggg")
+        val fragment = FragmentFeedBack()
+        val bundle = Bundle()
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+    }
+
     private fun launchChildFragment(mapFragment: BaseFragment) {
         val bundle = Bundle()
         mapFragment.arguments = bundle

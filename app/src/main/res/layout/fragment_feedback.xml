@@ -49,17 +49,31 @@
             </LinearLayout>
         </ScrollView>
 
-        <Button
-            android:onClick="@{homeData.datePickerClick()}"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_alignParentBottom="true"
-            android:background="@color/yellow"
-            android:padding="@dimen/dimen_8"
-            android:src="@drawable/check_circle_outline"
-            android:text="@string/submit"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:textColor="@color/white"
+                android:visibility="@{homeData.showSignUpBtn}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submit"
+                android:background="@color/yellow"
+                android:onClick="@{homeData.datePickerClick()}"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/dimen_16"
+                android:textStyle="bold"
+                android:id="@+id/loginButton" />
+            <ProgressBar
+                android:visibility="@{homeData.showSignUpProgress}"
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
 
     </RelativeLayout>
 </layout>
