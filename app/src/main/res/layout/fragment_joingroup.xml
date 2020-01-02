@@ -30,7 +30,7 @@
             card_view:cardElevation="@dimen/dimen_4">
 
             <LinearLayout
-                android:padding="@dimen/dimen_4"
+                android:padding="@dimen/dimen_12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -64,7 +64,6 @@
                         android:layout_marginBottom="@dimen/dimen_8"
                         android:maxLines="7"
                         android:text="@{countriesInfoModel.description}"
-                        android:textAppearance="?android:attr/textAppearanceMediumInverse"
                         android:textColor="@color/white_transparent_80" />
 
                     <LinearLayout
@@ -161,7 +160,7 @@
         </androidx.cardview.widget.CardView>
         <TextView
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/dimen_8"
+            android:layout_marginBottom="@dimen/dimen_16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

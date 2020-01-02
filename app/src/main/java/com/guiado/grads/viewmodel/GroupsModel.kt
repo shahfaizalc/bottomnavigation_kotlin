@@ -156,10 +156,31 @@ class GroupsModel(internal var activity: FragmentActivity,
 
         Log.d(TAG, "Success getting documents:groups " + adModel.postedBy)
         if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
+            talentProfilesList = getKeyWords(talentProfilesList,adModel)
             talentProfilesList.add(adModel)
         }
 
+    }    private fun getKeyWords(keyWords: ObservableArrayList<Groups>,keyWord: Groups): ObservableArrayList<Groups> {
+
+        keyWords.notNull {
+            val numbersIterator = it.iterator()
+            numbersIterator.let {
+                while (numbersIterator.hasNext()) {
+                    val value = (numbersIterator.next())
+
+                    value.joinedBy.notNull {
+                    if (value.joinedBy!!.equals(keyWord.joinedBy)) {
+                        keyWords.remove(value)
+                        return@notNull
+                    }
+                    }
+                }
+            }
+        }
+        return keyWords;
     }
+
+
 
 
 //    @get:Bindable

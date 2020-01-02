@@ -188,11 +188,14 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 .addOnSuccessListener {
                     emptyResultListener.onSuccess()
 
-                    Log.d(TAG, "DocumentSnapshot added ")
+                    Log.d(TAG, "updateJoin DocumentSnapshot added ")
                 }
                 .addOnFailureListener { e ->
                     emptyResultListener.onFailure(e)
-                    Log.w(TAG, "Error in adding document", e)
+                    Log.w(TAG, "updateJoin Error in adding document", e)
+                }.addOnCompleteListener {
+                    Log.d(TAG, "updateJoin DocumentSnapshot complete ")
+
                 }
     }
 

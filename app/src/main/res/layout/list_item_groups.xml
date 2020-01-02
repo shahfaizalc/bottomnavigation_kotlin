@@ -98,18 +98,14 @@
                     android:drawableTint="@color/grey"
                     android:text="@{@string/group_members(countriesInfoModel.members!= null ? countriesInfoModel.members.size() : 0)}" />
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_gradiant_blue"
+                    android:src="@drawable/arrow_right_circle"
                     android:paddingLeft="@dimen/dimen_8"
-                    android:paddingRight="@dimen/dimen_8"
-                    android:text="Join"
-                    android:textAppearance="?android:attr/textAppearanceMediumInverse"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                    android:paddingRight="@dimen/dimen_8"/>
             </RelativeLayout>
 
         </LinearLayout>

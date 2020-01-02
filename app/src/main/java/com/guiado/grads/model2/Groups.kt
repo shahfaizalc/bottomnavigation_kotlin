@@ -10,6 +10,7 @@ class Groups{
     var postedBy : String? = null
     var postedByName : String? = null
     var members: ArrayList<Bookmarks>? = null
+    var joinedBy: ArrayList<String>? = null
     var availability : Boolean = false
     var keyWords: MutableList<Int>? = null
     var eventState: EventStatus = EventStatus.SHOWING

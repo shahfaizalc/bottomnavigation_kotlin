@@ -22,7 +22,7 @@
 
             <LinearLayout
                 android:background="@drawable/circular_bg_border_black_8"
-                android:layout_margin="@dimen/dimen_4"
+                android:layout_margin="@dimen/dimen_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">

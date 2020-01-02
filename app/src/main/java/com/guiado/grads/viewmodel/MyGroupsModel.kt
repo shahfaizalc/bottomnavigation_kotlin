@@ -8,23 +8,26 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.FragmentActivity
-import com.guiado.grads.BR
-import com.guiado.grads.Events.MyCustomEvent
-import com.guiado.grads.R
-import com.guiado.grads.view.FirestoreChatFragmment
-import com.guiado.grads.model2.*
-import com.guiado.grads.util.GenericValues
-import com.guiado.grads.util.MultipleClickHandler
-import com.guiado.grads.util.firestoreSettings
-import com.guiado.grads.utils.Constants
-import com.guiado.grads.view.*
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
-import com.guiado.grads.network.FirbaseReadHandler
+import com.guiado.grads.BR
+import com.guiado.grads.Events.MyCustomEvent
+import com.guiado.grads.R
+import com.guiado.grads.model2.Bookmarks
+import com.guiado.grads.model2.Groups
+import com.guiado.grads.model2.Profile
+import com.guiado.grads.util.GenericValues
+import com.guiado.grads.util.MultipleClickHandler
+import com.guiado.grads.util.firestoreSettings
 import com.guiado.grads.util.notNull
+import com.guiado.grads.utils.Constants
+import com.guiado.grads.view.FirestoreChatFragmment
+import com.guiado.grads.view.FragmentGroups
+import com.guiado.grads.view.FragmentMyGroups
+import com.guiado.grads.view.FragmentNewGroup
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -137,10 +140,12 @@ class MyGroupsModel(internal var activity: FragmentActivity,
             numbersIterator.let {
                 while (numbersIterator.hasNext()) {
                     val value = (numbersIterator.next())
-                   if (value.markedById.equals(mAuth.currentUser!!.uid)){
-                       result = true
-                       return@notNull
-                   }
+                    value.markedById.notNull {
+                        if (value.markedById.equals(mAuth.currentUser!!.uid)) {
+                            result = true
+                            return@notNull
+                        }
+                    }
                 }
             }
         }

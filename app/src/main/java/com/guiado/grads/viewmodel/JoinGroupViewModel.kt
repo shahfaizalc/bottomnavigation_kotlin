@@ -80,6 +80,7 @@ class JoinGroupViewModel(private val context: Context,
             var comments2 = getbookmarks()
             if (postDiscussion?.members.isNullOrEmpty()) {
                 postDiscussion?.members = ArrayList<Bookmarks>()
+                postDiscussion?.joinedBy = ArrayList<String>()
             } else {
                 val bookmarks: MutableIterator<Bookmarks> = postDiscussion?.members!!.iterator()
                 while (bookmarks.hasNext()) {
@@ -94,8 +95,10 @@ class JoinGroupViewModel(private val context: Context,
 
             if(isExist){
                 postDiscussion?.members?.remove(comments2)
+                postDiscussion?.joinedBy?.remove(comments2.markedById)
             } else {
                 postDiscussion?.members?.add(comments2)
+                postDiscussion?.joinedBy?.add(comments2.markedById)
             }
 
             updateBookmmarks(isExist)

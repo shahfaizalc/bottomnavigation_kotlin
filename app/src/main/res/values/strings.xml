@@ -155,8 +155,9 @@
     <string name="sign_out">Sign out</string>
     <string name="enter_text">Enter text</string>
     <string name="message_hint">Write your message here</string>
-    <string name="addtoCalender">Add to Calender</string>
-    <string name="remmoveFromCalender">Remove from Calender</string>
+    <string name="addtoCalender">Save Event</string>
+    <string name="remmoveFromCalender">Unsave Event</string>
+    E
     <string name="feebackTitleTxt">Feedback</string>
     <string name="privacyTitleTxt">Privacy Policy</string>
     <string name="shareInfo">Fly to your dream college. A platform to talk with your fellow dreamers.\n Check out.\n https://play.google.com/store/apps/details?id=com.guiado.grads</string>

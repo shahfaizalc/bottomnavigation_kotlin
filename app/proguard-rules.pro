@@ -22,3 +22,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.guiado.grads.model2.** { *; }
+
+-keep class com.guiado.grads.model.** { *; }
+
