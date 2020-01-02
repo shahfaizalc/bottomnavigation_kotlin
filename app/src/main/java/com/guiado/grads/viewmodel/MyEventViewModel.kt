@@ -117,6 +117,7 @@ class MyEventViewModel(private val context: Context,
             var comments2 = getbookmarks()
             if (events?.members.isNullOrEmpty()) {
                 events?.members = ArrayList<Bookmarks>()
+                events?.bookmarkBy = ArrayList<String>()
             } else {
                 val bookmarks: MutableIterator<Bookmarks> = events?.members!!.iterator()
                 while (bookmarks.hasNext()) {
@@ -131,8 +132,10 @@ class MyEventViewModel(private val context: Context,
 
             if(isExist){
                 events?.members?.remove(comments2)
+                events?.bookmarkBy?.remove(comments2.markedById)
             } else {
                 events?.members?.add(comments2)
+                events?.bookmarkBy?.add(comments2.markedById)
             }
 
             updateBookmmarks(isExist)

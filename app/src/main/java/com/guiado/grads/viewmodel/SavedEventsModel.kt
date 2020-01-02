@@ -46,7 +46,8 @@ class SavedEventsModel(internal var activity: FragmentActivity,
         db.firestoreSettings = firestoreSettings
         query = db.collection("events")
                 .orderBy("postedDate", Query.Direction.DESCENDING)
-                .limit(5)
+                .limit(5).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
+
         doGetTalents()
     }
 
@@ -90,10 +91,11 @@ class SavedEventsModel(internal var activity: FragmentActivity,
     }
 
     fun doGetTalentsSearch(searchQuery: String) {
-        query = db.collection("discussion")
+        query = db.collection("events")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
                 .orderBy("postedDate", Query.Direction.DESCENDING)
-                .limit(5)
+                .limit(5).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
+
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
         talentProfilesList.removeAll(talentProfilesList)
@@ -147,8 +149,13 @@ class SavedEventsModel(internal var activity: FragmentActivity,
 
             }
 
+            var listItems = ArrayList<String>()
+            listItems.add(mAuth.currentUser!!.uid)
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-            query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).startAfter(lastVisible)
+            query = db.collection("events")
+                    .orderBy("postedDate", Query.Direction.DESCENDING)
+                    .limit(10).startAfter(lastVisible)
+                    .whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
 
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {

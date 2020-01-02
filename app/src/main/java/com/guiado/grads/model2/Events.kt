@@ -15,6 +15,7 @@ class Events{
     var postedBy : String? = null
     var postedByName : String? = null
     var members: ArrayList<Bookmarks>? = null
+    var bookmarkBy: ArrayList<String>? = null
     var keyWords: MutableList<Int>? = null
     var eventState: EventStatus = EventStatus.SHOWING
     var eventTime:String? = null
