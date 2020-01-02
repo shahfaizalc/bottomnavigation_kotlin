@@ -48,6 +48,29 @@ class GameChooserModel(internal val activity: FragmentActivity,
             notifyPropertyChanged(BR.roleAdapterAddress)
         }
 
+    @get:Bindable
+    var showSignUpProgress: Int = View.INVISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpProgress)
+        }
+
+    @get:Bindable
+    var showSignUpBtn: Int = View.VISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpBtn)
+        }
+
+    fun showProgresss(isShow : Boolean){
+        if(isShow){
+            showSignUpBtn = View.INVISIBLE
+            showSignUpProgress = View.VISIBLE }
+        else{
+            showSignUpBtn = View.VISIBLE
+            showSignUpProgress = View.INVISIBLE
+        }
+    }
 
     fun onNextButtonClick(category: Int) {
          keyWord.clear()
@@ -73,7 +96,7 @@ class GameChooserModel(internal val activity: FragmentActivity,
             }
 
             if ( postDiscussion.keyWords!!.size > 0 && postDiscussion.title!!.length > 3 ) {
-
+                showProgresss(true)
                 postDiscussion.searchTags = compareLIt().toList()
 
                 postDiscussion.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
@@ -84,10 +107,11 @@ class GameChooserModel(internal val activity: FragmentActivity,
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                         Toast.makeText(fragmentGameChooser.context, fragmentGameChooser.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-
+                        showProgresss(false)
                     }
 
                     override fun onSuccess() {
+                        showProgresss(false)
                         Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
                         val fragment = FragmentDiscussions()
                         val bundle = Bundle()

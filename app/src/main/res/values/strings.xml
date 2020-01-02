@@ -88,6 +88,7 @@
     <string name="finderPersonTitle">Find your next mate or trainer</string>
     <string name="finderEventTitle">Find the next happening in your city</string>
     <string name="infoMsg">Please write your question</string>
+    <string name="infoMsg_discussion">Please write your question at least 20 letters</string>
     <string name="likes">%s likes</string>
     <string name="resnd_Verify_Email_Title_Txt">We have resent the verification mail. Please verify.</string>
 
@@ -119,6 +120,7 @@
     <string name="event_desc">Event Description</string>
     <string name="event_description">Group Description (max 140 characters)</string>
     <string name="event_create">Create Event</string>
+    <string name="group_create">Create</string>
 
     <string name="title">Event Title</string>
     <string name="desc">Description</string>

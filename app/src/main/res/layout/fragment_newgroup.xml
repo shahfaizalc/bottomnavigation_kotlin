@@ -52,6 +52,7 @@
                     android:text="@={homeData.userDesc}"/>
 
                 <Switch
+                    android:visibility="gone"
                     android:textColor="@color/colorBlacklight"
                     android:textSize="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_16"
@@ -64,18 +65,30 @@
 
         </ScrollView>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_alignParentBottom="true"
-            android:background="@color/yellow"
-            android:onClick="@{homeData.doPostEvents()}"
-            android:padding="@dimen/dimen_8"
-            android:src="@drawable/check_circle_outline"
-            android:text="@string/review_next"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <Button
+                android:visibility="@{homeData.showSignUpBtn}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/group_create"
+                android:background="@color/yellow"
+                android:onClick="@{homeData.doPostEvents()}"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/dimen_16"
+                android:textStyle="bold"
+                android:id="@+id/loginButton" />
+            <ProgressBar
+                android:progressTint="@color/yellow"
+                android:visibility="@{homeData.showSignUpProgress}"
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
 
     </RelativeLayout>
 </layout>

@@ -53,19 +53,32 @@
             </RelativeLayout>
         </ScrollView>
 
-        <Button
-            android:id="@+id/doneBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_alignParentBottom="true"
-            android:background="@color/yellow"
-            android:onClick="@{gameChooserModel.doDiscussionWrrite()}"
-            android:padding="@dimen/dimen_8"
-            android:src="@drawable/check_circle_outline"
-            android:text="@string/review_post"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <Button
+                android:visibility="@{gameChooserModel.showSignUpBtn}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/review_post"
+                android:textColor="@color/white"
+                android:background="@color/yellow"
+                android:onClick="@{gameChooserModel.doDiscussionWrrite()}"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/dimen_16"
+                android:textStyle="bold"
+                android:id="@+id/loginButton" />
+            <ProgressBar
+                android:background="@color/yellow"
+                android:progressTint="@color/white"
+                android:visibility="@{gameChooserModel.showSignUpProgress}"
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
 
     </RelativeLayout>
 </layout>

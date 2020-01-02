@@ -46,6 +46,9 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
             if (userTitle.isNullOrEmpty()) {
                 Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.infoMsg), Toast.LENGTH_LONG).show()
                 return@OnClickListener
+            } else if (userTitle!!.length < 20) {
+                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.infoMsg_discussion), Toast.LENGTH_LONG).show()
+                return@OnClickListener
             }
 
             Log.d(TAG, "DocumentSnapshot onSuccess ")

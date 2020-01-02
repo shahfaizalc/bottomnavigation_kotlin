@@ -48,6 +48,31 @@ class NewGroupViewModel(private val context: Context, private val fragmentSignin
             notifyPropertyChanged(BR.userDesc)
         }
 
+
+    @get:Bindable
+    var showSignUpProgress: Int = View.INVISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpProgress)
+        }
+
+    @get:Bindable
+    var showSignUpBtn: Int = View.VISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpBtn)
+        }
+
+    fun showProgresss(isShow : Boolean){
+        if(isShow){
+            showSignUpBtn = View.INVISIBLE
+            showSignUpProgress = View.VISIBLE }
+        else{
+            showSignUpBtn = View.VISIBLE
+            showSignUpProgress = View.INVISIBLE
+        }
+    }
+
     private fun compareLIt(): List<String>  { return userTitle!!.sentenceToWords() }
 
 
@@ -60,6 +85,7 @@ class NewGroupViewModel(private val context: Context, private val fragmentSignin
             }
 
             if ( userTitle!!.isValid() ) {
+                showProgresss(true)
 
                 val group = Groups();
                 group.searchTags = compareLIt()
@@ -74,6 +100,7 @@ class NewGroupViewModel(private val context: Context, private val fragmentSignin
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                         Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                        showProgresss(false)
 
                     }
 
@@ -83,6 +110,7 @@ class NewGroupViewModel(private val context: Context, private val fragmentSignin
                         val bundle = Bundle()
                         fragment.setArguments(bundle)
                         fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+                        showProgresss(false)
 
                     }
                 })
