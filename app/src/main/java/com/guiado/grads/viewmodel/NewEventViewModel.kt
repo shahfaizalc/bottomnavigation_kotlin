@@ -3,7 +3,10 @@ package com.guiado.grads.viewmodel
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
+import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -145,6 +148,30 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
     }
 
 
+    @get:Bindable
+    var showSignUpProgress: Int = View.INVISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpProgress)
+        }
+
+    @get:Bindable
+    var showSignUpBtn: Int = View.VISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpBtn)
+        }
+
+    fun showProgresss(isShow : Boolean){
+        if(isShow){
+            showSignUpBtn = View.INVISIBLE
+            showSignUpProgress = View.VISIBLE }
+        else{
+            showSignUpBtn = View.VISIBLE
+            showSignUpProgress = View.INVISIBLE
+        }
+    }
+
 
     private fun getAddress() = " " + profile.address?.locationname + "\n " + profile.address?.streetName +
             ", " + profile.address?.town + "\n " + profile.address?.city
@@ -160,6 +187,7 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
             }
 
             if ( userTitle!!.isValid() ) {
+                showProgresss(true)
 
                 val events = Events();
                 events.title= userTitle
@@ -178,6 +206,7 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot doPostEvents onFailure " + e.message)
                         Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                        showProgresss(false)
 
                     }
 
@@ -186,14 +215,29 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
                         val fragment = FragmentTheEvents()
                         val bundle = Bundle()
                         fragment.setArguments(bundle)
-                        fragmentSignin.mFragmentNavigation.popFragment(2);
-                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+                        fragmentSignin.mFragmentNavigation.popFragment(1);
+                       // fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+                        showProgresss(false)
+                        showPopUpWindow()
 
                     }
                 })
             }
         }
     }
+
+
+    fun showPopUpWindow(){
+        val view = getNotificationContentView(context,
+                context.applicationContext.resources.getString(R.string.success_title),
+                context.applicationContext.resources.getString(R.string.event_msg))
+        val popupWindow = PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.showAtLocation(view, Gravity.TOP, 0, 0);
+        view.findViewById<View>(R.id.closeBtn).setOnClickListener{
+            popupWindow.dismiss()
+        }
+    }
+
 
     private fun compareLIt(): List<String> { return userTitle!!.sentenceToWords()}
 
