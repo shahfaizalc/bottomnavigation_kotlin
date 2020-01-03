@@ -43,13 +43,15 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
     init {
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
+        mAuth = FirebaseAuth.getInstance()
         try {
             db.firestoreSettings = firestoreSettings
         } catch (e:Exception){
             Log.d(TAG, "getProfile  "+e)
         }
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
-        mAuth = FirebaseAuth.getInstance()
+        query = db.collection("discussion")
+                .orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
+                .whereEqualTo("postedBy",mAuth.currentUser!!.uid)
         doGetTalents()
     }
 
@@ -107,7 +109,7 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
         query = db.collection("discussion")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
                 .orderBy("postedDate", Query.Direction.DESCENDING)
-                .limit(5)
+                .limit(5).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
         talentProfilesList.removeAll(talentProfilesList)
@@ -167,7 +169,8 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
             }
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-            query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).startAfter(lastVisible)
+            query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING)
+                    .limit(10).startAfter(lastVisible).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
 
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {

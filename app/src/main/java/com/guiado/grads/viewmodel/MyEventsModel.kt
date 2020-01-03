@@ -43,13 +43,13 @@ class MyEventsModel(internal var activity: FragmentActivity,
     init {
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
+        mAuth = FirebaseAuth.getInstance()
         try {
             db.firestoreSettings = firestoreSettings
         } catch (e:Exception){
             Log.d(TAG, "getProfile  "+e)
         }
-        query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
-        mAuth = FirebaseAuth.getInstance()
+        query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(5).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
         doGetTalents()
     }
 
@@ -95,7 +95,7 @@ class MyEventsModel(internal var activity: FragmentActivity,
     fun doGetTalentsSearch(searchQuery: String) {
         query = db.collection("events")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
-                .orderBy("postedDate", Query.Direction.DESCENDING)
+                .orderBy("postedDate", Query.Direction.DESCENDING).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
                 .limit(5)
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
@@ -156,7 +156,7 @@ class MyEventsModel(internal var activity: FragmentActivity,
             }
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-            query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).startAfter(lastVisible)
+            query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).startAfter(lastVisible).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
 
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {
