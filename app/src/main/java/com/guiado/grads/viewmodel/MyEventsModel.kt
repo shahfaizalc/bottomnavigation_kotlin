@@ -1,6 +1,5 @@
 package com.guiado.grads.viewmodel
 
-
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -49,7 +48,7 @@ class MyEventsModel(internal var activity: FragmentActivity,
         } catch (e:Exception){
             Log.d(TAG, "getProfile  "+e)
         }
-        query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(5).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
+        query = db.collection("events").limit(5).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
         doGetTalents()
     }
 
@@ -80,11 +79,10 @@ class MyEventsModel(internal var activity: FragmentActivity,
 
     }
 
+
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()
     }
-
-
 
     private fun getCommbinationWords(s: String): List<String> {
         val list1 = s.sentenceToWords()
@@ -95,7 +93,7 @@ class MyEventsModel(internal var activity: FragmentActivity,
     fun doGetTalentsSearch(searchQuery: String) {
         query = db.collection("events")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
-                .orderBy("postedDate", Query.Direction.DESCENDING).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
+                .whereEqualTo("postedBy",mAuth.currentUser!!.uid)
                 .limit(5)
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
@@ -156,7 +154,7 @@ class MyEventsModel(internal var activity: FragmentActivity,
             }
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-            query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).startAfter(lastVisible).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
+            query = db.collection("events").limit(10).startAfter(lastVisible).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
 
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {
