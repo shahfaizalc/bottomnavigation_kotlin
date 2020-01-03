@@ -2,7 +2,10 @@ package com.guiado.grads.viewmodel
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
+import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -116,16 +119,28 @@ class GameChooserModel(internal val activity: FragmentActivity,
                         val fragment = FragmentDiscussions()
                         val bundle = Bundle()
                         fragment.setArguments(bundle)
+                        fragmentGameChooser.mFragmentNavigation.popFragment(2)
                         fragmentGameChooser.mFragmentNavigation.replaceFragment(fragment);
-
+                        showPopUpWindow()
                     }
                 })
             }
         }
+    }
 
+    fun showPopUpWindow(){
+        val view = getNotificationContentView(activity,
+                activity.applicationContext.resources.getString(R.string.success_title),
+                activity.applicationContext.resources.getString(R.string.success_msg))
+        val popupWindow = PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.showAtLocation(view, Gravity.TOP, 0, 0);
+        view.findViewById<View>(R.id.closeBtn).setOnClickListener{
+            popupWindow.dismiss()
+        }
     }
 
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()
     }
 }
+

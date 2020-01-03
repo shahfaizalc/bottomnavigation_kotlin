@@ -149,6 +149,12 @@
     </string-array>
     <string name="submit">Submit</string>
 
+    <string name="success_title">Success</string>
+
+    <string name="success_msg">The discussion has been published successfully.</string>
+
+
+
     <string name="emptyStr"> %s</string>
 
 <string name="start_chatting">Start Chatting</string>

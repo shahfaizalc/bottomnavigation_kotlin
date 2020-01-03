@@ -1,10 +1,14 @@
 package com.guiado.grads.util
 
 import android.content.Context
+import android.view.View
+import android.widget.TextView
+import com.google.firebase.firestore.FirebaseFirestoreSettings
+import com.guiado.grads.R
 import com.guiado.grads.model.Address
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model2.Profile
-import com.google.firebase.firestore.FirebaseFirestoreSettings
+import org.greenrobot.eventbus.EventBus
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Matcher
@@ -125,3 +129,17 @@ var firestoreSettings = FirebaseFirestoreSettings.Builder()
         .setPersistenceEnabled(true)
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
+
+
+fun getNotificationContentView(context: Context, title: String, message: String): View {
+    val view = View.inflate(context, R.layout.notification_view, null)
+    (view.findViewById<View>(R.id.not_title) as TextView).text = "$title"
+    view.findViewById<View>(R.id.not_title).visibility = View.VISIBLE
+    (view.findViewById<View>(R.id.not_message) as TextView).text = "$message"
+    view.findViewById<View>(R.id.not_message).visibility = View.VISIBLE
+    view.findViewById<View>(R.id.closeBtn).visibility = View.VISIBLE
+    // view.findViewById<View>(R.id.closeBtn).setOnClickListener { v: View? -> EventBus.getDefault().post(NotificationBarHandler()) }
+    return view
+}
+
+
