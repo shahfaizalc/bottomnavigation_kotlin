@@ -14,11 +14,8 @@ import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.utils.EnumValidator
 import com.guiado.grads.utils.Validator
-import com.guiado.grads.view.FragmentFeedBack
-import com.guiado.grads.view.FragmentInfo
-import com.guiado.grads.view.FragmentLocationPicker
 import com.google.firebase.auth.FirebaseAuth
-import com.guiado.grads.view.FragmentSavedEvents
+import com.guiado.grads.view.*
 import com.itravis.ticketexchange.listeners.DateListener
 import com.itravis.ticketexchange.listeners.TimeListener
 import com.itravis.ticketexchange.utils.DatePickerEvent
@@ -84,10 +81,10 @@ class InfoViewModel(private val context: Context, private val fragmentSignin: Fr
 
     fun savedDiscussionsClicked() {
         if (!handleMultipleClicks()) {
-//            val fragment = FragmentLocationPicker()
-//            val bundle = Bundle()
-//            fragment.setArguments(bundle)
-//            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+            val fragment = FragmentSavedDiscussions()
+            val bundle = Bundle()
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 
         }
     }

@@ -140,6 +140,7 @@ class ActivityDiscussionViewModel(private val context: Context,
             var comments2 = getbookmarks()
             if (postDiscussion?.bookmarks.isNullOrEmpty()) {
                 postDiscussion?.bookmarks = ArrayList<Bookmarks>()
+                postDiscussion?.bookmarkBy = ArrayList<String>()
             } else {
                 val bookmarks: MutableIterator<Bookmarks> = postDiscussion?.bookmarks!!.iterator()
                 while (bookmarks.hasNext()) {
@@ -154,8 +155,11 @@ class ActivityDiscussionViewModel(private val context: Context,
 
             if(isExist){
                 postDiscussion?.bookmarks?.remove(comments2)
+                postDiscussion?.bookmarkBy?.remove(comments2.markedById)
             } else {
                 postDiscussion?.bookmarks?.add(comments2)
+                postDiscussion?.bookmarkBy?.add(comments2.markedById)
+
             }
 
             updateBookmmarks(isExist)
