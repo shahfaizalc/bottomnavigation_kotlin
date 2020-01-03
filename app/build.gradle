@@ -14,9 +14,9 @@ android {
     defaultConfig {
         applicationId "com.guiado.grads"
         minSdkVersion 23
-        targetSdkVersion 29
-        versionCode 7
-        versionName "1.0.6"
+        targetSdkVersion 28
+        versionCode 6
+        versionName "1.0.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 

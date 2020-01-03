@@ -153,9 +153,6 @@
 
     <string name="success_msg">The discussion has been published successfully.</string>
 
-    <string name="oops_title">OOPS!!!</string>
-
-    <string name="oops_msg">The item is not available to view.</string>
 
 
     <string name="emptyStr"> %s</string>

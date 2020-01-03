@@ -2,10 +2,7 @@ package com.guiado.grads.viewmodel
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import android.widget.PopupWindow
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
@@ -52,6 +49,7 @@ class SavedEventsModel(internal var activity: FragmentActivity,
             Log.d(TAG, "getProfile  "+e)
         }
         query = db.collection("events")
+                .orderBy("postedDate", Query.Direction.DESCENDING)
                 .limit(5).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
 
         doGetTalents()
@@ -82,19 +80,7 @@ class SavedEventsModel(internal var activity: FragmentActivity,
             bundle.putString(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
             fragment.setArguments(bundle)
             fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
-        } else {
-            showPopUpWindow();
-        }
-    }
 
-    fun showPopUpWindow(){
-        val view = getNotificationContentView(activity,
-                activity.applicationContext.resources.getString(R.string.oops_title),
-                activity.applicationContext.resources.getString(R.string.oops_msg))
-        val popupWindow = PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        popupWindow.showAtLocation(view, Gravity.TOP, 0, 0);
-        view.findViewById<View>(R.id.closeBtn).setOnClickListener{
-            popupWindow.dismiss()
         }
     }
 
@@ -111,6 +97,7 @@ class SavedEventsModel(internal var activity: FragmentActivity,
     fun doGetTalentsSearch(searchQuery: String) {
         query = db.collection("events")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
+                .orderBy("postedDate", Query.Direction.DESCENDING)
                 .limit(5).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
 
 
@@ -170,6 +157,7 @@ class SavedEventsModel(internal var activity: FragmentActivity,
             listItems.add(mAuth.currentUser!!.uid)
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
             query = db.collection("events")
+                    .orderBy("postedDate", Query.Direction.DESCENDING)
                     .limit(10).startAfter(lastVisible)
                     .whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
 
