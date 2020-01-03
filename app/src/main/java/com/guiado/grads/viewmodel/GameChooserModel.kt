@@ -120,7 +120,7 @@ class GameChooserModel(internal val activity: FragmentActivity,
                         val bundle = Bundle()
                         fragment.setArguments(bundle)
                         fragmentGameChooser.mFragmentNavigation.popFragment(2)
-                        fragmentGameChooser.mFragmentNavigation.replaceFragment(fragment);
+                       // fragmentGameChooser.mFragmentNavigation.replaceFragment(fragment);
                         showPopUpWindow()
                     }
                 })
