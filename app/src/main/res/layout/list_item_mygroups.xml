@@ -26,10 +26,10 @@
             name="keyWordsTag"
             type="java.lang.String" />
 
-        <variable
-            name="postDate"
-            type="java.lang.String" />
 
+        <variable
+            name="viewDot"
+            type="java.lang.Integer" />
 
     </data>
 
@@ -82,6 +82,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:visibility="@{viewDot}"
             android:padding="@dimen/dimen_4"
             android:onClick="@{() -> itemClickListener.onClickAdSearchListItemDot(mainDataModel,itemPosition)}"
             android:layout_centerVertical="true"

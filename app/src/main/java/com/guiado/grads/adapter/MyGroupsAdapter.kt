@@ -1,12 +1,14 @@
 package com.guiado.grads.adapter
 
 import android.content.Context
+import android.icu.util.ValueIterator
 import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.FacebookSdk.getApplicationContext
+import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.R
 import com.guiado.grads.databinding.ListItemMygroupsBinding
 import com.guiado.grads.listeners.MyGroupsEventListener
@@ -39,9 +41,9 @@ class MyGroupsAdapter(private val adSearchModel: MyGroupsModel) :
         with(viewHolder.binding!!) {
             groupsViewModel = viewModel.talentProfilesList[position]
             keyWordsTag = getDiscussionKeys(groupsViewModel!!.keyWords,viewHolder.itemView.context)
-            postDate= viewModel.talentProfilesList[position].postedDate?.toLong()?.let { convertLongToTime(it) }
             itemPosition = position
             mainDataModel = viewModel
+            viewDot = showMenu(viewModel, position)
             executePendingBindings()
         }
         viewHolder.binding!!.setItemClickListener(this)
@@ -51,6 +53,12 @@ class MyGroupsAdapter(private val adSearchModel: MyGroupsModel) :
 
     }
 
+    private fun showMenu(viewModel: MyGroupsModel, position: Int): Int {
+        if (viewModel.talentProfilesList[position].postedBy.equals(adSearchModel.mAuth.currentUser?.uid)) {
+            return  View.INVISIBLE
+        }
+        return  View.VISIBLE
+    }
 
 
     override fun getItemCount()= adSearchModel.talentProfilesList.size

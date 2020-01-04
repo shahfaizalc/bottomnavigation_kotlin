@@ -37,7 +37,7 @@ class MyGroupsModel(internal var activity: FragmentActivity,
     var talentProfilesList: ObservableArrayList<Groups>
 
 
-    private val mAuth: FirebaseAuth
+    val mAuth: FirebaseAuth
 
     companion object {
 
