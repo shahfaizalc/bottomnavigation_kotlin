@@ -50,6 +50,8 @@
                         android:paddingEnd="@dimen/dimen_32" />
 
                     <TextView
+                        android:linksClickable="true"
+                        android:autoLink="web|email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dimen_8"

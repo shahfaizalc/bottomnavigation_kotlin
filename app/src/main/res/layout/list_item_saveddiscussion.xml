@@ -93,6 +93,8 @@
 
 
                 <TextView
+                    android:linksClickable="true"
+                    android:autoLink="web|email"
                     android:maxLines="7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
