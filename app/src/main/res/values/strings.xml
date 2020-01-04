@@ -162,8 +162,9 @@
     <string name="emptyStr"> %s</string>
 
 
+    <string name="start_commenting">Start Comment</string>
 
-<string name="start_chatting">Start Chatting</string>
+    <string name="start_chatting">Add first comment</string>
     <string name="sign_out">Sign out</string>
     <string name="enter_text">Enter text</string>
     <string name="message_hint">Write your message here</string>

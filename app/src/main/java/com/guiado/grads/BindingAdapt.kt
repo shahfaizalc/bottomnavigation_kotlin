@@ -603,7 +603,6 @@ fun adapter(searchView: SearchView, profileInfoViewModel: GameChooserModel, recy
         }
     })
 
-
 }
 
 
@@ -623,7 +622,7 @@ fun loadAdapterx(textView: TextView, profileInfoViewModel: RegistrationModel) {
         }
     }
 
-    ss.setSpan(clickableSpan, 34, ss.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    ss.setSpan(clickableSpan, 33, ss.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
     textView.setMovementMethod(LinkMovementMethod.getInstance())
     textView.setText(ss)
 
