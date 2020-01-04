@@ -21,6 +21,15 @@
             android:background="@drawable/bg_gradiant_oneside_violet_lite"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_margin="@dimen/dimen_8"
+                android:id="@+id/banner_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreyDark"
+                android:orientation="vertical" />
+
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search1"
                 android:layout_width="match_parent"

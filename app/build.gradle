@@ -15,8 +15,8 @@ android {
         applicationId "com.guiado.grads"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 6
-        versionName "1.0.5"
+        versionCode 8
+        versionName "1.0.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
@@ -90,6 +90,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0-rc01'
     implementation group: 'com.jakewharton', name: 'butterknife', version: '10.1.0'
     implementation group: 'android.arch.paging', name: 'runtime', version: '1.0.1'
+    implementation 'com.facebook.android:audience-network-sdk:5.6.0'
 
 }
 repositories {

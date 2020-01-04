@@ -58,7 +58,7 @@
     <string name="passwordHint">Password (Min 8 Character)</string>
     <string name="confirmpasswordHint">Confirm Password</string>
     <string name="creationFailed">Sorry for the inconvenience. Please try again later</string>
-
+    <string name="leaveGroup">Leave Group</string>
     <string name="emailHint">Email</string>
     <string name="passwordtxt">Password</string>
     <string name="doneTxt">Done</string>
@@ -161,10 +161,14 @@
 
     <string name="emptyStr"> %s</string>
 
+
+
 <string name="start_chatting">Start Chatting</string>
     <string name="sign_out">Sign out</string>
     <string name="enter_text">Enter text</string>
     <string name="message_hint">Write your message here</string>
+    <string name="comment_hint">Add comment here</string>
+
     <string name="addtoCalender">Save Event</string>
     <string name="remmoveFromCalender">Unsave Event</string>
     E
@@ -195,4 +199,14 @@ unless otherwise defined in this Privacy Policy.
 \n\nContact us:
 
 \nIf you any questions or suggestions, please reach us at cshahfaizal@gmail.com.</string>
+
+
+
+
+<!-- fb ads -->
+    <string name="banner_id">514835722463089_514969325783062</string>
+
+
+
+
 </resources>

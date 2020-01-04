@@ -54,13 +54,13 @@
             android:textSize="@dimen/dimen_36"
             />
 
-
         <LinearLayout
             android:padding="@dimen/dimen_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/titleLetter"
+            android:layout_toStartOf="@+id/dotVertical"
             android:orientation="vertical">
 
             <TextView
@@ -80,6 +80,15 @@
                 android:textColor="@color/colorGrey" />
 
         </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/dotVertical"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dots_vertical"/>
+
         <View
             android:paddingBottom="@dimen/dimen_8"
             android:layout_marginStart="@dimen/dimen_2"

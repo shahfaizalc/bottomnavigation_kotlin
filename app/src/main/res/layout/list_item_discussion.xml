@@ -160,6 +160,35 @@
                         android:textColor="@color/colorBlacklight" />
 
                 </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:padding="@dimen/dimen_8"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/messageEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dimen_8"
+                        android:layout_toStartOf="@+id/sendButton"
+                        android:hint="@string/comment_hint" />
+
+                    <ImageButton
+                        android:paddingTop="@dimen/dimen_8"
+                        android:paddingBottom="@dimen/dimen_8"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/sendButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/send_small"
+                        android:tint="@color/paleGreen"/>
+
+                </RelativeLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
