@@ -82,6 +82,8 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:padding="@dimen/dimen_4"
+            android:onClick="@{() -> itemClickListener.onClickAdSearchListItemDot(mainDataModel,itemPosition)}"
             android:layout_centerVertical="true"
             android:id="@+id/dotVertical"
             android:layout_alignParentEnd="true"

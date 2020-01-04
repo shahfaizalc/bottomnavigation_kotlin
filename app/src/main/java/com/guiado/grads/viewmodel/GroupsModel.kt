@@ -28,7 +28,8 @@ class GroupsModel(internal var activity: FragmentActivity,
     : BaseObservable() {
 
     var talentProfilesList: ObservableArrayList<Groups>
-
+    var query : Query
+    var db :FirebaseFirestore
 
     private val mAuth: FirebaseAuth
 
@@ -40,6 +41,13 @@ class GroupsModel(internal var activity: FragmentActivity,
 
     init {
         talentProfilesList = ObservableArrayList()
+        db = FirebaseFirestore.getInstance()
+        try {
+            db.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+        }
+        query = db.collection("groups").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
         mAuth = FirebaseAuth.getInstance()
         doGetTalents()
     }
@@ -88,23 +96,26 @@ class GroupsModel(internal var activity: FragmentActivity,
 
     fun doGetTalents() {
 
-        val db = FirebaseFirestore.getInstance()
-        try {
-            db.firestoreSettings = firestoreSettings
-        } catch (e:Exception){
-            Log.d(TAG, "getProfile  "+e)
-        }
         Log.d(TAG, "DOIT doGetTalents: ")
 
-        talentProfilesList.clear()
-        val query = db.collection("groups")
+        // talentProfilesList.clear()
         query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
             if (e != null) {
                 Log.w(TAG, "Listen error", e)
                 return@addSnapshotListener
             }
+            Log.d(TAG, "DOIT doGetTalents: "+querySnapshot?.size())
 
-            for (change in querySnapshot!!.documentChanges) {
+            if(querySnapshot!!.size() <= 0){
+                Log.w(TAG, "Listen querySnapshot end")
+                return@addSnapshotListener
+
+            }
+
+            val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
+            query = db.collection("groups").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).startAfter(lastVisible)
+
+            for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {
                     Log.d(TAG, "New city: ${change.document.data}")
                 }
@@ -116,36 +127,28 @@ class GroupsModel(internal var activity: FragmentActivity,
                 }
                 Log.d(TAG, "Data fetched from $source")
                 addTalentsItems(change.document)
+
+
             }
         }
     }
 
-    fun doGetTalentsSearch(searchQuery:String) {
-        val db = FirebaseFirestore.getInstance()
-        try {
-            db.firestoreSettings = firestoreSettings
-        } catch (e:Exception){
-            Log.d(TAG, "getProfile  "+e)
-        }
 
-        val query = db.collection("groups").whereArrayContainsAny("searchTags",compareLIt(searchQuery).toList())
-
-        query.get()
-                .addOnCompleteListener({ task ->
-                    val any = if (task.isSuccessful) {
-                        talentProfilesList.clear()
-                        for (document in task.result!!) {
-                            addTalentsItems(document)
-                        }
-                    } else {
-                        Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
-                    }
-                }).addOnFailureListener( { exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage) })
-                .addOnSuccessListener( { valu -> Log.d(TAG, "Success getting documents: " + valu) })
+    private fun getCommbinationWords(s: String): List<String> {
+        val list1 = s.sentenceToWords()
+        Log.d("list2", "indian" + list1)
+        return list1
     }
 
-    private fun compareLIt(s:String): List<String> {
-        return s.sentenceToWords()
+    fun doGetTalentsSearch(searchQuery: String) {
+        query = db.collection("groups")
+                .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
+                .orderBy("postedDate", Query.Direction.DESCENDING)
+                .limit(5)
+
+        Log.d(TAG, "DOIT doGetTalentsSearch: ")
+        talentProfilesList.removeAll(talentProfilesList)
+        doGetTalents()
 
     }
 
@@ -160,19 +163,17 @@ class GroupsModel(internal var activity: FragmentActivity,
             talentProfilesList.add(adModel)
         }
 
-    }    private fun getKeyWords(keyWords: ObservableArrayList<Groups>,keyWord: Groups): ObservableArrayList<Groups> {
+    }
+    private fun getKeyWords(keyWords: ObservableArrayList<Groups>,keyWord: Groups): ObservableArrayList<Groups> {
 
         keyWords.notNull {
             val numbersIterator = it.iterator()
             numbersIterator.let {
                 while (numbersIterator.hasNext()) {
                     val value = (numbersIterator.next())
-
-                    value.joinedBy.notNull {
-                    if (value.joinedBy!!.equals(keyWord.joinedBy)) {
+                    if (value.postedBy!!.equals(keyWord.postedBy)) {
                         keyWords.remove(value)
                         return@notNull
-                    }
                     }
                 }
             }

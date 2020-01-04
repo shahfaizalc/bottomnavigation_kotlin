@@ -58,10 +58,10 @@ class JoinGroupViewModel(private val context: Context,
 
         var isFollow = false
         postDiscussion?.members.notNull {
-            val bookmarks: MutableIterator<Bookmarks> = it.iterator()
+            val bookmarks: MutableIterator<Members> = it.iterator()
             while (bookmarks.hasNext()) {
                 val name = bookmarks.next()
-                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
+                if (name.memberId.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
                     isFollow = true
                 }
             }
@@ -79,13 +79,13 @@ class JoinGroupViewModel(private val context: Context,
             var isExist = false
             var comments2 = getbookmarks()
             if (postDiscussion?.members.isNullOrEmpty()) {
-                postDiscussion?.members = ArrayList<Bookmarks>()
+                postDiscussion?.members = ArrayList<Members>()
                 postDiscussion?.joinedBy = ArrayList<String>()
             } else {
-                val bookmarks: MutableIterator<Bookmarks> = postDiscussion?.members!!.iterator()
+                val bookmarks: MutableIterator<Members> = postDiscussion?.members!!.iterator()
                 while (bookmarks.hasNext()) {
                     val name = bookmarks.next()
-                    if (name.markedById.equals(comments2.markedById)) {
+                    if (name.memberId.equals(comments2.memberId)) {
                         isExist = true
                         comments2 = name
                     }
@@ -95,10 +95,10 @@ class JoinGroupViewModel(private val context: Context,
 
             if(isExist){
                 postDiscussion?.members?.remove(comments2)
-                postDiscussion?.joinedBy?.remove(comments2.markedById)
+                postDiscussion?.joinedBy?.remove(comments2.memberId)
             } else {
                 postDiscussion?.members?.add(comments2)
-                postDiscussion?.joinedBy?.add(comments2.markedById)
+                postDiscussion?.joinedBy?.add(comments2.memberId)
             }
 
             updateBookmmarks(isExist)
@@ -119,21 +119,20 @@ class JoinGroupViewModel(private val context: Context,
                 bookmarkState = !exist
 
                 Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-                val fragment = FragmentMyGroups()
-                val bundle = Bundle()
-                fragment.setArguments(bundle)
-                fragmentSignin.mFragmentNavigation.popFragment(2);
-                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+//                val fragment = FragmentMyGroups()
+//                val bundle = Bundle()
+//                fragment.setArguments(bundle)
+//                fragmentSignin.mFragmentNavigation.popFragment(2);
 
             }
         })
     }
 
-    private fun getbookmarks(): Bookmarks {
-        val comments = Bookmarks()
-        comments.markedById = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-        comments.markedOn = System.currentTimeMillis().toString()
-        comments.markedByUser = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+    private fun getbookmarks(): Members {
+        val comments = Members()
+        comments.memberId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        comments.memberFrom = System.currentTimeMillis().toString()
+        comments.memberName = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
 //        val comments2 = ArrayList<Likes>()
 //        comments2.add(comments)
         return comments

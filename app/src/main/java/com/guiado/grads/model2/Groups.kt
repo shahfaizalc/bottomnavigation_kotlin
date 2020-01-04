@@ -9,7 +9,7 @@ class Groups{
     var postedDate: String? = null
     var postedBy : String? = null
     var postedByName : String? = null
-    var members: ArrayList<Bookmarks>? = null
+    var members: ArrayList<Members>? = null
     var joinedBy: ArrayList<String>? = null
     var availability : Boolean = false
     var keyWords: MutableList<Int>? = null

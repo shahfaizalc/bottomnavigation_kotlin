@@ -27,6 +27,7 @@
 
 
         <TextView
+            android:textStyle="bold"
             android:layout_marginTop="@dimen/dimen_8"
             android:layout_marginBottom="@dimen/dimen_8"
             android:layout_width="match_parent"

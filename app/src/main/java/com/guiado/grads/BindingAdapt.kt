@@ -710,7 +710,6 @@ fun adapter(recyclerView: RecyclerView, profileInfoViewModel: GroupViewModel ) {
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
     bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
-    bindingAdapter.initRequest(recyclerView)
 
     countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
         override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
@@ -742,6 +741,7 @@ fun adapter(recyclerView: RecyclerView, profileInfoViewModel: GroupViewModel ) {
                 countriesViewModel.doGetTalents()
             } else {
                 countriesViewModel.doGetTalentsSearch(s)
+                bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
             }
             return false
         }
