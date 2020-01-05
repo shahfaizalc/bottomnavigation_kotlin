@@ -1,10 +1,14 @@
 package com.guiado.grads.view
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.ListView
 import androidx.databinding.DataBindingUtil
 import com.facebook.ads.AdSize
 import com.facebook.ads.AdView
@@ -51,4 +55,6 @@ class FragmentDiscussions : BaseFragment() {
         adView.destroy()
         super.onDestroy()
     }
+
+
 }

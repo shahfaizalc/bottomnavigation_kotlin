@@ -9,6 +9,7 @@
         <item>Profile</item>
     </array>
 
+    <string name="discussions">All discussions</string>
     <string name="newDiscussionTitle">Ask your question here with \'What\', \'How\', \'When\' and so on. \n\nExample.What is the cutoff mark for Mechanical Engineering in MIT, Chennai</string>
     <string name="ad_notification">Your ad will stay online during the date indicated above or until you remove it.</string>
     <string name="ad_notification2">Your ad will stay online during the date and time indicated above or until you remove it. If you sold the item, kindly delete the ad</string>

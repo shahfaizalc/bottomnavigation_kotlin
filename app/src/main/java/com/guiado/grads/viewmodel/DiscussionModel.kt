@@ -1,16 +1,21 @@
 package com.guiado.grads.viewmodel
 
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.*
+import android.widget.AdapterView.OnItemClickListener
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.FragmentActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.*
 import com.guiado.grads.BR
 import com.guiado.grads.Events.MyCustomEvent
-import com.guiado.grads.R
+import com.guiado.grads.model.EventStatus
 import com.guiado.grads.model2.Bookmarks
 import com.guiado.grads.model2.PostDiscussion
 import com.guiado.grads.model2.Profile
@@ -19,12 +24,14 @@ import com.guiado.grads.utils.Constants
 import com.guiado.grads.view.FirestoreDisccussFragmment
 import com.guiado.grads.view.FragmentDiscussions
 import com.guiado.grads.view.FragmentNewDiscusssion
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.*
-import com.guiado.grads.model.EventStatus
-import com.guiado.grads.network.FirbaseReadHandler
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import com.guiado.grads.R
+import com.guiado.grads.adapter.CustomAdapter
+import com.guiado.grads.model.CoachItem
+import org.w3c.dom.Text
+import java.util.ArrayList
+
 
 class DiscussionModel(internal var activity: FragmentActivity,
                       internal val fragmentProfileInfo: FragmentDiscussions)// To show list of user images (Gallery)
@@ -92,12 +99,45 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
+        if(!handleMultipleClicks()) {
+            val fragment = FragmentNewDiscusssion()
+            val bundle = Bundle()
+            fragment.setArguments(bundle)
+            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+        }
+    }
 
-        val fragment = FragmentNewDiscusssion()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+    private fun readAutoFillItems() : ArrayList<CoachItem> {
+        val values = GenericValues()
+        return values.readDisuccsionTopics(activity.applicationContext)
+    }
 
+    @Override
+    fun onFilterClick() = View.OnClickListener() {
+
+        if(!handleMultipleClicks()) {
+
+            val dialog = Dialog(activity)
+            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.dialog_listview)
+
+            val btndialog: TextView = dialog.findViewById(R.id.btndialog) as TextView
+            btndialog.setOnClickListener({ dialog.dismiss() })
+
+            val items = readAutoFillItems()
+            val listView: ListView = dialog.findViewById(R.id.listview) as ListView
+            val customAdapter = CustomAdapter(readAutoFillItems(), activity.applicationContext)
+            listView.setAdapter(customAdapter)
+
+            listView.setOnItemClickListener({ parent, view, position, id ->
+
+                Toast.makeText(activity.applicationContext, "You have clicked : " + items.get(position).categoryname, Toast.LENGTH_LONG).show()
+                dialog.dismiss()
+            })
+
+            dialog.show()
+        }
     }
 
     private fun getCommbinationWords(s: String): List<String> {
