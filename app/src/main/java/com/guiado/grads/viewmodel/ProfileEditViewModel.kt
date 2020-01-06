@@ -24,6 +24,7 @@ import com.guiado.grads.view.FragmentKeyWords
 import com.guiado.grads.view.FragmentProfile
 import com.guiado.grads.view.FragmentProfileEdit
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.grads.util.storeUserName
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.ArrayList
@@ -134,6 +135,8 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
                     override fun onSuccess() {
                         Log.d(TAG, "DocumentSnapshot onSuccess ")
+                        storeUserName(context, FirebaseAuth.getInstance().currentUser!!.uid, profile)
+
                         val fragment = FragmentProfile()
                         val bundle = Bundle()
                         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))

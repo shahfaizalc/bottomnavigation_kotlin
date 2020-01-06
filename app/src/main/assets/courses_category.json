@@ -14,104 +14,104 @@
     },
     {
       "categorycode": "4",
-      "categoryname": "Biological / Agricultural"
+      "categoryname": "BBA / MBA / Management"
     },
     {
       "categorycode": "5",
-      "categoryname": "Biomedical Engineering"
+      "categoryname": "Biological / Agricultural"
     },
     {
       "categorycode": "6",
-      "categoryname": "Business Analytics"
+      "categoryname": "Biomedical Engineering"
     },
     {
       "categorycode": "7",
-      "categoryname": "Chemical / Petroleum"
+      "categoryname": "Business Analytics"
     },
     {
       "categorycode": "8",
-      "categoryname": "Civil Engineering"
+      "categoryname": "Chemical / Petroleum"
     },
     {
       "categorycode": "9",
-      "categoryname": "Commerce / Finance / Actuarial"
+      "categoryname": "Civil Engineering"
     },
     {
       "categorycode": "10",
-      "categoryname": "Computer Science / Computer Science Engineering"
+      "categoryname": "Commerce / Finance / Actuarial"
     },
     {
       "categorycode": "11",
-      "categoryname": "Data Science and Analytics"
+      "categoryname": "Computer Science / Computer Science Engineering"
     },
     {
       "categorycode": "12",
-      "categoryname": "Dental"
+      "categoryname": "Data Science and Analytics"
     },
     {
       "categorycode": "13",
-      "categoryname": "Education / Languages / Counselling"
+      "categoryname": "Dental"
     },
     {
       "categorycode": "14",
-      "categoryname": "Electrical / Electronics / Telecom"
+      "categoryname": "Education / Languages / Counselling"
     },
     {
       "categorycode": "15",
-      "categoryname": "Engineering Management (MEM)"
+      "categoryname": "Electrical / Electronics / Telecom"
     },
     {
       "categorycode": "16",
-      "categoryname": "Environmental / Mining"
+      "categoryname": "Engineering Management (MEM)"
     },
     {
       "categorycode": "17",
-      "categoryname": "Financial Engineering"
+      "categoryname": "Environmental / Mining"
     },
     {
       "categorycode": "18",
-      "categoryname": "General Law / International Law"
+      "categoryname": "Financial Engineering"
     },
     {
       "categorycode": "19",
-      "categoryname": "Government / Administrative"
+      "categoryname": "General Law / International Law"
     },
     {
       "categorycode": "20",
-      "categoryname": "Healthcare"
+      "categoryname": "Government / Administrative"
     },
     {
       "categorycode": "21",
-      "categoryname": "Human Resources"
+      "categoryname": "Healthcare"
     },
     {
       "categorycode": "22",
-      "categoryname": "Humanities / Journalism"
+      "categoryname": "Human Resources"
     },
     {
       "categorycode": "23",
+      "categoryname": "Humanities / Journalism"
+    },
+    {
+      "categorycode": "24",
       "categoryname": "Industrial Engineering and Operations"
     }
     ,
     {
-      "categorycode": "24",
+      "categorycode": "25",
       "categoryname": "International Management"
     },
     {
-      "categorycode": "25",
+      "categorycode": "26",
       "categoryname": "Management Information System (MIS)"
     },
     {
-      "categorycode": "26",
+      "categorycode": "27",
       "categoryname": "Marketing"
     },
     {
-      "categorycode": "27",
-      "categoryname": "Material Science and Engineering"
-    },
-    {
       "categorycode": "28",
-      "categoryname": "BBA / MBA / Management"
+      "categoryname": "Material Science and Engineering"
     },
     {
       "categorycode": "29",
@@ -130,10 +130,10 @@
       "categoryname": "Pure Science"
     }, {
       "categorycode": "34",
-      "categoryname": "Veterinary Science"
+      "categoryname": "Physics / Chemistry / Mathematics"
     }, {
       "categorycode": "35",
-      "categoryname": "Physics / Chemistry / Mathematics"
+      "categoryname": "Veterinary Science"
     }
   ]
 }

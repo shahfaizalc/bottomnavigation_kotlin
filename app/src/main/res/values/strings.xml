@@ -138,6 +138,8 @@
     <string name="group_desc">Group Description (max 140 characters)</string>
 
     <string name="course_type">Interests of Courses</string>
+    <string name="graduation">Graduation</string>
+    <string name="quote">if the deaf are to hear the sound has to be very loud - Bhagat Singh</string>
 
     <string name="graduation_type">Interests of Graduation</string>
     <string name="startdiscussion">Start a new discussion</string>

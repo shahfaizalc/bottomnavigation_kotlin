@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:text="@={postAdPricing.landmark}"
                     android:textColor="@color/colorBlack"
-                    android:textStyle="bold" />
+                     />
 
 
                 <TextView
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:text="@={postAdPricing.street}"
                     android:textColor="@color/colorBlack"
-                    android:textStyle="bold" />
+                     />
 
 
                 <TextView
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:text="@={postAdPricing.town}"
                     android:textColor="@color/colorBlack"
-                    android:textStyle="bold" />
+                     />
 
                 <TextView
                     android:layout_width="match_parent"
