@@ -49,7 +49,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
         } catch (e:Exception){
             Log.d(TAG, "getProfile  "+e)
         }
-        query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
+        query = db.collection("events").orderBy("startDate", Query.Direction.ASCENDING).limit(5).whereGreaterThanOrEqualTo("startDate",System.currentTimeMillis().toString())
         mAuth = FirebaseAuth.getInstance()
         doGetTalents()
     }
@@ -156,9 +156,10 @@ class TheEventsModel(internal var activity: FragmentActivity,
                 return@addSnapshotListener
 
             }
+            Log.w(TAG, "Listen querySnapshot rachubb "+querySnapshot!!.size())
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-            query = query.limit(10).startAfter(lastVisible)
+            query = query.limit(5).startAfter(lastVisible)
 
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {

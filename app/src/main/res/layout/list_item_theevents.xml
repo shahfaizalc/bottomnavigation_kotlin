@@ -63,7 +63,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dimen_8"
+                android:paddingBottom="@dimen/dimen_4"
+                android:paddingStart="@dimen/dimen_8"
+                android:paddingEnd="@dimen/dimen_8"
                 android:text="@{countriesInfoModel.title}"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/secondary_text"
@@ -75,7 +77,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_gradiant_bottom"
                 android:orientation="vertical">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -96,13 +97,38 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/dimen_8"
                         android:paddingRight="@dimen/dimen_8"
-                        android:text="@={postDate}"
+                        android:text="@{countriesInfoModel.description}"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/map_marker"
+                        android:drawableTint="@color/white_transparent_80"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dimen_8"
+                        android:paddingRight="@dimen/dimen_8"
+                        android:text="@={location}"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
 
 
+
+
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_8"
@@ -128,28 +154,7 @@
                         android:textColor="@color/white" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/map_marker"
-                        android:drawableTint="@color/white_transparent_80"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/dimen_8"
-                        android:paddingRight="@dimen/dimen_8"
-                        android:text="@={location}"
-                        android:textColor="@color/white" />
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
