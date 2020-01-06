@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
-import android.widget.AdapterView.OnItemClickListener
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
@@ -29,7 +28,7 @@ import org.greenrobot.eventbus.Subscribe
 import com.guiado.grads.R
 import com.guiado.grads.adapter.CustomAdapter
 import com.guiado.grads.model.CoachItem
-import org.w3c.dom.Text
+import com.guiado.grads.model.SearchMode
 import java.util.ArrayList
 
 
@@ -53,6 +52,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
     init {
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
+        mAuth = FirebaseAuth.getInstance()
         try {
             db.firestoreSettings = firestoreSettings
         } catch (e:Exception){
@@ -60,7 +60,6 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
         }
         query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
-        mAuth = FirebaseAuth.getInstance()
         doGetTalents()
     }
 
@@ -70,6 +69,27 @@ class DiscussionModel(internal var activity: FragmentActivity,
         set(city) {
             field = city
             notifyPropertyChanged(BR.finderTitle)
+        }
+
+
+    @get:Bindable
+    var showClearFilter: Int = View.GONE
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.showClearFilter)
+        }
+
+    @get:Bindable
+    var searchMode = SearchMode.DEFAULT
+        set(city) {
+            field = city
+
+            if(searchMode.ordinal == SearchMode.DEFAULT.ordinal)
+                showClearFilter = View.GONE
+            else{
+                showClearFilter = View.VISIBLE
+
+            }
         }
 
     /*
@@ -112,6 +132,14 @@ class DiscussionModel(internal var activity: FragmentActivity,
         return values.readDisuccsionTopics(activity.applicationContext)
     }
 
+
+    @Override
+    fun onFilterClearClick() = View.OnClickListener() {
+        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
+
+        doGetTalents()
+    }
+
     @Override
     fun onFilterClick() = View.OnClickListener() {
 
@@ -132,8 +160,10 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
             listView.setOnItemClickListener({ parent, view, position, id ->
 
-                Toast.makeText(activity.applicationContext, "You have clicked : " + items.get(position).categoryname, Toast.LENGTH_LONG).show()
+                Toast.makeText(activity.applicationContext, "You have clicked : "+position + " " + items.get(position).categoryname, Toast.LENGTH_LONG).show()
                 dialog.dismiss()
+
+                filterByCategory(position)
             })
 
             dialog.show()
@@ -191,9 +221,22 @@ class DiscussionModel(internal var activity: FragmentActivity,
         return keyWords;
     }
 
+    fun filterByCategory(position: Int) {
+        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5).whereArrayContains("keyWords",position)
+        talentProfilesList.removeAll(talentProfilesList)
+
+        if(searchMode.ordinal == SearchMode.DEFAULT.ordinal)
+            searchMode = SearchMode.CATEGORY
+        else{
+            searchMode = SearchMode.CATEGORYANDSEARCH
+
+        }
+        doGetTalents()
+    }
+
     fun doGetTalents() {
 
-        Log.d(TAG, "DOIT doGetTalents: ")
+        Log.d(TAG, "DOIT doGetTalents: searchMode: "+ searchMode)
 
        // talentProfilesList.clear()
         query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
@@ -210,7 +253,10 @@ class DiscussionModel(internal var activity: FragmentActivity,
             }
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-            query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).startAfter(lastVisible)
+
+            query = query.startAfter(lastVisible)
+
+
 
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {

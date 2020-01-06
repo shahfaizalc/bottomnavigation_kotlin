@@ -156,7 +156,7 @@ class MyEventsModel(internal var activity: FragmentActivity,
             }
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-            query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).startAfter(lastVisible).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
+            query = query.startAfter(lastVisible).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
 
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {

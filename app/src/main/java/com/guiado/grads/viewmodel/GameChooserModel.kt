@@ -77,7 +77,7 @@ class GameChooserModel(internal val activity: FragmentActivity,
 
     fun onNextButtonClick(category: Int) {
          keyWord.clear()
-         keyWord.add(category + 1)
+         keyWord.add(category )
          postDiscussion.keyWords = keyWord
 
     }

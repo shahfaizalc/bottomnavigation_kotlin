@@ -67,7 +67,24 @@
                     android:layout_toStartOf="@+id/sendButton"
                     android:background="@android:color/transparent"
                     android:text="@string/discussions" />
-
+                <TextView
+                    android:onClick="@{adSearchModel.onFilterClearClick()}"
+                    android:visibility="@{adSearchModel.showClearFilter}"
+                    android:paddingStart="@dimen/dimen_4"
+                    android:paddingEnd="@dimen/dimen_4"
+                    android:paddingTop="@dimen/dimen_2"
+                    android:paddingBottom="@dimen/dimen_2"
+                    android:layout_toStartOf="@+id/sendButton"
+                    android:layout_centerVertical="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlacklight"
+                    android:drawableTint="@color/colorBlacklight"
+                    android:id="@+id/clearFilter"
+                    android:layout_width="wrap_content"
+                    android:drawableEnd="@drawable/close_small"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circular_bg"
+                    android:text="@string/clear" />
                 <ImageButton
                     android:onClick="@{adSearchModel.onFilterClick()}"
                     android:background="@android:color/transparent"

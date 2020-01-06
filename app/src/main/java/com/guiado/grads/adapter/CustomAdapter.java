@@ -55,21 +55,16 @@ public class CustomAdapter extends ArrayAdapter<CoachItem> implements View.OnCli
         // Check if an existing view is being reused, otherwise inflate the view
         ViewHolder viewHolder; // view lookup cache stored in tag
 
-        final View result;
 
         if (convertView == null) {
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.dialog_list_item, parent, false);
-            viewHolder.tv = (TextView) convertView.findViewById(R.id.tv);
-
-            result=convertView;
-
+            viewHolder.tv =  convertView.findViewById(R.id.tv);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            result=convertView;
         }
 
         lastPosition = position;

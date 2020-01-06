@@ -20,6 +20,7 @@ import com.guiado.grads.adapter.*
 import com.guiado.grads.handler.*
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model.CountriesInfoModel
+import com.guiado.grads.model.SearchMode
 import com.guiado.grads.model2.PostDiscussion
 import com.guiado.grads.util.notNull
 import com.guiado.grads.viewmodel.*
@@ -491,6 +492,11 @@ fun adapter(searchView: SearchView,countriesViewModel: DiscussionModel,recyclerV
             if(s.isNullOrEmpty()){
                 countriesViewModel.doGetTalents()
             } else {
+                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                    countriesViewModel.searchMode = SearchMode.SEARCH
+                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                    countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
+                }
                 countriesViewModel.doGetTalentsSearch(s)
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
             }
@@ -499,7 +505,13 @@ fun adapter(searchView: SearchView,countriesViewModel: DiscussionModel,recyclerV
 
         override fun onQueryTextChange(strQuery: String): Boolean {
             if(strQuery.isNullOrEmpty()){
+                if(countriesViewModel.searchMode.ordinal == SearchMode.SEARCH.ordinal){
+                    countriesViewModel.searchMode = SearchMode.DEFAULT
+                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORYANDSEARCH.ordinal)){
+                    countriesViewModel.searchMode = SearchMode.CATEGORY
+                }
                 countriesViewModel.doGetTalents()
+
             }
             return false
         }
