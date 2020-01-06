@@ -24,11 +24,19 @@
             android:paddingEnd="@dimen/dimen_8"
             android:paddingBottom="@dimen/dimen_16">
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/circular_bg_border_black"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:weightSum="7"
+            android:orientation="horizontal">
+
                 <LinearLayout
-                    android:background="@drawable/bg_gradiant_orange"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_4"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -78,8 +86,28 @@
 
                 </LinearLayout>
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/dimen_4"
+                            android:layout_marginEnd="@dimen/dimen_4"
+                            android:background="@color/colorSmoke" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/account_edit"
+                android:gravity="center_horizontal"
+                android:onClick="@{() -> homeData.findClickded()}"
+                android:padding="@dimen/dimen_8"
+                android:text="Edit Account"
+                android:textSize="@dimen/dimen_8"
+                android:textStyle="bold" />
 
+        </LinearLayout>
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -286,15 +314,38 @@
 
 <!--            </LinearLayout>-->
 
+
             <TextView
+                android:textColor="@color/com_facebook_blue"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginTop="@dimen/dimen_8"
                 android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/com_facebook_blue"
-                android:text="More"/>
+                android:text="Connect" />
+
+
+            <TextView
+                android:layout_marginStart="@dimen/dimen_24"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> homeData.myDiscussionsClicked()}"
+                android:text="My Discussions"
+                />
+
+            <TextView
+                android:layout_marginStart="@dimen/dimen_24"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> homeData.myEventsClicked()}"
+                android:text="My Events"/>
 
 
             <TextView
