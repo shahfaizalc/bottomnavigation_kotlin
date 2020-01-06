@@ -173,7 +173,6 @@ class SavedEventsModel(internal var activity: FragmentActivity,
             listItems.add(mAuth.currentUser!!.uid)
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
             query = query.startAfter(lastVisible)
-                    .whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
 
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {

@@ -1,7 +1,6 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -199,7 +198,7 @@ class MyEventViewModel(private val context: Context,
     }
 
     @get:Bindable
-    var keyWordsTagg: String? = getDiscussionKeys(events!!.keyWords, context).toString()
+    var keyWordsTagg: String? = getDiscussionCategories(events!!.keyWords, context).toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.keyWordsTagg)

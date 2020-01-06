@@ -11,7 +11,7 @@ import com.guiado.grads.R
 import com.guiado.grads.databinding.ListItemTheeventsBinding
 import com.guiado.grads.listeners.*
 import com.guiado.grads.util.convertLongToTime
-import com.guiado.grads.util.getDiscussionKeys
+import com.guiado.grads.util.getDiscussionCategories
 import com.guiado.grads.viewmodel.*
 
 /**
@@ -35,7 +35,7 @@ class TheEventsAdapter(private val adSearchModel: TheEventsModel) :
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!) {
             countriesInfoModel = viewModel.talentProfilesList[position]
-            keyWordsTag = getDiscussionKeys(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
+            keyWordsTag = getDiscussionCategories(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
             postDate= viewModel.talentProfilesList[position].startDate?.toLong()?.let { convertLongToTime(it) }
             itemPosition = position
             mainDataModel = viewModel

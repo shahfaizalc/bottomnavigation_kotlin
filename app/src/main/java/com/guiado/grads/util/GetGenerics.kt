@@ -78,7 +78,7 @@ private fun readAutoFillItems(context: Context): ArrayList<CoachItem> {
     return c.readCoachItems(context)
 }
 
-fun getDiscussionKeys(keyWords: MutableList<Int>?, context: Context): String? {
+fun getDiscussionCategories(keyWords: MutableList<Int>?, context: Context): String? {
 
     var keyTag = "";
 
@@ -96,20 +96,12 @@ fun getDiscussionKeys(keyWords: MutableList<Int>?, context: Context): String? {
         }
     }
     return keyTag;
-
 }
-
 
 private fun readDisscussions(context: Context): ArrayList<CoachItem> {
     val c = GenericValues()
     return c.readDisuccsionTopics(context)
 }
-
-//var searchTags = listOf("university","college","exam","j2ee","neet", "gate",
-//        " cat","jee", "clat" ,"bitsat", "srnjee", "viteee", "iit",
-//        "engineering", "law", "medicine", "arts", "commerce", "science", "pharmacy", "journalism", "music", "mba",
-//        "iim", "iisc", "arts", "computer", "cmat", "xat", "mat", "nift", "film", "fashion",
-//        "jnu", "nimcet", "gmat", "toefl", "ielts", "gre", "gpat")
 
 
  fun String.sentenceToWords(): List<String> {
@@ -129,6 +121,7 @@ var firestoreSettings = FirebaseFirestoreSettings.Builder()
         .setPersistenceEnabled(true)
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
+
 
 
 fun getNotificationContentView(context: Context, title: String, message: String): View {

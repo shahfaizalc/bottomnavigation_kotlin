@@ -159,7 +159,7 @@ class EventViewModel(private val context: Context,
     }
 
     @get:Bindable
-    var keyWordsTagg: String? = getDiscussionKeys(postDiscussion!!.keyWords, context).toString()
+    var keyWordsTagg: String? = getDiscussionCategories(postDiscussion!!.keyWords, context).toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.keyWordsTagg)

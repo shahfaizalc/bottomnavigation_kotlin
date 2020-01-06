@@ -10,16 +10,13 @@ import com.guiado.grads.BR
 import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.listeners.EmptyResultListener
-import com.guiado.grads.listeners.UseInfoGeneralResultListener
 import com.guiado.grads.model2.*
-import com.guiado.grads.network.FirbaseReadHandler
 import com.guiado.grads.network.FirbaseWriteHandler
 import com.guiado.grads.util.*
 import com.guiado.grads.view.FirestoreMyDisccussFragmment
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.model.EventStatus
 import com.guiado.grads.view.FragmentMyDiscussions
-import com.guiado.grads.view.FragmentMyEvents
 
 
 class ActivityMyDiscussionViewModel(private val context: Context,
@@ -191,7 +188,7 @@ class ActivityMyDiscussionViewModel(private val context: Context,
     }
 
     @get:Bindable
-    var keyWordsTagg: String? = getDiscussionKeys(postDiscussion!!.keyWords, context).toString()
+    var keyWordsTagg: String? = getDiscussionCategories(postDiscussion!!.keyWords, context).toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.keyWordsTagg)

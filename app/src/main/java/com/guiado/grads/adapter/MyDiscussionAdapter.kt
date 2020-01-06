@@ -8,13 +8,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.guiado.grads.R
-import com.guiado.grads.databinding.ListItemAdsearchBinding
-import com.guiado.grads.databinding.ListItemDiscussionBinding
-import com.guiado.grads.databinding.ListItemMyadsBinding
 import com.guiado.grads.databinding.ListItemMydiscussionBinding
 import com.guiado.grads.listeners.MyDiscussionEventListener
 import com.guiado.grads.util.convertLongToTime
-import com.guiado.grads.util.getDiscussionKeys
+import com.guiado.grads.util.getDiscussionCategories
 import com.guiado.grads.viewmodel.MyDiscussionModel
 
 /**
@@ -38,7 +35,7 @@ class MyDiscussionAdapter(private val adSearchModel: MyDiscussionModel) :
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!) {
             countriesInfoModel = viewModel.talentProfilesList[position]
-            keyWordsTag = getDiscussionKeys(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
+            keyWordsTag = getDiscussionCategories(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
            postDate= viewModel.talentProfilesList[position].postedDate?.toLong()?.let { convertLongToTime(it) }
 
             itemPosition = position

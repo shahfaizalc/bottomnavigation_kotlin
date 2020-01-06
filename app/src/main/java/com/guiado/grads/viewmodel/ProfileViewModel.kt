@@ -1,13 +1,17 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.guiado.grads.BR
 import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
@@ -16,6 +20,7 @@ import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model2.Profile
 import com.guiado.grads.network.FirbaseReadHandler
 import com.guiado.grads.util.GenericValues
+import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.util.notNull
 import com.guiado.grads.util.storeUserName
 import com.guiado.grads.utils.Constants
@@ -248,12 +253,16 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
 
     fun logout() {
         FirebaseAuth.getInstance().signOut();
+        PreferenceManager.getDefaultSharedPreferences(context).
+                edit().clear().apply();
+
         val fragment = FragmentWelcome()
         Log.d("tag", "logout")
         val bundle = Bundle()
         fragment.setArguments(bundle)
         fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(0,fragment,bundle));
         fragmentSignin.mFragmentNavigation.viewBottom(View.GONE)
+
     }
 
     fun registerListeners() {
@@ -275,6 +284,66 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
 
     private fun showToast(id: Int) {
         Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+    }
+
+    private fun handleMultipleClicks(): Boolean {
+        return MultipleClickHandler.handleMultipleClicks()
+    }
+
+    fun inviteFriends(){
+        val sharingIntent = Intent(Intent.ACTION_SEND)
+        sharingIntent.type = "text/plain"
+        val shareBody = context.resources.getString(R.string.shareInfo)
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+        context.startActivity(Intent.createChooser(sharingIntent, "Share via"))
+
+    }
+    fun privacyClicked() {
+        if (!handleMultipleClicks()) {
+            val fragment = FragmentPrivacy()
+            val bundle = Bundle()
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+
+        }
+    }
+    fun aboutClicked() {
+        if (!handleMultipleClicks()) {
+            val fragment = FragmentAbout()
+            val bundle = Bundle()
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+
+        }
+    }
+
+
+    fun feedback() {
+        Log.d("tag", "taggg")
+        val fragment = FragmentFeedBack()
+        val bundle = Bundle()
+        fragment.setArguments(bundle)
+        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+    }
+
+    fun savedDiscussionsClicked() {
+        if (!handleMultipleClicks()) {
+            val fragment = FragmentSavedDiscussions()
+            val bundle = Bundle()
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+
+        }
+    }
+
+    fun savedEventsClicked() {
+        if (!handleMultipleClicks()) {
+            val fragment = FragmentSavedEvents()
+            val bundle = Bundle()
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+
+        }
     }
 
 

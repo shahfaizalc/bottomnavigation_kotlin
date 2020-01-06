@@ -1,19 +1,15 @@
 package com.guiado.grads.adapter
 
 import android.content.Context
-import android.icu.util.ValueIterator
 import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.facebook.FacebookSdk.getApplicationContext
-import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.R
 import com.guiado.grads.databinding.ListItemMygroupsBinding
 import com.guiado.grads.listeners.MyGroupsEventListener
-import com.guiado.grads.util.convertLongToTime
-import com.guiado.grads.util.getDiscussionKeys
+import com.guiado.grads.util.getDiscussionCategories
 import com.guiado.grads.viewmodel.MyGroupsModel
 
 
@@ -40,7 +36,7 @@ class MyGroupsAdapter(private val adSearchModel: MyGroupsModel) :
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!) {
             groupsViewModel = viewModel.talentProfilesList[position]
-            keyWordsTag = getDiscussionKeys(groupsViewModel!!.keyWords,viewHolder.itemView.context)
+            keyWordsTag = getDiscussionCategories(groupsViewModel!!.keyWords,viewHolder.itemView.context)
             itemPosition = position
             mainDataModel = viewModel
             viewDot = showMenu(viewModel, position)

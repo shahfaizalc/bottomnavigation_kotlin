@@ -128,7 +128,7 @@ class GroupViewModel(private val context: Context,
     }
 
     @get:Bindable
-    var keyWordsTagg: String? = getDiscussionKeys(groups!!.keyWords, context).toString()
+    var keyWordsTagg: String? = getDiscussionCategories(groups!!.keyWords, context).toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.keyWordsTagg)

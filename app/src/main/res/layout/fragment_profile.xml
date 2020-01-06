@@ -13,7 +13,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_gradiant_oneside_violet_lite">
+        android:background="@color/colorWhite">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,14 +24,69 @@
             android:paddingEnd="@dimen/dimen_8"
             android:paddingBottom="@dimen/dimen_16">
 
+                <LinearLayout
+                    android:background="@drawable/bg_gradiant_orange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_8">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Name "
+                            android:textColor="@color/darkBlue" />
+
+                        <TextView
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={homeData.userName}"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_8">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Email "
+                            android:textColor="@color/darkBlue" />
+
+                        <TextView
+                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={homeData.userEmail}"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
 
             <LinearLayout
+                android:layout_marginTop="@dimen/dimen_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:background="@drawable/circular_bg_border_smoke"
+                android:background="@drawable/circular_bg_border_black"
                 android:orientation="horizontal"
-                android:weightSum="5">
+                android:weightSum="3">
 
 
                 <TextView
@@ -73,242 +128,290 @@
                     android:textSize="@dimen/dimen_8"
                     android:textStyle="bold" />
 
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/information"
-                    android:gravity="center_horizontal"
-                    android:onClick="@{() -> homeData.info()}"
-                    android:padding="@dimen/dimen_8"
-                    android:text="More"
-                    android:textSize="@dimen/dimen_8"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/settings"
-                    android:gravity="center_horizontal"
-                    android:onClick="@{() -> homeData.settings()}"
-                    android:padding="@dimen/dimen_8"
-                    android:text="Settings"
-                    android:textSize="@dimen/dimen_8"
-                    android:textStyle="bold" />
-
             </LinearLayout>
 
 
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginStart="@dimen/dimen_4"-->
+<!--                android:layout_marginEnd="@dimen/dimen_4"-->
+<!--                android:background="@color/colorSmoke" />-->
 
-                <LinearLayout
-                    android:background="@drawable/circular_bg_white_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:orientation="vertical">
+<!--            <LinearLayout-->
+<!--                android:visibility="gone"-->
+<!--                android:paddingTop="@dimen/dimen_8"-->
+<!--                android:weightSum="2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/circular_bg_white_4"-->
+<!--                android:orientation="horizontal">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/circular_bg_white_4"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/dimen_8">
+<!--                <LinearLayout-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/circular_bg_white_4"-->
+<!--                    android:orientation="vertical">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Name "
-                            android:textColor="@color/darkBlue" />
+<!--                    <TextView-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Followers"-->
+<!--                        android:textColor="@color/darkBlue" />-->
 
-                        <TextView
-                            android:layout_marginStart="@dimen/dimen_16"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@={homeData.userName}"
-                            android:textColor="@color/black" />
+<!--                    <TextView-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@{Integer.toString(homeData.followers)}"-->
+<!--                        android:textColor="@color/black" />-->
 
-                    </LinearLayout>
+<!--                </LinearLayout>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/circular_bg_white_4"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/dimen_8">
+<!--                <LinearLayout-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/circular_bg_white_4"-->
+<!--                    android:orientation="vertical">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Email "
-                            android:textColor="@color/darkBlue" />
+<!--                    <TextView-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Following"-->
+<!--                        android:textColor="@color/darkBlue" />-->
 
-                        <TextView
-                            android:layout_marginStart="@dimen/dimen_16"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@={homeData.userEmail}"
-                            android:textColor="@color/black" />
+<!--                    <TextView-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@{Integer.toString(homeData.followings)}"-->
+<!--                        android:textColor="@color/black" />-->
 
-                    </LinearLayout>
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
 
-                </LinearLayout>
-            <View
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginStart="@dimen/dimen_4"-->
+<!--                android:layout_marginEnd="@dimen/dimen_4"-->
+<!--                android:background="@color/colorSmoke" />-->
+
+<!--            <LinearLayout-->
+<!--                android:visibility="gone"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/circular_bg_white_4"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="@dimen/dimen_8">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Title"-->
+<!--                    android:textColor="@color/darkBlue" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@={homeData.userMoreInfo}"-->
+<!--                    android:textColor="@color/black" />-->
+
+<!--            </LinearLayout>-->
+
+
+
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginStart="@dimen/dimen_4"-->
+<!--                android:layout_marginEnd="@dimen/dimen_4"-->
+<!--                android:background="@color/colorSmoke" />-->
+
+<!--            <LinearLayout-->
+<!--                android:visibility="gone"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/circular_bg_white_4"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="@dimen/dimen_8">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Course"-->
+<!--                    android:textColor="@color/darkBlue" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@={homeData.keywords}"-->
+<!--                    android:textColor="@color/black" />-->
+<!--            </LinearLayout>-->
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginStart="@dimen/dimen_4"-->
+<!--                android:layout_marginEnd="@dimen/dimen_4"-->
+<!--                android:background="@color/colorSmoke" />-->
+
+<!--            <LinearLayout-->
+<!--                android:visibility="gone"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/circular_bg_white_4"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="@dimen/dimen_8">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Address"-->
+<!--                    android:textColor="@color/darkBlue" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@={homeData.userAddress}"-->
+<!--                    android:textColor="@color/black" />-->
+
+<!--            </LinearLayout>-->
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="@dimen/dimen_4"
-                android:layout_marginEnd="@dimen/dimen_4"
-                android:background="@color/colorSmoke" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/com_facebook_blue"
+                android:text="More"/>
 
-            <LinearLayout
-                android:paddingTop="@dimen/dimen_8"
-                android:weightSum="2"
+
+            <TextView
+                android:layout_marginStart="@dimen/dimen_24"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/circular_bg_white_4"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/circular_bg_white_4"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_gravity="center_horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Followers"
-                        android:textColor="@color/darkBlue" />
-
-                    <TextView
-                        android:layout_gravity="center_horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{Integer.toString(homeData.followers)}"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/circular_bg_white_4"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_gravity="center_horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Following"
-                        android:textColor="@color/darkBlue" />
-
-                    <TextView
-                        android:layout_gravity="center_horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{Integer.toString(homeData.followings)}"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> homeData.savedEventsClicked()}"
+                android:text="Saved Events"/>
+            <TextView
+                android:layout_marginStart="@dimen/dimen_24"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="@dimen/dimen_4"
-                android:layout_marginEnd="@dimen/dimen_4"
-                android:background="@color/colorSmoke" />
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> homeData.savedDiscussionsClicked()}"
+                android:text="Saved Discussions"/>
 
-            <LinearLayout
+
+            <TextView
+                android:layout_marginStart="@dimen/dimen_24"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/circular_bg_white_4"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_8">
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> homeData.inviteFriends()}"
+                android:text="Invite Friends"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Title"
-                    android:textColor="@color/darkBlue" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@={homeData.userMoreInfo}"
-                    android:textColor="@color/black" />
-
-            </LinearLayout>
-
-
-
-            <View
+            <TextView
+                android:textColor="@color/com_facebook_blue"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="@dimen/dimen_4"
-                android:layout_marginEnd="@dimen/dimen_4"
-                android:background="@color/colorSmoke" />
+                android:layout_height="wrap_content"
+                android:text="About" />
 
-            <LinearLayout
+            <TextView
+                android:layout_marginStart="@dimen/dimen_24"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/circular_bg_white_4"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_8">
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> homeData.aboutClicked()}"
+                android:text="App Info" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Course"
-                    android:textColor="@color/darkBlue" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@={homeData.keywords}"
-                    android:textColor="@color/black" />
-            </LinearLayout>
-            <View
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="@dimen/dimen_4"
-                android:layout_marginEnd="@dimen/dimen_4"
-                android:background="@color/colorSmoke" />
-
-            <LinearLayout
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> homeData.feedback()}"
+                android:text="Feedback"/>
+            <TextView
+                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/circular_bg_white_4"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_8">
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> homeData.privacyClicked()}"
+                android:text="Privacy and Security"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Address"
-                    android:textColor="@color/darkBlue" />
+            <TextView
+                android:textColor="@color/com_facebook_blue"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginBottom="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Coming Soon"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@={homeData.userAddress}"
-                    android:textColor="@color/black" />
+            <TextView
+                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginBottom="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Friends"/>
 
-            </LinearLayout>
+            <TextView
+                android:layout_marginStart="@dimen/dimen_24"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Articles"/>
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Exams" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginStart="@dimen/dimen_24"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginBottom="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Top Institutions"/>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

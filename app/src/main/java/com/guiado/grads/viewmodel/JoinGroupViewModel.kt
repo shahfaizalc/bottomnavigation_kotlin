@@ -1,7 +1,6 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -15,7 +14,6 @@ import com.guiado.grads.model2.*
 import com.guiado.grads.network.FirbaseWriteHandler
 import com.guiado.grads.util.*
 import com.guiado.grads.view.FragmentJoinGroup
-import com.guiado.grads.view.FragmentMyGroups
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -162,7 +160,7 @@ class JoinGroupViewModel(private val context: Context,
     }
 
     @get:Bindable
-    var keyWordsTagg: String? = getDiscussionKeys(postDiscussion!!.keyWords, context).toString()
+    var keyWordsTagg: String? = getDiscussionCategories(postDiscussion!!.keyWords, context).toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.keyWordsTagg)

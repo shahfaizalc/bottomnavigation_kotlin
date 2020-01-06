@@ -32,33 +32,6 @@ class SettingsViewModel(private val context: Context, private val fragmentSignin
     private var networkStateHandler: NetworkChangeHandler? = null
 
 
-    @get:Bindable
-    var dataUsername: String? = null
-        set(username) {
-            field = username
-            notifyPropertyChanged(BR.dataUsername)
-        }
-    @get:Bindable
-    var dataPassword: String? = null
-        set(password) {
-            field = password
-            notifyPropertyChanged(BR.dataPassword)
-        }
-
-
-    @get:Bindable
-    var showDate: String? = null
-        set(showDate) {
-            field = showDate
-            notifyPropertyChanged(BR.showDate)
-        }
-
-    @get:Bindable
-    var showTime: String? = null
-        set(showTime) {
-            field = showTime
-            notifyPropertyChanged(BR.showTime)
-        }
 
     private var isInternetConnected: Boolean = false
 
@@ -122,16 +95,6 @@ class SettingsViewModel(private val context: Context, private val fragmentSignin
         fragmentSignin.newInstance(1, mapFragment, bundle)
     }
 
-    private fun validateInput(): Boolean {
-
-        if (dataUsername == null && dataPassword == null) {
-            return false
-        }
-        return if (dataUsername!!.length < 1 && dataPassword!!.length < 1) {
-            false
-        } else Validator().validate(dataUsername, EnumValidator.EMAIL_PATTERN)
-
-    }
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
@@ -158,46 +121,6 @@ class SettingsViewModel(private val context: Context, private val fragmentSignin
     }
 
 
-    @Override
-    fun timePickerClick() = View.OnClickListener() {
-        if (!handleMultipleClicks()) {
-            TimePickerEvent().onTimePickerClick(fragmentSignin.context!!, object : TimeListener {
-                override fun onTimeSet(result: String) {
-                    showTime = result;
-                }
-            })
-        }
-    }
-
-    @Override
-    fun datePickerClick() = View.OnClickListener() {
-        if (!handleMultipleClicks()) {
-            DatePickerEvent().onDatePickerClick(fragmentSignin.context!!, object : DateListener {
-                override fun onDateSet(result: String) {
-                    showDate = (result)
-                }
-            })
-        }
-    }
-
-    @Override
-    fun setPickUpLocation() = View.OnClickListener() {
-        if (!handleMultipleClicks()) {
-
-            val bundle = Bundle()
-            fragmentSignin.newInstance(2, FragmentLocationPicker(), bundle)
-        }
-    }
-
-
-    @Override
-    fun setDropOffLocation() = View.OnClickListener() {
-        if (!handleMultipleClicks()) {
-            val bundle = Bundle()
-            fragmentSignin.newInstance(2, FragmentLocationPicker(), bundle)
-
-        }
-    }
 
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()
