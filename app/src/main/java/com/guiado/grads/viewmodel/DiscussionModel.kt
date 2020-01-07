@@ -27,6 +27,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import com.guiado.grads.R
 import com.guiado.grads.adapter.CustomAdapter
+import com.guiado.grads.handler.RecyclerLoadMoreDiscussionHandler
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model.SearchMode
 import java.util.ArrayList
@@ -40,6 +41,8 @@ class DiscussionModel(internal var activity: FragmentActivity,
     var query : Query
     var db :FirebaseFirestore
     private val mAuth: FirebaseAuth
+
+    var resetScrrollListener : Boolean = false;
 
     companion object {
 
@@ -138,6 +141,8 @@ class DiscussionModel(internal var activity: FragmentActivity,
         showClearFilter = View.GONE
         searchMode = SearchMode.DEFAULT
         query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
+        resetScrrollListener = true
+        talentProfilesList.removeAll(talentProfilesList)
 
         doGetTalents()
     }

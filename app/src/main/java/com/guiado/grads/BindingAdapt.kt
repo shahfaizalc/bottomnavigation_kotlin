@@ -475,6 +475,11 @@ fun adapter(searchView: SearchView ,countriesViewModel: DiscussionModel,recycler
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
+            if(countriesViewModel.resetScrrollListener) {
+                bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+                countriesViewModel.resetScrrollListener = false
+            }
+
         }
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
