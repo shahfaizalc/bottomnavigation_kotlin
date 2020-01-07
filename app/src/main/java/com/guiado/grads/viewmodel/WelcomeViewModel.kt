@@ -16,6 +16,7 @@ class WelcomeViewModel(private val context: Context, private val fragmentSignin:
 
     init {
         networkHandler()
+        fragmentSignin.mFragmentNavigation.viewToolbar(false);
     }
 
     fun signInUserClicked() {

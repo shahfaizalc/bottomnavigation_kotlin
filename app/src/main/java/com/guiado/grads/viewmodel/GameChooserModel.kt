@@ -116,9 +116,7 @@ class GameChooserModel(internal val activity: FragmentActivity,
                     override fun onSuccess() {
                         showProgresss(false)
                         Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-                        val fragment = FragmentDiscussions()
-                        val bundle = Bundle()
-                        fragment.setArguments(bundle)
+
                         fragmentGameChooser.mFragmentNavigation.popFragment(2)
                        // fragmentGameChooser.mFragmentNavigation.replaceFragment(fragment);
                         showPopUpWindow()

@@ -30,6 +30,7 @@ open class BaseFragment : Fragment() {
         fun replaceFragment(fragment: Fragment)
         fun switchTab(position : Int)
         fun viewBottom(viewState : Int)
+        fun viewToolbar(b: Boolean)
     }
 
     companion object {

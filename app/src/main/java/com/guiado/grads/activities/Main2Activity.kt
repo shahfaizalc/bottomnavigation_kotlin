@@ -62,6 +62,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
 
 
         toolbar = findViewById(R.id.toolbar)
+        toolbar?.visibility = View.GONE
 
         initToolbar()
 
@@ -283,6 +284,15 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
     override fun viewBottom(viewState: Int) {
         bottomTabLayout!!.visibility = viewState;
     }
+
+    override fun viewToolbar(b: Boolean) {
+        if(b) {
+            toolbar?.visibility = View.VISIBLE
+        } else {
+            toolbar?.visibility = View.GONE
+        }
+    }
+
 
     fun updateToolbarTitle(title: String) {
 
