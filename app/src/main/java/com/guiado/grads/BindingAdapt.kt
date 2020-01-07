@@ -453,7 +453,7 @@ fun adapter(searchView: SearchView,countriesViewModel: MyDiscussionModel,recycle
 
 
 @BindingAdapter( "app:searchAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView,countriesViewModel: DiscussionModel,recyclerView: RecyclerView) {
+fun adapter(searchView: SearchView ,countriesViewModel: DiscussionModel,recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = DiscussionAdapter(countriesViewModel)
@@ -499,20 +499,22 @@ fun adapter(searchView: SearchView,countriesViewModel: DiscussionModel,recyclerV
                 }
                 countriesViewModel.doGetTalentsSearch(s)
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+                searchView.setQuery("", false);
+                searchView.clearFocus();
             }
             return false
         }
 
         override fun onQueryTextChange(strQuery: String): Boolean {
-            if(strQuery.isNullOrEmpty()){
-                if(countriesViewModel.searchMode.ordinal == SearchMode.SEARCH.ordinal){
-                    countriesViewModel.searchMode = SearchMode.DEFAULT
-                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORYANDSEARCH.ordinal)){
-                    countriesViewModel.searchMode = SearchMode.CATEGORY
-                }
-                countriesViewModel.doGetTalents()
-
-            }
+//            if(strQuery.isNullOrEmpty()){
+//                if(countriesViewModel.searchMode.ordinal == SearchMode.SEARCH.ordinal){
+//                    countriesViewModel.searchMode = SearchMode.DEFAULT
+//                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORYANDSEARCH.ordinal)){
+//                    countriesViewModel.searchMode = SearchMode.CATEGORY
+//                }
+//                countriesViewModel.doGetTalents()
+//
+//            }
             return false
         }
     })

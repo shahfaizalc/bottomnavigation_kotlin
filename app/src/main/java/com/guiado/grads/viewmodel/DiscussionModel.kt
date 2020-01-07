@@ -135,6 +135,8 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
     @Override
     fun onFilterClearClick() = View.OnClickListener() {
+        showClearFilter = View.GONE
+        searchMode = SearchMode.DEFAULT
         query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
 
         doGetTalents()

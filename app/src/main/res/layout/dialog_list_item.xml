@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:background="@color/darkBlue2"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="@dimen/dimen_8"
+    android:layout_marginTop="@dimen/dimen_8"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -12,13 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv"
-        android:textColor="#fff"/>
+        android:textColor="#000000"/>
 
     <View
         android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/dimen_2"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_2"
+        android:layout_height="1dp"
         android:background="#ffffff"/>
 
 </RelativeLayout>
