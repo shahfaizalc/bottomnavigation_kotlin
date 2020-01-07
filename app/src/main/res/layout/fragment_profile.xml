@@ -24,6 +24,16 @@
             android:paddingEnd="@dimen/dimen_8"
             android:paddingBottom="@dimen/dimen_16">
 
+            <TextView
+                android:gravity="center_horizontal"
+                android:textColor="@color/secondary_text"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Profile" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -327,7 +337,8 @@
 
 
             <TextView
-                android:layout_marginStart="@dimen/dimen_24"
+                android:textColor="@color/colorSkyBlue"
+                android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_marginBottom="@dimen/dimen_8"
@@ -336,9 +347,20 @@
                 android:onClick="@{() -> homeData.myDiscussionsClicked()}"
                 android:text="My Discussions"
                 />
+            <TextView
+                android:textColor="@color/colorSkyBlue"
+                android:layout_marginStart="@dimen/dimen_32"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> homeData.savedDiscussionsClicked()}"
+                android:text="Saved Discussions"/>
 
             <TextView
-                android:layout_marginStart="@dimen/dimen_24"
+                android:textColor="@color/colorSkyBlue"
+                android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_marginBottom="@dimen/dimen_8"
@@ -349,7 +371,8 @@
 
 
             <TextView
-                android:layout_marginStart="@dimen/dimen_24"
+                android:textColor="@color/colorSkyBlue"
+                android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_marginBottom="@dimen/dimen_8"
@@ -357,19 +380,11 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> homeData.savedEventsClicked()}"
                 android:text="Saved Events"/>
-            <TextView
-                android:layout_marginStart="@dimen/dimen_24"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> homeData.savedDiscussionsClicked()}"
-                android:text="Saved Discussions"/>
 
 
             <TextView
-                android:layout_marginStart="@dimen/dimen_24"
+                android:textColor="@color/colorSkyBlue"
+                android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_marginBottom="@dimen/dimen_8"
@@ -389,7 +404,8 @@
                 android:text="About" />
 
             <TextView
-                android:layout_marginStart="@dimen/dimen_24"
+                android:textColor="@color/colorSkyBlue"
+                android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_marginBottom="@dimen/dimen_8"
@@ -399,8 +415,9 @@
                 android:text="App Info" />
 
             <TextView
+                android:textColor="@color/colorSkyBlue"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginStart="@dimen/dimen_32"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
@@ -408,7 +425,8 @@
                 android:onClick="@{() -> homeData.feedback()}"
                 android:text="Feedback"/>
             <TextView
-                android:layout_marginStart="@dimen/dimen_24"
+                android:textColor="@color/colorSkyBlue"
+                android:layout_marginStart="@dimen/dimen_32"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginBottom="@dimen/dimen_8"
@@ -428,16 +446,18 @@
                 android:text="Coming Soon"/>
 
             <TextView
-                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginStart="@dimen/dimen_32"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorSkyBlue"
                 android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Friends"/>
 
             <TextView
-                android:layout_marginStart="@dimen/dimen_24"
+                android:textColor="@color/colorSkyBlue"
+                android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_marginBottom="@dimen/dimen_8"
@@ -447,7 +467,8 @@
 
             <TextView
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginStart="@dimen/dimen_32"
+                android:textColor="@color/colorSkyBlue"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
@@ -456,7 +477,8 @@
 
             <TextView
                 android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginStart="@dimen/dimen_24"
+                android:textColor="@color/colorSkyBlue"
+                android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"

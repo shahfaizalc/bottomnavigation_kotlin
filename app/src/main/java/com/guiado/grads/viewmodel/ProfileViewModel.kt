@@ -199,12 +199,14 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
         }
 
     fun findClickded() {
-        Log.d("tag", "taggg")
-        val fragment = FragmentProfileEdit()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+        if (!handleMultipleClicks()) {
+            Log.d("tag", "taggg")
+            val fragment = FragmentProfileEdit()
+            val bundle = Bundle()
+            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+        }
     }
 
 //    fun feedback() {
@@ -234,35 +236,39 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
     }
 
     fun myDiscussionsClicked() {
-        Log.d("tag", "taggg")
-        val fragment = FragmentMyDiscussions()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+        if (!handleMultipleClicks()) {
+            Log.d("tag", "taggg")
+            val fragment = FragmentMyDiscussions()
+            val bundle = Bundle()
+            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+        }
     }
 
     fun myEventsClicked() {
-        Log.d("tag", "taggg")
-        val fragment = FragmentMyEvents()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+        if (!handleMultipleClicks()) {
+            Log.d("tag", "taggg")
+            val fragment = FragmentMyEvents()
+            val bundle = Bundle()
+            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+        }
     }
 
     fun logout() {
-        FirebaseAuth.getInstance().signOut();
-        PreferenceManager.getDefaultSharedPreferences(context).
-                edit().clear().apply();
+        if (!handleMultipleClicks()) {
+            FirebaseAuth.getInstance().signOut();
+            PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
 
-        val fragment = FragmentWelcome()
-        Log.d("tag", "logout")
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(0,fragment,bundle));
-        fragmentSignin.mFragmentNavigation.viewBottom(View.GONE)
-
+            val fragment = FragmentWelcome()
+            Log.d("tag", "logout")
+            val bundle = Bundle()
+            fragment.setArguments(bundle)
+            fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(0, fragment, bundle));
+            fragmentSignin.mFragmentNavigation.viewBottom(View.GONE)
+        }
     }
 
     fun registerListeners() {
