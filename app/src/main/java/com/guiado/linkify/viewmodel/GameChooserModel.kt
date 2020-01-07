@@ -17,7 +17,6 @@ import com.guiado.linkify.model.CoachItem
 import com.guiado.linkify.model2.PostDiscussion
 import com.guiado.linkify.network.FirbaseWriteHandler
 import com.guiado.linkify.util.*
-import com.guiado.linkify.view.FragmentDiscussions
 import com.guiado.linkify.view.FragmentGameChooser
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
@@ -116,9 +115,7 @@ class GameChooserModel(internal val activity: FragmentActivity,
                     override fun onSuccess() {
                         showProgresss(false)
                         Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-                        val fragment = FragmentDiscussions()
-                        val bundle = Bundle()
-                        fragment.setArguments(bundle)
+
                         fragmentGameChooser.mFragmentNavigation.popFragment(2)
                        // fragmentGameChooser.mFragmentNavigation.replaceFragment(fragment);
                         showPopUpWindow()

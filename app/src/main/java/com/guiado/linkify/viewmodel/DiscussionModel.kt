@@ -52,6 +52,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
 
     init {
+        fragmentProfileInfo.mFragmentNavigation.viewToolbar(true);
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()

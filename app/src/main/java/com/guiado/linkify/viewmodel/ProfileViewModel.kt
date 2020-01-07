@@ -63,6 +63,8 @@ class ProfileViewModel(private val context: Context, private val fragmentSignin:
             override fun onFailure(e: Exception) {
             }
         })
+        fragmentSignin.mFragmentNavigation.viewToolbar(true);
+
     }
 
     private fun readAutoFillItems() {

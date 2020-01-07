@@ -19,7 +19,6 @@ import com.guiado.linkify.util.GenericValues
 import com.guiado.linkify.util.MultipleClickHandler
 import com.guiado.linkify.util.getUserName
 import com.guiado.linkify.utils.EnumFeedBack
-import com.guiado.linkify.view.FragmentDiscussions
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.linkify.BuildConfig
 import com.guiado.linkify.view.FragmentAbout
@@ -66,45 +65,6 @@ class AboutViewModel(private val context: Context, private val fragmentSignin: F
             notifyPropertyChanged(BR.userEmail)
 
         }
-
-
-    fun datePickerClick() = View.OnClickListener {
-
-
-        if (!handleMultipleClicks()) {
-
-            val feedBack = Feedback();
-
-            if (userEmail.isNullOrEmpty()) {
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
-                return@OnClickListener
-            }
-
-            feedBack.feedback = userEmail!!
-            feedBack.feedbackBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-            feedBack.feedbackOn = System.currentTimeMillis().toString()
-            feedBack.feedbackUsername = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
-            feedBack.feebackStatus = EnumFeedBack.NEW
-
-            val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateFeedback(feedBack, object : EmptyResultListener {
-                override fun onFailure(e: Exception) {
-                    Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                    Toast.makeText(context, context.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-
-                }
-
-                override fun onSuccess() {
-                    Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-                    val fragment = FragmentDiscussions()
-                    val bundle = Bundle()
-                    fragment.setArguments(bundle)
-                    fragmentSignin.mFragmentNavigation.popFragment(1);
-
-                }
-            })
-
-        }
-    }
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
