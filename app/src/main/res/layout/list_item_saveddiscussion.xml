@@ -5,11 +5,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.SavedDiscussionModel" />
+            type="com.guiado.linkify.viewmodel.SavedDiscussionModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model2.PostDiscussion" />
+            type="com.guiado.linkify.model2.PostDiscussion" />
 
         <variable
             name="itemPosition"
@@ -17,11 +17,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.grads.adapter.SavedDiscussionAdapter" />
+            type="com.guiado.linkify.adapter.SavedDiscussionAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.grads.listeners.SavedDiscussionEventListener" />
+            type="com.guiado.linkify.listeners.SavedDiscussionEventListener" />
 
         <variable
             name="keyWordsTag"

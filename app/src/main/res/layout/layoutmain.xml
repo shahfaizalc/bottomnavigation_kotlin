@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.guiado.grads.viewmodel.UserViewModel" />
+            type="com.guiado.linkify.viewmodel.UserViewModel" />
     </data>
 
     <LinearLayout

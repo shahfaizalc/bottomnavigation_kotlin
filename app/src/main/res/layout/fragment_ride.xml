@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.RideViewModel" />
+            type="com.guiado.linkify.viewmodel.RideViewModel" />
     </data>
 
     <LinearLayout

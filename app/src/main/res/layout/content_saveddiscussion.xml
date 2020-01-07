@@ -6,7 +6,7 @@
 
         <variable
             name="adSearchModel"
-            type="com.guiado.grads.viewmodel.SavedDiscussionModel" />
+            type="com.guiado.linkify.viewmodel.SavedDiscussionModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

@@ -5,11 +5,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.SimilarDiscussionModel" />
+            type="com.guiado.linkify.viewmodel.SimilarDiscussionModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model2.Profile" />
+            type="com.guiado.linkify.model2.Profile" />
 
         <variable
             name="itemPosition"
@@ -17,11 +17,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.grads.adapter.SimilarAdsAdapter" />
+            type="com.guiado.linkify.adapter.SimilarAdsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.grads.listeners.SimilarAdsEventListener" />
+            type="com.guiado.linkify.listeners.SimilarAdsEventListener" />
 
         <variable
             name="address"

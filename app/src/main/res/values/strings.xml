@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Grads</string>
+    <string name="app_name">Linkify</string>
 
     <array name="tab_name">
         <item>Home</item>
@@ -13,8 +13,8 @@
     <string name="newDiscussionTitle">Ask your question here with \'What\', \'How\', \'When\' and so on. \n\nExample.What is the cutoff mark for Mechanical Engineering in MIT, Chennai</string>
     <string name="ad_notification">Your ad will stay online during the date indicated above or until you remove it.</string>
     <string name="ad_notification2">Your ad will stay online during the date and time indicated above or until you remove it. If you sold the item, kindly delete the ad</string>
-    <string name="home_welcomestring">Grads</string>
-    <string name="home_welcomestring2">Fly to your dream college</string>
+    <string name="home_welcomestring">Linkify</string>
+    <string name="home_welcomestring2">Help and get Help from thousand of dreamers like you</string>
     <string name="home_welcomestring3">Start a journey</string>
     <string name="home_welcomestring4">Hand to hand travel diaries</string>
     <string name="app_title">Ticket Exchange</string>
@@ -179,16 +179,16 @@
     E
     <string name="feebackTitleTxt">Feedback</string>
     <string name="privacyTitleTxt">Privacy Policy</string>
-    <string name="shareInfo">Fly to your dream college. A platform to talk with your fellow dreamers.\n Check out.\n https://play.google.com/store/apps/details?id=com.guiado.grads</string>
+    <string name="shareInfo">Fly to your dream college. A platform to talk with your fellow dreamers.\n Check out.\n https://play.google.com/store/apps/details?id=com.guiado.linkify</string>
 
     <string name="feebackHintTxt">What would you like us to improve?</string>
-<string name="privacysetting">Shah Faizal built the GRADS app as a free app. This service is provided by GUIADO at no cost and intended for use as is.
+<string name="privacysetting">Shah Faizal built the LINKIFY app as a free app. This service is provided by GUIADO at no cost and intended for use as is.
 
 \n\nThis page is to inform website visitors regarding our policies with the collection use and disclosure of Personal information if anyone decided to use our service.
 
 \n\nIf you choose to use our Service, then you agree to the collection and use of information in relation with this policy. The Personal Information that we collect are used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.
 
-\n\nThe terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at GRADS,
+\n\nThe terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at LINKIFY,
 unless otherwise defined in this Privacy Policy.
 
 \n\nInformation Collection and Use:

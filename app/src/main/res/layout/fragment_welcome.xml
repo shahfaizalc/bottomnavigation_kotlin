@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.WelcomeViewModel" />
+            type="com.guiado.linkify.viewmodel.WelcomeViewModel" />
     </data>
 
     <LinearLayout
@@ -32,14 +32,15 @@
                 android:text="@string/home_welcomestring"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/dimen_36"
-                android:textStyle="bold" />
+                android:textStyle="bold|italic" />
 
-            <ImageView
-                android:layout_width="@dimen/dimen_100"
-                android:layout_height="@dimen/dimen_100"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:src="@mipmap/ic_launcher" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/home_welcomestring2"
+                android:textColor="@color/colorBlack" />
+
 
         </LinearLayout>
 
@@ -51,13 +52,6 @@
             android:gravity="bottom"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/home_welcomestring2"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/dimen_20" />
 
             <Button
                 android:layout_width="match_parent"

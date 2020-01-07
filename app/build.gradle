@@ -12,7 +12,7 @@ androidExtensions {
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.guiado.grads"
+        applicationId "com.guiado.linkify"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 11
