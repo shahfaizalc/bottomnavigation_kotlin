@@ -53,6 +53,19 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
     }
 
+    @get:Bindable
+    var showSignUpProgress: Int = View.INVISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpProgress)
+        }
+
+    @get:Bindable
+    var showSignUpBtn: Int = View.VISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpBtn)
+        }
     /*
    Method will act as the event handler for MyCustomEvent.kt
    */
@@ -119,21 +132,32 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
             notifyPropertyChanged(BR.keys)
 
         }
-
+    fun showProgresss(isShow : Boolean){
+        if(isShow){
+            showSignUpBtn = View.INVISIBLE
+            showSignUpProgress = View.VISIBLE }
+        else{
+            showSignUpBtn = View.VISIBLE
+            showSignUpProgress = View.INVISIBLE
+        }
+    }
     fun datePickerClick() = View.OnClickListener {
 
 
         if (!handleMultipleClicks()) {
 
             if (profile.name != "" && profile.email != "" && profile.phone != "" && profile.title != "") {
+                showProgresss(true)
                 val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateUserInfo(profile, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot onFailure " + e.message)
                         Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                        showProgresss(false)
 
                     }
 
                     override fun onSuccess() {
+                        showProgresss(false)
                         Log.d(TAG, "DocumentSnapshot onSuccess ")
                         storeUserName(context, FirebaseAuth.getInstance().currentUser!!.uid, profile)
 

@@ -162,7 +162,6 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
             listView.setOnItemClickListener({ parent, view, position, id ->
 
-                Toast.makeText(activity.applicationContext, "You have clicked : "+position + " " + items.get(position).categoryname, Toast.LENGTH_LONG).show()
                 dialog.dismiss()
 
                 filterByCategory(position)

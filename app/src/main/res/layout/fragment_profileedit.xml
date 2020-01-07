@@ -270,15 +270,30 @@
                 android:paddingStart="@dimen/dimen_32"
                 android:paddingEnd="@dimen/dimen_32" />
 
-            <Button
-                android:layout_marginTop="@dimen/dimen_16"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/circular_bg_blue"
-                android:onClick="@{homeData.datePickerClick()}"
-                android:padding="@dimen/dimen_8"
-                android:text="@string/save" />
+                android:layout_marginTop="@dimen/dimen_24"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/loginButton"
+                    android:visibility="@{homeData.showSignUpBtn}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circular_bg_blue"
+                    android:onClick="@{homeData.datePickerClick()}"
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/dimen_16"
+                    android:textStyle="bold"
+                    android:text="@string/save" />
+                <ProgressBar
+                    android:visibility="@{homeData.showSignUpProgress}"
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
 
         </LinearLayout>
     </ScrollView>

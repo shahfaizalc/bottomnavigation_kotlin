@@ -219,7 +219,7 @@ fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: AdressViewModel) {
     val autoFillTextAdapter = PeopleAdapter(view.context, R.layout.autofilitem, R.id.text_title, address)
 
     autoText.setAdapter(autoFillTextAdapter)
-    autoText.setText("")
+   // autoText.setText("")
     autoText.onItemClickListener = object : OnItemSelectedListener, AdapterView.OnItemClickListener {
 
         override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -230,7 +230,7 @@ fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: AdressViewModel) {
         }
 
         override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            Toast.makeText(parent!!.context, "Spinner item 1! " + autoFillTextAdapter.suggestions.get(position), Toast.LENGTH_SHORT).show()
+          //  Toast.makeText(parent!!.context, "Spinner item 1! " + autoFillTextAdapter.suggestions.get(position), Toast.LENGTH_SHORT).show()
             Log.d("user", "slecgt" + autoFillTextAdapter.suggestions.get(position))
             pArrayAdapter.cityCode = autoFillTextAdapter.suggestions.get(position).citycode
             pArrayAdapter.city = autoFillTextAdapter.suggestions.get(position).cityname

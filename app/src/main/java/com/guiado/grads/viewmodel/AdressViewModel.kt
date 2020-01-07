@@ -31,7 +31,7 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
         profile = GenericValues().getProfile(postAdObj, activity.applicationContext)
     }
 
-    var cityCode: String? = "0"
+    var cityCode: String? = profile.address?.cityCode
 
     private fun readAutoFillItems() {
         val c = GenericValues()
