@@ -2,51 +2,52 @@
   "india": [
     {
       "categorycode": "1",
-      "categoryname": "Application Information"
+      "categoryname": "Aptitude"
     },
     {
       "categorycode": "2",
-      "categoryname": "Admission Information"
+      "categoryname": "Company Info"
     },
     {
       "categorycode": "3",
-      "categoryname": "Course Information"
+      "categoryname": "Group Discussion"
     },
     {
       "categorycode": "4",
-      "categoryname": "Course Confusion"
+      "categoryname": "HR"
     },
     {
       "categorycode": "5",
-      "categoryname": "College Information"
+      "categoryname": "Internship"
     },
     {
       "categorycode": "6",
-      "categoryname": "College Confusion"
+      "categoryname": "On Campus"
     },
     {
       "categorycode": "7",
-      "categoryname": "Counselling Information"
+      "categoryname": "Off Campus"
     },
     {
       "categorycode": "8",
-      "categoryname": "Education Loan"
+      "categoryname": "Technical"
     },
     {
       "categorycode": "9",
-      "categoryname": "Exam Preparation"
-    },
-    {
-      "categorycode": "10",
-      "categoryname": "Exam dates"
+      "categoryname": "Walk-In"
     },
     {
       "categorycode": "11",
-      "categoryname": "Fee Structure"
-    },
-    {
-      "categorycode": "12",
-      "categoryname": "Others"
+      "categoryname": "Other"
     }
   ]
 }
+
+
+
+
+
+
+
+
+
