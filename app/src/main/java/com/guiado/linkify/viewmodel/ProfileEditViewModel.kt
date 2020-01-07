@@ -176,8 +176,13 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
     }
 
+    fun registerEventBus(){
+        if(!EventBus.getDefault().isRegistered(this))
+            EventBus.getDefault().register(this);
+
+    }
     fun updateAddress() = View.OnClickListener {
-        EventBus.getDefault().register(this);
+        registerEventBus();
         val fragment = FragmentAddress()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
@@ -186,7 +191,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     }
 
     fun updateKeyWords() = View.OnClickListener {
-        EventBus.getDefault().register(this);
+        registerEventBus();
         val fragment = FragmentKeyWords()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
