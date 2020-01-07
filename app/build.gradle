@@ -21,13 +21,33 @@ android {
         vectorDrawables.useSupportLibrary = true
 
     }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'faizal@123'
+            storePassword 'faizal@123'
+            storeFile file('/Users/philips/Documents/githubproject/bottomnavigation_kotlin/Untitled'
+            )
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            debuggable false
         }
     }
-
+    
 
     dataBinding {
         enabled = true    // for enabling data binding
