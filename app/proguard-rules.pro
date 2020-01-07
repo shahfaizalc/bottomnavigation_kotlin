@@ -26,3 +26,8 @@
 
 -keep class com.guiado.linkify.model.** { *; }
 
+-keepattributes *Annotation*
+-keepclassmembers class ** {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
