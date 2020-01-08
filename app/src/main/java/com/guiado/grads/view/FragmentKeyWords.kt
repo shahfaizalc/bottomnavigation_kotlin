@@ -22,7 +22,7 @@ class FragmentKeyWords : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val postAdObj = arguments!!.getString(POSTAD_OBJECT)
 
-        return bindView(inflater, container, postAdObj)
+        return bindView(inflater, container, postAdObj!!)
     }
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String): View {

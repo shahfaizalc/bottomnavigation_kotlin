@@ -11,7 +11,7 @@ class LocationOptionDialog {
 
     fun showDialog(activity: FragmentActivity?, model: LocationViewModel) {
         val reviewBinding = DialogLocationpickerBinding.inflate(LayoutInflater.from(activity))
-        val dialog = Dialog(activity)
+        val dialog = Dialog(activity!!)
         dialog.setCancelable(false)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(reviewBinding.root)

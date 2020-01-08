@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 
-data class CategoryItem(val name :String,val  id:String) : Parcelable {
+data class CategoryItem(val name: String?, val id: String?) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString()) {

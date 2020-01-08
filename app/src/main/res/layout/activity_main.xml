@@ -14,7 +14,7 @@
         android:background="?attr/colorPrimary"
         app:layout_scrollFlags="scroll|enterAlways"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:titleTextColor="@color/black">
+        app:titleTextColor="@color/smoke2">
 
     </androidx.appcompat.widget.Toolbar>
 

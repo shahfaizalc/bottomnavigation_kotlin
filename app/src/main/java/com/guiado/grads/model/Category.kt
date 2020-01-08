@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 
 data class Category(val category: List<CategoryItem>) : Parcelable {
-    constructor(parcel: Parcel) : this(parcel.createTypedArrayList(CategoryItem)) {
+    constructor(parcel: Parcel) : this(parcel.createTypedArrayList(CategoryItem)!!) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

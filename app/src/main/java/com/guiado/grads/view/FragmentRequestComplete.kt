@@ -23,7 +23,7 @@ class FragmentRequestComplete : BaseFragment() {
 
         val postAdObj  = arguments!!.getString(Constants.POSTAD_OBJECT)
         val AD_DOCID = arguments!!.getString(Constants.AD_DOCID);
-        return bindView(inflater, container, postAdObj,AD_DOCID)
+        return bindView(inflater, container, postAdObj!!,AD_DOCID)
     }
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String, adDocid: String?): View {
