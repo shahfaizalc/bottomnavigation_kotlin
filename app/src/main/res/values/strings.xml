@@ -102,8 +102,9 @@
     <string name="join">Join Group</string>
     <string name="unjoin">Unjoin Group</string>
     <string name="members">Members</string>
+    <string name="savedBy">Saved By</string>
 
-    <string name="creationDate">Since</string>
+    <string name="creationDate">Posted On</string>
     <string name="creationby">Created By : </string>
     <string name="passwordMismatch">Please make sure your password match</string>
 
