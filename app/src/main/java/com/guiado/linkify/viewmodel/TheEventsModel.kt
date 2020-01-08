@@ -152,7 +152,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
                 return@addSnapshotListener
 
             }
-            Log.w(TAG, "Listen querySnapshot rachubb "+querySnapshot!!.size())
+            Log.w(TAG, "Listen querySnapshot rachub "+querySnapshot.size())
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
             query = query.limit(5).startAfter(lastVisible)

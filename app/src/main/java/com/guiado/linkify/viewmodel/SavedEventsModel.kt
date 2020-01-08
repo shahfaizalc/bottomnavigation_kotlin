@@ -147,7 +147,6 @@ class SavedEventsModel(internal var activity: FragmentActivity,
         }
         return keyWords;
     }
-
     fun doGetTalents() {
 
         Log.d(TAG, "DOIT doGetTalents: ")
@@ -165,9 +164,8 @@ class SavedEventsModel(internal var activity: FragmentActivity,
                 return@addSnapshotListener
 
             }
+            Log.w(TAG, "Listen querySnapshot rachub "+querySnapshot.size())
 
-            var listItems = ArrayList<String>()
-            listItems.add(mAuth.currentUser!!.uid)
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
             query = query.startAfter(lastVisible)
 
