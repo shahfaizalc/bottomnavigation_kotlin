@@ -56,9 +56,9 @@ class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
         (mMessage.background as GradientDrawable).setColor(color)
         (mLeftArrow.background as RotateDrawable).drawable
-                .setColorFilter(color, PorterDuff.Mode.SRC)
+                ?.setColorFilter(color, PorterDuff.Mode.SRC)
         (mRightArrow.background as RotateDrawable).drawable
-                .setColorFilter(color, PorterDuff.Mode.SRC)
+                ?.setColorFilter(color, PorterDuff.Mode.SRC)
     }
 
     init {

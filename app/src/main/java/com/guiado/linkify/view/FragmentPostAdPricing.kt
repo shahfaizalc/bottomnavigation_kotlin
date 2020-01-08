@@ -18,7 +18,7 @@ class FragmentPostAdPricing : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val postAdObj  = arguments!!.getParcelable<PostAdModel>(POSTAD_OBJECT)
 
-        return bindView(inflater, container,postAdObj)
+        return bindView(inflater, container,postAdObj!!)
     }
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: PostAdModel): View {
