@@ -51,6 +51,7 @@
                 android:layout_marginBottom="@dimen/dimen_20"/>
 
             <Button
+                android:textColor="@color/smoke2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8"
@@ -62,6 +63,7 @@
                 android:textStyle="bold" />
 
             <Button
+                android:textColor="@color/smoke2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_16"

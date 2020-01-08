@@ -118,6 +118,7 @@
         </LinearLayout>
 
         <Button
+            android:textColor="@color/smoke2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/circular_bg_blue"
