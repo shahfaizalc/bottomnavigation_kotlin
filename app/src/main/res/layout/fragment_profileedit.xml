@@ -276,6 +276,7 @@
                 android:layout_height="wrap_content">
 
                 <Button
+                    android:textColor="@color/smoke2"
                     android:id="@+id/loginButton"
                     android:visibility="@{homeData.showSignUpBtn}"
                     android:layout_width="match_parent"

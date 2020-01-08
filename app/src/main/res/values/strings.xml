@@ -164,6 +164,7 @@
 
     <string name="emptyStr"> %s</string>
     <string name="clear">Clear</string>
+    <string name="close">Close</string>
 
 
     <string name="start_commenting">Start Comment</string>
