@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:padding="@dimen/dimen_8"
+            android:textStyle="bold"
+            android:text="@string/termsAndConditionsTitle"
+            android:textColor="@color/darkBlue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:padding="@dimen/dimen_8"
+            android:text="@string/termsAndConditions"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+</ScrollView>

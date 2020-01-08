@@ -1,11 +1,14 @@
 package com.guiado.grads.viewmodel
 
 
+import android.app.Dialog
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import android.widget.ListView
+import android.widget.TextView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.fragment.app.FragmentActivity
@@ -22,6 +25,7 @@ import com.guiado.grads.listeners.EmptyResultListener
 import com.guiado.grads.model2.Profile
 import com.guiado.grads.network.FirbaseWriteHandler
 import com.guiado.grads.util.GenericValues
+import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.utils.Constants
 import com.guiado.grads.view.FragmentProfile
 
@@ -89,7 +93,27 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
         networkHandler()
     }
 
-    fun signInUserClicked() {
+    private fun handleMultipleClicks(): Boolean {
+        return MultipleClickHandler.handleMultipleClicks()
+    }
+
+    fun termsAndCondition() {
+
+        if(!handleMultipleClicks()) {
+
+            val dialog = Dialog(activity)
+            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(true)
+            dialog.setContentView(R.layout.dialog_termsandconditions)
+
+//            val btndialog: TextView = dialog.findViewById(R.id.btndialog) as TextView
+//            btndialog.setOnClickListener({ dialog.dismiss() })
+
+            dialog.show()
+        }
+    }
+
+        fun signInUserClicked() {
         errorTxt = ""
 
         if (validateInput()){
