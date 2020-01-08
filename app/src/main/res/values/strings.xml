@@ -51,7 +51,7 @@
     <string name="mandatoryField">Please fill the mandatory fields</string>
     <string name="soldout">SOLD OUT</string>
     <string name="ticketAvailability">Ticket Availability</string>
-    <string name="terms">By signing up, I agree to Grad\'s %s</string>
+    <string name="terms">By signing up, I agree to Linkify\'s %s</string>
     <string name="termslink">Terms and Conditions</string>
     <string name="forgotPasswordTxt">Forgot Password</string>
     <string name="sendEmailTxt">Send Email</string>
@@ -204,6 +204,25 @@ unless otherwise defined in this Privacy Policy.
 \n\nContact us:
 
 \nIf you any questions or suggestions, please reach us at cshahfaizal@gmail.com.</string>
+    <string name="termsAndConditionsTitle">Terms and Conditons</string>
+
+<string name="termsAndConditions">
+Welcome to Linkify!
+
+\n\nLinkify builds technologies and services that enable people to connect with each other, build communities and grow businesses. These Terms govern your use of Linkify, features, apps, services, technologies and software that we offer, except where we expressly state that separate terms (and not these) apply. These Products are provided to you by Shah Faizal.
+
+\n\nWe don\'t charge you to use Linkify and services covered by these Terms. Instead, businesses and organisations pay us to show you ads for their products and services. By using our Products, you agree that we can show you ads that we think will be relevant to you and your interests. We dont use any of your personal data to help determine which ads to show you.
+
+\n\nWe don\'t sell your personal data to advertisers, and we don\'t share information that directly identifies you , such as your name, email address or other contact information with advertisers unless you give us specific permission.  Do not use Linkify if you are under 17. If you are under 18, use it only with a parent/guardian\'s permission.
+
+\n\nDo not  sexually harass anyone, publicize other people\'s private information, make statements that defame or libel anyone, violate intellectual property rights, use automated programs to start chats, or behave in any other inappropriate or illegal way on Linkify.
+\n\nUnderstand that human behavior is fundamentally uncontrollable, that the people you encounter on Linkify may not behave appropriately, and that they are solely responsible for their own behavior. Use Linkify at your own peril. Write to us if anyone makes you feel uncomfortable.
+
+\n\nYou may be denied access to Linkify for inappropriate behavior, or for any other reason.
+
+</string>
+
+
 
 
 

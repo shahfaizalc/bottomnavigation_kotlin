@@ -1,9 +1,12 @@
 package com.guiado.linkify.viewmodel
 
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ListView
+import android.widget.TextView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.fragment.app.FragmentActivity
@@ -16,9 +19,11 @@ import com.guiado.linkify.utils.Validator
 import com.guiado.linkify.view.FragmentRegistration
 import com.guiado.linkify.view.FragmentVerification
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.linkify.adapter.CustomAdapter
 import com.guiado.linkify.listeners.EmptyResultListener
 import com.guiado.linkify.model2.Profile
 import com.guiado.linkify.network.FirbaseWriteHandler
+import com.guiado.linkify.util.MultipleClickHandler
 
 
 class RegistrationModel(internal val activity: FragmentActivity, internal val fragmentSignin: FragmentRegistration)// To show list of user images (Gallery)
@@ -84,7 +89,27 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
         networkHandler()
     }
 
-    fun signInUserClicked() {
+    private fun handleMultipleClicks(): Boolean {
+        return MultipleClickHandler.handleMultipleClicks()
+    }
+
+    fun termsAndCondition() {
+
+        if(!handleMultipleClicks()) {
+
+            val dialog = Dialog(activity)
+            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(true)
+            dialog.setContentView(R.layout.dialog_termsandconditions)
+
+//            val btndialog: TextView = dialog.findViewById(R.id.btndialog) as TextView
+//            btndialog.setOnClickListener({ dialog.dismiss() })
+
+            dialog.show()
+        }
+    }
+
+        fun signInUserClicked() {
         errorTxt = ""
 
         if (validateInput()){
