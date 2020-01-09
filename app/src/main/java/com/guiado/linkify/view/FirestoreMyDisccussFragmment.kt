@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import com.guiado.linkify.R
 import com.guiado.linkify.chats.*
 import com.guiado.linkify.chats.kotlin.*
-import com.guiado.linkify.databinding.ActivityDiscussionBinding
 import com.guiado.linkify.databinding.ActivityMydiscussionBinding
 import com.guiado.linkify.fragments.BaseFragment
 import com.guiado.linkify.util.GenericValues
@@ -25,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.guiado.linkify.model2.Chat
 
 /**
  * Class demonstrating how to setup a [RecyclerView] with an adapter while taking sign-in

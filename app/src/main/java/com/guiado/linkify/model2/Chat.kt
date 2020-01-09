@@ -1,7 +1,8 @@
-package com.guiado.linkify.chats.kotlin
+package com.guiado.linkify.model2
 
 import com.google.firebase.firestore.IgnoreExtraProperties
 import com.google.firebase.firestore.ServerTimestamp
+import com.guiado.linkify.chats.kotlin.AbstractChat
 import java.util.*
 
 @IgnoreExtraProperties
