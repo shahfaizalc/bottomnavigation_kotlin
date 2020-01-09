@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.guiado.grads.model2.Chat
 
 /**
  * Class demonstrating how to setup a [RecyclerView] with an adapter while taking sign-in

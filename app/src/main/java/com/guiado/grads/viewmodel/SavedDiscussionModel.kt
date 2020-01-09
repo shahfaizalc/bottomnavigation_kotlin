@@ -185,7 +185,7 @@ class SavedDiscussionModel(internal var activity: FragmentActivity, internal val
             }
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-            query = query.startAfter(lastVisible).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
+            query = query.startAfter(lastVisible)
 
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {

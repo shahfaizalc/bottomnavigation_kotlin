@@ -1,7 +1,8 @@
-package com.guiado.grads.chats.kotlin
+package com.guiado.grads.model2
 
 import com.google.firebase.firestore.IgnoreExtraProperties
 import com.google.firebase.firestore.ServerTimestamp
+import com.guiado.grads.chats.kotlin.AbstractChat
 import java.util.*
 
 @IgnoreExtraProperties
