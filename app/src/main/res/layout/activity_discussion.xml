@@ -116,8 +116,7 @@
                         android:background="@{mainDataModel.likesState ? @drawable/circular_bg_border_green : @drawable/circular_bg_border  }"
                         android:drawableLeft="@drawable/like"
                         android:textColor="@{mainDataModel.likesState ? @color/paleGreen : @color/colorGrey  }"
-                        android:textStyle="bold"
-                        android:text="@{Integer.toString(countriesInfoModel.likes.size())}" />
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:layout_marginStart="@dimen/dimen_4"
