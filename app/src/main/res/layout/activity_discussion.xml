@@ -104,23 +104,32 @@
                     android:paddingLeft="@dimen/dimen_8"
                     android:paddingRight="@dimen/dimen_8">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/likethumb"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:onClick="@{mainDataModel.updateLikes()}"
+                        android:src="@drawable/like"
+                        android:layout_marginBottom="@dimen/dimen_4"
+                        android:tint="@{mainDataModel.likesState ? @color/paleGreen : @color/colorGrey  }"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/likecounter"
+                        android:layout_toEndOf="@+id/likethumb"
                         android:padding="@dimen/dimen_4"
                         android:onClick="@{mainDataModel.updateLikes()}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:drawablePadding="@dimen/dimen_4"
-                        android:background="@{mainDataModel.likesState ? @drawable/circular_bg_border_green : @drawable/circular_bg_border  }"
-                        android:drawableLeft="@drawable/like"
                         android:textColor="@{mainDataModel.likesState ? @color/paleGreen : @color/colorGrey  }"
+                        android:text="@={mainDataModel.convertIntToString(mainDataModel.likesCount)}"
                         android:textStyle="bold"/>
 
                     <TextView
                         android:layout_marginStart="@dimen/dimen_4"
-                        android:layout_toEndOf="@+id/likethumb"
+                        android:layout_toEndOf="@+id/likecounter"
                         android:padding="@dimen/dimen_4"
                         android:onClick="@{mainDataModel.updateBookmarks()}"
                         android:layout_width="wrap_content"
@@ -134,8 +143,8 @@
                         android:text="@{mainDataModel.bookmarkState ? @string/saved : @string/save}" />
 
 
-
                     <TextView
+                       android:visibility="gone"
                         android:onClick="@{mainDataModel.addFollowers()}"
                         android:padding="@dimen/dimen_4"
                         android:background="@{mainDataModel.sponsored ? @drawable/circular_bg_border_green : @drawable/circular_bg_border }"

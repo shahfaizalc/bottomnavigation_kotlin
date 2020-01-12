@@ -124,7 +124,7 @@
                         android:drawablePadding="@dimen/dimen_4"
                         android:drawableTint="@color/grey"
                         android:drawableLeft="@drawable/comment"
-                        android:text="COMMENT" />
+                        android:text="@string/comment" />
 
                     <TextView
                         android:layout_alignParentEnd="true"

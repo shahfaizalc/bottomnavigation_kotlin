@@ -45,7 +45,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
     companion object {
 
-        private val TAG = "AdSearchModel"
+        private val TAG = "DiscussionModel"
 
 
     }
@@ -203,24 +203,31 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
          if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && (adModel.eventState.ordinal == EventStatus.SHOWING.ordinal)) {
 
-             talentProfilesList = getKeyWords(talentProfilesList,adModel)
+             getKeyWords(talentProfilesList,adModel)
 
-             talentProfilesList.add(adModel)
-         }
+             if(!isUpdated) {
+                 talentProfilesList.add(adModel)
+             }}
     }
 
+    var isUpdated = false
 
     private fun getKeyWords(keyWords: ObservableArrayList<PostDiscussion>,keyWord: PostDiscussion): ObservableArrayList<PostDiscussion> {
+        isUpdated = false
 
+        var count = 0;
         keyWords.notNull {
             val numbersIterator = it.iterator()
             numbersIterator.let {
                 while (numbersIterator.hasNext()) {
                     val value = (numbersIterator.next())
                     if (value.postedDate.equals(keyWord.postedDate)){
-                        keyWords.remove(value)
+                        Log.d(TAG, "Success getting fai documents: set " )
+                        isUpdated = true
+                        talentProfilesList.set(count,keyWord)
                         return@notNull
                     }
+                    count = count + 1;
                 }
             }
         }

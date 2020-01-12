@@ -19,6 +19,7 @@ import com.guiado.linkify.view.FirestoreDisccussFragmment
 import com.google.firebase.auth.FirebaseAuth
 
 
+
 class ActivityDiscussionViewModel(private val context: Context,
                                   private val fragmentSignin: FirestoreDisccussFragmment,
                                   internal val postAdObj: String) : BaseObservable(),
@@ -65,6 +66,27 @@ class ActivityDiscussionViewModel(private val context: Context,
             notifyPropertyChanged(BR.likesState)
         }
 
+
+    @get:Bindable
+    var likesCount: Int? = getLikeCount()
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.likesCount)
+        }
+
+    @InverseMethod("convertIntToString")
+    open fun convertStringToInt(value: String): Int {
+        return try {
+            value.toInt()
+        } catch (e: NumberFormatException) {
+            -1
+        }
+    }
+
+    fun convertIntToString(value: Int): String? {
+        return value.toString()
+    }
+
     @get:Bindable
     var bookmarkState: Boolean? = isBookmarked()
         set(city) {
@@ -95,6 +117,14 @@ class ActivityDiscussionViewModel(private val context: Context,
         }
 
         return isFollow
+    }
+
+    private fun getLikeCount(): Int? {
+         var count = 0
+         postDiscussion?.likes.notNull {
+            count = postDiscussion?.likes!!.size
+        }
+        return count
     }
 
 
@@ -239,6 +269,12 @@ class ActivityDiscussionViewModel(private val context: Context,
                 Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
 
                 likesState = !exist
+
+                if(exist){
+                    likesCount =likesCount!!- 1
+                } else {
+                    likesCount =likesCount!!+ 1
+                }
 //                getVal(postDiscussion?.comments)
 //                review = ""
             }
