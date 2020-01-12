@@ -176,13 +176,19 @@ class SavedDiscussionModel(internal var activity: FragmentActivity, internal val
                 Log.w(TAG, "Listen error", e)
                 return@addSnapshotListener
             }
-            Log.d(TAG, "DOIT doGetTalents: "+querySnapshot?.size())
 
-            if(querySnapshot!!.size() <= 0){
-                Log.w(TAG, "Listen querySnapshot end")
+            if (querySnapshot == null) {
+                Log.i(TAG, "Listen querySnapshot end")
                 return@addSnapshotListener
-
             }
+
+            if (querySnapshot.size() < 1) {
+                Log.i(TAG, "Listen querySnapshot end")
+                return@addSnapshotListener
+            }
+
+            Log.d(TAG, "Listen querySnapshot end"+querySnapshot.size())
+
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
             query = query.startAfter(lastVisible)
