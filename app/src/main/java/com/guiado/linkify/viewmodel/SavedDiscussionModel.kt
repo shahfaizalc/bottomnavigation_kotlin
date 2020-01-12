@@ -52,7 +52,7 @@ class SavedDiscussionModel(internal var activity: FragmentActivity, internal val
             Log.d(TAG, "getProfile  "+e)
         }
         query = db.collection("discussion")
-                .orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
+                .orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
                 .whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
         doGetTalents()
     }
@@ -127,7 +127,7 @@ class SavedDiscussionModel(internal var activity: FragmentActivity, internal val
         query = db.collection("discussion")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
                 .orderBy("postedDate", Query.Direction.DESCENDING)
-                .limit(5).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
+                .limit(10).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
         talentProfilesList.removeAll(talentProfilesList)

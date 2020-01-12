@@ -44,7 +44,7 @@ class MyEventsModel(internal var activity: FragmentActivity,
         } catch (e:Exception){
             Log.d(TAG, "getProfile  "+e)
         }
-        query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(5).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
+        query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
         doGetTalents()
     }
 
@@ -91,7 +91,7 @@ class MyEventsModel(internal var activity: FragmentActivity,
         query = db.collection("events")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
                 .orderBy("postedDate", Query.Direction.DESCENDING).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
-                .limit(5)
+                .limit(10)
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
         talentProfilesList.removeAll(talentProfilesList)

@@ -155,7 +155,7 @@
 
     <string name="success_title">Success</string>
 
-    <string name="success_msg">The discussion has been published successfully.</string>
+    <string name="success_msg">The discussion has been published successfully.\nYou can see it in "My Discussion"</string>
     <string name="event_msg">The Event has been published successfully.</string>
 
     <string name="oops_title">OOPS!!!</string>
@@ -178,7 +178,7 @@
 
     <string name="addtoCalender">Save Event</string>
     <string name="remmoveFromCalender">Unsave Event</string>
-    E
+
     <string name="feebackTitleTxt">Feedback</string>
     <string name="privacyTitleTxt">Privacy Policy</string>
     <string name="shareInfo">Fly to your dream college. A platform to talk with your fellow dreamers.\n Check out.\n https://play.google.com/store/apps/details?id=com.guiado.linkify</string>

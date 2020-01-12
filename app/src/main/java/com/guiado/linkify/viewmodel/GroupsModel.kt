@@ -44,7 +44,7 @@ class GroupsModel(internal var activity: FragmentActivity,
         } catch (e:Exception){
             Log.d(TAG, "getProfile  "+e)
         }
-        query = db.collection("groups").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
+        query = db.collection("groups").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
         mAuth = FirebaseAuth.getInstance()
         doGetTalents()
     }
@@ -141,7 +141,7 @@ class GroupsModel(internal var activity: FragmentActivity,
         query = db.collection("groups")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
                 .orderBy("postedDate", Query.Direction.DESCENDING)
-                .limit(5)
+                .limit(10)
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
         talentProfilesList.removeAll(talentProfilesList)

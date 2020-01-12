@@ -25,27 +25,6 @@ class RecyclerLoadMoreSimilarAdsHandler(private val countriesViewModel: SimilarD
         recyclerView.addOnScrollListener(listener)
     }
 
-    fun initRequest(view: RecyclerView) {
-        Log.d(TAG, "initRequest: sub url ")
-//        val db = FirebaseFirestore.getInstance()
-//        val query = db.collection("events");
-//        query.get()
-//                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-//                    if (task.isSuccessful) {
-//                        runBlocking {
-//                            for (document in task.result!!) {
-//                                Log.d(TAG, "Sucess getting documents: " + document.id + " => " + document.data)
-//                                countriesViewModel.addTalentsItems(document)
-//                            }
-//                        }
-//
-//                    } else {
-//                        Log.d(TAG, "Error getting documents: ", task.exception)
-//                    }
-//                }).addOnFailureListener(OnFailureListener { exception -> Log.d(TAG, "Error getting documents: ", exception) })
-//                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Error getting documents: "+valu.size()) })
-    }
-
 
     fun notifyAdapter(view: RecyclerView, curSize: Int) {
         view.post { listViewAdapter.notifyDataSetChanged() }

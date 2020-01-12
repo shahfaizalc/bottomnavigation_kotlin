@@ -327,7 +327,6 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: SimilarDiscussionMod
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
     bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
-    bindingAdapter.initRequest(recyclerView)
 
     countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
         override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
@@ -341,6 +340,7 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: SimilarDiscussionMod
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
+            bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
         }
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
@@ -380,6 +380,7 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: MyAdsModel) {
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
+            bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
         }
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
@@ -400,11 +401,11 @@ fun adapter(searchView: SearchView,countriesViewModel: MyDiscussionModel,recycle
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = MyDiscussionAdapter(countriesViewModel)
     val bindingAdapter = RecyclerLoadMoreMyDiscussionHandler(countriesViewModel, listAdapter)
+    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
 
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
 
     countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
         override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
@@ -418,6 +419,7 @@ fun adapter(searchView: SearchView,countriesViewModel: MyDiscussionModel,recycle
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
+            bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
         }
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
@@ -458,11 +460,11 @@ fun adapter(searchView: SearchView ,countriesViewModel: DiscussionModel,recycler
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = DiscussionAdapter(countriesViewModel)
     val bindingAdapter = RecyclerLoadMoreDiscussionHandler(countriesViewModel, listAdapter)
+    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
 
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
     countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
         override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
@@ -788,7 +790,6 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: MyGroupsModel) {
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
     bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
-    bindingAdapter.initRequest(recyclerView)
 
     countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
         override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
@@ -802,6 +803,7 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: MyGroupsModel) {
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
+            bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
         }
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {

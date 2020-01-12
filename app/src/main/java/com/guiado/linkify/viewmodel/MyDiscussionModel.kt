@@ -46,7 +46,7 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
             Log.d(TAG, "getProfile  "+e)
         }
         query = db.collection("discussion")
-                .orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
+                .orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
                 .whereEqualTo("postedBy",mAuth.currentUser!!.uid)
         doGetTalents()
     }
@@ -105,7 +105,7 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
         query = db.collection("discussion")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
                 .orderBy("postedDate", Query.Direction.DESCENDING)
-                .limit(5).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
+                .limit(10).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
         talentProfilesList.removeAll(talentProfilesList)
