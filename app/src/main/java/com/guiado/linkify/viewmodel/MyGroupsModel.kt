@@ -36,6 +36,8 @@ class MyGroupsModel(internal var activity: FragmentActivity,
     var talentProfilesList: ObservableArrayList<Groups>
 
 
+    var query : Query
+    var db :FirebaseFirestore
     val mAuth: FirebaseAuth
 
     companion object {
@@ -46,7 +48,15 @@ class MyGroupsModel(internal var activity: FragmentActivity,
 
     init {
         talentProfilesList = ObservableArrayList()
+        db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
+        try {
+            db.firestoreSettings = firestoreSettings
+        } catch (e:Exception){
+            Log.d(TAG, "getProfile  "+e)
+        }
+        query = db.collection("groups")
+                .orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
         doGetTalents()
     }
 
@@ -136,14 +146,32 @@ class MyGroupsModel(internal var activity: FragmentActivity,
             Log.d(TAG, "getProfile  "+e)
         }
 
-        val query = db.collection("groups");
+
 
         query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
             if (e != null) {
                 Log.w(TAG, "Listen error", e)
                 return@addSnapshotListener
             }
-            for (change in querySnapshot!!.documentChanges) {
+
+
+            if (querySnapshot == null) {
+                Log.i(TAG, "Listen querySnapshot end")
+                return@addSnapshotListener
+            }
+
+            if (querySnapshot.size() < 1) {
+                Log.i(TAG, "Listen querySnapshot end")
+                return@addSnapshotListener
+            }
+
+            Log.d(TAG, "Listen querySnapshot end"+querySnapshot.size())
+
+
+            val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
+            query = query.startAfter(lastVisible)
+
+            for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {
                     Log.d(TAG, "New city: ${change.document.data}")
                 }

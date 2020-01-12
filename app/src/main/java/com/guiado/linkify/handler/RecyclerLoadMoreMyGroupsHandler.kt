@@ -14,12 +14,13 @@ import com.guiado.linkify.viewmodel.*
 class RecyclerLoadMoreMyGroupsHandler(private val countriesViewModel: MyGroupsModel,
                                       private val listViewAdapter: MyGroupsAdapter) {
 
-    private val TAG = "CountryHandler"
+    private val TAG = "MyGroup"
 
     fun scrollListener(recyclerView: RecyclerView, linearLayoutManager: LinearLayoutManager) {
 
         val listener = object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+                Log.d(TAG, "initRequest: sub scrollListener ")
                 countriesViewModel.doGetTalents()
             }
         }
