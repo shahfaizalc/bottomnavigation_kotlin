@@ -53,7 +53,7 @@ class SavedEventsModel(internal var activity: FragmentActivity,
         }
         query = db.collection("events")
                 .orderBy("postedDate", Query.Direction.DESCENDING)
-                .limit(5).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
+                .limit(10).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
 
         doGetTalents()
     }
@@ -114,7 +114,7 @@ class SavedEventsModel(internal var activity: FragmentActivity,
         query = db.collection("events")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
                 .orderBy("postedDate", Query.Direction.DESCENDING)
-                .limit(5).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
+                .limit(10).whereArrayContains("bookmarkBy",mAuth.currentUser!!.uid)
 
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")

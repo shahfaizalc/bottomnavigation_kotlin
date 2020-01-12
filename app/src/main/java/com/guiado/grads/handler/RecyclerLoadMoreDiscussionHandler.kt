@@ -14,7 +14,7 @@ import com.guiado.grads.viewmodel.DiscussionModel
 class RecyclerLoadMoreDiscussionHandler(private val countriesViewModel: DiscussionModel,
                                         private val listViewAdapter: DiscussionAdapter) {
 
-    private val TAG = "CountryHandler"
+    private val TAG = "Discussion"
 
     fun scrollListener(recyclerView: RecyclerView, linearLayoutManager: LinearLayoutManager) {
 

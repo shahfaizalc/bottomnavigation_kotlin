@@ -63,7 +63,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
             Log.d(TAG, "getProfile  "+e)
 
         }
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
+        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
         doGetTalents()
     }
 
@@ -141,7 +141,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
     fun onFilterClearClick() = View.OnClickListener() {
         showClearFilter = View.GONE
         searchMode = SearchMode.DEFAULT
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
+        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
         resetScrrollListener = true
         talentProfilesList.removeAll(talentProfilesList)
 
@@ -187,7 +187,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
             query = db.collection("discussion")
                     .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
                     .orderBy("postedDate", Query.Direction.DESCENDING)
-                    .limit(5)
+                    .limit(10)
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
         talentProfilesList.removeAll(talentProfilesList)
@@ -229,7 +229,8 @@ class DiscussionModel(internal var activity: FragmentActivity,
     }
 
     fun filterByCategory(position: Int) {
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(5).whereArrayContains("keyWords",position)
+        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
+                .whereArrayContains("keyWords",position)
         talentProfilesList.removeAll(talentProfilesList)
 
         if(searchMode.ordinal == SearchMode.DEFAULT.ordinal)
@@ -258,6 +259,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
                 return@addSnapshotListener
 
             }
+            Log.w(TAG, "Listen querySnapshot end"+querySnapshot!!.size())
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
 

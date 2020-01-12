@@ -49,7 +49,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
         } catch (e:Exception){
             Log.d(TAG, "getProfile  "+e)
         }
-        query = db.collection("events").orderBy("startDate", Query.Direction.ASCENDING).limit(5).whereGreaterThanOrEqualTo("startDate",System.currentTimeMillis().toString())
+        query = db.collection("events").orderBy("startDate", Query.Direction.ASCENDING).limit(10).whereGreaterThanOrEqualTo("startDate",System.currentTimeMillis().toString())
         mAuth = FirebaseAuth.getInstance()
         doGetTalents()
     }
@@ -96,7 +96,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
         query = db.collection("events")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
                 .orderBy("postedDate", Query.Direction.DESCENDING)
-                .limit(5)
+                .limit(10)
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
         talentProfilesList.removeAll(talentProfilesList)
@@ -159,7 +159,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
             Log.w(TAG, "Listen querySnapshot rachub "+querySnapshot.size())
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-            query = query.limit(5).startAfter(lastVisible)
+            query = query.limit(10).startAfter(lastVisible)
 
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {
