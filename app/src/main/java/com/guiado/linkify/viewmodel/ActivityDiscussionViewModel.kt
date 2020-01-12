@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.InverseMethod
 import com.guiado.linkify.BR
 import com.guiado.linkify.R
 import com.guiado.linkify.handler.NetworkChangeHandler
