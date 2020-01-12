@@ -175,6 +175,7 @@
     <string name="enter_text">Enter text</string>
     <string name="message_hint">Write your message here</string>
     <string name="comment_hint">Add comment here</string>
+    <string name="comment">COMMENT</string>
 
     <string name="addtoCalender">Save Event</string>
     <string name="remmoveFromCalender">Unsave Event</string>
