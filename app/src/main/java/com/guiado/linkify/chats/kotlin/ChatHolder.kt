@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginEnd
 import androidx.recyclerview.widget.RecyclerView
 import com.guiado.linkify.R
 import com.google.firebase.auth.FirebaseAuth
@@ -46,8 +47,10 @@ class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             mRightArrow.visibility = View.VISIBLE
             mMessageContainer.gravity = Gravity.END
             mMessage.gravity = Gravity.END
-
+            mNameField.visibility = View.GONE
         } else {
+            mNameField.visibility = View.VISIBLE
+
             mMessage.gravity = Gravity.START
             color = mGray300
             mLeftArrow.visibility = View.VISIBLE
@@ -59,6 +62,7 @@ class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 ?.setColorFilter(color, PorterDuff.Mode.SRC)
         (mRightArrow.background as RotateDrawable).drawable
                 ?.setColorFilter(color, PorterDuff.Mode.SRC)
+
     }
 
     init {
@@ -68,7 +72,7 @@ class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         mRightArrow = itemView.findViewById(R.id.right_arrow)
         mMessageContainer = itemView.findViewById(R.id.message_container)
         mMessage = itemView.findViewById(R.id.message)
-        mGreen300 = ContextCompat.getColor(itemView.context, R.color.colorSkyBlue2)
-        mGray300 = ContextCompat.getColor(itemView.context, R.color.colorSkyBlue)
+        mGreen300 = ContextCompat.getColor(itemView.context, R.color.colorSkyBlue)
+        mGray300 = ContextCompat.getColor(itemView.context, R.color.colorSkyBluea2)
     }
 }

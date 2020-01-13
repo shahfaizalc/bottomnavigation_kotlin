@@ -142,14 +142,21 @@ class SavedDiscussionModel(internal var activity: FragmentActivity, internal val
 
         Log.d(TAG, "Success getting documents: " + adModel.postedBy)
 
-            talentProfilesList = getKeyWords(talentProfilesList,adModel)
+        getKeyWords(talentProfilesList,adModel)
 
+        if(!isUpdated) {
             talentProfilesList.add(adModel)
+        }
 
     }
 
+    var isUpdated = false
 
     private fun getKeyWords(keyWords: ObservableArrayList<PostDiscussion>,keyWord: PostDiscussion): ObservableArrayList<PostDiscussion> {
+
+        isUpdated = false
+
+        var count = 0;
 
         keyWords.notNull {
             val numbersIterator = it.iterator()
@@ -157,9 +164,12 @@ class SavedDiscussionModel(internal var activity: FragmentActivity, internal val
                 while (numbersIterator.hasNext()) {
                     val value = (numbersIterator.next())
                     if (value.postedDate.equals(keyWord.postedDate)){
-                        keyWords.remove(value)
+                        isUpdated = true
+                        talentProfilesList.set(count,keyWord)
                         return@notNull
                     }
+                    count = count + 1;
+
                 }
             }
         }
