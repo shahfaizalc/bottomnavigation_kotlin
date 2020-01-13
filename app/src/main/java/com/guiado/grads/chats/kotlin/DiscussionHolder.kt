@@ -41,6 +41,8 @@ class DiscussionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             color = mGray300
         }
         (mMessage.background as GradientDrawable).setColor(color)
+        (mMessage.background as GradientDrawable).alpha = 80
+
     }
 
     init {
@@ -48,7 +50,7 @@ class DiscussionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         mTextField = itemView.findViewById(R.id.message_text)
         mMessageContainer = itemView.findViewById(R.id.message_container)
         mMessage = itemView.findViewById(R.id.message)
-        mGreen300 = ContextCompat.getColor(itemView.context, R.color.colorSkyBluea2)
-        mGray300 = ContextCompat.getColor(itemView.context, R.color.colorSkyBlue2)
+        mGreen300 = ContextCompat.getColor(itemView.context, R.color.white)
+        mGray300 = ContextCompat.getColor(itemView.context, R.color.white)
     }
 }
