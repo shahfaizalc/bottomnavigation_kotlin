@@ -68,11 +68,37 @@ class EventViewModel(private val context: Context,
     }
 
 
+    @get:Bindable
+    var showSignUpProgress: Int = View.INVISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpProgress)
+        }
+
+    @get:Bindable
+    var showSignUpBtn: Int = View.VISIBLE
+        set(dataEmail) {
+            field = dataEmail
+            notifyPropertyChanged(BR.showSignUpBtn)
+        }
+
+    fun showProgresss(isShow : Boolean){
+        if(isShow){
+            showSignUpBtn = View.INVISIBLE
+            showSignUpProgress = View.VISIBLE }
+        else{
+            showSignUpBtn = View.VISIBLE
+            showSignUpProgress = View.INVISIBLE
+        }
+    }
+
+
 
 
     fun updateBookmarks() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
+            showProgresss(true)
             var isExist = false
             var comments2 = getbookmarks()
             if (postDiscussion?.members.isNullOrEmpty()) {
@@ -108,10 +134,12 @@ class EventViewModel(private val context: Context,
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                 Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                showProgresss(false)
             }
 
             override fun onSuccess() {
                 Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
+                showProgresss(false)
 
                 bookmarkState = !exist
 

@@ -256,20 +256,37 @@
             </LinearLayout>
         </ScrollView>
 
-        <TextView
-            android:id="@+id/butn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RelativeLayout
+            android:id="@+id/doneBtn"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:layout_marginBottom="@dimen/dimen_16"
-            android:background="@{mainDataModel.bookmarkState ? @drawable/circular_bg_border_smoke : @drawable/circular_bg_border_smoke }"
-            android:onClick="@{mainDataModel.updateBookmarks()}"
-            android:padding="@dimen/dimen_4"
-            android:text="@{mainDataModel.bookmarkState ? @string/remmoveFromCalender : @string/addtoCalender}"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@{mainDataModel.bookmarkState ? @color/darkBlue : @color/colorBlack  }"
-            android:textStyle="bold" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:visibility="@{mainDataModel.showSignUpBtn}"
+                android:id="@+id/butn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_16"
+                android:background="@{mainDataModel.bookmarkState ? @drawable/circular_bg_border_smoke : @drawable/circular_bg_border_smoke }"
+                android:onClick="@{mainDataModel.updateBookmarks()}"
+                android:padding="@dimen/dimen_4"
+                android:text="@{mainDataModel.bookmarkState ? @string/remmoveFromCalender : @string/addtoCalender}"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@{mainDataModel.bookmarkState ? @color/darkBlue : @color/colorBlack  }"
+                android:textStyle="bold" />
+            <ProgressBar
+                android:progressTint="@color/white"
+                android:visibility="@{mainDataModel.showSignUpProgress}"
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+
+
     </RelativeLayout>
 </layout>
