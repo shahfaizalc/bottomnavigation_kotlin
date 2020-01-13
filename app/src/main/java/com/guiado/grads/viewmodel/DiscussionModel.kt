@@ -208,7 +208,8 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
              if(!isUpdated) {
                  talentProfilesList.add(adModel)
-             }}
+             }
+         }
     }
 
     var isUpdated = false
@@ -217,6 +218,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
         isUpdated = false
 
         var count = 0;
+
         keyWords.notNull {
             val numbersIterator = it.iterator()
             numbersIterator.let {

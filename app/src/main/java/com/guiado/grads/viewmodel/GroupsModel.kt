@@ -165,12 +165,22 @@ class GroupsModel(internal var activity: FragmentActivity,
 
         Log.d(TAG, "Success getting documents:groups " + adModel.postedBy)
         if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) ) {
-            talentProfilesList = getKeyWords(talentProfilesList,adModel)
-            talentProfilesList.add(adModel)
-        }
+            getKeyWords(talentProfilesList,adModel)
 
+            if(!isUpdated) {
+                talentProfilesList.add(adModel)
+            }
+        }
     }
+
+    var isUpdated = false
+
+
     private fun getKeyWords(keyWords: ObservableArrayList<Groups>,keyWord: Groups): ObservableArrayList<Groups> {
+
+        isUpdated = false
+
+        var count = 0;
 
         keyWords.notNull {
             val numbersIterator = it.iterator()
@@ -178,9 +188,11 @@ class GroupsModel(internal var activity: FragmentActivity,
                 while (numbersIterator.hasNext()) {
                     val value = (numbersIterator.next())
                     if (value.postedBy!!.equals(keyWord.postedBy)) {
-                        keyWords.remove(value)
+                        isUpdated = true
+                        talentProfilesList.set(count,keyWord)
                         return@notNull
                     }
+                    count = count + 1;
                 }
             }
         }

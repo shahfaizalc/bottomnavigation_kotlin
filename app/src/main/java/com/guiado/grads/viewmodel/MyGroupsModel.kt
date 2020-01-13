@@ -201,8 +201,13 @@ class MyGroupsModel(internal var activity: FragmentActivity,
 
             if(getKeyWords(adModel.members)){
                 Log.d(TAG, "Success getting documents:groups add" )
-                talentProfilesList = getKeyWords2(talentProfilesList,adModel)
-                talentProfilesList.add(adModel)
+
+                getKeyWords2(talentProfilesList,adModel)
+
+                if(!isUpdated) {
+                    talentProfilesList.add(adModel)
+                }
+
             } else {
                 Log.d(TAG, "Success getting documents:groups A remove" +talentProfilesList.size)
                 talentProfilesList = getKeyWords2(talentProfilesList,adModel)
@@ -233,7 +238,13 @@ class MyGroupsModel(internal var activity: FragmentActivity,
         return result;
     }
 
+    var isUpdated = false
+
     private fun getKeyWords2(keyWords: ObservableArrayList<Groups>, keyWord: Groups): ObservableArrayList<Groups> {
+
+        isUpdated = false
+
+        var count = 0;
 
         keyWords.notNull {
             val numbersIterator = it.iterator()
@@ -241,9 +252,11 @@ class MyGroupsModel(internal var activity: FragmentActivity,
                 while (numbersIterator.hasNext()) {
                     val value = (numbersIterator.next())
                     if (value.postedDate.equals(keyWord.postedDate)){
-                        keyWords.remove(value)
+                        isUpdated = true
+                        talentProfilesList.set(count,keyWord)
                         return@notNull
                     }
+                    count = count + 1;
                 }
             }
         }

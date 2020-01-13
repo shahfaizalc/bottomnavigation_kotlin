@@ -50,7 +50,7 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
             Log.d(TAG, "getProfile  "+e)
         }
         query = db.collection("discussion")
-                .orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
+                .orderBy("postedDate", Query.Direction.DESCENDING).limit(5)
                 .whereEqualTo("postedBy",mAuth.currentUser!!.uid)
         doGetTalents()
     }
@@ -126,14 +126,22 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
 
        if (adModel.postedBy.equals(mAuth.currentUser!!.uid)) {
 
-            talentProfilesList = getKeyWords(talentProfilesList,adModel)
+           getKeyWords(talentProfilesList,adModel)
 
-            talentProfilesList.add(adModel)
+           if(!isUpdated) {
+               talentProfilesList.add(adModel)
+           }
         }
     }
 
+    var isUpdated = false
+
 
     private fun getKeyWords(keyWords: ObservableArrayList<PostDiscussion>,keyWord: PostDiscussion): ObservableArrayList<PostDiscussion> {
+
+        isUpdated = false
+
+        var count = 0;
 
         keyWords.notNull {
             val numbersIterator = it.iterator()
@@ -141,9 +149,11 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
                 while (numbersIterator.hasNext()) {
                     val value = (numbersIterator.next())
                     if (value.postedDate.equals(keyWord.postedDate)){
-                        keyWords.remove(value)
+                        isUpdated = true
+                        talentProfilesList.set(count,keyWord)
                         return@notNull
                     }
+                    count = count + 1;
                 }
             }
         }

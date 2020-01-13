@@ -113,16 +113,23 @@ class TheEventsModel(internal var activity: FragmentActivity,
 
         if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && adModel.eventState.ordinal ==  EventStatus.SHOWING.ordinal) {
 
-            talentProfilesList = getKeyWords(talentProfilesList, adModel)
+            getKeyWords(talentProfilesList,adModel)
 
-            talentProfilesList.add(adModel)
+            if(!isUpdated) {
+                talentProfilesList.add(adModel)
+            }
 
         }
-
     }
 
 
+    var isUpdated = false
+
+
     private fun getKeyWords(keyWords: ObservableArrayList<Events>,keyWord: Events): ObservableArrayList<Events> {
+        isUpdated = false
+        var count = 0;
+
 
         keyWords.notNull {
             val numbersIterator = it.iterator()
@@ -130,9 +137,11 @@ class TheEventsModel(internal var activity: FragmentActivity,
                 while (numbersIterator.hasNext()) {
                     val value = (numbersIterator.next())
                     if (value.postedDate.equals(keyWord.postedDate)){
-                        keyWords.remove(value)
+                        isUpdated = true
+                        talentProfilesList.set(count,keyWord)
                         return@notNull
                     }
+                    count = count + 1;
                 }
             }
         }
