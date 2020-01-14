@@ -337,7 +337,7 @@
 
 
             <TextView
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
@@ -348,7 +348,7 @@
                 android:text="My Discussions"
                 />
             <TextView
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
@@ -359,7 +359,7 @@
                 android:text="Saved Discussions"/>
 
             <TextView
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
@@ -371,7 +371,7 @@
 
 
             <TextView
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
@@ -383,7 +383,7 @@
 
 
             <TextView
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
@@ -404,7 +404,7 @@
                 android:text="About" />
 
             <TextView
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
@@ -415,7 +415,7 @@
                 android:text="App Info" />
 
             <TextView
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:layout_marginTop="@dimen/dimen_8"
@@ -425,7 +425,7 @@
                 android:onClick="@{() -> homeData.feedback()}"
                 android:text="Feedback"/>
             <TextView
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -449,14 +449,14 @@
                 android:layout_marginStart="@dimen/dimen_32"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Friends"/>
 
             <TextView
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginTop="@dimen/dimen_8"
@@ -468,7 +468,7 @@
             <TextView
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginStart="@dimen/dimen_32"
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_width="match_parent"
@@ -477,7 +477,7 @@
 
             <TextView
                 android:layout_marginTop="@dimen/dimen_8"
-                android:textColor="@color/colorSkyBlue"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginStart="@dimen/dimen_32"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginBottom="@dimen/dimen_8"

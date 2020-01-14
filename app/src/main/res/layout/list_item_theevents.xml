@@ -85,14 +85,16 @@
 
                     <TextView
                         android:layout_gravity="center_vertical"
-                        android:gravity="center_horizontal"
+                        android:gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/calendar_range_small"
                         android:drawableTint="@color/white_transparent_80" />
 
                     <TextView
-                        android:gravity="center_horizontal"
+                        android:gravity="center_vertical"
+                        android:ellipsize="end"
+                        android:maxLines="3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/dimen_8"
@@ -115,7 +117,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/dimen_8"
                         android:paddingRight="@dimen/dimen_8"
