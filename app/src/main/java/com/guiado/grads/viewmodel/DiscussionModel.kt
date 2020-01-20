@@ -279,7 +279,6 @@ class DiscussionModel(internal var activity: FragmentActivity,
             query = query.startAfter(lastVisible)
 
 
-
             for (change in querySnapshot.documentChanges) {
                 if (change.type == DocumentChange.Type.ADDED) {
                     Log.d(TAG, "New city: ${change.document.data}")

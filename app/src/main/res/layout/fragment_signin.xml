@@ -29,12 +29,14 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
+                android:backgroundTint="@color/paleGreen"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_16"
                 android:layout_marginEnd="@dimen/dimen_16">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:backgroundTint="@color/paleGreen"
                     android:layout_height="wrap_content"
                     android:hint="@string/emailHint"
                     android:text="@={homeData.dataUsername}" />

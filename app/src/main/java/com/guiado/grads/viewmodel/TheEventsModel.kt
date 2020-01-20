@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ListView
 import androidx.appcompat.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
@@ -38,6 +39,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
     var talentProfilesList: ObservableArrayList<Events>
     var query : Query
     var db :FirebaseFirestore
+    val dialog = Dialog(activity)
 
     var resetScrrollListener : Boolean = false;
 
@@ -117,7 +119,6 @@ class TheEventsModel(internal var activity: FragmentActivity,
 
         if(!handleMultipleClicks()) {
 
-            val dialog = Dialog(activity)
             // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setCancelable(false)
             dialog.setContentView(R.layout.dialog_listview2)
@@ -153,6 +154,14 @@ class TheEventsModel(internal var activity: FragmentActivity,
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
+
+                    if(newText!!.length == 0) {
+                        observableArrayListFilter = observableArrayList
+                        Log.d(TAG, " query " + observableArrayListFilter.size)
+                        recyclerView.post { customAdapter.notifyItemChanged(0, 0) }
+                        recyclerView.post { customAdapter.notifyDataSetChanged() }
+                    }
+
                     return false
                 }
             })
@@ -169,9 +178,22 @@ class TheEventsModel(internal var activity: FragmentActivity,
             dialog.show()
         }
     }
+
+
+
+
+
     fun filterByCategory(position: Int) {
-        query = db.collection("events").orderBy("startDate", Query.Direction.ASCENDING).limit(10)
-                .whereGreaterThanOrEqualTo("startDate",System.currentTimeMillis().toString())
+
+        Toast.makeText(activity,"temmpa "+observableArrayListFilter.get(position).cityname,Toast.LENGTH_LONG).show()
+
+
+        query = db.collection("events")
+                .whereEqualTo("address.city", observableArrayListFilter.get(position).cityname)
+                .orderBy("postedDate", Query.Direction.DESCENDING)
+                .limit(10)
+
+        dialog.dismiss()
 
         talentProfilesList.removeAll(talentProfilesList)
 
@@ -226,6 +248,10 @@ class TheEventsModel(internal var activity: FragmentActivity,
         doGetTalents()
 
     }
+
+
+
+
 
 
     fun addTalentsItems(document: QueryDocumentSnapshot) {
