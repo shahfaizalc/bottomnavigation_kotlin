@@ -115,6 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:layout_anchor="@id/viewA"
+            app:backgroundTint="@color/colorPrimary"
             android:tint="@color/white"
             app:layout_anchorGravity="bottom|right|end"
             app:srcCompat="@drawable/plus" />

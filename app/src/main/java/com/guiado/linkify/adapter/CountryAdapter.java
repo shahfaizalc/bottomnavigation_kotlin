@@ -40,11 +40,9 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
 
         final IndiaItem myListData = listdata.getObservableArrayListFilter().get(position);
         holder.textView.setText(listdata.getObservableArrayListFilter().get(position).getCityname());
-        holder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(),"click on item: "+myListData.getCityname(),Toast.LENGTH_LONG).show();
-            }
+        holder.textView.setOnClickListener(view -> {
+            listdata.filterByCategory(position);
+         //   Toast.makeText(view.getContext(),"click on item: "+myListData.getCityname(),Toast.LENGTH_LONG).show();
         });
     }
 
