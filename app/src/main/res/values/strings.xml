@@ -52,7 +52,7 @@
     <string name="soldout">SOLD OUT</string>
     <string name="ticketAvailability">Ticket Availability</string>
     <string name="terms">By signing up, I agree to Linkify\'s %s</string>
-    <string name="termslink">Terms and Conditions</string>
+<string name="termslink">Terms and Conditions</string>
     <string name="forgotPasswordTxt">Forgot Password</string>
     <string name="sendEmailTxt">Send Email</string>
     <string name="resetPasswordTxt">Reset Password</string>
@@ -222,6 +222,7 @@ Welcome to Linkify!
 \n\nUnderstand that human behavior is fundamentally uncontrollable, that the people you encounter on Linkify may not behave appropriately, and that they are solely responsible for their own behavior. Use Linkify at your own peril. Write to us if anyone makes you feel uncomfortable.
 
 \n\nYou may be denied access to Linkify for inappropriate behavior, or for any other reason.
+
 
 </string>
 

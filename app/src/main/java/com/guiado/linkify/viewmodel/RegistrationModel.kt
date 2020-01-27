@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import android.widget.ListView
 import android.widget.TextView
 import androidx.databinding.BaseObservable
@@ -24,6 +25,9 @@ import com.guiado.linkify.listeners.EmptyResultListener
 import com.guiado.linkify.model2.Profile
 import com.guiado.linkify.network.FirbaseWriteHandler
 import com.guiado.linkify.util.MultipleClickHandler
+import com.guiado.linkify.util.GenericValues
+import com.guiado.linkify.utils.Constants
+import com.guiado.linkify.view.FragmentProfile
 
 
 class RegistrationModel(internal val activity: FragmentActivity, internal val fragmentSignin: FragmentRegistration)// To show list of user images (Gallery)

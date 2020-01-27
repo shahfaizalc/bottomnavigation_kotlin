@@ -13,7 +13,9 @@ import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.BindingAdapter
+import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableList
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.guiado.linkify.adapter.*
@@ -201,6 +203,11 @@ import com.squareup.picasso.Picasso
 //    recyclerView.adapter = MyAdsLstItemRecyclerAdpater(profileInfoViewModel)
 //}
 //
+
+
+
+
+
 
 
 @BindingAdapter("rating")
@@ -857,6 +864,11 @@ fun adapter(searchView: SearchView,countriesViewModel: TheEventsModel,recyclerVi
             if(s.isNullOrEmpty()){
                 countriesViewModel.doGetTalents()
             } else  {
+                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                    countriesViewModel.searchMode = SearchMode.SEARCH
+                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                    countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
+                }
                 countriesViewModel.doGetTalentsSearch(s)
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
             }
@@ -1039,3 +1051,8 @@ fun adapter(searchView: SearchView,countriesViewModel: SavedDiscussionModel,recy
         }
     })
 }
+
+
+
+
+

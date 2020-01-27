@@ -31,7 +31,7 @@
                 android:gravity="center"
                 android:text="@string/home_welcomestring"
                 android:textColor="@color/com_facebook_blue"
-                android:textSize="@dimen/dimen_36"
+                android:textSize="@dimen/dimen_48"
                 android:textStyle="bold|italic" />
 
             <TextView

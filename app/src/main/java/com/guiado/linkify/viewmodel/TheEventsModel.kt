@@ -1,13 +1,19 @@
 package com.guiado.linkify.viewmodel
 
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ListView
+import androidx.appcompat.widget.SearchView
+import android.widget.TextView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.guiado.linkify.BR
 import com.guiado.linkify.Events.MyCustomEvent
 import com.guiado.linkify.R
@@ -17,9 +23,13 @@ import com.guiado.linkify.utils.Constants
 import com.guiado.linkify.view.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
+import com.guiado.linkify.adapter.CountryAdapter
 import com.guiado.linkify.model.EventStatus
+import com.guiado.linkify.model.IndiaItem
+import com.guiado.linkify.model.SearchMode
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import java.util.ArrayList
 
 class TheEventsModel(internal var activity: FragmentActivity,
                      internal val fragmentProfileInfo: FragmentTheEvents)// To show list of user images (Gallery)
@@ -29,6 +39,7 @@ class TheEventsModel(internal var activity: FragmentActivity,
     var query : Query
     var db :FirebaseFirestore
 
+    var resetScrrollListener : Boolean = false;
 
     private val mAuth: FirebaseAuth
 
@@ -36,18 +47,23 @@ class TheEventsModel(internal var activity: FragmentActivity,
 
         private val TAG = "AdSearchModel"
     }
+    var  observableArrayList =  ArrayList<IndiaItem>()
+    var  observableArrayListFilter =  ArrayList<IndiaItem>()
 
     init {
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
+        mAuth = FirebaseAuth.getInstance()
         try {
             db.firestoreSettings = firestoreSettings
         } catch (e:Exception){
             Log.d(TAG, "getProfile  "+e)
         }
         query = db.collection("events").orderBy("startDate", Query.Direction.ASCENDING).limit(10).whereGreaterThanOrEqualTo("startDate",System.currentTimeMillis().toString())
-        mAuth = FirebaseAuth.getInstance()
         doGetTalents()
+        observableArrayList = readAutoFillItems()
+
+
     }
 
     @get:Bindable
@@ -56,6 +72,117 @@ class TheEventsModel(internal var activity: FragmentActivity,
             field = city
             notifyPropertyChanged(BR.finderTitle)
         }
+
+
+    @get:Bindable
+    var showClearFilter: Int = View.GONE
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.showClearFilter)
+        }
+
+    @get:Bindable
+    var searchMode = SearchMode.DEFAULT
+        set(city) {
+            field = city
+
+            if(searchMode.ordinal == SearchMode.DEFAULT.ordinal)
+                showClearFilter = View.GONE
+            else{
+                showClearFilter = View.VISIBLE
+
+            }
+        }
+
+    @Override
+    fun onFilterClearClick() = View.OnClickListener() {
+        showClearFilter = View.GONE
+        searchMode = SearchMode.DEFAULT
+        query = db.collection("events").orderBy("startDate", Query.Direction.ASCENDING).limit(10).whereGreaterThanOrEqualTo("startDate",System.currentTimeMillis().toString())
+        resetScrrollListener = true
+        talentProfilesList.removeAll(talentProfilesList)
+
+        doGetTalents()
+    }
+
+    private fun readAutoFillItems() : ArrayList<IndiaItem> {
+        val values = GenericValues()
+        return values.readAutoFillItems(activity.applicationContext)
+    }
+
+
+
+    @Override
+    fun onFilterClick() = View.OnClickListener() {
+
+        if(!handleMultipleClicks()) {
+
+            val dialog = Dialog(activity)
+            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.dialog_listview2)
+
+            val btndialog: TextView = dialog.findViewById(R.id.btndialog) as TextView
+            btndialog.setOnClickListener({ dialog.dismiss() })
+
+            observableArrayListFilter = observableArrayList
+
+            val recyclerView = dialog.findViewById(R.id.listview) as RecyclerView
+            val customAdapter = CountryAdapter(this)
+            recyclerView.setHasFixedSize(true)
+            recyclerView.layoutManager = LinearLayoutManager(activity)
+            recyclerView.adapter = customAdapter
+
+
+            var searchView = dialog.findViewById<SearchView>(R.id.search1)
+            searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    Log.d(TAG," query "+query)
+
+                    val model =
+                            observableArrayList.filter {
+                                it.cityname?.toLowerCase()?.contains(query!!.toLowerCase())!!
+                            }
+                    val arrayList = ObservableArrayList<IndiaItem>()
+                    arrayList.addAll(model)
+                    observableArrayListFilter = arrayList
+                    Log.d(TAG," query "+observableArrayListFilter.size)
+                    recyclerView.post { customAdapter.notifyItemChanged(0,0)}
+                    recyclerView.post { customAdapter.notifyDataSetChanged() }
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return false
+                }
+            })
+
+//            listView.setOnClickListener()
+//
+//            listView.setOnItemClickListener({ parent, view, position, id ->
+//
+//                dialog.dismiss()
+//
+//                filterByCategory(position)
+//            })
+
+            dialog.show()
+        }
+    }
+    fun filterByCategory(position: Int) {
+        query = db.collection("events").orderBy("startDate", Query.Direction.ASCENDING).limit(10)
+                .whereGreaterThanOrEqualTo("startDate",System.currentTimeMillis().toString())
+
+        talentProfilesList.removeAll(talentProfilesList)
+
+        if(searchMode.ordinal == SearchMode.DEFAULT.ordinal)
+            searchMode = SearchMode.CATEGORY
+        else{
+            searchMode = SearchMode.CATEGORYANDSEARCH
+
+        }
+        doGetTalents()
+    }
 
     /*
       Method will act as the event handler for MyCustomEvent.kt
