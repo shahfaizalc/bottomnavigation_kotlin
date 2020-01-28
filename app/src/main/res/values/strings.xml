@@ -8,6 +8,7 @@
         <item>News</item>
         <item>Profile</item>
     </array>
+    <string name="allevents">All events</string>
 
     <string name="discussions">All discussions</string>
     <string name="newDiscussionTitle">Ask your question here with \'What\', \'How\', \'When\' and so on. \n\nExample.What is the cutoff mark for Mechanical Engineering in MIT, Chennai</string>
