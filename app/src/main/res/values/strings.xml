@@ -40,7 +40,9 @@
     <string name="figure">Figure</string>
     <string name="occupation">Occupation</string>
     <string name="birthDateHint">dd/mm/yyyy</string>
-    <string name="loginValidtionErrorMsg">Please provide valid inputs</string>
+    <string name="infoMsg_title">Please write title at least 8 letters</string>
+
+    <string name="loginValidtionErrorMsg">Please provide all the valid inputs</string>
     <string name="disussionSelect">Please select discussion category</string>
     <string name="loginFailed">Please check your username and password</string>
     <string name="loginSucess">Authentication successful</string>

@@ -180,6 +180,11 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
     fun doPostEvents() = View.OnClickListener {
 
         if (!handleMultipleClicks()) {
+            if ( userTitle.isNullOrEmpty() || !userTitle!!.isValid() ){
+                Toast.makeText(context, context.resources.getString(R.string.infoMsg_title), Toast.LENGTH_SHORT).show()
+                return@OnClickListener
+            }
+
             if ( userTitle.isNullOrEmpty() || !userTitle!!.isValid() || userDesc.isNullOrEmpty()
                     || showDate.isNullOrEmpty()|| expiryDate.isNullOrEmpty()|| showTime.isNullOrEmpty()  ) {
                 Toast.makeText(context, context.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
