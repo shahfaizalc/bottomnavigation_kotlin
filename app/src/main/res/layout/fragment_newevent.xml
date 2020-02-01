@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/dimen_8"
-                    android:hint="@string/event_title"
+                    android:hint="@string/event_title_hint"
                     android:text="@={homeData.userTitle}"/>
 
                 <TextView
@@ -52,6 +52,7 @@
                     android:textStyle="bold"/>
 
                 <EditText
+                    android:hint="@string/event_desc_hint"
                     android:gravity="top"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
