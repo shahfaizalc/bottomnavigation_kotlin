@@ -23,7 +23,7 @@
 
             <TextView
                 android:onClick="@{adSearchModel.doFindGroups}"
-                android:padding="@dimen/dimen_8"
+                android:padding="@dimen/dimen_12"
                 android:id="@+id/search1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,11 +40,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginBottom="@dimen/dimen_8"
                 android:background="@drawable/bottom_line" />
 
             <TextView
                 android:textColor="@color/white"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_8"
