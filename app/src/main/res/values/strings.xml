@@ -112,7 +112,7 @@
     <string name="passwordMismatch">Please make sure your password match</string>
 
     <string name="course">Course</string>
-    <string name="dreamOrg">Dream University \/ College</string>
+    <string name="dreamOrg">Dream University / College</string>
     <string name="admission_merit">Merit</string>
     <string name="admission_management">Management</string>
     <string name="admission_both">Merit and Management</string>
@@ -122,7 +122,11 @@
 
     <string name="group_title">What is this group about?</string>
     <string name="event_title">Event Title</string>
+    <string name="event_title_hint">On/Off Campus, Walk-Ins and etc. </string>
+
     <string name="event_desc">Event Description</string>
+    <string name="event_desc_hint">It\' is better to be short and informative </string>
+
     <string name="event_description">Group Description (max 140 characters)</string>
     <string name="event_create">Create Event</string>
     <string name="group_create">Create</string>
