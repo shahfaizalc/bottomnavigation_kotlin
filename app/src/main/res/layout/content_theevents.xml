@@ -55,7 +55,7 @@
                     android:layout_marginEnd="@dimen/dimen_8"
                     android:layout_toStartOf="@+id/sendButton"
                     android:background="@android:color/transparent"
-                    android:text="@string/discussions" />
+                    android:text="@string/allevents" />
 
                 <TextView
                     android:onClick="@{adSearchModel.onFilterClearClick()}"
