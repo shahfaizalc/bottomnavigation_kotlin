@@ -5,7 +5,7 @@
 
         <variable
             name="listener"
-            type="com.guiado.grads.listeners.ChooserEventListener" />
+            type="com.guiado.linkify.listeners.ChooserEventListener" />
 
         <variable
             name="itemPosition"
@@ -13,7 +13,7 @@
 
         <variable
             name="gameChooserModel"
-            type="com.guiado.grads.viewmodel.GameChooserModel" />
+            type="com.guiado.linkify.viewmodel.GameChooserModel" />
     </data>
 
         <FrameLayout

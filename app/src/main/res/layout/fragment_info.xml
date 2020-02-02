@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.InfoViewModel" />
+            type="com.guiado.linkify.viewmodel.InfoViewModel" />
 
     </data>
 

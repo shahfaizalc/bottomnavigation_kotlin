@@ -4,11 +4,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.MyGroupsModel" />
+            type="com.guiado.linkify.viewmodel.MyGroupsModel" />
 
         <variable
             name="groupsViewModel"
-            type="com.guiado.grads.model2.Groups" />
+            type="com.guiado.linkify.model2.Groups" />
 
         <variable
             name="itemPosition"
@@ -16,11 +16,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.grads.adapter.MyGroupsAdapter" />
+            type="com.guiado.linkify.adapter.MyGroupsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.grads.listeners.MyGroupsEventListener" />
+            type="com.guiado.linkify.listeners.MyGroupsEventListener" />
 
         <variable
             name="keyWordsTag"

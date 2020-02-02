@@ -5,11 +5,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.EventViewModel" />
+            type="com.guiado.linkify.viewmodel.EventViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model2.Events" />
+            type="com.guiado.linkify.model2.Events" />
 
     </data>
 

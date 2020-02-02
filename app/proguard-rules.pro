@@ -22,9 +22,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class com.guiado.grads.model2.** { *; }
+-keep class com.guiado.linkify.model2.** { *; }
 
--keep class com.guiado.grads.model.** { *; }
+-keep class com.guiado.linkify.model.** { *; }
 
 -keepattributes *Annotation*
 -keepclassmembers class ** {

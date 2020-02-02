@@ -4,11 +4,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.SavedEventsModel" />
+            type="com.guiado.linkify.viewmodel.SavedEventsModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model2.Events" />
+            type="com.guiado.linkify.model2.Events" />
 
         <variable
             name="itemPosition"
@@ -16,11 +16,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.grads.adapter.SavedEventsAdapter" />
+            type="com.guiado.linkify.adapter.SavedEventsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.grads.listeners.SavedEventsEventListener" />
+            type="com.guiado.linkify.listeners.SavedEventsEventListener" />
 
         <variable
             name="keyWordsTag"

@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.VerifiedViewModel" />
+            type="com.guiado.linkify.viewmodel.VerifiedViewModel" />
     </data>
 
     <LinearLayout
