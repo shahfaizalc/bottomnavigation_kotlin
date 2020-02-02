@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.InverseMethod
-import com.google.firebase.auth.FirebaseAuth
 import com.guiado.linkify.BR
 import com.guiado.linkify.R
 import com.guiado.linkify.handler.NetworkChangeHandler
@@ -18,6 +17,10 @@ import com.guiado.linkify.network.FirbaseReadHandler
 import com.guiado.linkify.network.FirbaseWriteHandler
 import com.guiado.linkify.util.*
 import com.guiado.linkify.view.FirestoreDisccussFragmment
+import com.google.firebase.auth.FirebaseAuth
+import com.guiado.linkify.model2.*
+import com.guiado.linkify.util.*
+
 
 
 class ActivityDiscussionViewModel(private val context: Context,

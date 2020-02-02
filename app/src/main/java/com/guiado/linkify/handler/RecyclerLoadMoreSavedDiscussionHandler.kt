@@ -2,8 +2,10 @@ package com.guiado.linkify.handler
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.guiado.linkify.adapter.MyDiscussionAdapter
 import com.guiado.linkify.adapter.SavedDiscussionAdapter
 import com.guiado.linkify.utils.EndlessRecyclerViewScrollListener
+import com.guiado.linkify.viewmodel.MyDiscussionModel
 import com.guiado.linkify.viewmodel.SavedDiscussionModel
 
 

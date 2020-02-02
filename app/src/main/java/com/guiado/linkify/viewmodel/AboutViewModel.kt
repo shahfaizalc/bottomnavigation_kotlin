@@ -1,6 +1,11 @@
 package com.guiado.linkify.viewmodel
 
 import android.content.Context
+import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -85,3 +90,4 @@ class AboutViewModel(private val context: Context, private val fragmentSignin: F
         return MultipleClickHandler.handleMultipleClicks()
     }
 }
+

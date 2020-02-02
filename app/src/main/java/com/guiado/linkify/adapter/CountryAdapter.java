@@ -10,6 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.guiado.linkify.R;
 import com.guiado.linkify.model.IndiaItem;
 import com.guiado.linkify.viewmodel.TheEventsModel;
+import com.google.android.material.snackbar.Snackbar;
+import com.guiado.linkify.R;
+import com.guiado.linkify.model.CoachItem;
+import com.guiado.linkify.model.IndiaItem;
+import com.guiado.linkify.viewmodel.TheEventsModel;
+
+import java.util.ArrayList;
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHolder>{
     TheEventsModel listdata;

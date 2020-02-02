@@ -11,6 +11,12 @@ import com.guiado.linkify.listeners.MultipleClickListener
 import com.guiado.linkify.model.CoachItem
 import com.guiado.linkify.util.GenericValues
 import com.guiado.linkify.util.MultipleClickHandler
+import com.guiado.linkify.listeners.EmptyResultListener
+import com.guiado.linkify.model2.Feedback
+import com.guiado.linkify.network.FirbaseWriteHandler
+import com.guiado.linkify.util.getUserName
+import com.guiado.linkify.utils.EnumFeedBack
+import com.google.firebase.auth.FirebaseAuth
 import com.guiado.linkify.view.FragmentPrivacy
 import java.util.*
 

@@ -12,11 +12,11 @@ androidExtensions {
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.guiado.linkfy"
+        applicationId "com.guiado.linkify"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 21
-        versionName "1.0.21"
+        versionCode 8
+        versionName "0.0.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 

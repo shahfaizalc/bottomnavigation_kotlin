@@ -13,6 +13,11 @@ import com.guiado.linkify.listeners.*
 import com.guiado.linkify.util.convertLongToTime
 import com.guiado.linkify.util.getDiscussionCategories
 import com.guiado.linkify.viewmodel.*
+import com.guiado.linkify.viewmodel.*
+import com.guiado.linkify.util.convertLongToTime
+import com.guiado.linkify.util.getDiscussionCategories
+import com.guiado.linkify.util.convertLongToTime
+import com.guiado.linkify.util.getDiscussionCategories
 
 /**
  * Country recycler view adapter to view list of items

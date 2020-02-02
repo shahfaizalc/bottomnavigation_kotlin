@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:697212170448:android:bf8e1e2be389810f3deed5",
         "android_client_info": {
-          "package_name": "com.guiado.linkfy"
+          "package_name": "com.guiado.linkify"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "697212170448-26e4e20oe9pmcnf83rbdgimg2dae5alm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.guiado.linkfy",
+            "package_name": "com.guiado.linkify",
             "certificate_hash": "32661a43b3833acf523a7db28f6b5fdd91081356"
           }
         },
