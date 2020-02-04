@@ -182,7 +182,10 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
 
             if (fragmentHistory!!.isEmpty) {
                 super.onBackPressed()
-            } else {
+            } else if(mAuth.currentUser==null){
+                super.onBackPressed()
+
+            }else {
 
                 if (fragmentHistory!!.stackSize > 1) {
 
