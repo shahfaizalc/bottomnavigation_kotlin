@@ -94,6 +94,8 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     private fun getAddress() = " " + profile.address?.locationname + "\n " + profile.address?.streetName +
             ", " + profile.address?.town + "\n " + profile.address?.city
 
+    private fun getLocation() = profile.location
+
     private fun getKeyWords(): String {
 
         var result = ""
@@ -249,11 +251,12 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
 
     @get:Bindable
-    var userLocation: String? = getAddress()
+    var userLocation: String? = getLocation()
         set(price) {
             field = price
             notifyPropertyChanged(BR.userLocation)
 
+            profile.location = field
         }
     private fun readAutoFillItems2() : ArrayList<IndiaItem> {
         val values = GenericValues()
