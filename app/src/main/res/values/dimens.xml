@@ -12,5 +12,6 @@
     <dimen name="dimen_36">36dp</dimen>
     <dimen name="dimen_48">48dp</dimen>
     <dimen name="dimen_100">100dp</dimen>
+    <dimen name="ic_plus_width">28dp</dimen>
 
 </resources>
