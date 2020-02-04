@@ -230,6 +230,7 @@
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -237,6 +238,7 @@
                 android:layout_marginBottom="@dimen/dimen_8"
                 android:paddingStart="@dimen/dimen_32"
                 android:paddingEnd="@dimen/dimen_32" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -249,16 +251,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_4"
                     android:gravity="center"
-                    android:text="Address"
+                    android:text="Location"
                     android:textColor="@color/darkBlue"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:textAppearance="?android:attr/textAppearanceMediumInverse"
                     android:layout_height="wrap_content"
-                    android:onClick="@{homeData.updateAddress()}"
+                    android:onClick="@{homeData.onFilterClick()}"
                     android:paddingBottom="@dimen/dimen_4"
-                    android:text="@{homeData.userAddress}"
+                    android:text="@{homeData.userLocation}"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
