@@ -18,5 +18,6 @@ class Profile{
     var desc : String? = null
     var followers: ArrayList<Follow>? = null
     var following: ArrayList<Follow>? = null
+    var location : String? = null
 
 }
