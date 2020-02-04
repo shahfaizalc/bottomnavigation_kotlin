@@ -1,12 +1,18 @@
 package com.guiado.linkify.viewmodel
 
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.ObservableArrayList
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.guiado.linkify.BR
 import com.guiado.linkify.Events.MyCustomEvent
 import com.guiado.linkify.R
@@ -24,6 +30,9 @@ import com.guiado.linkify.view.FragmentKeyWords
 import com.guiado.linkify.view.FragmentProfile
 import com.guiado.linkify.view.FragmentProfileEdit
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.linkify.adapter.CountryAdapter
+import com.guiado.linkify.adapter.CountryAdapter2
+import com.guiado.linkify.model.IndiaItem
 import com.guiado.linkify.util.storeUserName
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -40,11 +49,16 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     private var isInternetConnected: Boolean = false
 
     var profile = Profile();
+    val dialog = Dialog(context)
+    var  observableArrayList =  ArrayList<IndiaItem>()
+    var  observableArrayListFilter =  ArrayList<IndiaItem>()
 
     init {
         networkHandler()
         profile = (GenericValues().getProfile(postAdObj, fragmentSignin.context!!))
         readAutoFillItems()
+        observableArrayList = readAutoFillItems2()
+
     }
 
     private fun readAutoFillItems() {
@@ -73,7 +87,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     fun customEventReceived(event: MyCustomEvent) {
         EventBus.getDefault().unregister(this)
         profile = event.data
-        userAddress = getAddress()
+      //  userAddress = getAddress()
         keys = getKeyWords()
     }
 
@@ -117,13 +131,13 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
 
 
-    @get:Bindable
-    var userAddress: String? = getAddress()
-        set(price) {
-            field = price
-            notifyPropertyChanged(BR.userAddress)
-
-        }
+//    @get:Bindable
+//    var userAddress: String? = getAddress()
+//        set(price) {
+//            field = price
+//            notifyPropertyChanged(BR.userAddress)
+//
+//        }
 
     @get:Bindable
     var keys: String? = getKeyWords()
@@ -226,5 +240,88 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
     override fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()
+    }
+
+    fun filterByCategory(position: Int) {
+        dialog.dismiss()
+        userLocation =  observableArrayListFilter.get(position).cityname
+    }
+
+
+    @get:Bindable
+    var userLocation: String? = getAddress()
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.userLocation)
+
+        }
+    private fun readAutoFillItems2() : ArrayList<IndiaItem> {
+        val values = GenericValues()
+        return values.readAutoFillItems(context)
+    }
+
+    @Override
+    fun onFilterClick() = View.OnClickListener() {
+
+        if(!handleMultipleClicks()) {
+
+            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.dialog_listview2)
+
+            val btndialog: TextView = dialog.findViewById(R.id.btndialog) as TextView
+            btndialog.setOnClickListener({ dialog.dismiss() })
+
+            observableArrayListFilter = observableArrayList
+
+            val recyclerView = dialog.findViewById(R.id.listview) as RecyclerView
+            val customAdapter = CountryAdapter2(this)
+            recyclerView.setHasFixedSize(true)
+            recyclerView.layoutManager = LinearLayoutManager(context)
+            recyclerView.adapter = customAdapter
+
+
+            var searchView = dialog.findViewById<SearchView>(R.id.search1)
+            searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    Log.d(TAG," query "+query)
+
+                    val model =
+                            observableArrayList.filter {
+                                it.cityname?.toLowerCase()?.contains(query!!.toLowerCase())!!
+                            }
+                    val arrayList = ObservableArrayList<IndiaItem>()
+                    arrayList.addAll(model)
+                    observableArrayListFilter = arrayList
+                    Log.d(TAG," query "+observableArrayListFilter.size)
+                    recyclerView.post { customAdapter.notifyItemChanged(0,0)}
+                    recyclerView.post { customAdapter.notifyDataSetChanged() }
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+
+                    if(newText!!.length == 0) {
+                        observableArrayListFilter = observableArrayList
+                        Log.d(TAG, " query " + observableArrayListFilter.size)
+                        recyclerView.post { customAdapter.notifyItemChanged(0, 0) }
+                        recyclerView.post { customAdapter.notifyDataSetChanged() }
+                    }
+
+                    return false
+                }
+            })
+
+//            listView.setOnClickListener()
+//
+//            listView.setOnItemClickListener({ parent, view, position, id ->
+//
+//                dialog.dismiss()
+//
+//                filterByCategory(position)
+//            })
+
+            dialog.show()
+        }
     }
 }
