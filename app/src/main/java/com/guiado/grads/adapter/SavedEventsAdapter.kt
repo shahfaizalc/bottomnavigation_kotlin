@@ -37,7 +37,7 @@ class SavedEventsAdapter(private val adSearchModel: SavedEventsModel) :
         with(viewHolder.binding!!) {
             countriesInfoModel = viewModel.talentProfilesList[position]
             keyWordsTag = getDiscussionCategories(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
-            postDate= viewModel.talentProfilesList[position].postedDate?.toLong()?.let { convertLongToTime(it) }
+            postDate= viewModel.talentProfilesList[position].startDate?.toLong()?.let { convertLongToTime(it) }
             itemPosition = position
             mainDataModel = viewModel
             location = viewModel.talentProfilesList[position]!!.address?.locationname +" "+viewModel.talentProfilesList[position]!!.address?.streetName +" "+viewModel.talentProfilesList[position]!!.address?.town +" "+viewModel.talentProfilesList[position]!!.address?.city
