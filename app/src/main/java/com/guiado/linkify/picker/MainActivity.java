@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MultipleClickListener {
+
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final int REQUEST_IMAGE = 100;
     private FirebaseAuth mAuth;
@@ -65,13 +67,12 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
     ImageView imgProfile;
     ImageView imgPlus;
     Button uploadPhoto;
+    ProgressBar progressBar;
     Uri uri;
     String imageId = "";
     TextView caption;
     EditText postDate;
-
     String dateStr;
-
 
 
     @Override
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainn);
         ButterKnife.bind(this);
+        progressBar = findViewById(R.id.progress_bar);
         caption = findViewById(R.id.caption);
         postDate = findViewById(R.id.postDate);
         postDate.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
 
         imgProfile.setOnClickListener(v -> imgAddClick());
 
-        uploadPhoto = findViewById(R.id.uploadPhoto);
+        uploadPhoto = findViewById(R.id.loginButton);
 
         uploadPhoto.setOnClickListener(v -> uploadImage(uri));
 
@@ -216,6 +218,9 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
     private void uploadImage(Uri uri) {
 
         if(uri!= null && !uri.getPath().isEmpty()) {
+            uploadPhoto.setVisibility(View.INVISIBLE);
+
+            progressBar.setVisibility(View.VISIBLE);
 
 
             StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -238,8 +243,9 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
                         public void onFailure(@NonNull Exception exception) {
                             // Handle unsuccessful uploads
                             Log.d(TAG, "Image cache path: " + exception);
-                            // ...
-                        }
+                            uploadPhoto.setVisibility(View.VISIBLE);
+
+                            progressBar.setVisibility(View.INVISIBLE);                        }
                     });
         } else {
             Toast.makeText(this,"Please upload image to post ",Toast.LENGTH_LONG).show();
@@ -262,6 +268,8 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
 
     void postEvent(String imageId){
 
+
+
         ImageEvents events = new ImageEvents();
         events.setImageId(imageId);
         events.setTitle(caption.getText().toString());
@@ -283,7 +291,8 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
             @Override
             public void onFailure(@NotNull Exception e) {
                 Log.d(TAG, "DocumentSnapshot doPostEvents onFailure " + e.getLocalizedMessage());
-
+                uploadPhoto.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
 

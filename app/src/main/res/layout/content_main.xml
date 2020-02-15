@@ -44,15 +44,30 @@
         android:padding="@dimen/dimen_12"
         android:textColor="@color/black" />
 
-    <Button
-        android:id="@+id/uploadPhoto"
+    <RelativeLayout
+        android:id="@+id/doneBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/com_facebook_button_background"
-        android:padding="@dimen/dimen_12"
-        android:text="Post It"
-        android:textColor="@color/white_transparent_80"
-        android:textStyle="bold" />
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/yellow"
+            android:text="Post It"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_16"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:progressTint="@color/white" />
+    </RelativeLayout>
+
 
 </LinearLayout>
