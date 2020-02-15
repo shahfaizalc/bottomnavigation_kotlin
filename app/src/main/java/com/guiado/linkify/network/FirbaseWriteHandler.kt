@@ -19,11 +19,21 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.guiado.linkify.utils.Constants.BASEURL_COLLECTION_GEN_POSTEVVENT_IMG
 
-class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
+class FirbaseWriteHandler {
     private val storageReference: StorageReference
     private val currentFirebaseUser: FirebaseUser?
 
+    var fragmentBase= null
+
+    constructor(fragmentBase1: BaseFragment){
+        fragmentBase = fragmentBase;
+    }
+
+    constructor(){
+
+    }
 
     init {
         currentFirebaseUser = FirebaseAuth.getInstance().currentUser
@@ -31,19 +41,19 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
         storageReference = storage.reference
     }
 
-    fun localFileToFirebaseStorage(filePath: Uri, emptyResultListener: EmptyResultListener) {
-        val ref = storageReference.child(BASEURL_COLLECTION_PROFILEPIC + currentFirebaseUser!!.uid)
-        ref.putFile(filePath)
-                .addOnSuccessListener {
-                    Toast.makeText(fragmentBase.context, "Image successfull uploaded", Toast.LENGTH_LONG).show()
-                    emptyResultListener.onSuccess()
-                }
-                .addOnFailureListener { e ->
-                    emptyResultListener.onFailure(e)
-                    Toast.makeText(fragmentBase.context, "Failed to upload. Please try again later " + e.message, Toast.LENGTH_LONG).show()
-                }
-
-    }
+//    fun localFileToFirebaseStorage(filePath: Uri, emptyResultListener: EmptyResultListener) {
+//        val ref = storageReference.child(BASEURL_COLLECTION_PROFILEPIC + currentFirebaseUser!!.uid)
+//        ref.putFile(filePath)
+//                .addOnSuccessListener {
+//                    Toast.makeText(fragmentBase.context, "Image successfull uploaded", Toast.LENGTH_LONG).show()
+//                    emptyResultListener.onSuccess()
+//                }
+//                .addOnFailureListener { e ->
+//                    emptyResultListener.onFailure(e)
+//                    Toast.makeText(fragmentBase.context, "Failed to upload. Please try again later " + e.message, Toast.LENGTH_LONG).show()
+//                }
+//
+//    }
 
     fun updateUserInfo(userInfo: Profile, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
@@ -120,7 +130,19 @@ class FirbaseWriteHandler(private val fragmentBase: BaseFragment) {
                 }
     }
 
-
+    fun updateEvents(discussion: ImageEvents, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_POSTEVVENT_IMG)
+        collection.document(discussion.postedDate!!).set(discussion)
+                .addOnSuccessListener {
+                    Log.d(TAG, "DocumentSnapshot added ")
+                    emptyResultListener.onSuccess()
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
 
     fun updateDiscussion(discussion: PostDiscussion, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()

@@ -67,7 +67,7 @@ fun getKeys(keyWords: MutableList<Int>?, context: Context): String? {
 }
 fun String.onDatePickerClick( ) : Long {
 
-    val formatter = SimpleDateFormat("dd/mm/yyyy")
+    val formatter = SimpleDateFormat("dd/MM/yyyy")
     val date = formatter.parse(this) as Date
     return date.time
 }

@@ -3,6 +3,7 @@ package com.guiado.linkify.picker;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.usage.UsageEvents;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -10,13 +11,35 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.guiado.linkify.R;
+import com.guiado.linkify.listeners.EmptyResultListener;
+import com.guiado.linkify.listeners.MultipleClickListener;
+import com.guiado.linkify.model.EventStatus;
+import com.guiado.linkify.model2.Events;
+import com.guiado.linkify.model2.ImageEvents;
+import com.guiado.linkify.network.FirbaseWriteHandler;
+import com.guiado.linkify.util.GetGenericsKt;
+import com.guiado.linkify.util.MultipleClickHandler;
+import com.itravis.ticketexchange.listeners.DateListener;
+import com.itravis.ticketexchange.utils.DatePickerEvent;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -24,51 +47,75 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.squareup.picasso.Picasso;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MultipleClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final int REQUEST_IMAGE = 100;
+    private FirebaseAuth mAuth;
 
-    @BindView(R.id.img_profile)
     ImageView imgProfile;
+    ImageView imgPlus;
+    Button uploadPhoto;
+    Uri uri;
+    String imageId = "";
+    TextView caption;
+    EditText postDate;
+
+    String dateStr;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainn);
         ButterKnife.bind(this);
+        caption = findViewById(R.id.caption);
+        postDate = findViewById(R.id.postDate);
+        postDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!handleMultipleClicks()) {
+                    new DatePickerEvent().onDatePickerClick(MainActivity.this, new DateListener() {
+                        @Override
+                        public void onDateSet(@NotNull String result) {
+                            dateStr = result;
+                            postDate.setText(result);
+                        }
+                    });
+                }
+            }
+        });
+
+        imgProfile = findViewById(R.id.img_profile);
+
+        imgProfile.setOnClickListener(v -> imgAddClick());
+
+        uploadPhoto = findViewById(R.id.uploadPhoto);
+
+        uploadPhoto.setOnClickListener(v -> uploadImage(uri));
+
+        imgPlus = findViewById(R.id.img_plus);
+        imgPlus.setOnClickListener(v -> imgAddClick());
 
         loadProfileDefault();
+        mAuth = FirebaseAuth.getInstance();
 
         // Clearing older images from cache directory
         // don't call this line if you want to choose multiple images in the same activity
         // call this once the bitmap(s) usage is over
         ImagePickerActivity.clearCache(this);
     }
-
-    private void loadProfile(String url) {
-        Log.d(TAG, "Image cache path: " + url);
-
-        Picasso.get().load(url)
-                .into(imgProfile);
-        imgProfile.setColorFilter(ContextCompat.getColor(this, android.R.color.transparent));
-    }
-
-    private void loadProfileDefault() {
-
-        Picasso.get().load(R.drawable.placeholder_profile).into(imgProfile);
-
-        imgProfile.setColorFilter(ContextCompat.getColor(this, R.color.profile_default_tint));
-    }
-
-    @OnClick({R.id.img_plus, R.id.img_profile})
-    void onProfileImageClick() {
+    private void imgAddClick() {
         Dexter.withActivity(this)
                 .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
@@ -88,6 +135,20 @@ public class MainActivity extends AppCompatActivity {
                         token.continuePermissionRequest();
                     }
                 }).check();
+    }
+    private void loadProfile(String url) {
+        Log.d(TAG, "Image cache path: " + url);
+
+        Picasso.get().load(url)
+                .into(imgProfile);
+        imgProfile.setColorFilter(ContextCompat.getColor(this, android.R.color.transparent));
+    }
+
+    private void loadProfileDefault() {
+
+        Picasso.get().load(R.drawable.placeholder_profile).into(imgProfile);
+
+        imgProfile.setColorFilter(ContextCompat.getColor(this, R.color.profile_default_tint));
     }
 
     private void showImagePickerOptions() {
@@ -137,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
-                Uri uri = data.getParcelableExtra("path");
+                uri = data.getParcelableExtra("path");
                 try {
                     // You can update this bitmap to your server
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
@@ -150,6 +211,86 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void uploadImage(Uri uri) {
+
+        if(uri!= null && !uri.getPath().isEmpty()) {
+
+
+            StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
+
+            StorageReference riversRef = mStorageRef.child("images/iddeal.jpg");
+
+            riversRef.putFile(uri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // Get a URL to the uploaded content
+                            Uri downloadUrl = taskSnapshot.getUploadSessionUri();
+                            Log.d(TAG, "Image cache path: " + uri);
+                           // imageId = taskSnapshot.getUploadSessionUri().toString();
+                            postEvent(taskSnapshot.getUploadSessionUri().toString());
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                            Log.d(TAG, "Image cache path: " + exception);
+                            // ...
+                        }
+                    });
+        } else {
+            Toast.makeText(this,"Please upload image to post ",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    long onDatePickerClick(String dated )  {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        try {
+            date = formatter.parse(dated);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date.getTime();
+    }
+
+
+    void postEvent(String imageId){
+
+        ImageEvents events = new ImageEvents();
+        events.setImageId(imageId);
+        events.setTitle(caption.getText().toString());
+        events.setPostedBy(mAuth.getUid());
+        events.setPostedDate(String.valueOf(System.currentTimeMillis()));
+        events.setStartDate(String.valueOf(onDatePickerClick(dateStr)));
+        events.setEventState(EventStatus.SHOWING);
+        events.setPostedByName(GetGenericsKt.getUserName(getApplicationContext(), FirebaseAuth.getInstance().getCurrentUser().getUid()).getName());
+
+        FirbaseWriteHandler firbaseWriteHandler = new FirbaseWriteHandler();
+        firbaseWriteHandler.updateEvents(events, new EmptyResultListener() {
+            @Override
+            public void onSuccess() {
+                Log.d(TAG, "DocumentSnapshot doPostEvents onFailure ");
+                finish();
+
+            }
+
+            @Override
+            public void onFailure(@NotNull Exception e) {
+                Log.d(TAG, "DocumentSnapshot doPostEvents onFailure " + e.getLocalizedMessage());
+
+            }
+        });
+
+
+//        var members: ArrayList<Bookmarks>? = null
+//        var postedByName : String? = null
+//        var bookmarkBy: ArrayList<String>? = null
     }
 
     /**
@@ -176,5 +317,10 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = Uri.fromParts("package", getPackageName(), null);
         intent.setData(uri);
         startActivityForResult(intent, 101);
+    }
+
+    @Override
+    public boolean handleMultipleClicks() {
+        return  MultipleClickHandler.Companion.handleMultipleClicks();
     }
 }

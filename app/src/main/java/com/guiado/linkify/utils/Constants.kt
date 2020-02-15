@@ -32,5 +32,6 @@ object Constants {
 
     val POSTAD_OBJECT = "POSTAD"
     val AD_DOCID = "DOCID"
+    val BASEURL_COLLECTION_GEN_POSTEVVENT_IMG = "imgevents/"
 
 }

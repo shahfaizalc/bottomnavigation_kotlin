@@ -2,6 +2,7 @@ package com.guiado.linkify.viewmodel
 
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -29,6 +30,7 @@ import com.guiado.linkify.R
 import com.guiado.linkify.adapter.CustomAdapter
 import com.guiado.linkify.model.CoachItem
 import com.guiado.linkify.model.SearchMode
+import com.guiado.linkify.picker.MainActivity
 import java.util.ArrayList
 
 
@@ -63,7 +65,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
         }
         query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
-        doGetTalents()
+      //  doGetTalents()
     }
 
 
@@ -123,10 +125,15 @@ class DiscussionModel(internal var activity: FragmentActivity,
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
         if(!handleMultipleClicks()) {
-            val fragment = FragmentNewDiscusssion()
-            val bundle = Bundle()
-            fragment.setArguments(bundle)
-            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+
+            val i = Intent(activity, MainActivity::class.java)
+            activity.startActivity(i);
+
+
+//            val fragment = FragmentNewDiscusssion()
+//            val bundle = Bundle()
+//            fragment.setArguments(bundle)
+//            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
         }
     }
 
