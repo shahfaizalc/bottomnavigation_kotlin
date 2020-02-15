@@ -30,6 +30,7 @@ import com.guiado.linkify.R
 import com.guiado.linkify.adapter.CustomAdapter
 import com.guiado.linkify.model.CoachItem
 import com.guiado.linkify.model.SearchMode
+import com.guiado.linkify.model2.ImageEvents
 import com.guiado.linkify.picker.MainActivity
 import java.util.ArrayList
 
@@ -38,7 +39,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
                       internal val fragmentProfileInfo: FragmentDiscussions)// To show list of user images (Gallery)
     : BaseObservable() {
 
-    var talentProfilesList: ObservableArrayList<PostDiscussion>
+    var talentProfilesList: ObservableArrayList<ImageEvents>
     var query : Query
     var db :FirebaseFirestore
     private val mAuth: FirebaseAuth
@@ -64,8 +65,8 @@ class DiscussionModel(internal var activity: FragmentActivity,
             Log.d(TAG, "getProfile  "+e)
 
         }
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
-      //  doGetTalents()
+        query = db.collection("imgevents").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
+        doGetTalents()
     }
 
 
@@ -147,7 +148,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
     fun onFilterClearClick() = View.OnClickListener() {
         showClearFilter = View.GONE
         searchMode = SearchMode.DEFAULT
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("imgevents").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
         resetScrrollListener = true
         talentProfilesList.removeAll(talentProfilesList)
 
@@ -190,7 +191,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
     }
 
     fun doGetTalentsSearch(searchQuery: String) {
-            query = db.collection("discussion")
+            query = db.collection("imgevents")
                     .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
                     .orderBy("postedDate", Query.Direction.DESCENDING)
                     .limit(10)
@@ -204,47 +205,47 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
     fun addTalentsItems(document: QueryDocumentSnapshot) {
 
-        val adModel = document.toObject(PostDiscussion::class.java)
+        val adModel = document.toObject(ImageEvents::class.java)
 
         Log.d(TAG, "Success getting documents: " + adModel.postedBy)
 
-         if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && (adModel.eventState.ordinal == EventStatus.SHOWING.ordinal)) {
+       //  if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && (adModel.eventState.ordinal == EventStatus.SHOWING.ordinal)) {
 
-             getKeyWords(talentProfilesList,adModel)
+         //    getKeyWords(talentProfilesList,adModel)
 
              if(!isUpdated) {
                  talentProfilesList.add(adModel)
              }
-         }
+      //   }
     }
 
     var isUpdated = false
 
-    private fun getKeyWords(keyWords: ObservableArrayList<PostDiscussion>,keyWord: PostDiscussion): ObservableArrayList<PostDiscussion> {
-        isUpdated = false
-
-        var count = 0;
-
-        keyWords.notNull {
-            val numbersIterator = it.iterator()
-            numbersIterator.let {
-                while (numbersIterator.hasNext()) {
-                    val value = (numbersIterator.next())
-                    if (value.postedDate.equals(keyWord.postedDate)){
-                        Log.d(TAG, "Success getting fai documents: set " )
-                        isUpdated = true
-                        talentProfilesList.set(count,keyWord)
-                        return@notNull
-                    }
-                    count = count + 1;
-                }
-            }
-        }
-        return keyWords;
-    }
+//    private fun getKeyWords(keyWords: ObservableArrayList<ImageEvents>,keyWord: PostDiscussion): ObservableArrayList<PostDiscussion> {
+//        isUpdated = false
+//
+//        var count = 0;
+//
+//        keyWords.notNull {
+//            val numbersIterator = it.iterator()
+//            numbersIterator.let {
+//                while (numbersIterator.hasNext()) {
+//                    val value = (numbersIterator.next())
+//                    if (value.postedDate.equals(keyWord.postedDate)){
+//                        Log.d(TAG, "Success getting fai documents: set " )
+//                        isUpdated = true
+//                       // talentProfilesList.set(count,keyWord)
+//                        return@notNull
+//                    }
+//                    count = count + 1;
+//                }
+//            }
+//        }
+//        return keyWords;
+//    }
 
     fun filterByCategory(position: Int) {
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("imgevents").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
                 .whereArrayContains("keyWords",position)
         talentProfilesList.removeAll(talentProfilesList)
 

@@ -35,7 +35,7 @@ class DiscussionAdapter(private val adSearchModel: DiscussionModel) :
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!) {
             countriesInfoModel = viewModel.talentProfilesList[position]
-            keyWordsTag = getDiscussionCategories(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
+          //  keyWordsTag = getDiscussionCategories(countriesInfoModel!!.keyWords,viewHolder.itemView.context)
             postDate= viewModel.talentProfilesList[position].postedDate?.toLong()?.let { convertLongToTime(it) }
             itemPosition = position
             mainDataModel = viewModel
@@ -43,6 +43,8 @@ class DiscussionAdapter(private val adSearchModel: DiscussionModel) :
         }
         viewHolder.binding!!.setItemClickListener(this)
     }
+
+
 
 
 
@@ -62,7 +64,7 @@ class DiscussionAdapter(private val adSearchModel: DiscussionModel) :
 
     override fun onClickAdSearchListItem(countriesViewModel: DiscussionModel, position: Int) {
         Log.d(TAG,"Click: "+ countriesViewModel.talentProfilesList[position].postedBy)
-        countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position],position)
+      //  countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position],position)
 
     }
 }

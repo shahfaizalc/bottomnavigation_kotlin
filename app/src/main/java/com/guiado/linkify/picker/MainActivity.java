@@ -3,7 +3,6 @@ package com.guiado.linkify.picker;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.usage.UsageEvents;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -19,22 +18,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.guiado.linkify.R;
 import com.guiado.linkify.listeners.EmptyResultListener;
 import com.guiado.linkify.listeners.MultipleClickListener;
 import com.guiado.linkify.model.EventStatus;
-import com.guiado.linkify.model2.Events;
 import com.guiado.linkify.model2.ImageEvents;
 import com.guiado.linkify.network.FirbaseWriteHandler;
 import com.guiado.linkify.util.GetGenericsKt;
@@ -221,31 +217,30 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
             uploadPhoto.setVisibility(View.INVISIBLE);
 
             progressBar.setVisibility(View.VISIBLE);
+           //String.valueOf(System.currentTimeMillis()));
 
 
             StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
-            StorageReference riversRef = mStorageRef.child("images/iddeal.jpg");
+            StorageReference riversRef = mStorageRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid() + "");
 
             riversRef.putFile(uri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            // Get a URL to the uploaded content
-                            Uri downloadUrl = taskSnapshot.getUploadSessionUri();
-                            Log.d(TAG, "Image cache path: " + uri);
-                           // imageId = taskSnapshot.getUploadSessionUri().toString();
-                            postEvent(taskSnapshot.getUploadSessionUri().toString());
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle unsuccessful uploads
-                            Log.d(TAG, "Image cache path: " + exception);
-                            uploadPhoto.setVisibility(View.VISIBLE);
+                    .addOnSuccessListener(taskSnapshot -> {
 
-                            progressBar.setVisibility(View.INVISIBLE);                        }
+                        // Get a URL to the uploaded content
+                        Task<Uri> downloadUrl = taskSnapshot.getMetadata().getReference()
+                                .getDownloadUrl().addOnSuccessListener(uri1 ->{
+                                    Log.d(TAG, "Image cache path: " + uri1);
+                                    postEvent(uri1.toString());});
+
+                        Log.d(TAG, "Image cache path: " + downloadUrl);
+                       // imageId = taskSnapshot.getUploadSessionUri().toString();
+                    })
+                    .addOnFailureListener(exception -> {
+                        // Handle unsuccessful uploads
+                        Log.d(TAG, "Image cache path: " + exception);
+                        uploadPhoto.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
                     });
         } else {
             Toast.makeText(this,"Please upload image to post ",Toast.LENGTH_LONG).show();
@@ -267,8 +262,6 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
 
 
     void postEvent(String imageId){
-
-
 
         ImageEvents events = new ImageEvents();
         events.setImageId(imageId);
@@ -296,10 +289,6 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
             }
         });
 
-
-//        var members: ArrayList<Bookmarks>? = null
-//        var postedByName : String? = null
-//        var bookmarkBy: ArrayList<String>? = null
     }
 
     /**
