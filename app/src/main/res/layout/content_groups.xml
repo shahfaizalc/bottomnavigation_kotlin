@@ -6,7 +6,7 @@
 
         <variable
             name="adSearchModel"
-            type="com.guiado.linkify.viewmodel.GroupsModel" />
+            type="com.guiado.koodal.viewmodel.GroupsModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

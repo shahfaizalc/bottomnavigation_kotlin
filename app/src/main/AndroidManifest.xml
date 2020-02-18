@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.guiado.linkify">
+    package="com.guiado.koodal">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -13,10 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.guiado.linkify.picker.MainActivity"/>
-        <activity android:name="com.guiado.linkify.picker.ImagePickerActivity"/>
+        <activity android:name="com.guiado.koodal.picker.MainActivity"/>
+        <activity android:name="com.guiado.koodal.picker.ImagePickerActivity"/>
 
-        <activity android:name="com.guiado.linkify.activities.Main2Activity"
+        <activity android:name="com.guiado.koodal.activities.Main2Activity"
             android:windowSoftInputMode="adjustPan"
             >
             <intent-filter>

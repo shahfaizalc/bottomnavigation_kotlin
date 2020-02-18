@@ -7,11 +7,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.ActivityDiscussionViewModel" />
+            type="com.guiado.koodal.viewmodel.ActivityDiscussionViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.linkify.model2.ImageEvents" />
+            type="com.guiado.koodal.model2.ImageEvents" />
 
     </data>
 

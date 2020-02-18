@@ -6,7 +6,7 @@
 
         <variable
             name="adSearchModel"
-            type="com.guiado.linkify.viewmodel.SimilarDiscussionModel" />
+            type="com.guiado.koodal.viewmodel.SimilarDiscussionModel" />
     </data>
 
     <LinearLayout

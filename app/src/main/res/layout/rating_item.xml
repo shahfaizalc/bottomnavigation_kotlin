@@ -5,7 +5,7 @@
 
         <variable
             name="gameChooserModel"
-            type="com.guiado.linkify.viewmodel.RequestCompleteViewModel" />
+            type="com.guiado.koodal.viewmodel.RequestCompleteViewModel" />
     </data>
 
     <RelativeLayout

@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.linkify.viewmodel.StopOversViewModel" />
+            type="com.guiado.koodal.viewmodel.StopOversViewModel" />
     </data>
 
     <LinearLayout

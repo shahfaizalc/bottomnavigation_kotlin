@@ -7,7 +7,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.linkify.viewmodel.PhotoViewModel" />
+            type="com.guiado.koodal.viewmodel.PhotoViewModel" />
     </data>
 
     <ScrollView
@@ -51,7 +51,7 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <com.guiado.linkify.utils.ImageViewRounded
+                        <com.guiado.koodal.utils.ImageViewRounded
                             android:id="@+id/header2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

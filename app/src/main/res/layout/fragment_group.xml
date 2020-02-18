@@ -7,11 +7,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.GroupViewModel" />
+            type="com.guiado.koodal.viewmodel.GroupViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.linkify.model2.Groups" />
+            type="com.guiado.koodal.model2.Groups" />
 
     </data>
 

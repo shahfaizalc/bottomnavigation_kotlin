@@ -4,11 +4,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.GroupsModel" />
+            type="com.guiado.koodal.viewmodel.GroupsModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.linkify.model2.Groups" />
+            type="com.guiado.koodal.model2.Groups" />
 
         <variable
             name="itemPosition"
@@ -16,11 +16,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.linkify.adapter.GroupsAdapter" />
+            type="com.guiado.koodal.adapter.GroupsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.linkify.listeners.GroupsEventListener" />
+            type="com.guiado.koodal.listeners.GroupsEventListener" />
 
         <variable
             name="keyWordsTag"

@@ -4,11 +4,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.SavedEventsModel" />
+            type="com.guiado.koodal.viewmodel.SavedEventsModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.linkify.model2.Events" />
+            type="com.guiado.koodal.model2.Events" />
 
         <variable
             name="itemPosition"
@@ -16,11 +16,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.linkify.adapter.SavedEventsAdapter" />
+            type="com.guiado.koodal.adapter.SavedEventsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.linkify.listeners.SavedEventsEventListener" />
+            type="com.guiado.koodal.listeners.SavedEventsEventListener" />
 
         <variable
             name="keyWordsTag"

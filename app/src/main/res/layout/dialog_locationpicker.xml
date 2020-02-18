@@ -4,7 +4,7 @@
 
         <variable
             name="mainData"
-            type="com.guiado.linkify.viewmodel.LocationViewModel" />
+            type="com.guiado.koodal.viewmodel.LocationViewModel" />
     </data>
 
     <LinearLayout

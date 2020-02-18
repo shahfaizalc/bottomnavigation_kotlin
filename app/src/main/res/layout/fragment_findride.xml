@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.linkify.viewmodel.FindViewModel" />
+            type="com.guiado.koodal.viewmodel.FindViewModel" />
 
     </data>
 

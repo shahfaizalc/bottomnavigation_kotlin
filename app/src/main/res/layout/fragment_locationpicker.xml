@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.linkify.viewmodel.LocationPickerViewModel" />
+            type="com.guiado.koodal.viewmodel.LocationPickerViewModel" />
 
     </data>
 

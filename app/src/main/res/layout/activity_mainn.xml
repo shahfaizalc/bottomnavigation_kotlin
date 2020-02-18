@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.guiado.linkify.picker.MainActivity">
+    tools:context="com.guiado.koodal.picker.MainActivity">
 
     <include layout="@layout/layout_toolbar_profile" />
 

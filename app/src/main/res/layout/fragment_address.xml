@@ -6,7 +6,7 @@
 
         <variable
             name="postAdPricing"
-            type="com.guiado.linkify.viewmodel.AdressViewModel" />
+            type="com.guiado.koodal.viewmodel.AdressViewModel" />
     </data>
 
     <RelativeLayout

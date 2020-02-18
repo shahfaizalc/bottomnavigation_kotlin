@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.RequestCompleteViewModel" />
+            type="com.guiado.koodal.viewmodel.RequestCompleteViewModel" />
 
         <variable
             name="profile"
-            type="com.guiado.linkify.model2.Profile" />
+            type="com.guiado.koodal.model2.Profile" />
 
 
         <variable

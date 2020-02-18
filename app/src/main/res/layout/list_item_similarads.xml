@@ -5,11 +5,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.SimilarDiscussionModel" />
+            type="com.guiado.koodal.viewmodel.SimilarDiscussionModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.linkify.model2.Profile" />
+            type="com.guiado.koodal.model2.Profile" />
 
         <variable
             name="itemPosition"
@@ -17,11 +17,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.linkify.adapter.SimilarAdsAdapter" />
+            type="com.guiado.koodal.adapter.SimilarAdsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.linkify.listeners.SimilarAdsEventListener" />
+            type="com.guiado.koodal.listeners.SimilarAdsEventListener" />
 
         <variable
             name="address"
