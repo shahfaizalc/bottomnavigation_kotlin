@@ -203,6 +203,23 @@ class FirbaseWriteHandler {
                 }
     }
 
+    fun updateLikes(userInfo: ImageEvents, emptyResultListener: EmptyResultListener) {
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_POSTEVVENT_IMG)
+        collection.document(userInfo.postedDate!!).set(userInfo)
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
+
+
+
     fun updateJoin(userInfo: Groups, emptyResultListener: EmptyResultListener) {
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_GROUPS)

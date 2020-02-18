@@ -217,12 +217,12 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
             uploadPhoto.setVisibility(View.INVISIBLE);
 
             progressBar.setVisibility(View.VISIBLE);
-           //String.valueOf(System.currentTimeMillis()));
+            String postTime = String.valueOf(System.currentTimeMillis());
 
 
             StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
-            StorageReference riversRef = mStorageRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid() + "");
+            StorageReference riversRef = mStorageRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/"+postTime);
 
             riversRef.putFile(uri)
                     .addOnSuccessListener(taskSnapshot -> {
@@ -231,7 +231,10 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
                         Task<Uri> downloadUrl = taskSnapshot.getMetadata().getReference()
                                 .getDownloadUrl().addOnSuccessListener(uri1 ->{
                                     Log.d(TAG, "Image cache path: " + uri1);
-                                    postEvent(uri1.toString());});
+                                    postEvent(uri1.toString(),postTime);
+
+
+                                    });
 
                         Log.d(TAG, "Image cache path: " + downloadUrl);
                        // imageId = taskSnapshot.getUploadSessionUri().toString();
@@ -261,13 +264,13 @@ public class MainActivity extends AppCompatActivity implements MultipleClickList
     }
 
 
-    void postEvent(String imageId){
+    void postEvent(String id, String imageId){
 
         ImageEvents events = new ImageEvents();
-        events.setImageId(imageId);
+        events.setImageId(id);
         events.setTitle(caption.getText().toString());
         events.setPostedBy(mAuth.getUid());
-        events.setPostedDate(String.valueOf(System.currentTimeMillis()));
+        events.setPostedDate(imageId);
         events.setStartDate(String.valueOf(onDatePickerClick(dateStr)));
         events.setEventState(EventStatus.SHOWING);
         events.setPostedByName(GetGenericsKt.getUserName(getApplicationContext(), FirebaseAuth.getInstance().getCurrentUser().getUid()).getName());

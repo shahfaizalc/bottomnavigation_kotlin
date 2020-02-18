@@ -2,6 +2,7 @@ package com.guiado.linkify.util
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.media.Image
 import com.guiado.linkify.R
 import com.guiado.linkify.model.*
 import com.guiado.linkify.model2.*
@@ -79,7 +80,12 @@ class GenericValues {
         return gson.fromJson(fileName, PostEvents::class.java)
     }
 
-    fun discussionToString(profile : PostDiscussion) : String{
+    fun discussionToGson(profile : PostDiscussion) : String{
+        val gson  = Gson();
+        return gson.toJson(profile)
+    }
+
+    fun imgEventsToGson(profile : ImageEvents) : String{
         val gson  = Gson();
         return gson.toJson(profile)
     }
@@ -102,6 +108,13 @@ class GenericValues {
         val gson = Gson()
         return gson.fromJson(fileName, PostDiscussion::class.java)
     }
+
+
+    fun getDisccussionImg(fileName: String,context: Context): ImageEvents {
+        val gson = Gson()
+        return gson.fromJson(fileName, ImageEvents::class.java)
+    }
+
 
     fun getGroups(fileName: String,context: Context): Groups {
         val gson = Gson()

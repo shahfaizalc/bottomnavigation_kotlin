@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.guiado.linkify.BR
 import com.guiado.linkify.Events.MyCustomEvent
-import com.guiado.linkify.model.EventStatus
 import com.guiado.linkify.model2.Bookmarks
 import com.guiado.linkify.model2.PostDiscussion
 import com.guiado.linkify.model2.Profile
@@ -23,7 +22,6 @@ import com.guiado.linkify.util.*
 import com.guiado.linkify.utils.Constants
 import com.guiado.linkify.view.FirestoreDisccussFragmment
 import com.guiado.linkify.view.FragmentDiscussions
-import com.guiado.linkify.view.FragmentNewDiscusssion
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import com.guiado.linkify.R
@@ -110,10 +108,10 @@ class DiscussionModel(internal var activity: FragmentActivity,
     var profile = Profile();
 
 
-    fun openFragment2(postAdModel: PostDiscussion, position: Int) {
+    fun openFragment2(postAdModel: ImageEvents, position: Int) {
         val fragment = FirestoreDisccussFragmment()
         val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().imgEventsToGson(postAdModel))
         fragment.setArguments(bundle)
         fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 

@@ -74,7 +74,7 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
     fun openFragment2(postAdModel: PostDiscussion, position: Int) {
         val fragment = FirestoreMyDisccussFragmment()
         val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToGson(postAdModel))
         fragment.setArguments(bundle)
         fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 

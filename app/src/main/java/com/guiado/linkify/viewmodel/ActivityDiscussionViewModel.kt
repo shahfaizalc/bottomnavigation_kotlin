@@ -12,15 +12,12 @@ import com.guiado.linkify.R
 import com.guiado.linkify.handler.NetworkChangeHandler
 import com.guiado.linkify.listeners.EmptyResultListener
 import com.guiado.linkify.listeners.UseInfoGeneralResultListener
-import com.guiado.linkify.model2.*
 import com.guiado.linkify.network.FirbaseReadHandler
 import com.guiado.linkify.network.FirbaseWriteHandler
 import com.guiado.linkify.util.*
 import com.guiado.linkify.view.FirestoreDisccussFragmment
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.linkify.model2.*
-import com.guiado.linkify.util.*
-
 
 
 class ActivityDiscussionViewModel(private val context: Context,
@@ -62,20 +59,20 @@ class ActivityDiscussionViewModel(private val context: Context,
     }
 
 
-    @get:Bindable
-    var likesState: Boolean? = isLiked()
-        set(city) {
-            field = city
-            notifyPropertyChanged(BR.likesState)
-        }
-
-
-    @get:Bindable
-    var likesCount: Int? = getLikeCount()
-        set(city) {
-            field = city
-            notifyPropertyChanged(BR.likesCount)
-        }
+//    @get:Bindable
+//    var likesState: Boolean? = isLiked()
+//        set(city) {
+//            field = city
+//            notifyPropertyChanged(BR.likesState)
+//        }
+//
+//
+//    @get:Bindable
+//    var likesCount: Int? = getLikeCount()
+//        set(city) {
+//            field = city
+//            notifyPropertyChanged(BR.likesCount)
+//        }
 
     @InverseMethod("convertIntToString")
     open fun convertStringToInt(value: String): Int {
@@ -109,7 +106,7 @@ class ActivityDiscussionViewModel(private val context: Context,
     private fun isBookmarked(): Boolean? {
 
         var isFollow = false
-        postDiscussion?.bookmarks.notNull {
+        postDiscussion?.members.notNull {
             val bookmarks: MutableIterator<Bookmarks> = it.iterator()
             while (bookmarks.hasNext()) {
                 val name = bookmarks.next()
@@ -122,30 +119,30 @@ class ActivityDiscussionViewModel(private val context: Context,
         return isFollow
     }
 
-    private fun getLikeCount(): Int? {
-         var count = 0
-         postDiscussion?.likes.notNull {
-            count = postDiscussion?.likes!!.size
-        }
-        return count
-    }
-
-
-    private fun isLiked(): Boolean? {
-
-        var isFollow = false
-        postDiscussion?.likes.notNull {
-            val likes: MutableIterator<Likes> = it.iterator()
-            while (likes.hasNext()) {
-                val name = likes.next()
-                if (name.likedBy.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
-                    isFollow = true
-                }
-            }
-        }
-
-        return isFollow
-    }
+//    private fun getLikeCount(): Int? {
+//         var count = 0
+//         postDiscussion?.likes.notNull {
+//            count = postDiscussion?.likes!!.size
+//        }
+//        return count
+//    }
+//
+//
+//    private fun isLiked(): Boolean? {
+//
+//        var isFollow = false
+//        postDiscussion?.likes.notNull {
+//            val likes: MutableIterator<Likes> = it.iterator()
+//            while (likes.hasNext()) {
+//                val name = likes.next()
+//                if (name.likedBy.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
+//                    isFollow = true
+//                }
+//            }
+//        }
+//
+//        return isFollow
+//    }
 
     private fun isFollowed(): Boolean? {
 
@@ -171,11 +168,11 @@ class ActivityDiscussionViewModel(private val context: Context,
         if (!handleMultipleClicks()) {
             var isExist = false
             var comments2 = getbookmarks()
-            if (postDiscussion?.bookmarks.isNullOrEmpty()) {
-                postDiscussion?.bookmarks = ArrayList<Bookmarks>()
+            if (postDiscussion?.members.isNullOrEmpty()) {
+                postDiscussion?.members = ArrayList<Bookmarks>()
                 postDiscussion?.bookmarkBy = ArrayList<String>()
             } else {
-                val bookmarks: MutableIterator<Bookmarks> = postDiscussion?.bookmarks!!.iterator()
+                val bookmarks: MutableIterator<Bookmarks> = postDiscussion?.members!!.iterator()
                 while (bookmarks.hasNext()) {
                     val name = bookmarks.next()
                     if (name.markedById.equals(comments2.markedById)) {
@@ -187,10 +184,10 @@ class ActivityDiscussionViewModel(private val context: Context,
             }
 
             if(isExist){
-                postDiscussion?.bookmarks?.remove(comments2)
+                postDiscussion?.members?.remove(comments2)
                 postDiscussion?.bookmarkBy?.remove(comments2.markedById)
             } else {
-                postDiscussion?.bookmarks?.add(comments2)
+                postDiscussion?.members?.add(comments2)
                 postDiscussion?.bookmarkBy?.add(comments2.markedById)
 
             }
@@ -231,58 +228,58 @@ class ActivityDiscussionViewModel(private val context: Context,
 
 
 
-    fun updateLikes() = View.OnClickListener {
-
-        if (!handleMultipleClicks()) {
-            var isExist = false
-            var comments2 = getLikes()
-            if (postDiscussion?.likes.isNullOrEmpty()) {
-                postDiscussion?.likes = ArrayList<Likes>()
-            } else {
-                val likes: MutableIterator<Likes> = postDiscussion?.likes!!.iterator()
-                while (likes.hasNext()) {
-                    val name = likes.next()
-                    if (name.likedBy.equals(comments2.likedBy)) {
-                        isExist = true
-                        comments2 = name
-                    }
-                }
-
-            }
-
-            if(isExist){
-                postDiscussion?.likes?.remove(comments2)
-            } else {
-                postDiscussion?.likes?.add(comments2)
-            }
-
-            updatelike(isExist)
-
-        }
-    }
-
-    private fun updatelike(exist: Boolean) {
-        FirbaseWriteHandler(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
-            override fun onFailure(e: Exception) {
-                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onSuccess() {
-                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
-
-                likesState = !exist
-
-                if(exist){
-                    likesCount =likesCount!!- 1
-                } else {
-                    likesCount =likesCount!!+ 1
-                }
-//                getVal(postDiscussion?.comments)
-//                review = ""
-            }
-        })
-    }
+//    fun updateLikes() = View.OnClickListener {
+//
+//        if (!handleMultipleClicks()) {
+//            var isExist = false
+//            var comments2 = getLikes()
+//            if (postDiscussion?.likes.isNullOrEmpty()) {
+//                postDiscussion?.likes = ArrayList<Likes>()
+//            } else {
+//                val likes: MutableIterator<Likes> = postDiscussion?.likes!!.iterator()
+//                while (likes.hasNext()) {
+//                    val name = likes.next()
+//                    if (name.likedBy.equals(comments2.likedBy)) {
+//                        isExist = true
+//                        comments2 = name
+//                    }
+//                }
+//
+//            }
+//
+//            if(isExist){
+//                postDiscussion?.likes?.remove(comments2)
+//            } else {
+//                postDiscussion?.likes?.add(comments2)
+//            }
+//
+//            updatelike(isExist)
+//
+//        }
+//    }
+//
+//    private fun updatelike(exist: Boolean) {
+//        FirbaseWriteHandler(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
+//            override fun onFailure(e: Exception) {
+//                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
+//                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+//            }
+//
+//            override fun onSuccess() {
+//                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
+//
+//                likesState = !exist
+//
+//                if(exist){
+//                    likesCount =likesCount!!- 1
+//                } else {
+//                    likesCount =likesCount!!+ 1
+//                }
+////                getVal(postDiscussion?.comments)
+////                review = ""
+//            }
+//        })
+//    }
 
     private fun getLikes(): Likes {
         val likes = Likes()
@@ -413,12 +410,12 @@ class ActivityDiscussionViewModel(private val context: Context,
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        postDiscussion = c.getDisccussion(postAdObj, context)
+        postDiscussion = c.getDisccussionImg(postAdObj, context)
 
     }
 
     @get:Bindable
-    var postDiscussion: PostDiscussion? = null
+    var postDiscussion: ImageEvents? = null
         private set(roleAdapterAddress) {
             field = roleAdapterAddress
             notifyPropertyChanged(BR.roleAdapterAddress)
@@ -430,13 +427,13 @@ class ActivityDiscussionViewModel(private val context: Context,
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
     }
-
-    @get:Bindable
-    var keyWordsTagg: String? = getDiscussionCategories(postDiscussion!!.keyWords, context).toString()
-        set(price) {
-            field = price
-            notifyPropertyChanged(BR.keyWordsTagg)
-        }
+//
+//    @get:Bindable
+//    var keyWordsTagg: String? = getDiscussionCategories(postDiscussion!!.keyWords, context).toString()
+//        set(price) {
+//            field = price
+//            notifyPropertyChanged(BR.keyWordsTagg)
+//        }
 
 
     @get:Bindable

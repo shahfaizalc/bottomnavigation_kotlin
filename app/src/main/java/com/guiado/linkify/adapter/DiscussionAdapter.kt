@@ -44,10 +44,6 @@ class DiscussionAdapter(private val adSearchModel: DiscussionModel) :
         viewHolder.binding!!.setItemClickListener(this)
     }
 
-
-
-
-
     override fun getItemCount()= adSearchModel.talentProfilesList.size
 
     override fun getItemId(position: Int) = position.toLong()
@@ -64,7 +60,7 @@ class DiscussionAdapter(private val adSearchModel: DiscussionModel) :
 
     override fun onClickAdSearchListItem(countriesViewModel: DiscussionModel, position: Int) {
         Log.d(TAG,"Click: "+ countriesViewModel.talentProfilesList[position].postedBy)
-      //  countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position],position)
+        countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position],position)
 
     }
 }

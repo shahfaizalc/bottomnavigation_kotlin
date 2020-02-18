@@ -685,7 +685,6 @@ fun loadImage(view: ImageView, imageUrl: String?) {
     } else {
         Picasso.get()
                 .load(imageUrl)
-                .resize(50, 50)
                 .error(R.drawable.placeholder_profile)
                 .placeholder(R.drawable.placeholder_profile)
                 .into(view)
@@ -1049,6 +1048,8 @@ fun adapter(searchView: SearchView,countriesViewModel: SavedDiscussionModel,recy
         }
     })
 }
+
+
 
 
 

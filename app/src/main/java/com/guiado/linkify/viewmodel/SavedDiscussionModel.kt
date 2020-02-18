@@ -81,7 +81,7 @@ class SavedDiscussionModel(internal var activity: FragmentActivity, internal val
         if (postAdModel.eventState.ordinal < EventStatus.HIDDEN.ordinal) {
             val fragment = FirestoreMyDisccussFragmment()
             val bundle = Bundle()
-            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToGson(postAdModel))
             fragment.setArguments(bundle)
             fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 

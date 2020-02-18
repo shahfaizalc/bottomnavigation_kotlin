@@ -84,7 +84,7 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
         binding.mainDataModel = areaViewModel
         binding.countriesInfoModel = areaViewModel.postDiscussion
 
-        sChatCollection = FirebaseFirestore.getInstance().collection("discussion/"+groups.postedDate!!+"/comments")
+        sChatCollection = FirebaseFirestore.getInstance().collection("events/"+groups.postedDate!!+"/comments")
         /** Get the last 50 chat messages ordered by timestamp .  */
         sChatQuery = sChatCollection.orderBy("timestamp", Query.Direction.DESCENDING).limit(200)
 

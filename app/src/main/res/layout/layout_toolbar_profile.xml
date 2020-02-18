@@ -32,8 +32,9 @@
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/img_plus"
-            android:layout_width="@dimen/ic_plus_width"
-            android:layout_height="@dimen/ic_plus_width"
+            android:layout_width="@dimen/dimen_32"
+            android:layout_height="@dimen/dimen_32"
+            android:layout_margin="@dimen/dimen_20"
             android:layout_alignBottom="@id/prg_registerScreen_product_image_layout"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_plus"

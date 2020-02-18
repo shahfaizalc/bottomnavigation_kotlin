@@ -25,24 +25,62 @@
         android:hint="Write a description..."
         android:padding="@dimen/dimen_12" />
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Date"
-        android:textColor="@color/orange"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/postDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_16"
-        android:background="@drawable/circular_bg_border_black"
-        android:drawableEnd="@drawable/calendar_range"
-        android:focusable="false"
-        android:hint="@string/defaultDate"
-        android:padding="@dimen/dimen_12"
-        android:textColor="@color/black" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textColor="@color/orange"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/postDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_16"
+                android:background="@drawable/circular_bg_border_black"
+                android:drawableEnd="@drawable/calendar_range"
+                android:focusable="false"
+                android:hint="@string/defaultDate"
+                android:padding="@dimen/dimen_12"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textColor="@color/orange"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_16"
+                android:background="@drawable/circular_bg_border_black"
+                android:drawableEnd="@drawable/calendar_range"
+                android:focusable="false"
+                android:hint="@string/defaultDate"
+                android:padding="@dimen/dimen_12"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
 
     <RelativeLayout
         android:id="@+id/doneBtn"

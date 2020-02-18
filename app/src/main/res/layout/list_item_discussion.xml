@@ -31,7 +31,6 @@
             name="postDate"
             type="java.lang.String" />
 
-
     </data>
 
 
@@ -104,24 +103,7 @@
                     android:textColor="@color/green" />
 
 
-                <TextView
-                    android:linksClickable="true"
-                    android:autoLink="web|email"
-                    android:ellipsize="end"
-                    android:maxLines="7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{countriesInfoModel.title}"
-                    android:layout_marginBottom="@dimen/dimen_4"
-                    android:textColor="@color/colorBlacklight" />
 
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorSmoke"
-                    android:paddingStart="@dimen/dimen_32"
-                    android:paddingEnd="@dimen/dimen_32" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/prg_registerScreen_product_image_layout"
@@ -145,13 +127,24 @@
                         app:layout_constraintBottom_toBottomOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:linksClickable="true"
+                    android:autoLink="web|email"
+                    android:ellipsize="end"
+                    android:maxLines="7"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="@dimen/dimen_4"
-                    android:paddingStart="@dimen/dimen_4"
-                    android:paddingBottom="@dimen/dimen_4"
-                    android:src="@drawable/bookmark_selector" />
+                    android:text="@{countriesInfoModel.title}"
+                    android:layout_marginBottom="@dimen/dimen_4"
+                    android:textColor="@color/colorBlacklight" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorSmoke"
+                    android:paddingStart="@dimen/dimen_32"
+                    android:paddingEnd="@dimen/dimen_32" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
