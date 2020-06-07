@@ -2,6 +2,7 @@ package com.guiado.grads.viewmodel
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -33,6 +34,7 @@ import com.guiado.grads.view.FragmentProfile
 import com.guiado.grads.view.FragmentProfileEdit
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.adapter.CountryAdapter2
+import com.guiado.grads.network.FirbaseWriteHandlerActivity
 import com.guiado.grads.util.storeUserName
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -55,7 +57,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
     init {
         networkHandler()
-        profile = (GenericValues().getProfile(postAdObj, fragmentSignin.context!!))
+        profile = (GenericValues().getProfile(postAdObj, fragmentSignin))
         readAutoFillItems()
         observableArrayList = readAutoFillItems2()
 
@@ -164,10 +166,10 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
             if (profile.name != "" && profile.email != "" && profile.phone != "" && profile.title != "") {
                 showProgresss(true)
-                val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateUserInfo(profile, object : EmptyResultListener {
+                val firbaseWriteHandler = FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(profile, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot onFailure " + e.message)
-                        Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
                         showProgresss(false)
 
                     }
@@ -177,16 +179,16 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
                         Log.d(TAG, "DocumentSnapshot onSuccess ")
                         storeUserName(context, FirebaseAuth.getInstance().currentUser!!.uid, profile)
 
-                        val fragment = FragmentProfile()
-                        val bundle = Bundle()
-                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-                        fragment.setArguments(bundle)
-                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+//                        val fragment = FragmentProfile()
+//                        val bundle = Bundle()
+//                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//                        fragment.setArguments(bundle)
+                        fragmentSignin.finish()
 
                     }
                 })
             } else {
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -199,20 +201,29 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     }
     fun updateAddress() = View.OnClickListener {
         registerEventBus();
-        val fragment = FragmentAddress()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+//        val fragment = FragmentAddress()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+
+        val intent = Intent(fragmentSignin,FragmentAddress::class.java);
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragmentSignin.startActivity(intent)
     }
 
     fun updateKeyWords() = View.OnClickListener {
         registerEventBus();
-        val fragment = FragmentKeyWords()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+//        val fragment = FragmentKeyWords()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+
+
+        val intent = Intent(fragmentSignin,FragmentKeyWords::class.java);
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragmentSignin.startActivity(intent)
     }
 
 

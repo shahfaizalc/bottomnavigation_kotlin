@@ -2,6 +2,7 @@ package com.guiado.grads.viewmodel
 
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -218,12 +219,16 @@ class TheEventsModel(internal var activity: FragmentActivity,
 
 
     fun openFragment2(postAdModel: Events, position: Int) {
-        val fragment = FragmentEvent()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
-
+//        val fragment = FragmentEvent()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+//
+//
+        val intent = Intent(activity,FragmentEvent::class.java);
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
+        activity.startActivity(intent);
     }
 
     private fun handleMultipleClicks(): Boolean {
@@ -348,10 +353,16 @@ class TheEventsModel(internal var activity: FragmentActivity,
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
 
-        val fragment = FragmentNewEvent()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+//        val fragment = FragmentNewEvent()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+//
+//        activity
+
+        val intent = Intent(activity,FragmentNewEvent::class.java);
+        activity.startActivity(intent);
+
 
     }
 

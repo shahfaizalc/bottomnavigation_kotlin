@@ -15,8 +15,9 @@ import com.guiado.grads.network.FirbaseWriteHandler
 import com.guiado.grads.util.*
 import com.guiado.grads.view.*
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.grads.network.FirbaseWriteHandlerActivity
 
-class EventViewModel(private val context: Context,
+class EventViewModel(
                      private val fragmentSignin: FragmentEvent,
                      internal val postAdObj: String) : BaseObservable(),
         NetworkChangeHandler.NetworkChangeListener {
@@ -32,7 +33,7 @@ class EventViewModel(private val context: Context,
     init {
         networkHandler()
         readAutoFillItems()
-        userProfile = getUserName(context, FirebaseAuth.getInstance().currentUser!!.uid);
+        userProfile = getUserName(fragmentSignin, FirebaseAuth.getInstance().currentUser!!.uid);
     }
 
     @get:Bindable
@@ -130,10 +131,10 @@ class EventViewModel(private val context: Context,
     }
 
     private fun updateBookmmarks(exist: Boolean) {
-        FirbaseWriteHandler(fragmentSignin).updateEvents(postDiscussion!!, object : EmptyResultListener {
+        FirbaseWriteHandlerActivity(fragmentSignin).updateEvents(postDiscussion!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
                 showProgresss(false)
             }
 
@@ -157,7 +158,7 @@ class EventViewModel(private val context: Context,
         val comments = Bookmarks()
         comments.markedById = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         comments.markedOn = System.currentTimeMillis().toString()
-        comments.markedByUser = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+        comments.markedByUser = getUserName(fragmentSignin, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
 //        val comments2 = ArrayList<Likes>()
 //        comments2.add(comments)
         return comments
@@ -168,7 +169,7 @@ class EventViewModel(private val context: Context,
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        postDiscussion = c.getEventss(postAdObj, context)
+        postDiscussion = c.getEventss(postAdObj, fragmentSignin)
 
     }
 
@@ -187,7 +188,7 @@ class EventViewModel(private val context: Context,
     }
 
     @get:Bindable
-    var keyWordsTagg: String? = getDiscussionCategories(postDiscussion!!.keyWords, context).toString()
+    var keyWordsTagg: String? = getDiscussionCategories(postDiscussion!!.keyWords, fragmentSignin).toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.keyWordsTagg)
@@ -218,12 +219,12 @@ class EventViewModel(private val context: Context,
 
 
     fun registerListeners() {
-        networkStateHandler!!.registerNetWorkStateBroadCast(context)
+        networkStateHandler!!.registerNetWorkStateBroadCast(fragmentSignin)
         networkStateHandler!!.setNetworkStateListener(this)
     }
 
     fun unRegisterListeners() {
-        networkStateHandler!!.unRegisterNetWorkStateBroadCast(context)
+        networkStateHandler!!.unRegisterNetWorkStateBroadCast(fragmentSignin)
     }
 
     override fun networkChangeReceived(state: Boolean) {
@@ -234,7 +235,7 @@ class EventViewModel(private val context: Context,
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(id), Toast.LENGTH_LONG).show()
     }
 
     private fun handleMultipleClicks(): Boolean {

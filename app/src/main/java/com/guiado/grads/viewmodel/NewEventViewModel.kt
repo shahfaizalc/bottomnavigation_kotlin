@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -22,6 +23,7 @@ import com.guiado.grads.util.*
 import com.guiado.grads.utils.Constants
 import com.guiado.grads.view.*
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.grads.network.FirbaseWriteHandlerActivity
 import com.itravis.ticketexchange.listeners.DateListener
 import com.itravis.ticketexchange.listeners.TimeListener
 import com.itravis.ticketexchange.utils.DatePickerEvent
@@ -87,7 +89,7 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
     @Override
     fun timePickerClick() = View.OnClickListener() {
         if (!handleMultipleClicks()) {
-            TimePickerEvent().onTimePickerClick(fragmentSignin.context!!, object : TimeListener {
+            TimePickerEvent().onTimePickerClick(fragmentSignin, object : TimeListener {
                 override fun onTimeSet(result: String) {
                     showTime = result;
                 }
@@ -98,7 +100,7 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
     @Override
     fun datePickerClick() = View.OnClickListener() {
         if (!handleMultipleClicks()) {
-            DatePickerEvent().onDatePickerClick(fragmentSignin.context!!, object : DateListener {
+            DatePickerEvent().onDatePickerClick(fragmentSignin, object : DateListener {
                 override fun onDateSet(result: String) {
                     showDate = result
                 }
@@ -109,7 +111,7 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
     @Override
     fun expiryDatePickerClick() = View.OnClickListener() {
         if (!handleMultipleClicks()) {
-            DatePickerEvent().onDatePickerClick(fragmentSignin.context!!, object : DateListener {
+            DatePickerEvent().onDatePickerClick(fragmentSignin, object : DateListener {
                 override fun onDateSet(result: String) {
                     expiryDate = result
                 }
@@ -122,11 +124,15 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
         if(!EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().register(this);
         }
-        val fragment = FragmentAddress()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+//        val fragment = FragmentAddress()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+
+        val intent = Intent(fragmentSignin, FragmentAddress::class.java)
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragmentSignin.startActivity(intent);
     }
 
     @get:Bindable
@@ -207,10 +213,10 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
                 events.postedByName = getUserName(context.applicationContext, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
 
                 Log.d(TAG, "DocumentSnapshot  doPostEvents "  )
-                val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateEvents(events, object : EmptyResultListener {
+                val firbaseWriteHandler = FirbaseWriteHandlerActivity(fragmentSignin).updateEvents(events, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot doPostEvents onFailure " + e.message)
-                        Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
                         showProgresss(false)
 
                     }
@@ -220,7 +226,8 @@ class NewEventViewModel(private val context: Context, private val fragmentSignin
                         val fragment = FragmentTheEvents()
                         val bundle = Bundle()
                         fragment.setArguments(bundle)
-                        fragmentSignin.mFragmentNavigation.popFragment(1);
+                       // fragmentSignin.mFragmentNavigation.popFragment(1);
+                        fragmentSignin.finish()
                        // fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
                         showProgresss(false)
                         showPopUpWindow()

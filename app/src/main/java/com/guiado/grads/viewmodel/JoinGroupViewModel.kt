@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -15,10 +16,11 @@ import com.guiado.grads.network.FirbaseWriteHandler
 import com.guiado.grads.util.*
 import com.guiado.grads.view.FragmentJoinGroup
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.grads.network.FirbaseWriteHandlerActivity
+import com.guiado.grads.utils.Constants
 
 
-class JoinGroupViewModel(private val context: Context,
-                         private val fragmentSignin: FragmentJoinGroup,
+class JoinGroupViewModel(private val context: FragmentJoinGroup,
                          internal val postAdObj: String) : BaseObservable(),
         NetworkChangeHandler.NetworkChangeListener {
 
@@ -105,10 +107,10 @@ class JoinGroupViewModel(private val context: Context,
     }
 
     private fun updateBookmmarks(exist: Boolean) {
-        FirbaseWriteHandler(fragmentSignin).updateJoin(postDiscussion!!, object : EmptyResultListener {
+        FirbaseWriteHandlerActivity(context).updateJoin(postDiscussion!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
             }
 
             override fun onSuccess() {
@@ -117,6 +119,9 @@ class JoinGroupViewModel(private val context: Context,
                 bookmarkState = !exist
 
                 Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
+
+                context.finish();
+
 //                val fragment = FragmentMyGroups()
 //                val bundle = Bundle()
 //                fragment.setArguments(bundle)

@@ -132,8 +132,8 @@ class PhotoViewModel(private val context: Context, private val fragmentSignin: F
         val fragment = FragmentAddress()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+        //fragment.setArguments(bundle)
+        //fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
         userAddress = "DDUE"
         Log.d("dddd","dddd "+ userTitle)
 

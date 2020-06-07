@@ -2,6 +2,7 @@ package com.guiado.grads.viewmodel
 
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -33,8 +34,8 @@ import com.guiado.grads.model.SearchMode
 import java.util.ArrayList
 
 
-class DiscussionModel(internal var activity: FragmentActivity,
-                      internal val fragmentProfileInfo: FragmentDiscussions)// To show list of user images (Gallery)
+class DiscussionModel (internal var activity: FragmentActivity,
+                      internal val fragmentProfileInfo: FragmentDiscussions) // To show list of user images (Gallery)
     : BaseObservable() {
 
     var talentProfilesList: ObservableArrayList<PostDiscussion>
@@ -45,10 +46,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
     var resetScrrollListener : Boolean = false;
 
     companion object {
-
         private val TAG = "DiscussionModel"
-
-
     }
 
 
@@ -109,12 +107,15 @@ class DiscussionModel(internal var activity: FragmentActivity,
 
 
     fun openFragment2(postAdModel: PostDiscussion, position: Int) {
-        val fragment = FirestoreDisccussFragmment()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+//        val fragment = FirestoreDisccussFragmment()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 
+        val intent = Intent(activity, FirestoreDisccussFragmment::class.java)
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+        activity.startActivity(intent)
     }
 
     private fun handleMultipleClicks(): Boolean {
@@ -124,10 +125,13 @@ class DiscussionModel(internal var activity: FragmentActivity,
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
         if(!handleMultipleClicks()) {
-            val fragment = FragmentNewDiscusssion()
-            val bundle = Bundle()
-            fragment.setArguments(bundle)
-            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+//            val fragment = FragmentNewDiscusssion()
+//            val bundle = Bundle()
+//            fragment.setArguments(bundle)
+//            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+//
+            val intent = Intent(activity, FragmentNewDiscusssion::class.java)
+            activity.startActivity(intent)
         }
     }
 

@@ -1,5 +1,6 @@
 package com.guiado.grads.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,23 +17,19 @@ import com.guiado.grads.viewmodel.SavedEventsModel
 import com.guiado.grads.viewmodel.TheEventsModel
 
 
-class FragmentSavedEvents : BaseFragment() {
+class FragmentSavedEvents : Activity() {
 
 
     var binding: ContentSavedeventsBinding? = null;
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        return bindView(inflater, container)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        if (binding == null) {
-            binding = DataBindingUtil.inflate(inflater, R.layout.content_savedevents, container, false)
-            val areaViewModel = SavedEventsModel(activity!!, this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+     if (binding == null) {
+            binding = DataBindingUtil.setContentView(this, R.layout.content_savedevents)
+            val areaViewModel = SavedEventsModel( this)
             binding?.adSearchModel = areaViewModel
         }
-        return binding!!.root
+
     }
 
 }

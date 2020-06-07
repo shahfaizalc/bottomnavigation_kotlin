@@ -1,5 +1,6 @@
 package com.guiado.grads.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,23 +14,19 @@ import com.guiado.grads.fragments.BaseFragment
 import com.guiado.grads.viewmodel.MyDiscussionModel
 
 
-class FragmentMyDiscussions : BaseFragment() {
+class FragmentMyDiscussions : Activity() {
 
 
     var binding: ContentMydiscussionBinding? = null;
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        return bindView(inflater, container)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        if (binding == null) {
-            binding = DataBindingUtil.inflate<ContentMydiscussionBinding>(inflater, R.layout.content_mydiscussion, container, false)
-            val areaViewModel = MyDiscussionModel(activity!!, this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    if (binding == null) {
+            binding = DataBindingUtil.setContentView(this, R.layout.content_mydiscussion)
+            val areaViewModel = MyDiscussionModel(this, this)
             binding?.adSearchModel = areaViewModel
         }
-        return binding!!.root
     }
 
 }

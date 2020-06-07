@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.guiado.grads.R
 import com.guiado.grads.databinding.FragmentProfileBinding
-import com.guiado.grads.databinding.FragmentWelcomeBinding
 import com.guiado.grads.fragments.BaseFragment
 import com.guiado.grads.viewmodel.ProfileViewModel
 
@@ -24,7 +23,7 @@ class FragmentProfile : BaseFragment() {
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
         val binding = DataBindingUtil.inflate<FragmentProfileBinding>(inflater, R.layout.fragment_profile, container, false)
-        areaViewModel = ProfileViewModel(this.context!!, this)
+        areaViewModel = ProfileViewModel(activity!!, this.context!!, this)
         binding.homeData = areaViewModel
         return binding.root
     }

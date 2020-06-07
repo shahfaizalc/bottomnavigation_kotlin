@@ -1,11 +1,15 @@
 package com.guiado.grads.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
@@ -32,7 +36,7 @@ import com.guiado.grads.model2.Chat
  * For a general intro to the RecyclerView, see [Creating
  * Lists](https://developer.android.com/training/material/lists-cards.html).
  */
-class FirestoreChatFragmment : BaseFragment(), AuthStateListener {
+class FirestoreChatFragmment : Activity(), AuthStateListener, LifecycleOwner {
     companion object {
         private const val TAG = "FirestoreChatFragmment"
 
@@ -40,6 +44,8 @@ class FirestoreChatFragmment : BaseFragment(), AuthStateListener {
             FirebaseFirestore.setLoggingEnabled(true)
         }
     }
+
+    private lateinit var lifecycleRegistry: LifecycleRegistry
 
     private var mRecyclerView: RecyclerView? = null
     private var mSendButton: ImageButton? = null
@@ -49,24 +55,23 @@ class FirestoreChatFragmment : BaseFragment(), AuthStateListener {
     /** Get the last 50 chat messages ordered by timestamp .  */
     private lateinit var sChatQuery :Query
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_chat)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.activity_chat, container, false)
-
-        val postAdObj  = arguments!!.getString(Constants.POSTAD_OBJECT)
+        val postAdObj  = intent.extras!!.getString(Constants.POSTAD_OBJECT)
         val c = GenericValues()
-        val groups = c.getGroups(postAdObj!!, this.context!!)
+        val groups = c.getGroups(postAdObj!!, this)
 
         sChatCollection = FirebaseFirestore.getInstance().collection("groups/"+"chats/"+groups.postedDate!!)
         /** Get the last 50 chat messages ordered by timestamp .  */
         sChatQuery = sChatCollection.orderBy("timestamp", Query.Direction.DESCENDING).limit(500)
 
-        mRecyclerView = view.findViewById(R.id.messagesList)
-        mSendButton = view.findViewById(R.id.sendButton)
-        mMessageEdit = view.findViewById(R.id.messageEdit)
-        mEmptyListMessage = view.findViewById(R.id.emptyTextView)
-        val manager = LinearLayoutManager(this.activity)
+        mRecyclerView = findViewById(R.id.messagesList)
+        mSendButton = findViewById(R.id.sendButton)
+        mMessageEdit = findViewById(R.id.messageEdit)
+        mEmptyListMessage = findViewById(R.id.emptyTextView)
+        val manager = LinearLayoutManager(this)
         manager.reverseLayout = true
         manager.stackFromEnd = true
         mRecyclerView!!.setHasFixedSize(true)
@@ -82,16 +87,22 @@ class FirestoreChatFragmment : BaseFragment(), AuthStateListener {
             }
         })
 
+        lifecycleRegistry = LifecycleRegistry(this)
+        lifecycleRegistry.setCurrentState(Lifecycle.State.CREATED)
 
-        return view
     }
 
     override fun onStart() {
         super.onStart()
+        lifecycleRegistry.setCurrentState(Lifecycle.State.STARTED)
         if (isSignedIn) {
             attachRecyclerViewAdapter()
         }
         FirebaseAuth.getInstance().addAuthStateListener(this)
+    }
+
+    override fun getLifecycle(): Lifecycle {
+        return lifecycleRegistry
     }
 
     override fun onAuthStateChanged(auth: FirebaseAuth) {
@@ -110,7 +121,7 @@ class FirestoreChatFragmment : BaseFragment(), AuthStateListener {
 
     private fun setMessageValue() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        val name = getUserName(activity!!.applicationContext!!, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+        val name = getUserName(applicationContext!!, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
         onAddMessage(Chat(name, mMessageEdit!!.text.toString(), uid))
         mMessageEdit!!.setText("")
     }
@@ -151,6 +162,6 @@ class FirestoreChatFragmment : BaseFragment(), AuthStateListener {
     }
 
     private fun onAddMessage(chat: Chat) {
-        sChatCollection.add(chat).addOnFailureListener(this.activity!!) { e -> Log.e(TAG, "Failed to write message", e) }
+        sChatCollection.add(chat).addOnFailureListener(this) { e -> Log.e(TAG, "Failed to write message", e) }
     }
 }

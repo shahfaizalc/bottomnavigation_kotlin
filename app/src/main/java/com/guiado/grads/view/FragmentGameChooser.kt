@@ -1,6 +1,9 @@
 package com.guiado.grads.view
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,21 +14,15 @@ import com.guiado.grads.fragments.BaseFragment
 import com.guiado.grads.utils.Constants
 import com.guiado.grads.viewmodel.GameChooserModel
 
-class FragmentGameChooser : BaseFragment() {
+class FragmentGameChooser : Activity() {
 
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val postAdObj  = arguments!!.getString(Constants.POSTAD_OBJECT)
-
-        return bindView(inflater, container,postAdObj)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String?): View {
-        val binding = DataBindingUtil.inflate<FragmentGamechooserBinding>(inflater, R.layout.fragment_gamechooser, container, false)
-        val areaViewModel = GameChooserModel(activity!!, this,postAdObj)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+       val postAdObj  = intent.extras!!.getString(Constants.POSTAD_OBJECT)
+        val binding : FragmentGamechooserBinding = DataBindingUtil.setContentView(this, R.layout.fragment_gamechooser)
+        val areaViewModel = GameChooserModel( this,postAdObj)
         binding.gameChooserModel = areaViewModel
-        return binding.root
     }
 
 }

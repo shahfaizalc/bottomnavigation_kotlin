@@ -1,5 +1,6 @@
 package com.guiado.grads.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,25 +15,20 @@ import com.guiado.grads.viewmodel.FeedbackViewModel
 import com.guiado.grads.viewmodel.PrivacyViewModel
 
 
-class FragmentPrivacy : BaseFragment() {
+class FragmentPrivacy : Activity() {
 
     var binding: FragmentPrivacyBinding? = null
 
     @Transient
     lateinit internal var areaViewModel: PrivacyViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        return bindView(inflater, container)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        if (binding == null) {
-            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_privacy, container, false)
-            areaViewModel = PrivacyViewModel(this.context!!, this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    if (binding == null) {
+            binding = DataBindingUtil.setContentView(this, R.layout.fragment_privacy)
+            areaViewModel = PrivacyViewModel(this, this)
             binding!!.homeData = areaViewModel
         }
-        return binding!!.root
     }
 
     override fun onResume() {

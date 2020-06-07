@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -25,7 +26,7 @@ import com.guiado.grads.model.EventStatus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
-class MyDiscussionModel(internal var activity: FragmentActivity, internal val fragmentProfileInfo: FragmentMyDiscussions)// To show list of user images (Gallery)
+class MyDiscussionModel(internal var activity: FragmentMyDiscussions, internal val fragmentProfileInfo: FragmentMyDiscussions)// To show list of user images (Gallery)
     : BaseObservable() {
 
     var talentProfilesList: ObservableArrayList<PostDiscussion>
@@ -76,12 +77,16 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
 
 
     fun openFragment2(postAdModel: PostDiscussion, position: Int) {
-        val fragment = FirestoreMyDisccussFragmment()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 
+//        val fragment = FirestoreMyDisccussFragmment()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+
+        val intent = Intent(activity, FirestoreMyDisccussFragmment::class.java)
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+        activity.startActivity(intent)
     }
 
     private fun handleMultipleClicks(): Boolean {
@@ -91,10 +96,13 @@ class MyDiscussionModel(internal var activity: FragmentActivity, internal val fr
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
 
-        val fragment = FragmentNewDiscusssion()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+//        val fragment = FragmentNewDiscusssion()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+
+        val intent = Intent(activity, FragmentNewDiscusssion::class.java)
+        activity.startActivity(intent)
 
     }
 

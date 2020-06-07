@@ -17,7 +17,7 @@ import com.guiado.grads.view.FragmentAddress
 import org.greenrobot.eventbus.EventBus
 import java.util.*
 
-class AdressViewModel(internal val activity: FragmentActivity, internal val fragmentProfileInfo: FragmentAddress,
+class AdressViewModel( internal val fragmentProfileInfo: FragmentAddress,
                       internal val postAdObj: String)// To show list of user images (Gallery)
     : BaseObservable() {
     companion object {
@@ -28,14 +28,14 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
 
     init {
         readAutoFillItems()
-        profile = GenericValues().getProfile(postAdObj, activity.applicationContext)
+        profile = GenericValues().getProfile(postAdObj, fragmentProfileInfo)
     }
 
     var cityCode: String? = profile.address?.cityCode
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        roleAdapterAddress = c.readAutoFillItems(activity.applicationContext)
+        roleAdapterAddress = c.readAutoFillItems(fragmentProfileInfo)
 
     }
 
@@ -93,12 +93,12 @@ class AdressViewModel(internal val activity: FragmentActivity, internal val frag
 
             if (!handleMultipleClicks()) {
 
-                activity.onBackPressed();
+                fragmentProfileInfo.finish()
                 EventBus.getDefault().post(MyCustomEvent(profile));
 
             }
         } else {
-            Toast.makeText(fragmentProfileInfo.context, fragmentProfileInfo.context!!.resources.getText(R.string.mandatoryField), Toast.LENGTH_SHORT).show()
+            Toast.makeText(fragmentProfileInfo, fragmentProfileInfo.resources.getText(R.string.mandatoryField), Toast.LENGTH_SHORT).show()
         }
     }
 

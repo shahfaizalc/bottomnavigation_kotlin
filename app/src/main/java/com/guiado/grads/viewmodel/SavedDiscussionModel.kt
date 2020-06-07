@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -27,7 +28,7 @@ import com.guiado.grads.view.FragmentSavedDiscussions
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
-class SavedDiscussionModel(internal var activity: FragmentActivity, internal val fragmentProfileInfo: FragmentSavedDiscussions)// To show list of user images (Gallery)
+class SavedDiscussionModel( internal val fragmentProfileInfo: FragmentSavedDiscussions)// To show list of user images (Gallery)
     : BaseObservable() {
 
     var talentProfilesList: ObservableArrayList<PostDiscussion>
@@ -60,7 +61,7 @@ class SavedDiscussionModel(internal var activity: FragmentActivity, internal val
 
 
     @get:Bindable
-    var finderTitle: String? = activity.resources.getString(R.string.finderEventTitle)
+    var finderTitle: String? = fragmentProfileInfo.resources.getString(R.string.finderEventTitle)
         set(city) {
             field = city
             notifyPropertyChanged(BR.finderTitle)
@@ -79,11 +80,16 @@ class SavedDiscussionModel(internal var activity: FragmentActivity, internal val
 
     fun openFragment2(postAdModel: PostDiscussion, position: Int) {
         if (postAdModel.eventState.ordinal < EventStatus.HIDDEN.ordinal) {
-            val fragment = FirestoreMyDisccussFragmment()
-            val bundle = Bundle()
-            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
-            fragment.setArguments(bundle)
-            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+
+//            val fragment = FirestoreMyDisccussFragmment()
+//            val bundle = Bundle()
+//            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+//            fragment.setArguments(bundle)
+//            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+//
+            val intent = Intent(fragmentProfileInfo, FirestoreMyDisccussFragmment::class.java);
+            intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
+            fragmentProfileInfo.startActivity(intent)
 
         } else {
             showPopUpWindow();
@@ -91,9 +97,9 @@ class SavedDiscussionModel(internal var activity: FragmentActivity, internal val
     }
 
     fun showPopUpWindow() {
-        val view = getNotificationContentView(activity,
-                activity.applicationContext.resources.getString(R.string.oops_title),
-                activity.applicationContext.resources.getString(R.string.oops_msg))
+        val view = getNotificationContentView(fragmentProfileInfo,
+                fragmentProfileInfo.applicationContext.resources.getString(R.string.oops_title),
+                fragmentProfileInfo.applicationContext.resources.getString(R.string.oops_msg))
         val popupWindow = PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.showAtLocation(view, Gravity.TOP, 0, 0);
         view.findViewById<View>(R.id.closeBtn).setOnClickListener {
@@ -109,10 +115,13 @@ class SavedDiscussionModel(internal var activity: FragmentActivity, internal val
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
 
-        val fragment = FragmentNewDiscusssion()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+//        val fragment = FragmentNewDiscusssion()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+
+        val intent = Intent(fragmentProfileInfo, FragmentNewDiscusssion::class.java)
+        fragmentProfileInfo.startActivity(intent)
 
     }
 

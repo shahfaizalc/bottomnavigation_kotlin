@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -24,7 +25,7 @@ import com.guiado.grads.model.EventStatus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
-class MyEventsModel(internal var activity: FragmentActivity,
+class MyEventsModel(
                     internal val fragmentProfileInfo: FragmentMyEvents)// To show list of user images (Gallery)
     : BaseObservable() {
 
@@ -54,7 +55,7 @@ class MyEventsModel(internal var activity: FragmentActivity,
     }
 
     @get:Bindable
-    var finderTitle: String? = activity.resources.getString(R.string.finderEventTitle)
+    var finderTitle: String? = fragmentProfileInfo.resources.getString(R.string.finderEventTitle)
         set(city) {
             field = city
             notifyPropertyChanged(BR.finderTitle)
@@ -72,11 +73,15 @@ class MyEventsModel(internal var activity: FragmentActivity,
 
 
     fun openFragment2(postAdModel: Events, position: Int) {
-        val fragment = FragmentMyEvent()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+//        val fragment = FragmentMyEvent()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+
+        val intent = Intent(fragmentProfileInfo, FragmentMyEvent::class.java)
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
+        fragmentProfileInfo.startActivity(intent)
 
     }
 

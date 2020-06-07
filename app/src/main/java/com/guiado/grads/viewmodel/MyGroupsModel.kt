@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -81,11 +82,16 @@ class MyGroupsModel(internal var activity: FragmentActivity,
 
 
     fun openFragment2(postAdModel: Groups, position: Int) {
-        val fragment = FirestoreChatFragmment()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().groupToString(postAdModel))
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+//        val fragment = FirestoreChatFragmment()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().groupToString(postAdModel))
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+
+        val intent = Intent(fragmentProfileInfo.activity, FirestoreChatFragmment::class.java);
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().groupToString(postAdModel))
+        fragmentProfileInfo.activity!!.startActivity(intent)
+
 
     }
 
@@ -131,10 +137,13 @@ class MyGroupsModel(internal var activity: FragmentActivity,
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
 
-        val fragment = FragmentNewGroup()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+//        val fragment = FragmentNewGroup()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+
+        val intent = Intent(fragmentProfileInfo.activity, FragmentNewGroup::class.java);
+        fragmentProfileInfo.activity!!.startActivity(intent)
 
     }
 
@@ -267,10 +276,14 @@ class MyGroupsModel(internal var activity: FragmentActivity,
     @Override
     fun doFindGroups() = View.OnClickListener() {
 
-        val fragment = FragmentGroups()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+//        val fragment = FragmentGroups()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+//
+        val intent = Intent(fragmentProfileInfo.activity, FragmentGroups::class.java);
+        fragmentProfileInfo.activity!!.startActivity(intent)
+
 
     }
 

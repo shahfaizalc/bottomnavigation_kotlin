@@ -1,5 +1,6 @@
 package com.guiado.grads.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,27 +13,23 @@ import com.guiado.grads.utils.Constants
 import com.guiado.grads.viewmodel.ProfileEditViewModel
 
 
-class FragmentProfileEdit : BaseFragment() {
+class FragmentProfileEdit : Activity() {
 
     var binding: FragmentProfileeditBinding? = null
 
     @Transient
     lateinit internal var areaViewModel: ProfileEditViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val postAdObj  = arguments!!.getString(Constants.POSTAD_OBJECT)
 
-        return bindView(inflater, container,postAdObj!!)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String): View {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+      val postAdObj  = intent.extras!!.getString(Constants.POSTAD_OBJECT)
         if (binding == null) {
-            binding = DataBindingUtil.inflate<FragmentProfileeditBinding>(inflater, R.layout.fragment_profileedit, container, false)
-            areaViewModel = ProfileEditViewModel(this.context!!, this,postAdObj)
+            binding = DataBindingUtil.setContentView(this, R.layout.fragment_profileedit)
+            areaViewModel = ProfileEditViewModel(this, this,postAdObj!!)
             binding!!.homeData = areaViewModel
             binding!!.profile = areaViewModel.profile
         }
-        return binding!!.root
     }
 
     override fun onResume() {

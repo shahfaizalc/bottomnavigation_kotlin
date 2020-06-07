@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -25,7 +26,7 @@ import com.itravis.ticketexchange.utils.TimePickerEvent
 
 
 
-class InfoViewModel(private val context: Context, private val fragmentSignin: FragmentInfo) :
+class InfoViewModel( private val fragmentSignin: FragmentInfo) :
         BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
     private val mAuth: FirebaseAuth
     private var networkStateHandler: NetworkChangeHandler? = null
@@ -81,28 +82,35 @@ class InfoViewModel(private val context: Context, private val fragmentSignin: Fr
 
     fun savedDiscussionsClicked() {
         if (!handleMultipleClicks()) {
-            val fragment = FragmentSavedDiscussions()
-            val bundle = Bundle()
-            fragment.setArguments(bundle)
-            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+//            val fragment = FragmentSavedDiscussions()
+//            val bundle = Bundle()
+//            fragment.setArguments(bundle)
+//            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+
+            val intent = Intent(fragmentSignin,FragmentSavedDiscussions::class.java )
+            fragmentSignin.startActivity(intent)
+
 
         }
     }
     fun savedEventsClicked() {
         if (!handleMultipleClicks()) {
-            val fragment = FragmentSavedEvents()
-            val bundle = Bundle()
-            fragment.setArguments(bundle)
-            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+//            val fragment = FragmentSavedEvents()
+//            val bundle = Bundle()
+//            fragment.setArguments(bundle)
+//            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+
+            val intent = Intent(fragmentSignin,FragmentSavedEvents::class.java )
+            fragmentSignin.startActivity(intent)
 
         }
     }
 
-    private fun launchChildFragment(mapFragment: BaseFragment) {
-        val bundle = Bundle()
-        mapFragment.arguments = bundle
-        fragmentSignin.newInstance(1, mapFragment, bundle)
-    }
+//    private fun launchChildFragment(mapFragment: BaseFragment) {
+//        val bundle = Bundle()
+//        mapFragment.arguments = bundle
+//        fragmentSignin.newInstance(1, mapFragment, bundle)
+//    }
 
     private fun validateInput(): Boolean {
 
@@ -120,12 +128,13 @@ class InfoViewModel(private val context: Context, private val fragmentSignin: Fr
     }
 
     fun registerListeners() {
-        networkStateHandler!!.registerNetWorkStateBroadCast(context)
+        networkStateHandler!!.registerNetWorkStateBroadCast(fragmentSignin)
         networkStateHandler!!.setNetworkStateListener(this)
+
     }
 
     fun unRegisterListeners() {
-        networkStateHandler!!.unRegisterNetWorkStateBroadCast(context)
+        networkStateHandler!!.unRegisterNetWorkStateBroadCast(fragmentSignin)
     }
 
     override fun networkChangeReceived(state: Boolean) {
@@ -136,14 +145,14 @@ class InfoViewModel(private val context: Context, private val fragmentSignin: Fr
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(id), Toast.LENGTH_LONG).show()
     }
 
 
     @Override
     fun timePickerClick() = View.OnClickListener() {
         if (!handleMultipleClicks()) {
-            TimePickerEvent().onTimePickerClick(fragmentSignin.context!!, object : TimeListener {
+            TimePickerEvent().onTimePickerClick(fragmentSignin, object : TimeListener {
                 override fun onTimeSet(result: String) {
                     showTime = result;
                 }
@@ -154,7 +163,7 @@ class InfoViewModel(private val context: Context, private val fragmentSignin: Fr
     @Override
     fun datePickerClick() = View.OnClickListener() {
         if (!handleMultipleClicks()) {
-            DatePickerEvent().onDatePickerClick(fragmentSignin.context!!, object : DateListener {
+            DatePickerEvent().onDatePickerClick(fragmentSignin, object : DateListener {
                 override fun onDateSet(result: String) {
                     showDate = (result)
                 }
@@ -167,7 +176,7 @@ class InfoViewModel(private val context: Context, private val fragmentSignin: Fr
         if (!handleMultipleClicks()) {
 
             val bundle = Bundle()
-            fragmentSignin.newInstance(2, FragmentLocationPicker(), bundle)
+           // fragmentSignin.newInstance(2, FragmentLocationPicker(), bundle)
         }
     }
 
@@ -176,7 +185,7 @@ class InfoViewModel(private val context: Context, private val fragmentSignin: Fr
     fun setDropOffLocation() = View.OnClickListener() {
         if (!handleMultipleClicks()) {
             val bundle = Bundle()
-            fragmentSignin.newInstance(2, FragmentLocationPicker(), bundle)
+          //  fragmentSignin.newInstance(2, FragmentLocationPicker(), bundle)
 
         }
     }

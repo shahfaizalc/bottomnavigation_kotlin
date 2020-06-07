@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -202,20 +203,30 @@ class EventsViewModel(private val context: Context, private val fragmentSignin: 
 
     fun updateAddress() = View.OnClickListener {
         EventBus.getDefault().register(this);
-        val fragment = FragmentAddress()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+
+//        val fragment = FragmentAddress()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+//
+        val intent = Intent(fragmentSignin.activity, FragmentAddress::class.java)
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragmentSignin.activity!!.startActivity(intent)
     }
 
     fun updateKeyWords() = View.OnClickListener {
         EventBus.getDefault().register(this);
-        val fragment = FragmentKeyWords()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+//        val fragment = FragmentKeyWords()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+//
+        val intent = Intent(fragmentSignin.activity,FragmentKeyWords::class.java)
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragmentSignin.activity!!.startActivity(intent)
+
     }
 
 

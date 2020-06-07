@@ -1,5 +1,6 @@
 package com.guiado.grads.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,24 +17,17 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
 
-class FragmentKeyWords : BaseFragment() {
+class FragmentKeyWords : Activity() {
 
     lateinit var binding: FragmentKeywordsBinding
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val postAdObj = arguments!!.getString(POSTAD_OBJECT)
 
-        return bindView(inflater, container, postAdObj!!)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_keywords, container, false)
-        val areaViewModel = KeyWordsViewModel(activity!!, this, postAdObj)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val postAdObj = intent.extras!!.getString(POSTAD_OBJECT)
+        binding = DataBindingUtil.setContentView(this, R.layout.fragment_keywords)
+        val areaViewModel = KeyWordsViewModel(this, postAdObj!!)
         binding.postAdPricing = areaViewModel
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val chipGroup: ChipGroup = view.findViewById(R.id.chipGroup)
+       val chipGroup: ChipGroup = findViewById(R.id.chipGroup)
         val tagList = binding.postAdPricing?.listOfCoachings
 
         val extractKeyWords = binding.postAdPricing?.profile?.keyWords
@@ -45,7 +39,7 @@ class FragmentKeyWords : BaseFragment() {
             chip.isChecked =  if(extractKeyWords!=null)  extractKeyWords.contains(index+1) else  false
 
             chip.setOnCheckedChangeListener { buttonView, isChecked ->
-                Toast.makeText(activity?.applicationContext, "" + buttonView.text, Toast.LENGTH_LONG).show()
+                Toast.makeText(this?.applicationContext, "" + buttonView.text, Toast.LENGTH_LONG).show()
                 Log.d("tAG", tagList[index].categorycode + " " + tagList[index].categoryname);
                 if (isChecked) {
                     binding.postAdPricing?.listOfCoachingsSelected?.add(tagList[index].categorycode.toInt())

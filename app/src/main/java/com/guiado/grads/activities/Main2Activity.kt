@@ -17,14 +17,12 @@ import com.guiado.grads.network.FirbaseReadHandler
 import com.guiado.grads.util.getUserName
 import com.guiado.grads.utils.FragmentHistory
 import com.guiado.grads.utils.Utils
-import com.guiado.grads.view.FragmentDiscussions
-import com.guiado.grads.view.FragmentMyGroups
-import com.guiado.grads.view.FragmentTheEvents
-import com.guiado.grads.view.FragmentWelcome
+import com.guiado.grads.view.*
 import com.guiado.grads.views.FragNavController
 
 
-class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener {
+class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
+        FragNavController.TransactionListener, FragNavController.RootFragmentListener {
 
 
 
@@ -274,7 +272,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
             FragNavController.TAB1 -> return FragmentDiscussions()
             FragNavController.TAB2 -> return FragmentMyGroups()
             FragNavController.TAB3 -> return FragmentTheEvents()
-            FragNavController.TAB4 -> return FragmentWelcome()
+            FragNavController.TAB4 -> return FragmentProfile()
         }
         throw IllegalStateException("Need to send an index that we know")
     }

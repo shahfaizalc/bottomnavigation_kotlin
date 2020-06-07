@@ -16,9 +16,9 @@ import com.guiado.grads.util.*
 import com.guiado.grads.view.*
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.model.EventStatus
+import com.guiado.grads.network.FirbaseWriteHandlerActivity
 
-class MyEventViewModel(private val context: Context,
-                     private val fragmentSignin: FragmentMyEvent,
+class MyEventViewModel(private val fragmentSignin: FragmentMyEvent,
                      internal val postAdObj: String) : BaseObservable(),
         NetworkChangeHandler.NetworkChangeListener {
 
@@ -33,7 +33,7 @@ class MyEventViewModel(private val context: Context,
     init {
         networkHandler()
         readAutoFillItems()
-        userProfile = getUserName(context, FirebaseAuth.getInstance().currentUser!!.uid);
+        userProfile = getUserName(fragmentSignin, FirebaseAuth.getInstance().currentUser!!.uid);
     }
 
     @get:Bindable
@@ -70,19 +70,20 @@ class MyEventViewModel(private val context: Context,
 
      fun deleteBookmmarks() = View.OnClickListener {
          events!!.eventState = EventStatus.DELETED
-        FirbaseWriteHandler(fragmentSignin).updateEvents(events!!, object : EmptyResultListener {
+        FirbaseWriteHandlerActivity(fragmentSignin).updateEvents(events!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
             }
 
             override fun onSuccess() {
                 Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
 
                 Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-                val fragment = FragmentMyEvents()
-                fragmentSignin.mFragmentNavigation.popFragment(1);
-                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+//                val fragment = FragmentMyEvents()
+//                fragmentSignin.mFragmentNavigation.popFragment(1);
+//                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+                fragmentSignin.finish()
             }
         })
     }
@@ -92,19 +93,20 @@ class MyEventViewModel(private val context: Context,
 
         events!!.eventState = if(events!!.eventState.equals(EventStatus.HIDDEN) ) EventStatus.SHOWING else EventStatus.HIDDEN
 
-        FirbaseWriteHandler(fragmentSignin).updateEvents(events!!, object : EmptyResultListener {
+        FirbaseWriteHandlerActivity(fragmentSignin).updateEvents(events!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
             }
 
             override fun onSuccess() {
                 Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
 
                 Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-                val fragment = FragmentMyEvents()
-                fragmentSignin.mFragmentNavigation.popFragment(1);
-                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+//                val fragment = FragmentMyEvents()
+//                fragmentSignin.mFragmentNavigation.popFragment(1);
+//                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+                fragmentSignin.finish()
             }
         })
     }
@@ -143,10 +145,10 @@ class MyEventViewModel(private val context: Context,
     }
 
     private fun updateBookmmarks(exist: Boolean) {
-        FirbaseWriteHandler(fragmentSignin).updateEvents(events!!, object : EmptyResultListener {
+        FirbaseWriteHandlerActivity(fragmentSignin).updateEvents(events!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
             }
 
             override fun onSuccess() {
@@ -168,7 +170,7 @@ class MyEventViewModel(private val context: Context,
         val comments = Bookmarks()
         comments.markedById = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         comments.markedOn = System.currentTimeMillis().toString()
-        comments.markedByUser = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+        comments.markedByUser = getUserName(fragmentSignin, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
 //        val comments2 = ArrayList<Likes>()
 //        comments2.add(comments)
         return comments
@@ -179,7 +181,7 @@ class MyEventViewModel(private val context: Context,
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        events = c.getEventss(postAdObj, context)
+        events = c.getEventss(postAdObj, fragmentSignin)
 
     }
 
@@ -198,7 +200,7 @@ class MyEventViewModel(private val context: Context,
     }
 
     @get:Bindable
-    var keyWordsTagg: String? = getDiscussionCategories(events!!.keyWords, context).toString()
+    var keyWordsTagg: String? = getDiscussionCategories(events!!.keyWords, fragmentSignin).toString()
         set(price) {
             field = price
             notifyPropertyChanged(BR.keyWordsTagg)
@@ -229,12 +231,12 @@ class MyEventViewModel(private val context: Context,
 
 
     fun registerListeners() {
-        networkStateHandler!!.registerNetWorkStateBroadCast(context)
+        networkStateHandler!!.registerNetWorkStateBroadCast(fragmentSignin)
         networkStateHandler!!.setNetworkStateListener(this)
     }
 
     fun unRegisterListeners() {
-        networkStateHandler!!.unRegisterNetWorkStateBroadCast(context)
+        networkStateHandler!!.unRegisterNetWorkStateBroadCast(fragmentSignin)
     }
 
     override fun networkChangeReceived(state: Boolean) {
@@ -245,7 +247,7 @@ class MyEventViewModel(private val context: Context,
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(id), Toast.LENGTH_LONG).show()
     }
 
     private fun handleMultipleClicks(): Boolean {
