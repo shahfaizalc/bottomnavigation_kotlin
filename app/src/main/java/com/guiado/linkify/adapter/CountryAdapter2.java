@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.guiado.linkify.R;
 import com.guiado.linkify.model.IndiaItem;
 import com.guiado.linkify.viewmodel.ProfileEditViewModel;
-import com.guiado.linkify.viewmodel.TheEventsModel;
+
 
 public class CountryAdapter2 extends RecyclerView.Adapter<CountryAdapter2.ViewHolder>{
     ProfileEditViewModel listdata;

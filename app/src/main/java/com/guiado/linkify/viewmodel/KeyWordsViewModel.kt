@@ -16,8 +16,7 @@ import com.guiado.linkify.view.FragmentKeyWords
 import org.greenrobot.eventbus.EventBus
 import java.util.*
 
-class KeyWordsViewModel(internal val activity: FragmentActivity,
-                        internal val fragmentProfileInfo: FragmentKeyWords,
+class KeyWordsViewModel(internal val activity: FragmentKeyWords,
                         internal val postAdObj: String)// To show list of user images (Gallery)
     : BaseObservable() {
     companion object {
@@ -60,8 +59,8 @@ class KeyWordsViewModel(internal val activity: FragmentActivity,
 
             EventBus.getDefault().post(MyCustomEvent(profile));
         } else {
-            Toast.makeText(fragmentProfileInfo.context,
-                    fragmentProfileInfo.context!!.resources.getText(R.string.mandatoryField),
+            Toast.makeText(activity,
+                    activity.resources.getText(R.string.mandatoryField),
                     Toast.LENGTH_SHORT).show()
         }
     }

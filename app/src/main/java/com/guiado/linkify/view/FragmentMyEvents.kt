@@ -1,5 +1,7 @@
 package com.guiado.linkify.view
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,23 +15,26 @@ import com.guiado.linkify.fragments.BaseFragment
 import com.guiado.linkify.viewmodel.MyEventsModel
 
 
-class FragmentMyEvents : BaseFragment() {
+class FragmentMyEvents : Activity() {
 
 
     var binding: ContentMyeventsBinding? = null;
+    lateinit var areaViewModel : MyEventsModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        return bindView(inflater, container)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        if (binding == null) {
-            binding = DataBindingUtil.inflate(inflater, R.layout.content_myevents, container, false)
-            val areaViewModel = MyEventsModel(activity!!, this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+     if (binding == null) {
+            binding = DataBindingUtil.setContentView(this, R.layout.content_myevents)
+            areaViewModel = MyEventsModel( this)
             binding?.adSearchModel = areaViewModel
         }
-        return binding!!.root
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // areaViewModel.doGetTalents();
+
     }
 
 }

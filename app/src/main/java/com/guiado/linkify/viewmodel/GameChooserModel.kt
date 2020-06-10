@@ -18,9 +18,10 @@ import com.guiado.linkify.network.FirbaseWriteHandler
 import com.guiado.linkify.util.*
 import com.guiado.linkify.view.FragmentGameChooser
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.linkify.network.FirbaseWriteHandlerActivity
 import java.util.*
 
-class GameChooserModel(internal val activity: FragmentActivity,
+class GameChooserModel(
                        internal val fragmentGameChooser: FragmentGameChooser,
                        internal val postAdObj: String?) : BaseObservable() {
 
@@ -38,7 +39,7 @@ class GameChooserModel(internal val activity: FragmentActivity,
 
     private fun readAutoFillItems() {
         val values = GenericValues()
-        listOfCoachings = values.readDisuccsionTopics(activity.applicationContext)
+        listOfCoachings = values.readDisuccsionTopics(fragmentGameChooser)
         postDiscussion.title = postAdObj
     }
 
@@ -92,7 +93,7 @@ class GameChooserModel(internal val activity: FragmentActivity,
 
         if (!handleMultipleClicks()) {
             if ( postDiscussion.keyWords.isNullOrEmpty() || postDiscussion.title.isNullOrEmpty() ) {
-                Toast.makeText(fragmentGameChooser.context, fragmentGameChooser.context!!.resources.getString(R.string.disussionSelect), Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentGameChooser, fragmentGameChooser.resources.getString(R.string.disussionSelect), Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
 
@@ -102,20 +103,20 @@ class GameChooserModel(internal val activity: FragmentActivity,
 
                 postDiscussion.postedBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
                 postDiscussion.postedDate = System.currentTimeMillis().toString()
-                postDiscussion.postedByName = getUserName(activity.applicationContext, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+                postDiscussion.postedByName = getUserName(fragmentGameChooser, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
                 Log.d(TAG, "DocumentSnapshot  doDiscussionWrrite "  +postDiscussion.searchTags)
-                val firbaseWriteHandler = FirbaseWriteHandler(fragmentGameChooser).updateDiscussion(postDiscussion, object : EmptyResultListener {
+                val firbaseWriteHandler = FirbaseWriteHandlerActivity(fragmentGameChooser).updateDiscussion(postDiscussion, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                        Toast.makeText(fragmentGameChooser.context, fragmentGameChooser.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(fragmentGameChooser, fragmentGameChooser.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
                         showProgresss(false)
                     }
 
                     override fun onSuccess() {
                         showProgresss(false)
                         Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-
-                        fragmentGameChooser.mFragmentNavigation.popFragment(2)
+                        fragmentGameChooser.finish();
+                       // fragmentGameChooser.mFragmentNavigation.popFragment(2)
                        // fragmentGameChooser.mFragmentNavigation.replaceFragment(fragment);
                         showPopUpWindow()
                     }
@@ -125,9 +126,9 @@ class GameChooserModel(internal val activity: FragmentActivity,
     }
 
     fun showPopUpWindow(){
-        val view = getNotificationContentView(activity,
-                activity.applicationContext.resources.getString(R.string.success_title),
-                activity.applicationContext.resources.getString(R.string.success_msg))
+        val view = getNotificationContentView(fragmentGameChooser,
+                fragmentGameChooser.applicationContext.resources.getString(R.string.success_title),
+                fragmentGameChooser.applicationContext.resources.getString(R.string.success_msg))
         val popupWindow = PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.showAtLocation(view, Gravity.TOP, 0, 0);
         view.findViewById<View>(R.id.closeBtn).setOnClickListener{

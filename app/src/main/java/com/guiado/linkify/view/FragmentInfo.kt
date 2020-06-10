@@ -1,5 +1,6 @@
 package com.guiado.linkify.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,21 +13,17 @@ import com.guiado.linkify.fragments.BaseFragment
 import com.guiado.linkify.viewmodel.InfoViewModel
 
 
-class FragmentInfo : BaseFragment() {
+class FragmentInfo : Activity() {
 
     @Transient
     lateinit internal var areaViewModel: InfoViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        return bindView(inflater, container)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        val binding = DataBindingUtil.inflate<FragmentInfoBinding>(inflater, R.layout.fragment_info, container, false)
-        areaViewModel = InfoViewModel(this.context!!, this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+      val binding : FragmentInfoBinding= DataBindingUtil.setContentView(this, R.layout.fragment_info)
+        areaViewModel = InfoViewModel( this)
         binding.homeData = areaViewModel
-        return binding.root
     }
 
     override fun onResume() {

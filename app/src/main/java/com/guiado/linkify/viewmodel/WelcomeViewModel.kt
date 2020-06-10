@@ -1,8 +1,10 @@
 package com.guiado.linkify.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.BaseObservable
 import com.guiado.linkify.R
 import com.guiado.linkify.handler.NetworkChangeHandler
@@ -16,24 +18,17 @@ class WelcomeViewModel(private val context: Context, private val fragmentSignin:
 
     init {
         networkHandler()
-        fragmentSignin.mFragmentNavigation.viewToolbar(false);
     }
 
     fun signInUserClicked() {
-
-        val fragment = FragmentSignin()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
-
+        fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentSignin::class.java));
     }
 
 
     fun signUpUserClicked() {
-        val fragment = FragmentRegistration()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+        fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentRegistration::class.java));
 
     }
 

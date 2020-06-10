@@ -79,11 +79,11 @@ class ForgotPasswordViewModel(private val context: Context, private val fragment
     }
 
 
-    private fun launchChildFragment(mapFragment: BaseFragment) {
-        val bundle = Bundle()
-        mapFragment.arguments = bundle
-        fragmentSignin.newInstance(1, mapFragment, bundle)
-    }
+//    private fun launchChildFragment(mapFragment: BaseFragment) {
+//        val bundle = Bundle()
+//        mapFragment.arguments = bundle
+//        fragmentSignin.newInstance(1, mapFragment, bundle)
+//    }
 
     private fun validateInput(): Boolean {
 
@@ -150,22 +150,22 @@ class ForgotPasswordViewModel(private val context: Context, private val fragment
         }
     }
 
-    fun isuserVerified() {
-        val fragment = FragmentVerification()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(0, fragment, bundle));
-    }
-
-
-    private fun launchProfile() {
-        val fragment = FragmentProfile()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
-        fragmentSignin.mFragmentNavigation.switchTab(0)
-        fragmentSignin.mFragmentNavigation.viewBottom(View.VISIBLE)
-    }
+//    fun isuserVerified() {
+//        val fragment = FragmentVerification()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(0, fragment, bundle));
+//    }
+//
+//
+//    private fun launchProfile() {
+//        val fragment = FragmentProfile()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
+//        fragmentSignin.mFragmentNavigation.switchTab(0)
+//        fragmentSignin.mFragmentNavigation.viewBottom(View.VISIBLE)
+//    }
 
     private fun showToast(id: Int) {
        // Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()

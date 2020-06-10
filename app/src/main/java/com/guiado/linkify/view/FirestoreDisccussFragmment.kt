@@ -1,5 +1,6 @@
 package com.guiado.linkify.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
@@ -35,7 +39,7 @@ import com.guiado.linkify.model2.Chat
  * For a general intro to the RecyclerView, see [Creating
  * Lists](https://developer.android.com/training/material/lists-cards.html).
  */
-class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
+class FirestoreDisccussFragmment : Activity(), AuthStateListener,LifecycleOwner {
     companion object {
         private const val TAG = "FirestoreChatFragmment"
 
@@ -69,18 +73,16 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
     }
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-
-
-        val postAdObj  = arguments!!.getString(Constants.POSTAD_OBJECT)
+        val postAdObj  = intent.extras!!.getString(Constants.POSTAD_OBJECT)
         val c = GenericValues()
-        val groups = c.getDisccussion(postAdObj!!, this.context!!)
+        val groups = c.getDisccussion(postAdObj!!, this)
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.activity_discussion, container, false)
-        areaViewModel = ActivityDiscussionViewModel(this.context!!, this,postAdObj)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_discussion)
+        areaViewModel = ActivityDiscussionViewModel(this, this,postAdObj)
         binding.mainDataModel = areaViewModel
         binding.countriesInfoModel = areaViewModel.postDiscussion
 
@@ -94,7 +96,7 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
         mMessageEdit = binding.messageEdit
         mEmptyListMessage = binding.emptyTextView
 
-        val manager = LinearLayoutManager(this.activity)
+        val manager = LinearLayoutManager(this)
         manager.reverseLayout = true
         manager.stackFromEnd = true
         mRecyclerView!!.setHasFixedSize(true)
@@ -109,13 +111,15 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
                 setMessageValue()
             }
         })
+        lifecycleRegistry = LifecycleRegistry(this)
+        lifecycleRegistry.setCurrentState(Lifecycle.State.CREATED)
 
-
-        return binding.root
     }
 
     override fun onStart() {
         super.onStart()
+        lifecycleRegistry.setCurrentState(Lifecycle.State.STARTED)
+
         if (isSignedIn) {
             attachRecyclerViewAdapter()
         }
@@ -138,7 +142,7 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
 
     private fun setMessageValue() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        val name = getUserName(activity!!.applicationContext!!, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+        val name = getUserName(applicationContext!!, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
         onAddMessage(Chat(name, mMessageEdit!!.text.toString(), uid))
         mMessageEdit!!.setText("")
     }
@@ -157,11 +161,15 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
         mRecyclerView!!.adapter = adapter
     }
 
+    private lateinit var lifecycleRegistry: LifecycleRegistry
+
+
     private fun newAdapter(): RecyclerView.Adapter<*> {
         val options = FirestoreRecyclerOptions.Builder<Chat>()
                 .setQuery(sChatQuery, Chat::class.java)
                 .setLifecycleOwner(this)
                 .build()
+
         return object : FirestoreRecyclerAdapter<Chat, DiscussionHolder>(options) {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscussionHolder {
                 return DiscussionHolder(LayoutInflater.from(parent.context)
@@ -179,6 +187,10 @@ class FirestoreDisccussFragmment : BaseFragment(), AuthStateListener {
     }
 
     private fun onAddMessage(chat: Chat) {
-        sChatCollection.add(chat).addOnFailureListener(this.activity!!) { e -> Log.e(TAG, "Failed to write message", e) }
+        sChatCollection.add(chat).addOnFailureListener(this) { e -> Log.e(TAG, "Failed to write message", e) }
+    }
+
+    override fun getLifecycle(): Lifecycle {
+        return lifecycleRegistry
     }
 }

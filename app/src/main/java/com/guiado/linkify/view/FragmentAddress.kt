@@ -1,5 +1,6 @@
 package com.guiado.linkify.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,19 +14,15 @@ import com.guiado.linkify.utils.Constants.POSTAD_OBJECT
 import com.guiado.linkify.viewmodel.AdressViewModel
 
 
-class FragmentAddress : BaseFragment() {
+class FragmentAddress : Activity() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val postAdObj  = arguments!!.getString(POSTAD_OBJECT)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        return bindView(inflater, container,postAdObj!!)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String): View {
-        val binding = DataBindingUtil.inflate<FragmentAddressBinding>(inflater, R.layout.fragment_address, container, false)
-        val areaViewModel = AdressViewModel(activity!!, this,postAdObj)
+    val postAdObj  = intent.extras!!.getString(POSTAD_OBJECT)
+    val binding : FragmentAddressBinding = DataBindingUtil.setContentView(this, R.layout.fragment_address)
+        val areaViewModel = AdressViewModel( this,postAdObj!!)
         binding.postAdPricing = areaViewModel
-        return binding.root
     }
 
 }

@@ -1,6 +1,7 @@
 package com.guiado.linkify.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,7 +19,9 @@ import com.guiado.linkify.view.FragmentForgotPassword
 import com.guiado.linkify.view.FragmentProfile
 import com.guiado.linkify.view.FragmentSignin
 import com.guiado.linkify.view.FragmentVerification
+
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.linkify.activities.Main2Activity
 
 class SignInViewModel(private val context: Context, private val fragmentSignin: FragmentSignin)
     : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -72,10 +75,7 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
     }
 
     fun forgotPaswwordFragment() {
-        val fragment = FragmentForgotPassword()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(0,fragment,bundle));
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentForgotPassword::class.java));
     }
 
     fun doSignInUser() {
@@ -87,12 +87,6 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
             showToast(R.string.loginValidtionErrorMsg)
     }
 
-
-    private fun launchChildFragment(mapFragment: BaseFragment) {
-        val bundle = Bundle()
-        mapFragment.arguments = bundle
-        fragmentSignin.newInstance(1, mapFragment, bundle)
-    }
 
     private fun validateInput(): Boolean {
 
@@ -133,7 +127,7 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
             showProgresss(true)
 
             mAuth.signInWithEmailAndPassword(email!!, password!!)
-                    .addOnCompleteListener(context as FragmentActivity) { task ->
+                    .addOnCompleteListener(fragmentSignin) { task ->
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
@@ -173,20 +167,14 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
     }
 
     fun isuserVerified(){
-        val fragment = FragmentVerification()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(0,fragment,bundle));
+        fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerification::class.java));
     }
 
 
     private fun launchProfile() {
-        val fragment = FragmentProfile()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
-      //  fragmentSignin.mFragmentNavigation.switchTab(0)
-        fragmentSignin.mFragmentNavigation.viewBottom(View.VISIBLE)
+        fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin, Main2Activity::class.java));
     }
 
     private fun showToast(id: Int) {

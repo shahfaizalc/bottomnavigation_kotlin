@@ -1,5 +1,6 @@
 package com.guiado.linkify.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,25 +13,21 @@ import com.guiado.linkify.utils.Constants
 import com.guiado.linkify.viewmodel.JoinGroupViewModel
 
 
-class FragmentJoinGroup : BaseFragment() {
+class FragmentJoinGroup : Activity() {
 
     @Transient
     lateinit internal var areaViewModel: JoinGroupViewModel
 
-    lateinit var binding : FragmentJoingroupBinding
+    lateinit var binding: FragmentJoingroupBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val postAdObj  = arguments!!.getString(Constants.POSTAD_OBJECT)
 
-        return bindView(inflater, container, postAdObj!!)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?, postAdObj: String): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_joingroup, container, false)
-        areaViewModel = JoinGroupViewModel(this.context!!, this,postAdObj)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        val postAdObj = intent.extras!!.getString(Constants.POSTAD_OBJECT)
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.fragment_joingroup)
+        areaViewModel = JoinGroupViewModel(this, postAdObj!!)
         binding.mainDataModel = areaViewModel
         binding.countriesInfoModel = areaViewModel.postDiscussion
-        return binding.root
     }
 
     override fun onResume() {

@@ -1,6 +1,7 @@
 package com.guiado.linkify.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -22,6 +23,7 @@ import com.guiado.linkify.utils.EnumFeedBack
 import com.guiado.linkify.view.FragmentDiscussions
 import com.guiado.linkify.view.FragmentFeedBack
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.linkify.network.FirbaseWriteHandlerActivity
 import java.util.*
 
 
@@ -98,7 +100,7 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
             val feedBack = Feedback();
 
             if (userEmail.isNullOrEmpty()) {
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentSignin, fragmentSignin!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
                 return@OnClickListener
             }
             showProgresss(true)
@@ -109,7 +111,7 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
             feedBack.feedbackUsername = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
             feedBack.feebackStatus = EnumFeedBack.NEW
 
-            val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateFeedback(feedBack, object : EmptyResultListener {
+            val firbaseWriteHandler = FirbaseWriteHandlerActivity(fragmentSignin).updateFeedback(feedBack, object : EmptyResultListener {
                 override fun onFailure(e: Exception) {
                     Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
                     Toast.makeText(context, context.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
@@ -119,10 +121,13 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
                 override fun onSuccess() {
                     Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
                     showProgresss(false)
-                    val fragment = FragmentDiscussions()
-                    val bundle = Bundle()
-                    fragment.setArguments(bundle)
-                    fragmentSignin.mFragmentNavigation.popFragment(1);
+//                    val fragment = FragmentDiscussions()
+//                    val bundle = Bundle()
+//                    fragment.setArguments(bundle)
+//                    fragmentSignin.mFragmentNavigation.popFragment(1);
+//
+//                    val intent = Intent(fragmentSignin, )
+                    fragmentSignin.finish()
 
                 }
             })

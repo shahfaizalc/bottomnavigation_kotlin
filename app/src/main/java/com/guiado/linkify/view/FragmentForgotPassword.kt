@@ -1,5 +1,6 @@
 package com.guiado.linkify.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,21 +13,16 @@ import com.guiado.linkify.fragments.BaseFragment
 import com.guiado.linkify.viewmodel.ForgotPasswordViewModel
 
 
-class FragmentForgotPassword : BaseFragment() {
+class FragmentForgotPassword : Activity() {
 
     @Transient
     lateinit internal var areaViewModel: ForgotPasswordViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        return bindView(inflater, container)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        val binding = DataBindingUtil.inflate<FragmentForgotpasswordBinding>(inflater, R.layout.fragment_forgotpassword, container, false)
-        areaViewModel = ForgotPasswordViewModel(this.context!!, this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val binding: FragmentForgotpasswordBinding = DataBindingUtil.setContentView(this, R.layout.fragment_forgotpassword)
+        areaViewModel = ForgotPasswordViewModel(this, this)
         binding.homeData = areaViewModel
-        return binding.root
     }
 
     override fun onResume() {

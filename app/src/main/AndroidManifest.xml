@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.guiado.linkify">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,9 +13,100 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.guiado.linkify.activities.Main2Activity"
-            android:windowSoftInputMode="adjustPan"
-            >
+
+
+        <activity
+            android:name="com.guiado.linkify.activities.Main2Activity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentRegistration"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentForgotPassword"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentSignin"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentWelcome"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentNewDiscusssion"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentGameChooser"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FirestoreDisccussFragmment"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentGroups"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FirestoreChatFragmment"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentNewGroup"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.guiado.linkify.view.FragmentJoinGroup"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.guiado.linkify.view.FragmentNewEvent"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentAddress"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentMyDiscussions"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FirestoreMyDisccussFragmment"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentSavedDiscussions"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.guiado.linkify.view.FragmentAbout"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentFeedBack"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentPrivacy"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentSavedEvents"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.guiado.linkify.view.FragmentMyEvents"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.linkify.view.FragmentMyEvent"
+            android:windowSoftInputMode="adjustPan" />
+
+
+        <activity
+            android:name="com.guiado.linkify.activities.LaunchActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,6 +1,7 @@
 package com.guiado.linkify.viewmodel
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,7 +21,7 @@ import com.google.firebase.firestore.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
-class GroupsModel(internal var activity: FragmentActivity,
+class GroupsModel(internal var activity: FragmentGroups,
                   internal val fragmentProfileInfo: FragmentGroups)// To show list of user images (Gallery)
     : BaseObservable() {
 
@@ -69,11 +70,17 @@ class GroupsModel(internal var activity: FragmentActivity,
 
 
     fun openFragment2(postAdModel: Groups, position: Int) {
-        val fragment = FragmentJoinGroup()
-        val bundle = Bundle()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().groupToString(postAdModel))
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+ //       val fragment = FragmentJoinGroup()
+//        val bundle = Bundle()
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().groupToString(postAdModel))
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+//
+
+        activity.finish();
+        val intent = Intent(activity,FragmentJoinGroup::class.java)
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().groupToString(postAdModel))
+        activity.startActivity(intent)
 
     }
 
@@ -84,10 +91,13 @@ class GroupsModel(internal var activity: FragmentActivity,
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
 
-        val fragment = FragmentNewGroup()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+//        val fragment = FragmentNewGroup()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1,fragment,bundle));
+//
+        val intent = Intent(activity,FragmentNewGroup::class.java)
+        activity.startActivity(intent)
 
     }
 

@@ -16,14 +16,13 @@ import com.guiado.linkify.network.FirbaseReadHandler
 import com.guiado.linkify.util.getUserName
 import com.guiado.linkify.utils.FragmentHistory
 import com.guiado.linkify.utils.Utils
-import com.guiado.linkify.view.FragmentDiscussions
-import com.guiado.linkify.view.FragmentMyGroups
-import com.guiado.linkify.view.FragmentTheEvents
-import com.guiado.linkify.view.FragmentWelcome
+import com.guiado.linkify.view.*
 import com.guiado.linkify.views.FragNavController
 
 
-class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener {
+
+class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
+        FragNavController.TransactionListener, FragNavController.RootFragmentListener {
 
 
 
@@ -273,7 +272,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation, FragNavCo
             FragNavController.TAB1 -> return FragmentDiscussions()
             FragNavController.TAB2 -> return FragmentMyGroups()
             FragNavController.TAB3 -> return FragmentTheEvents()
-            FragNavController.TAB4 -> return FragmentWelcome()
+            FragNavController.TAB4 -> return FragmentProfile()
         }
         throw IllegalStateException("Need to send an index that we know")
     }

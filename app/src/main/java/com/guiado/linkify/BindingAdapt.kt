@@ -311,10 +311,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: AdSearchModel) {
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
             Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
     });
@@ -350,10 +352,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: SimilarDiscussionMod
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
             Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
     });
@@ -390,10 +394,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: MyAdsModel) {
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
             Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
     });
@@ -429,10 +435,12 @@ fun adapter(searchView: SearchView,countriesViewModel: MyDiscussionModel,recycle
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
             Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
     });
@@ -491,10 +499,12 @@ fun adapter(searchView: SearchView ,countriesViewModel: DiscussionModel,recycler
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
             Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
     });
@@ -560,10 +570,12 @@ fun adapter2(recyclerView: RecyclerView, countriesViewModel: AdSearchModel) {
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
             Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
     });
@@ -755,10 +767,12 @@ fun adapter(recyclerView: RecyclerView, profileInfoViewModel: GroupViewModel ) {
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
             Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
     });
@@ -812,10 +826,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: MyGroupsModel) {
         }
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            bindingAdapter.resetRecycleView(recyclerView)
             Log.d("rach", "rach4")
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+            bindingAdapter.resetRecycleView(recyclerView)
             Log.d("rach", "rach5")
         }
 
@@ -849,9 +865,11 @@ fun adapter(searchView: SearchView,countriesViewModel: TheEventsModel,recyclerVi
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+            bindingAdapter.resetRecycleView(recyclerView)
             Log.d("rach", "rach5")
         }
 
@@ -911,10 +929,14 @@ fun adapter(searchView: SearchView,countriesViewModel: MyEventsModel,recyclerVie
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
+
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
             Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
+
         }
 
     });
@@ -965,10 +987,12 @@ fun adapter(searchView: SearchView,countriesViewModel: SavedEventsModel,recycler
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
             Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
     });
@@ -1022,10 +1046,13 @@ fun adapter(searchView: SearchView,countriesViewModel: SavedDiscussionModel,recy
 
         override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
+
         }
 
         override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
             Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
         }
 
     });

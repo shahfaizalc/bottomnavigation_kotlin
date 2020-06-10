@@ -1,6 +1,7 @@
 package com.guiado.linkify.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -44,20 +45,25 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
 
         if (!handleMultipleClicks()) {
             if (userTitle.isNullOrEmpty()) {
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.infoMsg), Toast.LENGTH_LONG).show()
+                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.infoMsg), Toast.LENGTH_LONG).show()
                 return@OnClickListener
             } else if (userTitle!!.length < 20) {
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.infoMsg_discussion), Toast.LENGTH_LONG).show()
+                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.infoMsg_discussion), Toast.LENGTH_LONG).show()
                 return@OnClickListener
             }
 
             Log.d(TAG, "DocumentSnapshot onSuccess ")
-            val fragment = FragmentGameChooser()
-            val bundle = Bundle()
-            bundle.putString(Constants.POSTAD_OBJECT, userTitle)
+//            val fragment = FragmentGameChooser()
+//            val bundle = Bundle()
+//            bundle.putString(Constants.POSTAD_OBJECT, userTitle)
+//            fragment.setArguments(bundle)
+//            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
 
-            fragment.setArguments(bundle)
-            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+            fragmentSignin.finish()
+            val intent = Intent(fragmentSignin, FragmentGameChooser::class.java)
+            intent.putExtra(Constants.POSTAD_OBJECT, userTitle)
+            fragmentSignin.startActivity(intent)
+
         }
     }
 

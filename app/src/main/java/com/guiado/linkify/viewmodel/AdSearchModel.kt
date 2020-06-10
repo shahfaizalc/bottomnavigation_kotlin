@@ -1,6 +1,7 @@
 package com.guiado.linkify.viewmodel
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -124,12 +125,16 @@ class AdSearchModel(internal var activity: FragmentActivity, internal val fragme
 
     fun openKeyWordsFragment() {
         EventBus.getDefault().register(this);
-        val fragment = FragmentKeyWords()
-        val bundle = Bundle()
+//        val fragment = FragmentKeyWords()
+//        val bundle = Bundle()
         val profile = Profile()
-        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragment.setArguments(bundle)
-        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//        fragment.setArguments(bundle)
+//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
+
+        val intent = Intent(fragmentProfileInfo.activity,FragmentKeyWords::class.java)
+        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+        fragmentProfileInfo.activity!!.startActivity(intent)
     }
 
     /*

@@ -1,5 +1,6 @@
 package com.guiado.linkify.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,25 +13,21 @@ import com.guiado.linkify.fragments.BaseFragment
 import com.guiado.linkify.viewmodel.FeedbackViewModel
 
 
-class FragmentFeedBack : BaseFragment() {
+class FragmentFeedBack : Activity() {
 
     var binding: FragmentFeedbackBinding? = null
 
     @Transient
     lateinit internal var areaViewModel: FeedbackViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        return bindView(inflater, container)
-    }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        if (binding == null) {
-            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_feedback, container, false)
-            areaViewModel = FeedbackViewModel(this.context!!, this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+   if (binding == null) {
+            binding = DataBindingUtil.setContentView(this, R.layout.fragment_feedback)
+            areaViewModel = FeedbackViewModel(this, this)
             binding!!.homeData = areaViewModel
         }
-        return binding!!.root
     }
 
     override fun onResume() {

@@ -17,6 +17,7 @@ import com.guiado.linkify.network.FirbaseWriteHandler
 import com.guiado.linkify.util.*
 import com.guiado.linkify.view.*
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.linkify.network.FirbaseWriteHandlerActivity
 
 
 class NewGroupViewModel(private val context: Context, private val fragmentSignin: FragmentNewGroup) :
@@ -96,21 +97,22 @@ class NewGroupViewModel(private val context: Context, private val fragmentSignin
                 group.postedByName = getUserName(context.applicationContext, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
 
                 Log.d(TAG, "DocumentSnapshot  doDiscussionWrrite "  )
-                val firbaseWriteHandler = FirbaseWriteHandler(fragmentSignin).updateGroups(group, object : EmptyResultListener {
+                val firbaseWriteHandler = FirbaseWriteHandlerActivity(fragmentSignin).updateGroups(group, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                        Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(fragmentSignin, fragmentSignin!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
                         showProgresss(false)
 
                     }
 
                     override fun onSuccess() {
                         Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-                        val fragment = FragmentMyGroups()
-                        val bundle = Bundle()
-                        fragment.setArguments(bundle)
-                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+//                        val fragment = FragmentMyGroups()
+//                        val bundle = Bundle()
+//                        fragment.setArguments(bundle)
+//                        fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
                         showProgresss(false)
+                        fragmentSignin.finish()
 
                     }
                 })

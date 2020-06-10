@@ -18,8 +18,10 @@ import com.guiado.linkify.network.FirbaseWriteHandler
 import com.guiado.linkify.util.*
 import com.guiado.linkify.view.FirestoreDisccussFragmment
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.linkify.network.FirbaseWriteHandlerActivity
 import com.guiado.linkify.model2.*
 import com.guiado.linkify.util.*
+
 
 
 
@@ -201,10 +203,10 @@ class ActivityDiscussionViewModel(private val context: Context,
     }
 
     private fun updateBookmmarks(exist: Boolean) {
-        FirbaseWriteHandler(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
+        FirbaseWriteHandlerActivity(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
             }
 
             override fun onSuccess() {
@@ -262,10 +264,10 @@ class ActivityDiscussionViewModel(private val context: Context,
     }
 
     private fun updatelike(exist: Boolean) {
-        FirbaseWriteHandler(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
+        FirbaseWriteHandlerActivity(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
             override fun onFailure(e: Exception) {
                 Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
             }
 
             override fun onSuccess() {
@@ -328,10 +330,10 @@ class ActivityDiscussionViewModel(private val context: Context,
                 userProfile.following?.add(follow)
             }
 
-            FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowed(userProfile, object : EmptyResultListener {
+            FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfoFollowed(userProfile, object : EmptyResultListener {
                 override fun onFailure(e: Exception) {
                     Log.d("TAG", "DocumentSnapshot addFollowers onFailure " + e.message)
-                    Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onSuccess() {
@@ -380,10 +382,10 @@ class ActivityDiscussionViewModel(private val context: Context,
                     profile1.followers?.add(follow)
                 }
 
-                FirbaseWriteHandler(fragmentSignin).updateUserInfoFollowing(postDiscussion!!.postedBy!!,profile1, object : EmptyResultListener {
+                FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfoFollowing(postDiscussion!!.postedBy!!,profile1, object : EmptyResultListener {
                     override fun onFailure(e: Exception) {
                         Log.d("TAG", "DocumentSnapshot addFollowing onFailure " + e.message)
-                        Toast.makeText(fragmentSignin.context, fragmentSignin.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
                     }
 
                     override fun onSuccess() {

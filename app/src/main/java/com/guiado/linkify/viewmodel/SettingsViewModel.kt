@@ -51,19 +51,21 @@ class SettingsViewModel(private val context: Context, private val fragmentSignin
     }
     fun privacyClicked() {
         if (!handleMultipleClicks()) {
-            val fragment = FragmentPrivacy()
-            val bundle = Bundle()
-            fragment.setArguments(bundle)
-            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+//            val fragment = FragmentPrivacy()
+//            val bundle = Bundle()
+//            fragment.setArguments(bundle)
+//            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 
         }
     }
     fun aboutClicked() {
         if (!handleMultipleClicks()) {
-            val fragment = FragmentAbout()
-            val bundle = Bundle()
-            fragment.setArguments(bundle)
-            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+//            val fragment = FragmentAbout()
+//            val bundle = Bundle()
+//            fragment.setArguments(bundle)
+//            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+
+
 
         }
     }
@@ -71,10 +73,10 @@ class SettingsViewModel(private val context: Context, private val fragmentSignin
 
     fun feedback() {
         Log.d("tag", "taggg")
-        val fragment = FragmentFeedBack()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
+//        val fragment = FragmentFeedBack()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
     }
 
     private fun launchChildFragment(mapFragment: BaseFragment) {

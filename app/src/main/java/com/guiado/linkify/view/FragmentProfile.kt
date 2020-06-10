@@ -12,6 +12,7 @@ import com.guiado.linkify.fragments.BaseFragment
 import com.guiado.linkify.viewmodel.ProfileViewModel
 
 
+
 class FragmentProfile : BaseFragment() {
 
     @Transient
@@ -24,7 +25,7 @@ class FragmentProfile : BaseFragment() {
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
         val binding = DataBindingUtil.inflate<FragmentProfileBinding>(inflater, R.layout.fragment_profile, container, false)
-        areaViewModel = ProfileViewModel(this.context!!, this)
+        areaViewModel = ProfileViewModel(activity!!, this.context!!, this)
         binding.homeData = areaViewModel
         return binding.root
     }
