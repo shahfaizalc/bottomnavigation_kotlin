@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,8 +12,9 @@ import com.guiado.grads.BR
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.view.*
 import com.google.firebase.auth.FirebaseAuth
+import com.guiado.grads.activities.Main2Activity
 
-class VerifiedViewModel(private val context: Context, private val fragmentSignin: FragmentVerification) :
+class VerifiedViewModel( private val fragmentSignin: FragmentVerification) :
         BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
@@ -31,20 +33,20 @@ class VerifiedViewModel(private val context: Context, private val fragmentSignin
             if(mAuth.currentUser?.isEmailVerified!!)
                 launchProfile()
             else
-                Toast.makeText(context,context.resources.getString(R.string.USR_DLS_Verify_Email_Title_Txt),Toast.LENGTH_LONG).show()
+                Toast.makeText(fragmentSignin,fragmentSignin.resources.getString(R.string.USR_DLS_Verify_Email_Title_Txt),Toast.LENGTH_LONG).show()
         }
     }
 
     fun resendMail() {
         val mAuth = FirebaseAuth.getInstance()
         mAuth.currentUser!!.sendEmailVerification()
-        Toast.makeText(context,context.resources.getString(R.string.resnd_Verify_Email_Title_Txt),Toast.LENGTH_LONG).show()
+        Toast.makeText(fragmentSignin,fragmentSignin.resources.getString(R.string.resnd_Verify_Email_Title_Txt),Toast.LENGTH_LONG).show()
 
       //  fragmentSignin.mFragmentNavigation.switchTab(1);
     }
 
     fun isuserVerified(){
-        Toast.makeText(context,"Verify your email",Toast.LENGTH_LONG).show()
+        Toast.makeText(fragmentSignin,"Verify your email",Toast.LENGTH_LONG).show()
 //        val fragment = FragmentVerification()
 //        val bundle = Bundle()
 //        fragment.setArguments(bundle)
@@ -59,12 +61,15 @@ class VerifiedViewModel(private val context: Context, private val fragmentSignin
         }
 
     private fun launchProfile() {
-        val fragment = FragmentProfile()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
-        fragmentSignin.mFragmentNavigation.switchTab(0)
-        fragmentSignin.mFragmentNavigation.viewBottom(View.VISIBLE)
+//        val fragment = FragmentProfile()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
+//        fragmentSignin.mFragmentNavigation.switchTab(0)
+//        fragmentSignin.mFragmentNavigation.viewBottom(View.VISIBLE)
+
+        val intent = Intent(fragmentSignin, Main2Activity::class.java)
+        fragmentSignin.startActivity(intent)
     }
 
     private fun networkHandler() {
@@ -72,12 +77,12 @@ class VerifiedViewModel(private val context: Context, private val fragmentSignin
     }
 
     fun registerListeners() {
-        networkStateHandler!!.registerNetWorkStateBroadCast(context)
+        networkStateHandler!!.registerNetWorkStateBroadCast(fragmentSignin)
         networkStateHandler!!.setNetworkStateListener(this)
     }
 
     fun unRegisterListeners() {
-        networkStateHandler!!.unRegisterNetWorkStateBroadCast(context)
+        networkStateHandler!!.unRegisterNetWorkStateBroadCast(fragmentSignin)
     }
 
     override fun networkChangeReceived(state: Boolean) {
@@ -88,6 +93,6 @@ class VerifiedViewModel(private val context: Context, private val fragmentSignin
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(id), Toast.LENGTH_LONG).show()
     }
 }

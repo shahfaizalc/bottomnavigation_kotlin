@@ -47,6 +47,7 @@ class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             mRightArrow.visibility = View.VISIBLE
             mMessageContainer.gravity = Gravity.END
             mMessage.gravity = Gravity.END
+            mTextField.setTextColor(itemView.context.resources.getColor(android.R.color.white,null))
             mNameField.visibility = View.GONE
         } else {
             mNameField.visibility = View.VISIBLE
@@ -56,6 +57,8 @@ class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             mLeftArrow.visibility = View.VISIBLE
             mRightArrow.visibility = View.GONE
             mMessageContainer.gravity = Gravity.START
+            mTextField.setTextColor(itemView.context.resources.getColor(android.R.color.black,null))
+
         }
         (mMessage.background as GradientDrawable).setColor(color)
         (mLeftArrow.background as RotateDrawable).drawable

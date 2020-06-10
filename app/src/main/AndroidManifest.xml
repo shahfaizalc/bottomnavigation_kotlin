@@ -17,6 +17,17 @@
         <activity
             android:name="com.guiado.grads.activities.Main2Activity"
             android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.guiado.grads.view.FragmentRegistration"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.guiado.grads.view.FragmentVerification"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.grads.view.FragmentWelcome"
+            android:windowSoftInputMode="adjustPan" />
+
 
         <activity
             android:name="com.guiado.grads.view.FragmentForgotPassword"
@@ -26,9 +37,7 @@
             android:name="com.guiado.grads.view.FragmentSignin"
             android:windowSoftInputMode="adjustPan" />
 
-        <activity
-            android:name="com.guiado.grads.view.FragmentWelcome"
-            android:windowSoftInputMode="adjustPan" />
+
 
         <activity
             android:name="com.guiado.grads.view.FragmentNewDiscusssion"

@@ -2,6 +2,7 @@ package com.guiado.grads.viewmodel
 
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
@@ -24,13 +25,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.listeners.EmptyResultListener
 import com.guiado.grads.model2.Profile
 import com.guiado.grads.network.FirbaseWriteHandler
+import com.guiado.grads.network.FirbaseWriteHandlerActivity
 import com.guiado.grads.util.GenericValues
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.utils.Constants
 import com.guiado.grads.view.FragmentProfile
 
 
-class RegistrationModel(internal val activity: FragmentActivity, internal val fragmentSignin: FragmentRegistration)// To show list of user images (Gallery)
+class RegistrationModel(internal val activity: FragmentRegistration, internal val fragmentSignin: FragmentRegistration)// To show list of user images (Gallery)
     :  BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     var TAG = "RegistrationModel"
@@ -127,12 +129,12 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
             showToast(R.string.loginValidtionErrorMsg)
     }
 
-
-    private fun launchChildFragment(mapFragment: BaseFragment) {
-        val bundle = Bundle()
-        mapFragment.arguments = bundle
-        fragmentSignin.newInstance(1, mapFragment, bundle)
-    }
+//
+//    private fun launchChildFragment(mapFragment: BaseFragment) {
+//        val bundle = Bundle()
+//        mapFragment.arguments = bundle
+//        fragmentSignin.newInstance(1, mapFragment, bundle)
+//    }
 
     private fun validateInput(): Boolean {
 
@@ -213,7 +215,7 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
        val profile = Profile()
        profile.name = dataUsername
        profile.email = dataEmail
-       FirbaseWriteHandler(fragmentSignin).updateUserInfo(profile, object : EmptyResultListener {
+       FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(profile, object : EmptyResultListener {
            override fun onFailure(e: Exception) {
                Log.d(TAG, "onFailure storeUserProfile" + e.message)
                sendVerificationEmail()
@@ -233,10 +235,14 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
                     if (task.isSuccessful) { // email sent
                         showToast(R.string.loginSucess)
 
-                        val fragment = FragmentVerification()
-                        val bundle = Bundle()
-                        fragment.setArguments(bundle)
-                        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
+                        val intent = Intent(activity,FragmentVerification::class.java)
+                         activity.startActivity(intent)
+
+//
+//                        val fragment = FragmentVerification()
+//                        val bundle = Bundle()
+//                        fragment.setArguments(bundle)
+//                        fragmentSignin.mFragmentNavigation.replaceFragment(fragmentSignin.newInstance(1, fragment, bundle));
 
                     } else {
                         showToast(R.string.creationFailed)

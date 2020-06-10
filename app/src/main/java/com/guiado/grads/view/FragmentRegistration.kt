@@ -1,5 +1,6 @@
 package com.guiado.grads.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,18 +11,18 @@ import com.guiado.grads.databinding.FragmentRegistrationBinding
 import com.guiado.grads.fragments.BaseFragment
 import com.guiado.grads.viewmodel.RegistrationModel
 
+class FragmentRegistration : Activity() {
 
-class FragmentRegistration : BaseFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        return bindView(inflater, container)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        bindView()
     }
 
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        val binding = DataBindingUtil.inflate<FragmentRegistrationBinding>(inflater,
-                R.layout.fragment_registration, container, false)
-        val areaViewModel = RegistrationModel(activity!!, this)
+    private fun bindView(): View {
+        val binding: FragmentRegistrationBinding = DataBindingUtil.setContentView(this,
+                R.layout.fragment_registration)
+        val areaViewModel = RegistrationModel(this, this)
         binding.homeData = areaViewModel
         return binding.root
     }
