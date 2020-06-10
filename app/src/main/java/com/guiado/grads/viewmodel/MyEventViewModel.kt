@@ -22,13 +22,13 @@ class MyEventViewModel(private val fragmentSignin: FragmentMyEvent,
                      internal val postAdObj: String) : BaseObservable(),
         NetworkChangeHandler.NetworkChangeListener {
 
-    private val TAG = "RequestComplete  "
+    private val TAG = "MyEventViewModel"
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
     private var isInternetConnected: Boolean = false
-    var userProfile = Profile()
 
+    var userProfile = Profile()
 
     init {
         networkHandler()
@@ -83,6 +83,7 @@ class MyEventViewModel(private val fragmentSignin: FragmentMyEvent,
 //                val fragment = FragmentMyEvents()
 //                fragmentSignin.mFragmentNavigation.popFragment(1);
 //                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
+                fragmentSignin.setResult(10)
                 fragmentSignin.finish()
             }
         })

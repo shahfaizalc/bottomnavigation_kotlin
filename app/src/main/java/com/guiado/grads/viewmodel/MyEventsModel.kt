@@ -2,56 +2,48 @@ package com.guiado.grads.viewmodel
 
 
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
-import androidx.fragment.app.FragmentActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.*
 import com.guiado.grads.BR
 import com.guiado.grads.Events.MyCustomEvent
 import com.guiado.grads.R
-import com.guiado.grads.model2.*
+import com.guiado.grads.model2.Events
+import com.guiado.grads.model2.Profile
 import com.guiado.grads.util.*
 import com.guiado.grads.utils.Constants
-import com.guiado.grads.view.*
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.*
-import com.guiado.grads.model.EventStatus
+import com.guiado.grads.view.FragmentMyEvent
+import com.guiado.grads.view.FragmentMyEvents
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
 class MyEventsModel(
-                    internal val fragmentProfileInfo: FragmentMyEvents)// To show list of user images (Gallery)
+        internal val fragmentProfileInfo: FragmentMyEvents)
     : BaseObservable() {
 
-    var talentProfilesList: ObservableArrayList<Events>
-    var query : Query
-    var db :FirebaseFirestore
-
-
-    private val mAuth: FirebaseAuth
+    var talentProfilesList: ObservableArrayList<Events> = ObservableArrayList()
+    lateinit var query: Query
+    var db: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     companion object {
 
-        private val TAG = "AdSearchModel"
+        private val TAG = "MyEventsModel"
     }
 
     init {
-        talentProfilesList = ObservableArrayList()
-        db = FirebaseFirestore.getInstance()
-        mAuth = FirebaseAuth.getInstance()
         try {
             db.firestoreSettings = firestoreSettings
-        } catch (e:Exception){
-            Log.d(TAG, "getProfile  "+e)
+        } catch (e: Exception) {
+            Log.d(TAG, "getProfile  " + e)
         }
-        query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
+        query = db.collection("events").orderBy("postedDate", Query.Direction.DESCENDING).limit(10).whereEqualTo("postedBy", mAuth.currentUser!!.uid)
         doGetTalents()
+        Log.d(TAG, "getProfile  intialize")
+
     }
 
     @get:Bindable
@@ -69,10 +61,12 @@ class MyEventsModel(
         EventBus.getDefault().unregister(this)
         profile = event.data
     }
+
     var profile = Profile();
 
 
     fun openFragment2(postAdModel: Events, position: Int) {
+
 //        val fragment = FragmentMyEvent()
 //        val bundle = Bundle()
 //        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
@@ -81,14 +75,13 @@ class MyEventsModel(
 
         val intent = Intent(fragmentProfileInfo, FragmentMyEvent::class.java)
         intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
-        fragmentProfileInfo.startActivity(intent)
+        fragmentProfileInfo.startActivityForResult(intent, 10)
 
     }
 
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()
     }
-
 
 
     private fun getCommbinationWords(s: String): List<String> {
@@ -100,7 +93,7 @@ class MyEventsModel(
     fun doGetTalentsSearch(searchQuery: String) {
         query = db.collection("events")
                 .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
-                .orderBy("postedDate", Query.Direction.DESCENDING).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
+                .orderBy("postedDate", Query.Direction.DESCENDING).whereEqualTo("postedBy", mAuth.currentUser!!.uid)
                 .limit(10)
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
@@ -118,17 +111,25 @@ class MyEventsModel(
 
         if (adModel.postedBy.equals(mAuth.currentUser!!.uid)) {
 
-            getKeyWords(talentProfilesList,adModel)
+            getKeyWords(talentProfilesList, adModel)
 
-            if(!isUpdated) {
+            if (!isUpdated) {
                 talentProfilesList.add(adModel)
+            } else {
+
+                for (user in talentProfilesList) {
+                    if (user.postedBy.equals(adModel.postedBy) && user.postedDate.equals(adModel.postedDate)) {
+                        user.eventState = adModel.eventState
+                        break
+                    }
+                }
             }
         }
     }
 
     var isUpdated = false
 
-    private fun getKeyWords(keyWords: ObservableArrayList<Events>,keyWord: Events): ObservableArrayList<Events> {
+    private fun getKeyWords(keyWords: ObservableArrayList<Events>, keyWord: Events): ObservableArrayList<Events> {
 
         isUpdated = false
 
@@ -139,9 +140,9 @@ class MyEventsModel(
             numbersIterator.let {
                 while (numbersIterator.hasNext()) {
                     val value = (numbersIterator.next())
-                    if (value.postedDate.equals(keyWord.postedDate)){
+                    if (value.postedDate.equals(keyWord.postedDate)) {
                         isUpdated = true
-                        talentProfilesList.set(count,keyWord)
+                        talentProfilesList.set(count, keyWord)
                         return@notNull
                     }
                     count = count + 1;
@@ -161,7 +162,7 @@ class MyEventsModel(
                 Log.w(TAG, "Listen error", e)
                 return@addSnapshotListener
             }
-            Log.d(TAG, "DOIT doGetTalents: "+querySnapshot?.size())
+            Log.d(TAG, "DOIT doGetTalents: " + querySnapshot?.size())
 
 
             if (querySnapshot == null) {
@@ -174,31 +175,34 @@ class MyEventsModel(
                 return@addSnapshotListener
             }
 
-            Log.d(TAG, "Listen querySnapshot end"+querySnapshot.size())
-
-
+            Log.d(TAG, "Listen querySnapshot end" + querySnapshot.size())
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-            query = query.startAfter(lastVisible).whereEqualTo("postedBy",mAuth.currentUser!!.uid)
+            try {
 
-            for (change in querySnapshot.documentChanges) {
-                if (change.type == DocumentChange.Type.ADDED) {
-                    Log.d(TAG, "New city: ${change.document.data}")
+                query = query.startAfter(lastVisible).whereEqualTo("postedBy", mAuth.currentUser!!.uid)
+
+                for (change in querySnapshot.documentChanges) {
+                    if (change.type == DocumentChange.Type.ADDED) {
+                        Log.d(TAG, "New city: ${change.document.data}")
+                    }
+
+                    val source = if (querySnapshot.metadata.isFromCache) {
+                        "local cache"
+                    } else {
+                        "server"
+                    }
+                    Log.d(TAG, "Data fetched from $source $change.type")
+                    addTalentsItems(change.document)
+
+
                 }
-
-                val source = if (querySnapshot.metadata.isFromCache) {
-                    "local cache"
-                } else{
-                    "server"
-                }
-                Log.d(TAG, "Data fetched from $source")
-                addTalentsItems(change.document)
-
+            } catch (e: Exception) {
+                Log.d(TAG, "New city: ${e.message}")
 
             }
         }
     }
-
 
 
 //    @Override
