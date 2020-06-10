@@ -50,7 +50,7 @@ class DiscussionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         mTextField = itemView.findViewById(R.id.message_text)
         mMessageContainer = itemView.findViewById(R.id.message_container)
         mMessage = itemView.findViewById(R.id.message)
-        mGreen300 = ContextCompat.getColor(itemView.context, R.color.white)
-        mGray300 = ContextCompat.getColor(itemView.context, R.color.white)
+        mGreen300 = ContextCompat.getColor(itemView.context, R.color.colorchat2)
+        mGray300 = ContextCompat.getColor(itemView.context, R.color.colorchat2)
     }
 }

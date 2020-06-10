@@ -20,19 +20,22 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:name="com.guiado.linkify.view.FragmentWelcome"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name="com.guiado.linkify.view.FragmentRegistration"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
-            android:name="com.guiado.linkify.view.FragmentForgotPassword"
+            android:name="com.guiado.linkify.view.FragmentVerification"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+
             android:name="com.guiado.linkify.view.FragmentSignin"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FragmentWelcome"
+            android:name="com.guiado.linkify.view.FragmentForgotPassword"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
