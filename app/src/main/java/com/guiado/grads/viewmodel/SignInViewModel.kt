@@ -2,22 +2,30 @@ package com.guiado.grads.viewmodel
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.fragment.app.FragmentActivity
+import com.facebook.FacebookSdk.getApplicationContext
+import com.google.firebase.auth.FirebaseAuth
+import com.guiado.grads.Authenticaiton
 import com.guiado.grads.BR
 import com.guiado.grads.R
-import com.guiado.grads.fragments.BaseFragment
+import com.guiado.grads.activities.Main2Activity
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.utils.EnumValidator
 import com.guiado.grads.utils.Validator
-import com.google.firebase.auth.FirebaseAuth
-import com.guiado.grads.activities.Main2Activity
-import com.guiado.grads.view.*
+import com.guiado.grads.view.FragmentForgotPassword
+import com.guiado.grads.view.FragmentSignin
+import com.guiado.grads.view.FragmentVerification
+import com.news.list.communication.GetServiceNews
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
 
 class SignInViewModel(private val context: Context, private val fragmentSignin: FragmentSignin)
     : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -114,43 +122,38 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
             showToast(R.string.network_ErrorMsg)
         }
     }
-
+    lateinit var postsService : GetServiceNews
     private fun doSignInUser(email: String?, password: String?) {
 
         if (isInternetConnected) {
             showToast(R.string.network_ErrorMsg)
         } else {
-            showProgresss(true)
 
-            mAuth.signInWithEmailAndPassword(email!!, password!!)
-                    .addOnCompleteListener(fragmentSignin) { task ->
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
+            val retrofit = Retrofit.Builder()
+                    .baseUrl("https://test.salesforce.com/services/oauth2/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+            postsService = retrofit.create(GetServiceNews::class.java)
+            sendPost()
 
-                        showProgresss(false)
-                        Log.d("TAG", "Exception success" + task.isSuccessful)
 
-                        if (!task.isSuccessful) {
-                            // there was an error
-                            showToast(R.string.loginFailed)
-                        } else {
-                            showToast(R.string.loginSucess)
-
-                            mAuth.currentUser?.run {
-                                if(mAuth.currentUser?.isEmailVerified!!)
-                                    launchProfile()
-                                else
-                                    isuserVerified()
-                            }
-                        }
-                    }.addOnFailureListener {
-                        showProgresss(false)
-                        Log.d("TAG", "c" + it.message)
-                      //  showToast(R.string.loginFailed)
-                        errorTxt = it.message
-                    }
         }
+    }
+
+    private fun sendPost() {
+        val post = Authenticaiton()
+        val call: Call<Authenticaiton?>? = postsService.sendPosts(post)
+        call!!.enqueue(object : Callback<Authenticaiton?> {
+            override fun onResponse(call: Call<Authenticaiton?>?, response: Response<Authenticaiton?>) {
+                response.body().toString()
+                var s : Authenticaiton? = response.body();
+                Log.d("rach",s!!.accessToken);
+            }
+
+            override fun onFailure(call: Call<Authenticaiton?>?, t: Throwable) {
+                Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_LONG).show()
+            }
+        })
     }
     fun showProgresss(isShow : Boolean){
         if(isShow){

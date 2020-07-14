@@ -110,7 +110,13 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0-rc01'
     implementation group: 'com.jakewharton', name: 'butterknife', version: '10.1.0'
     implementation group: 'android.arch.paging', name: 'runtime', version: '1.0.1'
-    implementation 'com.facebook.android:audience-network-sdk:5.6.0'
+    implementation 'com.facebook.android:audience-network-sdk:5.10.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
+    implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
+    implementation("com.squareup.okhttp3:logging-interceptor:4.8.0")
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
 
 }
 repositories {
