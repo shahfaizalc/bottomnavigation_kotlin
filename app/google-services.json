@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1064647634341",
+    "firebase_url": "https://one-review-24042.firebaseio.com",
+    "project_id": "one-review-24042",
+    "storage_bucket": "one-review-24042.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064647634341:android:a68fc2434a568889334c4c",
+        "android_client_info": {
+          "package_name": "com.guiado.racha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064647634341-1cbahje36jt1lk2lq3b74sc570r8jqbl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGOMwuSh-_-G-mOGJ-BWEl1cN6ZaRMQHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064647634341-1cbahje36jt1lk2lq3b74sc570r8jqbl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

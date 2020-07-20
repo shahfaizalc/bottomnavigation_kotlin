@@ -3,22 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
-
-
-
-    <Button
-        android:id="@+id/btn_click_me"
-        android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+ <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/green"
-        android:gravity="center"
-        android:text="CLICK ME"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"/>
+        android:text="Profile Fragment"
+        android:textSize="25sp"
+        android:layout_gravity="center"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="scrollable"
+        app:tabGravity="fill"/>
+
+<androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </LinearLayout>

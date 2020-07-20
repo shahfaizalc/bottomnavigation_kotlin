@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">bottomnavigation</string>
+    <string name="app_name">Racha</string>
 
     <array name="tab_name">
         <item>Home</item>
