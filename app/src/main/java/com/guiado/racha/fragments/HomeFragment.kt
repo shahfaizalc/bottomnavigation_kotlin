@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.guiado.racha.R
 import com.guiado.racha.activities.MainActivity
+import com.guiado.racha.room.PlantListFragment
 
 
 class HomeFragment : BaseFragment() {
@@ -55,7 +56,7 @@ class HomeFragment : BaseFragment() {
 
     private fun addTabs(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(activity!!.getSupportFragmentManager())
-        adapter.addFrag(MoroccoFragment(), "Morocco")
+        adapter.addFrag(PlantListFragment(), "Morocco")
         adapter.addFrag(WorldFragment(), "World")
         adapter.addFrag(BusinessFragment(), "Business")
         adapter.addFrag(PoliticsFragment(), "Politics")
