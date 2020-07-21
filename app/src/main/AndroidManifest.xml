@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.guiado.grads">
+    package="com.guiado.akbhar">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:name=".Applications"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,92 +16,94 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.guiado.grads.activities.Main2Activity"
+            android:name="com.guiado.akbhar.activities.LaunchActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentForgotPassword"
+            android:name="com.guiado.akbhar.view.FragmentForgotPassword"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentSignin"
+            android:name="com.guiado.akbhar.view.FragmentSignin"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentWelcome"
+            android:name="com.guiado.akbhar.view.FragmentWelcome"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentNewDiscusssion"
+            android:name="com.guiado.akbhar.view.FragmentNewDiscusssion"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentGameChooser"
+            android:name="com.guiado.akbhar.view.FragmentGameChooser"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FirestoreDisccussFragmment"
+            android:name="com.guiado.akbhar.view.FirestoreDisccussFragmment"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentGroups"
+            android:name="com.guiado.akbhar.view.FragmentGroups"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FirestoreChatFragmment"
+            android:name="com.guiado.akbhar.view.FirestoreChatFragmment"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentNewGroup"
+            android:name="com.guiado.akbhar.view.FragmentNewGroup"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.guiado.grads.view.FragmentJoinGroup"
+            android:name="com.guiado.akbhar.view.FragmentJoinGroup"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.guiado.grads.view.FragmentNewEvent"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.grads.view.FragmentAddress"
+            android:name="com.guiado.akbhar.view.FragmentNewEvent"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentMyDiscussions"
+            android:name="com.guiado.akbhar.view.FragmentAddress"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FirestoreMyDisccussFragmment"
+            android:name="com.guiado.akbhar.view.FragmentMyDiscussions"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentSavedDiscussions"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.guiado.grads.view.FragmentAbout"
+            android:name="com.guiado.akbhar.view.FirestoreMyDisccussFragmment"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentFeedBack"
+            android:name="com.guiado.akbhar.view.FragmentSavedDiscussions"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.guiado.akbhar.view.FragmentAbout"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentPrivacy"
+            android:name="com.guiado.akbhar.view.FragmentFeedBack"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentSavedEvents"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.guiado.grads.view.FragmentMyEvents"
+            android:name="com.guiado.akbhar.view.FragmentPrivacy"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentMyEvent"
+            android:name="com.guiado.akbhar.view.FragmentSavedEvents"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.guiado.akbhar.view.FragmentMyEvents"
             android:windowSoftInputMode="adjustPan" />
 
+        <activity
+            android:name="com.guiado.akbhar.view.FragmentMyEvent"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.guiado.akbhar.view.WebViewActivity"
+            android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.activities.LaunchActivity"
+            android:name="com.guiado.akbhar.activities.Main2Activity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

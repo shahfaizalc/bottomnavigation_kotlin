@@ -4,11 +4,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.TheEventsModel" />
+            type="com.guiado.akbhar.viewmodel.TheEventsModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model2.Events" />
+            type="com.guiado.akbhar.model2.Events" />
 
         <variable
             name="itemPosition"
@@ -16,11 +16,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.grads.adapter.TheEventsAdapter" />
+            type="com.guiado.akbhar.adapter.TheEventsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.grads.listeners.TheEventsEventListener" />
+            type="com.guiado.akbhar.listeners.TheEventsEventListener" />
 
         <variable
             name="keyWordsTag"

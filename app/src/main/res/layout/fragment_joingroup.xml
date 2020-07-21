@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.JoinGroupViewModel" />
+            type="com.guiado.akbhar.viewmodel.JoinGroupViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model2.Groups" />
+            type="com.guiado.akbhar.model2.Groups" />
 
     </data>
 

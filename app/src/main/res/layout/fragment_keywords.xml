@@ -5,7 +5,7 @@
 
         <variable
             name="postAdPricing"
-            type="com.guiado.grads.viewmodel.KeyWordsViewModel" />
+            type="com.guiado.akbhar.viewmodel.KeyWordsViewModel" />
     </data>
 
     <RelativeLayout

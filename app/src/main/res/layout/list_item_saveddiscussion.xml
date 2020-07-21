@@ -5,11 +5,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.SavedDiscussionModel" />
+            type="com.guiado.akbhar.viewmodel.SavedDiscussionModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model2.PostDiscussion" />
+            type="com.guiado.akbhar.model2.PostDiscussion" />
 
         <variable
             name="itemPosition"
@@ -17,11 +17,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.grads.adapter.SavedDiscussionAdapter" />
+            type="com.guiado.akbhar.adapter.SavedDiscussionAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.grads.listeners.SavedDiscussionEventListener" />
+            type="com.guiado.akbhar.listeners.SavedDiscussionEventListener" />
 
         <variable
             name="keyWordsTag"

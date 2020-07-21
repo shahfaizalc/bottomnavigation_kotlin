@@ -6,7 +6,7 @@
 
         <variable
             name="adSearchModel"
-            type="com.guiado.grads.viewmodel.AdSearchModel" />
+            type="com.guiado.akbhar.viewmodel.AdSearchModel" />
     </data>
 
     <LinearLayout

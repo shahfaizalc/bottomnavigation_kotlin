@@ -7,11 +7,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.GroupViewModel" />
+            type="com.guiado.akbhar.viewmodel.GroupViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model2.Groups" />
+            type="com.guiado.akbhar.model2.Groups" />
 
     </data>
 

@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.NewGroupViewModel" />
+            type="com.guiado.akbhar.viewmodel.NewGroupViewModel" />
     </data>
 
     <RelativeLayout

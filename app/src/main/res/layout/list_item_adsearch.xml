@@ -5,11 +5,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.AdSearchModel" />
+            type="com.guiado.akbhar.viewmodel.AdSearchModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model2.Profile" />
+            type="com.guiado.akbhar.model2.Profile" />
 
         <variable
             name="itemPosition"
@@ -17,11 +17,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.grads.adapter.SearchTalentsAdapter" />
+            type="com.guiado.akbhar.adapter.SearchTalentsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.grads.listeners.AdSearchEventListener" />
+            type="com.guiado.akbhar.listeners.AdSearchEventListener" />
 
         <variable
             name="address"

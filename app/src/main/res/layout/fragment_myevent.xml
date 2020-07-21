@@ -5,14 +5,14 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.MyEventViewModel" />
+            type="com.guiado.akbhar.viewmodel.MyEventViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model2.Events" />
+            type="com.guiado.akbhar.model2.Events" />
         <variable
             name="status"
-            type="com.guiado.grads.model.EventStatus" />
+            type="com.guiado.akbhar.model.EventStatus" />
 
     </data>
 

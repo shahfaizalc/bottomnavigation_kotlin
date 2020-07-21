@@ -7,7 +7,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.PrivacyViewModel" />
+            type="com.guiado.akbhar.viewmodel.PrivacyViewModel" />
 
     </data>
 
