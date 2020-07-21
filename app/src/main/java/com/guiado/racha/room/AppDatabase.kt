@@ -24,11 +24,13 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import com.guiado.racha.firebase.FirbaseReadHandler
+import com.guiado.racha.firebase.UseInfoGeneralResultListener
 
 /**
  * The Room database for this app
  */
-@Database(entities = [ Plant::class], version = 1, exportSchema = false)
+@Database(entities = [ Feed::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun plantDao(): PlantDao
@@ -53,6 +55,7 @@ abstract class AppDatabase : RoomDatabase() {
                             super.onCreate(db)
                             val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
                             WorkManager.getInstance(context).enqueue(request)
+
                         }
                     })
                     .build()

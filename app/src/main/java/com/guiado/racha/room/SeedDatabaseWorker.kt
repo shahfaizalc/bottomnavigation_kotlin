@@ -22,31 +22,41 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import kotlinx.coroutines.coroutineScope
+import com.guiado.racha.firebase.FirbaseReadHandler
+import com.guiado.racha.firebase.UseInfoGeneralResultListener
+import kotlinx.coroutines.*
 
 class SeedDatabaseWorker(
-    context: Context,
-    workerParams: WorkerParameters
+        context: Context,
+        workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
-     val PLANT_DATA_FILENAME = "plants.json"
-    override suspend fun doWork(): Result = coroutineScope {
-        try {
-            applicationContext.assets.open(PLANT_DATA_FILENAME).use { inputStream ->
-                com.google.gson.stream.JsonReader(inputStream.reader()).use { jsonReader ->
-                    val plantType = object : TypeToken<List<Plant>>() {}.type
-                    val plantList: List<Plant> = Gson().fromJson(jsonReader, plantType)
+    override suspend fun doWork(): Result =
+        coroutineScope {
+            try {
 
-                    val database = AppDatabase.getInstance(applicationContext)
-                    database.plantDao().insertAll(plantList)
+                FirbaseReadHandler().getProfile("", object : UseInfoGeneralResultListener {
 
-                    Result.success()
-                }
+                    override fun onSuccess(userInfoGeneral: ArrayList<Feed>) {
+
+                        GlobalScope.launch (Dispatchers.Main) {
+                            val database = AppDatabase.getInstance(applicationContext)
+                            database.plantDao().insertAll(userInfoGeneral)
+                            Result.success()
+                        }
+                    }
+                    override fun onFailure(e: Exception) {
+                        Result.failure()
+                    }
+                })
+
+                Result.success()
+
+            } catch (ex: Exception) {
+                Log.e(TAG, "Error seeding database", ex)
+                Result.failure()
             }
-        } catch (ex: Exception) {
-            Log.e(TAG, "Error seeding database", ex)
-            Result.failure()
         }
-    }
+
 
     companion object {
         private const val TAG = "SeedDatabaseWorker"

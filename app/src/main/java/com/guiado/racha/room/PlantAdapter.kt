@@ -11,7 +11,7 @@ import com.guiado.racha.databinding.ListItemPlantBinding
 /**
  * Adapter for the [RecyclerView] in [PlantListFragment].
  */
-class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallback()) {
+class PlantAdapter : ListAdapter<Feed, RecyclerView.ViewHolder>(PlantDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return PlantViewHolder(ListItemPlantBinding.inflate(
@@ -35,7 +35,7 @@ class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallba
         }
 
         private fun navigateToPlant(
-            plant: Plant,
+            plant: Feed,
             view: View
         ) {
 //            val direction =
@@ -45,7 +45,7 @@ class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallba
 //            view.findNavController().navigate(direction)
         }
 
-        fun bind(item: Plant) {
+        fun bind(item: Feed) {
             binding.apply {
                 plant = item
                 executePendingBindings()
@@ -54,13 +54,13 @@ class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallba
     }
 }
 
-private class PlantDiffCallback : DiffUtil.ItemCallback<Plant>() {
+private class PlantDiffCallback : DiffUtil.ItemCallback<Feed>() {
 
-    override fun areItemsTheSame(oldItem: Plant, newItem: Plant): Boolean {
+    override fun areItemsTheSame(oldItem: Feed, newItem: Feed): Boolean {
         return oldItem.plantId == newItem.plantId
     }
 
-    override fun areContentsTheSame(oldItem: Plant, newItem: Plant): Boolean {
+    override fun areContentsTheSame(oldItem: Feed, newItem: Feed): Boolean {
         return oldItem == newItem
     }
 }
