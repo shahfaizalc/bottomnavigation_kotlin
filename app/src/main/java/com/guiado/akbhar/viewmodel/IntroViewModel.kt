@@ -1,6 +1,7 @@
 package com.guiado.akbhar.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.os.SystemClock
 import android.util.Log
 import android.view.View
@@ -13,6 +14,8 @@ import com.guiado.akbhar.view.FragmentIntro
 import javax.inject.Inject
 import com.guiado.akbhar.BR
 import com.guiado.akbhar.model.NewsProviders
+import com.guiado.akbhar.utils.Constants
+import com.guiado.akbhar.view.WebViewActivity
 
 
 class IntroViewModel(private val fragmentProfile: FragmentIntro) : BaseObservable() {
@@ -62,6 +65,9 @@ class IntroViewModel(private val fragmentProfile: FragmentIntro) : BaseObservabl
     fun openFragment(contentModelObj: String) {
 
         Log.d("userClicked  ", "" + contentModelObj);
+        val intentNext = Intent(fragmentProfile.activity, WebViewActivity::class.java)
+        intentNext.putExtra(Constants.POSTAD_OBJECT, contentModelObj)
+        fragmentProfile.activity!!.startActivity(intentNext)
     }
 
     companion object {

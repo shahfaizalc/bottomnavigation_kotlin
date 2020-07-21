@@ -157,6 +157,15 @@ class CoronaModel (internal var activity: FragmentActivity,
         }
     }
 
+
+    @Override
+    fun doFindGroups4() = View.OnClickListener() {
+         val intentNext = Intent(activity, WebViewActivity::class.java)
+            intentNext.putExtra(Constants.POSTAD_OBJECT, "https://covid-19.ontario.ca/self-assessment/")
+            activity.startActivity(intentNext)
+
+    }
+
     fun openFragment2(postAdModel: Feed, position: Int) {
         val intentNext = Intent(activity, WebViewActivity::class.java)
         intentNext.putExtra(Constants.POSTAD_OBJECT, postAdModel.newsurl)

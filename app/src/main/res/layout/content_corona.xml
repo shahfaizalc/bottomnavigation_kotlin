@@ -46,11 +46,11 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_8"
                         android:layout_weight="1"
+                        android:textColor="@{adSearchModel.online == true ? @color/white : @color/black}"
                         android:background="@{adSearchModel.online == true ? @color/red_logout : @color/white}"
                         android:gravity="center"
                         android:padding="@dimen/dimen_8"
                         android:text="Morocco"
-                        android:textColor="@color/primary_text"
                         android:textStyle="bold" />
 
                     <TextView
@@ -60,7 +60,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_8"
                         android:layout_weight="1"
-                        android:textColor="@color/primary_text"
+                        android:textColor="@{!adSearchModel.online == true ? @color/white : @color/black}"
                         android:background="@{!adSearchModel.online == true ? @color/red_logout : @color/white}"
                         android:gravity="center"
                         android:padding="@dimen/dimen_8"
@@ -200,6 +200,7 @@
                     android:background="@drawable/bottom_line" />
 
                 <TextView
+                    android:onClick="@{adSearchModel.doFindGroups4}"
                     android:id="@+id/selfAssessmentTool"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -210,6 +211,15 @@
                     android:text="Covid-19 Self Assessment Tool"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_margin="@dimen/dimen_8"
+                    android:layout_gravity="bottom"
+                    android:gravity="bottom"
+                    android:id="@+id/banner_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerUser"

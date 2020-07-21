@@ -32,13 +32,21 @@
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/dimen_8"
                     android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_margin="@dimen/dimen_8"
+                        android:layout_gravity="bottom"
+                        android:gravity="bottom"
+                        android:id="@+id/banner_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
 
                     <TextView
                         android:id="@+id/recylerView1Title2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_16"
-                        android:text="News Papers"
+                        android:layout_margin="@dimen/dimen_8"
+                        android:text="News Providers"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/dimen_20"
                         android:textStyle="bold" />
