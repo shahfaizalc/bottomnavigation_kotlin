@@ -15,8 +15,8 @@ android {
         applicationId "com.guiado.akbhar"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 21
-        versionName "1.0.21"
+        versionCode 1
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 

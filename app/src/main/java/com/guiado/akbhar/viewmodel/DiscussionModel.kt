@@ -1,11 +1,9 @@
 package com.guiado.akbhar.viewmodel
 
 
-import android.app.Dialog
 import android.content.Intent
 import android.util.Log
 import android.view.View
-import android.widget.*
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
@@ -13,23 +11,11 @@ import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.guiado.akbhar.BR
-import com.guiado.akbhar.Events.MyCustomEvent
-import com.guiado.akbhar.model2.Bookmarks
-import com.guiado.akbhar.model2.PostDiscussion
-import com.guiado.akbhar.model2.Profile
 import com.guiado.akbhar.util.*
 import com.guiado.akbhar.utils.Constants
 import com.guiado.akbhar.view.FragmentDiscussions
-import com.guiado.akbhar.view.FragmentNewDiscusssion
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import com.guiado.akbhar.R
-import com.guiado.akbhar.adapter.CustomAdapter
-import com.guiado.akbhar.model.CoachItem
 import com.guiado.akbhar.model.Feed
-import com.guiado.akbhar.model.SearchMode
 import com.guiado.akbhar.view.WebViewActivity
-import java.util.ArrayList
 
 
 class DiscussionModel (internal var activity: FragmentActivity,
@@ -63,12 +49,6 @@ class DiscussionModel (internal var activity: FragmentActivity,
     }
 
 
-    @get:Bindable
-    var finderTitle: String? = activity.resources.getString(R.string.finderEventTitle)
-        set(city) {
-            field = city
-            notifyPropertyChanged(BR.finderTitle)
-        }
 
 
     @get:Bindable
@@ -78,29 +58,6 @@ class DiscussionModel (internal var activity: FragmentActivity,
             notifyPropertyChanged(BR.showClearFilter)
         }
 
-    @get:Bindable
-    var searchMode = SearchMode.DEFAULT
-        set(city) {
-            field = city
-
-            if(searchMode.ordinal == SearchMode.DEFAULT.ordinal)
-                showClearFilter = View.GONE
-            else{
-                showClearFilter = View.VISIBLE
-
-            }
-        }
-
-    /*
-      Method will act as the event handler for MyCustomEvent.kt
-      */
-    @Subscribe
-    fun customEventReceived(event: MyCustomEvent) {
-        EventBus.getDefault().unregister(this)
-        profile = event.data
-    }
-
-    var profile = Profile();
 
 
     fun openFragment2(postAdModel: Feed, position: Int) {
@@ -122,61 +79,11 @@ class DiscussionModel (internal var activity: FragmentActivity,
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
         if(!handleMultipleClicks()) {
-//            val fragment = FragmentNewDiscusssion()
-//            val bundle = Bundle()
-//            fragment.setArguments(bundle)
-//            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
-//
-            val intent = Intent(activity, FragmentNewDiscusssion::class.java)
-            activity.startActivity(intent)
+
         }
     }
 
-    private fun readAutoFillItems() : ArrayList<CoachItem> {
-        val values = GenericValues()
-        return values.readDisuccsionTopics(activity.applicationContext)
-    }
 
-
-    @Override
-    fun onFilterClearClick() = View.OnClickListener() {
-        showClearFilter = View.GONE
-        searchMode = SearchMode.DEFAULT
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
-        resetScrrollListener = true
-        talentProfilesList.removeAll(talentProfilesList)
-
-        doGetTalents()
-    }
-
-    @Override
-    fun onFilterClick() = View.OnClickListener() {
-
-        if(!handleMultipleClicks()) {
-
-            val dialog = Dialog(activity)
-            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setCancelable(false)
-            dialog.setContentView(R.layout.dialog_listview)
-
-            val btndialog: TextView = dialog.findViewById(R.id.btndialog) as TextView
-            btndialog.setOnClickListener({ dialog.dismiss() })
-
-            val items = readAutoFillItems()
-            val listView: ListView = dialog.findViewById(R.id.listview) as ListView
-            val customAdapter = CustomAdapter(readAutoFillItems(), activity.applicationContext)
-            listView.setAdapter(customAdapter)
-
-            listView.setOnItemClickListener({ parent, view, position, id ->
-
-                dialog.dismiss()
-
-                filterByCategory(position)
-            })
-
-            dialog.show()
-        }
-    }
 
     private fun getCommbinationWords(s: String): List<String> {
         val list1 = s.sentenceToWords()
@@ -216,46 +123,9 @@ class DiscussionModel (internal var activity: FragmentActivity,
 
     var isUpdated = false
 
-//    private fun getKeyWords(keyWords: ObservableArrayList<Feed>,keyWord: PostDiscussion): ObservableArrayList<PostDiscussion> {
-//        isUpdated = false
-//
-//        var count = 0;
-//
-//        keyWords.notNull {
-//            val numbersIterator = it.iterator()
-//            numbersIterator.let {
-//                while (numbersIterator.hasNext()) {
-//                    val value = (numbersIterator.next())
-//                    if (value.postedDate.equals(keyWord.postedDate)){
-//                        Log.d(TAG, "Success getting fai documents: set " )
-//                        isUpdated = true
-//                        talentProfilesList.set(count,keyWord)
-//                        return@notNull
-//                    }
-//                    count = count + 1;
-//                }
-//            }
-//        }
-//        return keyWords;
-//    }
-
-    fun filterByCategory(position: Int) {
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
-                .whereArrayContains("keyWords",position)
-        talentProfilesList.removeAll(talentProfilesList)
-
-        if(searchMode.ordinal == SearchMode.DEFAULT.ordinal)
-            searchMode = SearchMode.CATEGORY
-        else{
-            searchMode = SearchMode.CATEGORYANDSEARCH
-
-        }
-        doGetTalents()
-    }
-
     fun doGetTalents() {
 
-        Log.d(TAG, "DOIT doGetTalents: searchMode: "+ searchMode)
+        Log.d(TAG, "DOIT doGetTalents:")
 
        // talentProfilesList.clear()
         query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
@@ -301,20 +171,6 @@ class DiscussionModel (internal var activity: FragmentActivity,
         }
     }
 
-    fun isBookmarked(postDiscussion: PostDiscussion): Boolean? {
-        var isFollow = false
-        postDiscussion.bookmarks.notNull {
-            val likes: MutableIterator<Bookmarks> = it.iterator()
-            while (likes.hasNext()) {
-                val name = likes.next()
-                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
-                    isFollow = true
-                }
-            }
-        }
-
-        return isFollow
-    }
 }
 
 

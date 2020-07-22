@@ -11,19 +11,11 @@ import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.guiado.akbhar.BR
-import com.guiado.akbhar.Events.MyCustomEvent
-import com.guiado.akbhar.model2.Bookmarks
-import com.guiado.akbhar.model2.PostDiscussion
-import com.guiado.akbhar.model2.Profile
 import com.guiado.akbhar.util.*
 import com.guiado.akbhar.utils.Constants
-import com.guiado.akbhar.view.FragmentNewDiscusssion
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
 import com.guiado.akbhar.R
 import com.guiado.akbhar.model.Corona
 import com.guiado.akbhar.model.Feed
-import com.guiado.akbhar.model.SearchMode
 import com.guiado.akbhar.view.FragmentCorona
 import com.guiado.akbhar.view.WebViewActivity
 
@@ -86,42 +78,6 @@ class CoronaModel (internal var activity: FragmentActivity,
         }
 
 
-    @get:Bindable
-    var finderTitle: String? = activity.resources.getString(R.string.finderEventTitle)
-        set(city) {
-            field = city
-            notifyPropertyChanged(BR.finderTitle)
-        }
-
-
-    @get:Bindable
-    var showClearFilter: Int = View.GONE
-        set(city) {
-            field = city
-            notifyPropertyChanged(BR.showClearFilter)
-        }
-
-    @get:Bindable
-    var searchMode = SearchMode.DEFAULT
-        set(city) {
-            field = city
-
-            if(searchMode.ordinal == SearchMode.DEFAULT.ordinal)
-                showClearFilter = View.GONE
-            else{
-                showClearFilter = View.VISIBLE
-
-            }
-        }
-    /*
-      Method will act as the event handler for MyCustomEvent.kt
-      */
-    @Subscribe
-    fun customEventReceived(event: MyCustomEvent) {
-        EventBus.getDefault().unregister(this)
-        profile = event.data
-    }
-
 
     @get:Bindable
     var online: Boolean = true
@@ -131,7 +87,6 @@ class CoronaModel (internal var activity: FragmentActivity,
         }
 
 
-    var profile = Profile();
 
     @Override
     fun doFindGroups2() = View.OnClickListener() {
@@ -184,10 +139,7 @@ class CoronaModel (internal var activity: FragmentActivity,
 
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
-        if(!handleMultipleClicks()) {
-            val intent = Intent(activity, FragmentNewDiscusssion::class.java)
-            activity.startActivity(intent)
-        }
+
     }
 
     fun doGetCoronaUpdateItems(document: QueryDocumentSnapshot, id: String) {
@@ -221,7 +173,7 @@ class CoronaModel (internal var activity: FragmentActivity,
 
     fun doGetCoronaUpdate() {
 
-        Log.d(TAG, "DOIT doGetTalents: searchMode: "+ searchMode)
+        Log.d(TAG, "DOIT doGetTalents: searchMode: ")
 
         // talentProfilesList.clear()
         queryCorona.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
@@ -271,7 +223,7 @@ class CoronaModel (internal var activity: FragmentActivity,
 
     fun doGetTalents() {
 
-        Log.d(TAG, "DOIT doGetTalents: searchMode: "+ searchMode)
+        Log.d(TAG, "DOIT doGetTalents: searchMode: ")
 
        // talentProfilesList.clear()
         query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
@@ -317,20 +269,6 @@ class CoronaModel (internal var activity: FragmentActivity,
         }
     }
 
-    fun isBookmarked(postDiscussion: PostDiscussion): Boolean? {
-        var isFollow = false
-        postDiscussion.bookmarks.notNull {
-            val likes: MutableIterator<Bookmarks> = it.iterator()
-            while (likes.hasNext()) {
-                val name = likes.next()
-                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
-                    isFollow = true
-                }
-            }
-        }
-
-        return isFollow
-    }
 }
 
 

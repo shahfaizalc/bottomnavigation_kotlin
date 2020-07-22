@@ -40,12 +40,12 @@ class HomeFragment : BaseFragment() {
 
     private fun addTabs(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(activity!!.getSupportFragmentManager())
-        adapter.addFrag(FragmentDiscussions(), "Morocco")
-        adapter.addFrag(FragmentDiscussions(), "World")
-        adapter.addFrag(FragmentDiscussions(), "Sports")
-        adapter.addFrag(FragmentDiscussions(), "Business")
-        adapter.addFrag(FragmentDiscussions(), "Politics")
-        adapter.addFrag(FragmentDiscussions(), "Entertainment")
+        adapter.addFrag(FragmentMorocco(), "Morocco")
+        adapter.addFrag(FragmentWorld(), "World")
+        adapter.addFrag(FragmentSports(), "Sports")
+        adapter.addFrag(FragmentBusiness(), "Business")
+        adapter.addFrag(FragmentPolitics(), "Politics")
+        adapter.addFrag(FragmentEntertainement(), "Entertainment")
 
         viewPager.adapter = adapter
     }

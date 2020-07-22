@@ -12,8 +12,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.akbhar.R
 import com.guiado.akbhar.fragments.BaseFragment
-import com.guiado.akbhar.network.FirbaseReadHandler
-import com.guiado.akbhar.util.getUserName
 import com.guiado.akbhar.utils.FragmentHistory
 import com.guiado.akbhar.utils.Utils
 import com.guiado.akbhar.view.*
@@ -100,25 +98,9 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     }
 
     private fun showTab() {
-        //mAuth = FirebaseAuth.getInstance()
-       // if(mAuth.currentUser != null && mAuth.currentUser!!.isEmailVerified) {
-
-          //  updateName()
-            switchTab(0)
+         switchTab(0)
             updateTabSelection(0)
-//        }else{
-//           // bottomTabLayout!!.visibility = View.GONE
-//            switchTab(3)
-//            updateTabSelection(3)
-//        }
-    }
 
-    private fun updateName() {
-        val ksk = getUserName(this.applicationContext, mAuth.currentUser?.uid!!);
-
-        if (ksk.name == null) {
-            FirbaseReadHandler().storeUserNamePreference(this.applicationContext)
-        }
     }
 
     private fun initToolbar() {

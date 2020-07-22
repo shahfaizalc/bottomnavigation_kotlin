@@ -2,18 +2,14 @@ package com.guiado.akbhar.adapter
 
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.guiado.akbhar.R
-import com.guiado.akbhar.databinding.ListIntrochannelsItemBinding
 import com.guiado.akbhar.databinding.ListMagazinesItemBinding
-import com.guiado.akbhar.listeners.IntroChannelEventListener
 import com.guiado.akbhar.listeners.MagazineEventListener
 import com.guiado.akbhar.model.Magazines
 import com.guiado.akbhar.viewmodel.MagazineViewModel

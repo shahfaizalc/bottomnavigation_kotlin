@@ -42,15 +42,7 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.akbhar.view.FirestoreDisccussFragmment"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
             android:name="com.guiado.akbhar.view.FragmentGroups"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.akbhar.view.FirestoreChatFragmment"
             android:windowSoftInputMode="adjustPan" />
 
         <activity

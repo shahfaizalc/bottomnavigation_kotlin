@@ -1,0 +1,145 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="mainDataModel"
+            type="com.guiado.akbhar.viewmodel.WorldViewModel" />
+
+        <variable
+            name="countriesInfoModel"
+            type="com.guiado.akbhar.model.Feed" />
+
+        <variable
+            name="itemPosition"
+            type="java.lang.Integer" />
+
+        <variable
+            name="simpleListAdapter"
+            type="com.guiado.akbhar.adapter.WorldAdapter" />
+
+        <variable
+            name="itemClickListener"
+            type="com.guiado.akbhar.listeners.WorldEventListener" />
+
+        <variable
+            name="keyWordsTag"
+            type="java.lang.String" />
+
+        <variable
+            name="postDate"
+            type="java.lang.String" />
+
+
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            card_view:cardBackgroundColor="@color/white"
+            card_view:cardCornerRadius="@dimen/dimen_4"
+            card_view:cardElevation="@dimen/dimen_16"
+            card_view:contentPadding="@dimen/dimen_8">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:onClick="@{() -> itemClickListener.launchNews(mainDataModel,itemPosition)}"
+                        android:paddingBottom="@dimen/dimen_4"
+                        android:text="@{countriesInfoModel.newsprovider}"
+                        android:textColor="@color/colorBlacklight"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:paddingStart="@dimen/dimen_4"
+                        android:paddingEnd="@dimen/dimen_4"
+                        android:paddingBottom="@dimen/dimen_4"
+                        android:text="@{countriesInfoModel.date}"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/dimen_12" />
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_4"
+                    android:autoLink="web|email"
+                    android:ellipsize="end"
+                    android:linksClickable="true"
+                    android:maxLines="2"
+                    android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}"
+                    android:text="@{countriesInfoModel.title}"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlacklight"
+                    android:textSize="@dimen/dimen_20" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:scaleType="centerCrop"
+                        app:imageUrl="@{countriesInfoModel.imgurl}"
+                        app:layout_constraintDimensionRatio="H,16:9"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_4"
+                    android:autoLink="web|email"
+                    android:ellipsize="end"
+                    android:linksClickable="true"
+                    android:maxLines="2"
+                    android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}"
+                    android:text="@{countriesInfoModel.brief}"
+                    android:textColor="@color/colorBlacklight" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</layout>
