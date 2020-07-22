@@ -45,7 +45,7 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
             Log.d(TAG, "getProfile  "+e)
 
         }
-        query = db.collection("/NEWS/news_arabic/morocco").orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo("newstype", 1).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
         doGetTalents()
     }
 

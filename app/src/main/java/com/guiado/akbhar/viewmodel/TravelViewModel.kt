@@ -45,7 +45,7 @@ class TravelViewModel (internal var activity: FragmentActivity,
             Log.d(TAG, "getProfile  "+e)
 
         }
-        query = db.collection("/NEWS/news_arabic/travel").orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo("newstype", 2).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
         doGetTalents()
     }
 
