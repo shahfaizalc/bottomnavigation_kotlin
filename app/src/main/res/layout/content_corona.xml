@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="adSearchModel"
             type="com.guiado.akbhar.viewmodel.CoronaModel" />
@@ -28,7 +29,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_8"
                     android:layout_marginTop="@dimen/dimen_4"
-                    android:text="Corona Updtates"
+                    android:text="Corona Updates"
+                    android:textSize="@dimen/dimen_16"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -40,31 +42,31 @@
                     android:weightSum="2">
 
                     <TextView
-                        android:onClick="@{adSearchModel.doFindGroups3}"
                         android:id="@+id/search1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_8"
                         android:layout_weight="1"
-                        android:textColor="@{adSearchModel.online == true ? @color/white : @color/black}"
                         android:background="@{adSearchModel.online == true ? @color/red_logout : @color/white}"
                         android:gravity="center"
+                        android:onClick="@{adSearchModel.doFindGroups3}"
                         android:padding="@dimen/dimen_8"
                         android:text="Morocco"
+                        android:textColor="@{adSearchModel.online == true ? @color/white : @color/black}"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:onClick="@{adSearchModel.doFindGroups2}"
                         android:id="@+id/search2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_8"
                         android:layout_weight="1"
-                        android:textColor="@{!adSearchModel.online == true ? @color/white : @color/black}"
                         android:background="@{!adSearchModel.online == true ? @color/red_logout : @color/white}"
                         android:gravity="center"
+                        android:onClick="@{adSearchModel.doFindGroups2}"
                         android:padding="@dimen/dimen_8"
                         android:text="World"
+                        android:textColor="@{!adSearchModel.online == true ? @color/white : @color/black}"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -89,7 +91,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="@dimen/dimen_4"
+                            android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
                             android:text="Confirmed"
                             android:textColor="@color/red"
@@ -99,7 +101,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="@dimen/dimen_4"
+                            android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
                             android:text="-"
                             android:textStyle="bold" />
@@ -108,7 +110,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="@dimen/dimen_4"
+                            android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
                             android:text="@={adSearchModel.confirmedCount}"
                             android:textStyle="bold" />
@@ -127,7 +129,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="@dimen/dimen_4"
+                            android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
                             android:text="Recovered"
                             android:textColor="@color/greenclr"
@@ -137,7 +139,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="@dimen/dimen_4"
+                            android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
                             android:text="-"
                             android:textStyle="bold" />
@@ -146,7 +148,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="@dimen/dimen_4"
+                            android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
                             android:text="@={adSearchModel.recoveredCount}"
                             android:textStyle="bold" />
@@ -165,7 +167,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="@dimen/dimen_4"
+                            android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
                             android:text="Death"
                             android:textColor="@color/red"
@@ -175,7 +177,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="@dimen/dimen_4"
+                            android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
                             android:text="-"
                             android:textStyle="bold" />
@@ -184,7 +186,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="@dimen/dimen_4"
+                            android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
                             android:text="@={adSearchModel.deathCount}"
                             android:textStyle="bold" />
@@ -192,35 +194,243 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:layout_marginBottom="@dimen/dimen_8"
-                    android:background="@drawable/bottom_line" />
-
                 <TextView
-                    android:onClick="@{adSearchModel.doFindGroups4}"
                     android:id="@+id/selfAssessmentTool"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_8"
                     android:background="@drawable/bg_gradiant_orange"
                     android:gravity="center"
+                    android:onClick="@{adSearchModel.doFindGroups4}"
                     android:padding="@dimen/dimen_12"
                     android:text="Covid-19 Self Assessment Tool"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:background="@drawable/bottom_line" />
+
                 <LinearLayout
-                    android:layout_margin="@dimen/dimen_8"
-                    android:layout_gravity="bottom"
-                    android:gravity="bottom"
                     android:id="@+id/banner_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/dimen_8"
+                    android:gravity="bottom"
                     android:orientation="vertical" />
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_8"
+                    android:layout_weight="1"
+                    android:background="@drawable/circular_bg_white"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <FrameLayout
+                        android:layout_margin="@dimen/dimen_2"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/darkBlue2">
+                        <ImageView
+                            android:alpha=".3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/mg_food">
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/dimen_24"
+                            android:paddingBottom="@dimen/dimen_24"
+                            android:text="Food"
+                            android:textColor="@color/smoke2"
+                            android:textSize="@dimen/dimen_24"
+                            android:textStyle="bold" />
+
+                    </FrameLayout>
+
+
+                    <FrameLayout
+                        android:layout_margin="@dimen/dimen_2"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/darkBlue2">
+                        <ImageView
+                            android:alpha=".3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/mg_art">
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/dimen_24"
+                            android:paddingBottom="@dimen/dimen_24"
+                            android:text="Art"
+                            android:textColor="@color/smoke2"
+                            android:textSize="@dimen/dimen_24"
+                            android:textStyle="bold" />
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_8"
+                    android:layout_weight="1"
+                    android:background="@drawable/circular_bg_white"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <FrameLayout
+                        android:layout_margin="@dimen/dimen_2"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/darkBlue2">
+                        <ImageView
+                            android:alpha=".3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/mg_game">
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/dimen_24"
+                            android:paddingBottom="@dimen/dimen_24"
+                            android:text="Game"
+                            android:textColor="@color/smoke2"
+                            android:textSize="@dimen/dimen_24"
+                            android:textStyle="bold" />
+
+                    </FrameLayout>
+
+
+                    <FrameLayout
+                        android:layout_margin="@dimen/dimen_2"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/darkBlue2">
+                        <ImageView
+                            android:alpha=".3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/mg_science">
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/dimen_24"
+                            android:paddingBottom="@dimen/dimen_24"
+                            android:text="Science"
+                            android:textColor="@color/smoke2"
+                            android:textSize="@dimen/dimen_24"
+                            android:textStyle="bold" />
+
+                    </FrameLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_8"
+                    android:layout_weight="1"
+                    android:background="@drawable/circular_bg_white"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <FrameLayout
+                        android:layout_margin="@dimen/dimen_2"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/darkBlue2">
+                        <ImageView
+                            android:alpha=".3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/mg_tech">
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/dimen_24"
+                            android:paddingBottom="@dimen/dimen_24"
+                            android:text="Technology"
+                            android:textColor="@color/smoke2"
+                            android:textSize="@dimen/dimen_24"
+                            android:textStyle="bold" />
+
+                    </FrameLayout>
+
+
+                    <FrameLayout
+                        android:layout_margin="@dimen/dimen_2"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/darkBlue2">
+                        <ImageView
+                            android:alpha=".3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/mg_tour">
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/dimen_24"
+                            android:paddingBottom="@dimen/dimen_24"
+                            android:text="Travel"
+                            android:textColor="@color/smoke2"
+                            android:textSize="@dimen/dimen_24"
+                            android:textStyle="bold" />
+
+                    </FrameLayout>
+                </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerUser"
                     android:layout_width="match_parent"

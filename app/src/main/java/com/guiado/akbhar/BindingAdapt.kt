@@ -25,6 +25,7 @@ import com.guiado.akbhar.model.CoachItem
 import com.guiado.akbhar.model.CountriesInfoModel
 import com.guiado.akbhar.model.Feed
 import com.guiado.akbhar.model.SearchMode
+import com.guiado.akbhar.util.getMagazines
 import com.guiado.akbhar.util.getNewsProviders
 import com.guiado.akbhar.viewmodel.*
 import com.squareup.picasso.Picasso
@@ -478,6 +479,27 @@ fun adapter(recyclerView: RecyclerView, channelsViewModel: IntroViewModel) {
     val listAdapter = IntroChannelsRecyclerViewAdapter(channelsViewModel, dataModelVal)
     recyclerView.adapter = listAdapter
     val bindingAdapter = RecyclerLoadMoreIntroChannelsComedyHandler(channelsViewModel, listAdapter, dataModelVal)
+    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+    bindingAdapter.initRequest(recyclerView, recyclerItems, false)
+
+}
+
+
+@BindingAdapter("app:recyclerChannelComedy")
+fun adapter(recyclerView: RecyclerView, channelsViewModel: MagazineViewModel) {
+
+    val dataModelVal = channelsViewModel.channelTamilMovieReviewDataModel;
+    //val genericValues = GenericValues();
+
+    val recyclerItems = getMagazines()
+
+    Log.d("iteems", "iteems " + recyclerItems)
+
+    val linearLayoutManager = GridLayoutManager(recyclerView.context, 1, GridLayoutManager.VERTICAL, false)
+    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager?
+    val listAdapter = MagazineRecyclerViewAdapter(channelsViewModel, dataModelVal)
+    recyclerView.adapter = listAdapter
+    val bindingAdapter = RecyclerLoadMoreMagazineHandler(channelsViewModel, listAdapter, dataModelVal)
     bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
     bindingAdapter.initRequest(recyclerView, recyclerItems, false)
 
@@ -1113,7 +1135,7 @@ fun adapter(searchView: SearchView, countriesViewModel: SavedDiscussionModel, re
 fun setWebViewClient(webView: WebView, client: WebViewClient) {
     webView.webViewClient = client
     WebView.setWebContentsDebuggingEnabled(false)
-    webView.settings.javaScriptEnabled
+    webView.settings.javaScriptEnabled = true
     webView.settings.loadsImagesAutomatically
 }
 

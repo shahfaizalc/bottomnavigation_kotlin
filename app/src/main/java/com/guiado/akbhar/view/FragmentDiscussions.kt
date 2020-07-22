@@ -11,7 +11,7 @@ import com.guiado.akbhar.fragments.BaseFragment
 import com.guiado.akbhar.viewmodel.DiscussionModel
 
 
-class FragmentDiscussions : BaseFragment() {
+class  FragmentDiscussions : BaseFragment() {
 
     @Transient
     var binding: ContentDiscussionBinding? = null;

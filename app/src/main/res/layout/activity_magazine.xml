@@ -10,16 +10,16 @@
 
         <variable
             name="profileData"
-            type="com.guiado.akbhar.viewmodel.IntroViewModel" />
+            type="com.guiado.akbhar.viewmodel.MagazineViewModel" />
 
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@color/white"
         android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="fill_vertical">
@@ -47,14 +47,15 @@
                         android:id="@+id/recylerView1Title2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_8"
-                        android:text="News Providers"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/dimen_20"
+                        android:layout_margin="@dimen/dimen_4"
+                        android:text="Let's read some magazines"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/dimen_28"
                         android:textStyle="bold" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
+                        android:layout_marginBottom="@dimen/dimen_8"
                         android:layout_height="wrap_content">
 
                         <androidx.recyclerview.widget.RecyclerView

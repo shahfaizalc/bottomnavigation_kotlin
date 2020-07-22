@@ -253,10 +253,10 @@ class CoronaModel (internal var activity: FragmentActivity,
                 if (change.type == DocumentChange.Type.ADDED) {
                     Log.d(TAG, "New city new: ")
                     doGetCoronaUpdateItems(change.document, change.document.id)
-
                 }
 
                 if (change.type == DocumentChange.Type.MODIFIED) {
+                   // doGetCoronaUpdateItems(change.document, change.document.id)
                     Log.d(TAG, "New city modified: ")
                 }
                 Log.d(TAG, "Data fetched from $source")

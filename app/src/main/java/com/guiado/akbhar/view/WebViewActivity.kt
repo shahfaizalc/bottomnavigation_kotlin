@@ -43,8 +43,9 @@ class WebViewActivity : AppCompatActivity(), NetworkChangeHandler.NetworkChangeL
         binding.webViewData!!.webViewUrl = blogUrl
         binding.executePendingBindings()
         networkStateHandler = NetworkChangeHandler()
-        adView = AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
-       // adView = AdView(this, "986915311744880_986915845078160", AdSize.BANNER_HEIGHT_50)
+       // adView = AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
+        //banner2
+        adView = AdView(this, "986915311744880_987732841663127", AdSize.BANNER_HEIGHT_50)
 
         // Find the Ad Container
         val adContainer = findViewById<View>(R.id.banner_container) as LinearLayout
@@ -73,7 +74,7 @@ class WebViewActivity : AppCompatActivity(), NetworkChangeHandler.NetworkChangeL
         })
 
         // Request an ad
-        adView!!.loadAd()
+      //  adView!!.loadAd()
     }
 
     override fun onResume() {

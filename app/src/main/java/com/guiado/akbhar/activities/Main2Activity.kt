@@ -23,14 +23,12 @@ import com.guiado.akbhar.views.FragNavController
 class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
         FragNavController.TransactionListener, FragNavController.RootFragmentListener {
 
-
-
     internal var contentFrame: FrameLayout? = null
 
     internal var toolbar: Toolbar? = null
 
     private val mTabIconsSelected = intArrayOf(R.drawable.tab_home,
-            R.drawable.tab_group, R.drawable.tab_event, R.drawable.tab_account)
+            R.drawable.tab_group, R.drawable.tab_book, R.drawable.tab_list)
 
 
     internal lateinit var TABS: ArrayList<String>
@@ -270,7 +268,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
 
             FragNavController.TAB1 -> return HomeFragment()
             FragNavController.TAB2 -> return FragmentCorona()
-            FragNavController.TAB3 -> return FragmentTheEvents()
+            FragNavController.TAB3 -> return FragmentMagazine()
             FragNavController.TAB4 -> return FragmentIntro()
         }
         throw IllegalStateException("Need to send an index that we know")

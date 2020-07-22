@@ -40,6 +40,7 @@ class MyWebViewClient(internal var param: WebViewCallback) : WebViewClient() {
     {
         super.onReceivedHttpError(view, request, errorResponse)
         param.onError("Error Code " + errorResponse!!.statusCode)
+
     }
 
     /**
@@ -50,7 +51,7 @@ class MyWebViewClient(internal var param: WebViewCallback) : WebViewClient() {
      */
     override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
         super.onReceivedSslError(view, handler, error)
-        param.onError(error.toString())
+        param.onError(error!!.primaryError.toString())
     }
 
     /**

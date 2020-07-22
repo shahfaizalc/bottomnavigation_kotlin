@@ -31,7 +31,7 @@ class HomeFragment : BaseFragment() {
             binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater, R.layout.fragment_home, container, false)
             val areaViewModel = HomeViewModel(activity!!, this)
             binding?.adSearchModel = areaViewModel
-            addTabs( binding!!.viewpager!!);
+            addTabs( binding!!.viewpager);
             binding!!.tabs.setupWithViewPager( binding!!.viewpager);
         }
 
@@ -42,11 +42,10 @@ class HomeFragment : BaseFragment() {
         val adapter = ViewPagerAdapter(activity!!.getSupportFragmentManager())
         adapter.addFrag(FragmentDiscussions(), "Morocco")
         adapter.addFrag(FragmentDiscussions(), "World")
-        adapter.addFrag(FragmentDiscussions(), "Business")
         adapter.addFrag(FragmentDiscussions(), "Sports")
-        adapter.addFrag(FragmentDiscussions(), "Entertainment")
+        adapter.addFrag(FragmentDiscussions(), "Business")
         adapter.addFrag(FragmentDiscussions(), "Politics")
-        adapter.addFrag(FragmentDiscussions(),"Travel")
+        adapter.addFrag(FragmentDiscussions(), "Entertainment")
 
         viewPager.adapter = adapter
     }
