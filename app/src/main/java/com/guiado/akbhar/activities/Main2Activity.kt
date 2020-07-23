@@ -160,10 +160,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
 
             if (fragmentHistory!!.isEmpty) {
                 super.onBackPressed()
-            } else if(mAuth.currentUser==null){
-                super.onBackPressed()
-
-            }else {
+            } else {
 
                 if (fragmentHistory!!.stackSize > 1) {
 
@@ -251,7 +248,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
             FragNavController.TAB1 -> return HomeFragment()
             FragNavController.TAB2 -> return FragmentCorona()
             FragNavController.TAB3 -> return FragmentMagazine()
-            FragNavController.TAB4 -> return FragmentIntro()
+            FragNavController.TAB4 -> return FragmentNewsProviders()
         }
         throw IllegalStateException("Need to send an index that we know")
     }

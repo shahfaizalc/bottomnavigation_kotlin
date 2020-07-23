@@ -234,6 +234,7 @@
                     android:weightSum="2">
 
                     <FrameLayout
+                        android:onClick="@{adSearchModel.openNewsFood}"
                         android:layout_margin="@dimen/dimen_2"
                         android:layout_weight="1"
                         android:layout_width="0dp"
@@ -266,6 +267,7 @@
                     <FrameLayout
                         android:layout_margin="@dimen/dimen_2"
                         android:layout_weight="1"
+                        android:onClick="@{adSearchModel.openNewsNArt}"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@color/darkBlue2">
@@ -297,6 +299,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_8"
+                    android:onClick="@{adSearchModel.openNewsGame}"
                     android:layout_marginEnd="@dimen/dimen_8"
                     android:layout_weight="1"
                     android:background="@drawable/circular_bg_white"
@@ -337,6 +340,7 @@
                         android:layout_margin="@dimen/dimen_2"
                         android:layout_weight="1"
                         android:layout_width="0dp"
+                        android:onClick="@{adSearchModel.openNewsScience}"
                         android:layout_height="match_parent"
                         android:background="@color/darkBlue2">
                         <ImageView
@@ -376,6 +380,7 @@
                         android:layout_margin="@dimen/dimen_2"
                         android:layout_weight="1"
                         android:layout_width="0dp"
+                        android:onClick="@{adSearchModel.openNewsTech}"
                         android:layout_height="match_parent"
                         android:background="@color/darkBlue2">
                         <ImageView
@@ -406,6 +411,7 @@
                         android:layout_margin="@dimen/dimen_2"
                         android:layout_weight="1"
                         android:layout_width="0dp"
+                        android:onClick="@{adSearchModel.openNewsTravel}"
                         android:layout_height="match_parent"
                         android:background="@color/darkBlue2">
                         <ImageView
@@ -431,15 +437,15 @@
 
                     </FrameLayout>
                 </LinearLayout>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerUser"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_8"
-                    android:background="@android:color/transparent"
-                    android:scrollbars="vertical"
-                    app:searchRecycler="@{adSearchModel}" />
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recyclerUser"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/dimen_8"-->
+<!--                    android:layout_marginEnd="@dimen/dimen_8"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    android:scrollbars="vertical"-->
+<!--                    app:searchRecycler="@{adSearchModel}" />-->
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

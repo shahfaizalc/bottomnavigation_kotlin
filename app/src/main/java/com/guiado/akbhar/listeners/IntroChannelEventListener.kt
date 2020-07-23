@@ -1,9 +1,9 @@
 package com.guiado.akbhar.listeners
 
-import com.guiado.akbhar.viewmodel.IntroViewModel
+import com.guiado.akbhar.viewmodel.NewsProvidersViewModel
 
 interface IntroChannelEventListener {
 
-    fun onClickYearListItem(channelsViewModel : IntroViewModel, position: Int)
+    fun onClickYearListItem(channelsViewModel : NewsProvidersViewModel, position: Int)
 
 }

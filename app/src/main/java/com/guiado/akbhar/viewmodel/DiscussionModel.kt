@@ -116,7 +116,8 @@ class DiscussionModel (internal var activity: FragmentActivity,
            //  getKeyWords(talentProfilesList,adModel)
 
              if(!isUpdated) {
-                 talentProfilesList.add(adModel)
+                 talentProfilesList.add(0,adModel)
+                 //talentProfilesList.add(adModel)
              }
         // }
     }

@@ -1,0 +1,5 @@
+package com.guiado.akbhar.model
+
+enum class NewsTypeEnum {
+    GENERAL,MOROCCO, WORLD, SPORTS, BUSINESS, POLITICS, ENTERTAINMENT, FOOD, ART, GAME, SCIENCE, TECHNOLOGY, TRAVEL
+}

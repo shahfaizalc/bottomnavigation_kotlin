@@ -1,8 +1,7 @@
 package com.guiado.akbhar.util
 
-import android.content.Context
-import android.view.View
-import android.widget.TextView
+import android.os.Handler
+import androidx.viewpager.widget.ViewPager
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.guiado.akbhar.R
 import com.guiado.akbhar.model.*
@@ -11,7 +10,6 @@ import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import kotlin.collections.ArrayList
-
 
 
 fun convertLongToTime(time: Long): String {
@@ -23,7 +21,6 @@ fun convertLongToTime(time: Long): String {
 fun <T : Any> T?.notNull(function: (it: T) -> Unit) {
     if (this != null) function(this)
 }
-
 
 
 fun String.sentenceToWords(): List<String> {
@@ -43,6 +40,25 @@ var firestoreSettings = FirebaseFirestoreSettings.Builder()
         .setPersistenceEnabled(true)
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
+
+fun ViewPager.autoScroll(interval: Long) {
+
+    val handler = Handler()
+    var scrollPosition = 0
+
+    val runnable = object : Runnable {
+
+        override fun run() {
+            val count = adapter?.count ?: 0
+            if(count>0)
+                setCurrentItem(scrollPosition++ % count, true)
+
+            handler.postDelayed(this, interval)
+        }
+    }
+
+    handler.post(runnable)
+}
 
 
 fun getNewsProviders(): ArrayList<NewsProviders> {
@@ -82,18 +98,18 @@ fun getNewsProviders(): ArrayList<NewsProviders> {
 
 fun getMagazines(): ArrayList<Magazines> {
     var newsProviders = ArrayList<Magazines>();
-    newsProviders.add(Magazines("kalimatmagazine", MagazineCategory.ART_AND_CULTURE, R.drawable.np_hespress, "https://kalimatmagazine.com/Online-Articles-1"))
-    newsProviders.add(Magazines("north africa", MagazineCategory.POLITICS, R.drawable.np_hibapress, "http://north-africa.com/"))
-    newsProviders.add(Magazines("moroccan ladies", MagazineCategory.WOMEN, R.drawable.np_le360, "http://moroccanladies.com/"))
-    newsProviders.add(Magazines("zamane", MagazineCategory.POLITICS, R.drawable.np_febrayer, "https://zamane.ma/fr/"))
-    newsProviders.add(Magazines("maroc hebdo", MagazineCategory.POLITICS, R.drawable.np_yabiladi, "https://www.maroc-hebdo.press.ma/"))
-    newsProviders.add(Magazines("emarrakech", MagazineCategory.GENERAL, R.drawable.np_alyaoum24, "http://www.emarrakech.info/"))
-    newsProviders.add(Magazines("lalla fatema", MagazineCategory.GENERAL, R.drawable.np_alyaoum24, "https://www.lallafatema.ma/"))
-    newsProviders.add(Magazines("sayidaty", MagazineCategory.WOMEN, R.drawable.np_alyaoum24, "https://www.sayidaty.net/"))
-    newsProviders.add(Magazines("fashion magazine", MagazineCategory.FASHION, R.drawable.np_alyaoum24, "https://fashionmagazine.com/tag/morocco/"))
-    newsProviders.add(Magazines("herdes magazine", MagazineCategory.ART_AND_CULTURE, R.drawable.np_alyaoum24, "https://www.herdesmagazine.com/the-moroccan-issue/"))
-    newsProviders.add(Magazines("telquel", MagazineCategory.GENERAL, R.drawable.np_alyaoum24, "https://telquel.ma/"))
-    newsProviders.add(Magazines("vogue(morocco)", MagazineCategory.FASHION, R.drawable.np_alyaoum24, "https://en.vogue.me/tags/morocco/"))
+    newsProviders.add(Magazines("kalimatmagazine", MagazineCategoryEnum.ART_AND_CULTURE, R.drawable.np_hespress, "https://kalimatmagazine.com/Online-Articles-1"))
+    newsProviders.add(Magazines("north africa", MagazineCategoryEnum.POLITICS, R.drawable.np_hibapress, "http://north-africa.com/"))
+    newsProviders.add(Magazines("moroccan ladies", MagazineCategoryEnum.WOMEN, R.drawable.np_le360, "http://moroccanladies.com/"))
+    newsProviders.add(Magazines("zamane", MagazineCategoryEnum.POLITICS, R.drawable.np_febrayer, "https://zamane.ma/fr/"))
+    newsProviders.add(Magazines("maroc hebdo", MagazineCategoryEnum.POLITICS, R.drawable.np_yabiladi, "https://www.maroc-hebdo.press.ma/"))
+    newsProviders.add(Magazines("emarrakech", MagazineCategoryEnum.GENERAL, R.drawable.np_alyaoum24, "http://www.emarrakech.info/"))
+    newsProviders.add(Magazines("lalla fatema", MagazineCategoryEnum.GENERAL, R.drawable.np_alyaoum24, "https://www.lallafatema.ma/"))
+    newsProviders.add(Magazines("sayidaty", MagazineCategoryEnum.WOMEN, R.drawable.np_alyaoum24, "https://www.sayidaty.net/"))
+    newsProviders.add(Magazines("fashion magazine", MagazineCategoryEnum.FASHION, R.drawable.np_alyaoum24, "https://fashionmagazine.com/tag/morocco/"))
+    newsProviders.add(Magazines("herdes magazine", MagazineCategoryEnum.ART_AND_CULTURE, R.drawable.np_alyaoum24, "https://www.herdesmagazine.com/the-moroccan-issue/"))
+    newsProviders.add(Magazines("telquel", MagazineCategoryEnum.GENERAL, R.drawable.np_alyaoum24, "https://telquel.ma/"))
+    newsProviders.add(Magazines("vogue(morocco)", MagazineCategoryEnum.FASHION, R.drawable.np_alyaoum24, "https://en.vogue.me/tags/morocco/"))
     return newsProviders;
 }
 

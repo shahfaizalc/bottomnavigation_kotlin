@@ -9,6 +9,10 @@
             type="com.guiado.akbhar.viewmodel.MoroccoViewModel" />
     </data>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill_vertical">
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,6 +23,12 @@
             android:layout_height="match_parent"
             android:background="@color/colorGreyLight"
             android:orientation="vertical">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                app:viewPager="@{adSearchModel}"
+                android:layout_height="200dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerUser"
@@ -33,4 +43,5 @@
         </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

@@ -19,6 +19,15 @@
             android:layout_height="match_parent"
             android:background="@color/colorGreyLight"
             android:orientation="vertical">
+            <TextView
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dimen_20"
+                android:textStyle="bold"
+                android:text="R News - Game"
+                android:textColor="@color/white"
+                android:padding="@dimen/dimen_12"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerUser"

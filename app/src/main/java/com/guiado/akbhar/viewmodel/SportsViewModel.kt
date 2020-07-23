@@ -13,8 +13,8 @@ import com.google.firebase.firestore.*
 import com.guiado.akbhar.BR
 import com.guiado.akbhar.util.*
 import com.guiado.akbhar.utils.Constants
-import com.guiado.akbhar.view.FragmentDiscussions
 import com.guiado.akbhar.model.Feed
+import com.guiado.akbhar.model.NewsTypeEnum
 import com.guiado.akbhar.view.FragmentSports
 import com.guiado.akbhar.view.WebViewActivity
 
@@ -45,7 +45,7 @@ class SportsViewModel (internal var activity: FragmentActivity,
             Log.d(TAG, "getProfile  "+e)
 
         }
-        query = db.collection("/NEWS/news_arabic/world").whereEqualTo("newstype", 2).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo("newstype", NewsTypeEnum.SPORTS).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
         doGetTalents()
     }
 
@@ -117,7 +117,8 @@ class SportsViewModel (internal var activity: FragmentActivity,
            //  getKeyWords(talentProfilesList,adModel)
 
              if(!isUpdated) {
-                 talentProfilesList.add(adModel)
+                 talentProfilesList.add(0,adModel)
+                 // talentProfilesList.add(adModel)
              }
         // }
     }

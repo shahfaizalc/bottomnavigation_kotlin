@@ -7,20 +7,20 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import com.guiado.akbhar.handler.NetworkChangeHandler
+import com.guiado.akbhar.view.FragmentNewsProviders
 import com.guiado.akbhar.BR
-import com.guiado.akbhar.model.Magazines
+import com.guiado.akbhar.model.NewsProviders
 import com.guiado.akbhar.utils.Constants
-import com.guiado.akbhar.view.FragmentMagazine
 import com.guiado.akbhar.view.WebViewActivity
 
 
-class MagazineViewModel(private val fragmentProfile: FragmentMagazine) : BaseObservable() {
+class NewsProvidersViewModel(private val fragmentProfile: FragmentNewsProviders) : BaseObservable() {
 
     var isOnline: Boolean = false
 
     var networkStateHandler: NetworkChangeHandler
 
-    var channelTamilMovieReviewDataModel: ArrayList<Magazines>
+    var channelTamilMovieReviewDataModel: ArrayList<NewsProviders>
 
     @get:Bindable
     var imgUrl: String? = null

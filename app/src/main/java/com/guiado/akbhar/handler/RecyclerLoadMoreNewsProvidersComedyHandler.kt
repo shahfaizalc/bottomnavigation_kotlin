@@ -3,14 +3,14 @@ package com.guiado.akbhar.handler
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.guiado.akbhar.adapter.MagazineRecyclerViewAdapter
-import com.guiado.akbhar.model.Magazines
+import com.guiado.akbhar.adapter.NewsProvidersRecyclerViewAdapter
+import com.guiado.akbhar.model.NewsProviders
 import com.guiado.akbhar.utils.EndlessRecyclerViewScrollListener
-import com.guiado.akbhar.viewmodel.MagazineViewModel
+import com.guiado.akbhar.viewmodel.NewsProvidersViewModel
 
-class RecyclerLoadMoreMagazineHandler(private val channelsViewModel: MagazineViewModel,
-                                      private val listViewAdapter: MagazineRecyclerViewAdapter,
-                                      private val channelTamilComedyDataModel: ArrayList<Magazines>)    {
+class RecyclerLoadMoreNewsProvidersComedyHandler(private val channelsViewModel: NewsProvidersViewModel,
+                                                 private val listViewAdapter: NewsProvidersRecyclerViewAdapter,
+                                                 private val channelTamilComedyDataModel: ArrayList<NewsProviders>)    {
 
     private val TAG = "RecyclerLoadMoreChannelsHandler"
 
@@ -25,7 +25,7 @@ class RecyclerLoadMoreMagazineHandler(private val channelsViewModel: MagazineVie
         recyclerView.addOnScrollListener(listener)
     }
 
-    fun initRequest(view: RecyclerView, urlSubString: ArrayList<Magazines>, isNew: Boolean) {
+    fun initRequest(view: RecyclerView, urlSubString: ArrayList<NewsProviders>, isNew: Boolean) {
         var urlList = urlSubString
         Log.d("TAG", "initRequest: next " + urlSubString)
         channelTamilComedyDataModel.addAll(urlSubString)

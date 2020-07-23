@@ -11,17 +11,17 @@ import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.guiado.akbhar.adapter.*
 import com.guiado.akbhar.handler.*
-import com.guiado.akbhar.model.CountriesInfoModel
-import com.guiado.akbhar.model.Feed
+import com.guiado.akbhar.util.autoScroll
 import com.guiado.akbhar.util.getMagazines
 import com.guiado.akbhar.util.getNewsProviders
 import com.guiado.akbhar.viewmodel.*
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("app:recyclerChannelComedy")
-fun adapter(recyclerView: RecyclerView, channelsViewModel: IntroViewModel) {
+fun adapter(recyclerView: RecyclerView, channelsViewModel: NewsProvidersViewModel) {
 
     val dataModelVal = channelsViewModel.channelTamilMovieReviewDataModel;
     //val genericValues = GenericValues();
@@ -32,9 +32,9 @@ fun adapter(recyclerView: RecyclerView, channelsViewModel: IntroViewModel) {
 
     val linearLayoutManager = GridLayoutManager(recyclerView.context, 3, GridLayoutManager.VERTICAL, false)
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager?
-    val listAdapter = IntroChannelsRecyclerViewAdapter(channelsViewModel, dataModelVal)
+    val listAdapter = NewsProvidersRecyclerViewAdapter(channelsViewModel, dataModelVal)
     recyclerView.adapter = listAdapter
-    val bindingAdapter = RecyclerLoadMoreIntroChannelsComedyHandler(channelsViewModel, listAdapter, dataModelVal)
+    val bindingAdapter = RecyclerLoadMoreNewsProvidersComedyHandler(channelsViewModel, listAdapter, dataModelVal)
     bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
     bindingAdapter.initRequest(recyclerView, recyclerItems, false)
 
@@ -71,16 +71,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: CoronaModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -90,12 +90,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: CoronaModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -115,16 +115,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: DiscussionModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -134,12 +134,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: DiscussionModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -160,16 +160,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: ArtViewModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -179,12 +179,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: ArtViewModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -204,16 +204,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: FoodViewModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -223,12 +223,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: FoodViewModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -249,16 +249,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: GameViewModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -268,12 +268,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: GameViewModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -293,16 +293,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: BusinessViewModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -312,12 +312,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: BusinessViewModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -337,16 +337,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: EntertainementViewMo
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -356,12 +356,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: EntertainementViewMo
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -369,6 +369,40 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: EntertainementViewMo
     });
 }
 
+@BindingAdapter("app:viewPager")
+fun adapter(viewPager: ViewPager, countriesViewModel: MoroccoViewModel) {
+
+    Log.d("tagggng",""+countriesViewModel.talentProfilesList.size);
+
+    viewPager.adapter = CustomPagerAdapter(viewPager.context,countriesViewModel)
+    viewPager.autoScroll(3000)
+
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach1")
+        }
+
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+            Log.d("rach", "rach2")
+        }
+
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach3")
+            (viewPager.adapter as CustomPagerAdapter).notifyDataSetChanged()
+
+        }
+
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach4")
+        }
+
+        override fun onChanged(sender: ObservableList<String>?) {
+            Log.d("rach", "rach5")
+        }
+
+    });
+
+}
 
 
 @BindingAdapter("app:searchRecycler")
@@ -382,16 +416,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: MoroccoViewModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -401,12 +435,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: MoroccoViewModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -426,16 +460,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: PoliticsViewModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -445,12 +479,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: PoliticsViewModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -471,16 +505,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: ScienceViewModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -490,12 +524,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: ScienceViewModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -515,16 +549,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: SportsViewModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -534,12 +568,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: SportsViewModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -558,16 +592,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: TechViewModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -577,12 +611,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: TechViewModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -602,16 +636,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: TravelViewModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -621,12 +655,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: TravelViewModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }
@@ -645,16 +679,16 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: WorldViewModel) {
 
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
 
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             Log.d("rach", "rach2")
         }
 
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
             if (countriesViewModel.resetScrrollListener) {
@@ -664,12 +698,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: WorldViewModel) {
 
         }
 
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach4")
             bindingAdapter.resetRecycleView(recyclerView)
         }
 
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+        override fun onChanged(sender: ObservableList<String>?) {
             Log.d("rach", "rach5")
             bindingAdapter.resetRecycleView(recyclerView)
         }

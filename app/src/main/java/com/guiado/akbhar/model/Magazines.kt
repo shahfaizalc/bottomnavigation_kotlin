@@ -1,3 +1,3 @@
 package com.guiado.akbhar.model
 
- data class Magazines(var title: String?, var category : MagazineCategory,  var imgurl: Int?, var homeurl: String?)
+ data class Magazines(var title: String?, var categoryEnum : MagazineCategoryEnum, var imgurl: Int?, var homeurl: String?)

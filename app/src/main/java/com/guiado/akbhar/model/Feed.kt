@@ -5,17 +5,14 @@ import java.io.Serializable
 
  class Feed : Serializable {
 
-     @SerializedName("plantId")
-     val plantId: String? = null
-
-     @SerializedName("title")
-     var title: String? = null
-
      @SerializedName("brief")
      var brief: String? = null
 
      @SerializedName("date")
      var date: String? = null
+
+     @SerializedName("growZoneNumber")
+     var growZoneNumber: String? = null
 
      @SerializedName("homeurl")
      var homeurl: String? = null
@@ -23,13 +20,18 @@ import java.io.Serializable
      @SerializedName("imgurl")
      var imgurl: String? = null
 
-     @SerializedName("growZoneNumber")
-     var growZoneNumber: String? = null
-
      @SerializedName("newsprovider")
      var newsprovider: String? = null
+
+     @SerializedName("newstype")
+     var newstype: String? = null
 
      @SerializedName("newsurl")
      var newsurl: String? = null
 
+     @SerializedName("plantId")
+     val plantId: String? = null
+
+     @SerializedName("title")
+     var title: String? = null
  }

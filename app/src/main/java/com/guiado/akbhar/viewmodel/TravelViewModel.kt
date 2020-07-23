@@ -1,6 +1,7 @@
 package com.guiado.akbhar.viewmodel
 
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.View
@@ -13,13 +14,13 @@ import com.google.firebase.firestore.*
 import com.guiado.akbhar.BR
 import com.guiado.akbhar.util.*
 import com.guiado.akbhar.utils.Constants
-import com.guiado.akbhar.view.FragmentDiscussions
 import com.guiado.akbhar.model.Feed
+import com.guiado.akbhar.model.NewsTypeEnum
 import com.guiado.akbhar.view.FragmentTravel
 import com.guiado.akbhar.view.WebViewActivity
 
 
-class TravelViewModel (internal var activity: FragmentActivity,
+class TravelViewModel (internal var activity: Activity,
                        internal val fragmentProfileInfo: FragmentTravel) // To show list of user images (Gallery)
     : BaseObservable() {
 
@@ -35,7 +36,6 @@ class TravelViewModel (internal var activity: FragmentActivity,
     }
 
     init {
-        fragmentProfileInfo.mFragmentNavigation.viewToolbar(true);
         talentProfilesList = ObservableArrayList()
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
@@ -45,7 +45,7 @@ class TravelViewModel (internal var activity: FragmentActivity,
             Log.d(TAG, "getProfile  "+e)
 
         }
-        query = db.collection("/NEWS/news_arabic/world").whereEqualTo("newstype", 2).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo("newstype", NewsTypeEnum.TRAVEL).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
         doGetTalents()
     }
 
@@ -117,7 +117,8 @@ class TravelViewModel (internal var activity: FragmentActivity,
            //  getKeyWords(talentProfilesList,adModel)
 
              if(!isUpdated) {
-                 talentProfilesList.add(adModel)
+                 talentProfilesList.add(0,adModel)
+                 // talentProfilesList.add(adModel)
              }
         // }
     }

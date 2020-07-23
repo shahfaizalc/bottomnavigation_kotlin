@@ -9,10 +9,8 @@ import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import com.facebook.ads.*
 import com.guiado.akbhar.R
-import com.guiado.akbhar.databinding.ActivityIntroBinding
 import com.guiado.akbhar.databinding.ActivityMagazineBinding
 import com.guiado.akbhar.fragments.BaseFragment
-import com.guiado.akbhar.viewmodel.IntroViewModel
 import com.guiado.akbhar.viewmodel.MagazineViewModel
 
 class FragmentMagazine : BaseFragment() {

@@ -19,6 +19,7 @@
         <variable
             name="titleTextView"
             type="java.lang.String" />
+
         <variable
             name="titleCategoryTextView"
             type="java.lang.String" />
@@ -30,8 +31,13 @@
         <variable
             name="imgUrlid"
             type="java.lang.Integer" />
+
         <variable
             name="typeTextView"
+            type="java.lang.String" />
+
+        <variable
+            name="titleIconTextView"
             type="java.lang.String" />
 
         <variable
@@ -46,34 +52,93 @@
     </data>
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_2"
+        android:gravity="center"
         android:onClick="@{() -> itemClickListener.onClickYearListItem(mainDataModel,itemPosition)}"
         android:orientation="vertical">
 
-        <TextView
-            android:maxLines="1"
-            android:id="@+id/videoCount"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{titleTextView}"
-            android:layout_gravity="start"
-            android:paddingTop="@dimen/dimen_4"
-            android:layout_marginEnd="@dimen/dimen_2"
-            android:textSize="@dimen/dimen_24"
-            android:textStyle="bold"
-            android:textColor="@color/primary_text" />
+            android:layout_margin="@dimen/dimen_2"
+            android:gravity="center"
+            android:onClick="@{() -> itemClickListener.onClickYearListItem(mainDataModel,itemPosition)}"
+            android:orientation="horizontal"
+            android:weightSum="10">
 
-        <TextView
-            android:textSize="@dimen/dimen_12"
-            android:maxLines="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{titleCategoryTextView}"
-            android:layout_gravity="start"
-            android:layout_marginEnd="@dimen/dimen_2"
-            android:textColor="@color/colorGrey" />
+            <FrameLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/dimen_2"
+                android:layout_weight="2">
+
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_44"
+                    android:layout_height="@dimen/dimen_44"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:src="@mipmap/ic_launcher_round"
+                    android:textSize="@dimen/dimen_36"
+                    android:tint="@color/red_logout" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@{titleIconTextView}"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/dimen_32"
+                    android:textStyle="bold"
+                    android:tint="@color/red" />
+            </FrameLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/dimen_2"
+                android:layout_weight="8"
+                android:paddingLeft="@dimen/dimen_8"
+                android:gravity="center"
+                android:onClick="@{() -> itemClickListener.onClickYearListItem(mainDataModel,itemPosition)}"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/videoCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:alpha=".8"
+                    android:maxLines="1"
+                    android:paddingTop="@dimen/dimen_4"
+                    android:text="@{titleTextView}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimen_20"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:maxLines="1"
+                    android:text="@{titleCategoryTextView}"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="@dimen/dimen_12" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:background="@drawable/bottom_shadow" />
     </LinearLayout>
 </layout>

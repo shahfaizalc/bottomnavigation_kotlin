@@ -39,7 +39,8 @@ class MagazineRecyclerViewAdapter(private val channelsViewModel: MagazineViewMod
         viewHolder.binding!!.simpleListAdapter = this
         with(viewHolder.binding!!){
             titleTextView = channelTamilMovieReviewDataModel[position].title!!.toUpperCase(Locale.ROOT)
-            titleCategoryTextView = channelTamilMovieReviewDataModel[position].category.name.toLowerCase(Locale.ROOT)
+            titleCategoryTextView = channelTamilMovieReviewDataModel[position].categoryEnum.name.toLowerCase(Locale.ROOT)
+            titleIconTextView = channelTamilMovieReviewDataModel[position].title!!.get(0).toString().toUpperCase(Locale.ROOT)
 
             val l = channelTamilMovieReviewDataModel[position].imgurl
             //imges.setImageDrawable(ContextCompat.getDrawable(viewHolder.contextt!!, channelTamilMovieReviewDataModel[position].imgurl!!))

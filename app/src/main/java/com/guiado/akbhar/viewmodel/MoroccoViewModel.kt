@@ -15,6 +15,7 @@ import com.guiado.akbhar.util.*
 import com.guiado.akbhar.utils.Constants
 import com.guiado.akbhar.view.FragmentDiscussions
 import com.guiado.akbhar.model.Feed
+import com.guiado.akbhar.model.NewsTypeEnum
 import com.guiado.akbhar.view.FragmentMorocco
 import com.guiado.akbhar.view.WebViewActivity
 
@@ -25,6 +26,7 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
 
     var talentProfilesList: ObservableArrayList<Feed>
     var query : Query
+
     var db :FirebaseFirestore
     private val mAuth: FirebaseAuth
 
@@ -43,13 +45,10 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
             db.firestoreSettings = firestoreSettings
         } catch (e:Exception){
             Log.d(TAG, "getProfile  "+e)
-
         }
-        query = db.collection("/NEWS/news_arabic/world").whereEqualTo("newstype", 1).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("/NEWS/news_arabic/world").orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(3)
         doGetTalents()
     }
-
-
 
 
     @get:Bindable
@@ -117,7 +116,8 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
            //  getKeyWords(talentProfilesList,adModel)
 
              if(!isUpdated) {
-                 talentProfilesList.add(adModel)
+                 talentProfilesList.add(0,adModel);
+               //  talentProfilesList.add(adModel)
              }
         // }
     }

@@ -16,8 +16,7 @@ import com.guiado.akbhar.utils.Constants
 import com.guiado.akbhar.R
 import com.guiado.akbhar.model.Corona
 import com.guiado.akbhar.model.Feed
-import com.guiado.akbhar.view.FragmentCorona
-import com.guiado.akbhar.view.WebViewActivity
+import com.guiado.akbhar.view.*
 
 
 class CoronaModel (internal var activity: FragmentActivity,
@@ -54,7 +53,7 @@ class CoronaModel (internal var activity: FragmentActivity,
         query = db.collection("/NEWS/news_arabic/world").orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
         queryCorona = db.collection("/NEWS/news_arabic/corona/")
         doGetCoronaUpdate()
-        doGetTalents()
+      //  doGetTalents()
     }
 
     @get:Bindable
@@ -133,6 +132,44 @@ class CoronaModel (internal var activity: FragmentActivity,
         activity.startActivity(intentNext)
     }
 
+
+
+    @Override
+    fun openNewsNArt() = View.OnClickListener() {
+        val intentNext = Intent(activity, FragmentArt::class.java)
+        activity.startActivity(intentNext)
+    }
+
+    @Override
+    fun openNewsFood() = View.OnClickListener() {
+        val intentNext = Intent(activity, FragmentFood::class.java)
+        activity.startActivity(intentNext)
+    }
+    @Override
+    fun openNewsTravel() = View.OnClickListener() {
+        val intentNext = Intent(activity, FragmentTravel::class.java)
+        activity.startActivity(intentNext)
+    }
+    @Override
+    fun openNewsGame() = View.OnClickListener() {
+        val intentNext = Intent(activity, FragmentGame::class.java)
+        activity.startActivity(intentNext)
+    }
+    @Override
+    fun openNewsScience() = View.OnClickListener() {
+        val intentNext = Intent(activity, FragmentScience::class.java)
+        activity.startActivity(intentNext)
+    }
+    @Override
+    fun openNewsTech() = View.OnClickListener() {
+        val intentNext = Intent(activity, FragmentTechnology::class.java)
+        activity.startActivity(intentNext)
+    }
+
+
+
+
+
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()
     }
@@ -166,7 +203,8 @@ class CoronaModel (internal var activity: FragmentActivity,
         Log.d(TAG, "Success getting documents: " + adModel.imgurl)
 
              if(!isUpdated) {
-                 talentProfilesList.add(adModel)
+                 talentProfilesList.add(0,adModel)
+                 //talentProfilesList.add(adModel)
              }
     }
 
