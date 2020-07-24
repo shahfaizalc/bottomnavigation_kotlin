@@ -11,6 +11,69 @@
     <string name="rssblog_web_error">Sorry for the inconvenience.\nThe Webpage is not available</string>
 
 
+
+
+    <string name="corona_update">Corona Update</string>
+    <string name="corona_assesment">Covid-19 Self Assessment Tool</string>
+
+    <string name="prayer_time">Show Prayer Time</string>
+    <string name="prayer_time_hide">Hide Prayer Time</string>
+
+    <array name="tab_name2">
+        <item>Agadir</item>
+        <item>Casablanca</item>
+        <item>Fez</item>
+        <item>Kenitra</item>
+        <item>Marrakech</item>
+        <item>Meknes</item>
+        <item>Oujda</item>
+        <item>Rabat</item>
+        <item>Safi</item>
+        <item>Tangier</item>
+        <item>Tetouan</item>
+        <item>Rabat_Agdal</item>
+        <item>Nador</item>
+        <item>Oujda_Angad</item>
+        <item>Casablanca_Roches_Noires</item>
+    </array>
+
+
+
+
+
+
+
+    <string name="tab_morocco">Morocco</string>
+    <string name="tab_world">World</string>
+    <string name="tab_sports">Sports</string>
+    <string name="tab_business">Business</string>
+    <string name="tab_politics">Politics</string>
+    <string name="tab_entertainment">Entertainment</string>
+    <string name="magazines">Let\'s read some magazines</string>
+
+
+    <string name="art">Art</string>
+    <string name="food">Food</string>
+    <string name="science">Science</string>
+    <string name="game">Game</string>
+    <string name="travel">Travel</string>
+    <string name="technology">Technology</string>
+    <string name="news_providers">News Providers</string>
+
+    <string name="general">GENERAL</string>
+    <string name="women">WOMEN</string>
+    <string name="news">NEWS</string>
+    <string name="artandculture">ART AND CULTURE</string>
+    <string name="fashion">FASHION</string>
+
+
+
+    <string name="death">Death</string>
+    <string name="recovered">Recovered</string>
+    <string name="confirmed">Confirmed</string>
+
+
+
     <string name="app_title">Ticket Exchange</string>
     <string name="network_ErrorMsg">You appear to be offline. Please check your internet settings.</string>
 

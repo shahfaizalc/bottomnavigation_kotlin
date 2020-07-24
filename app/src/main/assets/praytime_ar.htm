@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://al-hamdoulillah.com">
+    <link rel="dns-prefetch" href="//al-hamdoulillah.com"/>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//ssl.google-analytics.com">
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="//googleads.g.doubleclick.net">
+    <link rel="dns-prefetch" href="//tpc.googlesyndication.com">
+    <link rel="dns-prefetch" href="//stats.g.doubleclick.net">
+    <link rel="dns-prefetch" href="//www.gstatic.com">
+    <link rel="dns-prefetch" href="//csi.gstatic.com">
+
+    <link rel="stylesheet" type="text/css" href="/en/css/islam.css">
+
+    <title>Prayer Time Morocco 2020 - Salat Timetable Morocco</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/en/css/timeto.css">
+
+    <script src="timeto.js"></script>
+    <script src="moment.js"></script>
+    <script src="zone.js"></script>
+    <script src="praytimes-am.js"></script>
+
+</head>
+<body>
+
+
+<table id="global">
+    <tbody>
+    <tr>
+
+        <td id="contenu">
+
+            </ul>
+            <h2>مواقيت الصلاة في المغرب</h2>
+
+
+            <center>
+                <div style="width:100%; display:block; height:5px; background-color:slategray; margin:0px;"></div>
+            </center>
+
+            <table class="timetable" style="margin-right:auto; margin-left:auto;">
+                <tr style="font-weight:bold;">
+                    <td style="text-align:left;">مدينة</td>
+                    <td style="width:4.5em;">الفجر</td>
+                    <td style="width:4.5em;">الظهر</td>
+                    <td style="width:4.5em;">العصر</td>
+                    <td style="width:4.5em;">المغرب</td>
+                    <td style="width:4.5em;">العشاء</td>
+                </tr>
+
+                <tr>
+                    <td style="text-align:left;">طنجة</a></td>
+                    <td><span id="fajr1"></span></td>
+                    <td><span id="dhuhr1"></span></td>
+                    <td><span id="asr1"></span></td>
+                    <td><span id="maghrib1"></span></td>
+                    <td><span id="isha1"></span></td>
+                </tr>
+                <script>
+var tz = 'Africa/Casablanca';
+var date = new Date();
+dst = 0;
+var times = prayTimesC.getTimes(date, [35.76727, -5.79975], 1, dst, '24h');
+var timeFajr = times.fajr;
+var timeDhuhr = times.dhuhr;
+var timeAsr = times.asr;
+var timeMaghrib = times.maghrib;
+var timeIsha = times.isha;
+document.getElementById("fajr1").innerHTML = timeFajr;
+document.getElementById("dhuhr1").innerHTML = timeDhuhr;
+document.getElementById("asr1").innerHTML = timeAsr;
+document.getElementById("maghrib1").innerHTML = timeMaghrib;
+document.getElementById("isha1").innerHTML = timeIsha;
+
+
+                </script>
+                <tr style="background-color: lightblue;">
+                    <td style="text-align:left;">تخفيض السعر</a></td>
+                    <td><span id="fajr2"></span></td>
+                    <td><span id="dhuhr2"></span></td>
+                    <td><span id="asr2"></span></td>
+                    <td><span id="maghrib2"></span></td>
+                    <td><span id="isha2"></span></td>
+                </tr>
+                <script>
+var tz = 'Africa/Casablanca';
+var date = new Date();
+dst = 0;
+var times = prayTimesC.getTimes(date, [34.0531, -6.79846], 1, dst, '24h');
+var timeFajr = times.fajr;
+var timeDhuhr = times.dhuhr;
+var timeAsr = times.asr;
+var timeMaghrib = times.maghrib;
+var timeIsha = times.isha;
+document.getElementById("fajr2").innerHTML = timeFajr;
+document.getElementById("dhuhr2").innerHTML = timeDhuhr;
+document.getElementById("asr2").innerHTML = timeAsr;
+document.getElementById("maghrib2").innerHTML = timeMaghrib;
+document.getElementById("isha2").innerHTML = timeIsha;
+
+
+                </script>
+                <tr>
+                    <td style="text-align:left;">الرباط</a></td>
+                    <td><span id="fajr3"></span></td>
+                    <td><span id="dhuhr3"></span></td>
+                    <td><span id="asr3"></span></td>
+                    <td><span id="maghrib3"></span></td>
+                    <td><span id="isha3"></span></td>
+                </tr>
+                <script>
+var tz = 'Africa/Casablanca';
+var date = new Date();
+dst = 0;
+var times = prayTimesC.getTimes(date, [34.01325, -6.83255], 1, dst, '24h');
+var timeFajr = times.fajr;
+var timeDhuhr = times.dhuhr;
+var timeAsr = times.asr;
+var timeMaghrib = times.maghrib;
+var timeIsha = times.isha;
+document.getElementById("fajr3").innerHTML = timeFajr;
+document.getElementById("dhuhr3").innerHTML = timeDhuhr;
+document.getElementById("asr3").innerHTML = timeAsr;
+document.getElementById("maghrib3").innerHTML = timeMaghrib;
+document.getElementById("isha3").innerHTML = timeIsha;
+
+
+                </script>
+                <tr style="background-color: lightblue;">
+                    <td style="text-align:left;">وجدة</a></td>
+                    <td><span id="fajr4"></span></td>
+                    <td><span id="dhuhr4"></span></td>
+                    <td><span id="asr4"></span></td>
+                    <td><span id="maghrib4"></span></td>
+                    <td><span id="isha4"></span></td>
+                </tr>
+                <script>
+var tz = 'Africa/Casablanca';
+var date = new Date();
+dst = 0;
+var times = prayTimesC.getTimes(date, [34.68139, -1.90858], 1, dst, '24h');
+var timeFajr = times.fajr;
+var timeDhuhr = times.dhuhr;
+var timeAsr = times.asr;
+var timeMaghrib = times.maghrib;
+var timeIsha = times.isha;
+document.getElementById("fajr4").innerHTML = timeFajr;
+document.getElementById("dhuhr4").innerHTML = timeDhuhr;
+document.getElementById("asr4").innerHTML = timeAsr;
+document.getElementById("maghrib4").innerHTML = timeMaghrib;
+document.getElementById("isha4").innerHTML = timeIsha;
+
+
+                </script>
+                <tr>
+                    <td style="text-align:left;">مكناس</a></td>
+                    <td><span id="fajr5"></span></td>
+                    <td><span id="dhuhr5"></span></td>
+                    <td><span id="asr5"></span></td>
+                    <td><span id="maghrib5"></span></td>
+                    <td><span id="isha5"></span></td>
+                </tr>
+                <script>
+var tz = 'Africa/Casablanca';
+var date = new Date();
+dst = 0;
+var times = prayTimesC.getTimes(date, [33.89352, -5.54727], 1, dst, '24h');
+var timeFajr = times.fajr;
+var timeDhuhr = times.dhuhr;
+var timeAsr = times.asr;
+var timeMaghrib = times.maghrib;
+var timeIsha = times.isha;
+document.getElementById("fajr5").innerHTML = timeFajr;
+document.getElementById("dhuhr5").innerHTML = timeDhuhr;
+document.getElementById("asr5").innerHTML = timeAsr;
+document.getElementById("maghrib5").innerHTML = timeMaghrib;
+document.getElementById("isha5").innerHTML = timeIsha;
+
+
+                </script>
+                <tr style="background-color: lightblue;">
+                    <td style="text-align:left;">مراكش</a></td>
+                    <td><span id="fajr6"></span></td>
+                    <td><span id="dhuhr6"></span></td>
+                    <td><span id="asr6"></span></td>
+                    <td><span id="maghrib6"></span></td>
+                    <td><span id="isha6"></span></td>
+                </tr>
+                <script>
+var tz = 'Africa/Casablanca';
+var date = new Date();
+dst = 0;
+var times = prayTimesC.getTimes(date, [31.63416, -7.99994], 1, dst, '24h');
+var timeFajr = times.fajr;
+var timeDhuhr = times.dhuhr;
+var timeAsr = times.asr;
+var timeMaghrib = times.maghrib;
+var timeIsha = times.isha;
+document.getElementById("fajr6").innerHTML = timeFajr;
+document.getElementById("dhuhr6").innerHTML = timeDhuhr;
+document.getElementById("asr6").innerHTML = timeAsr;
+document.getElementById("maghrib6").innerHTML = timeMaghrib;
+document.getElementById("isha6").innerHTML = timeIsha;
+
+
+                </script>
+                <tr>
+                    <td style="text-align:left;">القنيطرة</a></td>
+                    <td><span id="fajr7"></span></td>
+                    <td><span id="dhuhr7"></span></td>
+                    <td><span id="asr7"></span></td>
+                    <td><span id="maghrib7"></span></td>
+                    <td><span id="isha7"></span></td>
+                </tr>
+                <script>
+var tz = 'Africa/Casablanca';
+var date = new Date();
+dst = 0;
+var times = prayTimesC.getTimes(date, [34.26101, -6.5802], 1, dst, '24h');
+var timeFajr = times.fajr;
+var timeDhuhr = times.dhuhr;
+var timeAsr = times.asr;
+var timeMaghrib = times.maghrib;
+var timeIsha = times.isha;
+document.getElementById("fajr7").innerHTML = timeFajr;
+document.getElementById("dhuhr7").innerHTML = timeDhuhr;
+document.getElementById("asr7").innerHTML = timeAsr;
+document.getElementById("maghrib7").innerHTML = timeMaghrib;
+document.getElementById("isha7").innerHTML = timeIsha;
+
+
+                </script>
+                <tr style="background-color: lightblue;">
+                    <td style="text-align:left;">فاس</a></td>
+                    <td><span id="fajr8"></span></td>
+                    <td><span id="dhuhr8"></span></td>
+                    <td><span id="asr8"></span></td>
+                    <td><span id="maghrib8"></span></td>
+                    <td><span id="isha8"></span></td>
+                </tr>
+                <script>
+var tz = 'Africa/Casablanca';
+var date = new Date();
+dst = 0;
+var times = prayTimesC.getTimes(date, [34.03313, -5.00028], 1, dst, '24h');
+var timeFajr = times.fajr;
+var timeDhuhr = times.dhuhr;
+var timeAsr = times.asr;
+var timeMaghrib = times.maghrib;
+var timeIsha = times.isha;
+document.getElementById("fajr8").innerHTML = timeFajr;
+document.getElementById("dhuhr8").innerHTML = timeDhuhr;
+document.getElementById("asr8").innerHTML = timeAsr;
+document.getElementById("maghrib8").innerHTML = timeMaghrib;
+document.getElementById("isha8").innerHTML = timeIsha;
+
+
+                </script>
+                <tr>
+                    <td style="text-align:left;">الدار البيضاء</a></td>
+                    <td><span id="fajr9"></span></td>
+                    <td><span id="dhuhr9"></span></td>
+                    <td><span id="asr9"></span></td>
+                    <td><span id="maghrib9"></span></td>
+                    <td><span id="isha9"></span></td>
+                </tr>
+                <script>
+var tz = 'Africa/Casablanca';
+var date = new Date();
+dst = 0;
+var times = prayTimesC.getTimes(date, [33.58831, -7.61138], 1, dst, '24h');
+var timeFajr = times.fajr;
+var timeDhuhr = times.dhuhr;
+var timeAsr = times.asr;
+var timeMaghrib = times.maghrib;
+var timeIsha = times.isha;
+document.getElementById("fajr9").innerHTML = timeFajr;
+document.getElementById("dhuhr9").innerHTML = timeDhuhr;
+document.getElementById("asr9").innerHTML = timeAsr;
+document.getElementById("maghrib9").innerHTML = timeMaghrib;
+document.getElementById("isha9").innerHTML = timeIsha;
+
+
+                </script>
+                <tr style="background-color: lightblue;">
+                    <td style="text-align:left;">الحسيمة</a></td>
+                    <td><span id="fajr10"></span></td>
+                    <td><span id="dhuhr10"></span></td>
+                    <td><span id="asr10"></span></td>
+                    <td><span id="maghrib10"></span></td>
+                    <td><span id="isha10"></span></td>
+                </tr>
+                <script>
+var tz = 'Africa/Casablanca';
+var date = new Date();
+dst = 0;
+var times = prayTimesC.getTimes(date, [35.25165, -3.93723], 1, dst, '24h');
+var timeFajr = times.fajr;
+var timeDhuhr = times.dhuhr;
+var timeAsr = times.asr;
+var timeMaghrib = times.maghrib;
+var timeIsha = times.isha;
+document.getElementById("fajr10").innerHTML = timeFajr;
+document.getElementById("dhuhr10").innerHTML = timeDhuhr;
+document.getElementById("asr10").innerHTML = timeAsr;
+document.getElementById("maghrib10").innerHTML = timeMaghrib;
+document.getElementById("isha10").innerHTML = timeIsha;
+
+
+                </script>
+                <tr>
+                    <td style="text-align:left;">أغادير</a></td>
+                    <td><span id="fajr11"></span></td>
+                    <td><span id="dhuhr11"></span></td>
+                    <td><span id="asr11"></span></td>
+                    <td><span id="maghrib11"></span></td>
+                    <td><span id="isha11"></span></td>
+                </tr>
+                <script>
+var tz = 'Africa/Casablanca';
+var date = new Date();
+dst = 0;
+var times = prayTimesC.getTimes(date, [30.42018, -9.59815], 1, dst, '24h');
+var timeFajr = times.fajr;
+var timeDhuhr = times.dhuhr;
+var timeAsr = times.asr;
+var timeMaghrib = times.maghrib;
+var timeIsha = times.isha;
+document.getElementById("fajr11").innerHTML = timeFajr;
+document.getElementById("dhuhr11").innerHTML = timeDhuhr;
+document.getElementById("asr11").innerHTML = timeAsr;
+document.getElementById("maghrib11").innerHTML = timeMaghrib;
+document.getElementById("isha11").innerHTML = timeIsha;
+
+
+                </script>
+
+            </table>
+
+            <br>
+
+
+            <center>
+                <div style="width:100%; display:block; height:5px; background-color:slategray; margin:0px;"></div>
+            </center>
+
+
+            </td>
+    </tr>
+</table>
+<br>
+
+
+<script defer>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-9535111-1', 'auto');
+  ga('send', 'pageview');
+
+
+
+</script>
+</body>
+</html>

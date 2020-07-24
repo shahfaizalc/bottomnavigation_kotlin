@@ -62,7 +62,7 @@ class NewsProvidersViewModel(private val fragmentProfile: FragmentNewsProviders)
 
         Log.d("userClicked  ", "" + contentModelObj);
         val intentNext = Intent(fragmentProfile.activity, WebViewActivity::class.java)
-        intentNext.putExtra(Constants.POSTAD_OBJECT, contentModelObj)
+        intentNext.putExtra(Constants.POSTAD_OBJECT, "file:///android_asset/praytime_ar.htm")
         fragmentProfile.activity!!.startActivity(intentNext)
     }
 

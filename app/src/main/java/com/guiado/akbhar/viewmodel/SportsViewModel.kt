@@ -14,7 +14,10 @@ import com.guiado.akbhar.BR
 import com.guiado.akbhar.util.*
 import com.guiado.akbhar.utils.Constants
 import com.guiado.akbhar.model.Feed
+import com.guiado.akbhar.model.LanguageRegionEnum
 import com.guiado.akbhar.model.NewsTypeEnum
+import com.guiado.akbhar.utils.Constants.LANGUAGE_ID
+import com.guiado.akbhar.utils.SharedPreference
 import com.guiado.akbhar.view.FragmentSports
 import com.guiado.akbhar.view.WebViewActivity
 
@@ -45,7 +48,14 @@ class SportsViewModel (internal var activity: FragmentActivity,
             Log.d(TAG, "getProfile  "+e)
 
         }
-        query = db.collection("/NEWS/news_arabic/world").whereEqualTo("newstype", NewsTypeEnum.SPORTS).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        var pref = SharedPreference(activity.applicationContext).getValueString(LANGUAGE_ID)
+        Log.d(TAG, "getProfile  "+pref)
+
+        if (pref!!.isEmpty()) {
+            pref = LanguageRegionEnum.FR.name
+        }
+
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("newstype", NewsTypeEnum.SPORTS).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
         doGetTalents()
     }
 

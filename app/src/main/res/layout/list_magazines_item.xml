@@ -95,7 +95,7 @@
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/dimen_32"
                     android:textStyle="bold"
-                    android:tint="@color/red" />
+                    android:tint="@color/white" />
             </FrameLayout>
 
 

@@ -15,7 +15,11 @@ import com.guiado.akbhar.util.*
 import com.guiado.akbhar.utils.Constants
 import com.guiado.akbhar.view.FragmentDiscussions
 import com.guiado.akbhar.model.Feed
+import com.guiado.akbhar.model.LanguageRegionEnum
 import com.guiado.akbhar.model.NewsTypeEnum
+import com.guiado.akbhar.model.RegionEnum
+import com.guiado.akbhar.utils.Constants.LANGUAGE_ID
+import com.guiado.akbhar.utils.SharedPreference
 import com.guiado.akbhar.view.FragmentMorocco
 import com.guiado.akbhar.view.WebViewActivity
 
@@ -26,6 +30,9 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
 
     var talentProfilesList: ObservableArrayList<Feed>
     var query : Query
+
+    var talentHeadlineList: ObservableArrayList<Feed>
+    var queryHeadline : Query
 
     var db :FirebaseFirestore
     private val mAuth: FirebaseAuth
@@ -39,6 +46,8 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
     init {
         fragmentProfileInfo.mFragmentNavigation.viewToolbar(true);
         talentProfilesList = ObservableArrayList()
+        talentHeadlineList= ObservableArrayList()
+
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
         try {
@@ -46,8 +55,20 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
         } catch (e:Exception){
             Log.d(TAG, "getProfile  "+e)
         }
-        query = db.collection("/NEWS/news_arabic/world").orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(3)
+        var pref = SharedPreference(activity.applicationContext).getValueString(LANGUAGE_ID)
+        Log.d(TAG, "getProfile  "+pref)
+
+        if (pref!!.isEmpty()) {
+            pref = LanguageRegionEnum.FR.name
+        }
+
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("regionid", RegionEnum.MA.name).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        queryHeadline = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(5)
+
+
+
         doGetTalents()
+        doGetTalentsHeadline()
     }
 
 
@@ -115,14 +136,14 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
 
            //  getKeyWords(talentProfilesList,adModel)
 
-             if(!isUpdated) {
+           //  if(!isUpdated) {
                  talentProfilesList.add(0,adModel);
                //  talentProfilesList.add(adModel)
-             }
+           //  }
         // }
     }
 
-    var isUpdated = false
+    //var isUpdated = false
 
     fun doGetTalents() {
 
@@ -170,6 +191,74 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
                 Log.d(TAG, "Data fetched from $source")
             }
         }
+    }
+
+
+
+    fun doGetTalentsHeadline() {
+
+        Log.d(TAG, "DOIT doGetTalents:")
+
+        // talentProfilesList.clear()
+        queryHeadline.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen error", e)
+                return@addSnapshotListener
+            }
+
+            if (querySnapshot == null) {
+                Log.i(TAG, "Listen querySnapshot end")
+                return@addSnapshotListener
+            }
+
+            if (querySnapshot.size() < 1) {
+                Log.i(TAG, "Listen querySnapshot end")
+                return@addSnapshotListener
+            }
+
+            Log.w(TAG, "Listen querySnapshot end"+querySnapshot.size())
+
+            val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
+
+            query = query.startAfter(lastVisible)
+
+
+            for (change in querySnapshot.documentChanges) {
+
+                val source = if (querySnapshot.metadata.isFromCache) {
+                    "local cache"
+                } else{
+                    "server"
+                }
+                if (change.type == DocumentChange.Type.ADDED) {
+                    Log.d(TAG, "New city new: ")
+                    addHeadlineItems(change.document)
+                }
+
+                if (change.type == DocumentChange.Type.MODIFIED) {
+                    Log.d(TAG, "New city modified: ")
+                }
+                Log.d(TAG, "Data fetched from $source")
+            }
+        }
+    }
+
+    fun addHeadlineItems(document: QueryDocumentSnapshot) {
+
+        val adModel = document.toObject(Feed::class.java)
+
+        Log.d(TAG, "Success getting documents: " + adModel.imgurl)
+
+        //  if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && (adModel.eventState.ordinal == EventStatus.SHOWING.ordinal)) {
+
+
+        //  getKeyWords(talentProfilesList,adModel)
+
+      //  if(!isUpdated) {
+            talentHeadlineList.add(0,adModel);
+            //  talentProfilesList.add(adModel)
+     //   }
+        // }
     }
 
 }

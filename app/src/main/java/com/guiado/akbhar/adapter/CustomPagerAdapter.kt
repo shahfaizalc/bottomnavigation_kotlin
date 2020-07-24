@@ -20,9 +20,9 @@ class CustomPagerAdapter(private val mContext: Context, internal val countriesVi
         val layout = inflater.inflate(R.layout.pagerlayout, collection, false) as ViewGroup
         val textxt3 = layout.findViewById<TextView>(R.id.textView3)
         val textter = layout.findViewById<ImageView>(R.id.imageView);
-        Picasso.get().load(countriesViewModel.talentProfilesList.get(position).imgurl).into(textter);
+        Picasso.get().load(countriesViewModel.talentHeadlineList.get(position).imgurl).into(textter);
 
-        textxt3.text = countriesViewModel.talentProfilesList.get(position).title
+        textxt3.text = countriesViewModel.talentHeadlineList.get(position).title
         collection.addView(layout)
         return layout
     }
@@ -33,7 +33,7 @@ class CustomPagerAdapter(private val mContext: Context, internal val countriesVi
 
     override fun getCount() : Int {
 
-        val val1  = countriesViewModel.talentProfilesList.size
+        val val1  = countriesViewModel.talentHeadlineList.size
 
         return  if (val1 > 5) 6 else val1
     }

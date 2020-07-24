@@ -14,7 +14,10 @@ import com.guiado.akbhar.BR
 import com.guiado.akbhar.util.*
 import com.guiado.akbhar.utils.Constants
 import com.guiado.akbhar.model.Feed
+import com.guiado.akbhar.model.LanguageRegionEnum
 import com.guiado.akbhar.model.NewsTypeEnum
+import com.guiado.akbhar.utils.Constants.LANGUAGE_ID
+import com.guiado.akbhar.utils.SharedPreference
 import com.guiado.akbhar.view.FragmentBusiness
 import com.guiado.akbhar.view.WebViewActivity
 
@@ -45,8 +48,14 @@ class BusinessViewModel (internal var activity: FragmentActivity,
             Log.d(TAG, "getProfile  "+e)
 
         }
+        var pref = SharedPreference(activity.applicationContext).getValueString(LANGUAGE_ID)
+        Log.d(TAG, "getProfile  "+pref)
+
+        if (pref!!.isEmpty()) {
+            pref = LanguageRegionEnum.FR.name
+        }
         Log.d("testing",""+NewsTypeEnum.GAME);
-        query = db.collection("/NEWS/news_arabic/world").whereEqualTo("newstype", NewsTypeEnum.BUSINESS).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("newstype", NewsTypeEnum.BUSINESS).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
         doGetTalents()
     }
 

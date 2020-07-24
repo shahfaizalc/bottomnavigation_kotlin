@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="webViewData"
+            type="com.guiado.akbhar.viewmodel.WebViewPrayerModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill_vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/dimen_2"
+                    android:layout_weight="1"
+                    android:background="@color/darkBlue"
+                    android:onClick="@{webViewData.showprayertable}">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha=".2"
+                        android:src="@drawable/account_multiple"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dimen_2"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/dimen_24"
+                        android:paddingBottom="@dimen/dimen_24"
+                        android:text="@{webViewData.prayershowhide}"
+                        android:textColor="@color/smoke2"
+                        android:textSize="@dimen/dimen_24"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_marginEnd="@dimen/dimen_24"
+                        android:layout_gravity="end|bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha=".5"
+                        android:src="@drawable/clickme"/>
+
+                </FrameLayout>
+
+
+                <WebView
+                    android:id="@+id/webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:visibility="@{webViewData.webViewVisible}"
+                    app:loadUrl="@{webViewData}"
+                    app:setWebViewClient="@{webViewData.getWebViewClient()}" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:background="@drawable/bottom_line" />
+
+
+                <LinearLayout
+                    android:id="@+id/viewA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/banner_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_margin="@dimen/dimen_8"
+                        android:gravity="bottom"
+                        android:orientation="vertical" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_8"
+                        android:text="@string/corona_update"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_16"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/view6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/search1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen_8"
+                            android:layout_weight="1"
+                            android:background="@{webViewData.online == true ? @color/red_logout : @color/white}"
+                            android:gravity="center"
+                            android:onClick="@{webViewData.doFindGroups3}"
+                            android:padding="@dimen/dimen_8"
+                            android:text="@string/tab_world"
+                            android:textColor="@{webViewData.online == true ? @color/white : @color/black}"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/search2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen_8"
+                            android:layout_weight="1"
+                            android:background="@{!webViewData.online == true ? @color/red_logout : @color/white}"
+                            android:gravity="center"
+                            android:onClick="@{webViewData.doFindGroups2}"
+                            android:padding="@dimen/dimen_8"
+                            android:text="@string/tab_morocco"
+                            android:textColor="@{!webViewData.online == true ? @color/white : @color/black}"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/coronaState"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen_8"
+                            android:layout_weight="1"
+                            android:background="@drawable/circular_bg_border"
+                            android:orientation="vertical"
+                            android:weightSum="3">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_weight="1"
+                                android:text="@string/confirmed"
+                                android:textColor="@color/red"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_weight="1"
+                                android:text="-"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_weight="1"
+                                android:text="@={webViewData.confirmedCount}"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen_8"
+                            android:layout_weight="1"
+                            android:background="@drawable/circular_bg_border"
+                            android:orientation="vertical"
+                            android:weightSum="3">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_weight="1"
+                                android:text="@string/recovered"
+                                android:textColor="@color/greenclr"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_weight="1"
+                                android:text="-"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_weight="1"
+                                android:text="@={webViewData.recoveredCount}"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen_8"
+                            android:layout_weight="1"
+                            android:background="@drawable/circular_bg_border"
+                            android:orientation="vertical"
+                            android:weightSum="3">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_weight="1"
+                                android:text="@string/death"
+                                android:textColor="@color/red"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_weight="1"
+                                android:text="-"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_weight="1"
+                                android:text="@={webViewData.deathCount}"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/selfAssessmentTool"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_8"
+                        android:background="@drawable/bg_gradiant_orange"
+                        android:gravity="center"
+                        android:onClick="@{webViewData.doFindGroups4}"
+                        android:padding="@dimen/dimen_12"
+                        android:text="@string/corona_assesment"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:layout_marginBottom="@dimen/dimen_8"
+                        android:background="@drawable/bottom_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/dimen_8"
+                        android:layout_weight="1"
+                        android:background="@drawable/circular_bg_white"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimaryDark"
+                            android:onClick="@{webViewData.openNewsFood}">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha=".3"
+                                android:src="@drawable/mg_food">
+
+                            </ImageView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/dimen_24"
+                                android:paddingBottom="@dimen/dimen_24"
+                                android:text="@string/food"
+                                android:textColor="@color/smoke2"
+                                android:textSize="@dimen/dimen_24"
+                                android:textStyle="bold" />
+
+                        </FrameLayout>
+
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimaryDark"
+                            android:onClick="@{webViewData.openNewsNArt}">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha=".3"
+                                android:src="@drawable/mg_art">
+
+                            </ImageView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/dimen_24"
+                                android:paddingBottom="@dimen/dimen_24"
+                                android:text="@string/art"
+                                android:textColor="@color/smoke2"
+                                android:textSize="@dimen/dimen_24"
+                                android:textStyle="bold" />
+
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/dimen_8"
+                        android:layout_weight="1"
+                        android:background="@drawable/circular_bg_white"
+                        android:onClick="@{webViewData.openNewsGame}"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimaryDark">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha=".3"
+                                android:src="@drawable/mg_game">
+
+                            </ImageView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/dimen_24"
+                                android:paddingBottom="@dimen/dimen_24"
+                                android:text="@string/game"
+                                android:textColor="@color/smoke2"
+                                android:textSize="@dimen/dimen_24"
+                                android:textStyle="bold" />
+
+                        </FrameLayout>
+
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimaryDark"
+                            android:onClick="@{webViewData.openNewsScience}">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha=".3"
+                                android:src="@drawable/mg_science">
+
+                            </ImageView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/dimen_24"
+                                android:paddingBottom="@dimen/dimen_24"
+                                android:text="@string/science"
+                                android:textColor="@color/smoke2"
+                                android:textSize="@dimen/dimen_24"
+                                android:textStyle="bold" />
+
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/dimen_8"
+                        android:layout_weight="1"
+                        android:background="@drawable/circular_bg_white"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimaryDark"
+                            android:onClick="@{webViewData.openNewsTech}">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha=".3"
+                                android:src="@drawable/mg_tech">
+
+                            </ImageView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/dimen_24"
+                                android:paddingBottom="@dimen/dimen_24"
+                                android:text="@string/technology"
+                                android:textColor="@color/smoke2"
+                                android:textSize="@dimen/dimen_24"
+                                android:textStyle="bold" />
+
+                        </FrameLayout>
+
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/dimen_2"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimaryDark"
+                            android:onClick="@{webViewData.openNewsTravel}">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha=".3"
+                                android:src="@drawable/mg_tour">
+
+                            </ImageView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dimen_2"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/dimen_24"
+                                android:paddingBottom="@dimen/dimen_24"
+                                android:text="@string/travel"
+                                android:textColor="@color/smoke2"
+                                android:textSize="@dimen/dimen_24"
+                                android:textStyle="bold" />
+
+                        </FrameLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/colorBlack"
+                android:gravity="center"
+                android:padding="@dimen/dimen_4"
+                android:text="@{webViewData.msg}"
+                android:textColor="@color/smoke2"
+                android:textStyle="bold"
+                android:visibility="@{webViewData.msgView}" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="@{webViewData.progressBarVisible}" />
+
+
+        </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

@@ -20,6 +20,9 @@ import java.io.Serializable
      @SerializedName("imgurl")
      var imgurl: String? = null
 
+     @SerializedName("languageid")
+     var languageid: String? = null
+
      @SerializedName("newsprovider")
      var newsprovider: String? = null
 
@@ -29,9 +32,13 @@ import java.io.Serializable
      @SerializedName("newsurl")
      var newsurl: String? = null
 
-     @SerializedName("plantId")
-     val plantId: String? = null
+     @SerializedName("regionid")
+     val regionid: String? = null
 
      @SerializedName("title")
      var title: String? = null
+
+
+
+
  }

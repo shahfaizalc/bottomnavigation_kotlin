@@ -246,7 +246,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
         when (index) {
 
             FragNavController.TAB1 -> return HomeFragment()
-            FragNavController.TAB2 -> return FragmentCorona()
+            FragNavController.TAB2 -> return WebViewPrayerActivity()
             FragNavController.TAB3 -> return FragmentMagazine()
             FragNavController.TAB4 -> return FragmentNewsProviders()
         }

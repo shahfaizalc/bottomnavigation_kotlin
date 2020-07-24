@@ -63,7 +63,7 @@ fun ViewPager.autoScroll(interval: Long) {
 
 fun getNewsProviders(): ArrayList<NewsProviders> {
     var newsProviders = ArrayList<NewsProviders>();
-    newsProviders.add(NewsProviders("هسبريس", R.drawable.np_hespress, "https://m.hespress.com/"))
+    newsProviders.add(NewsProviders("hespress", R.drawable.np_hespress, "https://m.hespress.com/"))
     newsProviders.add(NewsProviders("Hiba Press", R.drawable.np_hibapress, "https://ar.hibapress.com/"))
     newsProviders.add(NewsProviders("le360.ma", R.drawable.np_le360, "https://m.le360.ma/"))
     newsProviders.add(NewsProviders("Febrayer", R.drawable.np_febrayer, "https://m.febrayer.com/"))
@@ -87,7 +87,7 @@ fun getNewsProviders(): ArrayList<NewsProviders> {
     newsProviders.add(NewsProviders("Rue20", R.drawable.np_rue20, "https://www.rue20.com/"))
     newsProviders.add(NewsProviders("PressTetouan.", R.drawable.np_presstetouan, "https://www.presstetouan.com/"))
     newsProviders.add(NewsProviders("Agadir24", R.drawable.np_agadir24, "https://agadir24.info/mobile/"))
-    // newsProviders.add(NewsProviders("Fraja-Maroc.n", "", "http://www.fraja-maroc.net/"))
+    newsProviders.add(NewsProviders("foutni",R.drawable.np_foutni,  "http://foutni.com/"))
     newsProviders.add(NewsProviders("h24info", R.drawable.np_h24info_fr, "https://www.h24info.ma/"))
     //  newsProviders.add(NewsProviders("SaharaNow.com", "", "http://www.saharanow.com/"))
     newsProviders.add(NewsProviders("Chaab Press", R.drawable.np_chaabpress, "https://www.chaabpress.com/"))
@@ -98,18 +98,18 @@ fun getNewsProviders(): ArrayList<NewsProviders> {
 
 fun getMagazines(): ArrayList<Magazines> {
     var newsProviders = ArrayList<Magazines>();
-    newsProviders.add(Magazines("kalimatmagazine", MagazineCategoryEnum.ART_AND_CULTURE, R.drawable.np_hespress, "https://kalimatmagazine.com/Online-Articles-1"))
-    newsProviders.add(Magazines("north africa", MagazineCategoryEnum.POLITICS, R.drawable.np_hibapress, "http://north-africa.com/"))
-    newsProviders.add(Magazines("moroccan ladies", MagazineCategoryEnum.WOMEN, R.drawable.np_le360, "http://moroccanladies.com/"))
-    newsProviders.add(Magazines("zamane", MagazineCategoryEnum.POLITICS, R.drawable.np_febrayer, "https://zamane.ma/fr/"))
-    newsProviders.add(Magazines("maroc hebdo", MagazineCategoryEnum.POLITICS, R.drawable.np_yabiladi, "https://www.maroc-hebdo.press.ma/"))
-    newsProviders.add(Magazines("emarrakech", MagazineCategoryEnum.GENERAL, R.drawable.np_alyaoum24, "http://www.emarrakech.info/"))
-    newsProviders.add(Magazines("lalla fatema", MagazineCategoryEnum.GENERAL, R.drawable.np_alyaoum24, "https://www.lallafatema.ma/"))
-    newsProviders.add(Magazines("sayidaty", MagazineCategoryEnum.WOMEN, R.drawable.np_alyaoum24, "https://www.sayidaty.net/"))
-    newsProviders.add(Magazines("fashion magazine", MagazineCategoryEnum.FASHION, R.drawable.np_alyaoum24, "https://fashionmagazine.com/tag/morocco/"))
-    newsProviders.add(Magazines("herdes magazine", MagazineCategoryEnum.ART_AND_CULTURE, R.drawable.np_alyaoum24, "https://www.herdesmagazine.com/the-moroccan-issue/"))
-    newsProviders.add(Magazines("telquel", MagazineCategoryEnum.GENERAL, R.drawable.np_alyaoum24, "https://telquel.ma/"))
-    newsProviders.add(Magazines("vogue(morocco)", MagazineCategoryEnum.FASHION, R.drawable.np_alyaoum24, "https://en.vogue.me/tags/morocco/"))
+    newsProviders.add(Magazines("emarrakech", R.string.general, R.drawable.np_alyaoum24, "http://www.emarrakech.info/"))
+    newsProviders.add(Magazines("fashion magazine", R.string.fashion, R.drawable.np_alyaoum24, "https://fashionmagazine.com/tag/morocco/"))
+    newsProviders.add(Magazines("herdes magazine", R.string.artandculture, R.drawable.np_alyaoum24, "https://www.herdesmagazine.com/the-moroccan-issue/"))
+    newsProviders.add(Magazines("kalimatmagazine", R.string.artandculture, R.drawable.np_hespress, "https://kalimatmagazine.com/Online-Articles-1"))
+    newsProviders.add(Magazines("lalla fatema", R.string.general, R.drawable.np_alyaoum24, "https://www.lallafatema.ma/"))
+    newsProviders.add(Magazines("maroc hebdo", R.string.tab_politics, R.drawable.np_yabiladi, "https://www.maroc-hebdo.press.ma/"))
+    newsProviders.add(Magazines("moroccan ladies", R.string.women, R.drawable.np_le360, "http://moroccanladies.com/"))
+    newsProviders.add(Magazines("north africa", R.string.tab_politics, R.drawable.np_hibapress, "http://north-africa.com/"))
+    newsProviders.add(Magazines("sayidaty",R.string.women, R.drawable.np_alyaoum24, "https://www.sayidaty.net/"))
+    newsProviders.add(Magazines("telquel", R.string.general, R.drawable.np_alyaoum24, "https://telquel.ma/"))
+    newsProviders.add(Magazines("vogue(morocco)", R.string.fashion, R.drawable.np_alyaoum24, "https://en.vogue.me/tags/morocco/"))
+    newsProviders.add(Magazines("zamane", R.string.tab_politics, R.drawable.np_febrayer, "https://zamane.ma/fr/"))
     return newsProviders;
 }
 

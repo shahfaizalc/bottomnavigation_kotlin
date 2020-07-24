@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.guiado.akbhar">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -19,6 +21,11 @@
 
         <activity
             android:name="com.guiado.akbhar.activities.Main2Activity"
+            android:windowSoftInputMode="adjustPan" />
+
+
+        <activity
+            android:name="com.guiado.akbhar.communication.HomeActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
@@ -43,6 +50,10 @@
 
         <activity
             android:name="com.guiado.akbhar.view.FragmentTravel"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.akbhar.view.FragmentLanguage"
             android:windowSoftInputMode="adjustPan" />
 
    <activity

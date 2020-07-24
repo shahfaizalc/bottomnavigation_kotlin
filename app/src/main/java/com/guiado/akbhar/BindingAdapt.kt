@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.guiado.akbhar.adapter.*
+import com.guiado.akbhar.communication.HomeViewModel2
+import com.guiado.akbhar.communication.RecyclerLoadClubsHandler
 import com.guiado.akbhar.handler.*
 import com.guiado.akbhar.util.autoScroll
 import com.guiado.akbhar.util.getMagazines
@@ -59,50 +61,6 @@ fun adapter(recyclerView: RecyclerView, channelsViewModel: MagazineViewModel) {
     bindingAdapter.initRequest(recyclerView, recyclerItems, false)
 
 }
-
-@BindingAdapter("app:searchRecycler")
-fun adapter(recyclerView: RecyclerView, countriesViewModel: CoronaModel) {
-
-    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
-    val listAdapter = CoronaAdapter(countriesViewModel)
-    val bindingAdapter = RecyclerLoadMoreCoronaHandler(countriesViewModel, listAdapter)
-    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
-
-
-    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
-    recyclerView.adapter = listAdapter
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
-            Log.d("rach", "rach1")
-        }
-
-        override fun onItemRangeMoved(sender: ObservableList<String>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
-            Log.d("rach", "rach2")
-        }
-
-        override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
-            Log.d("rach", "rach3")
-            bindingAdapter.resetRecycleView(recyclerView)
-            if (countriesViewModel.resetScrrollListener) {
-                bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
-                countriesViewModel.resetScrrollListener = false
-            }
-
-        }
-
-        override fun onItemRangeChanged(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
-            Log.d("rach", "rach4")
-            bindingAdapter.resetRecycleView(recyclerView)
-        }
-
-        override fun onChanged(sender: ObservableList<String>?) {
-            Log.d("rach", "rach5")
-            bindingAdapter.resetRecycleView(recyclerView)
-        }
-
-    });
-}
-
 
 @BindingAdapter("app:searchRecycler")
 fun adapter(recyclerView: RecyclerView, countriesViewModel: DiscussionModel) {
@@ -372,12 +330,12 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: EntertainementViewMo
 @BindingAdapter("app:viewPager")
 fun adapter(viewPager: ViewPager, countriesViewModel: MoroccoViewModel) {
 
-    Log.d("tagggng",""+countriesViewModel.talentProfilesList.size);
+    Log.d("tagggng",""+countriesViewModel.talentHeadlineList.size);
 
     viewPager.adapter = CustomPagerAdapter(viewPager.context,countriesViewModel)
     viewPager.autoScroll(3000)
 
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
+    countriesViewModel.talentHeadlineList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
         override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
         }
@@ -762,6 +720,51 @@ fun loadUrl(webView: WebView, webViewModel: WebViewModel) {
         }
     }
 }
+
+/**
+ * To load the webview
+ * @param webView : Article web view
+ * @param webViewModel: webview viewmodel class
+ */
+@BindingAdapter("loadUrl")
+fun loadUrl(webView: WebView, webViewModel: WebViewPrayerModel) {
+    with(webViewModel) {
+        when (webViewUrl) {
+            "" -> {
+                msgView = View.VISIBLE
+                msg = webView.context.resources.getString(R.string.rssblog_web_error)
+                progressBarVisible = View.GONE
+            }
+            else -> webView.loadUrl(webViewUrl)
+        }
+    }
+}
+
+
+
+/**
+ * To handle the Article list recyclerview and search query
+ * @param searchView : search view to search specific article from the list
+ * @param homeViewModel : View model of the home class
+ * @param recyclerView : Blog articles recycler view
+ */
+@BindingAdapter("app:searchRecycler")
+fun adapter(recyclerView: RecyclerView, homeViewModel: HomeViewModel2) {
+
+    // Linear Layout managger
+    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
+
+    //Articles receycler view adapter
+    val listAdapter = BlogListRecyclerViewAdapter(homeViewModel)
+
+    // Recycler view load more items
+    val bindingAdapter = RecyclerLoadClubsHandler(homeViewModel,listAdapter)
+
+    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
+    recyclerView.adapter = listAdapter
+    bindingAdapter.initRequest(recyclerView)
+}
+
 
 
 

@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/dimen_20"
                 android:textStyle="bold"
-                android:text="R News - Technology"
+                android:text="@string/technology"
                 android:textColor="@color/white"
                 android:padding="@dimen/dimen_12"/>
             <androidx.recyclerview.widget.RecyclerView
