@@ -1,6 +1,7 @@
 package com.guiado.akbhar.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,14 @@ class CustomPagerAdapter(private val mContext: Context, internal val countriesVi
 
         textxt3.text = countriesViewModel.talentHeadlineList.get(position).title
         collection.addView(layout)
+
+        layout.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+
+                Log.d("Timer","itemclickk"+position)
+                countriesViewModel.openFragment2(countriesViewModel.talentHeadlineList.get(position))
+            }
+        })
         return layout
     }
 

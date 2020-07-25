@@ -57,8 +57,7 @@ class WebViewPrayerActivity : BaseFragment(), NetworkChangeHandler.NetworkChange
         networkStateHandler = NetworkChangeHandler()
         //adView = AdView(this.activity, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
         //banner4
-        adView = AdView(this.activity, "986915311744880_987733898329688", AdSize.BANNER_HEIGHT_50)
-
+        adView = AdView(this.activity, "986915311744880_986915845078160", AdSize.BANNER_HEIGHT_50)
 
         // Find the Ad Container
         val adContainer = binding!!.bannerContainer as LinearLayout

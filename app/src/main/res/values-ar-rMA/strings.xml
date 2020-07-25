@@ -28,7 +28,9 @@
         <item>روش نوار</item>
     </array>
 
+    <string name="languagechoice">اختر لغتك المفضلة</string>
 
+    <string name="editorials">الافتتاحية</string>
 
     <string name="corona_update">corona تحديث</string>
     <string name="corona_assesment">covid تقييم ذاتى</string>
@@ -40,8 +42,11 @@
     <string name="tab_politics">سياسة</string>
     <string name="tab_entertainment">وسائل الترفيه</string>
 
-    <string name="prayer_time">إظهار وقت الصلاة</string>
-    <string name="prayer_time_hide">إخفاء وقت الصلاة</string>
+    <string name="prayer_time">وقت الصلاة</string>
+    <string name="prayer_time_click_show">انقر لرؤية</string>
+    <string name="prayer_time_click_hide">انقر للإخفاء</string>
+    <string name="goodmoring">صباح الخير</string>
+    <string name="goodevening">مساء الخير</string>
 
     <string name="art">فن</string>
     <string name="food">طعام</string>

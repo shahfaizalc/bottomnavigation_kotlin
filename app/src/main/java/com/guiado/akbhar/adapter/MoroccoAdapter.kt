@@ -63,7 +63,7 @@ class MoroccoAdapter(private val adSearchModel: MoroccoViewModel) :
 
     override fun onClickAdSearchListItem(countriesViewModel: MoroccoViewModel, position: Int) {
      //   Log.d(TAG,"Click: "+ countriesViewModel.talentProfilesList[position].postedBy)
-        countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position],position)
+        countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position])
 
     }
 

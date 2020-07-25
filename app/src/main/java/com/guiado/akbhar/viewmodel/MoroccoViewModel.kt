@@ -11,33 +11,37 @@ import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.guiado.akbhar.BR
-import com.guiado.akbhar.util.*
-import com.guiado.akbhar.utils.Constants
-import com.guiado.akbhar.view.FragmentDiscussions
+import com.guiado.akbhar.R
 import com.guiado.akbhar.model.Feed
 import com.guiado.akbhar.model.LanguageRegionEnum
-import com.guiado.akbhar.model.NewsTypeEnum
+import com.guiado.akbhar.model.ReadAssetFile
 import com.guiado.akbhar.model.RegionEnum
+import com.guiado.akbhar.util.JsonToClassObject
+import com.guiado.akbhar.util.MultipleClickHandler
+import com.guiado.akbhar.util.firestoreSettings
+import com.guiado.akbhar.util.sentenceToWords
+import com.guiado.akbhar.utils.Constants
 import com.guiado.akbhar.utils.Constants.LANGUAGE_ID
 import com.guiado.akbhar.utils.SharedPreference
 import com.guiado.akbhar.view.FragmentMorocco
 import com.guiado.akbhar.view.WebViewActivity
+import java.util.*
 
 
-class MoroccoViewModel (internal var activity: FragmentActivity,
-                        internal val fragmentProfileInfo: FragmentMorocco) // To show list of user images (Gallery)
+class MoroccoViewModel(internal var activity: FragmentActivity,
+                       internal val fragmentProfileInfo: FragmentMorocco) // To show list of user images (Gallery)
     : BaseObservable() {
 
     var talentProfilesList: ObservableArrayList<Feed>
-    var query : Query
+    var query: Query
 
     var talentHeadlineList: ObservableArrayList<Feed>
-    var queryHeadline : Query
+    var queryHeadline: Query
 
-    var db :FirebaseFirestore
+    var db: FirebaseFirestore
     private val mAuth: FirebaseAuth
 
-    var resetScrrollListener : Boolean = false;
+    var resetScrrollListener: Boolean = false;
 
     companion object {
         private val TAG = "DiscussionModel"
@@ -46,17 +50,17 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
     init {
         fragmentProfileInfo.mFragmentNavigation.viewToolbar(true);
         talentProfilesList = ObservableArrayList()
-        talentHeadlineList= ObservableArrayList()
+        talentHeadlineList = ObservableArrayList()
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
         try {
             db.firestoreSettings = firestoreSettings
-        } catch (e:Exception){
-            Log.d(TAG, "getProfile  "+e)
+        } catch (e: Exception) {
+            Log.d(TAG, "getProfile  " + e)
         }
         var pref = SharedPreference(activity.applicationContext).getValueString(LANGUAGE_ID)
-        Log.d(TAG, "getProfile  "+pref)
+        Log.d(TAG, "getProfile  " + pref)
 
         if (pref!!.isEmpty()) {
             pref = LanguageRegionEnum.FR.name
@@ -65,11 +69,65 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
         query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("regionid", RegionEnum.MA.name).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
         queryHeadline = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(5)
 
-
-
         doGetTalents()
         doGetTalentsHeadline()
+        setTime()
+        setTime2()
+
     }
+
+    fun setTime2(): String? {
+
+        val assetManager = activity.applicationContext.assets
+
+        val readAssetFile = ReadAssetFile()
+        val fileString = readAssetFile.readFile(assetManager, "quotes.json")
+
+        val jsonToClassObject = JsonToClassObject(activity)
+        var model = jsonToClassObject.fetchChaptersInfoJsonData(fileString)
+
+        var listOFQuotes = model.get(0).quotes
+
+        val rand = Random() //instance of random class
+        //generate random values from 0-24
+        //generate random values from 0-24
+        val int_random = rand.nextInt(41)
+
+        return listOFQuotes[int_random].arabic
+
+    }
+
+    /**
+     * User Notification  text
+     */
+    @get:Bindable
+    var dailyQuote: String? = setTime2()
+        set(dailyQuote) {
+            field = dailyQuote
+            notifyPropertyChanged(BR.dailyQuote)
+        }
+
+    private fun setTime(): String {
+        val rightNow: Calendar = Calendar.getInstance()
+        val currentHourIn24Format: Int = rightNow.get(Calendar.HOUR_OF_DAY)
+
+        if (currentHourIn24Format < 13) {
+            return activity.resources.getString(R.string.goodmoring)
+        } else {
+            return activity.resources.getString(R.string.goodevening)
+        }
+    }
+
+
+    /**
+     * User Notification  text
+     */
+    @get:Bindable
+    var prayershowhide: String? = activity.resources.getString(R.string.goodmoring)
+        set(prayershowhide) {
+            field = prayershowhide
+            notifyPropertyChanged(BR.prayershowhide)
+        }
 
 
     @get:Bindable
@@ -80,8 +138,7 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
         }
 
 
-
-    fun openFragment2(postAdModel: Feed, position: Int) {
+    fun openFragment2(postAdModel: Feed) {
         val intentNext = Intent(activity, WebViewActivity::class.java)
         intentNext.putExtra(Constants.POSTAD_OBJECT, postAdModel.newsurl)
         activity.startActivity(intentNext)
@@ -99,11 +156,10 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
 
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
-        if(!handleMultipleClicks()) {
+        if (!handleMultipleClicks()) {
 
         }
     }
-
 
 
     private fun getCommbinationWords(s: String): List<String> {
@@ -113,10 +169,10 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
     }
 
     fun doGetTalentsSearch(searchQuery: String) {
-            query = db.collection("discussion")
-                    .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
-                    .orderBy("postedDate", Query.Direction.DESCENDING)
-                    .limit(10)
+        query = db.collection("discussion")
+                .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
+                .orderBy("postedDate", Query.Direction.DESCENDING)
+                .limit(10)
 
         Log.d(TAG, "DOIT doGetTalentsSearch: ")
         talentProfilesList.removeAll(talentProfilesList)
@@ -131,15 +187,15 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
 
         Log.d(TAG, "Success getting documents: " + adModel.imgurl)
 
-       //  if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && (adModel.eventState.ordinal == EventStatus.SHOWING.ordinal)) {
+        //  if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && (adModel.eventState.ordinal == EventStatus.SHOWING.ordinal)) {
 
 
-           //  getKeyWords(talentProfilesList,adModel)
+        //  getKeyWords(talentProfilesList,adModel)
 
-           //  if(!isUpdated) {
-                 talentProfilesList.add(0,adModel);
-               //  talentProfilesList.add(adModel)
-           //  }
+        //  if(!isUpdated) {
+        talentProfilesList.add(0, adModel);
+        //  talentProfilesList.add(adModel)
+        //  }
         // }
     }
 
@@ -149,7 +205,7 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
 
         Log.d(TAG, "DOIT doGetTalents:")
 
-       // talentProfilesList.clear()
+        // talentProfilesList.clear()
         query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
             if (e != null) {
                 Log.w(TAG, "Listen error", e)
@@ -166,7 +222,7 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
                 return@addSnapshotListener
             }
 
-            Log.w(TAG, "Listen querySnapshot end"+querySnapshot.size())
+            Log.w(TAG, "Listen querySnapshot end" + querySnapshot.size())
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
 
@@ -177,7 +233,7 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
 
                 val source = if (querySnapshot.metadata.isFromCache) {
                     "local cache"
-                } else{
+                } else {
                     "server"
                 }
                 if (change.type == DocumentChange.Type.ADDED) {
@@ -192,7 +248,6 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
             }
         }
     }
-
 
 
     fun doGetTalentsHeadline() {
@@ -216,7 +271,7 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
                 return@addSnapshotListener
             }
 
-            Log.w(TAG, "Listen querySnapshot end"+querySnapshot.size())
+            Log.w(TAG, "Listen querySnapshot end" + querySnapshot.size())
 
             val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
 
@@ -227,7 +282,7 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
 
                 val source = if (querySnapshot.metadata.isFromCache) {
                     "local cache"
-                } else{
+                } else {
                     "server"
                 }
                 if (change.type == DocumentChange.Type.ADDED) {
@@ -254,10 +309,10 @@ class MoroccoViewModel (internal var activity: FragmentActivity,
 
         //  getKeyWords(talentProfilesList,adModel)
 
-      //  if(!isUpdated) {
-            talentHeadlineList.add(0,adModel);
-            //  talentProfilesList.add(adModel)
-     //   }
+        //  if(!isUpdated) {
+        talentHeadlineList.add(0, adModel);
+        //  talentProfilesList.add(adModel)
+        //   }
         // }
     }
 

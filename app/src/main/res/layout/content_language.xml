@@ -34,7 +34,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/dimen_8"
                     android:layout_marginTop="@dimen/dimen_4"
-                    android:text="Choose your language of choice"
+                    android:text="@string/languagechoice"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
@@ -104,6 +104,7 @@
 
 
                 <FrameLayout
+                    android:visibility="gone"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"

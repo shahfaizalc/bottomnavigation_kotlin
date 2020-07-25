@@ -73,7 +73,6 @@ fun getNewsProviders(): ArrayList<NewsProviders> {
     newsProviders.add(NewsProviders("Kifache", R.drawable.np_kifache, "https://kifache.com/"))
     newsProviders.add(NewsProviders("almaghribtoda", R.drawable.np_almaghribtoday, "https://www.almaghribtoday.net/"))
     newsProviders.add(NewsProviders("Souss24.com", R.drawable.np_souss24, "https://www.souss24.com/"))
-    newsProviders.add(NewsProviders("Tanja24.com", R.drawable.np_tanja24, "https://www.tanja24.com/"))
     newsProviders.add(NewsProviders("Morocco World", R.drawable.np_moroccoworldnews, "https://www.moroccoworldnews.com/"))
     newsProviders.add(NewsProviders("Agora", R.drawable.np_agora, "https://www.agora.ma/"))
     newsProviders.add(NewsProviders("n24.ma", R.drawable.np_n24, "https://www.n24.ma/"))
@@ -84,6 +83,7 @@ fun getNewsProviders(): ArrayList<NewsProviders> {
     newsProviders.add(NewsProviders("Akhbarona.com", R.drawable.np_akhbarona, "https://www.akhbarona.com/"))
     newsProviders.add(NewsProviders("TelexPresse", R.drawable.np_telexpress, "https://www.telexpresse.com/"))
     newsProviders.add(NewsProviders("bladi.net", R.drawable.np_bladi, "https://www.bladi.net/"))
+    newsProviders.add(NewsProviders("Tanja24.com", R.drawable.np_tanja24, "https://www.tanja24.com/"))
     newsProviders.add(NewsProviders("Rue20", R.drawable.np_rue20, "https://www.rue20.com/"))
     newsProviders.add(NewsProviders("PressTetouan.", R.drawable.np_presstetouan, "https://www.presstetouan.com/"))
     newsProviders.add(NewsProviders("Agadir24", R.drawable.np_agadir24, "https://agadir24.info/mobile/"))
@@ -108,7 +108,7 @@ fun getMagazines(): ArrayList<Magazines> {
     newsProviders.add(Magazines("north africa", R.string.tab_politics, R.drawable.np_hibapress, "http://north-africa.com/"))
     newsProviders.add(Magazines("sayidaty",R.string.women, R.drawable.np_alyaoum24, "https://www.sayidaty.net/"))
     newsProviders.add(Magazines("telquel", R.string.general, R.drawable.np_alyaoum24, "https://telquel.ma/"))
-    newsProviders.add(Magazines("vogue(morocco)", R.string.fashion, R.drawable.np_alyaoum24, "https://en.vogue.me/tags/morocco/"))
+    newsProviders.add(Magazines("vogue(Maroc)", R.string.fashion, R.drawable.np_alyaoum24, "https://en.vogue.me/tags/morocco/"))
     newsProviders.add(Magazines("zamane", R.string.tab_politics, R.drawable.np_febrayer, "https://zamane.ma/fr/"))
     return newsProviders;
 }

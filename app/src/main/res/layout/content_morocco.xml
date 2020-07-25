@@ -13,35 +13,105 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="fill_vertical">
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/viewA"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorGreyLight"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewpager"
+
+
+            <LinearLayout
+                android:id="@+id/viewA"
                 android:layout_width="match_parent"
-                app:viewPager="@{adSearchModel}"
-                android:layout_height="200dp"/>
+                android:layout_height="match_parent"
+                android:background="@color/colorGreyLight"
+                android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_8"
-                android:layout_marginEnd="@dimen/dimen_8"
-                android:background="@android:color/transparent"
-                app:searchRecycler="@{adSearchModel}"
-                android:scrollbars="vertical" />
+                <LinearLayout
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:layout_gravity="bottom"
+                    android:gravity="bottom"
+                    android:id="@+id/banner_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginBottom="@dimen/dimen_16"
+                    android:paddingStart="@dimen/dimen_16"
+                    android:paddingTop="@dimen/dimen_8"
+                    android:paddingEnd="@dimen/dimen_16"
+                    android:paddingBottom="@dimen/dimen_8"
+                    android:weightSum="4">
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:text="@{adSearchModel.prayershowhide}"
+                        android:textSize="@dimen/dimen_20"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                    <LinearLayout
+                        android:id="@+id/viewAd"
+                        android:layout_width="0dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/dimen_16"
+                            android:paddingBottom="@dimen/dimen_4"
+                            android:text="كبسولة يومية"
+                            android:textSize="@dimen/dimen_16"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:paddingStart="@dimen/dimen_16"
+                            android:paddingTop="@dimen/dimen_4"
+                            android:text="@{adSearchModel.dailyQuote}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dimen_16"
+                            android:textStyle="bold">
+
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:viewPager="@{adSearchModel}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_8"
+                    android:background="@android:color/transparent"
+                    android:scrollbars="vertical"
+                    app:searchRecycler="@{adSearchModel}" />
+
+            </LinearLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

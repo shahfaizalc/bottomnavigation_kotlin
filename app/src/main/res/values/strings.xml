@@ -10,14 +10,18 @@
     </array>
     <string name="rssblog_web_error">Sorry for the inconvenience.\nThe Webpage is not available</string>
 
+    <string name="goodmoring">Good Morning</string>
+    <string name="goodevening">Good Evening</string>
 
 
 
     <string name="corona_update">Corona Update</string>
     <string name="corona_assesment">Covid-19 Self Assessment Tool</string>
 
-    <string name="prayer_time">Show Prayer Time</string>
-    <string name="prayer_time_hide">Hide Prayer Time</string>
+    <string name="prayer_time">Prayer Time</string>
+    <string name="prayer_time_click_show">Click to see</string>
+    <string name="prayer_time_click_hide">Click to hide</string>
+
 
     <array name="tab_name2">
         <item>Agadir</item>
@@ -39,6 +43,7 @@
 
 
 
+    <string name="languagechoice">Choose your language of choice</string>
 
 
 
@@ -50,6 +55,7 @@
     <string name="tab_politics">Politics</string>
     <string name="tab_entertainment">Entertainment</string>
     <string name="magazines">Let\'s read some magazines</string>
+    <string name="editorials">Editorials</string>
 
 
     <string name="art">Art</string>

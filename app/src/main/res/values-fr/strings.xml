@@ -10,8 +10,13 @@
     </array>
     <string name="rssblog_web_error">Sorry for the inconvenience.\nThe Webpage is not available</string>
 
-    <string name="prayer_time">Afficher l\'heure de prière</string>
-    <string name="prayer_time_hide">Masquer le temps de prière</string>
+    <string name="prayer_time">temps de prière</string>
+    <string name="prayer_time_click_show">Cliquez pour voir</string>
+    <string name="prayer_time_click_hide">Cliquez pour cacher</string>
+
+    <string name="goodmoring">Bonjour</string>
+    <string name="goodevening">Bonsoir</string>
+
 
     <array name="tab_name2">
         <item>Agadir</item>
@@ -30,6 +35,13 @@
         <item>Oujda_Angad</item>
         <item>Casablanca_Roches_Noires</item>
     </array>
+
+
+    <string name="editorials">Éditorial</string>
+
+
+
+    <string name="languagechoice">Choisissez votre langue de choix</string>
 
     <string name="corona_update">Mise à jour Corona</string>
     <string name="corona_assesment">Outil d\'auto-évaluation Covid-19</string>

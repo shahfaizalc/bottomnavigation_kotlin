@@ -10,6 +10,7 @@
     </array>
     <string name="rssblog_web_error">Sorry for the inconvenience.\nThe Webpage is not available</string>
 
+    <string name="editorials">الافتتاحية</string>
 
 
     <array name="tab_name2">
@@ -31,11 +32,17 @@
     </array>
 
 
+    <string name="goodmoring">صباح الخير</string>
+    <string name="goodevening">مساء الخير</string>
+
+    <string name="languagechoice">اختر لغتك المفضلة</string>
+
 
     <string name="corona_update">corona تحديث</string>
     <string name="corona_assesment">covid تقييم ذاتى</string>
-    <string name="prayer_time">إظهار وقت الصلاة</string>
-    <string name="prayer_time_hide">إخفاء وقت الصلاة</string>
+    <string name="prayer_time">وقت الصلاة</string>
+    <string name="prayer_time_click_show">انقر لرؤية</string>
+    <string name="prayer_time_click_hide">انقر للإخفاء</string>
 
     <string name="tab_morocco">المغرب</string>
     <string name="tab_world">العالمية</string>

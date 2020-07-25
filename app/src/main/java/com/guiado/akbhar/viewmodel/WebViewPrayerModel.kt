@@ -102,7 +102,7 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
      * User Notification  text
      */
     @get:Bindable
-    var prayershowhide: String? = activity.resources.getString(R.string.prayer_time)
+    var prayershowhide: String? = activity.resources.getString(R.string.prayer_time_click_show)
         set(prayershowhide) {
             field = prayershowhide
             notifyPropertyChanged(BR.prayershowhide)
@@ -143,11 +143,11 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
         if (showOrHidePrayerTable) {
             webViewVisible = View.GONE
             showOrHidePrayerTable = false
-            prayershowhide =  activity.resources.getString(R.string.prayer_time)
+            prayershowhide =  activity.resources.getString(R.string.prayer_time_click_show)
         } else {
             showOrHidePrayerTable = true
             webViewVisible = View.VISIBLE
-            prayershowhide = activity.resources.getString(R.string.prayer_time_hide)
+            prayershowhide = activity.resources.getString(R.string.prayer_time_click_hide)
         }
     }
 

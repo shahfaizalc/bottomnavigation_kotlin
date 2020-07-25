@@ -21,6 +21,7 @@ import com.guiado.akbhar.util.getMagazines
 import com.guiado.akbhar.util.getNewsProviders
 import com.guiado.akbhar.viewmodel.*
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.tab_item_bottom.view.*
 
 @BindingAdapter("app:recyclerChannelComedy")
 fun adapter(recyclerView: RecyclerView, channelsViewModel: NewsProvidersViewModel) {
@@ -61,6 +62,9 @@ fun adapter(recyclerView: RecyclerView, channelsViewModel: MagazineViewModel) {
     bindingAdapter.initRequest(recyclerView, recyclerItems, false)
 
 }
+
+
+
 
 @BindingAdapter("app:searchRecycler")
 fun adapter(recyclerView: RecyclerView, countriesViewModel: DiscussionModel) {
