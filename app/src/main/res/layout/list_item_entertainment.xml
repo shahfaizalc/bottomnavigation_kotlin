@@ -56,6 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -70,11 +71,10 @@
                         android:text="@{countriesInfoModel.newsprovider}"
                         android:textColor="@color/colorBlacklight"
                         android:textStyle="bold" />
-
                     <TextView
+                        android:layout_toStartOf="@+id/shareimg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:paddingStart="@dimen/dimen_4"
                         android:paddingEnd="@dimen/dimen_4"
@@ -83,6 +83,17 @@
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/dimen_12" />
 
+                    <ImageView
+                        android:src="@drawable/share_variant"
+                        android:id="@+id/shareimg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:paddingStart="@dimen/dimen_4"
+                        android:onClick="@{() -> itemClickListener.launchShare(mainDataModel,itemPosition)}"
+                        android:paddingEnd="@dimen/dimen_4"
+                        android:paddingBottom="@dimen/dimen_4" />
 
                 </RelativeLayout>
 

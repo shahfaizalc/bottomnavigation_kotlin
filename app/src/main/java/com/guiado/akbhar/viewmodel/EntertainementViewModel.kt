@@ -95,7 +95,9 @@ class EntertainementViewModel (internal var activity: FragmentActivity,
         }
     }
 
-
+    fun openShare(postAdModel: Feed, position: Int) {
+        openChooser(postAdModel, activity)
+    }
 
     private fun getCommbinationWords(s: String): List<String> {
         val list1 = s.sentenceToWords()

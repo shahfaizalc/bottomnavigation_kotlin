@@ -69,7 +69,9 @@ class BusinessViewModel (internal var activity: FragmentActivity,
             notifyPropertyChanged(BR.showClearFilter)
         }
 
-
+    fun openShare(postAdModel: Feed, position: Int) {
+        openChooser(postAdModel, activity)
+    }
 
     fun openFragment2(postAdModel: Feed, position: Int) {
         val intentNext = Intent(activity, WebViewActivity::class.java)

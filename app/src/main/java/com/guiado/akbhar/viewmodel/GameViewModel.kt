@@ -90,7 +90,9 @@ class GameViewModel (internal var activity: Activity,
 
         }
     }
-
+    fun openShare(postAdModel: Feed, position: Int) {
+        openChooser(postAdModel, activity)
+    }
 
 
     private fun getCommbinationWords(s: String): List<String> {

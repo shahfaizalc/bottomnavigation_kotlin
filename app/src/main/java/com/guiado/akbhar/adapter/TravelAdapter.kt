@@ -69,4 +69,8 @@ class TravelAdapter(private val adSearchModel: TravelViewModel) :
     override fun launchNews(countriesViewModel: TravelViewModel, position: Int) {
         countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
     }
+
+    override fun launchShare(countriesViewModel: TravelViewModel, position: Int) {
+        countriesViewModel.openShare(countriesViewModel.talentProfilesList[position],position)
+    }
 }

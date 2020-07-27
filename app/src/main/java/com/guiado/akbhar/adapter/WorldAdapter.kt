@@ -72,4 +72,8 @@ class WorldAdapter(private val adSearchModel: WorldViewModel) :
         countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
     }
 
+    override fun launchShare(countriesViewModel: WorldViewModel, position: Int) {
+        countriesViewModel.openShare(countriesViewModel.talentProfilesList[position],position)
+    }
+
 }

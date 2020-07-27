@@ -70,4 +70,8 @@ class MoroccoAdapter(private val adSearchModel: MoroccoViewModel) :
     override fun launchNews(countriesViewModel: MoroccoViewModel, position: Int) {
         countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
     }
+
+    override fun launchShare(countriesViewModel: MoroccoViewModel, position: Int) {
+        countriesViewModel.openShare(countriesViewModel.talentProfilesList[position],position)
+    }
 }

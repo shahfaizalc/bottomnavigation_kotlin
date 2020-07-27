@@ -1,5 +1,7 @@
 package com.guiado.akbhar.util
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Handler
 import androidx.viewpager.widget.ViewPager
 import com.google.firebase.firestore.FirebaseFirestoreSettings
@@ -20,6 +22,17 @@ fun convertLongToTime(time: Long): String {
 
 fun <T : Any> T?.notNull(function: (it: T) -> Unit) {
     if (this != null) function(this)
+}
+
+
+fun openChooser(postAdModel: Feed, position: Activity) {
+    val sharingIntent = Intent(Intent.ACTION_SEND)
+    sharingIntent.type = "text/plain"
+    val shareBody = "R News"
+    val shareSub = postAdModel.newsurl
+    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub)
+    sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+    position.startActivity(Intent.createChooser(sharingIntent, "Share using"))
 }
 
 

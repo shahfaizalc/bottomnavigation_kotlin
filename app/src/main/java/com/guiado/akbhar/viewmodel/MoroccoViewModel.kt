@@ -4,11 +4,11 @@ package com.guiado.akbhar.viewmodel
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.FragmentActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.guiado.akbhar.BR
 import com.guiado.akbhar.R
@@ -16,10 +16,7 @@ import com.guiado.akbhar.model.Feed
 import com.guiado.akbhar.model.LanguageRegionEnum
 import com.guiado.akbhar.model.ReadAssetFile
 import com.guiado.akbhar.model.RegionEnum
-import com.guiado.akbhar.util.JsonToClassObject
-import com.guiado.akbhar.util.MultipleClickHandler
-import com.guiado.akbhar.util.firestoreSettings
-import com.guiado.akbhar.util.sentenceToWords
+import com.guiado.akbhar.util.*
 import com.guiado.akbhar.utils.Constants
 import com.guiado.akbhar.utils.Constants.LANGUAGE_ID
 import com.guiado.akbhar.utils.SharedPreference
@@ -147,6 +144,11 @@ class MoroccoViewModel(internal var activity: FragmentActivity,
         intentNext.putExtra(Constants.POSTAD_OBJECT, postAdModel.homeurl)
         activity.startActivity(intentNext)
     }
+
+    fun openShare(postAdModel: Feed, position: Int) {
+      openChooser(postAdModel, activity)
+    }
+
 
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()

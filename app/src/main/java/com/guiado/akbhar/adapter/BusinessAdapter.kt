@@ -13,6 +13,7 @@ import com.guiado.akbhar.listeners.BusinessEventListener
 import com.guiado.akbhar.listeners.DiscussionEventListener
 import com.guiado.akbhar.viewmodel.BusinessViewModel
 import com.guiado.akbhar.viewmodel.DiscussionModel
+import com.guiado.akbhar.viewmodel.MoroccoViewModel
 
 /**
  * Country recycler view adapter to view list of items
@@ -68,5 +69,9 @@ class BusinessAdapter(private val adSearchModel: BusinessViewModel) :
 
     override fun launchNews(countriesViewModel: BusinessViewModel, position: Int) {
         countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
+    }
+
+    override fun launchShare(countriesViewModel: BusinessViewModel, position: Int) {
+        countriesViewModel.openShare(countriesViewModel.talentProfilesList[position],position)
     }
 }

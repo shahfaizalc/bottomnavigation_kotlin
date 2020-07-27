@@ -60,7 +60,9 @@ class PoliticsViewModel (internal var activity: FragmentActivity,
         doGetTalents()
     }
 
-
+    fun openShare(postAdModel: Feed, position: Int) {
+        openChooser(postAdModel, activity)
+    }
 
 
     @get:Bindable

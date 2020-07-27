@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.guiado.akbhar.R
 import com.guiado.akbhar.databinding.ListItemDiscussionBinding
 import com.guiado.akbhar.databinding.ListItemPoliticsBinding
-import com.guiado.akbhar.databinding.ListItemPoliticsBindingImpl
 import com.guiado.akbhar.listeners.DiscussionEventListener
 import com.guiado.akbhar.listeners.PoliticsEventListener
 import com.guiado.akbhar.viewmodel.DiscussionModel
@@ -69,5 +68,9 @@ class PoliticsAdapter(private val adSearchModel: PoliticsViewModel) :
 
     override fun launchNews(countriesViewModel: PoliticsViewModel, position: Int) {
         countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
+    }
+
+    override fun launchShare(countriesViewModel: PoliticsViewModel, position: Int) {
+        countriesViewModel.openShare(countriesViewModel.talentProfilesList[position],position)
     }
 }

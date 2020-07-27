@@ -69,4 +69,8 @@ class FoodAdapter(private val adSearchModel: FoodViewModel) :
     override fun launchNews(countriesViewModel: FoodViewModel, position: Int) {
         countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
     }
+
+    override fun launchShare(countriesViewModel: FoodViewModel, position: Int) {
+        countriesViewModel.openShare(countriesViewModel.talentProfilesList[position],position)
+    }
 }

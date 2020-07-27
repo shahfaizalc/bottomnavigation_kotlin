@@ -60,7 +60,9 @@ class WorldViewModel (internal var activity: FragmentActivity,
     }
 
 
-
+    fun openShare(postAdModel: Feed, position: Int) {
+        openChooser(postAdModel, activity)
+    }
 
     @get:Bindable
     var showClearFilter: Int = View.GONE

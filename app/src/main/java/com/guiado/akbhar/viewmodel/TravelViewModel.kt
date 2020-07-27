@@ -59,7 +59,9 @@ class TravelViewModel (internal var activity: Activity,
         doGetTalents()
     }
 
-
+    fun openShare(postAdModel: Feed, position: Int) {
+        openChooser(postAdModel, activity)
+    }
 
 
     @get:Bindable

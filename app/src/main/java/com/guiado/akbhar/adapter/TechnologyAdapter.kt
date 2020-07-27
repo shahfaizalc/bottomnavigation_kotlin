@@ -69,4 +69,8 @@ class TechnologyAdapter(private val adSearchModel: TechViewModel) :
     override fun launchNews(countriesViewModel: TechViewModel, position: Int) {
         countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
     }
+
+    override fun launchShare(countriesViewModel: TechViewModel, position: Int) {
+        countriesViewModel.openShare(countriesViewModel.talentProfilesList[position],position)
+    }
 }

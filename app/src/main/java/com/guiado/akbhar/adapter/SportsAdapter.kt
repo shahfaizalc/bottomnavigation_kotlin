@@ -69,4 +69,8 @@ class SportsAdapter(private val adSearchModel: SportsViewModel) :
     override fun launchNews(countriesViewModel: SportsViewModel, position: Int) {
         countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
     }
+
+    override fun launchShare(countriesViewModel: SportsViewModel, position: Int) {
+        countriesViewModel.openShare(countriesViewModel.talentProfilesList[position],position)
+    }
 }

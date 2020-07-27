@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.guiado.akbhar.R
 import com.guiado.akbhar.databinding.ListItemDiscussionBinding
 import com.guiado.akbhar.databinding.ListItemEntertainmentBinding
-import com.guiado.akbhar.databinding.ListItemEntertainmentBindingImpl
 import com.guiado.akbhar.listeners.DiscussionEventListener
 import com.guiado.akbhar.listeners.EntertainmentEventListener
 import com.guiado.akbhar.viewmodel.DiscussionModel
 import com.guiado.akbhar.viewmodel.EntertainementViewModel
+import com.guiado.akbhar.viewmodel.FoodViewModel
 
 /**
  * Country recycler view adapter to view list of items
@@ -21,7 +21,7 @@ import com.guiado.akbhar.viewmodel.EntertainementViewModel
 class EntertainmentAdapter(private val adSearchModel: EntertainementViewModel) :
         EntertainmentEventListener, RecyclerView.Adapter<EntertainmentAdapter.ViewHolder>(){
 
-    private val TAG = "ArtistRecyclerAdapter"
+    private val TAG = "EntertainmentAdapter"
 
     lateinit var context:Context
 
@@ -69,5 +69,9 @@ class EntertainmentAdapter(private val adSearchModel: EntertainementViewModel) :
 
     override fun launchNews(countriesViewModel: EntertainementViewModel, position: Int) {
         countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
+    }
+
+    override fun launchShare(countriesViewModel: EntertainementViewModel, position: Int) {
+        countriesViewModel.openShare(countriesViewModel.talentProfilesList[position],position)
     }
 }

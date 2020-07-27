@@ -69,4 +69,8 @@ class ScienceAdapter(private val adSearchModel: ScienceViewModel) :
     override fun launchNews(countriesViewModel: ScienceViewModel, position: Int) {
         countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
     }
+
+    override fun launchShare(countriesViewModel: ScienceViewModel, position: Int) {
+        countriesViewModel.openShare(countriesViewModel.talentProfilesList[position],position)
+    }
 }
