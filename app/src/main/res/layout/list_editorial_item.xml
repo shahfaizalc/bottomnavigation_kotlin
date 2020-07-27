@@ -6,7 +6,7 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.akbhar.viewmodel.FoodViewModel" />
+            type="com.guiado.akbhar.viewmodel.MagazineViewModel" />
 
         <variable
             name="countriesInfoModel"
@@ -18,11 +18,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.akbhar.adapter.FoodAdapter" />
+            type="com.guiado.akbhar.adapter.EditorialRecyclerViewAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.akbhar.listeners.FoodEventListener" />
+            type="com.guiado.akbhar.listeners.EditorialEventListener" />
 
         <variable
             name="keyWordsTag"
@@ -37,9 +37,10 @@
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16">
+        android:layout_margin="@dimen/dimen_4"
+        android:background="@color/white"
+        android:layout_width="230dp"
+        android:layout_height="226dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
@@ -51,7 +52,7 @@
             card_view:cardElevation="@dimen/dimen_16">
 
             <LinearLayout
-                android:padding="@dimen/dimen_4"
+                android:padding="@dimen/dimen_1"
                 android:background="@drawable/circular_bg_border_black25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,6 +69,7 @@
                         android:layout_centerVertical="true"
                         android:onClick="@{() -> itemClickListener.launchNews(mainDataModel,itemPosition)}"
                         android:paddingBottom="@dimen/dimen_4"
+                        android:paddingStart="@dimen/dimen_4"
                         android:text="@{countriesInfoModel.newsprovider}"
                         android:textColor="@color/colorBlacklight"
                         android:textStyle="bold" />
@@ -89,18 +91,17 @@
 
 
                 <TextView
+                    android:padding="@dimen/dimen_2"
+                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dimen_4"
                     android:autoLink="web|email"
                     android:ellipsize="end"
                     android:linksClickable="true"
                     android:maxLines="2"
                     android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}"
-                    android:text="@{countriesInfoModel.title}"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlacklight"
-                    android:textSize="@dimen/dimen_20" />
+                    android:text="صباح الخير"
+                    android:textColor="@color/b2" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
@@ -126,16 +127,17 @@
 
 
                 <TextView
+                    android:padding="@dimen/dimen_2"
+                    android:background="@color/b2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dimen_4"
                     android:autoLink="web|email"
                     android:ellipsize="end"
                     android:linksClickable="true"
                     android:maxLines="2"
                     android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}"
-                    android:text="@{countriesInfoModel.brief}"
-                    android:textColor="@color/colorBlacklight" />
+                    android:text="@{countriesInfoModel.title}"
+                    android:textColor="@color/smoke2" />
 
             </LinearLayout>
 

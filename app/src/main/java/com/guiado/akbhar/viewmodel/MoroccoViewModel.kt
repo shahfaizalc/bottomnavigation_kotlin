@@ -39,7 +39,6 @@ class MoroccoViewModel(internal var activity: FragmentActivity,
     var queryHeadline: Query
 
     var db: FirebaseFirestore
-    private val mAuth: FirebaseAuth
 
     var resetScrrollListener: Boolean = false;
 
@@ -53,7 +52,6 @@ class MoroccoViewModel(internal var activity: FragmentActivity,
         talentHeadlineList = ObservableArrayList()
 
         db = FirebaseFirestore.getInstance()
-        mAuth = FirebaseAuth.getInstance()
         try {
             db.firestoreSettings = firestoreSettings
         } catch (e: Exception) {
@@ -123,7 +121,7 @@ class MoroccoViewModel(internal var activity: FragmentActivity,
      * User Notification  text
      */
     @get:Bindable
-    var prayershowhide: String? = activity.resources.getString(R.string.goodmoring)
+    var prayershowhide: String? = setTime()
         set(prayershowhide) {
             field = prayershowhide
             notifyPropertyChanged(BR.prayershowhide)

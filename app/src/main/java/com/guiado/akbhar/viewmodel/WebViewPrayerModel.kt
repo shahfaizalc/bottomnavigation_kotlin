@@ -221,7 +221,6 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
         activity.startActivity(intentNext)
     }
 
-
     fun doGetCoronaUpdateItems(document: QueryDocumentSnapshot, id: String) {
         val adModel = document.toObject(Corona::class.java)
         Log.d(TAG, "Success doGetCoronaUpdateItems documents: " + adModel.confirmed)

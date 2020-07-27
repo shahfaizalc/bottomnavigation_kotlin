@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.facebook.ads.*
 import com.guiado.akbhar.R
 import com.guiado.akbhar.databinding.ActivityWebviewPrayerBinding
+import com.guiado.akbhar.databinding.ContentMoroccoBinding
 import com.guiado.akbhar.fragments.BaseFragment
 import com.guiado.akbhar.handler.NetworkChangeHandler
 import com.guiado.akbhar.utils.Constants.LANGUAGE_ID
@@ -35,7 +36,7 @@ class WebViewPrayerActivity : BaseFragment(), NetworkChangeHandler.NetworkChange
 
     //Binding
     @Transient
-    lateinit var binding: ActivityWebviewPrayerBinding
+    var binding: ActivityWebviewPrayerBinding? = null;
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -43,21 +44,30 @@ class WebViewPrayerActivity : BaseFragment(), NetworkChangeHandler.NetworkChange
         return bindView(inflater, container)
     }
 
-
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = DataBindingUtil.inflate<ActivityWebviewPrayerBinding>(inflater, R.layout.activity_webview_prayer, container, false)
+        if (binding == null) {
 
-        val pref = SharedPreference(activity!!.applicationContext)
-        var languageId = pref.getValueString(LANGUAGE_ID)!!.toLowerCase()
+            binding = DataBindingUtil.inflate<ActivityWebviewPrayerBinding>(inflater, R.layout.activity_webview_prayer, container, false)
+
+            val pref = SharedPreference(activity!!.applicationContext)
+            var languageId = pref.getValueString(LANGUAGE_ID)!!.toLowerCase()
 
 
-        binding.webViewData = WebViewPrayerModel(activity!!)
-        binding.webViewData!!.webViewUrl = "file:///android_asset/praytime_" + languageId + ".htm"
-        binding.executePendingBindings()
-        networkStateHandler = NetworkChangeHandler()
-        //adView = AdView(this.activity, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
-        //banner4
-        adView = AdView(this.activity, "986915311744880_986915845078160", AdSize.BANNER_HEIGHT_50)
+            binding!!.webViewData = WebViewPrayerModel(activity!!)
+            binding!!.webViewData!!.webViewUrl = "file:///android_asset/praytime_" + languageId + ".htm"
+            binding!!.executePendingBindings()
+            networkStateHandler = NetworkChangeHandler()
+            //adView = AdView(this.activity, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
+            //banner4
+            loadBanner()
+
+        }
+        return binding!!.root
+
+    }
+
+    private fun loadBanner() {
+        adView = AdView(this.activity, "986915311744880_987733898329688", AdSize.BANNER_HEIGHT_50)
 
         // Find the Ad Container
         val adContainer = binding!!.bannerContainer as LinearLayout
@@ -69,7 +79,7 @@ class WebViewPrayerActivity : BaseFragment(), NetworkChangeHandler.NetworkChange
             override fun onError(ad: Ad, adError: AdError) {
                 // Ad error callback
 
-                Log.d("dear", "racha Error: " + adError.errorMessage)
+                Log.d(TAG, "adview Error: " + adError.errorMessage)
 
             }
 
@@ -88,9 +98,6 @@ class WebViewPrayerActivity : BaseFragment(), NetworkChangeHandler.NetworkChange
 
         // Request an ad
         adView!!.loadAd()
-
-        return binding!!.root
-
     }
 
     override fun onDestroy() {
@@ -104,6 +111,7 @@ class WebViewPrayerActivity : BaseFragment(), NetworkChangeHandler.NetworkChange
     override fun onResume() {
         super.onResume()
         registerListeners()
+        loadBanner()
     }
 
     override fun onStop() {
@@ -132,7 +140,7 @@ class WebViewPrayerActivity : BaseFragment(), NetworkChangeHandler.NetworkChange
      */
     override fun networkChangeReceived(state: Boolean) {
         Log.d(TAG, "onNetWorkStateReceived :$state")
-        with(binding.webViewData!!) {
+        with(binding!!.webViewData!!) {
             when (state) {
                 true -> {
                     msgView = android.view.View.GONE

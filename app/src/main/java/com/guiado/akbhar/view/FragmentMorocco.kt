@@ -17,7 +17,7 @@ import com.guiado.akbhar.fragments.BaseFragment
 import com.guiado.akbhar.viewmodel.MoroccoViewModel
 
 
-class  FragmentMorocco : BaseFragment() {
+class FragmentMorocco : BaseFragment() {
 
     @Transient
     var binding: ContentMoroccoBinding? = null;
@@ -36,45 +36,45 @@ class  FragmentMorocco : BaseFragment() {
             binding = DataBindingUtil.inflate<ContentMoroccoBinding>(inflater, R.layout.content_morocco, container, false)
             val areaViewModel = MoroccoViewModel(activity!!, this)
             binding?.adSearchModel = areaViewModel
-        }
+
 //        val viewPager = binding!!.viewpager
 //        viewPager.adapter = CustomPagerAdapter(this.activity!!)
 //        viewPager.autoScroll(3000)
-      //  adView = AdView(this.activity, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
-        //banner4
-        adView = AdView(this.activity, "986915311744880_989632448139833", AdSize.BANNER_HEIGHT_50)
+            //  adView = AdView(this.activity, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
+            //banner4
+            adView = AdView(this.activity, "986915311744880_989632448139833", AdSize.BANNER_HEIGHT_50)
 
 
-        // Find the Ad Container
-        val adContainer = binding!!.bannerContainer as LinearLayout
+            // Find the Ad Container
+            val adContainer = binding!!.bannerContainer as LinearLayout
 
-        // Add the ad view to your activity layout
-        adContainer.addView(adView)
+            // Add the ad view to your activity layout
+            adContainer.addView(adView)
 
-        adView!!.setAdListener(object : AdListener {
-            override fun onError(ad: Ad, adError: AdError) {
-                // Ad error callback
+            adView!!.setAdListener(object : AdListener {
+                override fun onError(ad: Ad, adError: AdError) {
+                    // Ad error callback
 
-                Log.d("dear", "racha Error: " + adError.errorMessage)
+                    Log.d("dear", "racha Error: " + adError.errorMessage)
 
-            }
+                }
 
-            override fun onAdLoaded(ad: Ad) {
-                // Ad loaded callback
-            }
+                override fun onAdLoaded(ad: Ad) {
+                    // Ad loaded callback
+                }
 
-            override fun onAdClicked(ad: Ad) {
-                // Ad clicked callback
-            }
+                override fun onAdClicked(ad: Ad) {
+                    // Ad clicked callback
+                }
 
-            override fun onLoggingImpression(ad: Ad) {
-                // Ad impression logged callback
-            }
-        })
+                override fun onLoggingImpression(ad: Ad) {
+                    // Ad impression logged callback
+                }
+            })
 
-        // Request an ad
-        adView!!.loadAd()
-
+            // Request an ad
+            adView!!.loadAd()
+        }
         return binding!!.root
     }
 
