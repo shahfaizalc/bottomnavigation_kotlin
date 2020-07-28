@@ -36,16 +36,12 @@
         <item>Casablanca_Roches_Noires</item>
     </array>
 
-
     <string name="editorials">Éditorial</string>
 
-
-
-    <string name="languagechoice">Choisissez votre langue de choix</string>
+    <string name="languagechoice">Choisissez votre langue d\'actualités</string>
 
     <string name="corona_update">Mise à jour Corona</string>
     <string name="corona_assesment">Outil d\'auto-évaluation Covid-19</string>
-
 
     <string name="tab_morocco">Maroc</string>
     <string name="tab_world">Monde</string>

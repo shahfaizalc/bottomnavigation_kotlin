@@ -1,5 +1,6 @@
 package com.guiado.akbhar.viewmodel
 
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.View
@@ -8,15 +9,18 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.FragmentActivity
-import com.google.firebase.firestore.*
-import com.guiado.akbhar.listeners.WebViewCallback
-import com.guiado.akbhar.utils.MyWebViewClient
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.gson.Gson
 import com.guiado.akbhar.BR
+import com.guiado.akbhar.R
+import com.guiado.akbhar.listeners.WebViewCallback
 import com.guiado.akbhar.model.Corona
+import com.guiado.akbhar.model.Covid19
 import com.guiado.akbhar.util.firestoreSettings
 import com.guiado.akbhar.utils.Constants
+import com.guiado.akbhar.utils.MyWebViewClient
 import com.guiado.akbhar.view.*
-import com.guiado.akbhar.R
 
 
 /**
@@ -27,11 +31,10 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
 
     private final val TAG = "DiscussionModel"
 
-
-    var queryCorona: Query
     var db: FirebaseFirestore
     var talentProfilesListCorona: ObservableArrayList<Corona>
 
+    var flag = true;
 
     init {
         talentProfilesListCorona = ObservableArrayList()
@@ -44,11 +47,22 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
 
         }
 
-
-        queryCorona = db.collection("/NEWS/news_arabic/corona/")
         doGetCoronaUpdate()
+
     }
 
+    fun doGetCoronaUpdate() {
+        val sharedPreference = activity.getSharedPreferences("COVID_INFO", Context.MODE_PRIVATE)
+        val coronaJson = sharedPreference.getString("COVID_INFO", "");
+
+        try {
+            val result = Gson().fromJson(coronaJson, Array<Corona>::class.java)
+            talentProfilesListCorona.add(result.get(0))
+            talentProfilesListCorona.add(result.get(1))
+        } catch (e: java.lang.Exception) {
+
+        }
+    }
 
     /**
      * Web view  url
@@ -65,7 +79,6 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
             notifyPropertyChanged(BR.webViewVisible)
         }
 
-
     /**
      * To show progress : webview onload progress
      */
@@ -75,7 +88,6 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
             field = progressBarVisible
             notifyPropertyChanged(BR.progressBarVisible)
         }
-
 
     /**
      * User Notification  visibility
@@ -97,7 +109,6 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
             notifyPropertyChanged(BR.msg)
         }
 
-
     /**
      * User Notification  text
      */
@@ -107,8 +118,6 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
             field = prayershowhide
             notifyPropertyChanged(BR.prayershowhide)
         }
-
-
 
     /**
      * To avail WebViewClient
@@ -143,7 +152,7 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
         if (showOrHidePrayerTable) {
             webViewVisible = View.GONE
             showOrHidePrayerTable = false
-            prayershowhide =  activity.resources.getString(R.string.prayer_time_click_show)
+            prayershowhide = activity.resources.getString(R.string.prayer_time_click_show)
         } else {
             showOrHidePrayerTable = true
             webViewVisible = View.VISIBLE
@@ -158,9 +167,9 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
         if (flag) {
             flag = false;
             online = flag
-            deathCount = talentProfilesListCorona[0].death
-            recoveredCount = talentProfilesListCorona[0].recovered
-            confirmedCount = talentProfilesListCorona[0].confirmed
+            deathCount = talentProfilesListCorona[1].death
+            recoveredCount = talentProfilesListCorona[1].recovered
+            confirmedCount = talentProfilesListCorona[1].confirmed
         }
     }
 
@@ -170,9 +179,9 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
         if (!flag) {
             flag = true;
             online = flag
-            deathCount = talentProfilesListCorona[1].death
-            recoveredCount = talentProfilesListCorona[1].recovered
-            confirmedCount = talentProfilesListCorona[1].confirmed
+            deathCount = talentProfilesListCorona[0].death
+            recoveredCount = talentProfilesListCorona[0].recovered
+            confirmedCount = talentProfilesListCorona[0].confirmed
         }
     }
 
@@ -221,36 +230,26 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
         activity.startActivity(intentNext)
     }
 
-    fun doGetCoronaUpdateItems(document: QueryDocumentSnapshot, id: String) {
-        val adModel = document.toObject(Corona::class.java)
-        Log.d(TAG, "Success doGetCoronaUpdateItems documents: " + adModel.confirmed)
-        talentProfilesListCorona.add(adModel)
-        if (document.id == "moroccocount") {
-            setCoronaDefalultValue(adModel)
-        }
-    }
-
     @get:Bindable
-    var deathCount: String? = ""
+    var deathCount: String? = talentProfilesListCorona[0].death
         set(city) {
             field = city
             notifyPropertyChanged(BR.deathCount)
         }
 
     @get:Bindable
-    var recoveredCount: String? = ""
+    var recoveredCount: String? = talentProfilesListCorona[0].recovered
         set(city) {
             field = city
             notifyPropertyChanged(BR.recoveredCount)
         }
 
     @get:Bindable
-    var confirmedCount: String? = ""
+    var confirmedCount: String? = talentProfilesListCorona[0].confirmed
         set(city) {
             field = city
             notifyPropertyChanged(BR.confirmedCount)
         }
-
 
     @get:Bindable
     var online: Boolean = true
@@ -258,62 +257,5 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
             field = city
             notifyPropertyChanged(BR.online)
         }
-
-
-    var flag = true;
-    private fun setCoronaDefalultValue(talentProfilesListCorona: Corona) {
-        deathCount = talentProfilesListCorona.death
-        recoveredCount = talentProfilesListCorona.recovered
-        confirmedCount = talentProfilesListCorona.confirmed
-        flag = false;
-        online = flag
-    }
-
-
-    fun doGetCoronaUpdate() {
-
-        Log.d(TAG, "DOIT doGetTalents: searchMode: ")
-
-        // talentProfilesList.clear()
-        queryCorona.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
-            if (e != null) {
-                Log.w(TAG, "Listen error", e)
-                return@addSnapshotListener
-            }
-
-            if (querySnapshot == null) {
-                Log.i(TAG, "Listen querySnapshot end")
-                return@addSnapshotListener
-            }
-
-            if (querySnapshot.size() < 1) {
-                Log.i(TAG, "Listen querySnapshot end")
-                return@addSnapshotListener
-            }
-
-            Log.w(TAG, "Listen querySnapshot end" + querySnapshot.size())
-
-
-            for (change in querySnapshot.documentChanges) {
-
-                val source = if (querySnapshot.metadata.isFromCache) {
-                    "local cache"
-                } else {
-                    "server"
-                }
-                if (change.type == DocumentChange.Type.ADDED) {
-                    Log.d(TAG, "New city new: ")
-                    doGetCoronaUpdateItems(change.document, change.document.id)
-                }
-
-                if (change.type == DocumentChange.Type.MODIFIED) {
-                    // doGetCoronaUpdateItems(change.document, change.document.id)
-                    Log.d(TAG, "New city modified: ")
-                }
-                Log.d(TAG, "Data fetched from $source")
-            }
-        }
-    }
-
 
 }

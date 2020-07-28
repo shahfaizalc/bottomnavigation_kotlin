@@ -4,7 +4,6 @@ package com.guiado.akbhar.viewmodel
 import android.content.Intent
 import android.util.Log
 import android.view.View
-import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
@@ -12,6 +11,7 @@ import androidx.fragment.app.FragmentActivity
 import com.google.firebase.firestore.*
 import com.guiado.akbhar.BR
 import com.guiado.akbhar.R
+import com.guiado.akbhar.communication.RecyclerLoadCovidHandler
 import com.guiado.akbhar.model.Feed
 import com.guiado.akbhar.model.LanguageRegionEnum
 import com.guiado.akbhar.model.ReadAssetFile
@@ -67,11 +67,16 @@ class MoroccoViewModel(internal var activity: FragmentActivity,
         doGetTalents()
         doGetTalentsHeadline()
         setTime()
-        setTime2()
+        setQuote()
+
+        // Recycler view load more items
+        val recyclerLoadCovidHandler = RecyclerLoadCovidHandler()
+
+        recyclerLoadCovidHandler.initRequest(activity.applicationContext!!)
 
     }
 
-    fun setTime2(): String? {
+    fun setQuote(): String? {
 
         val assetManager = activity.applicationContext.assets
 
@@ -96,7 +101,7 @@ class MoroccoViewModel(internal var activity: FragmentActivity,
      * User Notification  text
      */
     @get:Bindable
-    var dailyQuote: String? = setTime2()
+    var dailyQuote: String? = setQuote()
         set(dailyQuote) {
             field = dailyQuote
             notifyPropertyChanged(BR.dailyQuote)

@@ -50,14 +50,14 @@ class WebViewPrayerActivity : BaseFragment(), NetworkChangeHandler.NetworkChange
             binding = DataBindingUtil.inflate<ActivityWebviewPrayerBinding>(inflater, R.layout.activity_webview_prayer, container, false)
 
             val pref = SharedPreference(activity!!.applicationContext)
-            var languageId = pref.getValueString(LANGUAGE_ID)!!.toLowerCase()
+            val languageId = pref.getValueString(LANGUAGE_ID)!!.toLowerCase()
 
 
             binding!!.webViewData = WebViewPrayerModel(activity!!)
             binding!!.webViewData!!.webViewUrl = "file:///android_asset/praytime_" + languageId + ".htm"
             binding!!.executePendingBindings()
             networkStateHandler = NetworkChangeHandler()
-            //adView = AdView(this.activity, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
+         //   adView = AdView(this.activity, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
             //banner4
             loadBanner()
 
@@ -111,7 +111,6 @@ class WebViewPrayerActivity : BaseFragment(), NetworkChangeHandler.NetworkChange
     override fun onResume() {
         super.onResume()
         registerListeners()
-        loadBanner()
     }
 
     override fun onStop() {

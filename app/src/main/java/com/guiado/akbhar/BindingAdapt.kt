@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager
 import com.guiado.akbhar.adapter.*
 import com.guiado.akbhar.communication.HomeViewModel2
 import com.guiado.akbhar.communication.RecyclerLoadClubsHandler
+import com.guiado.akbhar.communication.RecyclerLoadCovidHandler
 import com.guiado.akbhar.handler.*
 import com.guiado.akbhar.util.autoScroll
 import com.guiado.akbhar.util.getMagazines
@@ -712,6 +713,8 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: WorldViewModel) {
         }
 
     });
+
+
 }
 
 
@@ -805,9 +808,13 @@ fun adapter(recyclerView: RecyclerView, homeViewModel: HomeViewModel2) {
     // Recycler view load more items
     val bindingAdapter = RecyclerLoadClubsHandler(homeViewModel,listAdapter)
 
+
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
     bindingAdapter.initRequest(recyclerView)
+
+
+
 }
 
 

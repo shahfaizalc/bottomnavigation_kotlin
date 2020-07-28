@@ -25,38 +25,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_8"
                 android:layout_marginEnd="@dimen/dimen_8"
-                android:background="@drawable/circular_bg_white"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/dimen_8"
-                    android:layout_marginTop="@dimen/dimen_4"
+                    android:layout_margin="@dimen/dimen_8"
                     android:text="@string/languagechoice"
-                    android:textColor="@color/black"
+                    android:textColor="@color/greenclr"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
 
 
-                <FrameLayout
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/dimen_2"
-                    android:background="@drawable/circular_bg_smoke"
+                    android:orientation="vertical"
+                    android:background="@drawable/circular_bg_border_red"
                     android:onClick="@{adSearchModel.openNewsNArt}">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="start|bottom"
-                        android:text="ar"
-                        android:alpha=".1"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/dimen_48"
-                        android:textStyle="bold" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -64,29 +54,31 @@
                         android:layout_margin="@dimen/dimen_2"
                         android:gravity="center"
                         android:text="Arabic"
-                        android:textColor="@color/primary_text"
+                        android:textColor="@color/darkBlue"
                         android:textSize="@dimen/dimen_24"
                         android:textStyle="bold" />
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/dimen_2"
-                    android:background="@drawable/circular_bg_smoke"
-                    android:onClick="@{adSearchModel.openNewsFood}">
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="start|bottom"
-                        android:text="fr"
-                        android:textColor="@color/black"
-                        android:alpha=".1"
-                        android:textSize="@dimen/dimen_48"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dimen_2"
+                        android:gravity="center"
+                        android:text="عربى"
+                        android:textColor="@color/darkBlue"
+                        android:textSize="@dimen/dimen_24"
                         android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/dimen_2"
+                    android:background="@drawable/circular_bg_border_red"
+                    android:onClick="@{adSearchModel.openNewsFood}">
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -95,11 +87,22 @@
                         android:layout_margin="@dimen/dimen_2"
                         android:gravity="center"
                         android:text="French"
-                        android:textColor="@color/primary_text"
+                        android:textColor="@color/darkBlue"
                         android:textSize="@dimen/dimen_24"
                         android:textStyle="bold" />
 
-                </FrameLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/dimen_2"
+                        android:gravity="center"
+                        android:textColor="@color/darkBlue"
+                        android:text="Français"
+                        android:textSize="@dimen/dimen_24"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
 
 
@@ -118,7 +121,7 @@
                         android:gravity="start|bottom"
                         android:text="en"
                         android:alpha=".1"
-                        android:textColor="@color/black"
+                        android:textColor="@color/darkBlue"
                         android:textSize="@dimen/dimen_48"
                         android:textStyle="bold" />
 

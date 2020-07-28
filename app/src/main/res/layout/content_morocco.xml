@@ -19,12 +19,11 @@
             android:layout_height="match_parent">
 
 
-
             <LinearLayout
                 android:id="@+id/viewA"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorGreyLight"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -40,7 +39,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
+                    android:background="@drawable/circular_bg_border"
                     android:orientation="horizontal"
                     android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginBottom="@dimen/dimen_16"
@@ -82,7 +81,6 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/white"
                             android:paddingStart="@dimen/dimen_16"
                             android:paddingTop="@dimen/dimen_4"
                             android:text="@{adSearchModel.dailyQuote}"
@@ -104,8 +102,6 @@
                     android:id="@+id/recyclerUser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_8"
                     android:background="@android:color/transparent"
                     android:scrollbars="vertical"
                     app:searchRecycler="@{adSearchModel}" />
