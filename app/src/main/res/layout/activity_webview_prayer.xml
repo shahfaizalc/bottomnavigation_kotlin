@@ -303,7 +303,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/circular_bg_white"
                         android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:weightSum="3">
 
                         <FrameLayout
                             android:layout_width="0dp"
@@ -332,7 +332,7 @@
                                 android:paddingBottom="@dimen/dimen_20"
                                 android:text="@string/food"
                                 android:textColor="@color/smoke2"
-                                android:textSize="@dimen/dimen_24"
+                                android:textSize="@dimen/dimen_20"
                                 android:textStyle="bold" />
 
                         </FrameLayout>
@@ -365,22 +365,11 @@
                                 android:paddingBottom="@dimen/dimen_20"
                                 android:text="@string/art"
                                 android:textColor="@color/smoke2"
-                                android:textSize="@dimen/dimen_24"
+                                android:textSize="@dimen/dimen_20"
                                 android:textStyle="bold" />
 
                         </FrameLayout>
-                    </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dimen_8"
-                        android:layout_marginEnd="@dimen/dimen_8"
-                        android:layout_weight="1"
-                        android:background="@drawable/circular_bg_white"
-                        android:onClick="@{webViewData.openNewsGame}"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
 
                         <FrameLayout
                             android:layout_width="0dp"
@@ -408,12 +397,23 @@
                                 android:paddingBottom="@dimen/dimen_20"
                                 android:text="@string/game"
                                 android:textColor="@color/smoke2"
-                                android:textSize="@dimen/dimen_24"
+                                android:textSize="@dimen/dimen_20"
                                 android:textStyle="bold" />
 
                         </FrameLayout>
 
+                    </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/dimen_8"
+                        android:layout_weight="1"
+                        android:background="@drawable/circular_bg_white"
+                        android:onClick="@{webViewData.openNewsGame}"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
                         <FrameLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -441,21 +441,11 @@
                                 android:paddingBottom="@dimen/dimen_20"
                                 android:text="@string/science"
                                 android:textColor="@color/smoke2"
-                                android:textSize="@dimen/dimen_24"
+                                android:textSize="@dimen/dimen_20"
                                 android:textStyle="bold" />
 
                         </FrameLayout>
-                    </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dimen_8"
-                        android:layout_marginEnd="@dimen/dimen_8"
-                        android:layout_weight="1"
-                        android:background="@drawable/circular_bg_white"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
 
                         <FrameLayout
                             android:layout_width="0dp"
@@ -484,7 +474,7 @@
                                 android:paddingBottom="@dimen/dimen_16"
                                 android:text="@string/technology"
                                 android:textColor="@color/smoke2"
-                                android:textSize="@dimen/dimen_24"
+                                android:textSize="@dimen/dimen_20"
                                 android:textStyle="bold" />
 
                         </FrameLayout>
@@ -517,7 +507,7 @@
                                 android:paddingBottom="@dimen/dimen_16"
                                 android:text="@string/travel"
                                 android:textColor="@color/smoke2"
-                                android:textSize="@dimen/dimen_24"
+                                android:textSize="@dimen/dimen_20"
                                 android:textStyle="bold" />
 
                         </FrameLayout>
