@@ -167,9 +167,9 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
         if (flag) {
             flag = false;
             online = flag
-            deathCount = talentProfilesListCorona[1].death
-            recoveredCount = talentProfilesListCorona[1].recovered
-            confirmedCount = talentProfilesListCorona[1].confirmed
+            deathCount = talentProfilesListCorona[0].death
+            recoveredCount = talentProfilesListCorona[0].recovered
+            confirmedCount = talentProfilesListCorona[0].confirmed
         }
     }
 
@@ -179,9 +179,9 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
         if (!flag) {
             flag = true;
             online = flag
-            deathCount = talentProfilesListCorona[0].death
-            recoveredCount = talentProfilesListCorona[0].recovered
-            confirmedCount = talentProfilesListCorona[0].confirmed
+            deathCount = talentProfilesListCorona[1].death
+            recoveredCount = talentProfilesListCorona[1].recovered
+            confirmedCount = talentProfilesListCorona[1].confirmed
         }
     }
 
@@ -231,21 +231,21 @@ class WebViewPrayerModel(internal val activity: FragmentActivity) : BaseObservab
     }
 
     @get:Bindable
-    var deathCount: String? = talentProfilesListCorona[0].death
+    var deathCount: String? = talentProfilesListCorona[1].death
         set(city) {
             field = city
             notifyPropertyChanged(BR.deathCount)
         }
 
     @get:Bindable
-    var recoveredCount: String? = talentProfilesListCorona[0].recovered
+    var recoveredCount: String? = talentProfilesListCorona[1].recovered
         set(city) {
             field = city
             notifyPropertyChanged(BR.recoveredCount)
         }
 
     @get:Bindable
-    var confirmedCount: String? = talentProfilesListCorona[0].confirmed
+    var confirmedCount: String? = talentProfilesListCorona[1].confirmed
         set(city) {
             field = city
             notifyPropertyChanged(BR.confirmedCount)
