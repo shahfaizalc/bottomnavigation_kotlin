@@ -69,21 +69,21 @@
             android:weightSum="10">
 
             <FrameLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/dimen_48"
+                android:layout_height="@dimen/dimen_48"
                 android:layout_margin="@dimen/dimen_2"
                 android:layout_weight="2">
 
 
                 <ImageView
-                    android:layout_width="@dimen/dimen_44"
-                    android:layout_height="@dimen/dimen_44"
+                    android:layout_width="@dimen/dimen_40"
+                    android:layout_height="@dimen/dimen_40"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:maxLines="1"
                     android:src="@mipmap/ic_launcher_round"
                     android:textSize="@dimen/dimen_36"
-                    android:tint="@color/red_logout" />
+                    android:tint="@color/colorPrimary" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -92,10 +92,10 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="@{titleIconTextView}"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/dimen_32"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_28"
                     android:textStyle="bold"
-                    android:tint="@color/red" />
+                    android:tint="@color/colorPrimary" />
             </FrameLayout>
 
 

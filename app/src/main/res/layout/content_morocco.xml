@@ -39,7 +39,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/circular_bg_border"
+                    android:elevation="@dimen/dimen_8"
+                    android:clipToPadding="true"
+                    android:background="@drawable/circular_bg_smoke"
                     android:orientation="horizontal"
                     android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginBottom="@dimen/dimen_16"
@@ -91,6 +93,12 @@
                         </TextView>
                     </LinearLayout>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:background="@color/black_25_transparent" />
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/viewpager"

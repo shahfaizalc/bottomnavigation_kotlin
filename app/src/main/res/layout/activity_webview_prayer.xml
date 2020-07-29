@@ -39,7 +39,7 @@
                     android:layout_height="0dp"
                     android:layout_margin="@dimen/dimen_2"
                     android:layout_weight="1"
-                    android:background="@color/darkBlue"
+                    android:background="@color/colorPrimaryDark"
                     android:onClick="@{webViewData.showprayertable}">
 
                     <ImageView
@@ -126,9 +126,9 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dimen_8"
                             android:layout_weight="1"
-                            android:background="@{webViewData.online == true ? @color/red_logout : @color/white}"
+                            android:background="@{webViewData.online == true ? @drawable/bg_gradiant_blue : @drawable/circular_bg_border_black_8}"
                             android:gravity="center"
-                            android:onClick="@{webViewData.doFindGroups3}"
+                            android:onClick="@{webViewData.doFindGroups3()}"
                             android:padding="@dimen/dimen_8"
                             android:text="@string/tab_morocco"
                             android:textColor="@{webViewData.online == true ? @color/white : @color/black}"
@@ -140,9 +140,9 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dimen_8"
                             android:layout_weight="1"
-                            android:background="@{!webViewData.online == true ? @color/red_logout : @color/white}"
+                            android:background="@{!webViewData.online == true ?  @drawable/bg_gradiant_blue: @drawable/circular_bg_border_black_8}"
                             android:gravity="center"
-                            android:onClick="@{webViewData.doFindGroups2}"
+                            android:onClick="@{webViewData.doFindGroups2()}"
                             android:padding="@dimen/dimen_8"
                             android:text="@string/tab_world"
                             android:textColor="@{!webViewData.online == true ? @color/white : @color/black}"
@@ -162,7 +162,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dimen_8"
                             android:layout_weight="1"
-                            android:background="@drawable/circular_bg_border"
+                            android:background="@drawable/circular_bg_border_black25"
                             android:orientation="vertical"
                             android:weightSum="3">
 
@@ -200,7 +200,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dimen_8"
                             android:layout_weight="1"
-                            android:background="@drawable/circular_bg_border"
+                            android:background="@drawable/circular_bg_border_black25"
                             android:orientation="vertical"
                             android:weightSum="3">
 
@@ -238,7 +238,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dimen_8"
                             android:layout_weight="1"
-                            android:background="@drawable/circular_bg_border"
+                            android:background="@drawable/circular_bg_border_black25"
                             android:orientation="vertical"
                             android:weightSum="3">
 
@@ -278,12 +278,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_8"
-                        android:background="@drawable/bg_gradiant_orange"
+                        android:background="@drawable/bg_gradiant_gray"
                         android:gravity="center"
                         android:onClick="@{webViewData.doFindGroups4}"
                         android:padding="@dimen/dimen_12"
                         android:text="@string/corona_assesment"
-                        android:textColor="@color/white"
+                        android:textColor="@color/smoke2"
                         android:textStyle="bold" />
 
                     <View
@@ -310,7 +310,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
-                            android:background="@color/colorPrimaryDark"
+                            android:background="@drawable/bg_gradiant_blue"
                             android:onClick="@{webViewData.openNewsFood}">
 
                             <ImageView
@@ -343,7 +343,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
-                            android:background="@color/colorPrimaryDark"
+                            android:background="@drawable/bg_gradiant_blue"
                             android:onClick="@{webViewData.openNewsNArt}">
 
                             <ImageView
@@ -376,7 +376,8 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
-                            android:background="@color/colorPrimaryDark">
+                            android:background="@drawable/bg_gradiant_blue"
+                            >
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -419,7 +420,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
-                            android:background="@color/colorPrimaryDark"
+                            android:background="@drawable/bg_gradiant_blue"
                             android:onClick="@{webViewData.openNewsScience}">
 
                             <ImageView
@@ -452,7 +453,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
-                            android:background="@color/colorPrimaryDark"
+                            android:background="@drawable/bg_gradiant_blue"
                             android:onClick="@{webViewData.openNewsTech}">
 
                             <ImageView
@@ -485,7 +486,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
-                            android:background="@color/colorPrimaryDark"
+                            android:background="@drawable/bg_gradiant_blue"
                             android:onClick="@{webViewData.openNewsTravel}">
 
                             <ImageView

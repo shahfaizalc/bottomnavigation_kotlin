@@ -75,7 +75,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:layout_marginTop="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_8"
             android:maxLines="1"
             android:id="@+id/videoCount"
             android:layout_width="wrap_content"
