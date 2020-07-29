@@ -44,27 +44,27 @@ class ProfileViewModel(internal val activity:
         mAuth = FirebaseAuth.getInstance()
 
         readAutoFillItems()
-        FirbaseReadHandler().getCurrentUserInfo(object : UseInfoGeneralResultListener {
-
-            override fun onSuccess(profile1: Profile) {
-                profile = profile1
-                userName = profile1.name ?: ""
-                storeUserName(context,mAuth.currentUser?.uid!!,profile)
-                userEmail = mAuth.currentUser?.email ?: ""
-                userTitle = profile1.title?: ""
-                userPhone = profile1.phone?: ""
-                userDesc = profile1.desc?: ""
-                userMoreInfo = profile1.moreInformation?: ""
-                userAvailability = profile1.availability
-                userAddress = getAddress()
-                keywords = getKeyWords(profile1.keyWords)
-                followers = profile1.following?.size ?: 0
-                followings = profile1.followers?.size ?: 0
-            }
-
-            override fun onFailure(e: Exception) {
-            }
-        })
+//        FirbaseReadHandler().getCurrentUserInfo(object : UseInfoGeneralResultListener {
+//
+//            override fun onSuccess(profile1: Profile) {
+//                profile = profile1
+//                userName = profile1.name ?: ""
+//                storeUserName(context,mAuth.currentUser?.uid!!,profile)
+//                userEmail = mAuth.currentUser?.email ?: ""
+//                userTitle = profile1.title?: ""
+//                userPhone = profile1.phone?: ""
+//                userDesc = profile1.desc?: ""
+//                userMoreInfo = profile1.moreInformation?: ""
+//                userAvailability = profile1.availability
+//                userAddress = getAddress()
+//                keywords = getKeyWords(profile1.keyWords)
+//                followers = profile1.following?.size ?: 0
+//                followings = profile1.followers?.size ?: 0
+//            }
+//
+//            override fun onFailure(e: Exception) {
+//            }
+//        })
         fragmentSignin.mFragmentNavigation.viewToolbar(true);
 
     }

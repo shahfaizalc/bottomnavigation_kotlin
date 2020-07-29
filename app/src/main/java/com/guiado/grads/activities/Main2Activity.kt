@@ -1,5 +1,6 @@
 package com.guiado.grads.activities
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -11,10 +12,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.gson.Gson
 import com.guiado.grads.R
 import com.guiado.grads.fragments.BaseFragment
+import com.guiado.grads.model_sales.Authenticaiton
 import com.guiado.grads.network.FirbaseReadHandler
 import com.guiado.grads.util.getUserName
+import com.guiado.grads.util.storeUserName
 import com.guiado.grads.utils.FragmentHistory
 import com.guiado.grads.utils.Utils
 import com.guiado.grads.view.*
@@ -23,7 +27,6 @@ import com.guiado.grads.views.FragNavController
 
 class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
         FragNavController.TransactionListener, FragNavController.RootFragmentListener {
-
 
 
     internal var contentFrame: FrameLayout? = null
@@ -41,8 +44,6 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     private var mNavController: FragNavController? = null
 
     private var fragmentHistory: FragmentHistory? = null
-
-    private lateinit var mAuth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,26 +104,31 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     }
 
     private fun showTab() {
-        mAuth = FirebaseAuth.getInstance()
-        if(mAuth.currentUser != null && mAuth.currentUser!!.isEmailVerified) {
 
-            updateName()
+        if (doGetCoronaUpdate()) {
             switchTab(0)
             updateTabSelection(0)
-        }else{
+        } else {
             bottomTabLayout!!.visibility = View.GONE
             switchTab(3)
             updateTabSelection(3)
         }
     }
 
-    private fun updateName() {
-        val ksk = getUserName(this.applicationContext, mAuth.currentUser?.uid!!);
-
-        if (ksk.name == null) {
-            FirbaseReadHandler().storeUserNamePreference(this.applicationContext)
+    fun doGetCoronaUpdate(): Boolean {
+        val sharedPreference = getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        val coronaJson = sharedPreference.getString("AUTH_INFO", "");
+        try {
+            Gson().fromJson(coronaJson, Authenticaiton::class.java)
+            return true;
+        } catch (e: java.lang.Exception) {
+            return false
         }
     }
+
+
+
+
 
     private fun initToolbar() {
 
@@ -148,8 +154,6 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
         icon.setImageDrawable(Utils.setDrawableSelector(this@Main2Activity, mTabIconsSelected[position], mTabIconsSelected[position]))
         return view
     }
-
-
 
 
     override fun switchTab(position: Int) {
@@ -181,10 +185,10 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
 
             if (fragmentHistory!!.isEmpty) {
                 super.onBackPressed()
-            } else if(mAuth.currentUser==null){
+            } else if (doGetCoronaUpdate()) {
                 super.onBackPressed()
 
-            }else {
+            } else {
 
                 if (fragmentHistory!!.stackSize > 1) {
 
@@ -225,7 +229,8 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     override fun popFragment(fragment: Int) {
         if (mNavController != null) {
             mNavController!!.popFragments(fragment)
-        }    }
+        }
+    }
 
     override fun pushFragment(fragment: Fragment) {
         if (mNavController != null) {
@@ -236,7 +241,8 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     override fun replaceFragment(fragment: Fragment) {
         if (mNavController != null) {
             mNavController!!.replaceFragment(fragment)
-        }    }
+        }
+    }
 
 
     override fun onTabTransaction(fragment: Fragment?, index: Int) {
@@ -277,7 +283,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
         throw IllegalStateException("Need to send an index that we know")
     }
 
-    fun updateToolbarTitle( position:Int){
+    fun updateToolbarTitle(position: Int) {
         supportActionBar!!.title = TABS.get(position)
 
     }
@@ -287,7 +293,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     }
 
     override fun viewToolbar(b: Boolean) {
-        if(b) {
+        if (b) {
             toolbar?.visibility = View.VISIBLE
         } else {
             toolbar?.visibility = View.GONE
@@ -298,7 +304,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     fun updateToolbarTitle(title: String) {
 
 
-        supportActionBar!!.title= title
+        supportActionBar!!.title = title
 
     }
 

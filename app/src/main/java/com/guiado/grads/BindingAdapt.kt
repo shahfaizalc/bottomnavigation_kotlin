@@ -522,7 +522,7 @@ fun adapter(searchView: SearchView ,countriesViewModel: DiscussionModel,recycler
                 } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
                     countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
                 }
-                countriesViewModel.doGetTalentsSearch(s)
+             //   countriesViewModel.doGetTalentsSearch(s)
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 searchView.setQuery("", false);
                 searchView.clearFocus();

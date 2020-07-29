@@ -150,7 +150,7 @@
     <string name="quote">if the deaf are to hear the sound has to be very loud - Bhagat Singh</string>
 
     <string name="graduation_type">Interests of Graduation</string>
-    <string name="startdiscussion">Start a new discussion</string>
+    <string name="startdiscussion">Add a new Idea</string>
 
     <string-array name="graduation_type">
         <item>Bachelors</item>

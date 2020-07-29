@@ -2,14 +2,15 @@ package com.guiado.grads.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import com.facebook.FacebookSdk.getApplicationContext
 import com.google.firebase.auth.FirebaseAuth
-import com.guiado.grads.Authenticaiton
+import com.google.gson.Gson
+import com.guiado.grads.model_sales.Authenticaiton
 import com.guiado.grads.BR
 import com.guiado.grads.R
 import com.guiado.grads.activities.Main2Activity
@@ -32,13 +33,13 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
     private val mAuth: FirebaseAuth
     private var networkStateHandler: NetworkChangeHandler? = null
     @get:Bindable
-    var dataUsername: String? = null
+    var dataUsername: String? = "incubatorintegrationuser@philips.com.poc"
         set(username) {
             field = username
             notifyPropertyChanged(BR.dataUsername)
         }
     @get:Bindable
-    var dataPassword: String? = null
+    var dataPassword: String? = "Philips.1234"
         set(password) {
             field = password
             notifyPropertyChanged(BR.dataPassword)
@@ -134,27 +135,44 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
             postsService = retrofit.create(GetServiceNews::class.java)
-            sendPost()
+            sendPost(email,password)
 
 
         }
     }
 
-    private fun sendPost() {
+    private fun sendPost(email: String?, password: String?) {
+
+        showProgresss(true)
+        Log.d("Authenticaiton token",""+email);
+
         val post = Authenticaiton()
-        val call: Call<Authenticaiton?>? = postsService.sendPosts(post)
+        val call: Call<Authenticaiton?>? = postsService.sendPosts(post,email!!,password!! )
         call!!.enqueue(object : Callback<Authenticaiton?> {
             override fun onResponse(call: Call<Authenticaiton?>?, response: Response<Authenticaiton?>) {
                 response.body().toString()
-                var s : Authenticaiton? = response.body();
-                Log.d("rach",s!!.accessToken);
+                val s : Authenticaiton? = response.body();
+               var gsonValue = Gson().toJson(s)
+
+                val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
+                var editor = sharedPreference.edit()
+                editor.putString("AUTH_INFO",gsonValue)
+                editor.commit()
+
+                showProgresss(false)
+
+                Log.d("Authenticaiton token",s!!.accessToken);
+                launchProfile()
             }
 
             override fun onFailure(call: Call<Authenticaiton?>?, t: Throwable) {
-                Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_LONG).show()
+                Log.d("Authenticaiton token", t.toString())
+                showProgresss(false)
             }
         })
     }
+
+
     fun showProgresss(isShow : Boolean){
         if(isShow){
             showSignUpBtn = View.INVISIBLE

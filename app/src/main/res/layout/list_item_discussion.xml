@@ -10,7 +10,7 @@
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model2.PostDiscussion" />
+            type="com.guiado.grads.model_sales.Record" />
 
         <variable
             name="itemPosition"
@@ -68,7 +68,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:paddingBottom="@dimen/dimen_4"
-                        android:text="@{countriesInfoModel.postedByName}"
+                        android:text="@{countriesInfoModel.id}"
                         android:textColor="@color/colorBlacklight"
                         android:textStyle="bold" />
 
@@ -81,9 +81,6 @@
                         android:text="@={postDate}" />
 
                     <ImageView
-                        app:broken="@{mainDataModel}"
-                        app:viewModel="@{countriesInfoModel}"
-                        app:position="@{itemPosition}"
                         android:id="@+id/bookmark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -115,7 +112,7 @@
                     android:maxLines="7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{countriesInfoModel.title}"
+                    android:text="@{countriesInfoModel.getINCImplementationApproachC}"
                     android:layout_marginBottom="@dimen/dimen_4"
                     android:textColor="@color/colorBlacklight" />
 
@@ -156,7 +153,6 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="2"
-                        android:text="@{@string/emptyStr(countriesInfoModel.likes.size())}"
                         android:textColor="@color/colorBlacklight" />
 
                 </RelativeLayout>

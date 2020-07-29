@@ -2,6 +2,7 @@ package com.guiado.grads.viewmodel
 
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
+import com.google.gson.Gson
 import com.guiado.grads.BR
 import com.guiado.grads.Events.MyCustomEvent
 import com.guiado.grads.model.EventStatus
@@ -31,19 +33,26 @@ import com.guiado.grads.adapter.CustomAdapter
 import com.guiado.grads.handler.RecyclerLoadMoreDiscussionHandler
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model.SearchMode
+import com.guiado.grads.model_sales.Authenticaiton
+import com.guiado.grads.model_sales.QueryIdeas
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.news.list.communication.GetServiceNews
+import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.ArrayList
 
 
-class DiscussionModel (internal var activity: FragmentActivity,
+class DiscussionModel(internal var activity: FragmentActivity,
                       internal val fragmentProfileInfo: FragmentDiscussions) // To show list of user images (Gallery)
     : BaseObservable() {
 
-    var talentProfilesList: ObservableArrayList<PostDiscussion>
-    var query : Query
-    var db :FirebaseFirestore
-    private val mAuth: FirebaseAuth
+    var talentProfilesList: ObservableArrayList<com.guiado.grads.model_sales.Record>
 
-    var resetScrrollListener : Boolean = false;
+    var resetScrrollListener: Boolean = false;
 
     companion object {
         private val TAG = "DiscussionModel"
@@ -53,15 +62,6 @@ class DiscussionModel (internal var activity: FragmentActivity,
     init {
         fragmentProfileInfo.mFragmentNavigation.viewToolbar(true);
         talentProfilesList = ObservableArrayList()
-        db = FirebaseFirestore.getInstance()
-        mAuth = FirebaseAuth.getInstance()
-        try {
-            db.firestoreSettings = firestoreSettings
-        } catch (e:Exception){
-            Log.d(TAG, "getProfile  "+e)
-
-        }
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
         doGetTalents()
     }
 
@@ -86,9 +86,9 @@ class DiscussionModel (internal var activity: FragmentActivity,
         set(city) {
             field = city
 
-            if(searchMode.ordinal == SearchMode.DEFAULT.ordinal)
+            if (searchMode.ordinal == SearchMode.DEFAULT.ordinal)
                 showClearFilter = View.GONE
-            else{
+            else {
                 showClearFilter = View.VISIBLE
 
             }
@@ -124,7 +124,7 @@ class DiscussionModel (internal var activity: FragmentActivity,
 
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
-        if(!handleMultipleClicks()) {
+        if (!handleMultipleClicks()) {
 //            val fragment = FragmentNewDiscusssion()
 //            val bundle = Bundle()
 //            fragment.setArguments(bundle)
@@ -135,7 +135,7 @@ class DiscussionModel (internal var activity: FragmentActivity,
         }
     }
 
-    private fun readAutoFillItems() : ArrayList<CoachItem> {
+    private fun readAutoFillItems(): ArrayList<CoachItem> {
         val values = GenericValues()
         return values.readDisuccsionTopics(activity.applicationContext)
     }
@@ -145,17 +145,15 @@ class DiscussionModel (internal var activity: FragmentActivity,
     fun onFilterClearClick() = View.OnClickListener() {
         showClearFilter = View.GONE
         searchMode = SearchMode.DEFAULT
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
         resetScrrollListener = true
         talentProfilesList.removeAll(talentProfilesList)
 
-        doGetTalents()
     }
 
     @Override
     fun onFilterClick() = View.OnClickListener() {
 
-        if(!handleMultipleClicks()) {
+        if (!handleMultipleClicks()) {
 
             val dialog = Dialog(activity)
             // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -181,125 +179,137 @@ class DiscussionModel (internal var activity: FragmentActivity,
         }
     }
 
-    private fun getCommbinationWords(s: String): List<String> {
-        val list1 = s.sentenceToWords()
-        Log.d("list2", "indian" + list1)
-        return list1
-    }
 
-    fun doGetTalentsSearch(searchQuery: String) {
-            query = db.collection("discussion")
-                    .whereArrayContainsAny("searchTags", getCommbinationWords(searchQuery).toList())
-                    .orderBy("postedDate", Query.Direction.DESCENDING)
-                    .limit(10)
-
-        Log.d(TAG, "DOIT doGetTalentsSearch: ")
-        talentProfilesList.removeAll(talentProfilesList)
-        doGetTalents()
-
-    }
-
-
-    fun addTalentsItems(document: QueryDocumentSnapshot) {
-
-        val adModel = document.toObject(PostDiscussion::class.java)
-
-        Log.d(TAG, "Success getting documents: " + adModel.postedBy)
-
-         if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && (adModel.eventState.ordinal == EventStatus.SHOWING.ordinal)) {
-
-             getKeyWords(talentProfilesList,adModel)
-
-             if(!isUpdated) {
-                 talentProfilesList.add(adModel)
-             }
-         }
-    }
+//
+//    fun addTalentsItems(document: QueryDocumentSnapshot) {
+//
+//        val adModel = document.toObject(PostDiscussion::class.java)
+//
+//        Log.d(TAG, "Success getting documents: " + adModel.postedBy)
+//
+//        //    if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && (adModel.eventState.ordinal == EventStatus.SHOWING.ordinal)) {
+//
+//        getKeyWords(talentProfilesList, adModel)
+//
+//        if (!isUpdated) {
+//            talentProfilesList.add(adModel)
+//        }
+//        //  }
+//    }
 
     var isUpdated = false
 
-    private fun getKeyWords(keyWords: ObservableArrayList<PostDiscussion>,keyWord: PostDiscussion): ObservableArrayList<PostDiscussion> {
-        isUpdated = false
-
-        var count = 0;
-
-        keyWords.notNull {
-            val numbersIterator = it.iterator()
-            numbersIterator.let {
-                while (numbersIterator.hasNext()) {
-                    val value = (numbersIterator.next())
-                    if (value.postedDate.equals(keyWord.postedDate)){
-                        Log.d(TAG, "Success getting fai documents: set " )
-                        isUpdated = true
-                        talentProfilesList.set(count,keyWord)
-                        return@notNull
-                    }
-                    count = count + 1;
-                }
-            }
-        }
-        return keyWords;
-    }
+//    private fun getKeyWords(keyWords: ObservableArrayList<PostDiscussion>, keyWord: PostDiscussion): ObservableArrayList<PostDiscussion> {
+//        isUpdated = false
+//
+//        var count = 0;
+//
+//        keyWords.notNull {
+//            val numbersIterator = it.iterator()
+//            numbersIterator.let {
+//                while (numbersIterator.hasNext()) {
+//                    val value = (numbersIterator.next())
+//                    if (value.postedDate.equals(keyWord.postedDate)) {
+//                        Log.d(TAG, "Success getting fai documents: set ")
+//                        isUpdated = true
+//                        talentProfilesList.set(count, keyWord)
+//                        return@notNull
+//                    }
+//                    count = count + 1;
+//                }
+//            }
+//        }
+//        return keyWords;
+//    }
 
     fun filterByCategory(position: Int) {
-        query = db.collection("discussion").orderBy("postedDate", Query.Direction.DESCENDING).limit(10)
-                .whereArrayContains("keyWords",position)
         talentProfilesList.removeAll(talentProfilesList)
 
-        if(searchMode.ordinal == SearchMode.DEFAULT.ordinal)
+        if (searchMode.ordinal == SearchMode.DEFAULT.ordinal)
             searchMode = SearchMode.CATEGORY
-        else{
+        else {
             searchMode = SearchMode.CATEGORYANDSEARCH
 
         }
-        doGetTalents()
+      //  doGetTalents()
     }
+
+    lateinit var postsService: GetServiceNews
+
+
+    fun getAccessToken(): String {
+        val sharedPreference = activity.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        val coronaJson = sharedPreference.getString("AUTH_INFO", "");
+        try {
+            val auth = Gson().fromJson(coronaJson, Authenticaiton::class.java)
+            return auth.accessToken
+
+        } catch (e: java.lang.Exception) {
+            return ""
+        }
+    }
+
+    fun getUserId(): String {
+        val sharedPreference = activity.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        val coronaJson = sharedPreference.getString("AUTH_INFO", "");
+        try {
+            val auth = Gson().fromJson(coronaJson, Authenticaiton::class.java)
+            return auth.signature
+
+        } catch (e: java.lang.Exception) {
+            return ""
+        }
+    }
+
 
     fun doGetTalents() {
 
-        Log.d(TAG, "DOIT doGetTalents: searchMode: "+ searchMode)
+        Log.d(TAG, "DOIT doGetTalents: searchMode: " + searchMode)
 
-       // talentProfilesList.clear()
-        query.addSnapshotListener(MetadataChanges.INCLUDE) { querySnapshot, e ->
-            if (e != null) {
-                Log.w(TAG, "Listen error", e)
-                return@addSnapshotListener
-            }
-
-            if (querySnapshot == null) {
-                Log.i(TAG, "Listen querySnapshot end")
-                return@addSnapshotListener
-            }
-
-            if (querySnapshot.size() < 1) {
-                Log.i(TAG, "Listen querySnapshot end")
-                return@addSnapshotListener
-            }
-
-            Log.w(TAG, "Listen querySnapshot end"+querySnapshot.size())
-
-            val lastVisible = querySnapshot.documents[querySnapshot.size() - 1]
-
-            query = query.startAfter(lastVisible)
+        val retrofit = Retrofit.Builder()
+                .baseUrl("https://philipscrm--pocinc.my.salesforce.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+                .build()
+        postsService = retrofit.create(GetServiceNews::class.java)
+        sendPost(getAccessToken())
 
 
-            for (change in querySnapshot.documentChanges) {
-                if (change.type == DocumentChange.Type.ADDED) {
-                    Log.d(TAG, "New city: ${change.document.data}")
+    }
+
+    private fun sendPost(accesstoken: String) {
+
+        //  showProgresss(true)
+        Log.d("Authenticaiton2 token", "send post");
+
+        runBlocking {
+            val handler = coroutineExceptionHandler()
+            GlobalScope.launch(handler) {
+                val repositories = withContext(Dispatchers.Default) {
+                    postsService.getQueryIdeas("services/data/v48.0/query?q=SELECT+Id,Challenge__c,INC_Challenge_Title__c,INC_Details__c,INC_Features__c,INC_Implementation_Approach__c,INC_Name__c,Rating__c,Status__c\n" +
+                            "+from+INC_IdeaDetails__c+where+createddate>2020-01-01T07:00:00.000Z", "Bearer "+accesstoken).await()
                 }
-
-                val source = if (querySnapshot.metadata.isFromCache) {
-                    "local cache"
-                } else{
-                    "server"
-                }
-                Log.d(TAG, "Data fetched from $source")
-                addTalentsItems(change.document)
-
-
+                withContext(Dispatchers.Default) { coroutineSuccessHandler(repositories) }
             }
         }
     }
+
+    private fun coroutineExceptionHandler() = CoroutineExceptionHandler { _, exception ->
+
+        Log.d("TAG", "coroutineHandler:exception ${exception}")
+
+    }
+
+    private fun coroutineSuccessHandler(response: QueryIdeas) {
+        Log.d("TAG", "coroutineHandler:Success ${response}")
+
+        var queries = response.records.size
+        Log.d("TAG", "coroutineHandler:Success ${queries}")
+        talentProfilesList.addAll(response.records)
+
+
+    }
+
 
     fun isBookmarked(postDiscussion: PostDiscussion): Boolean? {
         var isFollow = false
