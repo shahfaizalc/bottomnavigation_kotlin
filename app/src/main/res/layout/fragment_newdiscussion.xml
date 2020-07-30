@@ -30,34 +30,106 @@
                     android:layout_height="wrap_content"
                     android:text="@string/startdiscussion"
                     android:textColor="@color/orange"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/dimen_20"/>
+                    android:textSize="@dimen/dimen_20"
+                    android:textStyle="bold" />
 
                 <EditText
-                    android:maxLength="200"
-                    android:background="@android:color/transparent"
-                    android:gravity="top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dimen_8"
-                    android:hint="@string/newDiscussionTitle"
-                    android:text="@={homeData.userTitle}"/>
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:background="@drawable/circular_bg_border"
+                    android:gravity="top"
+                    android:text="aEU3D0000008PKeWAM"
+                    android:enabled="false"
+                    android:lines="1"
+                    android:maxLength="200"
+                    android:padding="@dimen/dimen_8"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:background="@drawable/circular_bg_border_paleblue"
+                    android:gravity="top"
+                    android:hint="Idea Title"
+                    android:maxLength="200"
+                    android:padding="@dimen/dimen_8"
+                    android:text="@={homeData.ideaTitle}" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:background="@drawable/circular_bg_border_paleblue"
+                    android:gravity="top"
+                    android:hint="Few words on idea"
+                    android:maxLength="200"
+                    android:padding="@dimen/dimen_8"
+                    android:text="@={homeData.ideaBrief}" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:background="@drawable/circular_bg_border_paleblue"
+                    android:gravity="top"
+                    android:hint="Features"
+                    android:maxLength="200"
+                    android:padding="@dimen/dimen_8"
+                    android:text="@={homeData.ideaFeatures}" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:background="@drawable/circular_bg_border_paleblue"
+                    android:gravity="top"
+                    android:hint="Implementation approch"
+                    android:maxLength="200"
+                    android:padding="@dimen/dimen_8"
+                    android:text="@={homeData.ideaImplementation}" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:background="@drawable/circular_bg_border_paleblue"
+                    android:gravity="top"
+                    android:text="Status: DRAFT"
+                    android:enabled="false"
+                    android:lines="1"
+                    android:maxLength="200"
+                    android:padding="@dimen/dimen_8"/>
 
 
             </LinearLayout>
         </ScrollView>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_alignParentBottom="true"
-            android:background="@color/yellow"
-            android:onClick="@{homeData.doPostEvents()}"
-            android:padding="@dimen/dimen_8"
-            android:src="@drawable/check_circle_outline"
-            android:text="@string/review_next"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:visibility="@{homeData.showSignUpBtn}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{homeData.doPostEvents()}"
+                android:text="@string/review_next"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/dimen_16"
+                android:textStyle="bold"
+                android:background="@color/yellow"
+                android:padding="@dimen/dimen_8"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/loginButton" />
+            <ProgressBar
+                android:visibility="@{homeData.showSignUpProgress}"
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
 
 
     </RelativeLayout>

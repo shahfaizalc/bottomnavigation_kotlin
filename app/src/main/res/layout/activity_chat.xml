@@ -28,7 +28,7 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/circular_bg_border_green"
+        android:background="@drawable/circular_bg_border_paleblue"
         android:layout_margin="@dimen/dimen_4">
 
         <EditText

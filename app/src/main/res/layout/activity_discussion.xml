@@ -136,7 +136,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:drawablePadding="@dimen/dimen_4"
-                        android:background="@{mainDataModel.bookmarkState ? @drawable/circular_bg_border_green : @drawable/circular_bg_border  }"
+                        android:background="@{mainDataModel.bookmarkState ? @drawable/circular_bg_border_paleblue : @drawable/circular_bg_border  }"
                         android:drawableStart="@{mainDataModel.bookmarkState ? @drawable/bookmark_green : @drawable/bookmark  }"
                         android:textColor="@{mainDataModel.bookmarkState ? @color/paleGreen : @color/colorGrey  }"
                         android:textStyle="bold"
@@ -147,7 +147,7 @@
                        android:visibility="gone"
                         android:onClick="@{mainDataModel.addFollowers()}"
                         android:padding="@dimen/dimen_4"
-                        android:background="@{mainDataModel.sponsored ? @drawable/circular_bg_border_green : @drawable/circular_bg_border }"
+                        android:background="@{mainDataModel.sponsored ? @drawable/circular_bg_border_paleblue : @drawable/circular_bg_border }"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -183,7 +183,7 @@
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/circular_bg_border_green"
+            android:background="@drawable/circular_bg_border_paleblue"
             android:layout_margin="@dimen/dimen_4">
 
             <EditText
