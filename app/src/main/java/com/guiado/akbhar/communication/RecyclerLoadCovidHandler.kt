@@ -8,9 +8,6 @@ import com.google.gson.Gson
 import com.guiado.akbhar.model.Corona
 import com.guiado.akbhar.model.Covid19
 import kotlinx.coroutines.*
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.select.Elements
 import java.util.*
 
 
@@ -22,9 +19,24 @@ class RecyclerLoadCovidHandler() {
     private val TAG = "RecyclerHandler"
 
     fun initRequest(view: Context) {
+
+        val sharedPreference = view.getSharedPreferences("COVID_INFO", Context.MODE_PRIVATE)
+        val coronaJson = sharedPreference.getLong("COVID_INFO_TIME", 0);
+
+        if (coronaJson == 0L) {
+            Log.d(TAG, "initialise server request : sub url ")
+            requestStart(view)
+        } else if (System.currentTimeMillis() > (coronaJson + (1000 * 60 * 60 * 12))) {
+            requestStart(view)
+        }
+        Log.d(TAG, "initialise : coronaJson "+(System.currentTimeMillis()- (coronaJson)))
+
+    }
+
+    fun requestStart(view: Context){
         Log.d(TAG, "initialise server request : sub url ")
 
-        var urlSubString = "https://api.covid19api.com/"
+        val urlSubString = "https://api.covid19api.com/"
 
         runBlocking {
             val handler = coroutineExceptionHandler()
@@ -34,7 +46,7 @@ class RecyclerLoadCovidHandler() {
                 val repositories = withContext(Dispatchers.Default) {
                     service.retrieveBlogArticles("summary").await()
                 }
-                withContext(Dispatchers.Default) { coroutineSuccessHandler(repositories,view) }
+                withContext(Dispatchers.Default) { coroutineSuccessHandler(repositories, view) }
             }
         }
     }
@@ -46,9 +58,9 @@ class RecyclerLoadCovidHandler() {
     }
 
     private fun coroutineSuccessHandler(response: Covid19, view: Context) {
-        Log.d("TAG", "coroutineHandler:success covid${response}")
+        Log.d("TAG", "coroutineHandler:success covid ${response}")
 
-        var talentListCorona= ObservableArrayList<Corona>()
+        var talentListCorona = ObservableArrayList<Corona>()
 
         val corona2 = Corona()
         corona2.confirmed = "" + response.global.totalConfirmed
@@ -64,58 +76,16 @@ class RecyclerLoadCovidHandler() {
                 corona.recovered = "" + country.totalRecovered
                 talentListCorona.add(corona)
 
-                val sharedPreference =  view.getSharedPreferences("COVID_INFO",Context.MODE_PRIVATE)
-                var editor = sharedPreference.edit()
-                editor.putString("COVID_INFO",Gson().toJson(talentListCorona))
-                editor.commit()
+                val sharedPreference = view.getSharedPreferences("COVID_INFO", Context.MODE_PRIVATE)
+                val editor = sharedPreference.edit()
+                editor.putString("COVID_INFO", Gson().toJson(talentListCorona))
+                editor.putLong("COVID_INFO_TIME", System.currentTimeMillis());
+                editor.apply()
                 return
             }
         }
 
-
-//        var news: ArrayList<ClubsModel2> = ArrayList()
-//
-//        //      if (urlSubString.equals("https://www.vulture.com/")) {
-//        news.addAll(variety(response))
-//
-//        albumsViewModel.blogArticlesFilteredListModel.addAll(news)
-//        Log.d("TAG", "coroutineHandler:success${news.size}")
-//
-//        GlobalScope.launch {
-//            withContext(Dispatchers.Main) {
-//                listAdapter.notifyDataSetChanged()
-//            }
-//        }
-
     }
-
-    fun variety(response: String): ArrayList<ClubsModel2> {
-        var news: ArrayList<ClubsModel2> = ArrayList()
-        val doc: Document = Jsoup.parse(response)
-
-        //get images inside of the div
-        val mainArticleDiv: Elements = doc.select("tr")
-
-        val size: Int = mainArticleDiv.size
-
-        Log.i("prayy", size.toString())
-
-        for (index in 0..18) {
-
-            val CITY = mainArticleDiv[index].select("td")[0].text()
-            val FAJR = mainArticleDiv[index].select("td")[1].text()
-            val SUNRISE = mainArticleDiv[index].select("td")[2].text()
-            val DHUHR = mainArticleDiv[index].select("td")[3].text()
-            val ASR = mainArticleDiv[index].select("td")[4].text()
-            val MAGHRIB = mainArticleDiv[index].select("td")[5].text()
-            val ISHA = mainArticleDiv[index].select("td")[6].text()
-            val QIYAM = mainArticleDiv[index].select("td")[7].text()
-            news.add(ClubsModel2(CITY, FAJR, SUNRISE, DHUHR, ASR, MAGHRIB, ISHA, QIYAM))
-
-        }
-        return news;
-    }
-
 }
 
 
