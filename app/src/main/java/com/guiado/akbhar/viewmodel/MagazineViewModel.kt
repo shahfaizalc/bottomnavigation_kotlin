@@ -107,6 +107,20 @@ class MagazineViewModel(private val fragmentProfile: FragmentMagazine) : BaseObs
         }
     }
 
+
+    fun openFragment2(postAdModel: Feed) {
+        val intentNext = Intent(fragmentProfile.activity, WebViewActivity::class.java)
+        intentNext.putExtra(Constants.POSTAD_OBJECT, postAdModel.newsurl)
+        fragmentProfile.activity!!.startActivity(intentNext)
+    }
+
+    fun openFragment3(postAdModel: Feed, position: Int) {
+        val intentNext = Intent(fragmentProfile.activity, WebViewActivity::class.java)
+        intentNext.putExtra(Constants.POSTAD_OBJECT, postAdModel.homeurl)
+        fragmentProfile.activity!!.startActivity(intentNext)
+    }
+
+
     fun addTalentsItems(document: QueryDocumentSnapshot) {
 
         val adModel = document.toObject(Feed::class.java)

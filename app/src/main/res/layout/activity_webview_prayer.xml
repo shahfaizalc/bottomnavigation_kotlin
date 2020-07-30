@@ -377,6 +377,7 @@
                             android:layout_margin="@dimen/dimen_2"
                             android:layout_weight="1"
                             android:background="@drawable/bg_gradiant_blue"
+                            android:onClick="@{webViewData.openNewsGame}"
                             >
 
                             <ImageView
@@ -412,7 +413,6 @@
                         android:layout_marginEnd="@dimen/dimen_8"
                         android:layout_weight="1"
                         android:background="@drawable/circular_bg_white"
-                        android:onClick="@{webViewData.openNewsGame}"
                         android:orientation="horizontal"
                         android:weightSum="3">
                         <FrameLayout

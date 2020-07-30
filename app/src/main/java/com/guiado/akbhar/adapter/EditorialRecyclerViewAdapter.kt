@@ -68,11 +68,11 @@ class EditorialRecyclerViewAdapter(private val adSearchModel: MagazineViewModel)
 
     override fun onClickAdSearchListItem(countriesViewModel: MagazineViewModel, position: Int) {
         //   Log.d(TAG,"Click: "+ countriesViewModel.talentProfilesList[position].postedBy)
-        // countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position])
+         countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position])
 
     }
 
     override fun launchNews(countriesViewModel: MagazineViewModel, position: Int) {
-        //   countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
+           countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
     }
 }

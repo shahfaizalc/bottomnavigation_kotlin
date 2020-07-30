@@ -29,7 +29,6 @@ class RecyclerLoadCovidHandler() {
         } else if (System.currentTimeMillis() > (coronaJson + (1000 * 60 * 60 * 12))) {
             requestStart(view)
         }
-        Log.d(TAG, "initialise : coronaJson "+(System.currentTimeMillis()- (coronaJson)))
 
     }
 
