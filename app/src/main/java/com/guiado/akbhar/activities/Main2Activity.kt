@@ -1,7 +1,9 @@
 package com.guiado.akbhar.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
@@ -12,9 +14,15 @@ import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.akbhar.R
 import com.guiado.akbhar.fragments.BaseFragment
+import com.guiado.akbhar.model.LanguageRegionEnum
+import com.guiado.akbhar.utils.Constants
 import com.guiado.akbhar.utils.FragmentHistory
+import com.guiado.akbhar.utils.SharedPreference
 import com.guiado.akbhar.utils.Utils
-import com.guiado.akbhar.view.*
+import com.guiado.akbhar.view.FragmentMagazine
+import com.guiado.akbhar.view.FragmentNewsProviders
+import com.guiado.akbhar.view.HomeFragment
+import com.guiado.akbhar.view.WebViewPrayerActivity
 import com.guiado.akbhar.views.FragNavController
 
 
@@ -39,6 +47,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
 
     private lateinit var mAuth: FirebaseAuth
 
+    private  var mSavedInstanceState: Bundle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +69,13 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
         initToolbar()
 
         initTab()
+        init(savedInstanceState)
+
+
+    }
+
+    private fun init(savedInstanceState: Bundle?) {
+
 
         fragmentHistory = FragmentHistory()
 
@@ -69,6 +85,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
                 .rootFragmentListener(this, TABS.size)
                 .build()
 
+        mSavedInstanceState = savedInstanceState
 
         bottomTabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -93,8 +110,6 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
         })
 
         showTab()
-
-
     }
 
     private fun showTab() {
@@ -136,21 +151,40 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
         updateTabSelection(position);
     }
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId) {
-
-            android.R.id.home -> {
-
-                onBackPressed()
-                return true
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.action_add -> {
+                shareAppURL()
+                true
             }
+            R.id.action_settings_en -> {
+                launchMainActivity(LanguageRegionEnum.AR.name)
+                init(mSavedInstanceState)
+                true
+            }
+            R.id.action_settings_fr -> {
+                launchMainActivity(LanguageRegionEnum.FR.name)
+                init(mSavedInstanceState)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
-
-        return super.onOptionsItemSelected(item)
-
     }
+
+    private fun launchMainActivity( value :String) {
+        val pref = SharedPreference(this)
+        pref.save(Constants.LANGUAGE_ID, value)
+    }
+
+    private fun shareAppURL() {
+        val sharingIntent = Intent(Intent.ACTION_SEND)
+        sharingIntent.type = "text/plain"
+        val shareBody = this.applicationContext.resources.getString(R.string.shareInfo)
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+        startActivity(Intent.createChooser(sharingIntent, "Share via"))
+    }
+
 
     override fun onBackPressed() {
 
@@ -277,6 +311,13 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
         supportActionBar!!.title= title
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
 
 
 }

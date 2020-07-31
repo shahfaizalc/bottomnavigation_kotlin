@@ -30,8 +30,8 @@ fun openChooser(postAdModel: Feed, position: Activity) {
     sharingIntent.type = "text/plain"
     val shareBody = "R News"
     val shareSub = postAdModel.newsurl
-    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub)
-    sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+    sharingIntent.putExtra(Intent.EXTRA_TEXT, shareSub)
     position.startActivity(Intent.createChooser(sharingIntent, "Share using"))
 }
 

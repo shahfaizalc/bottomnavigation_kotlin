@@ -382,7 +382,7 @@ fun adapter(viewPager: ViewPager, countriesViewModel: MoroccoViewModel, tab_layo
     Log.d("tagggng",""+countriesViewModel.talentHeadlineList.size);
 
     viewPager.adapter = CustomPagerAdapter(viewPager.context,countriesViewModel)
-    viewPager.autoScroll(3000)
+    viewPager.autoScroll(4000)
     tab_layout.setupWithViewPager(viewPager)
 
 
