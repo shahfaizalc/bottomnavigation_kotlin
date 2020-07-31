@@ -43,7 +43,7 @@ class WebViewActivity : AppCompatActivity(), NetworkChangeHandler.NetworkChangeL
         binding.webViewData!!.webViewUrl = blogUrl
         binding.executePendingBindings()
         networkStateHandler = NetworkChangeHandler()
-       // adView = AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
+        //adView = AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
         //banner2
         adView = AdView(this, "986915311744880_987732841663127", AdSize.BANNER_HEIGHT_50)
 
@@ -56,8 +56,8 @@ class WebViewActivity : AppCompatActivity(), NetworkChangeHandler.NetworkChangeL
         adView!!.setAdListener(object : AdListener {
             override fun onError(ad: Ad, adError: AdError) {
                 // Ad error callback
-                Toast.makeText(this@WebViewActivity, "Error: " + adError.errorMessage,
-                        Toast.LENGTH_LONG).show()
+           //     Toast.makeText(this@WebViewActivity, "Error: " + adError.errorMessage,
+            //            Toast.LENGTH_LONG).show()
             }
 
             override fun onAdLoaded(ad: Ad) {

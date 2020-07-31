@@ -55,7 +55,7 @@ class BusinessViewModel (internal var activity: FragmentActivity,
             pref = LanguageRegionEnum.FR.name
         }
         Log.d("testing",""+NewsTypeEnum.GAME);
-        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("newstype", NewsTypeEnum.BUSINESS).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("newstype", NewsTypeEnum.BUSINESS).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(20)
         doGetTalents()
     }
 
@@ -84,6 +84,8 @@ class BusinessViewModel (internal var activity: FragmentActivity,
         intentNext.putExtra(Constants.POSTAD_OBJECT, postAdModel.homeurl)
         activity.startActivity(intentNext)
     }
+
+
 
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()

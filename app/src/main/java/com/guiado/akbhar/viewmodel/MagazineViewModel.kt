@@ -52,8 +52,8 @@ class MagazineViewModel(private val fragmentProfile: FragmentMagazine) : BaseObs
             pref = LanguageRegionEnum.FR.name
         }
 
-       // query = db.collection("/NEWS/news_arabic/editorials").whereEqualTo(Constants.LANGUAGE_ID, pref).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
-        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(Constants.LANGUAGE_ID, pref).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+       // query = db.collection("/NEWS/news_arabic/editorials").whereEqualTo(Constants.LANGUAGE_ID, pref).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(20)
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(Constants.LANGUAGE_ID, pref).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(20)
 
         doGetTalents()
 

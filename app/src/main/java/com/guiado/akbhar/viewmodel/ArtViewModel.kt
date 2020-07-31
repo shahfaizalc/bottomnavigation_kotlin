@@ -55,7 +55,7 @@ class ArtViewModel (internal var activity: Activity,
             pref = LanguageRegionEnum.FR.name
         }
 
-        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("newstype", NewsTypeEnum.ART).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("newstype", NewsTypeEnum.ART).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(20)
         doGetTalents()
     }
 
@@ -81,6 +81,10 @@ class ArtViewModel (internal var activity: Activity,
         val intentNext = Intent(activity, WebViewActivity::class.java)
         intentNext.putExtra(Constants.POSTAD_OBJECT, postAdModel.homeurl)
         activity.startActivity(intentNext)
+    }
+
+    fun openShare(postAdModel: Feed, position: Int) {
+        openChooser(postAdModel, activity)
     }
 
     private fun handleMultipleClicks(): Boolean {

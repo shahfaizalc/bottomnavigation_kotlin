@@ -61,7 +61,7 @@ class MoroccoViewModel(internal var activity: FragmentActivity,
             pref = LanguageRegionEnum.FR.name
         }
 
-        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("regionid", RegionEnum.MA.name).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("regionid", RegionEnum.MA.name).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(20)
         queryHeadline = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(5)
 
         doGetTalents()

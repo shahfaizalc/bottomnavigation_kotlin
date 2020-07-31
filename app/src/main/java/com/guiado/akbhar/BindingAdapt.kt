@@ -5,24 +5,27 @@ import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.*
+import android.widget.ImageView
+import android.widget.TableLayout
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.guiado.akbhar.adapter.*
 import com.guiado.akbhar.communication.HomeViewModel2
 import com.guiado.akbhar.communication.RecyclerLoadClubsHandler
-import com.guiado.akbhar.communication.RecyclerLoadCovidHandler
 import com.guiado.akbhar.handler.*
 import com.guiado.akbhar.util.autoScroll
 import com.guiado.akbhar.util.getMagazines
 import com.guiado.akbhar.util.getNewsProviders
+import com.guiado.akbhar.utils.RoundedCornersTransformation
 import com.guiado.akbhar.viewmodel.*
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.tab_item_bottom.view.*
+import com.squareup.picasso.Transformation
 
 @BindingAdapter("app:recyclerChannelComedy")
 fun adapter(recyclerView: RecyclerView, channelsViewModel: NewsProvidersViewModel) {
@@ -373,13 +376,15 @@ fun adapter(recyclerView: RecyclerView, countriesViewModel: EntertainementViewMo
     });
 }
 
-@BindingAdapter("app:viewPager")
-fun adapter(viewPager: ViewPager, countriesViewModel: MoroccoViewModel) {
+@BindingAdapter("app:viewPager","app:searchRecycler")
+fun adapter(viewPager: ViewPager, countriesViewModel: MoroccoViewModel, tab_layout: TabLayout) {
 
     Log.d("tagggng",""+countriesViewModel.talentHeadlineList.size);
 
     viewPager.adapter = CustomPagerAdapter(viewPager.context,countriesViewModel)
     viewPager.autoScroll(3000)
+    tab_layout.setupWithViewPager(viewPager)
+
 
     countriesViewModel.talentHeadlineList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<String>>() {
         override fun onItemRangeRemoved(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
@@ -393,6 +398,7 @@ fun adapter(viewPager: ViewPager, countriesViewModel: MoroccoViewModel) {
         override fun onItemRangeInserted(sender: ObservableList<String>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             (viewPager.adapter as CustomPagerAdapter).notifyDataSetChanged()
+            tab_layout.setupWithViewPager(viewPager)
 
         }
 
@@ -727,10 +733,14 @@ fun loadImage(view: ImageView, imageUrl: String?) {
     if (i) {
         view.setImageDrawable(view.getContext().getDrawable(R.drawable.placeholder_profile))
     } else {
+        val radius = 30
+        val margin = 30
+        val transformation: Transformation = RoundedCornersTransformation(radius, margin)
         Picasso.get()
                 .load(imageUrl)
                 .error(R.drawable.placeholder_profile)
                 .placeholder(R.drawable.placeholder_profile)
+                .transform(transformation)
                 .into(view)
     }
 }

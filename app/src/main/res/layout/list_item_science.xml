@@ -35,26 +35,25 @@
 
     </data>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
+            android:layout_margin="@dimen/dimen_16"
             android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:cardUseCompatPadding="true"
             android:layout_alignParentTop="true"
             android:layout_gravity="center"
-            card_view:cardCornerRadius="@dimen/dimen_8"
-            card_view:cardElevation="@dimen/dimen_10">
+            card_view:cardCornerRadius="@dimen/dimen_16">
 
             <LinearLayout
-                android:padding="@dimen/dimen_4"
+                android:padding="@dimen/dimen_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -67,8 +66,8 @@
                         android:onClick="@{() -> itemClickListener.launchNews(mainDataModel,itemPosition)}"
                         android:paddingBottom="@dimen/dimen_4"
                         android:text="@{countriesInfoModel.newsprovider}"
-                        android:textColor="@color/colorBlacklight"
-                        android:textStyle="bold" />
+                        android:textColor="@color/colorBlacklight" />
+
                     <TextView
                         android:layout_toStartOf="@+id/shareimg"
                         android:layout_width="wrap_content"
@@ -108,7 +107,7 @@
                     android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}"
                     android:text="@{countriesInfoModel.title}"
                     android:textStyle="bold"
-                    android:textColor="@color/colorBlacklight"
+                    android:textColor="@color/primary_text"
                     android:textSize="@dimen/dimen_20" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -144,7 +143,7 @@
                     android:maxLines="2"
                     android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}"
                     android:text="@{countriesInfoModel.brief}"
-                    android:textColor="@color/colorBlacklight" />
+                    android:textColor="@color/primary_text" />
 
             </LinearLayout>
 

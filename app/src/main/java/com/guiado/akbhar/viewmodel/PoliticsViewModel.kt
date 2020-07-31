@@ -56,7 +56,7 @@ class PoliticsViewModel (internal var activity: FragmentActivity,
         }
 
 
-        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("newstype", NewsTypeEnum.POLITICS).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("newstype", NewsTypeEnum.POLITICS).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(20)
         doGetTalents()
     }
 

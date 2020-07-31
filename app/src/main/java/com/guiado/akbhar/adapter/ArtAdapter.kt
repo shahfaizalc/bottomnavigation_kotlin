@@ -12,6 +12,7 @@ import com.guiado.akbhar.databinding.ListItemDiscussionBinding
 import com.guiado.akbhar.listeners.ArtEventListener
 import com.guiado.akbhar.listeners.DiscussionEventListener
 import com.guiado.akbhar.viewmodel.ArtViewModel
+import com.guiado.akbhar.viewmodel.BusinessViewModel
 import com.guiado.akbhar.viewmodel.DiscussionModel
 
 /**
@@ -68,5 +69,9 @@ class ArtAdapter(private val adSearchModel: ArtViewModel) :
 
     override fun launchNews(countriesViewModel: ArtViewModel, position: Int) {
         countriesViewModel.openFragment3(countriesViewModel.talentProfilesList[position],position)
+    }
+
+    override fun launchShare(countriesViewModel: ArtViewModel, position: Int) {
+        countriesViewModel.openShare(countriesViewModel.talentProfilesList[position],position)
     }
 }

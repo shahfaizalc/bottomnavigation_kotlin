@@ -55,7 +55,7 @@ class DiscussionModel (internal var activity: FragmentActivity,
             pref = LanguageRegionEnum.FR.name
         }
 
-        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("newstype", 2).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(10)
+        query = db.collection("/NEWS/news_arabic/world").whereEqualTo(LANGUAGE_ID, pref).whereEqualTo("newstype", 2).orderBy("growZoneNumber", Query.Direction.DESCENDING).limit(20)
         doGetTalents()
     }
 

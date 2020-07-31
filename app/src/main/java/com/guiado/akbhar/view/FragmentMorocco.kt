@@ -40,7 +40,7 @@ class FragmentMorocco : BaseFragment() {
 //        val viewPager = binding!!.viewpager
 //        viewPager.adapter = CustomPagerAdapter(this.activity!!)
 //        viewPager.autoScroll(3000)
-            //  adView = AdView(this.activity, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
+             // adView = AdView(this.activity, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50)
             //banner4
             adView = AdView(this.activity, "986915311744880_989632448139833", AdSize.BANNER_HEIGHT_50)
 
