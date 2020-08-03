@@ -6,7 +6,7 @@
 
         <variable
             name="adSearchModel"
-            type="com.guiado.grads.viewmodel.DiscussionModel" />
+            type="com.guiado.grads.viewmodel.ChallengeModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -58,7 +58,7 @@
                     android:layout_marginEnd="@dimen/dimen_8"
                     android:layout_toStartOf="@+id/sendButton"
                     android:background="@android:color/transparent"
-                    android:text="All Ideas" />
+                    android:text="All Challenges" />
                 <TextView
                     android:onClick="@{adSearchModel.onFilterClearClick()}"
                     android:visibility="@{adSearchModel.showClearFilter}"

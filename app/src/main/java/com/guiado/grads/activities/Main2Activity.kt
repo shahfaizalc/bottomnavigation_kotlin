@@ -276,7 +276,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
         when (index) {
 
             FragNavController.TAB1 -> return FragmentDiscussions()
-            FragNavController.TAB2 -> return FragmentMyGroups()
+            FragNavController.TAB2 -> return FragmentChallenges()
             FragNavController.TAB3 -> return FragmentTheEvents()
             FragNavController.TAB4 -> return FragmentProfile()
         }
