@@ -23,9 +23,6 @@ import com.guiado.grads.model2.PostDiscussion
 import com.guiado.grads.model2.Profile
 import com.guiado.grads.util.*
 import com.guiado.grads.utils.Constants
-import com.guiado.grads.view.FirestoreDisccussFragmment
-import com.guiado.grads.view.FragmentDiscussions
-import com.guiado.grads.view.FragmentNewDiscusssion
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import com.guiado.grads.R
@@ -36,7 +33,7 @@ import com.guiado.grads.model.SearchMode
 import com.guiado.grads.model_sales.Authenticaiton
 import com.guiado.grads.model_sales.QueryIdeas
 import com.guiado.grads.model_sales.challenges.QueryChallenges
-import com.guiado.grads.view.FragmentChallenges
+import com.guiado.grads.view.*
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.news.list.communication.GetServiceNews
 import kotlinx.coroutines.*
@@ -132,7 +129,7 @@ class ChallengeModel(internal var activity: FragmentActivity,
 //            fragment.setArguments(bundle)
 //            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 //
-            val intent = Intent(activity, FragmentNewDiscusssion::class.java)
+            val intent = Intent(activity, FragmentNewChallenge::class.java)
             activity.startActivity(intent)
         }
     }

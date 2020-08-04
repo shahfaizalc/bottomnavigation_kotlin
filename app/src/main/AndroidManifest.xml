@@ -35,6 +35,9 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:name="com.guiado.grads.view.FragmentNewChallenge"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name="com.guiado.grads.view.FragmentGameChooser"
             android:windowSoftInputMode="adjustPan" />
 

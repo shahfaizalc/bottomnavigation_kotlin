@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.NewDiscussionViewModel" />
+            type="com.guiado.grads.viewmodel.NewChallengeViewModel" />
     </data>
 
     <RelativeLayout
@@ -28,22 +28,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/startdiscussion"
+                    android:text="@string/startchallenge"
                     android:textColor="@color/orange"
                     android:textSize="@dimen/dimen_20"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:background="@drawable/circular_bg_border"
-                    android:gravity="top"
-                    android:text="aEU3D0000008PKeWAM"
-                    android:enabled="false"
-                    android:lines="1"
-                    android:maxLength="200"
-                    android:padding="@dimen/dimen_8"/>
 
                 <EditText
                     android:layout_width="match_parent"
@@ -51,55 +40,22 @@
                     android:layout_marginTop="@dimen/dimen_16"
                     android:background="@drawable/circular_bg_border_paleblue"
                     android:gravity="top"
-                    android:hint="Idea Title"
+                    android:hint="Challenge title"
                     android:maxLength="200"
                     android:padding="@dimen/dimen_8"
                     android:text="@={homeData.ideaTitle}" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="200dp"
                     android:layout_marginTop="@dimen/dimen_16"
                     android:background="@drawable/circular_bg_border_paleblue"
                     android:gravity="top"
-                    android:hint="Few words on idea"
-                    android:maxLength="200"
+                    android:hint="Few words on challenge"
                     android:padding="@dimen/dimen_8"
                     android:text="@={homeData.ideaBrief}" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:background="@drawable/circular_bg_border_paleblue"
-                    android:gravity="top"
-                    android:hint="Features"
-                    android:maxLength="200"
-                    android:padding="@dimen/dimen_8"
-                    android:text="@={homeData.ideaFeatures}" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:background="@drawable/circular_bg_border_paleblue"
-                    android:gravity="top"
-                    android:hint="Implementation approch"
-                    android:maxLength="200"
-                    android:padding="@dimen/dimen_8"
-                    android:text="@={homeData.ideaImplementation}" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:background="@drawable/circular_bg_border_paleblue"
-                    android:gravity="top"
-                    android:text="Status: DRAFT"
-                    android:enabled="false"
-                    android:lines="1"
-                    android:maxLength="200"
-                    android:padding="@dimen/dimen_8"/>
 
 
             </LinearLayout>

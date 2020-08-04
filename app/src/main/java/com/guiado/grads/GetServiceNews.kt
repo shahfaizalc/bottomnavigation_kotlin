@@ -5,6 +5,7 @@ import com.guiado.grads.model_sales.CreateIdeas
 import com.guiado.grads.model_sales.Createidearesponse
 import com.guiado.grads.model_sales.QueryIdeas
 import com.guiado.grads.model_sales.challenges.QueryChallenges
+import com.guiado.grads.model_sales.newchallenge.Newchallenge
 import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.http.*
@@ -31,6 +32,12 @@ interface GetServiceNews {
     @Headers(*["Content-type: application/json"])
     @GET
     fun getQueryChallenges(@Url url:String,@Header("Authorization") bearer: String?): Deferred<QueryChallenges>
+
+
+    @Headers(*["Content-type: application/json"])
+    @POST(    "data/v48.0/sobjects/INC_Challenge__c")
+    fun createQueryChallenge(@Body posts: Newchallenge?, @Header("Authorization") bearer: String?) : Call<Newchallenge?>?
+
 
 
 }

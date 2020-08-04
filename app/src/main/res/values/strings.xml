@@ -151,6 +151,7 @@
 
     <string name="graduation_type">Interests of Graduation</string>
     <string name="startdiscussion">Add a new Idea</string>
+    <string name="startchallenge">Add a new challenge</string>
 
     <string-array name="graduation_type">
         <item>Bachelors</item>
