@@ -36,13 +36,13 @@
 
 
     <RelativeLayout
-        android:layout_marginBottom="@dimen/dimen_12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> itemClickListener.onClickAdSearchListItem(mainDataModel,itemPosition)}"
         >
 
         <androidx.cardview.widget.CardView
+            android:layout_margin="@dimen/dimen_8"
             android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,8 +50,8 @@
             android:layout_gravity="center"
             card_view:contentPadding="@dimen/dimen_8"
             card_view:cardBackgroundColor="@color/white"
-            card_view:cardCornerRadius="@dimen/dimen_8"
-            card_view:cardElevation="@dimen/dimen_8">
+            card_view:cardCornerRadius="@dimen/dimen_12"
+            card_view:cardElevation="@dimen/dimen_12">
 
             <LinearLayout
                 android:layout_width="match_parent"
