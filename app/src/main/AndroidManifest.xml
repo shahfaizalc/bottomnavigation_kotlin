@@ -73,6 +73,11 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:name="com.guiado.linkify.view.FragmentEvent"
+            android:windowSoftInputMode="adjustPan" />
+
+
+        <activity
             android:name="com.guiado.linkify.view.FragmentMyDiscussions"
             android:windowSoftInputMode="adjustPan" />
 

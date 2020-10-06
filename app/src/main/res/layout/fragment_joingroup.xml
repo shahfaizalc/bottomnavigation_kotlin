@@ -159,16 +159,15 @@
 
         </androidx.cardview.widget.CardView>
         <TextView
+            android:gravity="center_horizontal"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/dimen_16"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/dimen_4"
             android:layout_marginTop="@dimen/dimen_16"
-            android:background="@drawable/bg_gradiant_blue_4"
+            android:background="@color/yellow"
             android:onClick="@{mainDataModel.updateBookmarks()}"
-            android:padding="@dimen/dimen_4"
+            android:padding="@dimen/dimen_8"
             android:text="@{mainDataModel.bookmarkState ? @string/unjoin : @string/join}"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white"
