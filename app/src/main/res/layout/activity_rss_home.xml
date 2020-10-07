@@ -1,0 +1,82 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModelData"
+            type="com.nioneer.nioneer.viewmodel.RssHomeViewModel"/>
+    </data>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="@color/colorDarkslategray">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@color/colorGreyDim"
+                android:clickable="true"
+                app:searchRecycler="@{recylerView}"
+                app:searchAdapter="@{viewModelData}"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_below="@+id/search1"
+                android:id="@+id/recylerView"
+                android:background="@color/colorWhitesmoke"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/dimen_8"
+                android:paddingEnd="@dimen/dimen_8"
+                android:scrollbars="vertical"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:padding="@dimen/dimen_4"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewModelData.onLoadErrorMsgText}"
+            android:textColor="@color/colorGrey"
+            android:textSize="@dimen/dimen_16"
+            android:textStyle="bold"
+            android:visibility="@{viewModelData.onLoadErrorMsgVisibility}"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorBlack"
+            android:gravity="center"
+            android:padding="@dimen/dimen_4"
+            android:text="@{viewModelData.msg}"
+            android:textColor="@color/colorWhitesmoke"
+            android:textStyle="bold"
+            android:visibility="@{viewModelData.msgView}"/>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="@{viewModelData.progressBarVisible}"/>
+
+    </FrameLayout>
+
+</layout>

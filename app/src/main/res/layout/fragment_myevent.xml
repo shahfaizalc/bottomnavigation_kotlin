@@ -5,14 +5,14 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.MyEventViewModel" />
+            type="com.nioneer.nioneer.viewmodel.MyEventViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.linkify.model2.Events" />
+            type="com.nioneer.nioneer.model2.Events" />
         <variable
             name="status"
-            type="com.guiado.linkify.model.EventStatus" />
+            type="com.nioneer.nioneer.model.EventStatus" />
 
     </data>
 

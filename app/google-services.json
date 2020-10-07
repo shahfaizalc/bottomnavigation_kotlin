@@ -1,71 +1,34 @@
 {
   "project_info": {
-    "project_number": "697212170448",
-    "firebase_url": "https://linkify-67bba.firebaseio.com",
-    "project_id": "linkify-67bba",
-    "storage_bucket": "linkify-67bba.appspot.com"
+    "project_number": "236724123122",
+    "firebase_url": "https://temp-app-11125.firebaseio.com",
+    "project_id": "temp-app-11125",
+    "storage_bucket": "temp-app-11125.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:697212170448:android:bf8e1e2be389810f3deed5",
+        "mobilesdk_app_id": "1:236724123122:android:8263b3614c9dea1b31a76b",
         "android_client_info": {
-          "package_name": "com.guiado.linkify"
+          "package_name": "com.nioneer.nioneer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "697212170448-26e4e20oe9pmcnf83rbdgimg2dae5alm.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.guiado.linkify",
-            "certificate_hash": "32661a43b3833acf523a7db28f6b5fdd91081356"
-          }
-        },
-        {
-          "client_id": "697212170448-lir2ib05jq6f6d7p1j6rjnpj3ltbdpss.apps.googleusercontent.com",
+          "client_id": "236724123122-3kvog5asbfobn14fd693eh7tia6hq96a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDZPQLxLD2I3jrHKDYBIfzDlucs-1V6Ep8"
+          "current_key": "AIzaSyCnSkVqYTN6qvCOtiDP4m95sHlLvDYQ_Xs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "697212170448-lir2ib05jq6f6d7p1j6rjnpj3ltbdpss.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:697212170448:android:367f9f37bf38f1383deed5",
-        "android_client_info": {
-          "package_name": "com.guiado.linkify"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "697212170448-lir2ib05jq6f6d7p1j6rjnpj3ltbdpss.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDZPQLxLD2I3jrHKDYBIfzDlucs-1V6Ep8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "697212170448-lir2ib05jq6f6d7p1j6rjnpj3ltbdpss.apps.googleusercontent.com",
+              "client_id": "236724123122-3kvog5asbfobn14fd693eh7tia6hq96a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

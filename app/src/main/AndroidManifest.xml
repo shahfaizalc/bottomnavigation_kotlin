@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.guiado.linkify">
+    package="com.nioneer.nioneer">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -8,112 +8,125 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/appicon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
 
         <activity
-            android:name="com.guiado.linkify.activities.Main2Activity"
+            android:name="com.nioneer.nioneer.activities.Main2Activity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FragmentWelcome"
+            android:name="com.nioneer.nioneer.view.FragmentWelcome"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.guiado.linkify.view.FragmentRegistration"
+            android:name="com.nioneer.nioneer.view.FragmentRegistration"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.guiado.linkify.view.FragmentVerification"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-
-            android:name="com.guiado.linkify.view.FragmentSignin"
+            android:name="com.nioneer.nioneer.view.FragmentVerification"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FragmentForgotPassword"
+
+            android:name="com.nioneer.nioneer.view.FragmentSignin"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FragmentNewDiscusssion"
+            android:name="com.nioneer.nioneer.view.FragmentForgotPassword"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FragmentGameChooser"
+            android:name="com.nioneer.nioneer.view.FragmentNewDiscusssion"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FirestoreDisccussFragmment"
+            android:name="com.nioneer.nioneer.view.FragmentGameChooser"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FragmentGroups"
+            android:name="com.nioneer.nioneer.view.FirestoreDisccussFragmment"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FirestoreChatFragmment"
+            android:name="com.nioneer.nioneer.view.FragmentGroups"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FragmentNewGroup"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.guiado.linkify.view.FragmentJoinGroup"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.guiado.linkify.view.FragmentNewEvent"
+            android:name="com.nioneer.nioneer.view.FirestoreChatFragmment"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FragmentAddress"
+            android:name="com.nioneer.nioneer.view.FragmentNewGroup"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentJoinGroup"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentNewEvent"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FragmentEvent"
-            android:windowSoftInputMode="adjustPan" />
-
-
-        <activity
-            android:name="com.guiado.linkify.view.FragmentMyDiscussions"
+            android:name="com.nioneer.nioneer.view.FragmentAddress"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.linkify.view.FirestoreMyDisccussFragmment"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.linkify.view.FragmentSavedDiscussions"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.guiado.linkify.view.FragmentAbout"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.linkify.view.FragmentFeedBack"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.linkify.view.FragmentPrivacy"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.linkify.view.FragmentSavedEvents"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.guiado.linkify.view.FragmentMyEvents"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.linkify.view.FragmentMyEvent"
+            android:name="com.nioneer.nioneer.view.FragmentEvent"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
-            android:name="com.guiado.linkify.activities.LaunchActivity"
+            android:name="com.nioneer.nioneer.view.FragmentMyDiscussions"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.nioneer.nioneer.view.FirestoreMyDisccussFragmment"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentSavedDiscussions"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentAbout"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentFeedBack"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentPrivacy"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentSavedEvents"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentMyEvents"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentMyEvent"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentProfileEdit"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentProfile"
+            android:windowSoftInputMode="adjustPan" />
+
+
+        <activity
+            android:name="com.nioneer.nioneer.view.FragmentKeyWords"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.nioneer.nioneer.view.WebViewActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.nioneer.nioneer.activities.LaunchActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

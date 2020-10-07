@@ -5,7 +5,7 @@
 
         <variable
             name="postAdPricing"
-            type="com.guiado.linkify.viewmodel.PostAdPricingViewModel" />
+            type="com.nioneer.nioneer.viewmodel.PostAdPricingViewModel" />
     </data>
 
     <RelativeLayout
@@ -28,7 +28,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_16"
-                    android:text="Price *"
+                    android:text="Assessment"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="Question 1 *"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
@@ -36,7 +44,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/currency_inr"
-                    android:hint="Price per ticket"
                     android:inputType="number"
                     android:text="@={postAdPricing.price}"
                     android:textColor="@color/colorBlack"
@@ -46,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_16"
-                    android:text="No. of tickets *"
+                    android:text="Question 2*"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
@@ -63,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_16"
-                    android:text="Discount"
+                    android:text="Question 3 *"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 
@@ -73,6 +80,36 @@
                     android:drawableEnd="@drawable/percent"
                     android:inputType="number"
                     android:text="@={postAdPricing.discount}"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="Question 4 *"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/percent"
+                    android:inputType="number"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="Question 5 *"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/percent"
+                    android:inputType="number"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold" />
 

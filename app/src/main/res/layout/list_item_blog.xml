@@ -1,0 +1,120 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="mainDataModel"
+            type="com.nioneer.nioneer.viewmodel.RssHomeViewModel" />
+
+        <variable
+            name="blogItemModel"
+            type="com.nioneer.nioneer.model.BlogItemModel" />
+
+        <variable
+            name="itemPosition"
+            type="java.lang.Integer" />
+
+        <variable
+            name="simpleListAdapter"
+            type="com.nioneer.nioneer.adapter.BlogListRecyclerViewAdapter" />
+
+        <variable
+            name="itemClickListener"
+            type="com.nioneer.nioneer.listeners.BlogListEventListener" />
+
+        <variable
+            name="markAsRead"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="itemStateClickListener"
+            type="com.nioneer.nioneer.listeners.ShareEventListener" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_4"
+        android:onClick="@{() -> itemClickListener.onClickBlogListItem(mainDataModel,itemPosition)}">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dimen_2"
+            app:cardBackgroundColor="@color/colorWhite"
+            android:elevation="@dimen/dimen_8">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_4">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{blogItemModel.title}"
+                    android:textColor="@color/colorFairphonePrimary"
+                    android:textSize="@dimen/dimen_20"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/dimen_4"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{blogItemModel.link}"
+                    android:textColor="@color/colorBlacklight" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:background="@color/colorGreyDim" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_gravity="start"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/dimen_2"
+                        android:text="@{@string/bloglist_item_creator(blogItemModel.creator)}"
+                        android:textColor="@color/colorGrey"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/shareLink"
+                        android:layout_centerVertical="true"
+                        android:onClick="@{() -> itemStateClickListener.onClickShareItem(mainDataModel,itemPosition)}"
+                        android:padding="@dimen/dimen_4"
+                        android:tint="@color/colorGrey" />
+
+                    <ImageView
+                        android:id="@+id/shareLink"
+                        android:tint="@color/colorGrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/dimen_4"
+                        android:src="@{markAsRead}" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</layout>

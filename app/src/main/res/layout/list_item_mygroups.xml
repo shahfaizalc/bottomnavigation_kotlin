@@ -4,11 +4,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.MyGroupsModel" />
+            type="com.nioneer.nioneer.viewmodel.MyGroupsModel" />
 
         <variable
             name="groupsViewModel"
-            type="com.guiado.linkify.model2.Groups" />
+            type="com.nioneer.nioneer.model2.Groups" />
 
         <variable
             name="itemPosition"
@@ -16,11 +16,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.linkify.adapter.MyGroupsAdapter" />
+            type="com.nioneer.nioneer.adapter.MyGroupsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.linkify.listeners.MyGroupsEventListener" />
+            type="com.nioneer.nioneer.listeners.MyGroupsEventListener" />
 
         <variable
             name="keyWordsTag"

@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.linkify.viewmodel.NewEventViewModel" />
+            type="com.nioneer.nioneer.viewmodel.NewEventViewModel" />
     </data>
 
     <RelativeLayout

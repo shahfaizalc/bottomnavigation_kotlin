@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.JoinGroupViewModel" />
+            type="com.nioneer.nioneer.viewmodel.JoinGroupViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.linkify.model2.Groups" />
+            type="com.nioneer.nioneer.model2.Groups" />
 
     </data>
 

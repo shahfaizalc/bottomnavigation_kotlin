@@ -5,7 +5,7 @@
 
         <variable
             name="postAdPricing"
-            type="com.guiado.linkify.viewmodel.KeyWordsViewModel" />
+            type="com.nioneer.nioneer.viewmodel.KeyWordsViewModel" />
     </data>
 
     <RelativeLayout

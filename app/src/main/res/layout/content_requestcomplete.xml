@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.RequestCompleteViewModel" />
+            type="com.nioneer.nioneer.viewmodel.RequestCompleteViewModel" />
 
         <variable
             name="profile"
-            type="com.guiado.linkify.model2.Profile" />
+            type="com.nioneer.nioneer.model2.Profile" />
 
 
         <variable

@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/mail"
-        android:icon="@drawable/information"
-        android:title="@string/signInText" />
+
     <item android:id="@+id/upload"
-        android:icon="@drawable/information"
+        android:icon="@drawable/account_circle"
         android:title="@string/upload"
         app:showAsAction="ifRoom" />
-    <item android:id="@+id/share"
-        android:icon="@drawable/information"
-        android:title="@string/signUpText" />
+
 </menu>

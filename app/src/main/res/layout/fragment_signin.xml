@@ -7,7 +7,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.linkify.viewmodel.SignInViewModel" />
+            type="com.nioneer.nioneer.viewmodel.SignInViewModel" />
     </data>
 
     <LinearLayout

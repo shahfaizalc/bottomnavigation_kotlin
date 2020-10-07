@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.linkify.viewmodel.SettingsViewModel" />
+            type="com.nioneer.nioneer.viewmodel.SettingsViewModel" />
 
     </data>
 

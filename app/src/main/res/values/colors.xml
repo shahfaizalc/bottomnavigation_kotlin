@@ -74,4 +74,9 @@
 
     <color name="colorchat2">#F0F0F0</color>
 
+
+    <color name="colorGreyDim">#C0C0C0</color>
+    <color name="colorWhitesmoke">#F5F5F5</color>
+    <color name="colorDarkslategray">#454545</color>
+    <color name="colorFairphonePrimary">#2ea7df</color>
 </resources>

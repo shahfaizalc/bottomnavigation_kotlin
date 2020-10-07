@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.linkify.viewmodel.AboutViewModel" />
+            type="com.nioneer.nioneer.viewmodel.AboutViewModel" />
 
     </data>
 
@@ -65,7 +65,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="top"
                     android:paddingBottom="@dimen/dimen_8"
-                    android:text="\u00A9 GUIADO" />
+                    android:text="\u00A9 NIONEER" />
 
 
             </LinearLayout>

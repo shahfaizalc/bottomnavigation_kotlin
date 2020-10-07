@@ -4,11 +4,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.TheEventsModel" />
+            type="com.nioneer.nioneer.viewmodel.TheEventsModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.linkify.model2.Events" />
+            type="com.nioneer.nioneer.model2.Events" />
 
         <variable
             name="itemPosition"
@@ -16,11 +16,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.linkify.adapter.TheEventsAdapter" />
+            type="com.nioneer.nioneer.adapter.TheEventsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.linkify.listeners.TheEventsEventListener" />
+            type="com.nioneer.nioneer.listeners.TheEventsEventListener" />
 
         <variable
             name="keyWordsTag"

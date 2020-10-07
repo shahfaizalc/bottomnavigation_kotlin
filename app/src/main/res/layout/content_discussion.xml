@@ -6,7 +6,7 @@
 
         <variable
             name="adSearchModel"
-            type="com.guiado.linkify.viewmodel.DiscussionModel" />
+            type="com.nioneer.nioneer.viewmodel.DiscussionModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -86,6 +86,7 @@
                     android:background="@drawable/circular_bg"
                     android:text="@string/clear" />
                 <ImageButton
+                    android:visibility="gone"
                     android:onClick="@{adSearchModel.onFilterClick()}"
                     android:background="@android:color/transparent"
                     android:id="@+id/sendButton"
@@ -109,6 +110,7 @@
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:visibility="gone"
             android:onClick="@{adSearchModel.onNextButtonClick}"
             android:id="@+id/floating_action_button"
             android:layout_width="wrap_content"

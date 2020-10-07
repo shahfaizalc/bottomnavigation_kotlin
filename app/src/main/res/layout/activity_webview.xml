@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="webViewData"
+            type="com.nioneer.nioneer.viewmodel.WebViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            app:loadUrl="@{webViewData}"
+            app:setWebViewClient="@{webViewData.getWebViewClient()}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorBlack"
+            android:gravity="center"
+            android:padding="@dimen/dimen_4"
+            android:text="@{webViewData.msg}"
+            android:textColor="@color/colorWhitesmoke"
+            android:textStyle="bold"
+            android:visibility="@{webViewData.msgView}" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="@{webViewData.progressBarVisible}" />
+
+    </FrameLayout>
+
+</layout>

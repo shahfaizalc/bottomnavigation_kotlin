@@ -5,11 +5,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.AdSearchModel" />
+            type="com.nioneer.nioneer.viewmodel.AdSearchModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.linkify.model2.Profile" />
+            type="com.nioneer.nioneer.model2.Profile" />
 
         <variable
             name="itemPosition"
@@ -17,11 +17,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.linkify.adapter.SearchTalentsAdapter" />
+            type="com.nioneer.nioneer.adapter.SearchTalentsAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.linkify.listeners.AdSearchEventListener" />
+            type="com.nioneer.nioneer.listeners.AdSearchEventListener" />
 
         <variable
             name="address"

@@ -5,11 +5,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.SavedDiscussionModel" />
+            type="com.nioneer.nioneer.viewmodel.SavedDiscussionModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.linkify.model2.PostDiscussion" />
+            type="com.nioneer.nioneer.model2.PostDiscussion" />
 
         <variable
             name="itemPosition"
@@ -17,11 +17,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.linkify.adapter.SavedDiscussionAdapter" />
+            type="com.nioneer.nioneer.adapter.SavedDiscussionAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.linkify.listeners.SavedDiscussionEventListener" />
+            type="com.nioneer.nioneer.listeners.SavedDiscussionEventListener" />
 
         <variable
             name="keyWordsTag"

@@ -5,7 +5,7 @@
 
         <variable
             name="listener"
-            type="com.guiado.linkify.listeners.ChooserEventListener" />
+            type="com.nioneer.nioneer.listeners.ChooserEventListener" />
 
         <variable
             name="itemPosition"
@@ -13,7 +13,7 @@
 
         <variable
             name="gameChooserModel"
-            type="com.guiado.linkify.viewmodel.GameChooserModel" />
+            type="com.nioneer.nioneer.viewmodel.GameChooserModel" />
     </data>
 
         <FrameLayout

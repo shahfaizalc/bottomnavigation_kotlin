@@ -5,7 +5,7 @@
 
         <variable
             name="homePageModel"
-            type="com.guiado.linkify.viewmodel.HomePageModel" />
+            type="com.nioneer.nioneer.viewmodel.HomePageModel" />
     </data>
 
     <LinearLayout

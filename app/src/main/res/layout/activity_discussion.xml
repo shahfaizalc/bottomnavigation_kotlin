@@ -7,11 +7,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.linkify.viewmodel.ActivityDiscussionViewModel" />
+            type="com.nioneer.nioneer.viewmodel.ActivityDiscussionViewModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.linkify.model2.PostDiscussion" />
+            type="com.nioneer.nioneer.model2.PostDiscussion" />
 
     </data>
 
@@ -179,6 +179,7 @@
             tools:listitem="@layout/message" />
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/footer"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"

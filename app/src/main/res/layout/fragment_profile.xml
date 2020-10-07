@@ -7,7 +7,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.linkify.viewmodel.ProfileViewModel" />
+            type="com.nioneer.nioneer.viewmodel.ProfileViewModel" />
     </data>
 
     <ScrollView
@@ -96,12 +96,7 @@
 
                 </LinearLayout>
 
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/dimen_4"
-                            android:layout_marginEnd="@dimen/dimen_4"
-                            android:background="@color/colorSmoke" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -111,7 +106,7 @@
                 android:gravity="center_horizontal"
                 android:onClick="@{() -> homeData.findClickded()}"
                 android:padding="@dimen/dimen_8"
-                android:text="Edit Account"
+                android:text="Edit Profile"
                 android:textSize="@dimen/dimen_8"
                 android:textStyle="bold" />
 
@@ -336,16 +331,16 @@
                 android:text="Connect" />
 
 
-            <TextView
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="@dimen/dimen_32"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> homeData.myDiscussionsClicked()}"
-                android:text="My Discussions"
+<!--            <TextView-->
+<!--                android:textColor="@color/colorPrimary"-->
+<!--                android:layout_marginStart="@dimen/dimen_32"-->
+<!--                android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--                android:layout_marginTop="@dimen/dimen_8"-->
+<!--                android:layout_marginBottom="@dimen/dimen_8"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:onClick="@{() -> homeData.myDiscussionsClicked()}"-->
+<!--                android:text="My Discussions"-->
                 />
             <TextView
                 android:textColor="@color/colorPrimary"
@@ -356,42 +351,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> homeData.savedDiscussionsClicked()}"
-                android:text="Saved Discussions"/>
-
-            <TextView
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="@dimen/dimen_32"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> homeData.myEventsClicked()}"
-                android:text="My Events"/>
-
-
-            <TextView
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="@dimen/dimen_32"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> homeData.savedEventsClicked()}"
                 android:text="Saved Events"/>
 
+<!--            <TextView-->
+<!--                android:textColor="@color/colorPrimary"-->
+<!--                android:layout_marginStart="@dimen/dimen_32"-->
+<!--                android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--                android:layout_marginTop="@dimen/dimen_8"-->
+<!--                android:layout_marginBottom="@dimen/dimen_8"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:onClick="@{() -> homeData.myEventsClicked()}"-->
+<!--                android:text="My Events"/>-->
 
-            <TextView
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="@dimen/dimen_32"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> homeData.inviteFriends()}"
-                android:text="Invite Friends"/>
+
+<!--            <TextView-->
+<!--                android:textColor="@color/colorPrimary"-->
+<!--                android:layout_marginStart="@dimen/dimen_32"-->
+<!--                android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--                android:layout_marginTop="@dimen/dimen_8"-->
+<!--                android:layout_marginBottom="@dimen/dimen_8"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:onClick="@{() -> homeData.savedEventsClicked()}"-->
+<!--                android:text="Saved Events"/>-->
+
+<!--            <TextView-->
+<!--                android:textColor="@color/colorPrimary"-->
+<!--                android:layout_marginStart="@dimen/dimen_32"-->
+<!--                android:textAppearance="?android:attr/textAppearanceMedium"-->
+<!--                android:layout_marginTop="@dimen/dimen_8"-->
+<!--                android:layout_marginBottom="@dimen/dimen_8"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:onClick="@{() -> homeData.inviteFriends()}"-->
+<!--                android:text="Invite Friends"/>-->
 
             <TextView
                 android:textColor="@color/com_facebook_blue"
@@ -434,56 +428,6 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> homeData.privacyClicked()}"
                 android:text="Privacy and Security"/>
-
-            <TextView
-                android:textColor="@color/com_facebook_blue"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Coming Soon"/>
-
-            <TextView
-                android:layout_marginStart="@dimen/dimen_32"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Friends"/>
-
-            <TextView
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="@dimen/dimen_32"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Articles"/>
-
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginStart="@dimen/dimen_32"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Preparations" />
-
-            <TextView
-                android:layout_marginTop="@dimen/dimen_8"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="@dimen/dimen_32"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Top Organaisations"/>
 
             <Button
                 android:layout_width="match_parent"
