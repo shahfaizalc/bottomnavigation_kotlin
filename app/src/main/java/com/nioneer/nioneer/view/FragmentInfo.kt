@@ -4,7 +4,6 @@ import android.app.Activity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.nioneer.nioneer.R
-import com.nioneer.nioneer.databinding.FragmentFindrideBinding
 import com.nioneer.nioneer.databinding.FragmentInfoBinding
 import com.nioneer.nioneer.viewmodel.InfoViewModel
 

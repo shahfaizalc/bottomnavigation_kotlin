@@ -271,9 +271,7 @@ class ProfileViewModel(internal val fragmentSignin: FragmentProfile) :
 //            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
 
 
-            val intent = Intent(fragmentSignin, FragmentMyEvents::class.java);
-            intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-            fragmentSignin.startActivity(intent);
+
 
         }
     }

@@ -22,19 +22,19 @@ class StopOversViewModel(private val context: Context, private val fragmentSigni
 
     fun signInUserClicked() {
 
-        val fragment = FragmentFineRide()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+//        val fragment = FragmentFineRide()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 
     }
 
 
     fun signUpUserClicked() {
-        val fragment = FragmentFineRide()
-        val bundle = Bundle()
-        fragment.setArguments(bundle)
-        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
+//        val fragment = FragmentFineRide()
+//        val bundle = Bundle()
+//        fragment.setArguments(bundle)
+//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 
     }
 

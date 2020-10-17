@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.nioneer.nioneer.R
-import com.nioneer.nioneer.databinding.FragmentRideBinding
 import com.nioneer.nioneer.databinding.FragmentStopoverBinding
 import com.nioneer.nioneer.databinding.FragmentWelcomeBinding
 import com.nioneer.nioneer.fragments.BaseFragment

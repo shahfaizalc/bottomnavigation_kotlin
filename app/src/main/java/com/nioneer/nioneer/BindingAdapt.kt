@@ -908,66 +908,6 @@ fun adapter(searchView: SearchView,countriesViewModel: TheEventsModel,recyclerVi
 
 
 @BindingAdapter( "app:searchAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView,countriesViewModel: MyEventsModel,recyclerView: RecyclerView) {
-
-    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
-    val listAdapter = MyEventsAdapter(countriesViewModel)
-    val bindingAdapter = RecyclerLoadMoreMyEventsHandler(countriesViewModel, listAdapter)
-
-
-    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
-    recyclerView.adapter = listAdapter
-    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
-
-    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
-        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
-            Log.d("rach", "rach1")
-        }
-
-        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
-            Log.d("rach", "rach2")
-        }
-
-        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
-            Log.d("rach", "rach3")
-            bindingAdapter.resetRecycleView(recyclerView)
-        }
-
-        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
-            Log.d("rach", "rach4")
-            bindingAdapter.resetRecycleView(recyclerView)
-
-        }
-
-        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
-            Log.d("rach", "rach5")
-            bindingAdapter.resetRecycleView(recyclerView)
-
-        }
-
-    });
-    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(s: String?): Boolean {
-
-            if(s.isNullOrEmpty()){
-                countriesViewModel.doGetTalents()
-            } else  {
-                countriesViewModel.doGetTalentsSearch(s)
-                bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
-            }
-            return false
-        }
-
-        override fun onQueryTextChange(strQuery: String): Boolean {
-            if(strQuery.isNullOrEmpty()){
-                countriesViewModel.doGetTalents()
-            }
-            return false
-        }
-    })
-}
-
-@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
 fun adapter(searchView: SearchView,countriesViewModel: SavedEventsModel,recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)

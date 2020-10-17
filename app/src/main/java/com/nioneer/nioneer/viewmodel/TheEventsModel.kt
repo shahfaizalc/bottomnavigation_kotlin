@@ -224,9 +224,9 @@ class TheEventsModel(internal var activity: FragmentActivity,
 //        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 //
 //
-        val intent = Intent(activity,FragmentEvent::class.java);
-        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
-        activity.startActivity(intent);
+//        val intent = Intent(activity,FragmentEvent::class.java);
+//        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
+//        activity.startActivity(intent);
     }
 
     private fun handleMultipleClicks(): Boolean {

@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.nioneer.nioneer.R
 import com.nioneer.nioneer.databinding.ContentGroupsBinding
-import com.nioneer.nioneer.databinding.ContentMyeventsBinding
 import com.nioneer.nioneer.databinding.ContentSavedeventsBinding
 import com.nioneer.nioneer.databinding.ContentTheeventsBinding
 import com.nioneer.nioneer.viewmodel.SavedEventsModel

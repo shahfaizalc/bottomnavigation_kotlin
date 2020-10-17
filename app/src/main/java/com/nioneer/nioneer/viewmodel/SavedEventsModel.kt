@@ -80,9 +80,9 @@ class SavedEventsModel(internal val fragmentProfileInfo: FragmentSavedEvents)// 
 //            fragment.setArguments(bundle)
 //            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 //
-            val intent = Intent(fragmentProfileInfo, FragmentEvent::class.java)
-            intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
-            fragmentProfileInfo.startActivity(intent);
+//            val intent = Intent(fragmentProfileInfo, FragmentEvent::class.java)
+//            intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().eventToString(postAdModel))
+//            fragmentProfileInfo.startActivity(intent);
         } else {
             showPopUpWindow();
         }

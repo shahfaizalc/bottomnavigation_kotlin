@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.nioneer.nioneer.R
-import com.nioneer.nioneer.databinding.FragmentFindrideBinding
-import com.nioneer.nioneer.databinding.FragmentInfoBinding
 import com.nioneer.nioneer.databinding.FragmentSettingsBinding
 import com.nioneer.nioneer.fragments.BaseFragment
 import com.nioneer.nioneer.viewmodel.SettingsViewModel

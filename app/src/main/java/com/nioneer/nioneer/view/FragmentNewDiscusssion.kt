@@ -4,7 +4,6 @@ import android.app.Activity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.nioneer.nioneer.R
-import com.nioneer.nioneer.databinding.FragmentEventsBinding
 import com.nioneer.nioneer.databinding.FragmentNewdiscussionBinding
 import com.nioneer.nioneer.databinding.FragmentProfileeditBinding
 import com.nioneer.nioneer.viewmodel.NewDiscussionViewModel
