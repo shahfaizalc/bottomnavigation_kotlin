@@ -1,4 +1,4 @@
-package com.news.list.communication
+package com.guiado.grads
 
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory

@@ -39,7 +39,7 @@
                     android:layout_marginTop="@dimen/dimen_16"
                     android:background="@drawable/circular_bg_border"
                     android:gravity="top"
-                    android:text="aEU3D0000008PKeWAM"
+                    android:text="aEW3D0000004HIM"
                     android:enabled="false"
                     android:lines="1"
                     android:maxLength="200"
@@ -51,7 +51,7 @@
                     android:layout_marginTop="@dimen/dimen_16"
                     android:background="@drawable/circular_bg_border_paleblue"
                     android:gravity="top"
-                    android:hint="Idea Title"
+                    android:hint="Idea Name"
                     android:maxLength="200"
                     android:padding="@dimen/dimen_8"
                     android:text="@={homeData.ideaTitle}" />
@@ -62,7 +62,7 @@
                     android:layout_marginTop="@dimen/dimen_16"
                     android:background="@drawable/circular_bg_border_paleblue"
                     android:gravity="top"
-                    android:hint="Few words on idea"
+                    android:hint="Impact"
                     android:maxLength="200"
                     android:padding="@dimen/dimen_8"
                     android:text="@={homeData.ideaBrief}" />
@@ -73,7 +73,7 @@
                     android:layout_marginTop="@dimen/dimen_16"
                     android:background="@drawable/circular_bg_border_paleblue"
                     android:gravity="top"
-                    android:hint="Features"
+                    android:hint="Benefit"
                     android:maxLength="200"
                     android:padding="@dimen/dimen_8"
                     android:text="@={homeData.ideaFeatures}" />
@@ -84,7 +84,7 @@
                     android:layout_marginTop="@dimen/dimen_16"
                     android:background="@drawable/circular_bg_border_paleblue"
                     android:gravity="top"
-                    android:hint="Implementation approch"
+                    android:hint="Implementation approach"
                     android:maxLength="200"
                     android:padding="@dimen/dimen_8"
                     android:text="@={homeData.ideaImplementation}" />
@@ -95,7 +95,7 @@
                     android:layout_marginTop="@dimen/dimen_16"
                     android:background="@drawable/circular_bg_border_paleblue"
                     android:gravity="top"
-                    android:text="Status: DRAFT"
+                    android:text="new"
                     android:enabled="false"
                     android:lines="1"
                     android:maxLength="200"

@@ -1,6 +1,7 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -8,6 +9,7 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.google.gson.Gson
 import com.guiado.grads.BR
+import com.guiado.grads.GetServiceNews
 import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.listeners.MultipleClickListener
@@ -15,7 +17,6 @@ import com.guiado.grads.model_sales.Authenticaiton
 import com.guiado.grads.model_sales.CreateIdeas
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.view.FragmentNewDiscusssion
-import com.news.list.communication.GetServiceNews
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -23,7 +24,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.logging.Level
 
 
 class NewDiscussionViewModel(private val context: Context, private val fragmentSignin: FragmentNewDiscusssion) :
@@ -42,28 +42,28 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
 
 
     @get:Bindable
-    var ideaTitle: String? = ""
+    var ideaTitle: String? = "Personal health"
         set(price) {
             field = price
             notifyPropertyChanged(BR.ideaTitle)
         }
 
     @get:Bindable
-    var challangeID: String? = "aEU3D0000008PKtWAM"
+    var challangeID: String? = "aEW3D0000004HIM"
         set(price) {
             field = price
             notifyPropertyChanged(BR.challangeID)
         }
 
     @get:Bindable
-    var ideaBrief: String? = ""
+    var ideaBrief: String? = "Bottomline"
         set(price) {
             field = price
             notifyPropertyChanged(BR.ideaBrief)
         }
 
     @get:Bindable
-    var ideaFeatures: String? = ""
+    var ideaFeatures: String? = "Soft"
         set(price) {
             field = price
             notifyPropertyChanged(BR.ideaFeatures)
@@ -77,7 +77,7 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
         }
 
     @get:Bindable
-    var status: String? = "DRAFT"
+    var status: String? = "New"
         set(price) {
             field = price
             notifyPropertyChanged(BR.status)
@@ -163,34 +163,42 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
     private fun sendPost() {
 
         Log.d("Authenticaiton token", "");
+        val intent = Intent()
+        Log.d("on result faizal","on result faizalloor")
+        fragmentSignin.setResult(22); // You can also send result without any data using setResult(int resultCode)
+        fragmentSignin.finish()
 
-
-        showProgresss(true)
-
-
-        val post = CreateIdeas()
-        post.challengeC = challangeID
-        post.incDetailsC = ideaBrief
-        post.incFeaturesC = ideaFeatures
-        post.incImplementationApproachC = ideaImplementation
-        post.incNameC = ideaTitle
-        post.statusC = status
-
-        postsService.createQueryIdeas(post, "Bearer " + getAccessToken())!!
-                .enqueue(object : Callback<CreateIdeas?> {
-                    override fun onResponse(call: Call<CreateIdeas?>?, response: Response<CreateIdeas?>) {
-                        response.body().toString()
-                         showProgresss(false)
-                        Toast.makeText(context,"Thanks for your idea. \n Idea added successfully to challenge.",Toast.LENGTH_LONG).show()
-                        fragmentSignin.finish()
-                    }
-
-
-                    override fun onFailure(call: Call<CreateIdeas?>?, t: Throwable) {
-                        Log.d("Authenticaiton token", t.toString())
-                        showProgresss(false)
-                    }
-                })
+//        showProgresss(true)
+//
+//
+//        val post = CreateIdeas()
+//
+//        post.benefitC = ideaFeatures
+//        post.impactC = ideaBrief
+//        post.innovationChallengeC = challangeID
+//        post.name = ideaImplementation
+//        post.targetedBusinessGroupC = ideaTitle
+//        post.statusC = status
+//
+//        postsService.createQueryIdeas(post, "Bearer " + getAccessToken())!!
+//                .enqueue(object : Callback<CreateIdeas?> {
+//                    override fun onResponse(call: Call<CreateIdeas?>?, response: Response<CreateIdeas?>) {
+//                        response.body().toString()
+//                         showProgresss(false)
+//                        Toast.makeText(context,"Thanks for your idea. \n Idea added successfully to challenge.",Toast.LENGTH_LONG).show()
+//                        val intent = Intent()
+//                        Log.d("on result faizal","on result faizalloor")
+//                        fragmentSignin.setResult(22, intent); // You can also send result without any data using setResult(int resultCode)
+//                        fragmentSignin.finish()
+//
+//                    }
+//
+//
+//                    override fun onFailure(call: Call<CreateIdeas?>?, t: Throwable) {
+//                        Log.d("Authenticaiton token", t.toString())
+//                        showProgresss(false)
+//                    }
+//                })
     }
 
     fun getAccessToken(): String {

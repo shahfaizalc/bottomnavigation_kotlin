@@ -68,7 +68,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:paddingBottom="@dimen/dimen_4"
-                        android:text="@{countriesInfoModel.id}"
+                        android:text="@{countriesInfoModel.benefitC}"
                         android:textColor="@color/colorBlacklight"
                         android:textStyle="bold" />
 
@@ -112,7 +112,7 @@
                     android:maxLines="7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{countriesInfoModel.getINCImplementationApproachC}"
+                    android:text="@{countriesInfoModel.name}"
                     android:layout_marginBottom="@dimen/dimen_4"
                     android:textColor="@color/colorBlacklight" />
 

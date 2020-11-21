@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.guiado.grads.R
-import com.guiado.grads.databinding.FragmentEventsBinding
 import com.guiado.grads.databinding.FragmentNewdiscussionBinding
 import com.guiado.grads.databinding.FragmentProfileeditBinding
 import com.guiado.grads.fragments.BaseFragment

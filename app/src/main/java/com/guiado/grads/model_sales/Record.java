@@ -8,22 +8,12 @@ public class Record {
 
     @SerializedName("attributes")
     private Attributes mAttributes;
-    @SerializedName("Challenge__c")
-    private String mChallengeC;
-    @SerializedName("INC_Challenge_Title__c")
-    private String mINCChallengeTitleC;
-    @SerializedName("INC_Details__c")
-    private String mINCDetailsC;
-    @SerializedName("INC_Features__c")
-    private String mINCFeaturesC;
-    @SerializedName("INC_Implementation_Approach__c")
-    private String mINCImplementationApproachC;
-    @SerializedName("INC_Name__c")
-    private String mINCNameC;
-    @SerializedName("Id")
-    private String mId;
-    @SerializedName("Rating__c")
-    private Integer mRatingC;
+    @SerializedName("Benefit__c")
+    private String mBenefitC;
+    @SerializedName("Impact__c")
+    private String mImpactC;
+    @SerializedName("Name")
+    private String mName;
     @SerializedName("Status__c")
     private String mStatusC;
 
@@ -35,68 +25,28 @@ public class Record {
         mAttributes = attributes;
     }
 
-    public String getChallengeC() {
-        return mChallengeC;
+    public String getBenefitC() {
+        return mBenefitC;
     }
 
-    public void setChallengeC(String challengeC) {
-        mChallengeC = challengeC;
+    public void setBenefitC(String benefitC) {
+        mBenefitC = benefitC;
     }
 
-    public String getINCChallengeTitleC() {
-        return mINCChallengeTitleC;
+    public String getImpactC() {
+        return mImpactC;
     }
 
-    public void setINCChallengeTitleC(String iNCChallengeTitleC) {
-        mINCChallengeTitleC = iNCChallengeTitleC;
+    public void setImpactC(String impactC) {
+        mImpactC = impactC;
     }
 
-    public String getINCDetailsC() {
-        return mINCDetailsC;
+    public String getName() {
+        return mName;
     }
 
-    public void setINCDetailsC(String iNCDetailsC) {
-        mINCDetailsC = iNCDetailsC;
-    }
-
-    public String getINCFeaturesC() {
-        return mINCFeaturesC;
-    }
-
-    public void setINCFeaturesC(String iNCFeaturesC) {
-        mINCFeaturesC = iNCFeaturesC;
-    }
-
-    public String getINCImplementationApproachC() {
-        return mINCImplementationApproachC;
-    }
-
-    public void setINCImplementationApproachC(String iNCImplementationApproachC) {
-        mINCImplementationApproachC = iNCImplementationApproachC;
-    }
-
-    public String getINCNameC() {
-        return mINCNameC;
-    }
-
-    public void setINCNameC(String iNCNameC) {
-        mINCNameC = iNCNameC;
-    }
-
-    public String getId() {
-        return mId;
-    }
-
-    public void setId(String id) {
-        mId = id;
-    }
-
-    public Integer getRatingC() {
-        return mRatingC;
-    }
-
-    public void setRatingC(Integer ratingC) {
-        mRatingC = ratingC;
+    public void setName(String name) {
+        mName = name;
     }
 
     public String getStatusC() {

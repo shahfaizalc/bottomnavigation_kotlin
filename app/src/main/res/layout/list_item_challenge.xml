@@ -112,7 +112,7 @@
                     android:maxLines="7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{countriesInfoModel.getDescriptionC}"
+                    android:text="@{countriesInfoModel.name}"
                     android:layout_marginBottom="@dimen/dimen_4"
                     android:textColor="@color/colorBlacklight" />
 

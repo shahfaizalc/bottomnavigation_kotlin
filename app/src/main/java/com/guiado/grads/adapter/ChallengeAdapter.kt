@@ -64,7 +64,7 @@ class ChallengeAdapter(private val adSearchModel: ChallengeModel) :
     }
 
     override fun onClickAdSearchListItem(countriesViewModel: ChallengeModel, position: Int) {
-        Log.d(TAG,"Click: "+ countriesViewModel.talentProfilesList[position].descriptionC)
+        Log.d(TAG,"Click: "+ countriesViewModel.talentProfilesList[position].name)
       //  countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position],position)
 
     }

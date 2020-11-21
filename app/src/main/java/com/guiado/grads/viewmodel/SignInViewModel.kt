@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.guiado.grads.model_sales.Authenticaiton
 import com.guiado.grads.BR
+import com.guiado.grads.GetServiceNews
 import com.guiado.grads.R
 import com.guiado.grads.activities.Main2Activity
 import com.guiado.grads.handler.NetworkChangeHandler
@@ -20,7 +21,6 @@ import com.guiado.grads.utils.Validator
 import com.guiado.grads.view.FragmentForgotPassword
 import com.guiado.grads.view.FragmentSignin
 import com.guiado.grads.view.FragmentVerification
-import com.news.list.communication.GetServiceNews
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,13 +33,13 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
     private val mAuth: FirebaseAuth
     private var networkStateHandler: NetworkChangeHandler? = null
     @get:Bindable
-    var dataUsername: String? = "incubatorintegrationuser@philips.com.poc"
+    var dataUsername: String? = "balasubramanian.panneerselvan@philips.com.incpoc"
         set(username) {
             field = username
             notifyPropertyChanged(BR.dataUsername)
         }
     @get:Bindable
-    var dataPassword: String? = "Philips.1234"
+    var dataPassword: String? = "Password@1"
         set(password) {
             field = password
             notifyPropertyChanged(BR.dataPassword)
@@ -131,7 +131,8 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
         } else {
 
             val retrofit = Retrofit.Builder()
-                    .baseUrl("https://test.salesforce.com/services/oauth2/")
+
+                    .baseUrl("https://philipscrm--pocinc.my.salesforce.com/services/oauth2/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
             postsService = retrofit.create(GetServiceNews::class.java)

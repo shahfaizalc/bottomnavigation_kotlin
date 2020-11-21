@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.guiado.grads.R
-import com.guiado.grads.databinding.FragmentRideBinding
 import com.guiado.grads.databinding.FragmentVerifiedBinding
 import com.guiado.grads.fragments.BaseFragment
 import com.guiado.grads.viewmodel.VerifiedViewModel

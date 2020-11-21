@@ -6,57 +6,49 @@ import com.google.gson.annotations.SerializedName;
 @SuppressWarnings("unused")
 public class CreateIdeas {
 
-    @SerializedName("Challenge__c")
-    private String mChallengeC;
-    @SerializedName("INC_Details__c")
-    private String mINCDetailsC;
-    @SerializedName("INC_Features__c")
-    private String mINCFeaturesC;
-    @SerializedName("INC_Implementation_Approach__c")
-    private String mINCImplementationApproachC;
-    @SerializedName("INC_Name__c")
-    private String mINCNameC;
+    @SerializedName("Benefit__c")
+    private String mBenefitC;
+    @SerializedName("Impact__c")
+    private String mImpactC;
+    @SerializedName("Innovation_Challenge__c")
+    private String mInnovationChallengeC;
+    @SerializedName("Name")
+    private String mName;
     @SerializedName("Status__c")
     private String mStatusC;
+    @SerializedName("Targeted_Business_group__c")
+    private String mTargetedBusinessGroupC;
 
-    public String getChallengeC() {
-        return mChallengeC;
+    public String getBenefitC() {
+        return mBenefitC;
     }
 
-    public void setChallengeC(String challengeC) {
-        mChallengeC = challengeC;
+    public void setBenefitC(String benefitC) {
+        mBenefitC = benefitC;
     }
 
-    public String getINCDetailsC() {
-        return mINCDetailsC;
+    public String getImpactC() {
+        return mImpactC;
     }
 
-    public void setINCDetailsC(String iNCDetailsC) {
-        mINCDetailsC = iNCDetailsC;
+    public void setImpactC(String impactC) {
+        mImpactC = impactC;
     }
 
-    public String getINCFeaturesC() {
-        return mINCFeaturesC;
+    public String getInnovationChallengeC() {
+        return mInnovationChallengeC;
     }
 
-    public void setINCFeaturesC(String iNCFeaturesC) {
-        mINCFeaturesC = iNCFeaturesC;
+    public void setInnovationChallengeC(String innovationChallengeC) {
+        mInnovationChallengeC = innovationChallengeC;
     }
 
-    public String getINCImplementationApproachC() {
-        return mINCImplementationApproachC;
+    public String getName() {
+        return mName;
     }
 
-    public void setINCImplementationApproachC(String iNCImplementationApproachC) {
-        mINCImplementationApproachC = iNCImplementationApproachC;
-    }
-
-    public String getINCNameC() {
-        return mINCNameC;
-    }
-
-    public void setINCNameC(String iNCNameC) {
-        mINCNameC = iNCNameC;
+    public void setName(String name) {
+        mName = name;
     }
 
     public String getStatusC() {
@@ -65,6 +57,14 @@ public class CreateIdeas {
 
     public void setStatusC(String statusC) {
         mStatusC = statusC;
+    }
+
+    public String getTargetedBusinessGroupC() {
+        return mTargetedBusinessGroupC;
+    }
+
+    public void setTargetedBusinessGroupC(String targetedBusinessGroupC) {
+        mTargetedBusinessGroupC = targetedBusinessGroupC;
     }
 
 }

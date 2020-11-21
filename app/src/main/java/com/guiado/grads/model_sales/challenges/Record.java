@@ -8,12 +8,10 @@ public class Record {
 
     @SerializedName("attributes")
     private Attributes mAttributes;
-    @SerializedName("Description__c")
-    private String mDescriptionC;
     @SerializedName("Id")
     private String mId;
-    @SerializedName("Name__c")
-    private String mNameC;
+    @SerializedName("Name")
+    private String mName;
 
     public Attributes getAttributes() {
         return mAttributes;
@@ -21,14 +19,6 @@ public class Record {
 
     public void setAttributes(Attributes attributes) {
         mAttributes = attributes;
-    }
-
-    public String getDescriptionC() {
-        return mDescriptionC;
-    }
-
-    public void setDescriptionC(String descriptionC) {
-        mDescriptionC = descriptionC;
     }
 
     public String getId() {
@@ -39,12 +29,12 @@ public class Record {
         mId = id;
     }
 
-    public String getNameC() {
-        return mNameC;
+    public String getName() {
+        return mName;
     }
 
-    public void setNameC(String nameC) {
-        mNameC = nameC;
+    public void setName(String name) {
+        mName = name;
     }
 
 }

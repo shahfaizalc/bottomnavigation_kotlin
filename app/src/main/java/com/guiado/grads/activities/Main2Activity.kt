@@ -275,9 +275,9 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     override fun getRootFragment(index: Int): Fragment {
         when (index) {
 
-            FragNavController.TAB1 -> return FragmentDiscussions()
-            FragNavController.TAB2 -> return FragmentChallenges()
-            FragNavController.TAB3 -> return FragmentTheEvents()
+            FragNavController.TAB1 -> return FragmentChallenges()
+            FragNavController.TAB2 -> return FragmentDiscussions()
+            FragNavController.TAB3 -> return FragmentDiscussions()
             FragNavController.TAB4 -> return FragmentProfile()
         }
         throw IllegalStateException("Need to send an index that we know")

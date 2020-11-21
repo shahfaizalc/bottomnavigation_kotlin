@@ -1,6 +1,7 @@
 package com.guiado.grads.view
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -47,5 +48,10 @@ class FragmentDiscussions : BaseFragment() {
         super.onDestroy()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+     //   super.onActivityResult(requestCode, resultCode, data)
+        Log.d("on result faizal", "on result faizal $resultCode")
+
+    }
 
 }

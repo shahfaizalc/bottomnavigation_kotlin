@@ -100,8 +100,8 @@ class InfoViewModel( private val fragmentSignin: FragmentInfo) :
 //            fragment.setArguments(bundle)
 //            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 
-            val intent = Intent(fragmentSignin,FragmentSavedEvents::class.java )
-            fragmentSignin.startActivity(intent)
+//            val intent = Intent(fragmentSignin,FragmentSavedEvents::class.java )
+//            fragmentSignin.startActivity(intent)
 
         }
     }

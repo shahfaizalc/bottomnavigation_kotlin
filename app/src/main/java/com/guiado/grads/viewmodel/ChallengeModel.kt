@@ -4,7 +4,6 @@ package com.guiado.grads.viewmodel
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -13,11 +12,10 @@ import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.*
 import com.google.gson.Gson
 import com.guiado.grads.BR
 import com.guiado.grads.Events.MyCustomEvent
-import com.guiado.grads.model.EventStatus
+import com.guiado.grads.GetServiceNews
 import com.guiado.grads.model2.Bookmarks
 import com.guiado.grads.model2.PostDiscussion
 import com.guiado.grads.model2.Profile
@@ -27,19 +25,13 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import com.guiado.grads.R
 import com.guiado.grads.adapter.CustomAdapter
-import com.guiado.grads.handler.RecyclerLoadMoreDiscussionHandler
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model.SearchMode
 import com.guiado.grads.model_sales.Authenticaiton
-import com.guiado.grads.model_sales.QueryIdeas
 import com.guiado.grads.model_sales.challenges.QueryChallenges
 import com.guiado.grads.view.*
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.news.list.communication.GetServiceNews
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.ArrayList
@@ -285,7 +277,7 @@ class ChallengeModel(internal var activity: FragmentActivity,
             val handler = coroutineExceptionHandler()
             GlobalScope.launch(handler) {
                 val repositories = withContext(Dispatchers.Default) {
-                    postsService.getQueryChallenges("services/data/v48.0/query?q=SELECT+Id,Name__c,Description__c+from+INC_Challenge__c+where+createddate>2020-01-01T07:00:00.000Z", "Bearer "+accesstoken).await()
+                    postsService.getQueryChallenges("services/data/v49.0/query/?q=SELECT+id,name+from+ICP_Challenge__c", "Bearer "+accesstoken).await()
                 }
                 withContext(Dispatchers.Default) { coroutineSuccessHandler(repositories) }
             }

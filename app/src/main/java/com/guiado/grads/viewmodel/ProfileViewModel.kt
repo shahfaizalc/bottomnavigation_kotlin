@@ -272,10 +272,10 @@ class ProfileViewModel(internal val activity:
 //            fragment.setArguments(bundle)
 //            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
 
-
-            val intent = Intent(activity, FragmentMyEvents::class.java);
-            intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-            activity.startActivity(intent);
+//
+//            val intent = Intent(activity, FragmentMyEvents::class.java);
+//            intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//            activity.startActivity(intent);
 
         }
     }
@@ -385,9 +385,9 @@ class ProfileViewModel(internal val activity:
 //            val bundle = Bundle()
 //            fragment.setArguments(bundle)
 //            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
-
-            val intent = Intent(activity, FragmentSavedEvents::class.java);
-            activity.startActivity(intent);
+//
+//            val intent = Intent(activity, FragmentSavedEvents::class.java);
+//            activity.startActivity(intent);
         }
     }
 

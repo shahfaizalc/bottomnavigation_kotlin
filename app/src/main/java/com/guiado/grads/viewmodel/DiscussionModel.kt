@@ -4,46 +4,42 @@ package com.guiado.grads.viewmodel
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.ListView
+import android.widget.TextView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.*
 import com.google.gson.Gson
 import com.guiado.grads.BR
 import com.guiado.grads.Events.MyCustomEvent
-import com.guiado.grads.model.EventStatus
+import com.guiado.grads.GetServiceNews
+import com.guiado.grads.R
+import com.guiado.grads.adapter.CustomAdapter
+import com.guiado.grads.model.CoachItem
+import com.guiado.grads.model.SearchMode
 import com.guiado.grads.model2.Bookmarks
 import com.guiado.grads.model2.PostDiscussion
 import com.guiado.grads.model2.Profile
-import com.guiado.grads.util.*
+import com.guiado.grads.model_sales.Authenticaiton
+import com.guiado.grads.model_sales.QueryIdeas
+import com.guiado.grads.util.GenericValues
+import com.guiado.grads.util.MultipleClickHandler
+import com.guiado.grads.util.notNull
 import com.guiado.grads.utils.Constants
 import com.guiado.grads.view.FirestoreDisccussFragmment
 import com.guiado.grads.view.FragmentDiscussions
 import com.guiado.grads.view.FragmentNewDiscusssion
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import kotlinx.coroutines.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import com.guiado.grads.R
-import com.guiado.grads.adapter.CustomAdapter
-import com.guiado.grads.handler.RecyclerLoadMoreDiscussionHandler
-import com.guiado.grads.model.CoachItem
-import com.guiado.grads.model.SearchMode
-import com.guiado.grads.model_sales.Authenticaiton
-import com.guiado.grads.model_sales.QueryIdeas
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.news.list.communication.GetServiceNews
-import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.ArrayList
+import java.util.*
 
 
 class DiscussionModel(internal var activity: FragmentActivity,
@@ -121,6 +117,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()
     }
+    val REQUEST_CODE = 11
 
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
@@ -131,7 +128,9 @@ class DiscussionModel(internal var activity: FragmentActivity,
 //            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 //
             val intent = Intent(activity, FragmentNewDiscusssion::class.java)
-            activity.startActivity(intent)
+            activity.startActivityForResult(intent,REQUEST_CODE)
+            Log.d("on result faizal","on result faizaltrp")
+
         }
     }
 
@@ -168,12 +167,12 @@ class DiscussionModel(internal var activity: FragmentActivity,
             val customAdapter = CustomAdapter(readAutoFillItems(), activity.applicationContext)
             listView.setAdapter(customAdapter)
 
-            listView.setOnItemClickListener({ parent, view, position, id ->
+            listView.setOnItemClickListener { parent, view, position, id ->
 
                 dialog.dismiss()
 
                 filterByCategory(position)
-            })
+            }
 
             dialog.show()
         }
@@ -286,8 +285,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
             val handler = coroutineExceptionHandler()
             GlobalScope.launch(handler) {
                 val repositories = withContext(Dispatchers.Default) {
-                    postsService.getQueryIdeas("services/data/v48.0/query?q=SELECT+Id,Challenge__c,INC_Challenge_Title__c,INC_Details__c,INC_Features__c,INC_Implementation_Approach__c,INC_Name__c,Rating__c,Status__c\n" +
-                            "+from+INC_IdeaDetails__c+where+createddate>2020-01-01T07:00:00.000Z", "Bearer "+accesstoken).await()
+                    postsService.getQueryIdeas("services/data/v49.0/query/?q=SELECT+name,Benefit__c,Status__c,Impact__c+from+ICP_Idea__c", "Bearer "+accesstoken).await()
                 }
                 withContext(Dispatchers.Default) { coroutineSuccessHandler(repositories) }
             }

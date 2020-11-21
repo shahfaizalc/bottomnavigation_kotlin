@@ -8,16 +8,14 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.google.gson.Gson
 import com.guiado.grads.BR
+import com.guiado.grads.GetServiceNews
 import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.listeners.MultipleClickListener
 import com.guiado.grads.model_sales.Authenticaiton
-import com.guiado.grads.model_sales.CreateIdeas
 import com.guiado.grads.model_sales.newchallenge.Newchallenge
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.view.FragmentNewChallenge
-import com.guiado.grads.view.FragmentNewDiscusssion
-import com.news.list.communication.GetServiceNews
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -25,7 +23,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.logging.Level
 
 
 class NewChallengeViewModel(private val context: Context, private val fragmentSignin: FragmentNewChallenge) :
