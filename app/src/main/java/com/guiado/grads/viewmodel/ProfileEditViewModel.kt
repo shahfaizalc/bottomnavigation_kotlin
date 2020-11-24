@@ -3,7 +3,6 @@ package com.guiado.grads.viewmodel
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -24,17 +23,14 @@ import com.guiado.grads.listeners.EmptyResultListener
 import com.guiado.grads.listeners.MultipleClickListener
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model2.Profile
-import com.guiado.grads.network.FirbaseWriteHandler
 import com.guiado.grads.util.GenericValues
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.utils.Constants
 import com.guiado.grads.view.FragmentAddress
 import com.guiado.grads.view.FragmentKeyWords
-import com.guiado.grads.view.FragmentProfile
 import com.guiado.grads.view.FragmentProfileEdit
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.adapter.CountryAdapter2
-import com.guiado.grads.network.FirbaseWriteHandlerActivity
 import com.guiado.grads.util.storeUserName
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -160,37 +156,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         }
     }
     fun datePickerClick() = View.OnClickListener {
-
-
-        if (!handleMultipleClicks()) {
-
-            if (profile.name != "" && profile.email != "" && profile.phone != "" && profile.title != "") {
-                showProgresss(true)
-                val firbaseWriteHandler = FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(profile, object : EmptyResultListener {
-                    override fun onFailure(e: Exception) {
-                        Log.d(TAG, "DocumentSnapshot onFailure " + e.message)
-                        Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-                        showProgresss(false)
-
-                    }
-
-                    override fun onSuccess() {
-                        showProgresss(false)
-                        Log.d(TAG, "DocumentSnapshot onSuccess ")
-                        storeUserName(context, FirebaseAuth.getInstance().currentUser!!.uid, profile)
-
-//                        val fragment = FragmentProfile()
-//                        val bundle = Bundle()
-//                        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-//                        fragment.setArguments(bundle)
-                        fragmentSignin.finish()
-
-                    }
-                })
-            } else {
-                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
-            }
-        }
 
     }
 

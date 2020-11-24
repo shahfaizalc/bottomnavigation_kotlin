@@ -13,7 +13,6 @@ import com.guiado.grads.adapter.RatingsAdapter
 import com.guiado.grads.listeners.EmptyResultListener
 import com.guiado.grads.model2.Profile
 import com.guiado.grads.model2.Reviews
-import com.guiado.grads.network.FirbaseWriteHandler
 import com.guiado.grads.util.*
 import com.guiado.grads.view.FragmentRequestComplete
 import com.google.android.gms.tasks.OnCompleteListener
@@ -154,16 +153,7 @@ class RequestCompleteViewModel(internal val activity: FragmentActivity,
                 reviews.review = review
                 reviews.rating = ratings.toString()
                 reviews.date = System.currentTimeMillis().toString()
-                val firbaseWriteHandler = FirbaseWriteHandler(fragmentProfileInfo).updateReview(reviews, object : EmptyResultListener {
-                    override fun onFailure(e: Exception) {
-                        Log.d(TAG, "DocumentSnapshot onFailure " + e.message)
-                        Toast.makeText(fragmentProfileInfo.context, fragmentProfileInfo.context!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-                    }
 
-                    override fun onSuccess() {
-                        Log.d(TAG, "DocumentSnapshot onSuccess ")
-                    }
-                })
             } else {
                 Toast.makeText(fragmentProfileInfo.context, "Please Rate and Review", Toast.LENGTH_LONG).show()
             }

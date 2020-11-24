@@ -3,11 +3,8 @@ package com.guiado.grads.viewmodel
 
 import android.app.Dialog
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import android.widget.ListView
 import android.widget.TextView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -23,11 +20,7 @@ import com.guiado.grads.view.FragmentVerification
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.listeners.EmptyResultListener
 import com.guiado.grads.model2.Profile
-import com.guiado.grads.network.FirbaseWriteHandler
-import com.guiado.grads.util.GenericValues
 import com.guiado.grads.util.MultipleClickHandler
-import com.guiado.grads.utils.Constants
-import com.guiado.grads.view.FragmentProfile
 
 
 class RegistrationModel(internal val activity: FragmentActivity, internal val fragmentSignin: FragmentRegistration)// To show list of user images (Gallery)
@@ -213,16 +206,7 @@ class RegistrationModel(internal val activity: FragmentActivity, internal val fr
        val profile = Profile()
        profile.name = dataUsername
        profile.email = dataEmail
-       FirbaseWriteHandler(fragmentSignin).updateUserInfo(profile, object : EmptyResultListener {
-           override fun onFailure(e: Exception) {
-               Log.d(TAG, "onFailure storeUserProfile" + e.message)
-               sendVerificationEmail()
-           }
 
-           override fun onSuccess() {
-               sendVerificationEmail()
-           }
-       })
    }
 
     private fun sendVerificationEmail() {

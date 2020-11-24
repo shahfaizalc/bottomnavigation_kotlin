@@ -1,8 +1,6 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -15,15 +13,12 @@ import com.guiado.grads.listeners.EmptyResultListener
 import com.guiado.grads.listeners.MultipleClickListener
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model2.Feedback
-import com.guiado.grads.network.FirbaseWriteHandler
 import com.guiado.grads.util.GenericValues
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.util.getUserName
 import com.guiado.grads.utils.EnumFeedBack
-import com.guiado.grads.view.FragmentDiscussions
 import com.guiado.grads.view.FragmentFeedBack
 import com.google.firebase.auth.FirebaseAuth
-import com.guiado.grads.network.FirbaseWriteHandlerActivity
 import java.util.*
 
 
@@ -111,26 +106,7 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
             feedBack.feedbackUsername = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
             feedBack.feebackStatus = EnumFeedBack.NEW
 
-            val firbaseWriteHandler = FirbaseWriteHandlerActivity(fragmentSignin).updateFeedback(feedBack, object : EmptyResultListener {
-                override fun onFailure(e: Exception) {
-                    Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                    Toast.makeText(context, context.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-                    showProgresss(false)
-                }
 
-                override fun onSuccess() {
-                    Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-                    showProgresss(false)
-//                    val fragment = FragmentDiscussions()
-//                    val bundle = Bundle()
-//                    fragment.setArguments(bundle)
-//                    fragmentSignin.mFragmentNavigation.popFragment(1);
-//
-//                    val intent = Intent(fragmentSignin, )
-                    fragmentSignin.finish()
-
-                }
-            })
 
         }
     }

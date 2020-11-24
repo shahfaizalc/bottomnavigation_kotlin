@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -14,14 +13,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.BR
 import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
-import com.guiado.grads.listeners.UseInfoGeneralResultListener
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model2.Profile
-import com.guiado.grads.network.FirbaseReadHandler
 import com.guiado.grads.util.GenericValues
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.util.notNull
-import com.guiado.grads.util.storeUserName
 import com.guiado.grads.utils.Constants
 import com.guiado.grads.view.*
 import java.util.*

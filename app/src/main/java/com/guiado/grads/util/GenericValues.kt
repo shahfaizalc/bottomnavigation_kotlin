@@ -14,15 +14,6 @@ import java.util.LinkedHashMap
 
 class GenericValues {
 
-    fun getProfileIcons(context: Context): LinkedHashMap<String, Drawable> {
-        val aboutProfile = LinkedHashMap<String, Drawable>()
-        aboutProfile["Profession"] = context.resources.getDrawable(R.drawable.profession, null)
-        aboutProfile["Height"] = context.resources.getDrawable(R.drawable.height, null)
-        aboutProfile["Religion"] = context.resources.getDrawable(R.drawable.religion, null)
-        aboutProfile["Ethnic"] = context.resources.getDrawable(R.drawable.ethnic, null)
-        return aboutProfile
-    }
-
     fun readAutoFillItems(context: Context): ArrayList<IndiaItem> {
         val fileString = getFileString(Constants.FILENAME_CITIES, context)
         val gson = Gson()
@@ -53,50 +44,19 @@ class GenericValues {
         return staff.india as ArrayList<CoachItem>
     }
 
-    fun readSingleAttribute(context: Context): SingleAttribute {
-        val fileString = getFileString(FILENAME_SINGLE_CHOICE_ATTR, context)
-        val gson = Gson()
-        return gson.fromJson(fileString, SingleAttribute::class.java)
-    }
 
-    fun readCategory(context: Context): Category {
-        val fileString = getFileString(FILENAME_CATEGORY, context)
-        val gson = Gson()
-        return gson.fromJson(fileString, Category::class.java)
-    }
+
+
     private fun getFileString(fileName: String, context: Context): String {
         return ReadAssetFile().readAssetFile(fileName, context)
     }
 
-
-
-    fun eventsToString(profile : PostEvents) : String{
-        val gson  = Gson();
-        return gson.toJson(profile)
-    }
-    fun getEvents(fileName: String,context: Context): PostEvents {
-        val gson = Gson()
-        return gson.fromJson(fileName, PostEvents::class.java)
-    }
 
     fun discussionToString(profile : PostDiscussion) : String{
         val gson  = Gson();
         return gson.toJson(profile)
     }
 
-    fun groupToString(profile : Groups) : String{
-        val gson  = Gson();
-        return gson.toJson(profile)
-    }
-
-    fun eventToString(profile : Events) : String{
-        val gson  = Gson();
-        return gson.toJson(profile)
-    }
-    fun getEventss(fileName: String,context: Context): Events {
-        val gson = Gson()
-        return gson.fromJson(fileName, Events::class.java)
-    }
 
     fun getDisccussion(fileName: String,context: Context): PostDiscussion {
         val gson = Gson()
@@ -118,12 +78,5 @@ class GenericValues {
         return gson.fromJson(fileName, Profile::class.java)
     }
 
-    fun addressToString(profile : Address) : String{
-        val gson  = Gson();
-        return gson.toJson(profile)
-    }
-    fun getAddress(fileName: String,context: Context): Address {
-        val gson = Gson()
-        return gson.fromJson(fileName, Address::class.java)
-    }
+
 }

@@ -1,6 +1,5 @@
 package com.guiado.grads.viewmodel
 
-import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -9,18 +8,14 @@ import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.fragment.app.FragmentActivity
 import com.guiado.grads.BR
 import com.guiado.grads.R
 import com.guiado.grads.listeners.EmptyResultListener
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model2.PostDiscussion
-import com.guiado.grads.network.FirbaseWriteHandler
 import com.guiado.grads.util.*
-import com.guiado.grads.view.FragmentDiscussions
 import com.guiado.grads.view.FragmentGameChooser
 import com.google.firebase.auth.FirebaseAuth
-import com.guiado.grads.network.FirbaseWriteHandlerActivity
 import java.util.*
 
 class GameChooserModel(
@@ -107,22 +102,7 @@ class GameChooserModel(
                 postDiscussion.postedDate = System.currentTimeMillis().toString()
                 postDiscussion.postedByName = getUserName(fragmentGameChooser, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
                 Log.d(TAG, "DocumentSnapshot  doDiscussionWrrite "  +postDiscussion.searchTags)
-                val firbaseWriteHandler = FirbaseWriteHandlerActivity(fragmentGameChooser).updateDiscussion(postDiscussion, object : EmptyResultListener {
-                    override fun onFailure(e: Exception) {
-                        Log.d(TAG, "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                        Toast.makeText(fragmentGameChooser, fragmentGameChooser.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-                        showProgresss(false)
-                    }
 
-                    override fun onSuccess() {
-                        showProgresss(false)
-                        Log.d(TAG, "DocumentSnapshot onSuccess doDiscussionWrrite")
-                        fragmentGameChooser.finish();
-                       // fragmentGameChooser.mFragmentNavigation.popFragment(2)
-                       // fragmentGameChooser.mFragmentNavigation.replaceFragment(fragment);
-                        showPopUpWindow()
-                    }
-                })
             }
         }
     }

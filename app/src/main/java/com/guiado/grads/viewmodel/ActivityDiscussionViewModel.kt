@@ -14,9 +14,6 @@ import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.listeners.EmptyResultListener
 import com.guiado.grads.listeners.UseInfoGeneralResultListener
 import com.guiado.grads.model2.*
-import com.guiado.grads.network.FirbaseReadHandler
-import com.guiado.grads.network.FirbaseWriteHandler
-import com.guiado.grads.network.FirbaseWriteHandlerActivity
 import com.guiado.grads.util.*
 import com.guiado.grads.view.FirestoreDisccussFragmment
 
@@ -199,20 +196,7 @@ class ActivityDiscussionViewModel(private val context: Context,
     }
 
     private fun updateBookmmarks(exist: Boolean) {
-        FirbaseWriteHandlerActivity(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
-            override fun onFailure(e: Exception) {
-                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-            }
 
-            override fun onSuccess() {
-                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
-
-                bookmarkState = !exist
-//                getVal(postDiscussion?.comments)
-//                review = ""
-            }
-        })
     }
 
     private fun getbookmarks(): Bookmarks {
@@ -260,26 +244,7 @@ class ActivityDiscussionViewModel(private val context: Context,
     }
 
     private fun updatelike(exist: Boolean) {
-        FirbaseWriteHandlerActivity(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
-            override fun onFailure(e: Exception) {
-                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-            }
 
-            override fun onSuccess() {
-                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
-
-                likesState = !exist
-
-                if(exist){
-                    likesCount =likesCount!!- 1
-                } else {
-                    likesCount =likesCount!!+ 1
-                }
-//                getVal(postDiscussion?.comments)
-//                review = ""
-            }
-        })
     }
 
     private fun getLikes(): Likes {
@@ -326,23 +291,7 @@ class ActivityDiscussionViewModel(private val context: Context,
                 userProfile.following?.add(follow)
             }
 
-            FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfoFollowed(userProfile, object : EmptyResultListener {
-                override fun onFailure(e: Exception) {
-                    Log.d("TAG", "DocumentSnapshot addFollowers onFailure " + e.message)
-                    Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-                }
 
-                override fun onSuccess() {
-
-                    storeUserName(context, FirebaseAuth.getInstance().currentUser!!.uid, userProfile)
-                    Log.d("TAG", "DocumentSnapshot onSuccess addFollowers")
-                    review = ""
-                    sponsored = !isExist
-
-                    addFollowing(currentTime)
-
-                }
-            })
         }
     }
 
@@ -353,47 +302,7 @@ class ActivityDiscussionViewModel(private val context: Context,
         follow.fromDate = currentTime
         follow.userName = userProfile.name ?: ""
 
-        FirbaseReadHandler().getSepcificUserInfo(postDiscussion?.postedBy!! ,object : UseInfoGeneralResultListener {
 
-            override fun onSuccess(profile1: Profile) {
-
-                var isExist = false
-                if (profile1.followers.isNullOrEmpty()) {
-                    profile1.followers = ArrayList<Follow>()
-                } else {
-                    val it: MutableIterator<Follow> = profile1.followers!!.iterator()
-                    while (it.hasNext()) {
-                        val name = it.next()
-                        if (name.userId.equals(follow.userId)) {
-                            isExist = true
-                            follow = name
-
-                        }
-                    }
-                }
-
-                if(isExist){
-                    profile1.followers?.remove(follow)
-                } else {
-                    profile1.followers?.add(follow)
-                }
-
-                FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfoFollowing(postDiscussion!!.postedBy!!,profile1, object : EmptyResultListener {
-                    override fun onFailure(e: Exception) {
-                        Log.d("TAG", "DocumentSnapshot addFollowing onFailure " + e.message)
-                        Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-                    }
-
-                    override fun onSuccess() {
-                        Log.d("TAG", "DocumentSnapshot onSuccess addFollowing")
-                    }
-                })
-
-            }
-
-            override fun onFailure(e: Exception) {
-            }
-        })
 
     }
 

@@ -3,7 +3,6 @@ package com.guiado.grads.activities
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
@@ -11,14 +10,10 @@ import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
-import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.guiado.grads.R
 import com.guiado.grads.fragments.BaseFragment
 import com.guiado.grads.model_sales.Authenticaiton
-import com.guiado.grads.network.FirbaseReadHandler
-import com.guiado.grads.util.getUserName
-import com.guiado.grads.util.storeUserName
 import com.guiado.grads.utils.FragmentHistory
 import com.guiado.grads.utils.Utils
 import com.guiado.grads.view.*

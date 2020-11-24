@@ -12,12 +12,10 @@ import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.listeners.EmptyResultListener
 import com.guiado.grads.model2.*
-import com.guiado.grads.network.FirbaseWriteHandler
 import com.guiado.grads.util.*
 import com.guiado.grads.view.FirestoreMyDisccussFragmment
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.model.EventStatus
-import com.guiado.grads.network.FirbaseWriteHandlerActivity
 import com.guiado.grads.view.FragmentMyDiscussions
 
 
@@ -125,43 +123,12 @@ class ActivityMyDiscussionViewModel(private val context: Context,
 
     fun deleteBookmmarks() = View.OnClickListener {
         postDiscussion!!.eventState = EventStatus.DELETED
-        FirbaseWriteHandlerActivity(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
-            override fun onFailure(e: Exception) {
-                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-            }
 
-            override fun onSuccess() {
-                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
-//                val fragment = FragmentMyDiscussions()
-//                fragmentSignin.mFragmentNavigation.popFragment(1);
-//                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
-
-                val intent = Intent(fragmentSignin, FragmentMyDiscussions::class.java)
-                fragmentSignin.finish()
-                fragmentSignin.startActivity(intent);
-            }
-        })
     }
 
     fun hideBookmmarks() = View.OnClickListener {
         postDiscussion!!.eventState = if(postDiscussion!!.eventState.equals(EventStatus.HIDDEN) ) EventStatus.SHOWING else EventStatus.HIDDEN
-        FirbaseWriteHandlerActivity(fragmentSignin).updateLikes(postDiscussion!!, object : EmptyResultListener {
-            override fun onFailure(e: Exception) {
-                Log.d("TAG", "DocumentSnapshot doDiscussionWrrite onFailure " + e.message)
-                Toast.makeText(fragmentSignin, fragmentSignin!!.resources.getString(R.string.errorMsgGeneric), Toast.LENGTH_SHORT).show()
-            }
 
-            override fun onSuccess() {
-                Log.d("TAG", "DocumentSnapshot onSuccess updateLikes")
-//                val fragment = FragmentMyDiscussions()
-//                fragmentSignin.mFragmentNavigation.popFragment(1);
-//                fragmentSignin.mFragmentNavigation.replaceFragment(fragment);
-                val intent = Intent(fragmentSignin, FragmentMyDiscussions::class.java)
-                fragmentSignin.finish()
-                fragmentSignin.startActivity(intent);
-            }
-        })
 
     }
 
