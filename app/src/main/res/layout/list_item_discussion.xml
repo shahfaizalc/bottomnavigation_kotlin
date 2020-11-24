@@ -70,7 +70,7 @@
                         android:paddingBottom="@dimen/dimen_4"
                         android:text="@{countriesInfoModel.benefitC}"
                         android:textColor="@color/colorBlacklight"
-                        android:textStyle="bold" />
+                         />
 
                     <TextView
                         android:layout_toStartOf="@+id/bookmark"
@@ -81,6 +81,8 @@
                         android:text="@={postDate}" />
 
                     <ImageView
+                        app:viewModel="@{mainDataModel}"
+                        app:position="@{itemPosition}"
                         android:id="@+id/bookmark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -106,6 +108,7 @@
 
 
                 <TextView
+                    android:textStyle="bold"
                     android:linksClickable="true"
                     android:autoLink="web|email"
                     android:ellipsize="end"
@@ -141,12 +144,12 @@
                         android:drawableLeft="@drawable/comment"
                         android:text="COMMENT" />
 
-                    <TextView
+                    <ImageView
+                        app:viewModel="@{mainDataModel}"
+                        app:position="@{itemPosition}"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:drawableTint="@color/grey"
-                        android:drawablePadding="@dimen/dimen_4"
-                        android:drawableLeft="@drawable/like"
+                        android:src="@drawable/like_selector"
                         android:layout_marginBottom="@dimen/dimen_4"
                         android:id="@+id/showDate"
                         android:layout_width="wrap_content"

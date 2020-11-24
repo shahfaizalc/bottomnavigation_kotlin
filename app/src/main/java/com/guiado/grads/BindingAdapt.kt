@@ -650,12 +650,11 @@ fun loadImage(view: ImageView, imageUrl: String?) {
     }
 }
 
-@BindingAdapter("app:broken","app:position","app:viewModel")
-fun loadImage(view: ImageView, imageUrl: DiscussionModel, position: Int,postDiscussion: PostDiscussion) {
+@BindingAdapter("app:viewModel","app:position")
+fun loadImage(view: ImageView, imageUrl: DiscussionModel, position: Int) {
 
-    view.isSelected = imageUrl.isBookmarked(postDiscussion)!!
-    postDiscussion.bookmarks.notNull {  }
-  //  view.setOnClickListener({ it.isSelected = !it.isSelected })
+   // view.isSelected = imageUrl.isBookmarked(postDiscussion)!!
+    view.setOnClickListener { it.isSelected = !it.isSelected }
 
 }
 
