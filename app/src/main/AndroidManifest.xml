@@ -78,7 +78,7 @@
         <activity
             android:name="com.guiado.grads.view.FragmentPrivacy"
             android:windowSoftInputMode="adjustPan" />
-        
+
         <activity
             android:name="com.guiado.grads.activities.LaunchActivity"
             android:windowSoftInputMode="adjustPan">

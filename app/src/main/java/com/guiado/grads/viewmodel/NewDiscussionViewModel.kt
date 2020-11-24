@@ -163,42 +163,42 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
     private fun sendPost() {
 
         Log.d("Authenticaiton token", "");
-        val intent = Intent()
-        Log.d("on result faizal","on result faizalloor")
-        fragmentSignin.setResult(22); // You can also send result without any data using setResult(int resultCode)
-        fragmentSignin.finish()
+//        val intent = Intent()
+//        Log.d("on result faizal","on result faizalloor")
+//        fragmentSignin.setResult(22); // You can also send result without any data using setResult(int resultCode)
+//        fragmentSignin.finish()
 
-//        showProgresss(true)
-//
-//
-//        val post = CreateIdeas()
-//
-//        post.benefitC = ideaFeatures
-//        post.impactC = ideaBrief
-//        post.innovationChallengeC = challangeID
-//        post.name = ideaImplementation
-//        post.targetedBusinessGroupC = ideaTitle
-//        post.statusC = status
-//
-//        postsService.createQueryIdeas(post, "Bearer " + getAccessToken())!!
-//                .enqueue(object : Callback<CreateIdeas?> {
-//                    override fun onResponse(call: Call<CreateIdeas?>?, response: Response<CreateIdeas?>) {
-//                        response.body().toString()
-//                         showProgresss(false)
-//                        Toast.makeText(context,"Thanks for your idea. \n Idea added successfully to challenge.",Toast.LENGTH_LONG).show()
-//                        val intent = Intent()
-//                        Log.d("on result faizal","on result faizalloor")
-//                        fragmentSignin.setResult(22, intent); // You can also send result without any data using setResult(int resultCode)
-//                        fragmentSignin.finish()
-//
-//                    }
-//
-//
-//                    override fun onFailure(call: Call<CreateIdeas?>?, t: Throwable) {
-//                        Log.d("Authenticaiton token", t.toString())
-//                        showProgresss(false)
-//                    }
-//                })
+        showProgresss(true)
+
+
+        val post = CreateIdeas()
+
+        post.benefitC = ideaFeatures
+        post.impactC = ideaBrief
+        post.innovationChallengeC = challangeID
+        post.name = ideaImplementation
+        post.targetedBusinessGroupC = ideaTitle
+        post.statusC = status
+
+        postsService.createQueryIdeas(post, "Bearer " + getAccessToken())!!
+                .enqueue(object : Callback<CreateIdeas?> {
+                    override fun onResponse(call: Call<CreateIdeas?>?, response: Response<CreateIdeas?>) {
+                        response.body().toString()
+                         showProgresss(false)
+                        Toast.makeText(context,"Thanks for your idea. \n Idea added successfully to challenge.",Toast.LENGTH_LONG).show()
+                        val intent = Intent()
+                        Log.d("on result faizal","on result faizalloor")
+                        fragmentSignin.setResult(22, intent); // You can also send result without any data using setResult(int resultCode)
+                        fragmentSignin.finish()
+
+                    }
+
+
+                    override fun onFailure(call: Call<CreateIdeas?>?, t: Throwable) {
+                        Log.d("Authenticaiton token", t.toString())
+                        showProgresss(false)
+                    }
+                })
     }
 
     fun getAccessToken(): String {

@@ -146,27 +146,27 @@ class ChallengeModel(internal var activity: FragmentActivity,
 
         if (!handleMultipleClicks()) {
 
-            val dialog = Dialog(activity)
-            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setCancelable(false)
-            dialog.setContentView(R.layout.dialog_listview)
+//            val dialog = Dialog(activity)
+//            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//            dialog.setCancelable(false)
+//            dialog.setContentView(R.layout.dialog_listview)
+//
+//            val btndialog: TextView = dialog.findViewById(R.id.btndialog) as TextView
+//            btndialog.setOnClickListener({ dialog.dismiss() })
+//
+//            val items = readAutoFillItems()
+//            val listView: ListView = dialog.findViewById(R.id.listview) as ListView
+//            val customAdapter = CustomAdapter(readAutoFillItems(), activity.applicationContext)
+//            listView.setAdapter(customAdapter)
+//
+//            listView.setOnItemClickListener({ parent, view, position, id ->
+//
+//                dialog.dismiss()
 
-            val btndialog: TextView = dialog.findViewById(R.id.btndialog) as TextView
-            btndialog.setOnClickListener({ dialog.dismiss() })
-
-            val items = readAutoFillItems()
-            val listView: ListView = dialog.findViewById(R.id.listview) as ListView
-            val customAdapter = CustomAdapter(readAutoFillItems(), activity.applicationContext)
-            listView.setAdapter(customAdapter)
-
-            listView.setOnItemClickListener({ parent, view, position, id ->
-
-                dialog.dismiss()
-
-                filterByCategory(position)
-            })
-
-            dialog.show()
+                filterByCategory(0)
+//            })
+//
+//            dialog.show()
         }
     }
 
@@ -215,14 +215,14 @@ class ChallengeModel(internal var activity: FragmentActivity,
 
     fun filterByCategory(position: Int) {
         talentProfilesList.removeAll(talentProfilesList)
-
-        if (searchMode.ordinal == SearchMode.DEFAULT.ordinal)
-            searchMode = SearchMode.CATEGORY
-        else {
-            searchMode = SearchMode.CATEGORYANDSEARCH
-
-        }
-      //  doGetTalents()
+//
+//        if (searchMode.ordinal == SearchMode.DEFAULT.ordinal)
+//            searchMode = SearchMode.CATEGORY
+//        else {
+//            searchMode = SearchMode.CATEGORYANDSEARCH
+//
+//        }
+        doGetTalents()
     }
 
     lateinit var postsService: GetServiceNews

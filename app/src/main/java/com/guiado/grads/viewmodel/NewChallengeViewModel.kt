@@ -50,7 +50,7 @@ class NewChallengeViewModel(private val context: Context, private val fragmentSi
 
 
     @get:Bindable
-    var ideaBrief: String? = ""
+    var ideaBrief: String? = "aEV3D0000004Em9"
         set(price) {
             field = price
             notifyPropertyChanged(BR.ideaBrief)

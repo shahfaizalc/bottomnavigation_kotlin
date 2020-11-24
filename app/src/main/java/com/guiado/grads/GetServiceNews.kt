@@ -34,7 +34,7 @@ interface GetServiceNews {
 
 
     @Headers(*["Content-type: application/json"])
-    @POST(    "data/v48.0/sobjects/INC_Challenge__c")
+    @POST(    "data/v49.0/sobjects/ICP_Challenge__c/")
     fun createQueryChallenge(@Body posts: Newchallenge?, @Header("Authorization") bearer: String?) : Call<Newchallenge?>?
 
 

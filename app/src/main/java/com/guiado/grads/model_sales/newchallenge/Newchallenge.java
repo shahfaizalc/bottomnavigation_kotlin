@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName;
 @SuppressWarnings("unused")
 public class Newchallenge {
 
-    @SerializedName("Description__c")
+    @SerializedName("Innovation_Goal__c")
     private String mDescriptionC;
-    @SerializedName("Name__c")
+    @SerializedName("Name")
     private String mNameC;
 
     public String getDescriptionC() {
