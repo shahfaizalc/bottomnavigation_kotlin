@@ -272,7 +272,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
 
             FragNavController.TAB1 -> return FragmentChallenges()
             FragNavController.TAB2 -> return FragmentDiscussions()
-            FragNavController.TAB3 -> return FragmentDiscussions()
+            FragNavController.TAB3 -> return FragmentGoal()
             FragNavController.TAB4 -> return FragmentProfile()
         }
         throw IllegalStateException("Need to send an index that we know")

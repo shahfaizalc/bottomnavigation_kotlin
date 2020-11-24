@@ -30,181 +30,6 @@ import com.guiado.grads.viewmodel.*
 import com.squareup.picasso.Picasso
 
 
-//@BindingAdapter("setUpWithViewpager")
-//fun setUpWithViewpager(tabLayout: TabLayout, viewPager: ViewPager) {
-//    viewPager.addOnAdapterChangeListener(ViewPager.OnAdapterChangeListener { viewPager, oldAdapter, newAdapter ->
-//        if (oldAdapter == null && newAdapter == null) {
-//            return@OnAdapterChangeListener
-//        }
-//        Log.i("TAG", "onAdapterChanged")
-//        tabLayout.setupWithViewPager(viewPager)
-//    })
-//}
-//
-//@BindingAdapter("imageUrl")
-//fun loadImage(view: ImageView, imageUrl: String) {
-//    val i = TextUtils.isEmpty(imageUrl)
-//    if (i) {
-//        view.setImageDrawable(view.context.getDrawable(R.drawable.placeholder_profile))
-//
-//    } else {
-//        Picasso.with(view.context)
-//                .load(imageUrl)
-//                .resize(240, 240)
-//                .error(R.drawable.placeholder_profile)
-//                .placeholder(R.drawable.placeholder_profile)
-//                .into(view)
-//    }
-//}
-//
-//@BindingAdapter("adapterRecycle")
-//fun loadAdapter(recyclerView: RecyclerView, profileInfoViewModel: ProfileInfoViewModel) {
-//    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-//    val adapter = ProfileItemRecyclerAdpater(profileInfoViewModel.itemList, profileInfoViewModel.createItemListIcon())
-//    recyclerView.adapter = adapter
-//}
-//
-//@BindingAdapter("adapterFlex")
-//fun loadAdapterFlex(recyclerView: RecyclerView, profileInfoViewModel: ProfileInfoViewModel) {
-//    if (profileInfoViewModel.hobbiesList.size > 0) {
-//        val layoutManager = FlexboxLayoutManager(recyclerView.context)
-//        layoutManager.flexDirection = FlexDirection.ROW
-//        layoutManager.justifyContent = JustifyContent.SPACE_AROUND
-//        layoutManager.alignItems = AlignItems.FLEX_START
-//        recyclerView.layoutManager = layoutManager
-//        val adapter = FlexboxAdapter(recyclerView.context, profileInfoViewModel.hobbiesList)
-//        recyclerView.adapter = adapter
-//    }
-//}
-//
-//@BindingAdapter("autoAdapter")
-//fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: ProfileEditViewModel) {
-//    //  val autoFillTextAdapter = ProductListAdapter(view.context, pArrayAdapter.roleAdapter!!)
-//    val autoFillTextAdapter = PeopleAdapter(view.context, R.layout.content_profileedit, R.id.text_title, pArrayAdapter.roleAdapter!!)
-//
-//    view.setAdapter(autoFillTextAdapter)
-//    var cityName: String
-//    if (pArrayAdapter.cityName.isNullOrBlank()) {
-//        cityName = ""
-//    } else {
-//        cityName = pArrayAdapter.cityName
-//    }
-//    view.setText(cityName)
-//}
-//
-//@BindingAdapter("gender_array")
-//fun setGenderArray(view: Spinner, pArrayAdapter: ProfileEditViewModel) {
-//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
-//            pArrayAdapter.singleAttribute!!.gender!!, EnumSingleAttribute.GENDER)
-//    view.adapter = spinnerAdapter
-//
-//    view.onItemSelectedListener = object : OnItemSelectedListener {
-//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-//            pArrayAdapter.itemPositionGender = position
-//        }
-//
-//        override fun onNothingSelected(parent: AdapterView<*>) {
-//
-//        }
-//    }
-//}
-//
-//@BindingAdapter("ethnic_array")
-//fun setEthnicArray(view: Spinner, pArrayAdapter: ProfileEditViewModel) {
-//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
-//            pArrayAdapter.singleAttribute!!.ethnicity!!, EnumSingleAttribute.ETHINICITY)
-//    view.adapter = spinnerAdapter
-//
-//    view.onItemSelectedListener = object : OnItemSelectedListener {
-//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-//            pArrayAdapter.itemPositionEthnic = position
-//        }
-//
-//        override fun onNothingSelected(parent: AdapterView<*>) {
-//
-//        }
-//    }
-//
-//}
-//
-//@BindingAdapter("religion_array")
-//fun setReligionArray(view: Spinner, pArrayAdapter: ProfileEditViewModel) {
-//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
-//            pArrayAdapter.singleAttribute!!.religion!!, EnumSingleAttribute.RELIGION)
-//    view.adapter = spinnerAdapter
-//    view.onItemSelectedListener = object : OnItemSelectedListener {
-//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-//            pArrayAdapter.itemPositionReligion = position
-//        }
-//
-//        override fun onNothingSelected(parent: AdapterView<*>) {
-//
-//        }
-//    }
-//
-//}
-//
-//@BindingAdapter("figure_array")
-//fun setFigureArray(view: Spinner, pArrayAdapter: ProfileEditViewModel) {
-//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
-//            pArrayAdapter.singleAttribute!!.figure!!, EnumSingleAttribute.FIGURE)
-//    view.adapter = spinnerAdapter
-//
-//    view.onItemSelectedListener = object : OnItemSelectedListener {
-//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-//            pArrayAdapter.itemPositionFigure = position
-//        }
-//
-//        override fun onNothingSelected(parent: AdapterView<*>) {
-//
-//        }
-//    }
-//
-//}
-//
-//@BindingAdapter("martial_array")
-//fun setMartialArray(view: Spinner, pArrayAdapter: ProfileEditViewModel) {
-//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
-//            pArrayAdapter.singleAttribute!!.maritalStatus!!, EnumSingleAttribute.MARTIALSTATUS)
-//    view.adapter = spinnerAdapter
-//
-//    view.onItemSelectedListener = object : OnItemSelectedListener {
-//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-//            pArrayAdapter.itemPositionMartialStatus = position
-//        }
-//
-//        override fun onNothingSelected(parent: AdapterView<*>) {
-//
-//        }
-//    }
-//
-//}
-//
-//@BindingAdapter("category_array")
-//fun setCategory(view: Spinner, pArrayAdapter: PostAdViewModel) {
-//    val spinnerAdapter = SpinnerAdapter(view.context, R.layout.spinneritem,
-//            pArrayAdapter.singleAttribute!!.category, EnumSingleAttribute.CATEGORY)
-//    view.adapter = spinnerAdapter
-//    pArrayAdapter.itemPositionCategory = 0
-//
-//    view.onItemSelectedListener = object : OnItemSelectedListener {
-//        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-//            pArrayAdapter.itemPositionCategory = position
-//        }
-//
-//        override fun onNothingSelected(parent: AdapterView<*>) {
-//
-//        }
-//    }
-//}
-//
-//@BindingAdapter("myAdsRecyclerView")
-//fun myAdsRecyclerViewAdapter(recyclerView: RecyclerView, profileInfoViewModel: MyAdsListViewModel) {
-//    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-//    recyclerView.adapter = MyAdsLstItemRecyclerAdpater(profileInfoViewModel)
-//}
-//
-
 
 
 
@@ -467,6 +292,84 @@ fun adapter(searchView: SearchView,countriesViewModel: MyDiscussionModel,recycle
         }
     })
 }
+
+
+
+@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView ,countriesViewModel: GoalModel,recyclerView: RecyclerView) {
+
+    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
+    val listAdapter = GoalAdapter(countriesViewModel)
+    val bindingAdapter = RecyclerLoadMoreGoalHandler(countriesViewModel, listAdapter)
+    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+
+
+    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
+    recyclerView.adapter = listAdapter
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach1")
+        }
+
+        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+            Log.d("rach", "rach2")
+        }
+
+        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach3")
+            bindingAdapter.resetRecycleView(recyclerView)
+            if(countriesViewModel.resetScrrollListener) {
+                bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+                countriesViewModel.resetScrrollListener = false
+            }
+
+        }
+
+        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+            Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+    });
+
+    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(s: String?): Boolean {
+            if(s.isNullOrEmpty()){
+                countriesViewModel.doGetTalents()
+            } else {
+                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                    countriesViewModel.searchMode = SearchMode.SEARCH
+                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                    countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
+                }
+                //   countriesViewModel.doGetTalentsSearch(s)
+                bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+                searchView.setQuery("", false);
+                searchView.clearFocus();
+            }
+            return false
+        }
+
+        override fun onQueryTextChange(strQuery: String): Boolean {
+//            if(strQuery.isNullOrEmpty()){
+//                if(countriesViewModel.searchMode.ordinal == SearchMode.SEARCH.ordinal){
+//                    countriesViewModel.searchMode = SearchMode.DEFAULT
+//                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORYANDSEARCH.ordinal)){
+//                    countriesViewModel.searchMode = SearchMode.CATEGORY
+//                }
+//                countriesViewModel.doGetTalents()
+//
+//            }
+            return false
+        }
+    })
+}
+
 
 @BindingAdapter( "app:searchAdapter", "app:searchRecycler")
 fun adapter(searchView: SearchView ,countriesViewModel: ChallengeModel,recyclerView: RecyclerView) {
