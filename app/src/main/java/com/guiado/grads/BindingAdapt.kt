@@ -659,6 +659,16 @@ fun loadImage(view: ImageView, imageUrl: DiscussionModel, position: Int) {
 }
 
 
+@BindingAdapter("app:viewModel","app:position")
+fun loadImage(view: ImageView, imageUrl: ChallengeModel, position: Int) {
+
+    // view.isSelected = imageUrl.isBookmarked(postDiscussion)!!
+    view.setOnClickListener { it.isSelected = !it.isSelected }
+
+}
+
+
+
 //@BindingAdapter("app:broken","app:position","app:viewModel")
 //fun loadImage(view: ImageView, imageUrl: GroupsModel, position: Int,postDiscussion: Groups) {
 //

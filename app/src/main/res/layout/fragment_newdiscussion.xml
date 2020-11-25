@@ -33,17 +33,33 @@
                     android:textSize="@dimen/dimen_20"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:background="@drawable/circular_bg_border"
-                    android:gravity="top"
-                    android:text="aEW3D0000004HIM"
-                    android:enabled="false"
-                    android:lines="1"
-                    android:maxLength="200"
-                    android:padding="@dimen/dimen_8"/>
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:weightSum="2">
+
+                         <TextView
+                             android:textStyle="bold"
+                             android:layout_weight="1"
+                             android:layout_width="0dp"
+                             android:layout_height="wrap_content"
+                             android:gravity="top"
+                             android:text="Innovation Challenge ID :"
+                             android:padding="@dimen/dimen_8"/>
+
+                         <TextView
+                             android:layout_weight="1"
+                             android:layout_width="0dp"
+                             android:layout_height="wrap_content"
+                             android:gravity="top"
+                             android:text="aEW3D0000004HIM"
+                             android:paddingBottom="@dimen/dimen_8"
+                             android:paddingStart="@dimen/dimen_8"
+                             android:paddingEnd="@dimen/dimen_8"/>
+
+                     </LinearLayout>
+
 
                 <EditText
                     android:layout_width="match_parent"
@@ -51,7 +67,7 @@
                     android:layout_marginTop="@dimen/dimen_16"
                     android:background="@drawable/circular_bg_border_paleblue"
                     android:gravity="top"
-                    android:hint="Idea Name"
+                    android:hint="Targeted Business Group"
                     android:maxLength="200"
                     android:padding="@dimen/dimen_8"
                     android:text="@={homeData.ideaTitle}" />
@@ -84,7 +100,7 @@
                     android:layout_marginTop="@dimen/dimen_16"
                     android:background="@drawable/circular_bg_border_paleblue"
                     android:gravity="top"
-                    android:hint="Implementation approach"
+                    android:hint="idea name"
                     android:maxLength="200"
                     android:padding="@dimen/dimen_8"
                     android:text="@={homeData.ideaImplementation}" />

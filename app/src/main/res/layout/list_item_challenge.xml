@@ -63,6 +63,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                       android:visibility="invisible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -70,7 +71,7 @@
                         android:paddingBottom="@dimen/dimen_4"
                         android:text="@{countriesInfoModel.id}"
                         android:textColor="@color/colorBlacklight"
-                        android:textStyle="bold" />
+                         />
 
                     <TextView
                         android:layout_toStartOf="@+id/bookmark"
@@ -81,6 +82,8 @@
                         android:text="@={postDate}" />
 
                     <ImageView
+                        app:viewModel="@{mainDataModel}"
+                        app:position="@{itemPosition}"
                         android:id="@+id/bookmark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -93,6 +96,7 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorWhite"
@@ -112,8 +116,10 @@
                     android:maxLines="7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/dimen_16"
                     android:text="@{countriesInfoModel.name}"
                     android:layout_marginBottom="@dimen/dimen_4"
+                    android:textStyle="bold"
                     android:textColor="@color/colorBlacklight" />
 
 
@@ -141,12 +147,12 @@
                         android:drawableLeft="@drawable/comment"
                         android:text="COMMENT" />
 
-                    <TextView
+                    <ImageView
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:drawableTint="@color/grey"
-                        android:drawablePadding="@dimen/dimen_4"
-                        android:drawableLeft="@drawable/like"
+                        android:src="@drawable/like_selector"
+                        app:viewModel="@{mainDataModel}"
+                        app:position="@{itemPosition}"
                         android:layout_marginBottom="@dimen/dimen_4"
                         android:id="@+id/showDate"
                         android:layout_width="wrap_content"

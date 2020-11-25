@@ -34,28 +34,46 @@
                     android:textStyle="bold" />
 
 
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:background="@drawable/circular_bg_border_paleblue"
-                    android:gravity="top"
-                    android:hint="Challenge title"
-                    android:maxLength="200"
-                    android:padding="@dimen/dimen_8"
-                    android:text="@={homeData.ideaTitle}" />
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:text="Innovation Goal ID :"
+                        android:padding="@dimen/dimen_8"/>
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:text="@={homeData.ideaBrief}"
+                        android:paddingBottom="@dimen/dimen_8"
+                        android:paddingStart="@dimen/dimen_8"
+                        android:paddingEnd="@dimen/dimen_8"/>
+
+                </LinearLayout>
 
                 <EditText
+                    android:hint="Challenge title"
+                    android:text="@={homeData.ideaTitle}"
                     android:enabled="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="200dp"
-                    android:layout_marginTop="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_8"
                     android:background="@drawable/circular_bg_border_paleblue"
                     android:gravity="top"
-                    android:hint="Few words on challenge"
                     android:padding="@dimen/dimen_8"
-                    android:text="@={homeData.ideaBrief}" />
+                     />
 
 
 

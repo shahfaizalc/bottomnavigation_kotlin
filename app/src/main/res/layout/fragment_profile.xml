@@ -345,7 +345,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> homeData.myDiscussionsClicked()}"
-                android:text="My Discussions"
+                android:text="My Challanges"
                 />
             <TextView
                 android:textColor="@color/colorPrimary"
@@ -356,7 +356,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> homeData.savedDiscussionsClicked()}"
-                android:text="Saved Discussions"/>
+                android:text="Saved Challanges"/>
 
             <TextView
                 android:textColor="@color/colorPrimary"
@@ -367,7 +367,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> homeData.myEventsClicked()}"
-                android:text="My Events"/>
+                android:text="My Ideas"/>
 
 
             <TextView
@@ -379,19 +379,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> homeData.savedEventsClicked()}"
-                android:text="Saved Events"/>
+                android:text="Saved Ideas"/>
 
-
-            <TextView
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="@dimen/dimen_32"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> homeData.inviteFriends()}"
-                android:text="Invite Friends"/>
 
             <TextView
                 android:textColor="@color/com_facebook_blue"
@@ -435,55 +424,6 @@
                 android:onClick="@{() -> homeData.privacyClicked()}"
                 android:text="Privacy and Security"/>
 
-            <TextView
-                android:textColor="@color/com_facebook_blue"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Coming Soon"/>
-
-            <TextView
-                android:layout_marginStart="@dimen/dimen_32"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Friends"/>
-
-            <TextView
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="@dimen/dimen_32"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Articles"/>
-
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginStart="@dimen/dimen_32"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Exams" />
-
-            <TextView
-                android:layout_marginTop="@dimen/dimen_8"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="@dimen/dimen_32"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginBottom="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Top Institutions"/>
 
             <Button
                 android:layout_width="match_parent"
