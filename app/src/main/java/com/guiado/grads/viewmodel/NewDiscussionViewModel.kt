@@ -77,6 +77,13 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
         }
 
     @get:Bindable
+    var ideaDesc: String? = ""
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.ideaDesc)
+        }
+
+    @get:Bindable
     var status: String? = "New"
         set(price) {
             field = price
@@ -179,6 +186,7 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
         post.name = ideaImplementation
         post.targetedBusinessGroupC = ideaTitle
         post.statusC = status
+        post.description__c=ideaDesc
 
         postsService.createQueryIdeas(post, "Bearer " + getAccessToken())!!
                 .enqueue(object : Callback<CreateIdeas?> {

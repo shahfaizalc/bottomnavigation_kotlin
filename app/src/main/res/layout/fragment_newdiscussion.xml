@@ -96,7 +96,7 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="@dimen/dimen_16"
                     android:background="@drawable/circular_bg_border_paleblue"
                     android:gravity="top"
@@ -104,6 +104,18 @@
                     android:maxLength="200"
                     android:padding="@dimen/dimen_8"
                     android:text="@={homeData.ideaImplementation}" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:background="@drawable/circular_bg_border_paleblue"
+                    android:gravity="top"
+                    android:hint="idea description"
+                    android:maxLength="200"
+                    android:padding="@dimen/dimen_8"
+                    android:text="@={homeData.ideaDesc}" />
+
 
                 <EditText
                     android:layout_width="match_parent"

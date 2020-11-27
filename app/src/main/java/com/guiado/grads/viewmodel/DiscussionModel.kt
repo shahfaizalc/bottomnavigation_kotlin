@@ -285,7 +285,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
             val handler = coroutineExceptionHandler()
             GlobalScope.launch(handler) {
                 val repositories = withContext(Dispatchers.Default) {
-                    postsService.getQueryIdeas("services/data/v49.0/query/?q=SELECT+name,Benefit__c,Status__c,Impact__c+from+ICP_Idea__c", "Bearer "+accesstoken).await()
+                    postsService.getQueryIdeas("services/data/v49.0/query/?q=SELECT+name,Benefit__c,Description__c,Status__c,Impact__c+from+ICP_Idea__c", "Bearer "+accesstoken).await()
                 }
                 withContext(Dispatchers.Default) { coroutineSuccessHandler(repositories) }
             }

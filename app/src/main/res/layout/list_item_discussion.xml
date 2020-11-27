@@ -63,13 +63,13 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:visibility="invisible"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:paddingBottom="@dimen/dimen_4"
-                        android:text="@{countriesInfoModel.benefitC}"
+                        android:text="@{countriesInfoModel.name}"
                         android:textColor="@color/colorBlacklight"
                          />
 
@@ -96,7 +96,6 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorWhite"
@@ -111,14 +110,13 @@
 
                 <TextView
                     android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold"
                     android:linksClickable="true"
                     android:autoLink="web|email"
                     android:ellipsize="end"
                     android:maxLines="7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{countriesInfoModel.name}"
+                    android:text="@{countriesInfoModel.description__c}"
                     android:layout_marginBottom="@dimen/dimen_4"
                     android:textColor="@color/colorBlacklight" />
 

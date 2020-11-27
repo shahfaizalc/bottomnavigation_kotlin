@@ -19,6 +19,17 @@ public class CreateIdeas {
     @SerializedName("Targeted_Business_group__c")
     private String mTargetedBusinessGroupC;
 
+    public String getDescription__c() {
+        return Description__c;
+    }
+
+    public void setDescription__c(String description__c) {
+        Description__c = description__c;
+    }
+
+    @SerializedName("Description__c")
+    private String Description__c;
+
     public String getBenefitC() {
         return mBenefitC;
     }

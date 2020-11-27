@@ -16,6 +16,18 @@ public class Record {
     private String mName;
     @SerializedName("Status__c")
     private String mStatusC;
+    @SerializedName("Description__c")
+    private String Description__c;
+
+    public String getDescription__c() {
+        return Description__c;
+    }
+
+    public void setDescription__c(String description__c) {
+        Description__c = description__c;
+    }
+
+
 
     public Attributes getAttributes() {
         return mAttributes;
