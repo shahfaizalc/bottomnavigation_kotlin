@@ -99,17 +99,7 @@ class GoalModel(internal var activity: FragmentActivity,
     var profile = Profile();
 
 
-    fun openFragment2(postAdModel: PostDiscussion, position: Int) {
-//        val fragment = FirestoreDisccussFragmment()
-//        val bundle = Bundle()
-//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
-//        fragment.setArguments(bundle)
-//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 
-        val intent = Intent(activity, FirestoreDisccussFragmment::class.java)
-        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
-        activity.startActivity(intent)
-    }
 
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()

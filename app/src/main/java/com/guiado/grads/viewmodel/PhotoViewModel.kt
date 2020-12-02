@@ -129,7 +129,6 @@ class PhotoViewModel(private val context: Context, private val fragmentSignin: F
         profile.title = userTitle
         profile.desc = userDesc
         profile.moreInformation = userMoreInfo
-        val fragment = FragmentAddress()
         val bundle = Bundle()
         bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
         //fragment.setArguments(bundle)

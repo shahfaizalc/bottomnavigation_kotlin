@@ -67,32 +67,10 @@ class ProfileViewModel(internal val activity:
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        listOfCoachings = c.readCourseCategory(context)
-
     }
 
-    @get:Bindable
-    var listOfCoachings: ArrayList<CoachItem>? = null
-        private set(roleAdapterAddress) {
-            field = roleAdapterAddress
-            notifyPropertyChanged(BR.roleAdapterAddress)
-        }
 
-    private fun getKeyWords(keyWords: MutableList<Int>?): String {
 
-        var result = ""
-
-        keyWords.notNull {
-            val numbersIterator = it.iterator()
-            numbersIterator.let {
-                while (numbersIterator.hasNext()) {
-                    val value = (numbersIterator.next())
-                    result += " " + listOfCoachings!!.get(value - 1).categoryname +", "
-                }
-            }
-        }
-        return result;
-    }
 
     private fun getAddress() = " " + profile.address.let { " " + (it?.locationname ?:  "") + "\n " + (it?.streetName
             ?:  "") + ", " + (it?.town ?:  "") + "\n " + (it?.city ?: "") }
@@ -204,9 +182,9 @@ class ProfileViewModel(internal val activity:
 //            fragment.setArguments(bundle)
 //            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
 //
-          val intent = Intent(fragmentSignin.activity, FragmentProfileEdit::class.java)
-            intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-            fragmentSignin.activity!!.startActivity(intent)
+//          val intent = Intent(fragmentSignin.activity, FragmentProfileEdit::class.java)
+//            intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//            fragmentSignin.activity!!.startActivity(intent)
 
         }
     }
@@ -336,9 +314,6 @@ class ProfileViewModel(internal val activity:
 //            fragment.setArguments(bundle)
 //            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 //
-
-            val intent = Intent(activity, FragmentAbout::class.java);
-            activity.startActivity(intent);
 
         }
     }

@@ -2,7 +2,6 @@ package com.guiado.grads.viewmodel
 
 
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -11,7 +10,6 @@ import android.widget.PopupWindow
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
-import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.guiado.grads.BR
@@ -22,7 +20,6 @@ import com.guiado.grads.model2.PostDiscussion
 import com.guiado.grads.model2.Profile
 import com.guiado.grads.util.*
 import com.guiado.grads.utils.Constants
-import com.guiado.grads.view.FirestoreMyDisccussFragmment
 import com.guiado.grads.view.FragmentNewDiscusssion
 import com.guiado.grads.view.FragmentSavedDiscussions
 import org.greenrobot.eventbus.EventBus
@@ -81,15 +78,7 @@ class SavedDiscussionModel( internal val fragmentProfileInfo: FragmentSavedDiscu
     fun openFragment2(postAdModel: PostDiscussion, position: Int) {
         if (postAdModel.eventState.ordinal < EventStatus.HIDDEN.ordinal) {
 
-//            val fragment = FirestoreMyDisccussFragmment()
-//            val bundle = Bundle()
-//            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
-//            fragment.setArguments(bundle)
-//            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
-//
-            val intent = Intent(fragmentProfileInfo, FirestoreMyDisccussFragmment::class.java);
-            intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
-            fragmentProfileInfo.startActivity(intent)
+
 
         } else {
             showPopUpWindow();

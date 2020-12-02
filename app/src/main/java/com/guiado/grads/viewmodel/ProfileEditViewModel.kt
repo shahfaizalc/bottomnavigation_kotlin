@@ -19,19 +19,15 @@ import com.guiado.grads.BR
 import com.guiado.grads.Events.MyCustomEvent
 import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
-import com.guiado.grads.listeners.EmptyResultListener
 import com.guiado.grads.listeners.MultipleClickListener
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model2.Profile
 import com.guiado.grads.util.GenericValues
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.utils.Constants
-import com.guiado.grads.view.FragmentAddress
-import com.guiado.grads.view.FragmentKeyWords
 import com.guiado.grads.view.FragmentProfileEdit
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.adapter.CountryAdapter2
-import com.guiado.grads.util.storeUserName
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.ArrayList
@@ -61,8 +57,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        listOfCoachings = c.readCourseCategory(context)
-
     }
 
     @get:Bindable
@@ -86,7 +80,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         EventBus.getDefault().unregister(this)
         profile = event.data
       //  userAddress = getAddress()
-        keys = getKeyWords()
     }
 
     private fun getAddress() = " " + profile.address?.locationname + "\n " + profile.address?.streetName +
@@ -94,28 +87,8 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
     private fun getLocation() = profile.location
 
-    private fun getKeyWords(): String {
-
-        var result = ""
-
-        val numbersIterator = profile.keyWords?.iterator()
-        numbersIterator?.let {
-            while (numbersIterator.hasNext()) {
-                var value = (numbersIterator.next())
-                result += "" + listOfCoachings!!.get(value - 1).categoryname +", "
-            }
-        }
-
-        return result;
-    }
 
 
-    @get:Bindable
-    var listOfCoachings: ArrayList<CoachItem>? = null
-        private set(roleAdapterAddress) {
-            field = roleAdapterAddress
-            notifyPropertyChanged(BR.roleAdapterAddress)
-        }
 
 
     var imgUrl = ""
@@ -139,13 +112,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 //
 //        }
 
-    @get:Bindable
-    var keys: String? = getKeyWords()
-        set(price) {
-            field = price
-            notifyPropertyChanged(BR.keys)
 
-        }
     fun showProgresss(isShow : Boolean){
         if(isShow){
             showSignUpBtn = View.INVISIBLE
@@ -166,29 +133,12 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     }
     fun updateAddress() = View.OnClickListener {
         registerEventBus();
-//        val fragment = FragmentAddress()
-//        val bundle = Bundle()
-//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-//        fragment.setArguments(bundle)
-//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
 
-        val intent = Intent(fragmentSignin,FragmentAddress::class.java);
-        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragmentSignin.startActivity(intent)
     }
 
     fun updateKeyWords() = View.OnClickListener {
         registerEventBus();
-//        val fragment = FragmentKeyWords()
-//        val bundle = Bundle()
-//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-//        fragment.setArguments(bundle)
-//        fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
 
-
-        val intent = Intent(fragmentSignin,FragmentKeyWords::class.java);
-        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-        fragmentSignin.startActivity(intent)
     }
 
 

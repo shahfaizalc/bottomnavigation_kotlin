@@ -27,7 +27,6 @@ import com.guiado.grads.util.GenericValues
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.util.notNull
 import com.guiado.grads.utils.Constants
-import com.guiado.grads.view.FirestoreDisccussFragmment
 import com.guiado.grads.view.FragmentDiscussions
 import com.guiado.grads.view.FragmentNewDiscusssion
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -99,17 +98,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
     var profile = Profile();
 
 
-    fun openFragment2(postAdModel: PostDiscussion, position: Int) {
-//        val fragment = FirestoreDisccussFragmment()
-//        val bundle = Bundle()
-//        bundle.putString(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
-//        fragment.setArguments(bundle)
-//        fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
 
-        val intent = Intent(activity, FirestoreDisccussFragmment::class.java)
-        intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().discussionToString(postAdModel))
-        activity.startActivity(intent)
-    }
 
     private fun handleMultipleClicks(): Boolean {
         return MultipleClickHandler.handleMultipleClicks()

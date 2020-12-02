@@ -44,32 +44,7 @@ fun setRating(ratingBar: RatingBar, ratings: RequestCompleteViewModel) {
     }
 }
 
-@BindingAdapter("autoAdapter")
-fun setAdapter(view: AutoCompleteTextView, pArrayAdapter: AdressViewModel) {
-    //  val autoFillTextAdapter = ProductListAdapter(view.context, pArrayAdapter.roleAdapter!!)
-    val address = pArrayAdapter.roleAdapterAddress;
-    val autoText = view;
-    val autoFillTextAdapter = PeopleAdapter(view.context, R.layout.autofilitem, R.id.text_title, address)
 
-    autoText.setAdapter(autoFillTextAdapter)
-   // autoText.setText("")
-    autoText.onItemClickListener = object : OnItemSelectedListener, AdapterView.OnItemClickListener {
-
-        override fun onNothingSelected(parent: AdapterView<*>?) {
-        }
-
-        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            Log.d("user", "slecgt" + autoFillTextAdapter.suggestions.get(position))
-        }
-
-        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-          //  Toast.makeText(parent!!.context, "Spinner item 1! " + autoFillTextAdapter.suggestions.get(position), Toast.LENGTH_SHORT).show()
-            Log.d("user", "slecgt" + autoFillTextAdapter.suggestions.get(position))
-            pArrayAdapter.cityCode = autoFillTextAdapter.suggestions.get(position).citycode
-            pArrayAdapter.city = autoFillTextAdapter.suggestions.get(position).cityname
-        }
-    }
-}
 
 //@BindingAdapter("focusId", "focusTarget")
 //fun requestFocusFromTouch(view: View, id: Int, target: Int) {
@@ -328,52 +303,7 @@ fun adapter(searchView: SearchView ,countriesViewModel: DiscussionModel,recycler
 //}
 
 
-@BindingAdapter("app:data")
-fun loadAdapterx(recyclerView: RecyclerView, profileInfoViewModel: UserViewModel) {
-    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-    val adapter = UserAdapter()
-    recyclerView.adapter = adapter
-    (recyclerView.adapter as UserAdapter).setData(profileInfoViewModel.userIds)
-}
 
-@BindingAdapter("app:searchAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView, profileInfoViewModel: GameChooserModel, recyclerView: RecyclerView) {
-
-    val emptySting = "";
-    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-    val adapter = GameChooserAdapter()
-    recyclerView.adapter = adapter
-    (recyclerView.adapter as GameChooserAdapter).setModel(profileInfoViewModel)
-    (recyclerView.adapter as GameChooserAdapter).setData(profileInfoViewModel.listOfCoachings)
-
-    // Search view clear query
-    val searchClear = searchView.findViewById<View>(R.id.search_close_btn)
-    searchClear.setOnClickListener({ searchView.setQuery(emptySting, true) })
-
-    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(s: String?): Boolean {
-            return false
-        }
-
-        override fun onQueryTextChange(query: String): Boolean {
-            if (!query.isEmpty()) {
-                //Kotlin filter to filter the query results
-                val model =
-                        profileInfoViewModel.listOfCoachings!!.filter {
-                            it.categoryname.toLowerCase().startsWith(query.toLowerCase())
-                        }
-
-                (recyclerView.adapter as GameChooserAdapter).setData(model as ArrayList<CoachItem> )
-
-            } else {
-                (recyclerView.adapter as GameChooserAdapter).setData(profileInfoViewModel.listOfCoachings)
-
-            }
-            return false
-        }
-    })
-
-}
 
 
     @BindingAdapter("app:clickableString")

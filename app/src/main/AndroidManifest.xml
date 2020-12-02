@@ -40,36 +40,12 @@
         <activity
             android:name="com.guiado.grads.view.FragmentNewChallenge"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.guiado.grads.view.FragmentGameChooser"
-            android:windowSoftInputMode="adjustPan" />
 
-        <activity
-            android:name="com.guiado.grads.view.FirestoreDisccussFragmment"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.grads.view.FirestoreChatFragmment"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.grads.view.FragmentAddress"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.grads.view.FragmentMyDiscussions"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.grads.view.FirestoreMyDisccussFragmment"
-            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name="com.guiado.grads.view.FragmentSavedDiscussions"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.guiado.grads.view.FragmentAbout"
-            android:windowSoftInputMode="adjustPan" />
+ 
 
         <activity
             android:name="com.guiado.grads.view.FragmentFeedBack"

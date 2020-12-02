@@ -39,17 +39,10 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
 
     private fun readAutoFillItems() {
         val c = GenericValues()
-        listOfCoachings = c.readCourseCategory(context)
 
     }
 
 
-    @get:Bindable
-    var listOfCoachings: ArrayList<CoachItem>? = null
-        private set(roleAdapterAddress) {
-            field = roleAdapterAddress
-            notifyPropertyChanged(BR.roleAdapterAddress)
-        }
 
 
     var imgUrl = ""
