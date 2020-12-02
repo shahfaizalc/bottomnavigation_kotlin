@@ -45,7 +45,7 @@
         <activity
             android:name="com.guiado.grads.view.FragmentSavedDiscussions"
             android:windowSoftInputMode="adjustPan" />
- 
+
 
         <activity
             android:name="com.guiado.grads.view.FragmentFeedBack"
