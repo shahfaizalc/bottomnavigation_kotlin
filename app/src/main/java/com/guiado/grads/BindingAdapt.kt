@@ -30,36 +30,6 @@ import com.guiado.grads.viewmodel.*
 import com.squareup.picasso.Picasso
 
 
-
-
-
-
-
-
-@BindingAdapter("rating")
-fun setRating(ratingBar: RatingBar, ratings: RequestCompleteViewModel) {
-    ratingBar.rating = ratings.ratings
-    ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-        ratings.ratings = rating
-    }
-}
-
-
-
-//@BindingAdapter("focusId", "focusTarget")
-//fun requestFocusFromTouch(view: View, id: Int, target: Int) {
-//    if (target == 0 || id != target) {
-//        return
-//    }
-//    view.requestFocusFromTouch()
-//}
-//
-//
-
-
-
-
-
 @BindingAdapter( "app:searchAdapter", "app:searchRecycler")
 fun adapter(searchView: SearchView ,countriesViewModel: GoalModel,recyclerView: RecyclerView) {
 
@@ -333,20 +303,6 @@ fun loadAdapterx(textView: TextView, profileInfoViewModel: RegistrationModel) {
 }
 
 
-
-@BindingAdapter("app:searchRecycler")
-fun adapter(recyclerView: RecyclerView, profileInfoViewModel: RequestCompleteViewModel ) {
-
-    val emptySting = "";
-    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-    val adapter = RatingsAdapter()
-    recyclerView.adapter = adapter
-    (recyclerView.adapter as RatingsAdapter).setModel(profileInfoViewModel)
-   // (recyclerView.adapter as RatingsAdapter).setData(profileInfoViewModel.userIds)
-
-    profileInfoViewModel.adapter = recyclerView.adapter as RatingsAdapter
-
-}
 
 
 @BindingAdapter("app:imageUrl")

@@ -41,7 +41,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     var profile = Profile();
     val dialog = Dialog(context)
     var  observableArrayList =  ArrayList<IndiaItem>()
-    var  observableArrayListFilter =  ArrayList<IndiaItem>()
 
     init {
         networkHandler()
@@ -99,16 +98,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
         }
 
-
-//    @get:Bindable
-//    var userAddress: String? = getAddress()
-//        set(price) {
-//            field = price
-//            notifyPropertyChanged(BR.userAddress)
-//
-//        }
-
-
     fun showProgresss(isShow : Boolean){
         if(isShow){
             showSignUpBtn = View.INVISIBLE
@@ -125,15 +114,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     fun registerEventBus(){
         if(!EventBus.getDefault().isRegistered(this))
             EventBus.getDefault().register(this);
-
-    }
-    fun updateAddress() = View.OnClickListener {
-        registerEventBus();
-
-    }
-
-    fun updateKeyWords() = View.OnClickListener {
-        registerEventBus();
 
     }
 
@@ -166,10 +146,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
         return MultipleClickHandler.handleMultipleClicks()
     }
 
-    fun filterByCategory(position: Int) {
-        dialog.dismiss()
-        userLocation =  observableArrayListFilter.get(position).cityname
-    }
+
 
 
     @get:Bindable
