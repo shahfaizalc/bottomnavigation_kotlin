@@ -28,12 +28,7 @@ class GenericValues {
         return staff.india as ArrayList<CoachItem>
     }
 
-    fun readCourseCategory(context: Context): ArrayList<CoachItem> {
-        val fileString = getFileString(Constants.FILENAME_COURSE_CATEGORY, context)
-        val gson = Gson()
-        val staff = gson.fromJson(fileString, Coaches::class.java)
-        return staff.india as ArrayList<CoachItem>
-    }
+
 
 
 
@@ -52,21 +47,6 @@ class GenericValues {
     }
 
 
-    fun discussionToString(profile : PostDiscussion) : String{
-        val gson  = Gson();
-        return gson.toJson(profile)
-    }
-
-
-    fun getDisccussion(fileName: String,context: Context): PostDiscussion {
-        val gson = Gson()
-        return gson.fromJson(fileName, PostDiscussion::class.java)
-    }
-
-    fun getGroups(fileName: String,context: Context): Groups {
-        val gson = Gson()
-        return gson.fromJson(fileName, Groups::class.java)
-    }
 
     fun profileToString(profile : Profile) : String{
         val gson  = Gson();

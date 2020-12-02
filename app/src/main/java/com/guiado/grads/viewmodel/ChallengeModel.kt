@@ -24,7 +24,6 @@ import com.guiado.grads.utils.Constants
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import com.guiado.grads.R
-import com.guiado.grads.adapter.CustomAdapter
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model.SearchMode
 import com.guiado.grads.model_sales.Authenticaiton

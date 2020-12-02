@@ -2,7 +2,6 @@ package com.guiado.grads.viewmodel
 
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -20,14 +19,11 @@ import com.guiado.grads.Events.MyCustomEvent
 import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.listeners.MultipleClickListener
-import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model2.Profile
 import com.guiado.grads.util.GenericValues
 import com.guiado.grads.util.MultipleClickHandler
-import com.guiado.grads.utils.Constants
 import com.guiado.grads.view.FragmentProfileEdit
 import com.google.firebase.auth.FirebaseAuth
-import com.guiado.grads.adapter.CountryAdapter2
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.ArrayList
@@ -193,64 +189,6 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
     fun onFilterClick() = View.OnClickListener() {
 
         if(!handleMultipleClicks()) {
-
-            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setCancelable(false)
-            dialog.setContentView(R.layout.dialog_listview2)
-
-            val btndialog: TextView = dialog.findViewById(R.id.btndialog) as TextView
-            btndialog.setOnClickListener({ dialog.dismiss() })
-
-            observableArrayListFilter = observableArrayList
-
-            val recyclerView = dialog.findViewById(R.id.listview) as RecyclerView
-            val customAdapter = CountryAdapter2(this)
-            recyclerView.setHasFixedSize(true)
-            recyclerView.layoutManager = LinearLayoutManager(context)
-            recyclerView.adapter = customAdapter
-
-
-            var searchView = dialog.findViewById<SearchView>(R.id.search1)
-            searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    Log.d(TAG," query "+query)
-
-                    val model =
-                            observableArrayList.filter {
-                                it.cityname?.toLowerCase()?.contains(query!!.toLowerCase())!!
-                            }
-                    val arrayList = ObservableArrayList<IndiaItem>()
-                    arrayList.addAll(model)
-                    observableArrayListFilter = arrayList
-                    Log.d(TAG," query "+observableArrayListFilter.size)
-                    recyclerView.post { customAdapter.notifyItemChanged(0,0)}
-                    recyclerView.post { customAdapter.notifyDataSetChanged() }
-                    return false
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-
-                    if(newText!!.length == 0) {
-                        observableArrayListFilter = observableArrayList
-                        Log.d(TAG, " query " + observableArrayListFilter.size)
-                        recyclerView.post { customAdapter.notifyItemChanged(0, 0) }
-                        recyclerView.post { customAdapter.notifyDataSetChanged() }
-                    }
-
-                    return false
-                }
-            })
-
-//            listView.setOnClickListener()
-//
-//            listView.setOnItemClickListener({ parent, view, position, id ->
-//
-//                dialog.dismiss()
-//
-//                filterByCategory(position)
-//            })
-
-            dialog.show()
         }
     }
 }
