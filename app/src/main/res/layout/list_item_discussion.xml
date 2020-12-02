@@ -31,6 +31,9 @@
             name="postDate"
             type="java.lang.String" />
 
+        <variable
+            name="rating"
+            type="java.lang.String" />
 
     </data>
 
@@ -74,6 +77,19 @@
                          />
 
                     <TextView
+                        android:background="@color/colorPrimaryDark"
+                        android:drawableLeft="@drawable/star"
+                        android:drawableTint="@color/white"
+                        android:layout_toStartOf="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/dimen_4"
+                        android:textColor="@color/white"
+                        android:text="@={rating}"  />
+
+                    <TextView
+                        android:id="@+id/date"
                         android:layout_toStartOf="@+id/bookmark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

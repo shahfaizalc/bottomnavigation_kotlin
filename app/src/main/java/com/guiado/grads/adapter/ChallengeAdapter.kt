@@ -16,6 +16,7 @@ import com.guiado.grads.util.convertLongToTime
 import com.guiado.grads.util.getDiscussionCategories
 import com.guiado.grads.viewmodel.ChallengeModel
 import com.guiado.grads.viewmodel.DiscussionModel
+import kotlin.random.Random
 
 /**
  * Country recycler view adapter to view list of items
@@ -40,6 +41,7 @@ class ChallengeAdapter(private val adSearchModel: ChallengeModel) :
             countriesInfoModel = viewModel.talentProfilesList[position]
             keyWordsTag = ""+countriesInfoModel!!.id
           //  postDate= viewModel.talentProfilesList[position].postedDate?.toLong()?.let { convertLongToTime(it) }
+            rating = Random.nextInt(0, 5).toString()
             itemPosition = position
             mainDataModel = viewModel
             executePendingBindings()
