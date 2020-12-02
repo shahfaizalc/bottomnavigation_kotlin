@@ -8,16 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.guiado.grads.R
-import com.guiado.grads.databinding.ListItemChallengeBinding
-import com.guiado.grads.databinding.ListItemDiscussionBinding
 import com.guiado.grads.databinding.ListItemGoalBinding
-import com.guiado.grads.listeners.ChallengeEventListener
-import com.guiado.grads.listeners.DiscussionEventListener
 import com.guiado.grads.listeners.GoalEventListener
-import com.guiado.grads.util.convertLongToTime
-import com.guiado.grads.util.getDiscussionCategories
-import com.guiado.grads.viewmodel.ChallengeModel
-import com.guiado.grads.viewmodel.DiscussionModel
+
 import com.guiado.grads.viewmodel.GoalModel
 
 /**

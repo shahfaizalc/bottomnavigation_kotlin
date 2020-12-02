@@ -82,16 +82,7 @@ class InfoViewModel( private val fragmentSignin: FragmentInfo) :
 
     fun savedDiscussionsClicked() {
         if (!handleMultipleClicks()) {
-//            val fragment = FragmentSavedDiscussions()
-//            val bundle = Bundle()
-//            fragment.setArguments(bundle)
-//            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
-
-            val intent = Intent(fragmentSignin,FragmentSavedDiscussions::class.java )
-            fragmentSignin.startActivity(intent)
-
-
-        }
+     }
     }
     fun savedEventsClicked() {
         if (!handleMultipleClicks()) {

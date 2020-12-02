@@ -2,17 +2,10 @@ package com.guiado.grads.viewmodel
 
 import android.app.Dialog
 import android.content.Context
-import android.util.Log
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.SearchView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.databinding.ObservableArrayList
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.guiado.grads.model.IndiaItem
 
 import com.guiado.grads.BR
 import com.guiado.grads.Events.MyCustomEvent
@@ -40,13 +33,11 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
     var profile = Profile();
     val dialog = Dialog(context)
-    var  observableArrayList =  ArrayList<IndiaItem>()
 
     init {
         networkHandler()
         profile = (GenericValues().getProfile(postAdObj, fragmentSignin))
         readAutoFillItems()
-        observableArrayList = readAutoFillItems2()
 
     }
 
@@ -157,10 +148,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
             profile.location = field
         }
-    private fun readAutoFillItems2() : ArrayList<IndiaItem> {
-        val values = GenericValues()
-        return values.readAutoFillItems(context)
-    }
+
 
     @Override
     fun onFilterClick() = View.OnClickListener() {

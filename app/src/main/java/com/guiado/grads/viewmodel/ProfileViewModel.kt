@@ -338,9 +338,7 @@ class ProfileViewModel(internal val activity:
 //            fragment.setArguments(bundle)
 //            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1,fragment,bundle));
 //
-//
-            val intent = Intent(activity, FragmentSavedDiscussions::class.java);
-            activity.startActivity(intent);
+
 
         }
     }

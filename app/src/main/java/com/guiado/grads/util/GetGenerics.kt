@@ -49,23 +49,7 @@ fun getUserName(context: Context, id:String) :Profile  {
 }
 
 
-fun getKeys(keyWords: MutableList<Int>?, context: Context): String? {
 
-    var keyTag = "";
-
-    val keysCoach: ArrayList<CoachItem> = readAutoFillItems(context)
-
-    val numbersIterator = keyWords!!.iterator()
-    numbersIterator.let {
-        while (numbersIterator.hasNext()) {
-            var value = (numbersIterator.next())
-            keyTag += " " + keysCoach.get(value).categoryname
-
-        }
-    }
-    return keyTag;
-
-}
 fun String.onDatePickerClick( ) : Long {
 
     val formatter = SimpleDateFormat("dd/MM/yyyy")
@@ -73,35 +57,10 @@ fun String.onDatePickerClick( ) : Long {
     return date.time
 }
 
-private fun readAutoFillItems(context: Context): ArrayList<CoachItem> {
-    val c = GenericValues()
-    return c.readCoachItems(context)
-}
 
-fun getDiscussionCategories(keyWords: MutableList<Int>?, context: Context): String? {
 
-    var keyTag = "";
 
-    keyWords.notNull {
 
-        val keysCoach: ArrayList<CoachItem> = readDisscussions(context)
-
-        val numbersIterator = keyWords!!.iterator()
-        numbersIterator.let {
-            while (numbersIterator.hasNext()) {
-                var value = (numbersIterator.next())
-                keyTag += " " + keysCoach.get(value).categoryname
-
-            }
-        }
-    }
-    return keyTag;
-}
-
-private fun readDisscussions(context: Context): ArrayList<CoachItem> {
-    val c = GenericValues()
-    return c.readDisuccsionTopics(context)
-}
 
 
  fun String.sentenceToWords(): List<String> {

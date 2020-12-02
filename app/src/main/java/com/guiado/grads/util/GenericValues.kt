@@ -14,30 +14,13 @@ import java.util.LinkedHashMap
 
 class GenericValues {
 
-    fun readAutoFillItems(context: Context): ArrayList<IndiaItem> {
-        val fileString = getFileString(Constants.FILENAME_CITIES, context)
-        val gson = Gson()
-        val staff = gson.fromJson(fileString, CitiesIndia::class.java)
-        return staff.india as ArrayList<IndiaItem>
-    }
-
-    fun readCoachItems(context: Context): ArrayList<CoachItem> {
-        val fileString = getFileString(Constants.FILENAME_COACH, context)
-        val gson = Gson()
-        val staff = gson.fromJson(fileString, Coaches::class.java)
-        return staff.india as ArrayList<CoachItem>
-    }
 
 
 
 
 
-    fun readDisuccsionTopics(context: Context): ArrayList<CoachItem> {
-        val fileString = getFileString(Constants.FILENAME_DISCUSSION, context)
-        val gson = Gson()
-        val staff = gson.fromJson(fileString, Coaches::class.java)
-        return staff.india as ArrayList<CoachItem>
-    }
+
+
 
 
 

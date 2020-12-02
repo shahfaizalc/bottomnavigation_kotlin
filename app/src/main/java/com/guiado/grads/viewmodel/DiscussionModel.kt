@@ -120,10 +120,6 @@ class DiscussionModel(internal var activity: FragmentActivity,
         }
     }
 
-    private fun readAutoFillItems(): ArrayList<CoachItem> {
-        val values = GenericValues()
-        return values.readDisuccsionTopics(activity.applicationContext)
-    }
 
 
     @Override
