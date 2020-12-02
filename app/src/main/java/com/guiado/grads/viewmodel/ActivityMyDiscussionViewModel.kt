@@ -1,8 +1,6 @@
 package com.guiado.grads.viewmodel
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
@@ -10,13 +8,11 @@ import androidx.databinding.Bindable
 import com.guiado.grads.BR
 import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
-import com.guiado.grads.listeners.EmptyResultListener
 import com.guiado.grads.model2.*
 import com.guiado.grads.util.*
 import com.guiado.grads.view.FirestoreMyDisccussFragmment
 import com.google.firebase.auth.FirebaseAuth
 import com.guiado.grads.model.EventStatus
-import com.guiado.grads.view.FragmentMyDiscussions
 
 
 class ActivityMyDiscussionViewModel(private val context: Context,

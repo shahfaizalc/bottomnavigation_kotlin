@@ -1,8 +1,8 @@
 package com.guiado.grads
 
 import com.guiado.grads.model_sales.Authenticaiton
-import com.guiado.grads.model_sales.CreateIdeas
-import com.guiado.grads.model_sales.QueryIdeas
+import com.guiado.grads.model_sales.newidea.CreateIdeas
+import com.guiado.grads.model_sales.ideas.QueryIdeas
 import com.guiado.grads.model_sales.challenges.QueryChallenges
 import com.guiado.grads.model_sales.goal.Goals
 import com.guiado.grads.model_sales.newchallenge.Newchallenge

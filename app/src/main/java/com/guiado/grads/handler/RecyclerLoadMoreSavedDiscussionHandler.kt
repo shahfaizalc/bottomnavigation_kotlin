@@ -1,12 +1,9 @@
 package com.guiado.grads.handler
 
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.guiado.grads.adapter.MyDiscussionAdapter
 import com.guiado.grads.adapter.SavedDiscussionAdapter
 import com.guiado.grads.utils.EndlessRecyclerViewScrollListener
-import com.guiado.grads.viewmodel.MyDiscussionModel
 import com.guiado.grads.viewmodel.SavedDiscussionModel
 
 

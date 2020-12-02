@@ -8,6 +8,13 @@
         <item>News</item>
         <item>Profile</item>
     </array>
+
+    <string-array name="tab_challange">
+        <item>access to care ultra sound</item>
+        <item>Setup Customer Service Communities</item>
+        <item>My new challenge</item>
+    </string-array>
+
     <string name="allevents">All events</string>
 
     <string name="discussions">All discussions</string>

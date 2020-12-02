@@ -1,5 +1,5 @@
 
-package com.guiado.grads.model_sales;
+package com.guiado.grads.model_sales.ideas;
 
 import com.google.gson.annotations.SerializedName;
 

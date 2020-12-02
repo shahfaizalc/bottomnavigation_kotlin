@@ -10,7 +10,7 @@
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model_sales.Record" />
+            type="com.guiado.grads.model_sales.ideas.Record" />
 
         <variable
             name="itemPosition"

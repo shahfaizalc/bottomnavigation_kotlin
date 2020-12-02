@@ -14,7 +14,7 @@ import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.listeners.MultipleClickListener
 import com.guiado.grads.model_sales.Authenticaiton
-import com.guiado.grads.model_sales.CreateIdeas
+import com.guiado.grads.model_sales.newidea.CreateIdeas
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.view.FragmentNewDiscusssion
 import okhttp3.OkHttpClient

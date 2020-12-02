@@ -1,5 +1,5 @@
 
-package com.guiado.grads.model_sales;
+package com.guiado.grads.model_sales.newidea;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;

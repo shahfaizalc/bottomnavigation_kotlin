@@ -1,13 +1,10 @@
 package com.guiado.grads.viewmodel
 
 
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.View
-import android.widget.ListView
-import android.widget.TextView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
@@ -18,14 +15,14 @@ import com.guiado.grads.BR
 import com.guiado.grads.Events.MyCustomEvent
 import com.guiado.grads.GetServiceNews
 import com.guiado.grads.R
-import com.guiado.grads.adapter.CustomAdapter
 import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model.SearchMode
 import com.guiado.grads.model2.Bookmarks
 import com.guiado.grads.model2.PostDiscussion
 import com.guiado.grads.model2.Profile
 import com.guiado.grads.model_sales.Authenticaiton
-import com.guiado.grads.model_sales.QueryIdeas
+import com.guiado.grads.model_sales.ideas.QueryIdeas
+import com.guiado.grads.model_sales.ideas.Record
 import com.guiado.grads.util.GenericValues
 import com.guiado.grads.util.MultipleClickHandler
 import com.guiado.grads.util.notNull
@@ -46,7 +43,7 @@ class DiscussionModel(internal var activity: FragmentActivity,
                       internal val fragmentProfileInfo: FragmentDiscussions) // To show list of user images (Gallery)
     : BaseObservable() {
 
-    var talentProfilesList: ObservableArrayList<com.guiado.grads.model_sales.Record>
+    var talentProfilesList: ObservableArrayList<Record>
 
     var resetScrrollListener: Boolean = false;
 

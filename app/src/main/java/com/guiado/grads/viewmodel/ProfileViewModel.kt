@@ -246,15 +246,10 @@ class ProfileViewModel(internal val activity:
     fun myDiscussionsClicked() {
         if (!handleMultipleClicks()) {
             Log.d("tag", "taggg")
-//            val fragment = FragmentMyDiscussions()
-//            val bundle = Bundle()
-//            bundle.putString(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-//            fragment.setArguments(bundle)
-//            fragmentSignin.mFragmentNavigation.pushFragment(fragmentSignin.newInstance(1, fragment, bundle));
 
-            val intent = Intent(fragmentSignin.activity, FragmentMyDiscussions::class.java)
-            intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
-            fragmentSignin.activity!!.startActivity(intent);
+//            val intent = Intent(fragmentSignin.activity, FragmentMyDiscussions::class.java)
+//            intent.putExtra(Constants.POSTAD_OBJECT, GenericValues().profileToString(profile))
+//            fragmentSignin.activity!!.startActivity(intent);
 
         }
     }
