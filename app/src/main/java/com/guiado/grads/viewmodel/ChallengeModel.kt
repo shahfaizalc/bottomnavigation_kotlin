@@ -1,30 +1,23 @@
 package com.guiado.grads.viewmodel
 
 
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.View
-import android.widget.*
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.FragmentActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.guiado.grads.BR
 import com.guiado.grads.Events.MyCustomEvent
 import com.guiado.grads.GetServiceNews
-import com.guiado.grads.model2.Bookmarks
-import com.guiado.grads.model2.PostDiscussion
 import com.guiado.grads.model2.Profile
 import com.guiado.grads.util.*
-import com.guiado.grads.utils.Constants
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import com.guiado.grads.R
-import com.guiado.grads.model.CoachItem
 import com.guiado.grads.model.SearchMode
 import com.guiado.grads.model_sales.Authenticaiton
 import com.guiado.grads.model_sales.challenges.QueryChallenges
@@ -33,7 +26,6 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.ArrayList
 
 
 class ChallengeModel(internal var activity: FragmentActivity,
@@ -105,12 +97,7 @@ class ChallengeModel(internal var activity: FragmentActivity,
     @Override
     fun onNextButtonClick() = View.OnClickListener() {
         if (!handleMultipleClicks()) {
-//            val fragment = FragmentNewDiscusssion()
-//            val bundle = Bundle()
-//            fragment.setArguments(bundle)
-//            fragmentProfileInfo.mFragmentNavigation.pushFragment(fragmentProfileInfo.newInstance(1, fragment, bundle));
-//
-            val intent = Intent(activity, FragmentNewChallenge::class.java)
+       val intent = Intent(activity, FragmentNewChallenge::class.java)
             activity.startActivity(intent)
         }
     }
@@ -131,82 +118,17 @@ class ChallengeModel(internal var activity: FragmentActivity,
 
         if (!handleMultipleClicks()) {
 
-//            val dialog = Dialog(activity)
-//            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//            dialog.setCancelable(false)
-//            dialog.setContentView(R.layout.dialog_listview)
-//
-//            val btndialog: TextView = dialog.findViewById(R.id.btndialog) as TextView
-//            btndialog.setOnClickListener({ dialog.dismiss() })
-//
-//            val items = readAutoFillItems()
-//            val listView: ListView = dialog.findViewById(R.id.listview) as ListView
-//            val customAdapter = CustomAdapter(readAutoFillItems(), activity.applicationContext)
-//            listView.setAdapter(customAdapter)
-//
-//            listView.setOnItemClickListener({ parent, view, position, id ->
-//
-//                dialog.dismiss()
 
                 filterByCategory(0)
-//            })
-//
-//            dialog.show()
+
         }
     }
 
 
-//
-//    fun addTalentsItems(document: QueryDocumentSnapshot) {
-//
-//        val adModel = document.toObject(PostDiscussion::class.java)
-//
-//        Log.d(TAG, "Success getting documents: " + adModel.postedBy)
-//
-//        //    if (!adModel.postedBy.equals(mAuth.currentUser!!.uid) && (adModel.eventState.ordinal == EventStatus.SHOWING.ordinal)) {
-//
-//        getKeyWords(talentProfilesList, adModel)
-//
-//        if (!isUpdated) {
-//            talentProfilesList.add(adModel)
-//        }
-//        //  }
-//    }
-
-    var isUpdated = false
-
-//    private fun getKeyWords(keyWords: ObservableArrayList<PostDiscussion>, keyWord: PostDiscussion): ObservableArrayList<PostDiscussion> {
-//        isUpdated = false
-//
-//        var count = 0;
-//
-//        keyWords.notNull {
-//            val numbersIterator = it.iterator()
-//            numbersIterator.let {
-//                while (numbersIterator.hasNext()) {
-//                    val value = (numbersIterator.next())
-//                    if (value.postedDate.equals(keyWord.postedDate)) {
-//                        Log.d(TAG, "Success getting fai documents: set ")
-//                        isUpdated = true
-//                        talentProfilesList.set(count, keyWord)
-//                        return@notNull
-//                    }
-//                    count = count + 1;
-//                }
-//            }
-//        }
-//        return keyWords;
-//    }
 
     fun filterByCategory(position: Int) {
         talentProfilesList.removeAll(talentProfilesList)
-//
-//        if (searchMode.ordinal == SearchMode.DEFAULT.ordinal)
-//            searchMode = SearchMode.CATEGORY
-//        else {
-//            searchMode = SearchMode.CATEGORYANDSEARCH
-//
-//        }
+
         doGetTalents()
     }
 
@@ -225,17 +147,6 @@ class ChallengeModel(internal var activity: FragmentActivity,
         }
     }
 
-    fun getUserId(): String {
-        val sharedPreference = activity.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val coronaJson = sharedPreference.getString("AUTH_INFO", "");
-        try {
-            val auth = Gson().fromJson(coronaJson, Authenticaiton::class.java)
-            return auth.signature
-
-        } catch (e: java.lang.Exception) {
-            return ""
-        }
-    }
 
 
     fun doGetTalents() {
@@ -286,20 +197,6 @@ class ChallengeModel(internal var activity: FragmentActivity,
     }
 
 
-    fun isBookmarked(postDiscussion: PostDiscussion): Boolean? {
-        var isFollow = false
-        postDiscussion.bookmarks.notNull {
-            val likes: MutableIterator<Bookmarks> = it.iterator()
-            while (likes.hasNext()) {
-                val name = likes.next()
-                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
-                    isFollow = true
-                }
-            }
-        }
-
-        return isFollow
-    }
 }
 
 

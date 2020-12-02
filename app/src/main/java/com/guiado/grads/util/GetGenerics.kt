@@ -15,30 +15,10 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 
-//fun offerPrice(postAdObj: Profile) =
-//        (((postAdObj.ticketCount * postAdObj.price).toDouble()) -
-//                ((postAdObj.ticketCount * postAdObj.price).toDouble() * (postAdObj.discount.toDouble() / 100))).toString()
-
-fun getAddress(address: Address?) = address!!.locationname +
-        ", " + address.streetName + ", " + address.town + ", " + address.city + ", " + address.state
-
-
-fun convertLongToTime(time: Long): String {
-    val date = Date(time)
-    val format = SimpleDateFormat("dd MMM yyyy")
-    return format.format(date)
-}
-
 fun <T : Any> T?.notNull(function: (it: T) -> Unit) {
     if (this != null) function(this)
 }
 
-fun storeUserName(context: Context, id:String, name: Profile){
-    val sharedPreference =  context.getSharedPreferences("USER",Context.MODE_PRIVATE)
-    val editor = sharedPreference.edit()
-    editor.putString(id,GenericValues().profileToString(name))
-    editor.apply()
-}
 
 fun getUserName(context: Context, id:String) :Profile  {
     val sharedPreference =  context.getSharedPreferences("USER",Context.MODE_PRIVATE)
@@ -58,11 +38,6 @@ fun String.onDatePickerClick( ) : Long {
 }
 
 
-
-
-
-
-
  fun String.sentenceToWords(): List<String> {
     val list1 = ArrayList<String>()
     val p: Pattern = Pattern.compile("[a-zA-Z]+")
@@ -74,24 +49,6 @@ fun String.onDatePickerClick( ) : Long {
         list1.add(m1.group());
     }
     return list1.toSet().toList();
-}
-
-var firestoreSettings = FirebaseFirestoreSettings.Builder()
-        .setPersistenceEnabled(true)
-        .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
-        .build()
-
-
-
-fun getNotificationContentView(context: Context, title: String, message: String): View {
-    val view = View.inflate(context, R.layout.notification_view, null)
-    (view.findViewById<View>(R.id.not_title) as TextView).text = "$title"
-    view.findViewById<View>(R.id.not_title).visibility = View.VISIBLE
-    (view.findViewById<View>(R.id.not_message) as TextView).text = "$message"
-    view.findViewById<View>(R.id.not_message).visibility = View.VISIBLE
-    view.findViewById<View>(R.id.closeBtn).visibility = View.VISIBLE
-    // view.findViewById<View>(R.id.closeBtn).setOnClickListener { v: View? -> EventBus.getDefault().post(NotificationBarHandler()) }
-    return view
 }
 
 
