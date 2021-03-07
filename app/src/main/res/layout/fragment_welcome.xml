@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_gradiant_gray"
+        android:background="@color/black"
         android:orientation="vertical"
         android:weightSum="2">
 
@@ -24,9 +24,10 @@
             android:gravity="center|bottom"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:src="@drawable/logo60x60"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/home_welcomestring"
@@ -35,57 +36,83 @@
                 android:textStyle="bold|italic" />
 
             <TextView
-                android:textColor="@color/com_facebook_blue"
                 android:textSize="@dimen/dimen_12"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/home_welcomestring2"
-
                  />
-
+            <TextView
+                android:textSize="@dimen/dimen_12"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/home_welcomestring3"
+                />
+            <TextView
+                android:textSize="@dimen/dimen_12"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/home_welcomestring4"
+                />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/dimen_20"
-            android:layout_weight="1"
-            android:gravity="bottom"
-            android:orientation="horizontal">
-
-            <Button
-                android:textColor="@color/smoke2"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_16"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:paddingTop="@dimen/dimen_20"
-                android:paddingBottom="@dimen/dimen_20"
-                android:layout_marginRight="@dimen/dimen_16"
-                android:background="@drawable/circular_bg_blue_8"
-                android:onClick="@{() -> homeData.signUpUserClicked()}"
-                android:text="@string/signUpText"
-                android:textStyle="bold" />
-
-            <Button
-                android:textColor="@color/smoke2"
-                android:paddingTop="@dimen/dimen_20"
-                android:paddingBottom="@dimen/dimen_20"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_16"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginRight="@dimen/dimen_16"
-                android:background="@drawable/circular_bg_blue_8"
-                android:onClick="@{() -> homeData.signInUserClicked()}"
-                android:text="@string/signInText"
-                android:textStyle="bold" />
+        <Button
+            android:textColor="@color/smoke2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_16"
+            android:padding="@dimen/dimen_20"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="@dimen/dimen_20"
+            android:layout_marginRight="@dimen/dimen_16"
+            android:background="@drawable/button_black"
+            android:onClick="@{() -> homeData.signUpUserClicked()}"
+            android:text="Get Started" />
 
 
-        </LinearLayout>
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginBottom="@dimen/dimen_20"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="bottom"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <Button-->
+<!--                android:textColor="@color/smoke2"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/dimen_16"-->
+<!--                android:layout_marginTop="@dimen/dimen_8"-->
+<!--                android:paddingTop="@dimen/dimen_20"-->
+<!--                android:paddingBottom="@dimen/dimen_20"-->
+<!--                android:layout_marginRight="@dimen/dimen_16"-->
+<!--                android:background="@drawable/circular_bg_blue_8"-->
+<!--                android:onClick="@{() -> homeData.signUpUserClicked()}"-->
+<!--                android:text="@string/signUpText"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <Button-->
+<!--                android:textColor="@color/smoke2"-->
+<!--                android:paddingTop="@dimen/dimen_20"-->
+<!--                android:paddingBottom="@dimen/dimen_20"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/dimen_16"-->
+<!--                android:layout_marginTop="@dimen/dimen_8"-->
+<!--                android:layout_marginRight="@dimen/dimen_16"-->
+<!--                android:background="@drawable/circular_bg_blue_8"-->
+<!--                android:onClick="@{() -> homeData.signInUserClicked()}"-->
+<!--                android:text="Get Started"-->
+<!--                android:textStyle="bold" />-->
+<!--        </LinearLayout>-->
     </LinearLayout>
 </layout>
