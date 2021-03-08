@@ -48,6 +48,10 @@
 
 
         <activity
+            android:name="com.guiado.grads.view.FragmentEnterMobile"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
             android:name="com.guiado.grads.view.FragmentFeedBack"
             android:windowSoftInputMode="adjustPan" />
 

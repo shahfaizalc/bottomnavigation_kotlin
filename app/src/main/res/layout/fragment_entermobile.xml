@@ -6,74 +6,87 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.WelcomeViewModel" />
+            type="com.guiado.grads.viewmodel.EnterMobileViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
-        android:orientation="vertical"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/dimen_20"
-            android:layout_weight="1"
-            android:gravity="center|bottom"
-            android:orientation="vertical">
-
-            <ImageView
-                android:src="@drawable/logo60x60"
-                android:layout_width="240dp"
-                android:layout_height="240dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/home_welcomestring"
-                android:textColor="@color/com_facebook_blue"
-                android:textSize="@dimen/dimen_48"
-                android:textStyle="bold|italic" />
+        android:orientation="vertical">
 
             <TextView
-                android:textSize="@dimen/dimen_12"
+                android:textSize="@dimen/dimen_36"
+                android:padding="@dimen/dimen_16"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/home_welcomestring2"
+                android:text="@string/home_enterMobileTitle"
                  />
+
             <TextView
+                android:padding="@dimen/dimen_16"
                 android:textSize="@dimen/dimen_12"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/home_welcomestring3"
+                android:text="@string/home_enterMobileSubTitle"
                 />
+            <LinearLayout
+                android:layout_marginTop="@dimen/dimen_24"
+                android:padding="@dimen/dimen_16"
+                android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_20"
+            android:orientation="horizontal">
+
+
             <TextView
-                android:textSize="@dimen/dimen_12"
+                android:textSize="@dimen/dimen_36"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/home_welcomestring4"
+                android:text="@string/home_enterMobilePrefix"
                 />
 
-        </LinearLayout>
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="@dimen/dimen_36"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="@string/home_enterMobilePostfix"
+                    android:textColorHint="@color/colorBlacklight"
+                    />
+            </LinearLayout>
+
 
         <Button
             android:textColor="@color/smoke2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_16"
-            android:padding="@dimen/dimen_20"
-            android:layout_gravity="center_horizontal"
+            android:paddingTop="@dimen/dimen_20"
+            android:paddingEnd="@dimen/dimen_32"
+            android:paddingStart="@dimen/dimen_32"
             android:paddingBottom="@dimen/dimen_20"
             android:layout_marginRight="@dimen/dimen_16"
             android:background="@drawable/button_black"
-            android:onClick="@{() -> homeData.signInUserClicked()}"
-            android:text="Get Started" />
+            android:onClick="@{() -> homeData.signUpUserClicked()}"
+            android:text="Next ->" />
+
+        <TextView
+            android:layout_margin="@dimen/dimen_20"
+            android:textSize="@dimen/dimen_12"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CAN\'T SIGNIN"
+            />
 
 
 <!--        <LinearLayout-->
