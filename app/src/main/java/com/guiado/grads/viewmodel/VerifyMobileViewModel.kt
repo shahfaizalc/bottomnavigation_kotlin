@@ -10,7 +10,7 @@ import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.view.*
 
-class EnterMobileViewModel(private val context: Context, private val fragmentSignin: FragmentEnterMobile) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class VerifyMobileViewModel(private val context: Context, private val fragmentSignin: FragmentVerifyMobile) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
@@ -22,13 +22,13 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
 
     fun signInUserClicked() {
         fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
     }
 
 
     fun signUpUserClicked() {
         fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
 
     }
 

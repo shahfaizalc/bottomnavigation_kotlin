@@ -10,7 +10,7 @@ import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.view.*
 
-class EnterMobileViewModel(private val context: Context, private val fragmentSignin: FragmentEnterMobile) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class EnterFullNameViewModel(private val context: Context, private val fragmentSignin: FragmentFullNameMobile) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
 

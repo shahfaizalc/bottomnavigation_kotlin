@@ -46,6 +46,26 @@
             android:name="com.guiado.grads.view.FragmentSavedDiscussions"
             android:windowSoftInputMode="adjustPan" />
 
+        <activity
+            android:name="com.guiado.grads.view.FragmentVerifyMobile"
+            android:windowSoftInputMode="adjustPan" />
+
+
+        <activity
+            android:name="com.guiado.grads.view.FragmentReferralMobile"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.grads.view.FragmentEmailAddress"
+            android:windowSoftInputMode="adjustPan" />
+
+
+        <activity
+            android:name="com.guiado.grads.view.FragmentFullNameMobile"
+            android:windowSoftInputMode="adjustPan" />
+
+
+
 
         <activity
             android:name="com.guiado.grads.view.FragmentEnterMobile"
