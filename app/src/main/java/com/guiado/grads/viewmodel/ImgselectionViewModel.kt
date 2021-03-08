@@ -2,15 +2,13 @@ package com.guiado.grads.viewmodel
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.BaseObservable
 import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.view.*
 
-class EnterFullNameViewModel(private val context: Context, private val fragmentSignin: FragmentFullNameMobile) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class ImgselectionViewModel(private val context: Context, private val fragmentSignin: FragmentImgSelction) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
@@ -22,13 +20,13 @@ class EnterFullNameViewModel(private val context: Context, private val fragmentS
 
     fun signInUserClicked() {
         fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentBioMobile::class.java));
     }
 
 
     fun signUpUserClicked() {
         fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentBioMobile::class.java));
 
     }
 

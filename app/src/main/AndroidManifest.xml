@@ -50,6 +50,16 @@
             android:name="com.guiado.grads.view.FragmentVerifyMobile"
             android:windowSoftInputMode="adjustPan" />
 
+        <activity
+            android:name="com.guiado.grads.view.FragmentBioMobile"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.grads.view.FragmentImgSelction"
+            android:windowSoftInputMode="adjustPan" />v
+        <activity
+            android:name="com.guiado.grads.view.FragmentUserName"
+            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name="com.guiado.grads.view.FragmentReferralMobile"
@@ -65,6 +75,9 @@
             android:windowSoftInputMode="adjustPan" />
 
 
+        <activity
+            android:name="com.guiado.grads.view.FragmentDate"
+            android:windowSoftInputMode="adjustPan" />
 
 
         <activity

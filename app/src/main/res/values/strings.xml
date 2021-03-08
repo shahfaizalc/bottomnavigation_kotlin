@@ -45,6 +45,19 @@
     <string name="home_fullnameSubTitle2">First Name</string>
     <string name="home_fullnameSubTitle3">Last Name</string>
 
+    <string name="home_dateTitle">Enter your date of birth</string>
+    <string name="home_dateSubTitle">Please enter your date of birth.</string>
+    <string name="home_dateSubTitle2">MM / DD / YYYY</string>
+
+    <string name="home_bioTitle">Add bio to your profile</string>
+    <string name="home_bioSubTitle"></string>
+    <string name="home_bioSubTitle2">Write here</string>
+
+
+    <string name="home_usernameTitle">Create your unique username</string>
+    <string name="home_userSubTitle">Can contain only letters, numbers,  underscores and periods.</string>
+    <string name="home_userSubTitle2">Username</string>
+    <string name="home_userSubTitle3">www.reelme.com/username</string>
 
 
     <string name="home_welcomestring2">Real people.</string>

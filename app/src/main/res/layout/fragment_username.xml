@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.EnterFullNameViewModel" />
+            type="com.guiado.grads.viewmodel.UsernameViewModel" />
     </data>
 
     <LinearLayout
@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/home_fullnameTitle"
+                android:text="@string/home_usernameTitle"
                  />
 
             <TextView
@@ -32,7 +32,7 @@
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/home_fullnameSubTitle"
+                android:text="@string/home_userSubTitle"
                 />
 
         <TextView
@@ -41,17 +41,14 @@
             android:textColorHint="@color/colorBlacklight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/home_fullnameSubTitle2"/>
+            android:hint="@string/home_userSubTitle2"/>
 
         <TextView
-            android:textSize="@dimen/dimen_36"
             android:padding="@dimen/dimen_16"
             android:textColorHint="@color/colorBlacklight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/home_fullnameSubTitle3"/>v
-
-
+            android:hint="@string/home_userSubTitle3"/>
 
         <Button
             android:textColor="@color/smoke2"
@@ -65,7 +62,8 @@
             android:layout_marginRight="@dimen/dimen_16"
             android:background="@drawable/button_black"
             android:onClick="@{() -> homeData.signUpUserClicked()}"
-            android:text="Next ->" />
+            android:text="NEXT ->" />
+
 
 
 <!--        <LinearLayout-->
