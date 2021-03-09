@@ -2,7 +2,9 @@ package com.guiado.grads.adapter
 
 import com.guiado.grads.R
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -15,6 +17,7 @@ import com.guiado.grads.model.Flight
 class FlightsRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerView.Adapter<FlightsRecyclerViewAdapter.ViewHolder>(), FlightsEventListener {
     private val flightsList: List<Flight>
     private val context: Context
+    var selectedPosition=-1;
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ViewHolder {
         val binding: FlightItemLayoutBinding = DataBindingUtil.inflate(
@@ -25,8 +28,12 @@ class FlightsRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerV
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val flight: Flight = flightsList[position]
-        holder.flightItemBinding.setFlight(flight)
-        holder.flightItemBinding.setItemClickListener(this)
+        holder.flightItemBinding.flight = flight
+        holder.flightItemBinding.itemClickListener = this
+        holder.flightItemBinding.itemPosition = position
+
+        holder.flightItemBinding.isValid = selectedPosition==position
+
     }
 
     override fun getItemCount(): Int {
@@ -41,13 +48,18 @@ class FlightsRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerV
         }
     }
 
-    override fun bookFlight(f: Flight) {
-        Toast.makeText(context, "You booked " + f.pincode,
-                Toast.LENGTH_LONG).show()
-    }
-
     init {
         flightsList = flsLst
         context = ctx
     }
+
+
+
+    override fun bookFlight(f: Flight, view: View?, itemPosition: Int) {
+        Toast.makeText(context, "You booked " + f.pincode,
+                Toast.LENGTH_LONG).show()
+        selectedPosition = itemPosition
+        notifyDataSetChanged()
+    }
+
 }
