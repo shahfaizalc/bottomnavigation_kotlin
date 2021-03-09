@@ -62,7 +62,7 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentGenderMobile"
+            android:name="com.guiado.grads.view.FlightsActivity"
             android:windowSoftInputMode="adjustPan" />
 
 

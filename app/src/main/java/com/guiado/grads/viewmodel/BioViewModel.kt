@@ -22,13 +22,13 @@ class BioViewModel(private val context: Context, private val fragmentSignin: Fra
 
     fun signInUserClicked() {
         fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentGenderMobile::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin, FlightsActivity::class.java));
     }
 
 
     fun signUpUserClicked() {
         fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentGenderMobile::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin, FlightsActivity::class.java));
 
     }
 
