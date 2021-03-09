@@ -62,6 +62,11 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:name="com.guiado.grads.view.FragmentGenderMobile"
+            android:windowSoftInputMode="adjustPan" />
+
+
+        <activity
             android:name="com.guiado.grads.view.FragmentReferralMobile"
             android:windowSoftInputMode="adjustPan" />
 
