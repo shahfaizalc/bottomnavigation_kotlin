@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -23,46 +24,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/home_enterMobileTitle"
+                android:text="@string/home_occupationTitle"
                  />
 
-            <TextView
+            <EditText
                 android:padding="@dimen/dimen_16"
                 android:textSize="@dimen/dimen_12"
                 android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home_enterMobileSubTitle"
-                />
-            <LinearLayout
-                android:layout_marginTop="@dimen/dimen_24"
-                android:padding="@dimen/dimen_16"
                 android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dimen_20"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:textSize="@dimen/dimen_36"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/home_enterMobilePrefix"
+                app:searchIcon="@android:drawable/ic_menu_search"
+        android:hint="@string/home_enterMobileSubTitle"
+                android:textColorHint="@color/black_25_transparent"
                 />
 
-                <TextView
-                    android:textStyle="bold"
-                    android:textSize="@dimen/dimen_36"
-                    android:textColor="@color/white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:hint="@string/home_enterMobilePostfix"
-                    android:textColorHint="@color/colorBlacklight"
-                    />
-            </LinearLayout>
 
 
         <Button

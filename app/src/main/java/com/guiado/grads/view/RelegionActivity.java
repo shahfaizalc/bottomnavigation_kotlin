@@ -10,28 +10,28 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guiado.grads.R;
-import com.guiado.grads.adapter.RelationshipRecyclerViewAdapter;
-import com.guiado.grads.databinding.RelationshipLayoutBinding;
+import com.guiado.grads.adapter.RelegiousRecyclerViewAdapter;
+import com.guiado.grads.databinding.RelegiousLayoutBinding;
 import com.guiado.grads.model.Flight;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RelegionActivity extends AppCompatActivity {
-    private RelationshipRecyclerViewAdapter adapter;
-    private RelationshipLayoutBinding binding;
+    private RelegiousRecyclerViewAdapter adapter;
+    private RelegiousLayoutBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.relationship_layout);
+        binding = DataBindingUtil.setContentView(this, R.layout.relegious_layout);
         binding.flightsRv.setLayoutManager(new LinearLayoutManager(this));
         binding.flightsRv.addItemDecoration(
                 new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        RelationshipRecyclerViewAdapter adapter =
-                new RelationshipRecyclerViewAdapter(prepareData(), this);
+        RelegiousRecyclerViewAdapter adapter =
+                new RelegiousRecyclerViewAdapter(prepareData(), this);
         binding.flightsRv.setAdapter(adapter);
         binding.nextBtn.setOnClickListener(new View.OnClickListener(){
             @Override

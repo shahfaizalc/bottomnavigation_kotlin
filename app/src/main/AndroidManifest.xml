@@ -69,6 +69,11 @@
             android:name="com.guiado.grads.view.RelationshipActivity"
             android:windowSoftInputMode="adjustPan" />
 
+
+        <activity
+            android:name="com.guiado.grads.view.RelegionActivity"
+            android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name="com.guiado.grads.view.FragmentOccupation"
             android:windowSoftInputMode="adjustPan" />

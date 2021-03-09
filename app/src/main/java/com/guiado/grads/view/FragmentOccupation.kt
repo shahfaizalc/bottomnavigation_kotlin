@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.guiado.grads.R
-import com.guiado.grads.databinding.FragmentWelcomeBinding
 import com.guiado.grads.fragments.BaseFragment
 import com.guiado.grads.viewmodel.WelcomeViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.guiado.grads.databinding.FragmentEntermobileBinding
 import com.guiado.grads.databinding.FragmentOccupationBinding
 import com.guiado.grads.viewmodel.EnterMobileViewModel
 import com.guiado.grads.viewmodel.OccupationViewModel
