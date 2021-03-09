@@ -59,6 +59,11 @@
     <string name="home_genderSubTitle2">The will help ReelMe provide you with better connections and a content. Other user will not see this information but it can be used to filter the content you see.</string>
 
 
+    <string name="home_religiousTitle">Religious beliefs</string>
+    <string name="home_relationshipTitle">Relationship status</string>
+    <string name="home_childrenTitle">Do you have children</string>
+
+
     <string name="home_usernameTitle">Create your unique username</string>
     <string name="home_userSubTitle">Can contain only letters, numbers,  underscores and periods.</string>
     <string name="home_userSubTitle2">Username</string>

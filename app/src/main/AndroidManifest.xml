@@ -65,6 +65,17 @@
             android:name="com.guiado.grads.view.FlightsActivity"
             android:windowSoftInputMode="adjustPan" />
 
+        <activity
+            android:name="com.guiado.grads.view.RelationshipActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.grads.view.FragmentOccupation"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.guiado.grads.view.ChildrenActivity"
+            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name="com.guiado.grads.view.FragmentReferralMobile"

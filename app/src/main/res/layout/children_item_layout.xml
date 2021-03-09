@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="itemPosition"
+            type="Integer" />
+
+        <variable
+            name="isValid"
+            type="Boolean" />v
+
+        <variable name="flight" type="com.guiado.grads.model.Flight"/>
+        <variable name="itemClickListener"
+            type="com.guiado.grads.listeners.ChildrenEventListener"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:onClick="@{(thisView) -> itemClickListener.bookFlight(flight, thisView,itemPosition)}"
+       tools:context="com.guiado.grads.view.FlightsActivity">
+        <TextView
+            android:gravity="start"
+            android:textColor="@{isValid ?  @color/white  : @color/colorBlacklight }"
+            android:id="@+id/air_lines"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{flight.pincode}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

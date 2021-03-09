@@ -10,22 +10,25 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guiado.grads.R;
+import com.guiado.grads.adapter.ChildrenRecyclerViewAdapter;
 import com.guiado.grads.adapter.FlightsRecyclerViewAdapter;
+import com.guiado.grads.databinding.ChildrenLayoutBinding;
 import com.guiado.grads.databinding.FlightLayoutBinding;
 import com.guiado.grads.model.Flight;
+import com.guiado.grads.viewmodel.OccupationViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlightsActivity extends AppCompatActivity {
-    private FlightsRecyclerViewAdapter adapter;
-    private FlightLayoutBinding binding;
+public class ChildrenActivity extends AppCompatActivity {
+    private ChildrenRecyclerViewAdapter adapter;
+    private ChildrenLayoutBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.flight_layout);
+        binding = DataBindingUtil.setContentView(this, R.layout.children_layout);
         binding.flightsRv.setLayoutManager(new LinearLayoutManager(this));
         binding.flightsRv.addItemDecoration(
                 new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
@@ -36,7 +39,7 @@ public class FlightsActivity extends AppCompatActivity {
         binding.nextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FlightsActivity.this,RelationshipActivity.class));
+                startActivity(new Intent(ChildrenActivity.this, FragmentOccupation.class));
             }
         });
 
@@ -45,15 +48,13 @@ public class FlightsActivity extends AppCompatActivity {
     public List<Flight> prepareData(){
         List<Flight> flights = new ArrayList<>();
 
-        Flight flight = new Flight("Male");
+        Flight flight = new Flight("Yes");
         flights.add(flight);
-        flight = new Flight("Female");
+        flight = new Flight("No");
         flights.add(flight);
-        flight = new Flight("Gender Neutral");
+        flight = new Flight("Someday");
         flights.add(flight);
-        flight = new Flight("Transgender");
-        flights.add(flight);
-        flight = new Flight("Other");
+        flight = new Flight("Never");
         flights.add(flight);
 
         return flights;
