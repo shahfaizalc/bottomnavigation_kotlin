@@ -36,7 +36,7 @@ public class RelegionActivity extends AppCompatActivity {
         binding.nextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RelegionActivity.this, ChildrenActivity.class));
+                startActivity(new Intent(RelegionActivity.this, FragmentHobbies.class));
             }
         });
 

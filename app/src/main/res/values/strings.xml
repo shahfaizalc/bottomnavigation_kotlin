@@ -22,17 +22,18 @@
     <string name="ad_notification">Your ad will stay online during the date indicated above or until you remove it.</string>
     <string name="ad_notification2">Your ad will stay online during the date and time indicated above or until you remove it. If you sold the item, kindly delete the ad</string>
     <string name="home_welcomestring">Ideas</string>
-    <string name="home_enterMobileTitle">Enter your mobile number</string>
+    <string name="home_enterMobileTitle">Enter your\nmobile number</string>
     <string name="home_enterMobileSubTitle">We\'ll text you a code to verify your phone</string>
     <string name="home_enterMobilePrefix">+7</string>
     <string name="home_enterMobilePostfix">(000) 000-00-00</string>
+    <string name="cantsign"><u>CAN\'T SIGNIN"</u></string>
 
-    <string name="home_verifyMobileTitle">Verify your mobile number</string>
+    <string name="home_verifyMobileTitle">Verify your\nmobile number</string>
     <string name="home_verifyMobileSubTitle">Enter the digit code we sent to you</string>
     <string name="home_verifyMobileSubTitle2">Text sent to +1 (303) 432-23-35</string>
 
 
-    <string name="home_referralMobileTitle">Any referral code?</string>
+    <string name="home_referralMobileTitle">Any referral\ncode?</string>
     <string name="home_referralMobileSubTitle">Please enter the referral code from the message you got to sign up on  RealMe.</string>
     <string name="home_referralMobileSubTitle2">Referral Code</string>
 
@@ -69,6 +70,10 @@
     <string name="home_userSubTitle">Can contain only letters, numbers,  underscores and periods.</string>
     <string name="home_userSubTitle2">Username</string>
     <string name="home_userSubTitle3">www.reelme.com/username</string>
+
+
+    <string name="home_hobbiesTitle">Hobbies &amp; Interests</string>
+    <string name="home_hobbiesSubTitle">Hobbies &amp; Interests</string>
 
 
     <string name="home_welcomestring2">Real people.</string>

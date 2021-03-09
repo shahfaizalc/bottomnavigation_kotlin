@@ -36,6 +36,7 @@
                 android:textStyle="bold|italic" />
 
             <TextView
+                android:layout_margin="@dimen/dimen_4"
                 android:textSize="@dimen/dimen_12"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
@@ -44,6 +45,7 @@
                 android:text="@string/home_welcomestring2"
                  />
             <TextView
+                android:layout_margin="@dimen/dimen_4"
                 android:textSize="@dimen/dimen_12"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
@@ -52,6 +54,7 @@
                 android:text="@string/home_welcomestring3"
                 />
             <TextView
+                android:layout_margin="@dimen/dimen_4"
                 android:textSize="@dimen/dimen_12"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
@@ -67,9 +70,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_16"
-            android:padding="@dimen/dimen_20"
+            android:paddingTop="@dimen/dimen_12"
+            android:paddingBottom="@dimen/dimen_12"
+            android:paddingStart="@dimen/dimen_28"
+            android:paddingEnd="@dimen/dimen_28"
+
             android:layout_gravity="center_horizontal"
-            android:paddingBottom="@dimen/dimen_20"
             android:layout_marginRight="@dimen/dimen_16"
             android:background="@drawable/button_black"
             android:onClick="@{() -> homeData.signInUserClicked()}"

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.RefferalMobileViewModel" />
+            type="com.guiado.grads.viewmodel.HobbiesViewModel" />
     </data>
 
     <LinearLayout
@@ -22,25 +23,21 @@
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/home_referralMobileTitle"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/home_hobbiesTitle"
                  />
 
-            <TextView
+            <EditText
                 android:padding="@dimen/dimen_16"
                 android:textSize="@dimen/dimen_12"
                 android:textColor="@color/white"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/home_referralMobileSubTitle"
+                app:searchIcon="@android:drawable/ic_menu_search"
+        android:hint="@string/home_enterMobileSubTitle"
+                android:textColorHint="@color/black_25_transparent"
                 />
 
-        <TextView
-            android:textSize="@dimen/dimen_36"
-            android:padding="@dimen/dimen_16"
-            android:textColorHint="@color/colorBlacklight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/home_referralMobileSubTitle2"/>
 
 
         <Button
@@ -48,15 +45,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_16"
-            android:paddingTop="@dimen/dimen_12"
-            android:paddingBottom="@dimen/dimen_12"
-            android:paddingStart="@dimen/dimen_48"
-            android:paddingEnd="@dimen/dimen_48"
+            android:paddingTop="@dimen/dimen_20"
+            android:paddingEnd="@dimen/dimen_32"
+            android:paddingStart="@dimen/dimen_32"
+            android:paddingBottom="@dimen/dimen_20"
             android:layout_marginRight="@dimen/dimen_16"
             android:background="@drawable/button_black"
             android:onClick="@{() -> homeData.signUpUserClicked()}"
-            android:text="CONTINUE ->" />
+            android:text="Next ->" />
 
+        <TextView
+            android:layout_margin="@dimen/dimen_20"
+            android:textSize="@dimen/dimen_12"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_genderSubTitle2"
+            />
 
 
 <!--        <LinearLayout-->
