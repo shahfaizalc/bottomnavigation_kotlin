@@ -16,13 +16,13 @@
         android:orientation="vertical">
 
             <TextView
-                android:textSize="@dimen/dimen_36"
+                android:layout_marginTop="@dimen/dimen_32"
+                android:textSize="@dimen/dimen_32"
                 android:padding="@dimen/dimen_16"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:text="@string/home_bioTitle"
                  />
 
@@ -44,6 +44,7 @@
             android:hint="@string/home_bioSubTitle2"/>
 
         <Button
+            android:layout_marginTop="@dimen/dimen_32"
             android:textColor="@color/smoke2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

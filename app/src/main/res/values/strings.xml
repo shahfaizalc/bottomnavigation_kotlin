@@ -50,20 +50,20 @@
     <string name="home_dateSubTitle">Please enter your date of birth.</string>
     <string name="home_dateSubTitle2">MM / DD / YYYY</string>
 
-    <string name="home_bioTitle">Add a Bio to your profile</string>
+    <string name="home_bioTitle">Add a Bio to\nyour profile</string>
     <string name="home_bioSubTitle"></string>
     <string name="home_bioSubTitle2">Write here</string>
 
 
-    <string name="home_genderTitle">What is your gender?</string>
+    <string name="home_genderTitle">What is\nyour gender?</string>
     <string name="home_genderSubTitle"></string>
     <string name="home_genderSubTitle2">The will help ReelMe provide you with better connections and a content. Other user will not see this information but it can be used to filter the content you see.</string>
 
 
     <string name="home_religiousTitle">Religious beliefs</string>
-    <string name="home_relationshipTitle">Relationship status</string>
-    <string name="home_childrenTitle">Do you have children</string>
-    <string name="home_occupationTitle">What is your Occupation?</string>
+    <string name="home_relationshipTitle">Relationship\nstatus</string>
+    <string name="home_childrenTitle">Do you have children?</string>
+    <string name="home_occupationTitle">What is your\nOccupation?</string>
 
 
     <string name="home_usernameTitle">Create your\nunique username</string>

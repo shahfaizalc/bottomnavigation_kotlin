@@ -17,26 +17,27 @@
         android:orientation="vertical">
 
             <TextView
-                android:textSize="@dimen/dimen_36"
+                android:layout_marginTop="@dimen/dimen_32"
+                android:textSize="@dimen/dimen_32"
                 android:padding="@dimen/dimen_16"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:text="@string/home_occupationTitle"
                  />
 
             <EditText
+                android:layout_margin="@dimen/dimen_16"
                 android:drawableEnd="@android:drawable/ic_menu_search"
                 android:padding="@dimen/dimen_8"
                 android:textSize="@dimen/dimen_12"
-                android:background="@color/colorBlacklight"
+                android:background="@drawable/rounded_edittext"
                 android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/pick_your_occupation"
-                android:textColorHint="@color/black_25_transparent" />
+                android:textColorHint="@color/colorGrey" />
 
         <Button
             android:textColor="@color/smoke2"
@@ -54,12 +55,13 @@
             android:text="Next ->" />
 
         <TextView
+            android:layout_marginTop="@dimen/dimen_32"
             android:layout_margin="@dimen/dimen_20"
             android:textSize="@dimen/dimen_12"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CAN\'T SIGNIN"
+            android:text="@string/home_genderSubTitle2"
             />
 
 

@@ -7,7 +7,8 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:textSize="@dimen/dimen_36"
+            android:layout_marginTop="@dimen/dimen_32"
+            android:textSize="@dimen/dimen_32"
             android:padding="@dimen/dimen_16"
             android:textStyle="bold"
             android:textColor="@color/white"
@@ -24,6 +25,7 @@
             android:layout_marginRight="8dp"/>
 
         <Button
+            android:layout_marginTop="@dimen/dimen_32"
             android:id="@+id/nextBtn"
             android:textColor="@color/smoke2"
             android:layout_width="wrap_content"
@@ -38,12 +40,12 @@
             android:text="Next ->" />
 
         <TextView
-            android:textSize="@dimen/dimen_16"
+            android:textSize="@dimen/dimen_12"
             android:padding="@dimen/dimen_16"
-            android:textColorHint="@color/colorBlacklight"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/home_genderSubTitle2"/>
+            android:text="@string/home_genderSubTitle2"/>
 
     </LinearLayout>
 </layout>
