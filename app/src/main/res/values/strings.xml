@@ -37,16 +37,16 @@
     <string name="home_referralMobileSubTitle">Please enter the referral code from the message you got to sign up on  RealMe.</string>
     <string name="home_referralMobileSubTitle2">Referral Code</string>
 
-    <string name="home_emaillMobileTitle">Enter your email address</string>
+    <string name="home_emaillMobileTitle">Enter your \nemail address</string>
     <string name="home_emailMobileSubTitle">Please enter your email address.</string>
     <string name="home_emailMobileSubTitle2">Your Email</string>
 
-    <string name="home_fullnameTitle">Enter your full name</string>
+    <string name="home_fullnameTitle">Enter your\nfull name</string>
     <string name="home_fullnameSubTitle">Please enter your full name.</string>
     <string name="home_fullnameSubTitle2">First Name</string>
     <string name="home_fullnameSubTitle3">Last Name</string>
 
-    <string name="home_dateTitle">Enter your date of birth</string>
+    <string name="home_dateTitle">Enter your\ndate of birth</string>
     <string name="home_dateSubTitle">Please enter your date of birth.</string>
     <string name="home_dateSubTitle2">MM / DD / YYYY</string>
 
