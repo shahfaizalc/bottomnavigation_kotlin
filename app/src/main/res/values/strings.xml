@@ -66,7 +66,7 @@
     <string name="home_occupationTitle">What is your Occupation?</string>
 
 
-    <string name="home_usernameTitle">Create your unique username</string>
+    <string name="home_usernameTitle">Create your\nunique username</string>
     <string name="home_userSubTitle">Can contain only letters, numbers,  underscores and periods.</string>
     <string name="home_userSubTitle2">Username</string>
     <string name="home_userSubTitle3">www.reelme.com/username</string>
