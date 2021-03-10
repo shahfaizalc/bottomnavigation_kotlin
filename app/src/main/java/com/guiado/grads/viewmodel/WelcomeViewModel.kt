@@ -21,13 +21,13 @@ class WelcomeViewModel(private val context: Context, private val fragmentSignin:
     }
 
     fun signInUserClicked() {
-        fragmentSignin.finish()
+       // fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEnterMobile::class.java));
     }
 
 
     fun signUpUserClicked() {
-        fragmentSignin.finish()
+       // fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentRegistration::class.java));
 
     }

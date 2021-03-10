@@ -152,7 +152,7 @@ class NewChallengeViewModel(private val context: Context, private val fragmentSi
                         response.body().toString()
                          showProgresss(false)
                         Toast.makeText(context,"Thanks for your idea. \n Idea added successfully to challenge.",Toast.LENGTH_LONG).show()
-                        fragmentSignin.finish()
+                      //  fragmentSignin.finish()
                     }
 
 

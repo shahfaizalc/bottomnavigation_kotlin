@@ -21,13 +21,13 @@ class EnterFullNameViewModel(private val context: Context, private val fragmentS
     }
 
     fun signInUserClicked() {
-        fragmentSignin.finish()
+       // fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
     }
 
 
     fun signUpUserClicked() {
-        fragmentSignin.finish()
+      //  fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
 
     }

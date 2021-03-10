@@ -28,22 +28,21 @@
                  />
 
             <EditText
-                android:padding="@dimen/dimen_16"
+                android:drawableEnd="@android:drawable/ic_menu_search"
+                android:padding="@dimen/dimen_8"
                 android:textSize="@dimen/dimen_12"
+                android:background="@color/colorBlacklight"
                 android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:searchIcon="@android:drawable/ic_menu_search"
-        android:hint="@string/home_enterMobileSubTitle"
-                android:textColorHint="@color/black_25_transparent"
-                />
-
-
+                android:hint="@string/pick_your_occupation"
+                android:textColorHint="@color/black_25_transparent" />
 
         <Button
             android:textColor="@color/smoke2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
             android:layout_marginLeft="@dimen/dimen_16"
             android:paddingTop="@dimen/dimen_20"
             android:paddingEnd="@dimen/dimen_32"

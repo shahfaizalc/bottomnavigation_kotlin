@@ -19,13 +19,13 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
     }
 
     fun signInUserClicked() {
-        fragmentSignin.finish()
+      //  fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentImgSelction::class.java));
     }
 
 
     fun signUpUserClicked() {
-        fragmentSignin.finish()
+       // fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentImgSelction::class.java));
 
     }

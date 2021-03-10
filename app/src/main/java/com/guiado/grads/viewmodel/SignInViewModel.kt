@@ -185,13 +185,13 @@ class SignInViewModel(private val context: Context, private val fragmentSignin: 
     }
 
     fun isuserVerified(){
-        fragmentSignin.finish()
+      //  fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerification::class.java));
     }
 
 
     private fun launchProfile() {
-        fragmentSignin.finish()
+      //  fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, Main2Activity::class.java));
     }
 

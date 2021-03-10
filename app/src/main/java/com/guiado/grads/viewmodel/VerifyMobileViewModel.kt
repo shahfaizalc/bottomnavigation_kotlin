@@ -21,13 +21,13 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
     }
 
     fun signInUserClicked() {
-        fragmentSignin.finish()
+      //  fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
     }
 
 
     fun signUpUserClicked() {
-        fragmentSignin.finish()
+      //  fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
 
     }

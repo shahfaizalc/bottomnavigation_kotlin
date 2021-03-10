@@ -17,81 +17,58 @@
 
 
 
-        <TextView
-            android:textSize="@dimen/dimen_36"
-            android:padding="@dimen/dimen_16"
-            android:textColorHint="@color/colorBlacklight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/home_userSubTitle2"/>
+<com.guiado.grads.util.ImageViewRounded
+    android:layout_marginTop="@dimen/dimen_24"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    android:background="@drawable/roundedbg"
+    android:src="@drawable/profilepic">
+
+</com.guiado.grads.util.ImageViewRounded>
 
 
 
-        <Button
-            android:textColor="@color/smoke2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_16"
-            android:paddingTop="@dimen/dimen_20"
-            android:paddingEnd="@dimen/dimen_32"
-            android:paddingStart="@dimen/dimen_32"
-            android:paddingBottom="@dimen/dimen_20"
-            android:layout_marginRight="@dimen/dimen_16"
-            android:background="@drawable/button_black"
-            android:onClick="@{() -> homeData.signUpUserClicked()}"
-            android:text="UPLOAD PICTURE ->" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/dimen_20"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-        <Button
-            android:textColor="@color/smoke2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_16"
-            android:paddingTop="@dimen/dimen_20"
-            android:paddingEnd="@dimen/dimen_32"
-            android:paddingStart="@dimen/dimen_32"
-            android:paddingBottom="@dimen/dimen_20"
-            android:layout_marginRight="@dimen/dimen_16"
-            android:background="@drawable/button_black"
-            android:onClick="@{() -> homeData.signUpUserClicked()}"
-            android:text="TAKE PICTURE" />
+            <Button
+                android:textColor="@color/smoke2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_16"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:paddingTop="@dimen/dimen_20"
+                android:paddingEnd="@dimen/dimen_24"
+                android:paddingStart="@dimen/dimen_24"
+                android:paddingBottom="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_16"
+                android:background="@drawable/button_black"
+                android:onClick="@{() -> homeData.signUpUserClicked()}"
+                android:text="UPLOAD PICTURE"
+                android:textStyle="bold" />
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_marginBottom="@dimen/dimen_20"-->
-<!--            android:layout_weight="1"-->
-<!--            android:gravity="bottom"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <Button-->
-<!--                android:textColor="@color/smoke2"-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="@dimen/dimen_16"-->
-<!--                android:layout_marginTop="@dimen/dimen_8"-->
-<!--                android:paddingTop="@dimen/dimen_20"-->
-<!--                android:paddingBottom="@dimen/dimen_20"-->
-<!--                android:layout_marginRight="@dimen/dimen_16"-->
-<!--                android:background="@drawable/circular_bg_blue_8"-->
-<!--                android:onClick="@{() -> homeData.signUpUserClicked()}"-->
-<!--                android:text="@string/signUpText"-->
-<!--                android:textStyle="bold" />-->
-
-<!--            <Button-->
-<!--                android:textColor="@color/smoke2"-->
-<!--                android:paddingTop="@dimen/dimen_20"-->
-<!--                android:paddingBottom="@dimen/dimen_20"-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="@dimen/dimen_16"-->
-<!--                android:layout_marginTop="@dimen/dimen_8"-->
-<!--                android:layout_marginRight="@dimen/dimen_16"-->
-<!--                android:background="@drawable/circular_bg_blue_8"-->
-<!--                android:onClick="@{() -> homeData.signInUserClicked()}"-->
-<!--                android:text="Get Started"-->
-<!--                android:textStyle="bold" />-->
-<!--        </LinearLayout>-->
+            <Button
+                android:textColor="@color/smoke2"
+                android:paddingTop="@dimen/dimen_20"
+                android:paddingEnd="@dimen/dimen_24"
+                android:paddingStart="@dimen/dimen_24"
+                android:paddingBottom="@dimen/dimen_20"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_16"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginRight="@dimen/dimen_16"
+                android:background="@drawable/button_black"
+                android:onClick="@{() -> homeData.signInUserClicked()}"
+                android:text="TAKE PICTURE"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

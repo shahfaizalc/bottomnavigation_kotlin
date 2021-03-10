@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ideas</string>
+    <string name="app_name">ReelMe</string>
 
     <array name="tab_name">
         <item>Home</item>
@@ -26,7 +26,7 @@
     <string name="home_enterMobileSubTitle">We\'ll text you a code to verify your phone</string>
     <string name="home_enterMobilePrefix">+7</string>
     <string name="home_enterMobilePostfix">(000) 000-00-00</string>
-    <string name="cantsign"><u>CAN\'T SIGNIN"</u></string>
+    <string name="cantsign">CAN\'T SIGNIN"</string>
 
     <string name="home_verifyMobileTitle">Verify your\nmobile number</string>
     <string name="home_verifyMobileSubTitle">Enter the digit code we sent to you</string>
@@ -301,8 +301,8 @@ Welcome to Grads!
 
 <!-- fb ads -->
     <string name="banner_id">514835722463089_514969325783062</string>
-
-
+    <string name="pick_your_occupation">Pick your occupation</string>
+    <string name="pick_your_hobbies_amp_interests"><![CDATA[Pick your hobbies & interests]]></string>
 
 
 </resources>

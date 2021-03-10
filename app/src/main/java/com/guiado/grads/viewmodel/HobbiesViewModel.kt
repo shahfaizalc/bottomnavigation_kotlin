@@ -21,14 +21,14 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
     }
 
     fun signInUserClicked() {
-        fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
+     //   fragmentSignin.finish()
+      //  fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
     }
 
 
     fun signUpUserClicked() {
-        fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
+      //  fragmentSignin.finish()
+       // fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
 
     }
 

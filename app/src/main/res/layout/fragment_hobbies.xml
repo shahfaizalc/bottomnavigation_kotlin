@@ -27,16 +27,17 @@
                 android:text="@string/home_hobbiesTitle"
                  />
 
-            <EditText
-                android:padding="@dimen/dimen_16"
-                android:textSize="@dimen/dimen_12"
-                android:textColor="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:searchIcon="@android:drawable/ic_menu_search"
-        android:hint="@string/home_enterMobileSubTitle"
-                android:textColorHint="@color/black_25_transparent"
-                />
+        <EditText
+            android:drawableEnd="@android:drawable/ic_menu_search"
+            android:padding="@dimen/dimen_8"
+            android:textSize="@dimen/dimen_12"
+            android:background="@color/colorBlacklight"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/pick_your_hobbies_amp_interests"
+            android:textColorHint="@color/black_25_transparent" />
+
 
 
 

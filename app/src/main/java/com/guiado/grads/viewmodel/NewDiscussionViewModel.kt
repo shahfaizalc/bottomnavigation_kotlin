@@ -197,7 +197,7 @@ class NewDiscussionViewModel(private val context: Context, private val fragmentS
                         val intent = Intent()
                         Log.d("on result faizal","on result faizalloor")
                         fragmentSignin.setResult(22, intent); // You can also send result without any data using setResult(int resultCode)
-                        fragmentSignin.finish()
+                       // fragmentSignin.finish()
 
                     }
 

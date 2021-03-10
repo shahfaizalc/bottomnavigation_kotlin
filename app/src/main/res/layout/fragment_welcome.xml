@@ -25,12 +25,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:src="@drawable/logo60x60"
+                android:src="@drawable/applogocoloroutline"
                 android:layout_width="240dp"
                 android:layout_height="240dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="@string/home_welcomestring"
                 android:textColor="@color/com_facebook_blue"
                 android:textSize="@dimen/dimen_48"
                 android:textStyle="bold|italic" />

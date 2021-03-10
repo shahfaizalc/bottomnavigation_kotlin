@@ -21,13 +21,13 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
     }
 
     fun signInUserClicked() {
-        fragmentSignin.finish()
+       // fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentFullNameMobile::class.java));
     }
 
 
     fun signUpUserClicked() {
-        fragmentSignin.finish()
+       // fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentFullNameMobile::class.java));
 
     }

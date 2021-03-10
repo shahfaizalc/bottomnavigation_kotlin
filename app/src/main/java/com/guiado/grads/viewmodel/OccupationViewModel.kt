@@ -21,13 +21,13 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
     }
 
     fun signInUserClicked() {
-        fragmentSignin.finish()
+       // fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
     }
 
 
     fun signUpUserClicked() {
-        fragmentSignin.finish()
+      //  fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
 
     }

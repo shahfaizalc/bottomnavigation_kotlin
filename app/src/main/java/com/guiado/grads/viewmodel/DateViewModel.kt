@@ -19,13 +19,13 @@ class DateViewModel(private val context: Context, private val fragmentSignin: Fr
     }
 
     fun signInUserClicked() {
-        fragmentSignin.finish()
+       // fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentUserName::class.java));
     }
 
 
     fun signUpUserClicked() {
-        fragmentSignin.finish()
+       // fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentUserName::class.java));
 
     }
