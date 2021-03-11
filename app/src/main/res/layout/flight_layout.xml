@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
-        android:background="@color/black"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:weightSum="12"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        android:orientation="vertical">
+
+    <TextView
             android:layout_marginTop="@dimen/dimen_32"
             android:textSize="@dimen/dimen_32"
             android:padding="@dimen/dimen_16"
@@ -45,6 +54,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/home_genderSubTitle2"/>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:background="@color/black"
+            android:orientation="vertical">
+
+            <TextView
+                android:paddingStart="@dimen/dimen_16"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_skip" />
+
+        </LinearLayout>
     </LinearLayout>
 </layout>

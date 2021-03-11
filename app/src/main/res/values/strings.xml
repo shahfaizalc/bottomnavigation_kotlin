@@ -40,6 +40,8 @@
     <string name="home_emaillMobileTitle">Enter your \nemail address</string>
     <string name="home_emailMobileSubTitle">Please enter your email address.</string>
     <string name="home_emailMobileSubTitle2">Your Email</string>
+    <string name="home_emailskip">By tapping Continue, you agree to the Terms of Service &amp; Privacy Policy </string>
+
 
     <string name="home_fullnameTitle">Enter your\nfull name</string>
     <string name="home_fullnameSubTitle">Please enter your full name.</string>
@@ -75,6 +77,7 @@
     <string name="home_hobbiesTitle">Hobbies &amp; Interests</string>
     <string name="home_hobbiesSubTitle">Hobbies &amp; Interests</string>
 
+    <string name="home_skip">Skip</string>
 
     <string name="home_welcomestring2">Real people.</string>
     <string name="home_welcomestring3">Real Connection.</string>
