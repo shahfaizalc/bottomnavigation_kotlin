@@ -10,7 +10,7 @@ import com.guiado.grads.R
 import com.guiado.grads.handler.NetworkChangeHandler
 import com.guiado.grads.view.*
 
-class HobbiesViewModel(private val context: Context, private val fragmentSignin: FragmentHobbies) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class HomescreenViewModel(private val context: Context, private val fragmentSignin: FragmentHomeScreen) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
@@ -21,14 +21,14 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
     }
 
     fun signInUserClicked() {
-     //   fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomeScreen::class.java));
+       // fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEnterMobile::class.java));
     }
 
 
     fun signUpUserClicked() {
-      //  fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomeScreen::class.java));
+       // fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentRegistration::class.java));
 
     }
 

@@ -48,7 +48,7 @@
             android:text="Next ->" />
 
         <TextView
-            android:textSize="@dimen/dimen_16"
+            android:textColor="@color/white"
             android:padding="@dimen/dimen_16"
             android:textColorHint="@color/colorBlacklight"
             android:layout_width="wrap_content"
