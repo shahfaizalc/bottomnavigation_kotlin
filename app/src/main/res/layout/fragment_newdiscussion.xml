@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.reelme.realme.viewmodel.NewDiscussionViewModel" />
+            type="com.reelme.app.viewmodel.NewDiscussionViewModel" />
     </data>
 
     <RelativeLayout

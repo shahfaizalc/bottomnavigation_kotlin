@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.reelme.realme.viewmodel.VerifyMobileViewModel" />
+            type="com.reelme.app.viewmodel.VerifyMobileViewModel" />
     </data>
 
 
@@ -45,7 +45,7 @@
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/home_verifyMobileSubTitle2"/>
+            android:text="@={homeData.ideaTitle}"/>
 
         <TextView
             android:textSize="@dimen/dimen_36"
@@ -54,7 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:letterSpacing=".5"
-            android:hint="0000"/>
+            android:text="@={homeData.ideaTitle2}"
+            android:hint="000000"/>
 
         <Button
             android:layout_marginTop="@dimen/dimen_16"

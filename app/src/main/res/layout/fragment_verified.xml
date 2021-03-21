@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.reelme.realme.viewmodel.VerifiedViewModel" />
+            type="com.reelme.app.viewmodel.VerifiedViewModel" />
     </data>
 
     <LinearLayout

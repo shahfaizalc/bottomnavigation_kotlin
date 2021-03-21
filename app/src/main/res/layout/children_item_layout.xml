@@ -11,9 +11,9 @@
             name="isValid"
             type="Boolean" />v
 
-        <variable name="flight" type="com.reelme.realme.model.Flight"/>
+        <variable name="flight" type="com.reelme.app.model.Flight"/>
         <variable name="itemClickListener"
-            type="com.reelme.realme.listeners.ChildrenEventListener"/>
+            type="com.reelme.app.listeners.ChildrenEventListener"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -22,7 +22,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:onClick="@{(thisView) -> itemClickListener.bookFlight(flight, thisView,itemPosition)}"
-       tools:context="com.reelme.realme.view.FlightsActivity">
+       tools:context="com.reelme.app.view.FlightsActivity">
         <TextView
             android:gravity="start"
             android:textColor="@{isValid ?  @color/white  : @color/colorBlacklight }"

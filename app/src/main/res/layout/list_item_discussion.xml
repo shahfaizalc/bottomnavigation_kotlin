@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.reelme.realme.viewmodel.DiscussionModel" />
+            type="com.reelme.app.viewmodel.DiscussionModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.reelme.realme.model_sales.ideas.Record" />
+            type="com.reelme.app.model_sales.ideas.Record" />
 
         <variable
             name="itemPosition"
@@ -18,11 +18,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.reelme.realme.adapter.DiscussionAdapter" />
+            type="com.reelme.app.adapter.DiscussionAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.reelme.realme.listeners.DiscussionEventListener" />
+            type="com.reelme.app.listeners.DiscussionEventListener" />
 
         <variable
             name="keyWordsTag"

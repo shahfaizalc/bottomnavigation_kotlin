@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.reelme.realme.viewmodel.SettingsViewModel" />
+            type="com.reelme.app.viewmodel.SettingsViewModel" />
 
     </data>
 

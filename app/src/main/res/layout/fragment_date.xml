@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.reelme.realme.viewmodel.DateViewModel" />
+            type="com.reelme.app.viewmodel.DateViewModel" />
     </data>
 
     <LinearLayout

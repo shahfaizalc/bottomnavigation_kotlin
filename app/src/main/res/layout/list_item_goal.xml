@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.reelme.realme.viewmodel.GoalModel" />
+            type="com.reelme.app.viewmodel.GoalModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.reelme.realme.model_sales.goal.Record" />
+            type="com.reelme.app.model_sales.goal.Record" />
 
         <variable
             name="itemPosition"
@@ -18,11 +18,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.reelme.realme.adapter.GoalAdapter" />
+            type="com.reelme.app.adapter.GoalAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.reelme.realme.listeners.GoalEventListener" />
+            type="com.reelme.app.listeners.GoalEventListener" />
 
         <variable
             name="keyWordsTag"

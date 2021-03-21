@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.reelme.realme.viewmodel.ChallengeModel" />
+            type="com.reelme.app.viewmodel.ChallengeModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.reelme.realme.model_sales.challenges.Record" />
+            type="com.reelme.app.model_sales.challenges.Record" />
 
         <variable
             name="itemPosition"
@@ -18,11 +18,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.reelme.realme.adapter.ChallengeAdapter" />
+            type="com.reelme.app.adapter.ChallengeAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.reelme.realme.listeners.ChallengeEventListener" />
+            type="com.reelme.app.listeners.ChallengeEventListener" />
 
         <variable
             name="keyWordsTag"

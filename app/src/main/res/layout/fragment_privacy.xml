@@ -7,7 +7,7 @@
 
         <variable
             name="homeData"
-            type="com.reelme.realme.viewmodel.PrivacyViewModel" />
+            type="com.reelme.app.viewmodel.PrivacyViewModel" />
 
     </data>
 

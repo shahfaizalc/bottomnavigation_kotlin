@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.reelme.realme"
+    package="com.reelme.app"
     xmlns:dist="http://schemas.android.com/apk/distribution">
 
     <dist:module dist:instant="true" />
@@ -19,111 +19,111 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.reelme.realme.activities.Main2Activity"
+            android:name="com.reelme.app.activities.Main2Activity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.FragmentForgotPassword"
+            android:name="com.reelme.app.view.FragmentForgotPassword"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.FragmentSignin"
+            android:name="com.reelme.app.view.FragmentSignin"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.FragmentWelcome"
+            android:name="com.reelme.app.view.FragmentWelcome"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.FragmentNewDiscusssion"
+            android:name="com.reelme.app.view.FragmentNewDiscusssion"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.FragmentNewChallenge"
+            android:name="com.reelme.app.view.FragmentNewChallenge"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
-            android:name="com.reelme.realme.view.FragmentSavedDiscussions"
+            android:name="com.reelme.app.view.FragmentSavedDiscussions"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.FragmentVerifyMobile"
+            android:name="com.reelme.app.view.FragmentVerifyMobile"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.FragmentBioMobile"
+            android:name="com.reelme.app.view.FragmentBioMobile"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.FragmentImgSelction"
+            android:name="com.reelme.app.view.FragmentImgSelction"
             android:windowSoftInputMode="adjustPan" />v
         <activity
-            android:name="com.reelme.realme.view.FragmentUserName"
+            android:name="com.reelme.app.view.FragmentUserName"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.FlightsActivity"
+            android:name="com.reelme.app.view.FlightsActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.RelationshipActivity"
-            android:windowSoftInputMode="adjustPan" />
-
-
-        <activity
-            android:name="com.reelme.realme.view.RelegionActivity"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.reelme.realme.view.FragmentOccupation"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.reelme.realme.view.ChildrenActivity"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.reelme.realme.view.FragmentReferralMobile"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.reelme.realme.view.FragmentEmailAddress"
+            android:name="com.reelme.app.view.RelationshipActivity"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
-            android:name="com.reelme.realme.view.FragmentFullNameMobile"
+            android:name="com.reelme.app.view.RelegionActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.app.view.FragmentOccupation"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.app.view.ChildrenActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.app.view.FragmentReferralMobile"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.app.view.FragmentEmailAddress"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
-            android:name="com.reelme.realme.view.FragmentDate"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.reelme.realme.view.FragmentHomeScreen"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.reelme.realme.view.FragmentHobbies"
+            android:name="com.reelme.app.view.FragmentFullNameMobile"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
-            android:name="com.reelme.realme.view.FragmentEnterMobile"
+            android:name="com.reelme.app.view.FragmentDate"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.FragmentFeedBack"
+            android:name="com.reelme.app.view.FragmentHomeScreen"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.view.FragmentPrivacy"
+            android:name="com.reelme.app.view.FragmentHobbies"
+            android:windowSoftInputMode="adjustPan" />
+
+
+        <activity
+            android:name="com.reelme.app.view.FragmentEnterMobile"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.realme.activities.LaunchActivity"
+            android:name="com.reelme.app.view.FragmentFeedBack"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.app.view.FragmentPrivacy"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.app.activities.LaunchActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

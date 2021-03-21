@@ -7,7 +7,7 @@
 
         <variable
             name="homeData"
-            type="com.reelme.realme.viewmodel.ProfileViewModel" />
+            type="com.reelme.app.viewmodel.ProfileViewModel" />
     </data>
 
     <ScrollView

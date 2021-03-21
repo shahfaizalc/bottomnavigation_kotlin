@@ -22,9 +22,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class com.reelme.realme.model2.** { *; }
+-keep class com.reelme.app.model2.** { *; }
 
--keep class com.reelme.realme.model.** { *; }
+-keep class com.reelme.app.model.** { *; }
 
 -keepattributes *Annotation*
 -keepclassmembers class ** {

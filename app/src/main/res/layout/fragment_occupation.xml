@@ -7,7 +7,7 @@
 
         <variable
             name="homeData"
-            type="com.reelme.realme.viewmodel.OccupationViewModel" />
+            type="com.reelme.app.viewmodel.OccupationViewModel" />
     </data>
 
     <LinearLayout

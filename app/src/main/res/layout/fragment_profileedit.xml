@@ -7,11 +7,11 @@
 
         <variable
             name="homeData"
-            type="com.reelme.realme.viewmodel.ProfileEditViewModel" />
+            type="com.reelme.app.viewmodel.ProfileEditViewModel" />
 
         <variable
             name="profile"
-            type="com.reelme.realme.model2.Profile" />
+            type="com.reelme.app.model2.Profile" />
     </data>
 
     <ScrollView
@@ -47,7 +47,7 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <com.reelme.realme.utils.ImageViewRounded
+                        <com.reelme.app.utils.ImageViewRounded
                             android:id="@+id/header2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
