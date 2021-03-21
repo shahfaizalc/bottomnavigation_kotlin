@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "437386630269",
-    "project_id": "reelme-6fb52",
-    "storage_bucket": "reelme-6fb52.appspot.com"
+    "project_number": "102638864590",
+    "project_id": "realme-d33d0",
+    "storage_bucket": "realme-d33d0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:437386630269:android:9296bbf42484121517cd14",
+        "mobilesdk_app_id": "1:102638864590:android:7c4457253aa7b54c7ee89f",
         "android_client_info": {
           "package_name": "com.reelme.realme"
         }
       },
       "oauth_client": [
         {
-          "client_id": "437386630269-hdrrf9v1ai1ek1tlmjep5erde6f0eqhe.apps.googleusercontent.com",
+          "client_id": "102638864590-29gpujin9rqbtq3ufhaj6878kjm4sd0m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB2BFWG0MUoF5gVfj6te5q2moy4jbOHjrw"
+          "current_key": "AIzaSyBKjsmRmYQh7i87lb_Lsou5s3AHjo9CUtI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "437386630269-hdrrf9v1ai1ek1tlmjep5erde6f0eqhe.apps.googleusercontent.com",
+              "client_id": "102638864590-29gpujin9rqbtq3ufhaj6878kjm4sd0m.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
