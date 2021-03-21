@@ -11,9 +11,9 @@
             name="isValid"
             type="Boolean" />
 
-        <variable name="flight" type="com.guiado.grads.model.Flight"/>
+        <variable name="flight" type="com.reelme.realme.model.Flight"/>
         <variable name="itemClickListener"
-            type="com.guiado.grads.listeners.RelegiousEventListener"/>
+            type="com.reelme.realme.listeners.RelegiousEventListener"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -22,7 +22,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:onClick="@{(thisView) -> itemClickListener.bookFlight(flight, thisView,itemPosition)}"
-       tools:context="com.guiado.grads.view.FlightsActivity">
+       tools:context="com.reelme.realme.view.FlightsActivity">
         <TextView
             android:gravity="start"
             android:textColor="@{isValid ?  @color/white  : @color/colorBlacklight }"

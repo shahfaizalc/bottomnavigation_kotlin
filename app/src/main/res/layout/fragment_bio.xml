@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.BioViewModel" />
+            type="com.reelme.realme.viewmodel.BioViewModel" />
     </data>
 
     <LinearLayout

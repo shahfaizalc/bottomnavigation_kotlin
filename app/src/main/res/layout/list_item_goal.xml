@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.GoalModel" />
+            type="com.reelme.realme.viewmodel.GoalModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model_sales.goal.Record" />
+            type="com.reelme.realme.model_sales.goal.Record" />
 
         <variable
             name="itemPosition"
@@ -18,11 +18,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.grads.adapter.GoalAdapter" />
+            type="com.reelme.realme.adapter.GoalAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.grads.listeners.GoalEventListener" />
+            type="com.reelme.realme.listeners.GoalEventListener" />
 
         <variable
             name="keyWordsTag"

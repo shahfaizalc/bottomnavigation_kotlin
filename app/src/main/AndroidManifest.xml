@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.guiado.grads"
+    package="com.reelme.realme"
     xmlns:dist="http://schemas.android.com/apk/distribution">
 
     <dist:module dist:instant="true" />
@@ -18,111 +18,111 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.guiado.grads.activities.Main2Activity"
+            android:name="com.reelme.realme.activities.Main2Activity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentForgotPassword"
+            android:name="com.reelme.realme.view.FragmentForgotPassword"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentSignin"
+            android:name="com.reelme.realme.view.FragmentSignin"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentWelcome"
+            android:name="com.reelme.realme.view.FragmentWelcome"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentNewDiscusssion"
+            android:name="com.reelme.realme.view.FragmentNewDiscusssion"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentNewChallenge"
+            android:name="com.reelme.realme.view.FragmentNewChallenge"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
-            android:name="com.guiado.grads.view.FragmentSavedDiscussions"
+            android:name="com.reelme.realme.view.FragmentSavedDiscussions"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentVerifyMobile"
+            android:name="com.reelme.realme.view.FragmentVerifyMobile"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentBioMobile"
+            android:name="com.reelme.realme.view.FragmentBioMobile"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentImgSelction"
+            android:name="com.reelme.realme.view.FragmentImgSelction"
             android:windowSoftInputMode="adjustPan" />v
         <activity
-            android:name="com.guiado.grads.view.FragmentUserName"
+            android:name="com.reelme.realme.view.FragmentUserName"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FlightsActivity"
+            android:name="com.reelme.realme.view.FlightsActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.RelationshipActivity"
-            android:windowSoftInputMode="adjustPan" />
-
-
-        <activity
-            android:name="com.guiado.grads.view.RelegionActivity"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.grads.view.FragmentOccupation"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.grads.view.ChildrenActivity"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.grads.view.FragmentReferralMobile"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.grads.view.FragmentEmailAddress"
+            android:name="com.reelme.realme.view.RelationshipActivity"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
-            android:name="com.guiado.grads.view.FragmentFullNameMobile"
+            android:name="com.reelme.realme.view.RelegionActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.realme.view.FragmentOccupation"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.realme.view.ChildrenActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.realme.view.FragmentReferralMobile"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.realme.view.FragmentEmailAddress"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
-            android:name="com.guiado.grads.view.FragmentDate"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.grads.view.FragmentHomeScreen"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.guiado.grads.view.FragmentHobbies"
+            android:name="com.reelme.realme.view.FragmentFullNameMobile"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
-            android:name="com.guiado.grads.view.FragmentEnterMobile"
+            android:name="com.reelme.realme.view.FragmentDate"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentFeedBack"
+            android:name="com.reelme.realme.view.FragmentHomeScreen"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.view.FragmentPrivacy"
+            android:name="com.reelme.realme.view.FragmentHobbies"
+            android:windowSoftInputMode="adjustPan" />
+
+
+        <activity
+            android:name="com.reelme.realme.view.FragmentEnterMobile"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.guiado.grads.activities.LaunchActivity"
+            android:name="com.reelme.realme.view.FragmentFeedBack"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.realme.view.FragmentPrivacy"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.reelme.realme.activities.LaunchActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

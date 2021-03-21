@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.ChallengeModel" />
+            type="com.reelme.realme.viewmodel.ChallengeModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model_sales.challenges.Record" />
+            type="com.reelme.realme.model_sales.challenges.Record" />
 
         <variable
             name="itemPosition"
@@ -18,11 +18,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.grads.adapter.ChallengeAdapter" />
+            type="com.reelme.realme.adapter.ChallengeAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.grads.listeners.ChallengeEventListener" />
+            type="com.reelme.realme.listeners.ChallengeEventListener" />
 
         <variable
             name="keyWordsTag"

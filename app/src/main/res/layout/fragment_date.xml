@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.DateViewModel" />
+            type="com.reelme.realme.viewmodel.DateViewModel" />
     </data>
 
     <LinearLayout

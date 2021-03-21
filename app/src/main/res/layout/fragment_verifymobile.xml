@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.VerifyMobileViewModel" />
+            type="com.reelme.realme.viewmodel.VerifyMobileViewModel" />
     </data>
 
 

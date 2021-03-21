@@ -6,11 +6,11 @@
 
         <variable
             name="mainDataModel"
-            type="com.guiado.grads.viewmodel.DiscussionModel" />
+            type="com.reelme.realme.viewmodel.DiscussionModel" />
 
         <variable
             name="countriesInfoModel"
-            type="com.guiado.grads.model_sales.ideas.Record" />
+            type="com.reelme.realme.model_sales.ideas.Record" />
 
         <variable
             name="itemPosition"
@@ -18,11 +18,11 @@
 
         <variable
             name="simpleListAdapter"
-            type="com.guiado.grads.adapter.DiscussionAdapter" />
+            type="com.reelme.realme.adapter.DiscussionAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.guiado.grads.listeners.DiscussionEventListener" />
+            type="com.reelme.realme.listeners.DiscussionEventListener" />
 
         <variable
             name="keyWordsTag"

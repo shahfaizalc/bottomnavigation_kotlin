@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.ImgselectionViewModel" />
+            type="com.reelme.realme.viewmodel.ImgselectionViewModel" />
     </data>
 
     <LinearLayout
@@ -25,7 +25,7 @@
 
 
 
-<com.guiado.grads.util.ImageViewRounded
+<com.reelme.realme.util.ImageViewRounded
     android:layout_marginTop="@dimen/dimen_32"
     android:layout_gravity="center_horizontal"
     android:layout_width="200dp"
@@ -33,7 +33,7 @@
     android:background="@drawable/roundedbg"
     android:src="@drawable/profilepic">
 
-</com.guiado.grads.util.ImageViewRounded>
+</com.reelme.realme.util.ImageViewRounded>
 
 
 

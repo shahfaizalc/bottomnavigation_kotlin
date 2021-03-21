@@ -6,7 +6,7 @@
 
         <variable
             name="homeData"
-            type="com.guiado.grads.viewmodel.EmailAddressViewModel" />
+            type="com.reelme.realme.viewmodel.EmailAddressViewModel" />
     </data>
 
     <LinearLayout

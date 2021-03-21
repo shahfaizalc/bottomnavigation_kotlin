@@ -6,7 +6,7 @@
 
         <variable
             name="adSearchModel"
-            type="com.guiado.grads.viewmodel.GoalModel" />
+            type="com.reelme.realme.viewmodel.GoalModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
