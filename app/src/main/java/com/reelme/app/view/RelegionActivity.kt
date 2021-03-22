@@ -14,6 +14,8 @@ import com.reelme.app.adapter.RelegiousRecyclerViewAdapter
 import com.reelme.app.databinding.RelegiousLayoutBinding
 import com.reelme.app.model.Flight
 import com.reelme.app.model3.UserDetails
+import com.reelme.app.pojos.ReligiousBelief
+import com.reelme.app.util.GenericValues
 import java.util.*
 
 class RelegionActivity : AppCompatActivity() {
@@ -37,27 +39,11 @@ class RelegionActivity : AppCompatActivity() {
 
     }
 
-    fun prepareData(): List<Flight> {
-        val flights: MutableList<Flight> = ArrayList()
-        var flight = Flight("Atheist")
-        flights.add(flight)
-        flight = Flight("Agnostic")
-        flights.add(flight)
-        flight = Flight("Buddist")
-        flights.add(flight)
-        flight = Flight("Christian")
-        flights.add(flight)
-        flight = Flight("Catholic")
-        flights.add(flight)
-        flight = Flight("Hindu")
-        flights.add(flight)
-        flight = Flight("Islamic")
-        flights.add(flight)
-        flight = Flight("Jewish")
-        flights.add(flight)
-        flight = Flight("Other")
-        flights.add(flight)
-        return flights
+    fun prepareData(): List<ReligiousBelief> {
+
+        val values = GenericValues().getFileString("religion.json", this)
+        return GenericValues().getRelegionList(values,this)[0].chapters!!
+
     }
 
     lateinit var userDetails : UserDetails

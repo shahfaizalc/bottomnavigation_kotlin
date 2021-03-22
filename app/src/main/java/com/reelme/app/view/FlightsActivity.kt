@@ -13,8 +13,9 @@ import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.adapter.FlightsRecyclerViewAdapter
 import com.reelme.app.databinding.FlightLayoutBinding
-import com.reelme.app.model.Flight
 import com.reelme.app.model3.UserDetails
+import com.reelme.app.pojos.Gender
+import com.reelme.app.util.GenericValues
 import java.util.*
 
 class FlightsActivity : AppCompatActivity() {
@@ -28,7 +29,7 @@ class FlightsActivity : AppCompatActivity() {
         binding!!.flightsRv.layoutManager = LinearLayoutManager(this)
         binding!!.flightsRv.addItemDecoration(
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        adapter = FlightsRecyclerViewAdapter(prepareData(), this)
+        adapter = FlightsRecyclerViewAdapter(prepareData()!!, this)
         binding!!.flightsRv.adapter = adapter
         binding!!.nextBtn.setOnClickListener {
 
@@ -41,19 +42,12 @@ class FlightsActivity : AppCompatActivity() {
         getUserInfo()
     }
 
-    private fun prepareData(): List<Flight> {
-        val flights: MutableList<Flight> = ArrayList()
-        var flight = Flight("Male")
-        flights.add(flight)
-        flight = Flight("Female")
-        flights.add(flight)
-        flight = Flight("Gender Neutral")
-        flights.add(flight)
-        flight = Flight("Transgender")
-        flights.add(flight)
-        flight = Flight("Other")
-        flights.add(flight)
-        return flights
+
+
+    private fun prepareData(): List<Gender>? {
+
+       val values = GenericValues().getFileString("gender.json", this)
+        return GenericValues().getGender(values,this)[0].chapters
     }
 
     lateinit var userDetails : UserDetails
@@ -72,7 +66,7 @@ class FlightsActivity : AppCompatActivity() {
     }
 
     private fun setUserInfo(){
-        userDetails.bio = prepareData()[adapter!!.getSelectedItem()].toString()
+        userDetails.bio = prepareData()?.get(adapter!!.getSelectedItem())?.toString()
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

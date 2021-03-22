@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.reelme.app.databinding.RelegiousItemLayoutBinding
 import com.reelme.app.listeners.RelegiousEventListener
 import com.reelme.app.model.Flight
+import com.reelme.app.pojos.ReligiousBelief
 
 
-class RelegiousRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerView.Adapter<RelegiousRecyclerViewAdapter.ViewHolder>(), RelegiousEventListener {
-    private val flightsList: List<Flight>
+class RelegiousRecyclerViewAdapter(flsLst: List<ReligiousBelief>, ctx: Context) : RecyclerView.Adapter<RelegiousRecyclerViewAdapter.ViewHolder>(), RelegiousEventListener {
+    private val flightsList: List<ReligiousBelief>
     private val context: Context
     var selectedPosition=-1;
     override fun onCreateViewHolder(parent: ViewGroup,
@@ -26,7 +27,7 @@ class RelegiousRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : Recycle
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val flight: Flight = flightsList[position]
+        val flight: ReligiousBelief = flightsList[position]
         holder.flightItemBinding.flight = flight
         holder.flightItemBinding.itemClickListener = this
         holder.flightItemBinding.itemPosition = position
@@ -54,8 +55,8 @@ class RelegiousRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : Recycle
 
 
 
-    override fun bookFlight(f: Flight, view: View?, itemPosition: Int) {
-        Toast.makeText(context, "You booked " + f.pincode,
+    override fun bookFlight(f: ReligiousBelief, view: View?, itemPosition: Int) {
+        Toast.makeText(context, "You booked " + f.religious,
                 Toast.LENGTH_LONG).show()
         selectedPosition = itemPosition
         notifyDataSetChanged()

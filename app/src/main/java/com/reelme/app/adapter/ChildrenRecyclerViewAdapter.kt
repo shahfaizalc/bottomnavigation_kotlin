@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.reelme.app.databinding.ChildrenItemLayoutBinding
 import com.reelme.app.listeners.ChildrenEventListener
 import com.reelme.app.model.Flight
+import com.reelme.app.pojos.Child
 
 
-class ChildrenRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerView.Adapter<ChildrenRecyclerViewAdapter.ViewHolder>(), ChildrenEventListener {
-    private val flightsList: List<Flight>
+class ChildrenRecyclerViewAdapter(flsLst: List<Child>, ctx: Context) : RecyclerView.Adapter<ChildrenRecyclerViewAdapter.ViewHolder>(), ChildrenEventListener {
+    private val flightsList: List<Child>
     private val context: Context
     var selectedPosition=-1;
     override fun onCreateViewHolder(parent: ViewGroup,
@@ -26,7 +27,7 @@ class ChildrenRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : Recycler
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val flight: Flight = flightsList[position]
+        val flight: Child = flightsList[position]
         holder.flightItemBinding.flight = flight
         holder.flightItemBinding.itemClickListener = this
         holder.flightItemBinding.itemPosition = position
@@ -39,12 +40,9 @@ class ChildrenRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : Recycler
         return flightsList.size
     }
 
-    inner class ViewHolder(flightItemLayoutBinding: ChildrenItemLayoutBinding) : RecyclerView.ViewHolder(flightItemLayoutBinding.getRoot()) {
-        var flightItemBinding: ChildrenItemLayoutBinding
+    inner class ViewHolder(flightItemLayoutBinding: ChildrenItemLayoutBinding) : RecyclerView.ViewHolder(flightItemLayoutBinding.root) {
+        var flightItemBinding: ChildrenItemLayoutBinding = flightItemLayoutBinding
 
-        init {
-            flightItemBinding = flightItemLayoutBinding
-        }
     }
 
     init {
@@ -54,8 +52,8 @@ class ChildrenRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : Recycler
 
 
 
-    override fun bookFlight(f: Flight, view: View?, itemPosition: Int) {
-        Toast.makeText(context, "You booked " + f.pincode,
+    override fun bookFlight(f: Child, view: View?, itemPosition: Int) {
+        Toast.makeText(context, "You booked " + f.children,
                 Toast.LENGTH_LONG).show()
         selectedPosition = itemPosition
         notifyDataSetChanged()

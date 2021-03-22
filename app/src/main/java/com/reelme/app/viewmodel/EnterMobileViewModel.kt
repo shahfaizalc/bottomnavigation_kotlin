@@ -127,7 +127,11 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
     fun signInUserClicked() {
        // fragmentSignin.finish()
        // fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
-       startPhoneNumberVerification(ideaTitle!!)
+        Log.d(TAG, "signInUserClicked:")
+
+       // startPhoneNumberVerification(ideaTitle!!)
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
+
     }
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
@@ -144,7 +148,9 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
 
     fun signUpUserClicked() {
        // fragmentSignin.finish()
-        startPhoneNumberVerification(ideaTitle!!)
+        Log.d(TAG, "signUpUserClicked:")
+   //     startPhoneNumberVerification(ideaTitle!!)
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
 
     }
 

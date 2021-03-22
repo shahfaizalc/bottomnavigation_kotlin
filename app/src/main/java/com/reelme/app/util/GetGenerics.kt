@@ -13,13 +13,13 @@ fun <T : Any> T?.notNull(function: (it: T) -> Unit) {
 }
 
 
-fun getUserName(context: Context, id:String) :Profile  {
-    val sharedPreference =  context.getSharedPreferences("USER",Context.MODE_PRIVATE)
-    var userProfile = sharedPreference.getString(id,"")
-     if(userProfile.isNullOrEmpty()){return Profile()
-     }
-    return GenericValues().getProfile(userProfile,context)
-}
+//fun getUserName(context: Context, id:String) :Profile  {
+//    val sharedPreference =  context.getSharedPreferences("USER",Context.MODE_PRIVATE)
+//    var userProfile = sharedPreference.getString(id,"")
+//     if(userProfile.isNullOrEmpty()){return Profile()
+//     }
+//    return GenericValues().getGender(userProfile,context)
+//}
 
 
 

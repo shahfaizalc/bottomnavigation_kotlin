@@ -13,18 +13,18 @@ public class LaunchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
-        if (mAuth.currentUser != null) {
-            if ( mAuth.currentUser!!.isEmailVerified) {
-                finish()
-                startActivity(Intent(this, Main2Activity::class.java))
-            } else{
-                finish()
-                startActivity(Intent(this, FragmentVerification::class.java))
-
-            }
-        } else {
+//        if (mAuth.currentUser != null) {
+//            if ( mAuth.currentUser!!.isEmailVerified) {
+//                finish()
+//                startActivity(Intent(this, Main2Activity::class.java))
+//            } else{
+//                finish()
+//                startActivity(Intent(this, FragmentVerification::class.java))
+//
+//            }
+//        } else {
             finish()
             startActivity(Intent(this, FragmentWelcome::class.java))
-        }
+       // }
     }
 }

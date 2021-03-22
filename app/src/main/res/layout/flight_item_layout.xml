@@ -9,9 +9,8 @@
 
         <variable
             name="isValid"
-            type="Boolean" />v
-
-        <variable name="flight" type="com.reelme.app.model.Flight"/>
+            type="Boolean" />
+        <variable name="flight" type="com.reelme.app.pojos.Gender"/>
         <variable name="itemClickListener"
             type="com.reelme.app.listeners.FlightsEventListener"/>
     </data>
@@ -29,7 +28,7 @@
             android:id="@+id/air_lines"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{flight.pincode}"
+            android:text="@{flight.gender}"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

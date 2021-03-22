@@ -12,7 +12,6 @@ import com.reelme.app.listeners.MultipleClickListener
 import com.reelme.app.model2.Feedback
 import com.reelme.app.util.GenericValues
 import com.reelme.app.util.MultipleClickHandler
-import com.reelme.app.util.getUserName
 import com.reelme.app.utils.EnumFeedBack
 import com.reelme.app.view.FragmentFeedBack
 import com.google.firebase.auth.FirebaseAuth
@@ -93,7 +92,7 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
             feedBack.feedback = userEmail!!
             feedBack.feedbackBy = FirebaseAuth.getInstance().currentUser?.uid ?: ""
             feedBack.feedbackOn = System.currentTimeMillis().toString()
-            feedBack.feedbackUsername = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
+          //  feedBack.feedbackUsername = getUserName(context, FirebaseAuth.getInstance().currentUser?.uid!!).name!!
             feedBack.feebackStatus = EnumFeedBack.NEW
 
 

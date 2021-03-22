@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.reelme.app.databinding.RelationshipItemLayoutBinding
 import com.reelme.app.listeners.RelationshipEventListener
 import com.reelme.app.model.Flight
+import com.reelme.app.pojos.RelationshipStatus
 
 
-class RelationshipRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerView.Adapter<RelationshipRecyclerViewAdapter.ViewHolder>(), RelationshipEventListener {
-    private val flightsList: List<Flight>
+class RelationshipRecyclerViewAdapter(flsLst: List<RelationshipStatus>, ctx: Context) : RecyclerView.Adapter<RelationshipRecyclerViewAdapter.ViewHolder>(), RelationshipEventListener {
+    private val flightsList: List<RelationshipStatus>
     private val context: Context
     var selectedPosition=-1;
     override fun onCreateViewHolder(parent: ViewGroup,
@@ -26,7 +27,7 @@ class RelationshipRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : Recy
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val flight: Flight = flightsList[position]
+        val flight: RelationshipStatus = flightsList[position]
         holder.flightItemBinding.flight = flight
         holder.flightItemBinding.itemClickListener = this
         holder.flightItemBinding.itemPosition = position
@@ -54,8 +55,8 @@ class RelationshipRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : Recy
 
 
 
-    override fun bookFlight(f: Flight, view: View?, itemPosition: Int) {
-        Toast.makeText(context, "You booked " + f.pincode,
+    override fun bookFlight(f: RelationshipStatus, view: View?, itemPosition: Int) {
+        Toast.makeText(context, "You booked " + f.relationship,
                 Toast.LENGTH_LONG).show()
         selectedPosition = itemPosition
         notifyDataSetChanged()

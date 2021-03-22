@@ -10,11 +10,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.reelme.app.databinding.FlightItemLayoutBinding
 import com.reelme.app.listeners.FlightsEventListener
-import com.reelme.app.model.Flight
+import com.reelme.app.pojos.Gender
 
 
-class FlightsRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerView.Adapter<FlightsRecyclerViewAdapter.ViewHolder>(), FlightsEventListener {
-    private val flightsList: List<Flight> = flsLst
+class FlightsRecyclerViewAdapter(flsLst: List<Gender>, ctx: Context) : RecyclerView.Adapter<FlightsRecyclerViewAdapter.ViewHolder>(), FlightsEventListener {
+    private val flightsList: List<Gender> = flsLst
     private val context: Context = ctx
     var selectedPosition = -1;
     override fun onCreateViewHolder(parent: ViewGroup,
@@ -26,7 +26,7 @@ class FlightsRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerV
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val flight: Flight = flightsList[position]
+        val flight: Gender = flightsList[position]
         holder.flightItemBinding.flight = flight
         holder.flightItemBinding.itemClickListener = this
         holder.flightItemBinding.itemPosition = position
@@ -43,8 +43,8 @@ class FlightsRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerV
     }
 
 
-    override fun bookFlight(f: Flight, view: View?, itemPosition: Int) {
-        Toast.makeText(context, "You booked " + f.pincode, Toast.LENGTH_LONG).show()
+    override fun bookFlight(f: Gender, view: View?, itemPosition: Int) {
+        Toast.makeText(context, "You booked " + f.gender, Toast.LENGTH_LONG).show()
         selectedPosition = itemPosition
         notifyDataSetChanged()
     }

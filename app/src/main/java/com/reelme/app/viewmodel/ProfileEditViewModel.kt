@@ -35,7 +35,7 @@ class ProfileEditViewModel(private val context: Context, private val fragmentSig
 
     init {
         networkHandler()
-        profile = (GenericValues().getProfile(postAdObj, fragmentSignin))
+       // profile = (GenericValues().getProfile(postAdObj, fragmentSignin))
         readAutoFillItems()
 
     }

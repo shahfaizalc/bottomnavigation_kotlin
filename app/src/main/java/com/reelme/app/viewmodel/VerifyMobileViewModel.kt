@@ -28,7 +28,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
         networkHandler()
         auth = Firebase.auth
 
-        getAccessToken()
+      //  getAccessToken()
     }
 
     private fun getAccessToken() {

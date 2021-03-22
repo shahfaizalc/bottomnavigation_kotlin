@@ -1,0 +1,2930 @@
+[{
+
+  "Occupations": [
+    {
+      "Occupations": "Actors"
+    },
+    {
+      "Occupations": "Actuaries"
+    },
+    {
+      "Occupations": "Acupuncturists"
+    },
+    {
+      "Occupations": "Acute Care Nurses"
+    },
+    {
+      "Occupations": "Adapted Physical Education Specialists"
+    },
+    {
+      "Occupations": "Adhesive Bonding Machine Operators and Tenders"
+    },
+    {
+      "Occupations": "Administrative Law Judges, Adjudicators, and Hearing Officers"
+    },
+    {
+      "Occupations": "Administrative Services Managers"
+    },
+    {
+      "Occupations": "Adult Basic and Secondary Education and Literacy Teachers and Instructors"
+    },
+    {
+      "Occupations": "Advanced Practice Psychiatric Nurses"
+    },
+    {
+      "Occupations": "Advertising and Promotions Managers"
+    },
+    {
+      "Occupations": "Advertising Sales Agents"
+    },
+    {
+      "Occupations": "Aerospace Engineering and Operations Technicians"
+    },
+    {
+      "Occupations": "Aerospace Engineers"
+    },
+    {
+      "Occupations": "Agents and Business Managers of Artists, Performers, and Athletes"
+    },
+    {
+      "Occupations": "Agricultural Engineers"
+    },
+    {
+      "Occupations": "Agricultural Equipment Operators"
+    },
+    {
+      "Occupations": "Agricultural Inspectors"
+    },
+    {
+      "Occupations": "Agricultural Sciences Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Agricultural Technicians"
+    },
+    {
+      "Occupations": "Air Traffic Controllers"
+    },
+    {
+      "Occupations": "Aircraft Cargo Handling Supervisors"
+    },
+    {
+      "Occupations": "Aircraft Mechanics and Service Technicians"
+    },
+    {
+      "Occupations": "Aircraft Structure, Surfaces, Rigging, and Systems Assemblers"
+    },
+    {
+      "Occupations": "Airfield Operations Specialists"
+    },
+    {
+      "Occupations": "Airline Pilots, Copilots, and Flight Engineers"
+    },
+    {
+      "Occupations": "Allergists and Immunologists"
+    },
+    {
+      "Occupations": "Ambulance Drivers and Attendants, Except Emergency Medical Technicians"
+    },
+    {
+      "Occupations": "Amusement and Recreation Attendants"
+    },
+    {
+      "Occupations": "Anesthesiologist Assistants"
+    },
+    {
+      "Occupations": "Anesthesiologists"
+    },
+    {
+      "Occupations": "Animal Breeders"
+    },
+    {
+      "Occupations": "Animal Control Workers"
+    },
+    {
+      "Occupations": "Animal Scientists"
+    },
+    {
+      "Occupations": "Animal Trainers"
+    },
+    {
+      "Occupations": "Anthropologists"
+    },
+    {
+      "Occupations": "Anthropology and Archeology Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Appraisers, Real Estate"
+    },
+    {
+      "Occupations": "Aquacultural Managers"
+    },
+    {
+      "Occupations": "Arbitrators, Mediators, and Conciliators"
+    },
+    {
+      "Occupations": "Archeologists"
+    },
+    {
+      "Occupations": "Architects, Except Landscape and Naval"
+    },
+    {
+      "Occupations": "Architectural and Engineering Managers"
+    },
+    {
+      "Occupations": "Architectural Drafters"
+    },
+    {
+      "Occupations": "Architecture Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Archivists"
+    },
+    {
+      "Occupations": "Area, Ethnic, and Cultural Studies Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Art Directors"
+    },
+    {
+      "Occupations": "Art Therapists"
+    },
+    {
+      "Occupations": "Art, Drama, and Music Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Assessors"
+    },
+    {
+      "Occupations": "Astronomers"
+    },
+    {
+      "Occupations": "Athletes and Sports Competitors"
+    },
+    {
+      "Occupations": "Athletic Trainers"
+    },
+    {
+      "Occupations": "Atmospheric and Space Scientists"
+    },
+    {
+      "Occupations": "Atmospheric, Earth, Marine, and Space Sciences Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Audio and Video Equipment Technicians"
+    },
+    {
+      "Occupations": "Audio-Visual and Multimedia Collections Specialists"
+    },
+    {
+      "Occupations": "Audiologists"
+    },
+    {
+      "Occupations": "Auditors"
+    },
+    {
+      "Occupations": "Automotive and Watercraft Service Attendants"
+    },
+    {
+      "Occupations": "Automotive Body and Related Repairers"
+    },
+    {
+      "Occupations": "Automotive Engineering Technicians"
+    },
+    {
+      "Occupations": "Automotive Engineers"
+    },
+    {
+      "Occupations": "Automotive Glass Installers and Repairers"
+    },
+    {
+      "Occupations": "Automotive Master Mechanics"
+    },
+    {
+      "Occupations": "Automotive Specialty Technicians"
+    },
+    {
+      "Occupations": "Aviation Inspectors"
+    },
+    {
+      "Occupations": "Avionics Technicians"
+    },
+    {
+      "Occupations": "Baggage Porters and Bellhops"
+    },
+    {
+      "Occupations": "Bailiffs"
+    },
+    {
+      "Occupations": "Bakers"
+    },
+    {
+      "Occupations": "Barbers"
+    },
+    {
+      "Occupations": "Baristas"
+    },
+    {
+      "Occupations": "Bartenders"
+    },
+    {
+      "Occupations": "Bicycle Repairers"
+    },
+    {
+      "Occupations": "Bill and Account Collectors"
+    },
+    {
+      "Occupations": "Billing, Cost, and Rate Clerks"
+    },
+    {
+      "Occupations": "Biochemical Engineers"
+    },
+    {
+      "Occupations": "Biochemists and Biophysicists"
+    },
+    {
+      "Occupations": "Biofuels Processing Technicians"
+    },
+    {
+      "Occupations": "Biofuels Production Managers"
+    },
+    {
+      "Occupations": "Biofuels/Biodiesel Technology and Product Development Managers"
+    },
+    {
+      "Occupations": "Bioinformatics Scientists"
+    },
+    {
+      "Occupations": "Bioinformatics Technicians"
+    },
+    {
+      "Occupations": "Biological Science Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Biological Technicians"
+    },
+    {
+      "Occupations": "Biologists"
+    },
+    {
+      "Occupations": "Biomass Plant Technicians"
+    },
+    {
+      "Occupations": "Biomass Power Plant Managers"
+    },
+    {
+      "Occupations": "Biomedical Engineers"
+    },
+    {
+      "Occupations": "Biostatisticians"
+    },
+    {
+      "Occupations": "Boilermakers"
+    },
+    {
+      "Occupations": "Bookkeeping, Accounting, and Auditing Clerks"
+    },
+    {
+      "Occupations": "Brickmasons and Blockmasons"
+    },
+    {
+      "Occupations": "Bridge and Lock Tenders"
+    },
+    {
+      "Occupations": "Broadcast News Analysts"
+    },
+    {
+      "Occupations": "Broadcast Technicians"
+    },
+    {
+      "Occupations": "Brokerage Clerks"
+    },
+    {
+      "Occupations": "Brownfield Redevelopment Specialists and Site Managers"
+    },
+    {
+      "Occupations": "Budget Analysts"
+    },
+    {
+      "Occupations": "Bus and Truck Mechanics and Diesel Engine Specialists"
+    },
+    {
+      "Occupations": "Bus Drivers, School or Special Client"
+    },
+    {
+      "Occupations": "Bus Drivers, Transit and Intercity"
+    },
+    {
+      "Occupations": "Business Continuity Planners"
+    },
+    {
+      "Occupations": "Business Intelligence Analysts"
+    },
+    {
+      "Occupations": "Business Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Butchers and Meat Cutters"
+    },
+    {
+      "Occupations": "Buyers and Purchasing Agents, Farm Products"
+    },
+    {
+      "Occupations": "Cabinetmakers and Bench Carpenters"
+    },
+    {
+      "Occupations": "Camera and Photographic Equipment Repairers"
+    },
+    {
+      "Occupations": "Camera Operators, Television, Video, and Motion Picture"
+    },
+    {
+      "Occupations": "Cardiovascular Technologists and Technicians"
+    },
+    {
+      "Occupations": "Career/Technical Education Teachers, Middle School"
+    },
+    {
+      "Occupations": "Career/Technical Education Teachers, Secondary School"
+    },
+    {
+      "Occupations": "Cargo and Freight Agents"
+    },
+    {
+      "Occupations": "Carpet Installers"
+    },
+    {
+      "Occupations": "Cartographers and Photogrammetrists"
+    },
+    {
+      "Occupations": "Cashiers"
+    },
+    {
+      "Occupations": "Cement Masons and Concrete Finishers"
+    },
+    {
+      "Occupations": "Chefs and Head Cooks"
+    },
+    {
+      "Occupations": "Chemical Engineers"
+    },
+    {
+      "Occupations": "Chemical Equipment Operators and Tenders"
+    },
+    {
+      "Occupations": "Chemical Plant and System Operators"
+    },
+    {
+      "Occupations": "Chemical Technicians"
+    },
+    {
+      "Occupations": "Chemistry Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Chemists"
+    },
+    {
+      "Occupations": "Chief Executives"
+    },
+    {
+      "Occupations": "Chief Sustainability Officers"
+    },
+    {
+      "Occupations": "Child, Family, and School Social Workers"
+    },
+    {
+      "Occupations": "Childcare Workers"
+    },
+    {
+      "Occupations": "Chiropractors"
+    },
+    {
+      "Occupations": "Choreographers"
+    },
+    {
+      "Occupations": "City and Regional Planning Aides"
+    },
+    {
+      "Occupations": "Civil Drafters"
+    },
+    {
+      "Occupations": "Civil Engineering Technicians"
+    },
+    {
+      "Occupations": "Civil Engineers"
+    },
+    {
+      "Occupations": "Claims Examiners, Property and Casualty Insurance"
+    },
+    {
+      "Occupations": "Cleaners of Vehicles and Equipment"
+    },
+    {
+      "Occupations": "Cleaning, Washing, and Metal Pickling Equipment Operators and Tenders"
+    },
+    {
+      "Occupations": "Clergy"
+    },
+    {
+      "Occupations": "Climate Change Analysts"
+    },
+    {
+      "Occupations": "Clinical Data Managers"
+    },
+    {
+      "Occupations": "Clinical Nurse Specialists"
+    },
+    {
+      "Occupations": "Clinical Psychologists"
+    },
+    {
+      "Occupations": "Clinical Research Coordinators"
+    },
+    {
+      "Occupations": "Coaches and Scouts"
+    },
+    {
+      "Occupations": "Coating, Painting, and Spraying Machine Setters, Operators, and Tenders"
+    },
+    {
+      "Occupations": "Coil Winders, Tapers, and Finishers"
+    },
+    {
+      "Occupations": "Coin, Vending, and Amusement Machine Servicers and Repairers"
+    },
+    {
+      "Occupations": "Combined Food Preparation and Serving Workers, Including Fast Food"
+    },
+    {
+      "Occupations": "Commercial and Industrial Designers"
+    },
+    {
+      "Occupations": "Commercial Divers"
+    },
+    {
+      "Occupations": "Commercial Pilots"
+    },
+    {
+      "Occupations": "Communications Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Community Health Workers"
+    },
+    {
+      "Occupations": "Compensation and Benefits Managers"
+    },
+    {
+      "Occupations": "Compensation, Benefits, and Job Analysis Specialists"
+    },
+    {
+      "Occupations": "Compliance Managers"
+    },
+    {
+      "Occupations": "Computer and Information Research Scientists"
+    },
+    {
+      "Occupations": "Computer and Information Systems Managers"
+    },
+    {
+      "Occupations": "Computer Hardware Engineers"
+    },
+    {
+      "Occupations": "Computer Network Architects"
+    },
+    {
+      "Occupations": "Computer Network Support Specialists"
+    },
+    {
+      "Occupations": "Computer Numerically Controlled Machine Tool Programmers, Metal and Plastic"
+    },
+    {
+      "Occupations": "Computer Operators"
+    },
+    {
+      "Occupations": "Computer Programmers"
+    },
+    {
+      "Occupations": "Computer Science Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Computer Systems Analysts"
+    },
+    {
+      "Occupations": "Computer Systems Engineers/Architects"
+    },
+    {
+      "Occupations": "Computer User Support Specialists"
+    },
+    {
+      "Occupations": "Computer, Automated Teller, and Office Machine Repairers"
+    },
+    {
+      "Occupations": "Computer-Controlled Machine Tool Operators, Metal and Plastic"
+    },
+    {
+      "Occupations": "Concierges"
+    },
+    {
+      "Occupations": "Construction and Building Inspectors"
+    },
+    {
+      "Occupations": "Construction Carpenters"
+    },
+    {
+      "Occupations": "Construction Laborers"
+    },
+    {
+      "Occupations": "Construction Managers"
+    },
+    {
+      "Occupations": "Continuous Mining Machine Operators"
+    },
+    {
+      "Occupations": "Control and Valve Installers and Repairers, Except Mechanical Door"
+    },
+    {
+      "Occupations": "Conveyor Operators and Tenders"
+    },
+    {
+      "Occupations": "Cooks, Fast Food"
+    },
+    {
+      "Occupations": "Cooks, Institution and Cafeteria"
+    },
+    {
+      "Occupations": "Cooks, Private Household"
+    },
+    {
+      "Occupations": "Cooks, Restaurant"
+    },
+    {
+      "Occupations": "Cooks, Short Order"
+    },
+    {
+      "Occupations": "Cooling and Freezing Equipment Operators and Tenders"
+    },
+    {
+      "Occupations": "Copy Writers"
+    },
+    {
+      "Occupations": "Coroners"
+    },
+    {
+      "Occupations": "Correctional Officers and Jailers"
+    },
+    {
+      "Occupations": "Correspondence Clerks"
+    },
+    {
+      "Occupations": "Cost Estimators"
+    },
+    {
+      "Occupations": "Costume Attendants"
+    },
+    {
+      "Occupations": "Counseling Psychologists"
+    },
+    {
+      "Occupations": "Counter and Rental Clerks"
+    },
+    {
+      "Occupations": "Counter Attendants, Cafeteria, Food Concession, and Coffee Shop"
+    },
+    {
+      "Occupations": "Couriers and Messengers"
+    },
+    {
+      "Occupations": "Court Clerks"
+    },
+    {
+      "Occupations": "Court Reporters"
+    },
+    {
+      "Occupations": "Craft Artists"
+    },
+    {
+      "Occupations": "Crane and Tower Operators"
+    },
+    {
+      "Occupations": "Credit Analysts"
+    },
+    {
+      "Occupations": "Credit Authorizers"
+    },
+    {
+      "Occupations": "Credit Checkers"
+    },
+    {
+      "Occupations": "Credit Counselors"
+    },
+    {
+      "Occupations": "Criminal Investigators and Special Agents"
+    },
+    {
+      "Occupations": "Criminal Justice and Law Enforcement Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Critical Care Nurses"
+    },
+    {
+      "Occupations": "Crossing Guards"
+    },
+    {
+      "Occupations": "Crushing, Grinding, and Polishing Machine Setters, Operators, and Tenders"
+    },
+    {
+      "Occupations": "Curators"
+    },
+    {
+      "Occupations": "Customer Service Representatives"
+    },
+    {
+      "Occupations": "Customs Brokers"
+    },
+    {
+      "Occupations": "Cutters and Trimmers, Hand"
+    },
+    {
+      "Occupations": "Cutting and Slicing Machine Setters, Operators, and Tenders"
+    },
+    {
+      "Occupations": "Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Cytogenetic Technologists"
+    },
+    {
+      "Occupations": "Cytotechnologists"
+    },
+    {
+      "Occupations": "Dancers"
+    },
+    {
+      "Occupations": "Data Entry Keyers"
+    },
+    {
+      "Occupations": "Database Administrators"
+    },
+    {
+      "Occupations": "Database Architects"
+    },
+    {
+      "Occupations": "Demonstrators and Product Promoters"
+    },
+    {
+      "Occupations": "Dental Assistants"
+    },
+    {
+      "Occupations": "Dental Hygienists"
+    },
+    {
+      "Occupations": "Dental Laboratory Technicians"
+    },
+    {
+      "Occupations": "Dentists, General"
+    },
+    {
+      "Occupations": "Dermatologists"
+    },
+    {
+      "Occupations": "Derrick Operators, Oil and Gas"
+    },
+    {
+      "Occupations": "Desktop Publishers"
+    },
+    {
+      "Occupations": "Diagnostic Medical Sonographers"
+    },
+    {
+      "Occupations": "Dietetic Technicians"
+    },
+    {
+      "Occupations": "Dietitians and Nutritionists"
+    },
+    {
+      "Occupations": "Dining Room and Cafeteria Attendants and Bartender Helpers"
+    },
+    {
+      "Occupations": "Directors, Religious Activities and Education"
+    },
+    {
+      "Occupations": "Directors- Stage, Motion Pictures, Television, and Radio"
+    },
+    {
+      "Occupations": "Dishwashers"
+    },
+    {
+      "Occupations": "Dispatchers, Except Police, Fire, and Ambulance"
+    },
+    {
+      "Occupations": "Distance Learning Coordinators"
+    },
+    {
+      "Occupations": "Document Management Specialists"
+    },
+    {
+      "Occupations": "Door-To-Door Sales Workers, News and Street Vendors, and Related Workers"
+    },
+    {
+      "Occupations": "Dredge Operators"
+    },
+    {
+      "Occupations": "Drilling and Boring Machine Tool Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Driver/Sales Workers"
+    },
+    {
+      "Occupations": "Drywall and Ceiling Tile Installers"
+    },
+    {
+      "Occupations": "Earth Drillers, Except Oil and Gas"
+    },
+    {
+      "Occupations": "Economics Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Economists"
+    },
+    {
+      "Occupations": "Editors"
+    },
+    {
+      "Occupations": "Education Administrators, Elementary and Secondary School"
+    },
+    {
+      "Occupations": "Education Administrators, Postsecondary"
+    },
+    {
+      "Occupations": "Education Administrators, Preschool and Childcare Center/Program"
+    },
+    {
+      "Occupations": "Education Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Educational, Guidance, School, and Vocational Counselors"
+    },
+    {
+      "Occupations": "Electric Motor, Power Tool, and Related Repairers"
+    },
+    {
+      "Occupations": "Electrical and Electronic Equipment Assemblers"
+    },
+    {
+      "Occupations": "Electrical and Electronics Installers and Repairers, Transportation Equipment"
+    },
+    {
+      "Occupations": "Electrical and Electronics Repairers, Commercial and Industrial Equipment"
+    },
+    {
+      "Occupations": "Electrical and Electronics Repairers, Powerhouse, Substation, and Relay"
+    },
+    {
+      "Occupations": "Electrical Drafters"
+    },
+    {
+      "Occupations": "Electrical Engineering Technicians"
+    },
+    {
+      "Occupations": "Electrical Engineering Technologists"
+    },
+    {
+      "Occupations": "Electrical Engineers"
+    },
+    {
+      "Occupations": "Electrical Power-Line Installers and Repairers"
+    },
+    {
+      "Occupations": "Electricians"
+    },
+    {
+      "Occupations": "Electro-Mechanical Technicians"
+    },
+    {
+      "Occupations": "Electromechanical Engineering Technologists"
+    },
+    {
+      "Occupations": "Electromechanical Equipment Assemblers"
+    },
+    {
+      "Occupations": "Electronic Drafters"
+    },
+    {
+      "Occupations": "Electronic Equipment Installers and Repairers, Motor Vehicles"
+    },
+    {
+      "Occupations": "Electronic Home Entertainment Equipment Installers and Repairers"
+    },
+    {
+      "Occupations": "Electronics Engineering Technicians"
+    },
+    {
+      "Occupations": "Electronics Engineering Technologists"
+    },
+    {
+      "Occupations": "Electronics Engineers, Except Computer"
+    },
+    {
+      "Occupations": "Elementary School Teachers, Except Special Education"
+    },
+    {
+      "Occupations": "Elevator Installers and Repairers"
+    },
+    {
+      "Occupations": "Eligibility Interviewers, Government Programs"
+    },
+    {
+      "Occupations": "Embalmers"
+    },
+    {
+      "Occupations": "Emergency Management Directors"
+    },
+    {
+      "Occupations": "Emergency Medical Technicians and Paramedics"
+    },
+    {
+      "Occupations": "Endoscopy Technicians"
+    },
+    {
+      "Occupations": "Energy Auditors"
+    },
+    {
+      "Occupations": "Energy Brokers"
+    },
+    {
+      "Occupations": "Energy Engineers"
+    },
+    {
+      "Occupations": "Engine and Other Machine Assemblers"
+    },
+    {
+      "Occupations": "Engineering Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "English Language and Literature Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Environmental Compliance Inspectors"
+    },
+    {
+      "Occupations": "Environmental Economists"
+    },
+    {
+      "Occupations": "Environmental Engineering Technicians"
+    },
+    {
+      "Occupations": "Environmental Engineers"
+    },
+    {
+      "Occupations": "Environmental Restoration Planners"
+    },
+    {
+      "Occupations": "Environmental Science and Protection Technicians, Including Health"
+    },
+    {
+      "Occupations": "Environmental Science Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Environmental Scientists and Specialists, Including Health"
+    },
+    {
+      "Occupations": "Epidemiologists"
+    },
+    {
+      "Occupations": "Equal Opportunity Representatives and Officers"
+    },
+    {
+      "Occupations": "Etchers and Engravers"
+    },
+    {
+      "Occupations": "Excavating and Loading Machine and Dragline Operators"
+    },
+    {
+      "Occupations": "Executive Secretaries and Executive Administrative Assistants"
+    },
+    {
+      "Occupations": "Exercise Physiologists"
+    },
+    {
+      "Occupations": "Explosives Workers, Ordnance Handling Experts, and Blasters"
+    },
+    {
+      "Occupations": "Extruding and Drawing Machine Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Extruding and Forming Machine Setters, Operators, and Tenders, Synthetic and Glass Fibers"
+    },
+    {
+      "Occupations": "Extruding, Forming, Pressing, and Compacting Machine Setters, Operators, and Tenders"
+    },
+    {
+      "Occupations": "Fabric and Apparel Patternmakers"
+    },
+    {
+      "Occupations": "Fabric Menders, Except Garment"
+    },
+    {
+      "Occupations": "Fallers"
+    },
+    {
+      "Occupations": "Family and General Practitioners"
+    },
+    {
+      "Occupations": "Farm and Home Management Advisors"
+    },
+    {
+      "Occupations": "Farm and Ranch Managers"
+    },
+    {
+      "Occupations": "Farm Equipment Mechanics and Service Technicians"
+    },
+    {
+      "Occupations": "Farm Labor Contractors"
+    },
+    {
+      "Occupations": "Farmworkers and Laborers, Crop"
+    },
+    {
+      "Occupations": "Farmworkers, Farm, Ranch, and Aquacultural Animals"
+    },
+    {
+      "Occupations": "Fashion Designers"
+    },
+    {
+      "Occupations": "Father"
+    },
+    {
+      "Occupations": "Fence Erectors"
+    },
+    {
+      "Occupations": "Fiberglass Laminators and Fabricators"
+    },
+    {
+      "Occupations": "File Clerks"
+    },
+    {
+      "Occupations": "Film and Video Editors"
+    },
+    {
+      "Occupations": "Financial Analysts"
+    },
+    {
+      "Occupations": "Financial Examiners"
+    },
+    {
+      "Occupations": "Financial Managers, Branch or Department"
+    },
+    {
+      "Occupations": "Financial Quantitative Analysts"
+    },
+    {
+      "Occupations": "Fine Artists, Including Painters, Sculptors, and Illustrators"
+    },
+    {
+      "Occupations": "Fire Inspectors"
+    },
+    {
+      "Occupations": "Fire Investigators"
+    },
+    {
+      "Occupations": "Fire-Prevention and Protection Engineers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Agricultural Crop and Horticultural Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Animal Husbandry and Animal Care Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Aquacultural Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Construction Trades and Extraction Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Correctional Officers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Food Preparation and Serving Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Helpers, Laborers, and Material Movers, Hand"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Housekeeping and Janitorial Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Landscaping, Lawn Service, and Groundskeeping Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Logging Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Mechanics, Installers, and Repairers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Non-Retail Sales Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Office and Administrative Support Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Personal Service Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Police and Detectives"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Production and Operating Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Retail Sales Workers"
+    },
+    {
+      "Occupations": "First-Line Supervisors of Transportation and Material-Moving Machine and Vehicle Operators"
+    },
+    {
+      "Occupations": "Fish and Game Wardens"
+    },
+    {
+      "Occupations": "Fishers and Related Fishing Workers"
+    },
+    {
+      "Occupations": "Fitness and Wellness Coordinators"
+    },
+    {
+      "Occupations": "Fitness Trainers and Aerobics Instructors"
+    },
+    {
+      "Occupations": "Flight Attendants"
+    },
+    {
+      "Occupations": "Floor Layers, Except Carpet, Wood, and Hard Tiles"
+    },
+    {
+      "Occupations": "Floor Sanders and Finishers"
+    },
+    {
+      "Occupations": "Floral Designers"
+    },
+    {
+      "Occupations": "Food and Tobacco Roasting, Baking, and Drying Machine Operators and Tenders"
+    },
+    {
+      "Occupations": "Food Batchmakers"
+    },
+    {
+      "Occupations": "Food Cooking Machine Operators and Tenders"
+    },
+    {
+      "Occupations": "Food Preparation Workers"
+    },
+    {
+      "Occupations": "Food Science Technicians"
+    },
+    {
+      "Occupations": "Food Scientists and Technologists"
+    },
+    {
+      "Occupations": "Food Servers, Nonrestaurant"
+    },
+    {
+      "Occupations": "Food Service Managers"
+    },
+    {
+      "Occupations": "Foreign Language and Literature Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Forensic Science Technicians"
+    },
+    {
+      "Occupations": "Forest and Conservation Technicians"
+    },
+    {
+      "Occupations": "Forest and Conservation Workers"
+    },
+    {
+      "Occupations": "Forest Fire Fighting and Prevention Supervisors"
+    },
+    {
+      "Occupations": "Forest Fire Inspectors and Prevention Specialists"
+    },
+    {
+      "Occupations": "Forest Firefighters"
+    },
+    {
+      "Occupations": "Foresters"
+    },
+    {
+      "Occupations": "Forestry and Conservation Science Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Forging Machine Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Foundry Mold and Coremakers"
+    },
+    {
+      "Occupations": "Fraud Examiners, Investigators and Analysts"
+    },
+    {
+      "Occupations": "Freight and Cargo Inspectors"
+    },
+    {
+      "Occupations": "Freight Forwarders"
+    },
+    {
+      "Occupations": "Fuel Cell Engineers"
+    },
+    {
+      "Occupations": "Fundraisers"
+    },
+    {
+      "Occupations": "Funeral Attendants"
+    },
+    {
+      "Occupations": "Funeral Service Managers"
+    },
+    {
+      "Occupations": "Furnace, Kiln, Oven, Drier, and Kettle Operators and Tenders"
+    },
+    {
+      "Occupations": "Furniture Finishers"
+    },
+    {
+      "Occupations": "Gaming and Sports Book Writers and Runners"
+    },
+    {
+      "Occupations": "Gaming Cage Workers"
+    },
+    {
+      "Occupations": "Gaming Change Persons and Booth Cashiers"
+    },
+    {
+      "Occupations": "Gaming Dealers"
+    },
+    {
+      "Occupations": "Gaming Managers"
+    },
+    {
+      "Occupations": "Gaming Supervisors"
+    },
+    {
+      "Occupations": "Gaming Surveillance Officers and Gaming Investigators"
+    },
+    {
+      "Occupations": "Gas Compressor and Gas Pumping Station Operators"
+    },
+    {
+      "Occupations": "Gas Plant Operators"
+    },
+    {
+      "Occupations": "Gem and Diamond Workers"
+    },
+    {
+      "Occupations": "General and Operations Managers"
+    },
+    {
+      "Occupations": "Genetic Counselors"
+    },
+    {
+      "Occupations": "Geneticists"
+    },
+    {
+      "Occupations": "Geodetic Surveyors"
+    },
+    {
+      "Occupations": "Geographers"
+    },
+    {
+      "Occupations": "Geographic Information Systems Technicians"
+    },
+    {
+      "Occupations": "Geography Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Geological Sample Test Technicians"
+    },
+    {
+      "Occupations": "Geophysical Data Technicians"
+    },
+    {
+      "Occupations": "Geoscientists, Except Hydrologists and Geographers"
+    },
+    {
+      "Occupations": "Geospatial Information Scientists and Technologists"
+    },
+    {
+      "Occupations": "Geothermal Production Managers"
+    },
+    {
+      "Occupations": "Geothermal Technicians"
+    },
+    {
+      "Occupations": "Glass Blowers, Molders, Benders, and Finishers"
+    },
+    {
+      "Occupations": "Glaziers"
+    },
+    {
+      "Occupations": "Government Property Inspectors and Investigators"
+    },
+    {
+      "Occupations": "Graders and Sorters, Agricultural Products"
+    },
+    {
+      "Occupations": "Graduate Teaching Assistants"
+    },
+    {
+      "Occupations": "Graphic Designers"
+    },
+    {
+      "Occupations": "Grinding and Polishing Workers, Hand"
+    },
+    {
+      "Occupations": "Grinding, Lapping, Polishing, and Buffing Machine Tool Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Hairdressers, Hairstylists, and Cosmetologists"
+    },
+    {
+      "Occupations": "Hazardous Materials Removal Workers"
+    },
+    {
+      "Occupations": "Health Educators"
+    },
+    {
+      "Occupations": "Health Specialties Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Healthcare Social Workers"
+    },
+    {
+      "Occupations": "Hearing Aid Specialists"
+    },
+    {
+      "Occupations": "Heat Treating Equipment Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Heating and Air Conditioning Mechanics and Installers"
+    },
+    {
+      "Occupations": "Heavy and Tractor-Trailer Truck Drivers"
+    },
+    {
+      "Occupations": "Helpers--Brickmasons, Blockmasons, Stonemasons, and Tile and Marble Setters"
+    },
+    {
+      "Occupations": "Helpers--Carpenters"
+    },
+    {
+      "Occupations": "Helpers--Electricians"
+    },
+    {
+      "Occupations": "Helpers--Extraction Workers"
+    },
+    {
+      "Occupations": "Helpers--Installation, Maintenance, and Repair Workers"
+    },
+    {
+      "Occupations": "Helpers--Painters, Paperhangers, Plasterers, and Stucco Masons"
+    },
+    {
+      "Occupations": "Helpers--Pipelayers, Plumbers, Pipefitters, and Steamfitters"
+    },
+    {
+      "Occupations": "Helpers--Production Workers"
+    },
+    {
+      "Occupations": "Helpers--Roofers"
+    },
+    {
+      "Occupations": "Highway Maintenance Workers"
+    },
+    {
+      "Occupations": "Historians"
+    },
+    {
+      "Occupations": "History Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Histotechnologists and Histologic Technicians"
+    },
+    {
+      "Occupations": "Hoist and Winch Operators"
+    },
+    {
+      "Occupations": "Home Appliance Repairers"
+    },
+    {
+      "Occupations": "Home Economics Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Home Health Aides"
+    },
+    {
+      "Occupations": "Hospitalists"
+    },
+    {
+      "Occupations": "Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop"
+    },
+    {
+      "Occupations": "Hotel, Motel, and Resort Desk Clerks"
+    },
+    {
+      "Occupations": "Human Factors Engineers and Ergonomists"
+    },
+    {
+      "Occupations": "Human Resources Assistants, Except Payroll and Timekeeping"
+    },
+    {
+      "Occupations": "Human Resources Managers"
+    },
+    {
+      "Occupations": "Human Resources Specialists"
+    },
+    {
+      "Occupations": "Hunters and Trappers"
+    },
+    {
+      "Occupations": "Hydroelectric Plant Technicians"
+    },
+    {
+      "Occupations": "Hydroelectric Production Managers"
+    },
+    {
+      "Occupations": "Hydrologists"
+    },
+    {
+      "Occupations": "Immigration and Customs Inspectors"
+    },
+    {
+      "Occupations": "Industrial Ecologists"
+    },
+    {
+      "Occupations": "Industrial Engineering Technicians"
+    },
+    {
+      "Occupations": "Industrial Engineering Technologists"
+    },
+    {
+      "Occupations": "Industrial Engineers"
+    },
+    {
+      "Occupations": "Industrial Machinery Mechanics"
+    },
+    {
+      "Occupations": "Industrial Production Managers"
+    },
+    {
+      "Occupations": "Industrial Safety and Health Engineers"
+    },
+    {
+      "Occupations": "Industrial Truck and Tractor Operators"
+    },
+    {
+      "Occupations": "Industrial-Organizational Psychologists"
+    },
+    {
+      "Occupations": "Informatics Nurse Specialists"
+    },
+    {
+      "Occupations": "Information Security Analysts"
+    },
+    {
+      "Occupations": "Information Technology Project Managers"
+    },
+    {
+      "Occupations": "Inspectors, Testers, Sorters, Samplers, and Weighers"
+    },
+    {
+      "Occupations": "Instructional Coordinators"
+    },
+    {
+      "Occupations": "Instructional Designers and Technologists"
+    },
+    {
+      "Occupations": "Insulation Workers, Floor, Ceiling, and Wall"
+    },
+    {
+      "Occupations": "Insulation Workers, Mechanical"
+    },
+    {
+      "Occupations": "Insurance Adjusters, Examiners, and Investigators"
+    },
+    {
+      "Occupations": "Insurance Appraisers, Auto Damage"
+    },
+    {
+      "Occupations": "Insurance Claims Clerks"
+    },
+    {
+      "Occupations": "Insurance Policy Processing Clerks"
+    },
+    {
+      "Occupations": "Insurance Sales Agents"
+    },
+    {
+      "Occupations": "Insurance Underwriters"
+    },
+    {
+      "Occupations": "Intelligence Analysts"
+    },
+    {
+      "Occupations": "Interior Designers"
+    },
+    {
+      "Occupations": "Internists, General"
+    },
+    {
+      "Occupations": "Interpreters and Translators"
+    },
+    {
+      "Occupations": "Interviewers, Except Eligibility and Loan"
+    },
+    {
+      "Occupations": "Investment Fund Managers"
+    },
+    {
+      "Occupations": "Janitors and Cleaners, Except Maids and Housekeeping Cleaners"
+    },
+    {
+      "Occupations": "Jewelers"
+    },
+    {
+      "Occupations": "Judges, Magistrate Judges, and Magistrates"
+    },
+    {
+      "Occupations": "Judicial Law Clerks"
+    },
+    {
+      "Occupations": "Kindergarten Teachers, Except Special Education"
+    },
+    {
+      "Occupations": "Labor Relations Specialists"
+    },
+    {
+      "Occupations": "Laborers and Freight, Stock, and Material Movers, Hand"
+    },
+    {
+      "Occupations": "Landscape Architects"
+    },
+    {
+      "Occupations": "Landscaping and Groundskeeping Workers"
+    },
+    {
+      "Occupations": "Lathe and Turning Machine Tool Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Laundry and Dry-Cleaning Workers"
+    },
+    {
+      "Occupations": "Law Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Lawyers"
+    },
+    {
+      "Occupations": "Layout Workers, Metal and Plastic"
+    },
+    {
+      "Occupations": "Legal Secretaries"
+    },
+    {
+      "Occupations": "Legislators"
+    },
+    {
+      "Occupations": "Librarians"
+    },
+    {
+      "Occupations": "Library Assistants, Clerical"
+    },
+    {
+      "Occupations": "Library Science Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Library Technicians"
+    },
+    {
+      "Occupations": "License Clerks"
+    },
+    {
+      "Occupations": "Licensed Practical and Licensed Vocational Nurses"
+    },
+    {
+      "Occupations": "Licensing Examiners and Inspectors"
+    },
+    {
+      "Occupations": "Lifeguards, Ski Patrol, and Other Recreational Protective Service Workers"
+    },
+    {
+      "Occupations": "Light Truck or Delivery Services Drivers"
+    },
+    {
+      "Occupations": "Loading Machine Operators, Underground Mining"
+    },
+    {
+      "Occupations": "Loan Counselors"
+    },
+    {
+      "Occupations": "Loan Interviewers and Clerks"
+    },
+    {
+      "Occupations": "Loan Officers"
+    },
+    {
+      "Occupations": "Locker Room, Coatroom, and Dressing Room Attendants"
+    },
+    {
+      "Occupations": "Locksmiths and Safe Repairers"
+    },
+    {
+      "Occupations": "Locomotive Engineers"
+    },
+    {
+      "Occupations": "Locomotive Firers"
+    },
+    {
+      "Occupations": "Lodging Managers"
+    },
+    {
+      "Occupations": "Log Graders and Scalers"
+    },
+    {
+      "Occupations": "Logging Equipment Operators"
+    },
+    {
+      "Occupations": "Logisticians"
+    },
+    {
+      "Occupations": "Logistics Analysts"
+    },
+    {
+      "Occupations": "Logistics Engineers"
+    },
+    {
+      "Occupations": "Logistics Managers"
+    },
+    {
+      "Occupations": "Loss Prevention Managers"
+    },
+    {
+      "Occupations": "Low Vision Therapists, Orientation and Mobility Specialists, and Vision Rehabilitation Therapists"
+    },
+    {
+      "Occupations": "Machine Feeders and Offbearers"
+    },
+    {
+      "Occupations": "Machinists"
+    },
+    {
+      "Occupations": "Magnetic Resonance Imaging Technologists"
+    },
+    {
+      "Occupations": "Maids and Housekeeping Cleaners"
+    },
+    {
+      "Occupations": "Mail Clerks and Mail Machine Operators, Except Postal Service"
+    },
+    {
+      "Occupations": "Maintenance and Repair Workers, General"
+    },
+    {
+      "Occupations": "Maintenance Workers, Machinery"
+    },
+    {
+      "Occupations": "Makeup Artists, Theatrical and Performance"
+    },
+    {
+      "Occupations": "Management Analysts"
+    },
+    {
+      "Occupations": "Manicurists and Pedicurists"
+    },
+    {
+      "Occupations": "Manufactured Building and Mobile Home Installers"
+    },
+    {
+      "Occupations": "Manufacturing Engineering Technologists"
+    },
+    {
+      "Occupations": "Manufacturing Engineers"
+    },
+    {
+      "Occupations": "Manufacturing Production Technicians"
+    },
+    {
+      "Occupations": "Mapping Technicians"
+    },
+    {
+      "Occupations": "Marine Architects"
+    },
+    {
+      "Occupations": "Marine Engineers"
+    },
+    {
+      "Occupations": "Market Research Analysts and Marketing Specialists"
+    },
+    {
+      "Occupations": "Marketing Managers"
+    },
+    {
+      "Occupations": "Marking Clerks"
+    },
+    {
+      "Occupations": "Marriage and Family Therapists"
+    },
+    {
+      "Occupations": "Massage Therapists"
+    },
+    {
+      "Occupations": "Materials Engineers"
+    },
+    {
+      "Occupations": "Materials Scientists"
+    },
+    {
+      "Occupations": "Mates- Ship, Boat, and Barge"
+    },
+    {
+      "Occupations": "Mathematical Science Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Mathematical Technicians"
+    },
+    {
+      "Occupations": "Mathematicians"
+    },
+    {
+      "Occupations": "Meat, Poultry, and Fish Cutters and Trimmers"
+    },
+    {
+      "Occupations": "Mechanical Door Repairers"
+    },
+    {
+      "Occupations": "Mechanical Drafters"
+    },
+    {
+      "Occupations": "Mechanical Engineering Technicians"
+    },
+    {
+      "Occupations": "Mechanical Engineering Technologists"
+    },
+    {
+      "Occupations": "Mechanical Engineers"
+    },
+    {
+      "Occupations": "Mechatronics Engineers"
+    },
+    {
+      "Occupations": "Medical and Clinical Laboratory Technicians"
+    },
+    {
+      "Occupations": "Medical and Clinical Laboratory Technologists"
+    },
+    {
+      "Occupations": "Medical and Health Services Managers"
+    },
+    {
+      "Occupations": "Medical Appliance Technicians"
+    },
+    {
+      "Occupations": "Medical Assistants"
+    },
+    {
+      "Occupations": "Medical Equipment Preparers"
+    },
+    {
+      "Occupations": "Medical Equipment Repairers"
+    },
+    {
+      "Occupations": "Medical Records and Health Information Technicians"
+    },
+    {
+      "Occupations": "Medical Scientists, Except Epidemiologists"
+    },
+    {
+      "Occupations": "Medical Secretaries"
+    },
+    {
+      "Occupations": "Medical Transcriptionists"
+    },
+    {
+      "Occupations": "Meeting, Convention, and Event Planners"
+    },
+    {
+      "Occupations": "Mental Health and Substance Abuse Social Workers"
+    },
+    {
+      "Occupations": "Mental Health Counselors"
+    },
+    {
+      "Occupations": "Merchandise Displayers and Window Trimmers"
+    },
+    {
+      "Occupations": "Metal-Refining Furnace Operators and Tenders"
+    },
+    {
+      "Occupations": "Meter Readers, Utilities"
+    },
+    {
+      "Occupations": "Microbiologists"
+    },
+    {
+      "Occupations": "Microsystems Engineers"
+    },
+    {
+      "Occupations": "Middle School Teachers, Except Special and Career/Technical Education"
+    },
+    {
+      "Occupations": "Midwives"
+    },
+    {
+      "Occupations": "Milling and Planing Machine Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Millwrights"
+    },
+    {
+      "Occupations": "Mine Cutting and Channeling Machine Operators"
+    },
+    {
+      "Occupations": "Mine Shuttle Car Operators"
+    },
+    {
+      "Occupations": "Mining and Geological Engineers, Including Mining Safety Engineers"
+    },
+    {
+      "Occupations": "Mixing and Blending Machine Setters, Operators, and Tenders"
+    },
+    {
+      "Occupations": "Mobile Heavy Equipment Mechanics, Except Engines"
+    },
+    {
+      "Occupations": "Model Makers, Metal and Plastic"
+    },
+    {
+      "Occupations": "Model Makers, Wood"
+    },
+    {
+      "Occupations": "Models"
+    },
+    {
+      "Occupations": "Molding and Casting Workers"
+    },
+    {
+      "Occupations": "Molding, Coremaking, and Casting Machine Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Molecular and Cellular Biologists"
+    },
+    {
+      "Occupations": "Mother"
+    },
+    {
+      "Occupations": "Morticians, Undertakers, and Funeral Directors"
+    },
+    {
+      "Occupations": "Motion Picture Projectionists"
+    },
+    {
+      "Occupations": "Motorboat Mechanics and Service Technicians"
+    },
+    {
+      "Occupations": "Motorboat Operators"
+    },
+    {
+      "Occupations": "Motorcycle Mechanics"
+    },
+    {
+      "Occupations": "Multimedia Artists and Animators"
+    },
+    {
+      "Occupations": "Multiple Machine Tool Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Municipal Clerks"
+    },
+    {
+      "Occupations": "Municipal Fire Fighting and Prevention Supervisors"
+    },
+    {
+      "Occupations": "Municipal Firefighters"
+    },
+    {
+      "Occupations": "Museum Technicians and Conservators"
+    },
+    {
+      "Occupations": "Music Composers and Arrangers"
+    },
+    {
+      "Occupations": "Music Directors"
+    },
+    {
+      "Occupations": "Music Therapists"
+    },
+    {
+      "Occupations": "Musical Instrument Repairers and Tuners"
+    },
+    {
+      "Occupations": "Musicians, Instrumental"
+    },
+    {
+      "Occupations": "Nannies"
+    },
+    {
+      "Occupations": "Nanosystems Engineers"
+    },
+    {
+      "Occupations": "Nanotechnology Engineering Technicians"
+    },
+    {
+      "Occupations": "Nanotechnology Engineering Technologists"
+    },
+    {
+      "Occupations": "Natural Sciences Managers"
+    },
+    {
+      "Occupations": "Naturopathic Physicians"
+    },
+    {
+      "Occupations": "Network and Computer Systems Administrators"
+    },
+    {
+      "Occupations": "Neurodiagnostic Technologists"
+    },
+    {
+      "Occupations": "Neurologists"
+    },
+    {
+      "Occupations": "Neuropsychologists and Clinical Neuropsychologists"
+    },
+    {
+      "Occupations": "New Accounts Clerks"
+    },
+    {
+      "Occupations": "Non-Destructive Testing Specialists"
+    },
+    {
+      "Occupations": "Nonfarm Animal Caretakers"
+    },
+    {
+      "Occupations": "Nuclear Engineers"
+    },
+    {
+      "Occupations": "Nuclear Equipment Operation Technicians"
+    },
+    {
+      "Occupations": "Nuclear Medicine Physicians"
+    },
+    {
+      "Occupations": "Nuclear Medicine Technologists"
+    },
+    {
+      "Occupations": "Nuclear Monitoring Technicians"
+    },
+    {
+      "Occupations": "Nuclear Power Reactor Operators"
+    },
+    {
+      "Occupations": "Nurse Anesthetists"
+    },
+    {
+      "Occupations": "Nurse Midwives"
+    },
+    {
+      "Occupations": "Nurse Practitioners"
+    },
+    {
+      "Occupations": "Nursery and Greenhouse Managers"
+    },
+    {
+      "Occupations": "Nursery Workers"
+    },
+    {
+      "Occupations": "Nursing Assistants"
+    },
+    {
+      "Occupations": "Nursing Instructors and Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Obstetricians and Gynecologists"
+    },
+    {
+      "Occupations": "Occupational Health and Safety Specialists"
+    },
+    {
+      "Occupations": "Occupational Health and Safety Technicians"
+    },
+    {
+      "Occupations": "Occupational Therapists"
+    },
+    {
+      "Occupations": "Occupational Therapy Aides"
+    },
+    {
+      "Occupations": "Occupational Therapy Assistants"
+    },
+    {
+      "Occupations": "Office Clerks, General"
+    },
+    {
+      "Occupations": "Office Machine Operators, Except Computer"
+    },
+    {
+      "Occupations": "Online Merchants"
+    },
+    {
+      "Occupations": "Operating Engineers and Other Construction Equipment Operators"
+    },
+    {
+      "Occupations": "Operations Research Analysts"
+    },
+    {
+      "Occupations": "Ophthalmic Laboratory Technicians"
+    },
+    {
+      "Occupations": "Ophthalmic Medical Technicians"
+    },
+    {
+      "Occupations": "Ophthalmic Medical Technologists"
+    },
+    {
+      "Occupations": "Ophthalmologists"
+    },
+    {
+      "Occupations": "Opticians, Dispensing"
+    },
+    {
+      "Occupations": "Optometrists"
+    },
+    {
+      "Occupations": "Oral and Maxillofacial Surgeons"
+    },
+    {
+      "Occupations": "Order Clerks"
+    },
+    {
+      "Occupations": "Order Fillers, Wholesale and Retail Sales"
+    },
+    {
+      "Occupations": "Orderlies"
+    },
+    {
+      "Occupations": "Orthodontists"
+    },
+    {
+      "Occupations": "Orthoptists"
+    },
+    {
+      "Occupations": "Orthotists and Prosthetists"
+    },
+    {
+      "Occupations": "Outdoor Power Equipment and Other Small Engine Mechanics"
+    },
+    {
+      "Occupations": "Packaging and Filling Machine Operators and Tenders"
+    },
+    {
+      "Occupations": "Packers and Packagers, Hand"
+    },
+    {
+      "Occupations": "Painters, Construction and Maintenance"
+    },
+    {
+      "Occupations": "Painters, Transportation Equipment"
+    },
+    {
+      "Occupations": "Painting, Coating, and Decorating Workers"
+    },
+    {
+      "Occupations": "Paper Goods Machine Setters, Operators, and Tenders"
+    },
+    {
+      "Occupations": "Paperhangers"
+    },
+    {
+      "Occupations": "Paralegals and Legal Assistants"
+    },
+    {
+      "Occupations": "Park Naturalists"
+    },
+    {
+      "Occupations": "Parking Enforcement Workers"
+    },
+    {
+      "Occupations": "Parking Lot Attendants"
+    },
+    {
+      "Occupations": "Parts Salespersons"
+    },
+    {
+      "Occupations": "Pathologists"
+    },
+    {
+      "Occupations": "Patient Representatives"
+    },
+    {
+      "Occupations": "Patternmakers, Metal and Plastic"
+    },
+    {
+      "Occupations": "Patternmakers, Wood"
+    },
+    {
+      "Occupations": "Paving, Surfacing, and Tamping Equipment Operators"
+    },
+    {
+      "Occupations": "Payroll and Timekeeping Clerks"
+    },
+    {
+      "Occupations": "Pediatricians, General"
+    },
+    {
+      "Occupations": "Personal Care Aides"
+    },
+    {
+      "Occupations": "Personal Financial Advisors"
+    },
+    {
+      "Occupations": "Pest Control Workers"
+    },
+    {
+      "Occupations": "Pesticide Handlers, Sprayers, and Applicators, Vegetation"
+    },
+    {
+      "Occupations": "Petroleum Engineers"
+    },
+    {
+      "Occupations": "Petroleum Pump System Operators, Refinery Operators, and Gaugers"
+    },
+    {
+      "Occupations": "Pharmacists"
+    },
+    {
+      "Occupations": "Pharmacy Aides"
+    },
+    {
+      "Occupations": "Pharmacy Technicians"
+    },
+    {
+      "Occupations": "Philosophy and Religion Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Phlebotomists"
+    },
+    {
+      "Occupations": "Photographers"
+    },
+    {
+      "Occupations": "Photographic Process Workers and Processing Machine Operators"
+    },
+    {
+      "Occupations": "Photonics Engineers"
+    },
+    {
+      "Occupations": "Photonics Technicians"
+    },
+    {
+      "Occupations": "Physical Medicine and Rehabilitation Physicians"
+    },
+    {
+      "Occupations": "Physical Therapist Aides"
+    },
+    {
+      "Occupations": "Physical Therapist Assistants"
+    },
+    {
+      "Occupations": "Physical Therapists"
+    },
+    {
+      "Occupations": "Physician Assistants"
+    },
+    {
+      "Occupations": "Physicists"
+    },
+    {
+      "Occupations": "Physics Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Pile-Driver Operators"
+    },
+    {
+      "Occupations": "Pilots, Ship"
+    },
+    {
+      "Occupations": "Pipe Fitters and Steamfitters"
+    },
+    {
+      "Occupations": "Pipelayers"
+    },
+    {
+      "Occupations": "Plasterers and Stucco Masons"
+    },
+    {
+      "Occupations": "Plating and Coating Machine Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Plumbers"
+    },
+    {
+      "Occupations": "Podiatrists"
+    },
+    {
+      "Occupations": "Poets, Lyricists and Creative Writers"
+    },
+    {
+      "Occupations": "Police Detectives"
+    },
+    {
+      "Occupations": "Police Identification and Records Officers"
+    },
+    {
+      "Occupations": "Police Patrol Officers"
+    },
+    {
+      "Occupations": "Police, Fire, and Ambulance Dispatchers"
+    },
+    {
+      "Occupations": "Political Science Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Political Scientists"
+    },
+    {
+      "Occupations": "Postal Service Clerks"
+    },
+    {
+      "Occupations": "Postal Service Mail Carriers"
+    },
+    {
+      "Occupations": "Postal Service Mail Sorters, Processors, and Processing Machine Operators"
+    },
+    {
+      "Occupations": "Postmasters and Mail Superintendents"
+    },
+    {
+      "Occupations": "Potters, Manufacturing"
+    },
+    {
+      "Occupations": "Pourers and Casters, Metal"
+    },
+    {
+      "Occupations": "Power Distributors and Dispatchers"
+    },
+    {
+      "Occupations": "Power Plant Operators"
+    },
+    {
+      "Occupations": "Precious Metal Workers"
+    },
+    {
+      "Occupations": "Precision Agriculture Technicians"
+    },
+    {
+      "Occupations": "Prepress Technicians and Workers"
+    },
+    {
+      "Occupations": "Preschool Teachers, Except Special Education"
+    },
+    {
+      "Occupations": "Pressers, Textile, Garment, and Related Materials"
+    },
+    {
+      "Occupations": "Preventive Medicine Physicians"
+    },
+    {
+      "Occupations": "Print Binding and Finishing Workers"
+    },
+    {
+      "Occupations": "Printing Press Operators"
+    },
+    {
+      "Occupations": "Private Detectives and Investigators"
+    },
+    {
+      "Occupations": "Probation Officers and Correctional Treatment Specialists"
+    },
+    {
+      "Occupations": "Procurement Clerks"
+    },
+    {
+      "Occupations": "Producers"
+    },
+    {
+      "Occupations": "Product Safety Engineers"
+    },
+    {
+      "Occupations": "Production, Planning, and Expediting Clerks"
+    },
+    {
+      "Occupations": "Program Directors"
+    },
+    {
+      "Occupations": "Proofreaders and Copy Markers"
+    },
+    {
+      "Occupations": "Property, Real Estate, and Community Association Managers"
+    },
+    {
+      "Occupations": "Prosthodontists"
+    },
+    {
+      "Occupations": "Psychiatric Aides"
+    },
+    {
+      "Occupations": "Psychiatric Technicians"
+    },
+    {
+      "Occupations": "Psychiatrists"
+    },
+    {
+      "Occupations": "Psychology Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Public Address System and Other Announcers"
+    },
+    {
+      "Occupations": "Public Relations and Fundraising Managers"
+    },
+    {
+      "Occupations": "Public Relations Specialists"
+    },
+    {
+      "Occupations": "Pump Operators, Except Wellhead Pumpers"
+    },
+    {
+      "Occupations": "Purchasing Agents, Except Wholesale, Retail, and Farm Products"
+    },
+    {
+      "Occupations": "Purchasing Managers"
+    },
+    {
+      "Occupations": "Quality Control Analysts"
+    },
+    {
+      "Occupations": "Quality Control Systems Managers"
+    },
+    {
+      "Occupations": "Radiation Therapists"
+    },
+    {
+      "Occupations": "Radio and Television Announcers"
+    },
+    {
+      "Occupations": "Radio Frequency Identification Device Specialists"
+    },
+    {
+      "Occupations": "Radio Mechanics"
+    },
+    {
+      "Occupations": "Radio Operators"
+    },
+    {
+      "Occupations": "Radio, Cellular, and Tower Equipment Installers and Repairers"
+    },
+    {
+      "Occupations": "Radiologic Technicians"
+    },
+    {
+      "Occupations": "Radiologic Technologists"
+    },
+    {
+      "Occupations": "Radiologists"
+    },
+    {
+      "Occupations": "Rail Car Repairers"
+    },
+    {
+      "Occupations": "Rail Yard Engineers, Dinkey Operators, and Hostlers"
+    },
+    {
+      "Occupations": "Rail-Track Laying and Maintenance Equipment Operators"
+    },
+    {
+      "Occupations": "Railroad Brake, Signal, and Switch Operators"
+    },
+    {
+      "Occupations": "Railroad Conductors and Yardmasters"
+    },
+    {
+      "Occupations": "Range Managers"
+    },
+    {
+      "Occupations": "Real Estate Brokers"
+    },
+    {
+      "Occupations": "Real Estate Sales Agents"
+    },
+    {
+      "Occupations": "Receptionists and Information Clerks"
+    },
+    {
+      "Occupations": "Recreation and Fitness Studies Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Recreation Workers"
+    },
+    {
+      "Occupations": "Recreational Therapists"
+    },
+    {
+      "Occupations": "Recreational Vehicle Service Technicians"
+    },
+    {
+      "Occupations": "Recycling and Reclamation Workers"
+    },
+    {
+      "Occupations": "Recycling Coordinators"
+    },
+    {
+      "Occupations": "Refractory Materials Repairers, Except Brickmasons"
+    },
+    {
+      "Occupations": "Refrigeration Mechanics and Installers"
+    },
+    {
+      "Occupations": "Refuse and Recyclable Material Collectors"
+    },
+    {
+      "Occupations": "Registered Nurses"
+    },
+    {
+      "Occupations": "Regulatory Affairs Managers"
+    },
+    {
+      "Occupations": "Regulatory Affairs Specialists"
+    },
+    {
+      "Occupations": "Rehabilitation Counselors"
+    },
+    {
+      "Occupations": "Reinforcing Iron and Rebar Workers"
+    },
+    {
+      "Occupations": "Remote Sensing Scientists and Technologists"
+    },
+    {
+      "Occupations": "Remote Sensing Technicians"
+    },
+    {
+      "Occupations": "Reporters and Correspondents"
+    },
+    {
+      "Occupations": "Reservation and Transportation Ticket Agents and Travel Clerks"
+    },
+    {
+      "Occupations": "Residential Advisors"
+    },
+    {
+      "Occupations": "Respiratory Therapists"
+    },
+    {
+      "Occupations": "Respiratory Therapy Technicians"
+    },
+    {
+      "Occupations": "Retail Loss Prevention Specialists"
+    },
+    {
+      "Occupations": "Retail Salespersons"
+    },
+    {
+      "Occupations": "Riggers"
+    },
+    {
+      "Occupations": "Risk Management Specialists"
+    },
+    {
+      "Occupations": "Robotics Engineers"
+    },
+    {
+      "Occupations": "Robotics Technicians"
+    },
+    {
+      "Occupations": "Rock Splitters, Quarry"
+    },
+    {
+      "Occupations": "Rolling Machine Setters, Operators, and Tenders, Metal and Plastic"
+    },
+    {
+      "Occupations": "Roof Bolters, Mining"
+    },
+    {
+      "Occupations": "Roofers"
+    },
+    {
+      "Occupations": "Rotary Drill Operators, Oil and Gas"
+    },
+    {
+      "Occupations": "Rough Carpenters"
+    },
+    {
+      "Occupations": "Roustabouts, Oil and Gas"
+    },
+    {
+      "Occupations": "Sailors and Marine Oilers"
+    },
+    {
+      "Occupations": "Sales Agents, Financial Services"
+    },
+    {
+      "Occupations": "Sales Agents, Securities and Commodities"
+    },
+    {
+      "Occupations": "Sales Engineers"
+    },
+    {
+      "Occupations": "Sales Managers"
+    },
+    {
+      "Occupations": "Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products"
+    },
+    {
+      "Occupations": "Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products"
+    },
+    {
+      "Occupations": "Sawing Machine Setters, Operators, and Tenders, Wood"
+    },
+    {
+      "Occupations": "School Psychologists"
+    },
+    {
+      "Occupations": "Search Marketing Strategists"
+    },
+    {
+      "Occupations": "Secondary School Teachers, Except Special and Career/Technical Education"
+    },
+    {
+      "Occupations": "Secretaries and Administrative Assistants, Except Legal, Medical, and Executive"
+    },
+    {
+      "Occupations": "Securities and Commodities Traders"
+    },
+    {
+      "Occupations": "Security and Fire Alarm Systems Installers"
+    },
+    {
+      "Occupations": "Security Guards"
+    },
+    {
+      "Occupations": "Security Management Specialists"
+    },
+    {
+      "Occupations": "Security Managers"
+    },
+    {
+      "Occupations": "Segmental Pavers"
+    },
+    {
+      "Occupations": "Self-Enrichment Education Teachers"
+    },
+    {
+      "Occupations": "Semiconductor Processors"
+    },
+    {
+      "Occupations": "Separating, Filtering, Clarifying, Precipitating, and Still Machine Setters, Operators, and Tenders"
+    },
+    {
+      "Occupations": "Septic Tank Servicers and Sewer Pipe Cleaners"
+    },
+    {
+      "Occupations": "Service Unit Operators, Oil, Gas, and Mining"
+    },
+    {
+      "Occupations": "Set and Exhibit Designers"
+    },
+    {
+      "Occupations": "Sewers, Hand"
+    },
+    {
+      "Occupations": "Sewing Machine Operators"
+    },
+    {
+      "Occupations": "Shampooers"
+    },
+    {
+      "Occupations": "Sheet Metal Workers"
+    },
+    {
+      "Occupations": "Sheriffs and Deputy Sheriffs"
+    },
+    {
+      "Occupations": "Ship and Boat Captains"
+    },
+    {
+      "Occupations": "Ship Engineers"
+    },
+    {
+      "Occupations": "Shipping, Receiving, and Traffic Clerks"
+    },
+    {
+      "Occupations": "Shoe and Leather Workers and Repairers"
+    },
+    {
+      "Occupations": "Shoe Machine Operators and Tenders"
+    },
+    {
+      "Occupations": "Signal and Track Switch Repairers"
+    },
+    {
+      "Occupations": "Singers"
+    },
+    {
+      "Occupations": "Skincare Specialists"
+    },
+    {
+      "Occupations": "Slaughterers and Meat Packers"
+    },
+    {
+      "Occupations": "Slot Supervisors"
+    },
+    {
+      "Occupations": "Social and Community Service Managers"
+    },
+    {
+      "Occupations": "Social and Human Service Assistants"
+    },
+    {
+      "Occupations": "Social Science Research Assistants"
+    },
+    {
+      "Occupations": "Social Work Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Sociologists"
+    },
+    {
+      "Occupations": "Sociology Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Software Developers, Applications"
+    },
+    {
+      "Occupations": "Software Developers, Systems Software"
+    },
+    {
+      "Occupations": "Software Quality Assurance Engineers and Testers"
+    },
+    {
+      "Occupations": "Soil and Plant Scientists"
+    },
+    {
+      "Occupations": "Soil and Water Conservationists"
+    },
+    {
+      "Occupations": "Solar Energy Installation Managers"
+    },
+    {
+      "Occupations": "Solar Energy Systems Engineers"
+    },
+    {
+      "Occupations": "Solar Photovoltaic Installers"
+    },
+    {
+      "Occupations": "Solar Sales Representatives and Assessors"
+    },
+    {
+      "Occupations": "Solar Thermal Installers and Technicians"
+    },
+    {
+      "Occupations": "Solderers and Brazers"
+    },
+    {
+      "Occupations": "Sound Engineering Technicians"
+    },
+    {
+      "Occupations": "Spa Managers"
+    },
+    {
+      "Occupations": "Special Education Teachers, Kindergarten and Elementary School"
+    },
+    {
+      "Occupations": "Special Education Teachers, Middle School"
+    },
+    {
+      "Occupations": "Special Education Teachers, Secondary School"
+    },
+    {
+      "Occupations": "Speech-Language Pathologists"
+    },
+    {
+      "Occupations": "Speech-Language Pathology Assistants"
+    },
+    {
+      "Occupations": "Sports Medicine Physicians"
+    },
+    {
+      "Occupations": "Statement Clerks"
+    },
+    {
+      "Occupations": "Stationary Engineers and Boiler Operators"
+    },
+    {
+      "Occupations": "Statistical Assistants"
+    },
+    {
+      "Occupations": "Statisticians"
+    },
+    {
+      "Occupations": "Stock Clerks, Sales Floor"
+    },
+    {
+      "Occupations": "Stock Clerks- Stockroom, Warehouse, or Storage Yard"
+    },
+    {
+      "Occupations": "Stone Cutters and Carvers, Manufacturing"
+    },
+    {
+      "Occupations": "Stonemasons"
+    },
+    {
+      "Occupations": "Storage and Distribution Managers"
+    },
+    {
+      "Occupations": "Structural Iron and Steel Workers"
+    },
+    {
+      "Occupations": "Structural Metal Fabricators and Fitters"
+    },
+    {
+      "Occupations": "Student (High School)"
+    },
+    {
+      "Occupations": "Student (Technical or Occupational Trade)"
+    },
+    {
+      "Occupations": "Student (Associate degree)"
+    },
+    {
+      "Occupations": "Student (Bachelor's degree) (i.e., BA, BS, etc.)"
+    },
+    {
+      "Occupations": "Student (Master's degree) (i.e., MBA, etc.)"
+    },
+    {
+      "Occupations": "Student (Doctorate) (i.e., PhD)"
+    },
+    {
+      "Occupations": "Student (Professional) (i.e., law, medical, dental, etc.) "
+    },
+    {
+      "Occupations": "Substance Abuse and Behavioral Disorder Counselors"
+    },
+    {
+      "Occupations": "Subway and Streetcar Operators"
+    },
+    {
+      "Occupations": "Supply Chain Managers"
+    },
+    {
+      "Occupations": "Surgeons"
+    },
+    {
+      "Occupations": "Surgical Assistants"
+    },
+    {
+      "Occupations": "Surgical Technologists"
+    },
+    {
+      "Occupations": "Survey Researchers"
+    },
+    {
+      "Occupations": "Surveying Technicians"
+    },
+    {
+      "Occupations": "Surveyors"
+    },
+    {
+      "Occupations": "Sustainability Specialists"
+    },
+    {
+      "Occupations": "Switchboard Operators, Including Answering Service"
+    },
+    {
+      "Occupations": "Tailors, Dressmakers, and Custom Sewers"
+    },
+    {
+      "Occupations": "Talent Directors"
+    },
+    {
+      "Occupations": "Tank Car, Truck, and Ship Loaders"
+    },
+    {
+      "Occupations": "Tapers"
+    },
+    {
+      "Occupations": "Tax Examiners and Collectors, and Revenue Agents"
+    },
+    {
+      "Occupations": "Tax Preparers"
+    },
+    {
+      "Occupations": "Taxi Drivers and Chauffeurs"
+    },
+    {
+      "Occupations": "Teacher Assistants"
+    },
+    {
+      "Occupations": "Team Assemblers"
+    },
+    {
+      "Occupations": "Technical Directors/Managers"
+    },
+    {
+      "Occupations": "Technical Writers"
+    },
+    {
+      "Occupations": "Telecommunications Engineering Specialists"
+    },
+    {
+      "Occupations": "Telecommunications Equipment Installers and Repairers, Except Line Installers"
+    },
+    {
+      "Occupations": "Telecommunications Line Installers and Repairers"
+    },
+    {
+      "Occupations": "Telemarketers"
+    },
+    {
+      "Occupations": "Telephone Operators"
+    },
+    {
+      "Occupations": "Tellers"
+    },
+    {
+      "Occupations": "Terrazzo Workers and Finishers"
+    },
+    {
+      "Occupations": "Textile Bleaching and Dyeing Machine Operators and Tenders"
+    },
+    {
+      "Occupations": "Textile Cutting Machine Setters, Operators, and Tenders"
+    },
+    {
+      "Occupations": "Textile Knitting and Weaving Machine Setters, Operators, and Tenders"
+    },
+    {
+      "Occupations": "Textile Winding, Twisting, and Drawing Out Machine Setters, Operators, and Tenders"
+    },
+    {
+      "Occupations": "Tile and Marble Setters"
+    },
+    {
+      "Occupations": "Timing Device Assemblers and Adjusters"
+    },
+    {
+      "Occupations": "Tire Builders"
+    },
+    {
+      "Occupations": "Tire Repairers and Changers"
+    },
+    {
+      "Occupations": "Title Examiners, Abstractors, and Searchers"
+    },
+    {
+      "Occupations": "Tool and Die Makers"
+    },
+    {
+      "Occupations": "Tool Grinders, Filers, and Sharpeners"
+    },
+    {
+      "Occupations": "Tour Guides and Escorts"
+    },
+    {
+      "Occupations": "Traffic Technicians"
+    },
+    {
+      "Occupations": "Training and Development Managers"
+    },
+    {
+      "Occupations": "Training and Development Specialists"
+    },
+    {
+      "Occupations": "Transit and Railroad Police"
+    },
+    {
+      "Occupations": "Transportation Attendants, Except Flight Attendants"
+    },
+    {
+      "Occupations": "Transportation Engineers"
+    },
+    {
+      "Occupations": "Transportation Managers"
+    },
+    {
+      "Occupations": "Transportation Planners"
+    },
+    {
+      "Occupations": "Transportation Security Screeners"
+    },
+    {
+      "Occupations": "Transportation Vehicle, Equipment and Systems Inspectors, Except Aviation"
+    },
+    {
+      "Occupations": "Travel Agents"
+    },
+    {
+      "Occupations": "Travel Guides"
+    },
+    {
+      "Occupations": "Treasurers and Controllers"
+    },
+    {
+      "Occupations": "Tree Trimmers and Pruners"
+    },
+    {
+      "Occupations": "Tutors"
+    },
+    {
+      "Occupations": "Umpires, Referees, and Other Sports Officials"
+    },
+    {
+      "Occupations": "Upholsterers"
+    },
+    {
+      "Occupations": "Urban and Regional Planners"
+    },
+    {
+      "Occupations": "Urologists"
+    },
+    {
+      "Occupations": "Ushers, Lobby Attendants, and Ticket Takers"
+    },
+    {
+      "Occupations": "Validation Engineers"
+    },
+    {
+      "Occupations": "Veterinarians"
+    },
+    {
+      "Occupations": "Veterinary Assistants and Laboratory Animal Caretakers"
+    },
+    {
+      "Occupations": "Veterinary Technologists and Technicians"
+    },
+    {
+      "Occupations": "Video Game Designers"
+    },
+    {
+      "Occupations": "Vocational Education Teachers, Postsecondary"
+    },
+    {
+      "Occupations": "Waiters and Waitresses"
+    },
+    {
+      "Occupations": "Watch Repairers"
+    },
+    {
+      "Occupations": "Water and Wastewater Treatment Plant and System Operators"
+    },
+    {
+      "Occupations": "Water Resource Specialists"
+    },
+    {
+      "Occupations": "Water/Wastewater Engineers"
+    },
+    {
+      "Occupations": "Weatherization Installers and Technicians"
+    },
+    {
+      "Occupations": "Web Administrators"
+    },
+    {
+      "Occupations": "Web Developers"
+    },
+    {
+      "Occupations": "Weighers, Measurers, Checkers, and Samplers, Recordkeeping"
+    },
+    {
+      "Occupations": "Welders, Cutters, and Welder Fitters"
+    },
+    {
+      "Occupations": "Welding, Soldering, and Brazing Machine Setters, Operators, and Tenders"
+    },
+    {
+      "Occupations": "Wellhead Pumpers"
+    },
+    {
+      "Occupations": "Wholesale and Retail Buyers, Except Farm Products"
+    },
+    {
+      "Occupations": "Wind Energy Engineers"
+    },
+    {
+      "Occupations": "Wind Energy Operations Managers"
+    },
+    {
+      "Occupations": "Wind Energy Project Managers"
+    },
+    {
+      "Occupations": "Wind Turbine Service Technicians"
+    },
+    {
+      "Occupations": "Woodworking Machine Setters, Operators, and Tenders, Except Sawing"
+    },
+    {
+      "Occupations": "Word Processors and Typists"
+    },
+    {
+      "Occupations": "Zoologists and Wildlife Biologists"
+    }
+  ]
+}]

@@ -1,0 +1,31 @@
+[{
+  "Religious": [
+    {
+      "Religious": "Atheist"
+    },
+    {
+      "Religious": "Agnostic"
+    },
+    {
+      "Religious": "Buddist"
+    },
+    {
+      "Religious": "Christian"
+    },
+    {
+      "Religious": "Catholic"
+    },
+    {
+      "Religious": "Hindu"
+    },
+    {
+      "Religious": "Islamic"
+    },
+    {
+      "Religious": "Jewish"
+    },
+    {
+      "Religious": "Other"
+    }
+  ]
+}]

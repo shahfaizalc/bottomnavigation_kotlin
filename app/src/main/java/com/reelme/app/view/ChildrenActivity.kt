@@ -15,6 +15,8 @@ import com.reelme.app.adapter.FlightsRecyclerViewAdapter
 import com.reelme.app.databinding.ChildrenLayoutBinding
 import com.reelme.app.model.Flight
 import com.reelme.app.model3.UserDetails
+import com.reelme.app.pojos.Child
+import com.reelme.app.util.GenericValues
 import java.util.*
 
 class ChildrenActivity : AppCompatActivity() {
@@ -38,17 +40,9 @@ class ChildrenActivity : AppCompatActivity() {
 
     }
 
-    fun prepareData(): List<Flight> {
-        val flights: MutableList<Flight> = ArrayList()
-        var flight = Flight("Yes")
-        flights.add(flight)
-        flight = Flight("No")
-        flights.add(flight)
-        flight = Flight("Someday")
-        flights.add(flight)
-        flight = Flight("Never")
-        flights.add(flight)
-        return flights
+    fun prepareData(): List<Child> {
+        val values = GenericValues().getFileString("children.json", this)
+        return GenericValues().getChildListStatusList(values,this)[0].chapters!!
     }
 
     lateinit var userDetails : UserDetails

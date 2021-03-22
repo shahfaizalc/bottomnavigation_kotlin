@@ -1,0 +1,33 @@
+[
+  {
+
+  "Relationship": [
+    {
+      "Relationship": "Single"
+    },
+    {
+      "Relationship": "Married"
+    },
+    {
+      "Relationship": "Domestic Partnership"
+    },
+    {
+      "Relationship": "Civil Union"
+    },
+    {
+      "Relationship": "Divorced"
+    },
+    {
+      "Relationship": "Separated"
+    },
+    {
+      "Relationship": "Widowed"
+    },
+    {
+      "Relationship": "It’s Complicated"
+    },
+    {
+      "Relationship": "Other"
+    }
+  ]
+  }]

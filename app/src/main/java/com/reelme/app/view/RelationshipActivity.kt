@@ -14,6 +14,9 @@ import com.reelme.app.adapter.RelationshipRecyclerViewAdapter
 import com.reelme.app.databinding.RelationshipLayoutBinding
 import com.reelme.app.model.Flight
 import com.reelme.app.model3.UserDetails
+import com.reelme.app.pojos.RelationshipStatus
+import com.reelme.app.pojos.RelationshipStatusList
+import com.reelme.app.util.GenericValues
 import java.util.*
 
 class RelationshipActivity : AppCompatActivity() {
@@ -37,27 +40,11 @@ class RelationshipActivity : AppCompatActivity() {
         getUserInfo()
     }
 
-    private fun prepareData(): List<Flight> {
-        val flights: MutableList<Flight> = ArrayList()
-        var flight = Flight("Single")
-        flights.add(flight)
-        flight = Flight("Married")
-        flights.add(flight)
-        flight = Flight("Domestic Partnership")
-        flights.add(flight)
-        flight = Flight("Civil Union")
-        flights.add(flight)
-        flight = Flight("Divorced")
-        flights.add(flight)
-        flight = Flight("Separated")
-        flights.add(flight)
-        flight = Flight("Widowed")
-        flights.add(flight)
-        flight = Flight("It's Complicated")
-        flights.add(flight)
-        flight = Flight("Other")
-        flights.add(flight)
-        return flights
+    private fun prepareData(): List<RelationshipStatus> {
+
+        val values = GenericValues().getFileString("relationship.json", this)
+        return GenericValues().getRelationshipStatusList(values,this)[0].chapters!!
+
     }
 
     lateinit var userDetails : UserDetails
