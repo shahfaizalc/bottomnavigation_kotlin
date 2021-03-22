@@ -61,4 +61,6 @@ class RelationshipRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : Recy
         notifyDataSetChanged()
     }
 
+    fun getSelectedItem() = selectedPosition
+
 }

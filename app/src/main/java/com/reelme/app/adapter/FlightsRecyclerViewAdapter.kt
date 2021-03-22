@@ -14,9 +14,9 @@ import com.reelme.app.model.Flight
 
 
 class FlightsRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerView.Adapter<FlightsRecyclerViewAdapter.ViewHolder>(), FlightsEventListener {
-    private val flightsList: List<Flight>
-    private val context: Context
-    var selectedPosition=-1;
+    private val flightsList: List<Flight> = flsLst
+    private val context: Context = ctx
+    var selectedPosition = -1;
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ViewHolder {
         val binding: FlightItemLayoutBinding = DataBindingUtil.inflate(
@@ -30,8 +30,7 @@ class FlightsRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerV
         holder.flightItemBinding.flight = flight
         holder.flightItemBinding.itemClickListener = this
         holder.flightItemBinding.itemPosition = position
-
-        holder.flightItemBinding.isValid = selectedPosition==position
+        holder.flightItemBinding.isValid = selectedPosition == position
 
     }
 
@@ -39,26 +38,18 @@ class FlightsRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : RecyclerV
         return flightsList.size
     }
 
-    inner class ViewHolder(flightItemLayoutBinding: FlightItemLayoutBinding) : RecyclerView.ViewHolder(flightItemLayoutBinding.getRoot()) {
-        var flightItemBinding: FlightItemLayoutBinding
-
-        init {
-            flightItemBinding = flightItemLayoutBinding
-        }
+    inner class ViewHolder(flightItemLayoutBinding: FlightItemLayoutBinding) : RecyclerView.ViewHolder(flightItemLayoutBinding.root) {
+        var flightItemBinding: FlightItemLayoutBinding = flightItemLayoutBinding
     }
-
-    init {
-        flightsList = flsLst
-        context = ctx
-    }
-
 
 
     override fun bookFlight(f: Flight, view: View?, itemPosition: Int) {
-        Toast.makeText(context, "You booked " + f.pincode,
-                Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "You booked " + f.pincode, Toast.LENGTH_LONG).show()
         selectedPosition = itemPosition
         notifyDataSetChanged()
     }
+
+    fun getSelectedItem() = selectedPosition
+
 
 }

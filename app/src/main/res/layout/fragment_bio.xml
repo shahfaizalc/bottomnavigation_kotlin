@@ -43,11 +43,13 @@
                 android:text="@string/home_bioSubTitle"
                 />
 
-        <TextView
+         <EditText
+            android:textColor="@color/white"
+            android:text="@={homeData.bio}"
             android:textSize="@dimen/dimen_16"
             android:padding="@dimen/dimen_16"
             android:textColorHint="@color/colorBlacklight"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/home_bioSubTitle2"/>
 

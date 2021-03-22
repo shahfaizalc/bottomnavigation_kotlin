@@ -81,6 +81,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:onClick="@{() -> homeData.signUpUserClicked()}"
                 android:paddingStart="@dimen/dimen_16"
                 android:textStyle="bold"
                 android:textColor="@color/white"

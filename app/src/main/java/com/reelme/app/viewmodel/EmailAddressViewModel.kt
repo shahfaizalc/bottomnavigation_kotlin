@@ -4,9 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import com.google.firebase.auth.UserInfo
+import com.google.gson.Gson
+import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
+import com.reelme.app.model3.UserDetails
 import com.reelme.app.view.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 class EmailAddressViewModel(private val context: Context, private val fragmentSignin: FragmentEmailAddress) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
@@ -20,15 +27,52 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
 
     fun signInUserClicked() {
        // fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentFullNameMobile::class.java));
+        if(isValidEmail()){
+            setUserInfo()
+            fragmentSignin.startActivity(Intent(fragmentSignin, FragmentFullNameMobile::class.java));
+        }
+    }
+
+    private fun isValidEmail(): Boolean {
+
+        val regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
+
+        val pattern: Pattern = Pattern.compile(regex)
+
+        val matcher: Matcher = pattern.matcher(ideaTitle)
+        println(ideaTitle + " : " + matcher.matches())
+
+        return if(matcher.matches()){
+            true;
+        } else{
+            showToast(R.string.invalid_email_ErrorMsg)
+            false
+        }
     }
 
 
     fun signUpUserClicked() {
        // fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentFullNameMobile::class.java));
+        if(isValidEmail()){
+            setUserInfo()
+            fragmentSignin.startActivity(Intent(fragmentSignin, FragmentFullNameMobile::class.java));
+        }
+    }
+
+    fun setUserInfo(){
+
+        val userInfo = UserDetails();
+        userInfo.emailId = ideaTitle
+
+        val gsonValue = Gson().toJson(userInfo)
+
+        val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putString("USER_INFO",gsonValue)
+        editor.apply()
 
     }
+
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
@@ -53,4 +97,14 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
     private fun showToast(id: Int) {
         Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
     }
+
+    @get:Bindable
+    var ideaTitle: String? = ""
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.ideaTitle)
+        }
+
+
+
 }

@@ -83,6 +83,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
                 // now need to ask the user to enter the code and then construct a credential
                 // by combining the code with a verification ID.
                 Log.d(TAG, "onCodeSent:$verificationId")
+                Log.d(TAG, "onCodeSenttoken:$token")
 
                 // Save verification ID and resending token so we can use them later
                 storedVerificationId = verificationId

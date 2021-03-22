@@ -31,11 +31,11 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
         getAccessToken()
     }
 
-    fun getAccessToken() {
+    private fun getAccessToken() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("AUTH_INFO", "");
         val phoneNumber = sharedPreference.getString("phoneNumber","")
-        ideaTitle = "Text sent to "+ phoneNumber;
+        ideaTitle = "Text sent to $phoneNumber";
 
         try {
             val auth = Gson().fromJson(coronaJson, PhoneAuthCredential::class.java)

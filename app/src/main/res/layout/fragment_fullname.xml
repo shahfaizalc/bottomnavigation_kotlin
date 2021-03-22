@@ -35,7 +35,9 @@
                 android:text="@string/home_fullnameSubTitle"
                 />
 
-        <TextView
+        <EditText
+            android:textColor="@color/white"
+            android:text="@={homeData.firstName}"
             android:textSize="@dimen/dimen_36"
             android:padding="@dimen/dimen_16"
             android:textColorHint="@color/colorBlacklight"
@@ -43,13 +45,15 @@
             android:layout_height="wrap_content"
             android:hint="@string/home_fullnameSubTitle2"/>
 
-        <TextView
+        <EditText
+            android:textColor="@color/white"
+            android:text="@={homeData.lastName}"
             android:textSize="@dimen/dimen_36"
             android:padding="@dimen/dimen_16"
             android:textColorHint="@color/colorBlacklight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/home_fullnameSubTitle3"/>v
+            android:hint="@string/home_fullnameSubTitle3"/>
 
 
 

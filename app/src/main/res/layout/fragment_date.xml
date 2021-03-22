@@ -36,8 +36,11 @@
                 />
 
         <TextView
+            android:text="@={homeData.firstName}"
+            android:onClick="@{() -> homeData.setDateClicked()}"
             android:textSize="@dimen/dimen_36"
             android:padding="@dimen/dimen_16"
+            android:textColor="@color/white"
             android:textColorHint="@color/colorBlacklight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

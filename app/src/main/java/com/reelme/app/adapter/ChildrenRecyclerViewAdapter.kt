@@ -60,5 +60,6 @@ class ChildrenRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : Recycler
         selectedPosition = itemPosition
         notifyDataSetChanged()
     }
+    fun getSelectedItem() = selectedPosition
 
 }

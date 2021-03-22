@@ -61,4 +61,6 @@ class RelegiousRecyclerViewAdapter(flsLst: List<Flight>, ctx: Context) : Recycle
         notifyDataSetChanged()
     }
 
+    fun getSelectedItem() = selectedPosition
+
 }
