@@ -10,7 +10,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.auth.User
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import com.reelme.app.BR
@@ -35,8 +34,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
     private fun getPhoneNumber(): String? {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val phoneNumber = sharedPreference.getString("phoneNumber","")
-        return phoneNumber
+        return sharedPreference.getString("phoneNumber","")
     }
 
     private fun getSMS(): String {

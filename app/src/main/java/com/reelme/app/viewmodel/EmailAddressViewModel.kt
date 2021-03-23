@@ -2,6 +2,7 @@ package com.reelme.app.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -22,6 +23,7 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
 
     init {
         networkHandler()
+        getUserInfo()
     }
 
     fun signInUserClicked() {
@@ -58,12 +60,27 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
         }
     }
 
+
+
+    lateinit var userDetails : UserModel
+
+    private fun getUserInfo() {
+        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        val coronaJson = sharedPreference.getString("USER_INFO", "");
+
+        try {
+            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
+            userDetails = (auth as UserModel)
+        } catch (e: java.lang.Exception) {
+            Log.d(RefferalMobileViewModel.TAG, "Exception$e")
+        }
+    }
+
+
     fun setUserInfo(){
+        userDetails.emailId = userEmail
 
-        val userInfo = UserModel();
-        userInfo.emailId = userEmail
-
-        val gsonValue = Gson().toJson(userInfo)
+        val gsonValue = Gson().toJson(userDetails)
 
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()

@@ -37,11 +37,9 @@ class ChildrenActivity : AppCompatActivity() {
 
         binding!!.skipBtn.setOnClickListener {
                 startActivity(Intent(this@ChildrenActivity, FragmentOccupation::class.java))
-
         }
 
         getUserInfo()
-
     }
 
     fun prepareData(): List<Child> {

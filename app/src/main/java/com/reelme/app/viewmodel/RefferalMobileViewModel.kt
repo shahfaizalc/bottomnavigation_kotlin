@@ -37,6 +37,7 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
     }
     fun onSkipButtonClicked() {
         // fragmentSignin.finish()
+        userDetails.skipReferalCode = true;
         setUserInfo()
     }
 
@@ -64,7 +65,6 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
 
     fun setUserInfo(){
 
-        userDetails.skipReferalCode = true;
 
         val gsonValue = Gson().toJson(userDetails)
 
