@@ -31,6 +31,7 @@ class RelationshipActivity : AppCompatActivity() {
         binding!!.flightsRv.adapter = adapter
         binding!!.nextBtn.setOnClickListener {
             if(adapter!!.getSelectedItem()>=0) {
+                userDetails.relationshipStatus = prepareData()[adapter!!.getSelectedItem()].relationship
                 setUserInfo()
                 startActivity(Intent(this@RelationshipActivity, ChildrenActivity::class.java))
             }
@@ -38,6 +39,7 @@ class RelationshipActivity : AppCompatActivity() {
 
         binding!!.skipBtn.setOnClickListener {
             userDetails.skipRelationshipStatus = true
+            setUserInfo()
             startActivity(Intent(this@RelationshipActivity, ChildrenActivity::class.java))
         }
 
@@ -67,7 +69,6 @@ class RelationshipActivity : AppCompatActivity() {
     }
 
     private fun setUserInfo(){
-        userDetails.relationshipStatus = prepareData()[adapter!!.getSelectedItem()].relationship
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

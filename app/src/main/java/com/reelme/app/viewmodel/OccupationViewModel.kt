@@ -50,6 +50,7 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
     fun onSkipButtonClicked() {
         // fragmentSignin.finish()
         userDetails.skipOccupation = true
+        setUserInfo()
         fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
 
     }

@@ -31,12 +31,14 @@ class RelegionActivity : AppCompatActivity() {
 
         binding!!.nextBtn.setOnClickListener {
             if(adapter!!.getSelectedItem()>=0) {
+                userDetails.religiousBeliefs = prepareData()[adapter!!.getSelectedItem()].religious
                 setUserInfo()
                 startActivity(Intent(this@RelegionActivity, FragmentHobbies::class.java))            }
         }
 
         binding!!.skipBtn.setOnClickListener {
             userDetails.skipReligiousBeliefs = true
+            setUserInfo()
             startActivity(Intent(this@RelegionActivity, FragmentHobbies::class.java))
         }
 
@@ -68,7 +70,6 @@ class RelegionActivity : AppCompatActivity() {
     }
 
     private fun setUserInfo(){
-        userDetails.religiousBeliefs = prepareData()[adapter!!.getSelectedItem()].religious
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

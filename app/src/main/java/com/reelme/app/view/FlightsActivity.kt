@@ -33,6 +33,7 @@ class FlightsActivity : AppCompatActivity() {
         binding!!.nextBtn.setOnClickListener {
 
           if(adapter!!.getSelectedItem()>=0){
+              userDetails.gender = prepareData()?.get(adapter!!.getSelectedItem())?.gender
               setUserInfo()
               startActivity(Intent(this@FlightsActivity, RelationshipActivity::class.java))
 
@@ -40,7 +41,9 @@ class FlightsActivity : AppCompatActivity() {
          }
 
         binding!!.skipBtn.setOnClickListener {
-                startActivity(Intent(this@FlightsActivity, RelationshipActivity::class.java))
+            userDetails.skipGender = true
+            setUserInfo()
+            startActivity(Intent(this@FlightsActivity, RelationshipActivity::class.java))
         }
 
 
@@ -72,7 +75,6 @@ class FlightsActivity : AppCompatActivity() {
     }
 
     private fun setUserInfo(){
-        userDetails.gender = prepareData()?.get(adapter!!.getSelectedItem())?.gender
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
