@@ -37,6 +37,7 @@ class RelationshipActivity : AppCompatActivity() {
         }
 
         binding!!.skipBtn.setOnClickListener {
+            userDetails.skipRelationshipStatus = true
             startActivity(Intent(this@RelationshipActivity, ChildrenActivity::class.java))
         }
 

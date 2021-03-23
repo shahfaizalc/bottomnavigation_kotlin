@@ -26,12 +26,14 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
 
     fun signInUserClicked() {
       //  fragmentSignin.finish()
+        userDetails.skipReferalCode = false;
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
     }
 
 
     fun signUpUserClicked() {
        // fragmentSignin.finish()
+        userDetails.skipReferalCode = false;
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
 
     }

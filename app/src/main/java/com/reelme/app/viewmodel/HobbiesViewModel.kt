@@ -32,12 +32,14 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
     fun signInUserClicked() {
         // fragmentSignin.finish()
         if(!posititonSelected.isNullOrEmpty()) {
+            userDetails.hobbiesAndInterest = posititonSelected
             setUserInfo()
         }
     }
 
     fun onSkipButtonClicked() {
         // fragmentSignin.finish()
+        userDetails.skipHobbiesAndInterest = true
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
 
     }
@@ -45,6 +47,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
     fun signUpUserClicked() {
         // fragmentSignin.finish()
         if(!posititonSelected.isNullOrEmpty()) {
+            userDetails.hobbiesAndInterest = posititonSelected
             setUserInfo()
 
          //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
@@ -103,7 +106,6 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
     }
 
     private fun setUserInfo(){
-        userDetails.hobbiesAndInterest = posititonSelected
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

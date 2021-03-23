@@ -36,6 +36,7 @@ class RelegionActivity : AppCompatActivity() {
         }
 
         binding!!.skipBtn.setOnClickListener {
+            userDetails.skipReligiousBeliefs = true
             startActivity(Intent(this@RelegionActivity, FragmentHobbies::class.java))
         }
 

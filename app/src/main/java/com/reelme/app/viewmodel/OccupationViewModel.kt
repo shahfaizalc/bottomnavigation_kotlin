@@ -29,6 +29,8 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
     fun signInUserClicked() {
        // fragmentSignin.finish()
         if(!posititonSelected.isNullOrEmpty()) {
+            userDetails.occupation = posititonSelected
+            userDetails.skipOccupation = false
             setUserInfo()
             fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
         }
@@ -38,6 +40,8 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
     fun signUpUserClicked() {
         // fragmentSignin.finish()
         if(!posititonSelected.isNullOrEmpty()) {
+            userDetails.occupation = posititonSelected
+            userDetails.skipOccupation = false
             setUserInfo()
             fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
         }
@@ -45,7 +49,8 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
 
     fun onSkipButtonClicked() {
         // fragmentSignin.finish()
-            fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
+        userDetails.skipOccupation = true
+        fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
 
     }
 
@@ -102,7 +107,6 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
     }
 
     private fun setUserInfo(){
-        userDetails.occupation = posititonSelected
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

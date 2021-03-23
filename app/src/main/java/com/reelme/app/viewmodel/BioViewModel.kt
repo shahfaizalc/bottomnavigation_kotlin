@@ -28,6 +28,7 @@ class BioViewModel(private val context: Context, private val fragmentSignin: Fra
         //  fragmentSignin.finish()
 
         if(!bio.isNullOrEmpty()) {
+            userDetails.skipBio = false
             userDetails.bio = bio
             setUserInfo()
         }
@@ -38,6 +39,7 @@ class BioViewModel(private val context: Context, private val fragmentSignin: Fra
         // fragmentSignin.finish()
 
         if(!bio.isNullOrEmpty()) {
+            userDetails.skipBio = false
             userDetails.bio = bio
             setUserInfo()
         }

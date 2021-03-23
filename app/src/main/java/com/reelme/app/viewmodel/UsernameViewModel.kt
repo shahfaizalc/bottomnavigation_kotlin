@@ -28,6 +28,7 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
       //  fragmentSignin.finish()
 
       if(!userName.isNullOrEmpty()) {
+          userDetails.skipUsername = false
           userDetails.username = userName
           setUserInfo()
       }
@@ -38,6 +39,7 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
        // fragmentSignin.finish()
 
         if(!userName.isNullOrEmpty()) {
+            userDetails.skipUsername = false
             userDetails.username = userName
             setUserInfo()
         }
