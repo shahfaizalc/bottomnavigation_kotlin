@@ -65,7 +65,7 @@ class ChildrenActivity : AppCompatActivity() {
     }
 
     private fun setUserInfo(){
-        userDetails.children = prepareData()[adapter!!.getSelectedItem()].toString()
+        userDetails.children = prepareData()[adapter!!.getSelectedItem()].children
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

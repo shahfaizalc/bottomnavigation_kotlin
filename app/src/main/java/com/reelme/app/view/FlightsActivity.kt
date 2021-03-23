@@ -72,7 +72,7 @@ class FlightsActivity : AppCompatActivity() {
     }
 
     private fun setUserInfo(){
-        userDetails.bio = prepareData()?.get(adapter!!.getSelectedItem())?.toString()
+        userDetails.gender = prepareData()?.get(adapter!!.getSelectedItem())?.gender
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

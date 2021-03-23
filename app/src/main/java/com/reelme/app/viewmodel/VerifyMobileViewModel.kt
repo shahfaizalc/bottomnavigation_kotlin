@@ -10,11 +10,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
+import com.reelme.app.pojos.UserModel
 import com.reelme.app.view.*
 
 class VerifyMobileViewModel(private val context: Context, private val fragmentSignin: FragmentVerifyMobile) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -80,7 +82,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
                         val user = task.result?.user
 
                         auth = Firebase.auth
-                        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
+                        setUserInfo(getPhoneNumber()!!)
                     } else {
                         // Sign in failed, display a message and update the UI
                         Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -105,6 +107,22 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
         signInWithPhoneAuthCredential(authCredential)
     }
 
+
+    fun setUserInfo(phoneNumber : String){
+
+        val userModel = UserModel()
+        userModel.phoneNumber = phoneNumber
+
+        val gsonValue = Gson().toJson(userModel)
+        val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putString("USER_INFO",gsonValue)
+        editor.apply()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
+    }
+
+
+
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
     }
@@ -128,8 +146,9 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
     private fun showToast(id: Int) {
         Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
     }
+
     companion object {
-        private const val TAG = "PhoneAuthActivity"
+        private const val TAG = "VerifyMobileViewModel"
     }
 
 }

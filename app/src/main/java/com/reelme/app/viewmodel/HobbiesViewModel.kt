@@ -8,8 +8,10 @@ import androidx.databinding.BaseObservable
 import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
+import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
+import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.view.*
 
 class HobbiesViewModel(private val context: Context, private val fragmentSignin: FragmentHobbies) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -31,7 +33,6 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
         // fragmentSignin.finish()
         if(!posititonSelected.isNullOrEmpty()) {
             setUserInfo()
-            fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
         }
     }
 
@@ -46,7 +47,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
         if(!posititonSelected.isNullOrEmpty()) {
             setUserInfo()
 
-            fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+         //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
         }
     }
 
@@ -109,5 +110,16 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO", gsonValue)
         editor.apply()
+        FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener{
+            override fun onSuccess() {
+                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+                Log.d("Authenticaiton token", "onSuccess")
+            }
+
+            override fun onFailure(e: Exception) {
+                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+                Log.d("Authenticaiton token", "Exception"+e)
+            }
+        })
     }
 }

@@ -67,7 +67,7 @@ class RelegionActivity : AppCompatActivity() {
     }
 
     private fun setUserInfo(){
-        userDetails.religiousBeliefs = prepareData()[adapter!!.getSelectedItem()].toString()
+        userDetails.religiousBeliefs = prepareData()[adapter!!.getSelectedItem()].religious
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

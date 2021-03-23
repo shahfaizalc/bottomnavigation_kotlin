@@ -2,6 +2,7 @@ package com.reelme.app.adapter
 
 import com.reelme.app.R
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +45,9 @@ class FlightsRecyclerViewAdapter(flsLst: List<Gender>, ctx: Context) : RecyclerV
 
 
     override fun bookFlight(f: Gender, view: View?, itemPosition: Int) {
-        Toast.makeText(context, "You booked " + f.gender, Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "You chose Gender" + f.gender, Toast.LENGTH_LONG).show()
+        Log.d( "FlightsRecyclerViewAda" , f.gender)
+
         selectedPosition = itemPosition
         notifyDataSetChanged()
     }

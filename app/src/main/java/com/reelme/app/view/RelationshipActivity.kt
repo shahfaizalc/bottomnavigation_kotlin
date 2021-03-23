@@ -66,7 +66,7 @@ class RelationshipActivity : AppCompatActivity() {
     }
 
     private fun setUserInfo(){
-        userDetails.relationshipStatus = prepareData()[adapter!!.getSelectedItem()].toString()
+        userDetails.relationshipStatus = prepareData()[adapter!!.getSelectedItem()].relationship
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

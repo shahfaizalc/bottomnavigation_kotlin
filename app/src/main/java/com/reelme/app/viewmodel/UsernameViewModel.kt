@@ -27,26 +27,27 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
     fun signInUserClicked() {
       //  fragmentSignin.finish()
 
-      if(userName.isNullOrEmpty()) {
+      if(!userName.isNullOrEmpty()) {
+          userDetails.username = userName
           setUserInfo()
-           fragmentSignin.startActivity(Intent(fragmentSignin, FragmentImgSelction::class.java));
       }
     }
 
 
     fun signUpUserClicked() {
        // fragmentSignin.finish()
-        setUserInfo()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentImgSelction::class.java));
 
+        if(!userName.isNullOrEmpty()) {
+            userDetails.username = userName
+            setUserInfo()
+        }
     }
 
 
     fun onSkipButtonClicked() {
         // fragmentSignin.finish()
+        userDetails.skipUsername = true
         setUserInfo()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentImgSelction::class.java));
-
     }
 
     lateinit var userDetails : UserModel
@@ -65,15 +66,17 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
     }
 
     fun setUserInfo(){
-        userDetails.username = userName
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO",gsonValue)
         editor.apply()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentImgSelction::class.java));
 
     }
+
+
 
 
     @get:Bindable

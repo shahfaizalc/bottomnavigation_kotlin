@@ -103,6 +103,7 @@ class DateViewModel(private val context: Context, private val fragmentSignin: Fr
             field = price
             notifyPropertyChanged(BR.firstName)
         }
+
     fun signUpUserClicked() {
        // fragmentSignin.finish()
 

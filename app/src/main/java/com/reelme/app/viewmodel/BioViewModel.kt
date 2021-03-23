@@ -25,29 +25,31 @@ class BioViewModel(private val context: Context, private val fragmentSignin: Fra
     }
 
     fun signInUserClicked() {
-       // fragmentSignin.finish()
+        //  fragmentSignin.finish()
 
         if(!bio.isNullOrEmpty()) {
+            userDetails.bio = bio
             setUserInfo()
-            fragmentSignin.startActivity (Intent(fragmentSignin, FlightsActivity::class.java));
         }
     }
 
 
     fun signUpUserClicked() {
-        //fragmentSignin.finish()
+        // fragmentSignin.finish()
 
         if(!bio.isNullOrEmpty()) {
+            userDetails.bio = bio
             setUserInfo()
-            fragmentSignin.startActivity (Intent(fragmentSignin, FlightsActivity::class.java));
         }
     }
 
+
     fun onSkipButtonClicked() {
         // fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FlightsActivity::class.java));
-
+        userDetails.skipBio = true
+        setUserInfo()
     }
+
 
 
     lateinit var userDetails : UserModel
@@ -66,13 +68,13 @@ class BioViewModel(private val context: Context, private val fragmentSignin: Fra
     }
 
     fun setUserInfo(){
-        userDetails.bio = bio
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO",gsonValue)
         editor.apply()
+        fragmentSignin.startActivity (Intent(fragmentSignin, FlightsActivity::class.java));
 
     }
 

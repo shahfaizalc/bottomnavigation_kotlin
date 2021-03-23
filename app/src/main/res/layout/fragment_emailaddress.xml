@@ -44,7 +44,7 @@
                 />
 
         <EditText
-            android:text="@={homeData.ideaTitle}"
+            android:text="@={homeData.userEmail}"
             android:textSize="@dimen/dimen_36"
             android:padding="@dimen/dimen_16"
             android:textColor="@color/white"

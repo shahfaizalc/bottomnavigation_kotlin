@@ -14,6 +14,7 @@ data class UserModel(
         var skipUsername: Boolean? = false,
         var profilePic: String? ="",
         var bio: String? ="",
+        var skipBio:  Boolean? = false,
         var gender: String?="",
         var skipGender: Boolean? = false,
         var relationshipStatus: String?="",

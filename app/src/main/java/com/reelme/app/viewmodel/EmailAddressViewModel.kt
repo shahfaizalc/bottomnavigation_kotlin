@@ -38,8 +38,8 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
 
         val pattern: Pattern = Pattern.compile(regex)
 
-        val matcher: Matcher = pattern.matcher(ideaTitle)
-        println(ideaTitle + " : " + matcher.matches())
+        val matcher: Matcher = pattern.matcher(userEmail)
+        println(userEmail + " : " + matcher.matches())
 
         return if(matcher.matches()){
             true;
@@ -61,7 +61,7 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
     fun setUserInfo(){
 
         val userInfo = UserModel();
-        userInfo.emailId = ideaTitle
+        userInfo.emailId = userEmail
 
         val gsonValue = Gson().toJson(userInfo)
 
@@ -98,10 +98,10 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
     }
 
     @get:Bindable
-    var ideaTitle: String? = ""
+    var userEmail: String? = ""
         set(price) {
             field = price
-            notifyPropertyChanged(BR.ideaTitle)
+            notifyPropertyChanged(BR.userEmail)
         }
 
 
