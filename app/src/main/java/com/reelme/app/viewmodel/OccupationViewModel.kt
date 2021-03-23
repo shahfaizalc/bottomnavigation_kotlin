@@ -43,6 +43,12 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
         }
     }
 
+    fun onSkipButtonClicked() {
+        // fragmentSignin.finish()
+            fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
+
+    }
+
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
     }

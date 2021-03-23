@@ -16,11 +16,10 @@ import com.reelme.app.utils.Constants.BASEURL_COLLECTION_PROFILEPIC
 
 class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
     private val storageReference: StorageReference
-    private val currentFirebaseUser: FirebaseUser?
+    private val currentFirebaseUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
 
     init {
-        currentFirebaseUser = FirebaseAuth.getInstance().currentUser
         val storage = FirebaseStorage.getInstance()
         storageReference = storage.reference
     }

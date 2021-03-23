@@ -24,31 +24,36 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
     private var isInternetConnected: Boolean = false
     private lateinit var auth: FirebaseAuth
 
+    private  lateinit var authCredential: PhoneAuthCredential
     init {
         networkHandler()
         auth = Firebase.auth
-
-      //  getAccessToken()
+        Log.d("Authentication auth", ""+auth.currentUser)
     }
 
-    private fun getAccessToken() {
+    private fun getPhoneNumber(): String? {
+        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        val phoneNumber = sharedPreference.getString("phoneNumber","")
+        return phoneNumber
+    }
+
+    private fun getSMS(): String {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("AUTH_INFO", "");
-        val phoneNumber = sharedPreference.getString("phoneNumber","")
-        ideaTitle = "Text sent to $phoneNumber";
 
         try {
-            val auth = Gson().fromJson(coronaJson, PhoneAuthCredential::class.java)
-            Log.d("Authentication token", auth.smsCode)
-            ideaTitle2 = (auth.smsCode)
-            signInUserClicked()
+            authCredential = Gson().fromJson(coronaJson, PhoneAuthCredential::class.java)
+            Log.d(TAG, "sms code "+authCredential.smsCode)
+            smsotp = "" + (authCredential.smsCode)
+            return "" + (authCredential.smsCode)
         } catch (e: java.lang.Exception) {
-            Log.d("Authenticaiton token", "Exception")
+            Log.d(TAG, "Exception")
+            return ""
         }
     }
 
     @get:Bindable
-    var ideaTitle: String? = ""
+    var ideaTitle: String? = getPhoneNumber()
         set(price) {
             field = price
             notifyPropertyChanged(BR.ideaTitle)
@@ -56,45 +61,48 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
 
     @get:Bindable
-    var ideaTitle2: String? = ""
+    var smsotp: String? = getSMS()
         set(price) {
             field = price
-            notifyPropertyChanged(BR.ideaTitle2)
+            notifyPropertyChanged(BR.smsotp)
         }
 
 
-//
-//    // [START sign_in_with_phone]
-//    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-//        auth.signInWithCredential(credential)
-//                .addOnCompleteListener(fragmentSignin) { task ->
-//                    if (task.isSuccessful) {
-//                        // Sign in success, update UI with the signed-in user's information
-//                        Log.d(TAG, "signInWithCredential:success")
-//
-//                        val user = task.result?.user
-//                    } else {
-//                        // Sign in failed, display a message and update the UI
-//                        Log.w(TAG, "signInWithCredential:failure", task.exception)
-//                        if (task.exception is FirebaseAuthInvalidCredentialsException) {
-//                            // The verification code entered was invalid
-//                        }
-//                        // Update UI
-//                    }
-//                }
-//    }
+
+    // [START sign_in_with_phone]
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(fragmentSignin) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success")
+
+                        val user = task.result?.user
+
+                        auth = Firebase.auth
+                        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
+                    } else {
+                        // Sign in failed, display a message and update the UI
+                        Log.w(TAG, "signInWithCredential:failure", task.exception)
+                        if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        // The verification code entered was invalid
+                        }
+                        // Update UI
+                    }
+                }
+    }
     // [END sign_in_with_phone]
 
     fun signInUserClicked() {
       //  fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
+        signInWithPhoneAuthCredential(authCredential)
+
     }
 
 
     fun signUpUserClicked() {
       //  fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
-
+        signInWithPhoneAuthCredential(authCredential)
     }
 
     private fun networkHandler() {

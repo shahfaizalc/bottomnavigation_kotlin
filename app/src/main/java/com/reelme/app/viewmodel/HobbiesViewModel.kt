@@ -35,11 +35,17 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
         }
     }
 
+    fun onSkipButtonClicked() {
+        // fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+
+    }
 
     fun signUpUserClicked() {
         // fragmentSignin.finish()
         if(!posititonSelected.isNullOrEmpty()) {
             setUserInfo()
+
             fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
         }
     }

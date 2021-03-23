@@ -47,14 +47,15 @@
             android:layout_height="wrap_content"
             android:text="@={homeData.ideaTitle}"/>
 
-        <TextView
+        <EditText
+            android:textColor="@color/white"
             android:textSize="@dimen/dimen_36"
             android:padding="@dimen/dimen_16"
             android:textColorHint="@color/colorBlacklight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:letterSpacing=".5"
-            android:text="@={homeData.ideaTitle2}"
+            android:text="@={homeData.smsotp}"
             android:hint="000000"/>
 
         <Button

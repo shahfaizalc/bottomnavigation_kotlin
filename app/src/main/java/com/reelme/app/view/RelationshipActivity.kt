@@ -35,6 +35,11 @@ class RelationshipActivity : AppCompatActivity() {
                 startActivity(Intent(this@RelationshipActivity, ChildrenActivity::class.java))
             }
         }
+
+        binding!!.skipBtn.setOnClickListener {
+            startActivity(Intent(this@RelationshipActivity, ChildrenActivity::class.java))
+        }
+
         getUserInfo()
     }
 

@@ -36,6 +36,11 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
         auth = Firebase.auth
         // [END initialize_auth]
 
+        if(!auth.uid.isNullOrEmpty()){
+            fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+        }
+
+
         // Initialize phone auth callbacks
         // [START phone_auth_callbacks]
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -126,11 +131,9 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
 
     fun signInUserClicked() {
        // fragmentSignin.finish()
-       // fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
         Log.d(TAG, "signInUserClicked:")
 
-       // startPhoneNumberVerification(ideaTitle!!)
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
+        startPhoneNumberVerification(ideaTitle!!)
 
     }
 
@@ -149,8 +152,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
     fun signUpUserClicked() {
        // fragmentSignin.finish()
         Log.d(TAG, "signUpUserClicked:")
-   //     startPhoneNumberVerification(ideaTitle!!)
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
+        startPhoneNumberVerification(ideaTitle!!)
 
     }
 

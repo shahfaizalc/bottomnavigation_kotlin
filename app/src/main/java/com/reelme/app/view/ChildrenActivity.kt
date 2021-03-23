@@ -34,6 +34,12 @@ class ChildrenActivity : AppCompatActivity() {
                  startActivity(Intent(this@ChildrenActivity, FragmentOccupation::class.java))
             }
         }
+
+        binding!!.skipBtn.setOnClickListener {
+                startActivity(Intent(this@ChildrenActivity, FragmentOccupation::class.java))
+
+        }
+
         getUserInfo()
 
     }

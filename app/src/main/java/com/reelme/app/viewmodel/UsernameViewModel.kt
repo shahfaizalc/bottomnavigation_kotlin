@@ -42,6 +42,13 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
     }
 
 
+    fun onSkipButtonClicked() {
+        // fragmentSignin.finish()
+        setUserInfo()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentImgSelction::class.java));
+
+    }
+
     lateinit var userDetails : UserModel
 
     private fun getUserInfo() {

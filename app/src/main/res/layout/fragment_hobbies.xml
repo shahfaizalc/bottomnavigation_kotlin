@@ -87,6 +87,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:onClick="@{() -> homeData.onSkipButtonClicked()}"
                 android:paddingStart="@dimen/dimen_16"
                 android:textStyle="bold"
                 android:textColor="@color/white"

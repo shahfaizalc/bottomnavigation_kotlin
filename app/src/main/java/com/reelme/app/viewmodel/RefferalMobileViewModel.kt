@@ -29,6 +29,12 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
 
     }
+    fun onSkipButtonClicked() {
+        // fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
+
+    }
+
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()

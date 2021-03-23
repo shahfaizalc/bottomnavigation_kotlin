@@ -34,6 +34,12 @@ class RelegionActivity : AppCompatActivity() {
                 setUserInfo()
                 startActivity(Intent(this@RelegionActivity, FragmentHobbies::class.java))            }
         }
+
+        binding!!.skipBtn.setOnClickListener {
+            startActivity(Intent(this@RelegionActivity, FragmentHobbies::class.java))
+        }
+
+
         getUserInfo()
 
     }

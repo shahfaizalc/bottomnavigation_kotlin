@@ -38,6 +38,13 @@ class FlightsActivity : AppCompatActivity() {
 
           }
          }
+
+        binding!!.skipBtn.setOnClickListener {
+                startActivity(Intent(this@FlightsActivity, RelationshipActivity::class.java))
+        }
+
+
+
         getUserInfo()
     }
 

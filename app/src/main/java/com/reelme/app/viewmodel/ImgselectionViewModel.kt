@@ -30,6 +30,13 @@ class ImgselectionViewModel(private val context: Context, private val fragmentSi
 
     }
 
+
+    fun onSkipButtonClicked() {
+        // fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentBioMobile::class.java));
+
+    }
+
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
     }

@@ -43,6 +43,13 @@ class BioViewModel(private val context: Context, private val fragmentSignin: Fra
         }
     }
 
+    fun onSkipButtonClicked() {
+        // fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FlightsActivity::class.java));
+
+    }
+
+
     lateinit var userDetails : UserModel
 
     private fun getUserInfo() {
