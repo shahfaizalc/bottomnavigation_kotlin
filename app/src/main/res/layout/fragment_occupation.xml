@@ -36,9 +36,15 @@
                 android:text="@string/home_occupationTitle"
                  />
 
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+
+
+
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/flights_rv"
                 android:layout_margin="@dimen/dimen_16"
                 android:drawableEnd="@android:drawable/ic_menu_search"
+                android:focusable="false"
+                android:inputType="none"
                 android:padding="@dimen/dimen_8"
                 android:textSize="@dimen/dimen_12"
                 android:background="@drawable/rounded_edittext"
@@ -49,6 +55,7 @@
                 android:textColorHint="@color/colorGrey" />
 
         <Button
+            android:id="@+id/nextBtn"
             android:textColor="@color/smoke2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

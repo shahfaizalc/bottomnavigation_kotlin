@@ -45,4 +45,8 @@ class GenericValues {
         return Gson().fromJson(jsonString, listType)
     }
 
+    fun getOccupationsList(jsonString: String, context: Context) : ArrayList<OccupationList>{
+        val listType = object : TypeToken<ArrayList<OccupationList>>() {}.type
+        return Gson().fromJson(jsonString, listType)
+    }
 }
