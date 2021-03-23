@@ -1,22 +1,15 @@
 package com.reelme.app.view
 
-import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentOccupationBinding
-import com.reelme.app.model3.UserDetails
-import com.reelme.app.util.GenericValues
 import com.reelme.app.viewmodel.OccupationViewModel
-import com.reelme.app.viewmodel.UsernameViewModel
 
 
 class FragmentOccupation : AppCompatActivity() {

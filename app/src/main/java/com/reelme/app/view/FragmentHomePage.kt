@@ -8,7 +8,7 @@ import com.reelme.app.databinding.FragmentHomescreenBinding
 import com.reelme.app.viewmodel.HomescreenViewModel
 
 
-class FragmentHomescreen : Activity() {
+class FragmentHomePage : Activity() {
 
     @Transient
     lateinit internal var areaViewModel: HomescreenViewModel

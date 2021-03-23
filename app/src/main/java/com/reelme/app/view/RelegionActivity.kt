@@ -12,9 +12,8 @@ import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.adapter.RelegiousRecyclerViewAdapter
 import com.reelme.app.databinding.RelegiousLayoutBinding
-import com.reelme.app.model.Flight
-import com.reelme.app.model3.UserDetails
 import com.reelme.app.pojos.ReligiousBelief
+import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
 import java.util.*
 
@@ -46,16 +45,16 @@ class RelegionActivity : AppCompatActivity() {
 
     }
 
-    lateinit var userDetails : UserDetails
+    lateinit var userDetails : UserModel
 
     private fun getUserInfo() {
         val sharedPreference = getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
 
         try {
-            val auth = Gson().fromJson(coronaJson, UserDetails::class.java)
+            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
-            userDetails = (auth as UserDetails)
+            userDetails = (auth as UserModel)
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }

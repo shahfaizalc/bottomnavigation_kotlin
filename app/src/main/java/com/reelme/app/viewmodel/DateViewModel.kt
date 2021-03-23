@@ -1,6 +1,5 @@
 package com.reelme.app.viewmodel
 
-import android.R.string
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Context
@@ -13,7 +12,7 @@ import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
-import com.reelme.app.model3.UserDetails
+import com.reelme.app.pojos.UserModel
 import com.reelme.app.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -56,8 +55,7 @@ class DateViewModel(private val context: Context, private val fragmentSignin: Fr
 
            if(myCalendar.timeInMillis <= System.currentTimeMillis()){
 
-               val date = sdf.parse(sdf.format(myCalendar.time))
-               userDetails.dob = date
+               userDetails.dob = (sdf.format(myCalendar.time))
 
                firstName = (sdf.format(myCalendar.time))
            }else{
@@ -72,16 +70,16 @@ class DateViewModel(private val context: Context, private val fragmentSignin: Fr
 
     }
 
-    lateinit var userDetails : UserDetails
+    lateinit var userDetails : UserModel
 
     private fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
 
         try {
-            val auth = Gson().fromJson(coronaJson, UserDetails::class.java)
+            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
-            userDetails = (auth as UserDetails)
+            userDetails = (auth as UserModel)
             signInUserClicked()
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")

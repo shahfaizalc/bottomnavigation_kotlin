@@ -6,12 +6,11 @@ import android.util.Log
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import com.google.firebase.auth.PhoneAuthCredential
 import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
-import com.reelme.app.model3.UserDetails
+import com.reelme.app.pojos.UserModel
 import com.reelme.app.view.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -64,16 +63,16 @@ class EnterFullNameViewModel(private val context: Context, private val fragmentS
         }
     }
 
-    lateinit var userDetails : UserDetails
+    lateinit var userDetails : UserModel
 
     private fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
 
         try {
-            val auth = Gson().fromJson(coronaJson, UserDetails::class.java)
+            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
-            userDetails = (auth as UserDetails)
+            userDetails = (auth as UserModel)
             signInUserClicked()
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")

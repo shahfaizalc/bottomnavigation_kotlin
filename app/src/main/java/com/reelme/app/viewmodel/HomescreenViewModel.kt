@@ -8,7 +8,7 @@ import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.view.*
 
-class HomescreenViewModel(private val context: Context, private val fragmentSignin: FragmentHomescreen) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class HomescreenViewModel(private val context: Context, private val fragmentSignin: FragmentHomePage) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
 

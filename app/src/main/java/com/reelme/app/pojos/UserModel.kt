@@ -1,15 +1,15 @@
-package com.reelme.app.model3
+package com.reelme.app.pojos
 
 import java.util.*
 
-data  class UserDetails (
+data class UserModel(
         var phoneNumber: String = "",
         var referalCode: String? ="",
         var skipReferalCode: Boolean? = false,
         var emailId: String?="",
         var firstName: String?="",
         var secondName: String?="",
-        var dob: Date? = Date(),
+        var dob: String?="",
         var username: String? ="",
         var skipUsername: Boolean? = false,
         var profilePic: String? ="",
@@ -19,12 +19,11 @@ data  class UserDetails (
         var relationshipStatus: String?="",
         var skipRelationshipStatus: Boolean? = false,
         var children: String?="",
-        var skipChildren: String?="",
+        var skipChildren: Boolean?=false,
         var occupation: String?="",
         var skipOccupation: Boolean? = false,
         var religiousBeliefs: String?="",
         var skipReligiousBeliefs: Boolean? = false,
         var hobbiesAndInterest: String?="",
         var skipHobbiesAndInterest: Boolean? = false
-
 )

@@ -8,7 +8,7 @@ import androidx.databinding.BaseObservable
 import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
-import com.reelme.app.model3.UserDetails
+import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
 import com.reelme.app.view.*
 
@@ -80,16 +80,16 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
         return occupationList;
     }
 
-    lateinit var userDetails : UserDetails
+    lateinit var userDetails : UserModel
 
     private fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
 
         try {
-            val auth = Gson().fromJson(coronaJson, UserDetails::class.java)
+            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
-            userDetails = (auth as UserDetails)
+            userDetails = (auth as UserModel)
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }

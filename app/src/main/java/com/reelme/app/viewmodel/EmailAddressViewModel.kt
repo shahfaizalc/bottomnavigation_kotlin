@@ -5,12 +5,11 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import com.google.firebase.auth.UserInfo
 import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
-import com.reelme.app.model3.UserDetails
+import com.reelme.app.pojos.UserModel
 import com.reelme.app.view.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -61,7 +60,7 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
 
     fun setUserInfo(){
 
-        val userInfo = UserDetails();
+        val userInfo = UserModel();
         userInfo.emailId = ideaTitle
 
         val gsonValue = Gson().toJson(userInfo)
