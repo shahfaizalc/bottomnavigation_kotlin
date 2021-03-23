@@ -65,6 +65,7 @@ public class BaseData {
     }
 
     public void setReligiousBeliefs(List<ReligiousBelief> religiousBeliefs) {
+
         mReligiousBeliefs = religiousBeliefs;
     }
 

@@ -1,9 +1,11 @@
 package com.reelme.app.view
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
@@ -17,41 +19,46 @@ import com.reelme.app.util.GenericValues
 
 class FragmentOccupation : AppCompatActivity() {
     private var binding: FragmentOccupationBinding? = null
+    lateinit var adapter: ArrayAdapter<String>;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.fragment_occupation)
-//        binding!!.flightsRv.layoutManager = LinearLayoutManager(this)
-//        binding!!.flightsRv.addItemDecoration(
-//                DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
         setupAutoCompleteView(binding!!)
 
-//        binding!!.nextBtn.setOnClickListener {
-//            if(adapter!!.getSelectedItem()>=0) {
-//                setUserInfo()
-//                startActivity(Intent(this@FragmentOccupation, FragmentHobbies::class.java))            }
-//        }
-        getUserInfo()
+        binding!!.nextBtn.setOnClickListener {
 
+            if(posititonSelected >= 0) {
+                setUserInfo()
+                startActivity(Intent(this@FragmentOccupation, FragmentHobbies::class.java))
+            }
+        }
+        getUserInfo()
     }
+
+    var posititonSelected = -1
 
     private fun setupAutoCompleteView(mContentViewBinding: FragmentOccupationBinding) {
         val animalList=prepareData()
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
-                this,android.R.layout.simple_spinner_item,
-                animalList )
+         adapter  = ArrayAdapter<String>(
+                 this, android.R.layout.simple_spinner_item,
+                 animalList)
         mContentViewBinding.flightsRv.setAdapter(adapter)
         mContentViewBinding.flightsRv.setTextColor(Color.WHITE)
         mContentViewBinding.flightsRv.threshold =1
+
+
         mContentViewBinding.flightsRv.onItemClickListener =
                 AdapterView.OnItemClickListener { parent, arg1, position, id ->
-                    //TODO: You can your own logic.
-                }
+                    val selected = parent.getItemAtPosition(position)
+                    posititonSelected = position;
+                    Log.d("posititonSelectedaa ", "posititonSelected$selected")
 
+                }
     }
 
-
-
-    fun prepareData(): ArrayList<String> {
+    private fun prepareData(): ArrayList<String> {
 
         val values = GenericValues().getFileString("Occupations.json", this)
         val occupations = GenericValues().getOccupationsList(values, this)[0].chapters!!
@@ -79,15 +86,13 @@ class FragmentOccupation : AppCompatActivity() {
     }
 
     private fun setUserInfo(){
-     //   userDetails.religiousBeliefs = prepareData()[adapter!!.getSelectedItem()].toString()
+        userDetails.religiousBeliefs = prepareData()[posititonSelected]
 
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO", gsonValue)
         editor.apply()
-
     }
-
 
 }
