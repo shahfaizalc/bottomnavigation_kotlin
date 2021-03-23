@@ -15,32 +15,30 @@ import com.reelme.app.R
 import com.reelme.app.databinding.FragmentOccupationBinding
 import com.reelme.app.model3.UserDetails
 import com.reelme.app.util.GenericValues
+import com.reelme.app.viewmodel.OccupationViewModel
+import com.reelme.app.viewmodel.UsernameViewModel
 
 
 class FragmentOccupation : AppCompatActivity() {
-    private var binding: FragmentOccupationBinding? = null
+
+
+    @Transient
+    lateinit internal var areaViewModel: OccupationViewModel
+
     lateinit var adapter: ArrayAdapter<String>;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.fragment_occupation)
-
+        var binding : FragmentOccupationBinding = DataBindingUtil.setContentView(this, R.layout.fragment_occupation)
+        areaViewModel = OccupationViewModel(this, this)
+        binding!!.homeData = areaViewModel
         setupAutoCompleteView(binding!!)
 
-        binding!!.nextBtn.setOnClickListener {
-
-            if(posititonSelected >= 0) {
-                setUserInfo()
-                startActivity(Intent(this@FragmentOccupation, FragmentHobbies::class.java))
-            }
-        }
-        getUserInfo()
     }
 
-    var posititonSelected = -1
 
     private fun setupAutoCompleteView(mContentViewBinding: FragmentOccupationBinding) {
-        val animalList=prepareData()
+        val animalList= mContentViewBinding!!.homeData!!.prepareData()
          adapter  = ArrayAdapter<String>(
                  this, android.R.layout.simple_spinner_item,
                  animalList)
@@ -52,47 +50,9 @@ class FragmentOccupation : AppCompatActivity() {
         mContentViewBinding.flightsRv.onItemClickListener =
                 AdapterView.OnItemClickListener { parent, arg1, position, id ->
                     val selected = parent.getItemAtPosition(position)
-                    posititonSelected = position;
+                    mContentViewBinding!!.homeData!!.posititonSelected = selected as String
                     Log.d("posititonSelectedaa ", "posititonSelected$selected")
 
                 }
     }
-
-    private fun prepareData(): ArrayList<String> {
-
-        val values = GenericValues().getFileString("Occupations.json", this)
-        val occupations = GenericValues().getOccupationsList(values, this)[0].chapters!!
-
-        val occupationList = ArrayList<String>()
-        for(i in occupations){
-            occupationList.add(i.occupations)
-        }
-       return occupationList;
-    }
-
-    lateinit var userDetails : UserDetails
-
-    private fun getUserInfo() {
-        val sharedPreference = getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val coronaJson = sharedPreference.getString("USER_INFO", "");
-
-        try {
-            val auth = Gson().fromJson(coronaJson, UserDetails::class.java)
-            Log.d("Authentication token", auth.emailId)
-            userDetails = (auth as UserDetails)
-        } catch (e: java.lang.Exception) {
-            Log.d("Authenticaiton token", "Exception")
-        }
-    }
-
-    private fun setUserInfo(){
-        userDetails.religiousBeliefs = prepareData()[posititonSelected]
-
-        val gsonValue = Gson().toJson(userDetails)
-        val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val editor = sharedPreference.edit()
-        editor.putString("USER_INFO", gsonValue)
-        editor.apply()
-    }
-
 }

@@ -37,8 +37,6 @@
                  />
 
 
-
-
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/flights_rv"
                 android:layout_margin="@dimen/dimen_16"
