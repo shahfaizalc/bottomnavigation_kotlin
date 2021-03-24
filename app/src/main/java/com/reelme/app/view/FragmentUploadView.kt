@@ -14,7 +14,7 @@ import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.viewmodel.UploadListModel
 
 
-class FragmentUploadView : Activity() {
+class FragmentUploadView : AppCompatActivity() {
 
     var TAG = "FragmentUploadView"
 

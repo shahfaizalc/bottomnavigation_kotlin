@@ -1,5 +1,6 @@
 package com.reelme.app.view
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +18,7 @@ import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
 import java.util.*
 
-class RelationshipActivity :Activity() {
+class RelationshipActivity : Activity() {
 
     private var adapter: RelationshipRecyclerViewAdapter? = null
     private var binding: RelationshipLayoutBinding? = null
