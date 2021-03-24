@@ -1,6 +1,7 @@
 package com.reelme.app.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import com.reelme.app.BR
@@ -10,6 +11,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
+import com.reelme.app.view.FragmentBioMobile
 import com.reelme.app.view.FragmentUploadView
 
 
@@ -62,8 +64,13 @@ class UploadListModel(internal var context: Context,
 
     fun retryBtnClick() = View.OnClickListener {
 
-
     }
+
+    fun signInUserClicked() = View.OnClickListener {
+        //  fragmentSignin.finish()
+        fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
+    }
+
 
     fun openFileChosser() = View.OnClickListener {
         openChooserLiveData.setValue(true);

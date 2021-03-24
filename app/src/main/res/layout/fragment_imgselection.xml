@@ -13,94 +13,92 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
-        android:weightSum="12"
-        android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_weight="10"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/black"
-        android:orientation="vertical">
-
-
-
-<com.reelme.app.util.ImageViewRounded
-    android:layout_marginTop="@dimen/dimen_32"
-    android:layout_gravity="center_horizontal"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
-    android:background="@drawable/roundedbg"
-    android:src="@drawable/profilepic">
-
-</com.reelme.app.util.ImageViewRounded>
-
-
+        android:orientation="vertical"
+        android:weightSum="12">
 
         <LinearLayout
-            android:layout_marginTop="@dimen/dimen_24"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/dimen_20"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Button
-                android:drawableStart="@drawable/ic_upload"
-                android:drawableTint="@color/white"
-                android:textColor="@color/smoke2"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_16"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:paddingTop="@dimen/dimen_20"
-                android:paddingEnd="@dimen/dimen_16"
-                android:paddingStart="@dimen/dimen_16"
-                android:paddingBottom="@dimen/dimen_20"
-                android:layout_marginRight="@dimen/dimen_12"
-                android:background="@drawable/button_black"
-                android:onClick="@{() -> homeData.signUpUserClicked()}"
-                android:text="UPLOAD PICTURE"
-                android:textStyle="bold" />
-
-            <Button
-                android:drawableStart="@drawable/ic_camera_icon"
-                android:drawableTint="@color/white"
-                android:textColor="@color/smoke2"
-                android:paddingTop="@dimen/dimen_20"
-                android:paddingEnd="@dimen/dimen_16"
-                android:paddingStart="@dimen/dimen_16"
-                android:paddingBottom="@dimen/dimen_20"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_16"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginRight="@dimen/dimen_16"
-                android:background="@drawable/button_black"
-                android:onClick="@{() -> homeData.signInUserClicked()}"
-                android:text="TAKE PICTURE"
-                android:textStyle="bold" />
-        </LinearLayout>
-              </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
+            android:layout_weight="10"
             android:background="@color/black"
             android:orientation="vertical">
 
+
+            <com.reelme.app.util.ImageViewRounded
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen_32"
+                android:background="@drawable/roundedbg"
+                android:src="@drawable/profilepic">
+
+            </com.reelme.app.util.ImageViewRounded>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dimen_24"
+                android:layout_marginBottom="@dimen/dimen_20"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginRight="@dimen/dimen_12"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_black"
+                    android:drawableStart="@drawable/ic_upload"
+                    android:drawableTint="@color/white"
+                    android:onClick="@{() -> homeData.signUpUserClicked()}"
+                    android:paddingStart="@dimen/dimen_16"
+                    android:paddingTop="@dimen/dimen_20"
+                    android:paddingEnd="@dimen/dimen_16"
+                    android:paddingBottom="@dimen/dimen_20"
+                    android:text="UPLOAD PICTURE"
+                    android:textColor="@color/smoke2"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginRight="@dimen/dimen_16"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_black"
+                    android:drawableStart="@drawable/ic_camera_icon"
+                    android:drawableTint="@color/white"
+                    android:onClick="@{() -> homeData.signInUserClicked()}"
+                    android:paddingStart="@dimen/dimen_16"
+                    android:paddingTop="@dimen/dimen_20"
+                    android:paddingEnd="@dimen/dimen_16"
+                    android:paddingBottom="@dimen/dimen_20"
+                    android:text="TAKE PICTURE"
+                    android:textColor="@color/smoke2"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@color/black"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
             <TextView
-                android:onClick="@{() -> homeData.onSkipButtonClicked()}"
-                android:paddingStart="@dimen/dimen_16"
-                android:textStyle="bold"
-                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/home_skip" />
+                android:onClick="@{() -> homeData.onSkipButtonClicked()}"
+                android:paddingStart="@dimen/dimen_16"
+                android:text="@string/home_skip"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </LinearLayout>

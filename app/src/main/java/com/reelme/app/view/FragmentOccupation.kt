@@ -1,5 +1,6 @@
 package com.reelme.app.view
 
+import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +13,7 @@ import com.reelme.app.databinding.FragmentOccupationBinding
 import com.reelme.app.viewmodel.OccupationViewModel
 
 
-class FragmentOccupation : AppCompatActivity() {
+class FragmentOccupation : Activity() {
 
 
     @Transient

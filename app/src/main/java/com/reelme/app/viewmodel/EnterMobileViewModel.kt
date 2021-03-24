@@ -121,13 +121,19 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
 
 
     @get:Bindable
+    var ideaTitle22: String? = ""
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.ideaTitle22)
+        }
+
+    @get:Bindable
     var ideaTitle: String? = ""
         set(price) {
             field = price
+            textFormat(price!!)
             notifyPropertyChanged(BR.ideaTitle)
         }
-
-
 
     fun signInUserClicked() {
        // fragmentSignin.finish()
@@ -136,6 +142,15 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
         startPhoneNumberVerification(ideaTitle!!)
 
     }
+
+    private fun textFormat(input : String) {
+
+        val number = input.replaceFirst ("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
+
+        println(number);
+        ideaTitle22 = number
+    }
+
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
         Log.d(TAG, "signUpUserClicked:phoneNumber"+phoneNumber)

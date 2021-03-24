@@ -1,5 +1,6 @@
 package com.reelme.app.view
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,7 +14,7 @@ import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.viewmodel.UploadListModel
 
 
-class FragmentUploadView : AppCompatActivity() {
+class FragmentUploadView : Activity() {
 
     var TAG = "FragmentUploadView"
 

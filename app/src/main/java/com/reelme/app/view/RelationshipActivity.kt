@@ -17,7 +17,7 @@ import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
 import java.util.*
 
-class RelationshipActivity : AppCompatActivity() {
+class RelationshipActivity :Activity() {
 
     private var adapter: RelationshipRecyclerViewAdapter? = null
     private var binding: RelationshipLayoutBinding? = null

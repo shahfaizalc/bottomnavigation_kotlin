@@ -19,53 +19,125 @@
             android:layout_height="match_parent"
             android:animateLayoutChanges="true">
 
-            <TextView
-                android:id="@+id/appTitleTxt"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16"
-                android:gravity="center_horizontal"
-                android:text="uploadDesc"
-                android:textSize="@dimen/dimen_20"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:background="@color/black"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/uploadTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/appTitleTxt"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="@dimen/dimen_16"
-                android:layout_marginTop="@dimen/dimen_16"
-                android:text="uploadTxt"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="@dimen/dimen_32"
+                    android:onClick="@{yearList.signInUserClicked()}"
+                    android:src="@drawable/check"/>
 
-            <TextView
-                android:textSize="@dimen/dimen_20"
-                android:id="@+id/uploadEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/uploadTxt"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="@dimen/dimen_16"
-                android:layout_marginEnd="@dimen/dimen_16"
-                android:onClick="@{yearList.openFileChosser()}"
-                android:padding="@dimen/dimen_8"
-                android:text="uploadEmailClick"
-                android:textColor="@color/red"
-                android:textStyle="bold" />
+                <com.reelme.app.util.ImageViewRounded
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dimen_32"
+                    android:background="@drawable/roundedbg"
+                    android:src="@drawable/profilepic">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="@dimen/dimen_16"
-                android:onClick="@{yearList.openFileChosser()}"
-                android:text="kural"
-                android:textColor="@color/white" />
+                </com.reelme.app.util.ImageViewRounded>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/dimen_24"
+                    android:layout_marginBottom="@dimen/dimen_20"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_16"
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:layout_marginRight="@dimen/dimen_12"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_black"
+                        android:drawableStart="@drawable/ic_upload"
+                        android:drawableTint="@color/white"
+                        android:onClick="@{yearList.openFileChosser()}"
+                        android:paddingStart="@dimen/dimen_16"
+                        android:paddingTop="@dimen/dimen_20"
+                        android:paddingEnd="@dimen/dimen_16"
+                        android:paddingBottom="@dimen/dimen_20"
+                        android:text="UPLOAD PICTURE"
+                        android:textColor="@color/smoke2"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_16"
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:layout_marginRight="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_black"
+                        android:drawableStart="@drawable/ic_camera_icon"
+                        android:drawableTint="@color/white"
+                        android:onClick="@{yearList.openFileChosser()}"
+                        android:paddingStart="@dimen/dimen_16"
+                        android:paddingTop="@dimen/dimen_20"
+                        android:paddingEnd="@dimen/dimen_16"
+                        android:paddingBottom="@dimen/dimen_20"
+                        android:text="TAKE PICTURE"
+                        android:textColor="@color/smoke2"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+<!--            <TextView-->
+<!--                android:id="@+id/appTitleTxt"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/dimen_16"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:text="uploadDesc"-->
+<!--                android:textSize="@dimen/dimen_20"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/uploadTxt"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/appTitleTxt"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_margin="@dimen/dimen_16"-->
+<!--                android:layout_marginTop="@dimen/dimen_16"-->
+<!--                android:text="uploadTxt"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <TextView-->
+<!--                android:textSize="@dimen/dimen_20"-->
+<!--                android:id="@+id/uploadEmail"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/uploadTxt"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginStart="@dimen/dimen_16"-->
+<!--                android:layout_marginEnd="@dimen/dimen_16"-->
+<!--                android:padding="@dimen/dimen_8"-->
+<!--                android:text="uploadEmailClick"-->
+<!--                android:textColor="@color/red"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_margin="@dimen/dimen_16"-->
+<!--                android:onClick="@{yearList.openFileChosser()}"-->
+<!--                android:text="kural"-->
+<!--                android:textColor="@color/white" />-->
 
 
         </RelativeLayout>

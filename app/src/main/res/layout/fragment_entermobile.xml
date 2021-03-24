@@ -44,11 +44,9 @@
 
 
             <TextView
-                android:id="@+id/phonenumberEntry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLength="14"
-                android:text="@={homeData.ideaTitle}"
+                android:text="@={homeData.ideaTitle22}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dimen_36"
                 android:textStyle="bold" />
@@ -57,12 +55,12 @@
                 android:id="@+id/phonenumberEntery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:hint="@string/home_enterMobilePostfix"
                 android:inputType="phone"
                 android:maxLength="14"
+                android:alpha="0"
                 android:text="@={homeData.ideaTitle}"
-                android:textColor="@color/black_25_transparent"
+                android:textColor="@color/black"
                 android:textColorHint="@color/colorBlacklight"
                 android:textSize="@dimen/dimen_36"
                 android:textStyle="bold" />

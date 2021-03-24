@@ -1,5 +1,6 @@
 package com.reelme.app.view
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +18,7 @@ import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
 import java.util.*
 
-class FlightsActivity : AppCompatActivity() {
+class FlightsActivity : Activity() {
 
     private var adapter: FlightsRecyclerViewAdapter? = null
     private var binding: FlightLayoutBinding? = null

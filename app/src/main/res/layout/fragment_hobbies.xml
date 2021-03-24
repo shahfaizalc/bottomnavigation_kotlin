@@ -14,86 +14,83 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
-        android:weightSum="12"
-        android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_weight="10"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/black"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_marginTop="@dimen/dimen_32"
-            android:textSize="@dimen/dimen_32"
-            android:padding="@dimen/dimen_16"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-                android:text="@string/home_hobbiesTitle"
-                 />
-
-        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-            android:id="@+id/flights_rv"
-            android:layout_margin="@dimen/dimen_16"
-            android:drawableEnd="@android:drawable/ic_menu_search"
-            android:focusable="false"
-            android:inputType="none"
-            android:padding="@dimen/dimen_8"
-            android:textSize="@dimen/dimen_12"
-            android:background="@drawable/rounded_edittext"
-            android:textColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/pick_your_hobbies_amp_interests"
-            android:textColorHint="@color/colorGrey" />
-
-
-        <Button
-            android:layout_marginTop="@dimen/dimen_32"
-            android:textColor="@color/smoke2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_16"
-            android:paddingTop="@dimen/dimen_20"
-            android:paddingEnd="@dimen/dimen_32"
-            android:paddingStart="@dimen/dimen_32"
-            android:paddingBottom="@dimen/dimen_20"
-            android:layout_marginRight="@dimen/dimen_16"
-            android:background="@drawable/button_black"
-            android:onClick="@{() -> homeData.signUpUserClicked()}"
-            android:text="Next ->" />
-
-        <TextView
-            android:layout_margin="@dimen/dimen_20"
-            android:textSize="@dimen/dimen_12"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_genderSubTitle2"
-            />
-
-
-      </LinearLayout>
+        android:orientation="vertical"
+        android:weightSum="12">
 
         <LinearLayout
-            android:layout_weight="2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="center_vertical"
+            android:layout_weight="10"
             android:background="@color/black"
             android:orientation="vertical">
 
             <TextView
-                android:onClick="@{() -> homeData.onSkipButtonClicked()}"
-                android:paddingStart="@dimen/dimen_16"
-                android:textStyle="bold"
-                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/home_skip" />
+                android:layout_marginTop="@dimen/dimen_32"
+                android:padding="@dimen/dimen_16"
+                android:text="@string/home_hobbiesTitle"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_32"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/flights_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16"
+                android:background="@drawable/rounded_edittext"
+                android:drawableEnd="@android:drawable/ic_menu_search"
+                android:hint="@string/pick_your_hobbies_amp_interests"
+                android:inputType="none"
+                android:padding="@dimen/dimen_8"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorGrey"
+                android:textSize="@dimen/dimen_12" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_16"
+                android:layout_marginTop="@dimen/dimen_32"
+                android:layout_marginRight="@dimen/dimen_16"
+                android:background="@drawable/button_black"
+                android:onClick="@{() -> homeData.signUpUserClicked()}"
+                android:paddingStart="@dimen/dimen_32"
+                android:paddingTop="@dimen/dimen_20"
+                android:paddingEnd="@dimen/dimen_32"
+                android:paddingBottom="@dimen/dimen_20"
+                android:text="Next ->"
+                android:textColor="@color/smoke2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_20"
+                android:text="@string/home_genderSubTitle2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_12" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@color/black"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> homeData.onSkipButtonClicked()}"
+                android:paddingStart="@dimen/dimen_16"
+                android:text="@string/home_skip"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
