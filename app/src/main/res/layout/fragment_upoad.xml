@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="yearList"
+            type="com.reelme.app.viewmodel.UploadListModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
+
+            <TextView
+                android:id="@+id/appTitleTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:gravity="center_horizontal"
+                android:text="uploadDesc"
+                android:textSize="@dimen/dimen_20"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/uploadTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/appTitleTxt"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_16"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:text="uploadTxt"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:textSize="@dimen/dimen_20"
+                android:id="@+id/uploadEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/uploadTxt"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/dimen_16"
+                android:layout_marginEnd="@dimen/dimen_16"
+                android:onClick="@{yearList.openFileChosser()}"
+                android:padding="@dimen/dimen_8"
+                android:text="uploadEmailClick"
+                android:textColor="@color/red"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_16"
+                android:onClick="@{yearList.openFileChosser()}"
+                android:text="kural"
+                android:textColor="@color/white" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/red"
+            android:gravity="center"
+            android:padding="@dimen/dimen_8"
+            android:text="@{yearList.msg}"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:visibility="@{yearList.msgView}" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="@{yearList.progressBarVisible}" />
+
+    </FrameLayout>
+</layout>

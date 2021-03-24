@@ -74,12 +74,9 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO",gsonValue)
         editor.apply()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentImgSelction::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentUploadView::class.java));
 
     }
-
-
-
 
     @get:Bindable
     var userName: String? = ""

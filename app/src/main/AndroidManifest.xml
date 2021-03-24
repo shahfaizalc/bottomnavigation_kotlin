@@ -91,6 +91,10 @@
             android:name="com.reelme.app.view.FragmentEmailAddress"
             android:windowSoftInputMode="adjustPan" />
 
+        <activity
+            android:name="com.reelme.app.view.FragmentUploadView"
+            android:windowSoftInputMode="adjustPan" />
+
 
         <activity
             android:name="com.reelme.app.view.FragmentFullNameMobile"
