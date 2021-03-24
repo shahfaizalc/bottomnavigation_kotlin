@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.databinding.BaseObservable
+import com.google.firebase.auth.FirebaseAuth
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
+import com.reelme.app.util.GenericValues
 import com.reelme.app.view.*
 
 class WelcomeViewModel(private val context: Context, private val fragmentSignin: FragmentWelcome) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -20,13 +22,17 @@ class WelcomeViewModel(private val context: Context, private val fragmentSignin:
 
     fun signInUserClicked() {
        // fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEnterMobile::class.java));
+       // fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEnterMobile::class.java));
+        GenericValues().isUserProfileComplete(fragmentSignin)
     }
 
 
     fun signUpUserClicked() {
        // fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentRegistration::class.java));
+
+        GenericValues().isUserProfileComplete(fragmentSignin)
+
+        // fragmentSignin.startActivity(Intent(fragmentSignin, FragmentRegistration::class.java));
 
     }
 
@@ -53,4 +59,8 @@ class WelcomeViewModel(private val context: Context, private val fragmentSignin:
     private fun showToast(id: Int) {
         Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
     }
+
+
+
+
 }

@@ -121,7 +121,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
 
 
     @get:Bindable
-    var ideaTitle: String? = "+917411175167"
+    var ideaTitle: String? = ""
         set(price) {
             field = price
             notifyPropertyChanged(BR.ideaTitle)
@@ -138,6 +138,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
     }
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
+        Log.d(TAG, "signUpUserClicked:phoneNumber"+phoneNumber)
         // [START start_phone_auth]
         val options = PhoneAuthOptions.newBuilder(auth)
                 .setPhoneNumber(phoneNumber)       // Phone number to verify
