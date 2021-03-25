@@ -17,7 +17,9 @@ import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
+import com.reelme.app.listeners.UseInfoGeneralResultListener
 import com.reelme.app.pojos.UserModel
+import com.reelme.app.util.GenericValues
 import com.reelme.app.view.*
 
 class VerifyMobileViewModel(private val context: Context, private val fragmentSignin: FragmentVerifyMobile) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -133,7 +135,18 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO",gsonValue)
         editor.apply()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
+
+        GenericValues().isUserProfileComplete(fragmentSignin, object : UseInfoGeneralResultListener {
+            override fun onSuccess(userInfoGeneral: UserModel) {
+                progressBarVisible = View.INVISIBLE
+            }
+
+            override fun onFailure(e: Exception) {
+                progressBarVisible = View.INVISIBLE
+                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
+            }
+        })
+
     }
 
 

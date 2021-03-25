@@ -162,11 +162,13 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
     }
     private fun textFormat(input : String) {
 
-        val number = input.replaceFirst ("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
+        val number = input.replace("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
 
         println(number);
         ideaTitle22 = number
     }
+
+
 
 
     private fun startPhoneNumberVerification(phoneNumber: String) {

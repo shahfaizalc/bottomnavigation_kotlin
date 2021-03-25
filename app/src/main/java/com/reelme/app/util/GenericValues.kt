@@ -1,5 +1,6 @@
 package com.reelme.app.util
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -60,7 +61,7 @@ class GenericValues {
     }
 
 
-    fun isUserProfileComplete(fragment: FragmentWelcome, param: UseInfoGeneralResultListener) {
+    fun isUserProfileComplete(fragment: Activity, param: UseInfoGeneralResultListener) {
 
         FirbaseReadHandler().getCurrentUserInfo(object : UseInfoGeneralResultListener{
             override fun onSuccess(userInfoGeneral: UserModel) {
@@ -86,7 +87,7 @@ class GenericValues {
     }
 
 
-    fun navigateToNext(fragment: FragmentWelcome) {
+    fun navigateToNext(fragment: Activity) {
 
         val sharedPreference = fragment.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");

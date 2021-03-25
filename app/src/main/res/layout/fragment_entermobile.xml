@@ -53,13 +53,14 @@
                 android:inputType="phone"
                 android:maxLength="14"
                 android:text="@={homeData.ideaTitle}"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:hint="@string/home_enterMobilePostfix"
                 android:textColorHint="@color/colorBlacklight"
                 android:textSize="@dimen/dimen_36"
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_marginTop="@dimen/dimen_48"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@={homeData.ideaTitle22}"
@@ -93,6 +94,7 @@
             android:padding="@dimen/dimen_16">
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cantsign"
@@ -104,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/dimen_8"
-                android:background="@color/white"
+                android:background="@color/buttonColor"
                 android:text="@string/cantsign" />
 
         </LinearLayout>
