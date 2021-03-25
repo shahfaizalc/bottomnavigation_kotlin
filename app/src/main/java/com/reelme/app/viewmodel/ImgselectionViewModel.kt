@@ -2,6 +2,7 @@ package com.reelme.app.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import android.view.Gravity
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import com.reelme.app.R
@@ -59,6 +60,6 @@ class ImgselectionViewModel(private val context: Context, private val fragmentSi
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
     }
 }

@@ -3,6 +3,7 @@ package com.reelme.app.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.view.Gravity
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import com.google.gson.Gson
@@ -55,7 +56,7 @@ class HomescreenViewModel(private val context: Context, private val fragmentSign
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
     }
 
     lateinit var userDetails : UserModel

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -86,9 +87,9 @@ class RelegionActivity : Activity() {
         FirbaseWriteHandlerActivity(this).updateUserInfo(userDetails, object : EmptyResultListener {
             override fun onSuccess() {
                 binding!!.progressbar.visibility= View.INVISIBLE
-                startActivity(Intent(this@RelegionActivity, RelationshipActivity::class.java))
+                startActivity(Intent(this@RelegionActivity, FragmentHobbies::class.java))
                 Log.d("Authenticaiton token", "onSuccess")
-                Toast.makeText(activity, "we have successfully saved your profile", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
             }
 
@@ -96,7 +97,7 @@ class RelegionActivity : Activity() {
                 binding!!.progressbar.visibility= View.INVISIBLE
                 //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
                 Log.d("Authenticaiton token", "Exception"+e)
-                Toast.makeText(activity, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
             }
         })

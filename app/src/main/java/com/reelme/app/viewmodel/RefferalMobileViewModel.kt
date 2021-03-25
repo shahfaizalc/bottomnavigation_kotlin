@@ -3,6 +3,7 @@ package com.reelme.app.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
@@ -83,7 +84,7 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
                 progressBarVisible = View.INVISIBLE
                 fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
                 Log.d("Authenticaiton token", "onSuccess")
-                Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
             }
 
@@ -91,7 +92,7 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
              //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
                 progressBarVisible = View.INVISIBLE
                 Log.d("Authenticaiton token", "Exception"+e)
-                Toast.makeText(context, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
             }
         })
@@ -125,7 +126,7 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
     }
     companion object {
 

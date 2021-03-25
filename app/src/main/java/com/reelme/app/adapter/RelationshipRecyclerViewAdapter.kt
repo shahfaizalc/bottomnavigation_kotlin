@@ -56,8 +56,8 @@ class RelationshipRecyclerViewAdapter(flsLst: List<RelationshipStatus>, ctx: Con
 
 
     override fun bookFlight(f: RelationshipStatus, view: View?, itemPosition: Int) {
-        Toast.makeText(context, "You booked " + f.relationship,
-                Toast.LENGTH_LONG).show()
+//        Toast.makeText(context, "You booked " + f.relationship,
+//                Toast.LENGTH_LONG).show()
         selectedPosition = itemPosition
         notifyDataSetChanged()
     }

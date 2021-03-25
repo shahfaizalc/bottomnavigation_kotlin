@@ -53,8 +53,8 @@ class ChildrenRecyclerViewAdapter(flsLst: List<Child>, ctx: Context) : RecyclerV
 
 
     override fun bookFlight(f: Child, view: View?, itemPosition: Int) {
-        Toast.makeText(context, "You booked " + f.children,
-                Toast.LENGTH_LONG).show()
+//        Toast.makeText(context, "You booked " + f.children,
+//                Toast.LENGTH_LONG).show()
         selectedPosition = itemPosition
         notifyDataSetChanged()
     }

@@ -45,7 +45,7 @@ class FlightsRecyclerViewAdapter(flsLst: List<Gender>, ctx: Context) : RecyclerV
 
 
     override fun bookFlight(f: Gender, view: View?, itemPosition: Int) {
-        Toast.makeText(context, "You chose Gender" + f.gender, Toast.LENGTH_LONG).show()
+      //  Toast.makeText(context, "You chose Gender" + f.gender, Toast.LENGTH_LONG).show()
         Log.d( "FlightsRecyclerViewAda" , f.gender)
 
         selectedPosition = itemPosition

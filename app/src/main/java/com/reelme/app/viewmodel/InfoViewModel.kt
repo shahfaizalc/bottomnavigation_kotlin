@@ -1,6 +1,7 @@
 package com.reelme.app.viewmodel
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
@@ -132,7 +133,7 @@ class InfoViewModel( private val fragmentSignin: FragmentInfo) :
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(id), Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
     }
 
 

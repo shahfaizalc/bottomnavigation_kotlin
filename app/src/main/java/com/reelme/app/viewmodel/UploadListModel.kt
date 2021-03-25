@@ -2,6 +2,7 @@ package com.reelme.app.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import com.reelme.app.BR
@@ -81,6 +82,11 @@ class UploadListModel(internal var context: Context,
         return openChooserLiveData
     }
 
+    fun onSkipButtonClicked() {
+        // fragmentSignin.finish()
+        Toast.makeText(context,"Yet to Do", Toast.LENGTH_SHORT).apply {setGravity(Gravity.TOP, 0, 0); show() }
+    }
+
     fun registerListeners() {
         networkStateHandler?.registerNetWorkStateBroadCast(context)
         networkStateHandler?.setNetworkStateListener(this)
@@ -103,7 +109,7 @@ class UploadListModel(internal var context: Context,
     }
 
     private fun networkError() {
-        Toast.makeText(context, context.resources.getText(R.string.network_ErrorMsg), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, context.resources.getText(R.string.network_ErrorMsg), Toast.LENGTH_SHORT).apply {setGravity(Gravity.TOP, 0, 0); show() }
     }
 
 }

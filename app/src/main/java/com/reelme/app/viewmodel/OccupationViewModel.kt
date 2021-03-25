@@ -3,6 +3,7 @@ package com.reelme.app.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
@@ -77,7 +78,7 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
     }
 
 
@@ -117,8 +118,7 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
         editor.putString("USER_INFO", gsonValue)
         editor.apply()
 
-        Toast.makeText(context, "Please wait... we are saving your data", Toast.LENGTH_LONG).show()
-        Toast.makeText(context, "Please wait... we are saving your data", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Please wait... we are saving your data", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
 
         FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
@@ -126,14 +126,14 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
                 progressBarVisible = View.INVISIBLE
                 fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
                 Log.d("Authenticaiton token", "onSuccess")
-                Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
             }
 
             override fun onFailure(e: Exception) {
                 progressBarVisible = View.INVISIBLE
                 Log.d("Authenticaiton token", "Exception"+e)
-                Toast.makeText(context, "Failed to save your profile", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Failed to save your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
             }
         })

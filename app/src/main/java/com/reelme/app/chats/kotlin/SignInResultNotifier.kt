@@ -1,6 +1,7 @@
 package com.reelme.app.chats.kotlin
 
 import android.content.Context
+import android.view.Gravity
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -13,7 +14,7 @@ class SignInResultNotifier(context: Context) : OnCompleteListener<AuthResult?> {
     private val mContext: Context
     override fun onComplete(task: Task<AuthResult?>) {
         if (task.isSuccessful) {
-            Toast.makeText(mContext, "signed_in", Toast.LENGTH_SHORT).show()
+            Toast.makeText(mContext, "signed_in", Toast.LENGTH_SHORT).apply {setGravity(Gravity.TOP, 0, 0); show() }
         } else {
             Toast.makeText(mContext, "anonymous_auth_failed_msg", Toast.LENGTH_LONG).show()
         }

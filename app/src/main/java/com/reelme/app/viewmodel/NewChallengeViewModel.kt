@@ -2,6 +2,7 @@ package com.reelme.app.viewmodel
 
 import android.content.Context
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
@@ -89,10 +90,10 @@ class NewChallengeViewModel(private val context: Context, private val fragmentSi
 
         if (!handleMultipleClicks()) {
             if (ideaTitle.isNullOrEmpty()) {
-                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.infoMsg), Toast.LENGTH_LONG).show()
+                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.infoMsg), Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
                 return@OnClickListener
             } else if (ideaTitle!!.length < 10) {
-                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.infoMsg_discussion), Toast.LENGTH_LONG).show()
+                Toast.makeText(fragmentSignin, fragmentSignin.resources.getString(R.string.infoMsg_discussion), Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
                 return@OnClickListener
             }
 

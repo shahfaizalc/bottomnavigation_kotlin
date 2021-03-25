@@ -3,6 +3,7 @@ package com.reelme.app.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
@@ -77,11 +78,11 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
 
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
-                    Toast.makeText(context, "Invalid request... kindly check the entered number.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Invalid request... kindly check the entered number.", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
                 } else if (e is FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
-                    Toast.makeText(context, "The SMS quota for the project has been exceeded", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "The SMS quota for the project has been exceeded", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
                 }
 
@@ -92,6 +93,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
                     verificationId: String,
                     token: PhoneAuthProvider.ForceResendingToken
             ) {
+                progressBarVisible = View.INVISIBLE
                 // The SMS verification code has been sent to the provided phone number, we
                 // now need to ask the user to enter the code and then construct a credential
                 // by combining the code with a verification ID.
@@ -102,25 +104,26 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
                 storedVerificationId = verificationId
                 resendToken = token
 
-                verifyPhoneNumberWithCode(verificationId,"")
+                verifyPhoneNumberWithCode(verificationId,token)
             }
         }
         // [END phone_auth_callbacks]
     }
 
-    private fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {
+    private fun verifyPhoneNumberWithCode(verificationId: String?, token: PhoneAuthProvider.ForceResendingToken) {
         // [START verify_with_code]
 //        val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
 //        Log.d(TAG, "credential:${credential.smsCode}")
         // [END verify_with_code]
 
 
-        val gsonValue = Gson().toJson(verificationId)
+        val gsonValue = Gson().toJson(token)
 
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("AUTH_INFO",verificationId)
         editor.putString("phoneNumber",ideaTitle)
+        editor.putString("token",gsonValue)
         editor.apply()
         progressBarVisible = View.INVISIBLE
 
@@ -174,8 +177,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
     private fun startPhoneNumberVerification(phoneNumber: String) {
         Log.d(TAG, "signUpUserClicked:phoneNumber"+phoneNumber)
         // [START start_phone_auth]
-        Toast.makeText(context, "Please wait... we are authenticating your account", Toast.LENGTH_LONG).show()
-        Toast.makeText(context, "Please wait... we are  authenticating your account", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Please wait... we are  authenticating your account", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
         val options = PhoneAuthOptions.newBuilder(auth)
                 .setPhoneNumber(phoneNumber)       // Phone number to verify
@@ -218,7 +220,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
         }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
     }
 
     companion object {

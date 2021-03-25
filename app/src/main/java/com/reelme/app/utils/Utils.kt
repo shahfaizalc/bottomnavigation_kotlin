@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.StateListDrawable
 import android.os.Build
 import android.provider.Settings
+import android.view.Gravity
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -29,7 +30,7 @@ object Utils {
 
     fun showToast(context: Context, message: String) {
 
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).apply {setGravity(Gravity.TOP, 0, 0); show() }
     }
 
 

@@ -56,8 +56,8 @@ class RelegiousRecyclerViewAdapter(flsLst: List<ReligiousBelief>, ctx: Context) 
 
 
     override fun bookFlight(f: ReligiousBelief, view: View?, itemPosition: Int) {
-        Toast.makeText(context, "You booked " + f.religious,
-                Toast.LENGTH_LONG).show()
+//        Toast.makeText(context, "You booked " + f.religious,
+//                Toast.LENGTH_LONG).show()
         selectedPosition = itemPosition
         notifyDataSetChanged()
     }

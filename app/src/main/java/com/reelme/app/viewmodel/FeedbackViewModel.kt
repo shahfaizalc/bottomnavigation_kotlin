@@ -1,6 +1,7 @@
 package com.reelme.app.viewmodel
 
 import android.content.Context
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
@@ -84,7 +85,7 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
             val feedBack = Feedback();
 
             if (userEmail.isNullOrEmpty()) {
-                Toast.makeText(fragmentSignin, fragmentSignin!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentSignin, fragmentSignin!!.resources.getString(R.string.loginValidtionErrorMsg), Toast.LENGTH_SHORT).apply {setGravity(Gravity.TOP, 0, 0); show() }
                 return@OnClickListener
             }
             showProgresss(true)
@@ -121,7 +122,7 @@ class FeedbackViewModel(private val context: Context, private val fragmentSignin
     }
 
     private fun showToast(id: Int) {
-        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
+        Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
     }
 
     override fun handleMultipleClicks(): Boolean {

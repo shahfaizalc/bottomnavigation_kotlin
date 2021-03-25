@@ -120,31 +120,31 @@ class GenericValues {
                             if (userModel.dob.isNullOrEmpty()){
                                 fragment.startActivity(Intent(fragment, FragmentDate::class.java));
                             } else
-                                if (userModel.skipUsername == true){
+                                if (userModel.username.isNullOrEmpty()){
                                     fragment.startActivity(Intent(fragment, FragmentUserName::class.java));
                                 } else
-                                    if (!userModel.profilePic.isNullOrEmpty()){
-                                        fragment.startActivity(Intent(fragment, FragmentImgSelction::class.java));
+                                    if (userModel.profilePic.isNullOrEmpty()){
+                                        fragment.startActivity(Intent(fragment, FragmentUploadView::class.java));
                                     } else
-                                        if (userModel.skipBio == true){
+                                        if (userModel.bio.isNullOrEmpty()){
                                             fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
                                         } else
-                                            if (userModel.skipGender == true){
+                                            if (userModel.gender.isNullOrEmpty()){
                                                 fragment.startActivity(Intent(fragment, FlightsActivity::class.java));
                                             }  else
-                                                if (userModel.skipRelationshipStatus == true){
+                                                if (userModel.relationshipStatus.isNullOrEmpty()){
                                                     fragment.startActivity(Intent(fragment, RelationshipActivity::class.java));
                                                 } else
-                                                    if (userModel.skipChildren == true){
+                                                    if (userModel.children.isNullOrEmpty()){
                                                         fragment.startActivity(Intent(fragment, ChildrenActivity::class.java));
                                                     } else
-                                                        if (userModel.skipOccupation == true){
+                                                        if (userModel.occupation.isNullOrEmpty()){
                                                             fragment.startActivity(Intent(fragment, FragmentOccupation::class.java));
                                                         } else
-                                                            if (userModel.skipReligiousBeliefs == true){
+                                                            if (userModel.religiousBeliefs.isNullOrEmpty()){
                                                                 fragment.startActivity(Intent(fragment, RelegionActivity::class.java));
                                                             } else
-                                                                if (userModel.skipHobbiesAndInterest == true){
+                                                                if (userModel.hobbiesAndInterest.isNullOrEmpty()){
                                                                     fragment.startActivity(Intent(fragment, FragmentHobbies::class.java));
                                                                 }else {
                                                                         fragment.startActivity(Intent(fragment, FragmentHomePage::class.java));
