@@ -54,10 +54,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/home_genderSubTitle2"
+                    android:text="@string/home_genderSubTitle2"
+                    android:textSize="@dimen/dimen_12"
                     android:padding="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/colorBlacklight" />
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <LinearLayout

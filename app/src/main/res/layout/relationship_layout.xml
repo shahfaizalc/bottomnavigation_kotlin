@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <LinearLayout
+    <ScrollView
+        android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
-        android:weightSum="12"
-        android:orientation="vertical">
+        android:background="@color/colorWhite">
 
-        <LinearLayout
-            android:layout_weight="10"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/black"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="@dimen/dimen_32"
+            android:layout_marginTop="@dimen/dimen_48"
             android:textSize="@dimen/dimen_32"
             android:padding="@dimen/dimen_16"
             android:textStyle="bold"
@@ -58,27 +57,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/home_genderSubTitle2"/>
-    </LinearLayout>
+      <TextView
+                    android:layout_marginTop="@dimen/dimen_32"
+                    android:layout_marginBottom="@dimen/dimen_32"
+                    android:id="@+id/skipBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dimen_16"
+                    android:text="@string/home_skip"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center_vertical"
-        android:background="@color/black"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/skipBtn"
-            android:paddingStart="@dimen/dimen_16"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_skip" />
-
-    </LinearLayout>
-    </LinearLayout>
+            </LinearLayout>
     <ProgressBar
         android:visibility="invisible"
         android:id="@+id/progressbar"
@@ -87,4 +77,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:indeterminate="true" />
-</FrameLayout></layout>
+</FrameLayout>
+    </ScrollView>
+</layout>
