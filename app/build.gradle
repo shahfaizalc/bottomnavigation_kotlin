@@ -16,7 +16,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 29
         versionCode 21
-        versionName "1.0.21"
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
@@ -34,7 +34,7 @@ android {
             keyAlias 'key0'
             keyPassword 'faizal@123'
             storePassword 'faizal@123'
-            storeFile file('/Users/philips/Documents/githubproject/bottomnavigation_kotlin/Untitled'
+            storeFile file('/Users/shahfaizalchanbasha/bottomnavigation_kotlin/reelme'
             )
         }
     }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.reelme.app.listeners.UseInfoGeneralResultListener
 import com.reelme.app.pojos.*
 import com.reelme.app.view.*
 import java.util.*
@@ -59,9 +60,33 @@ class GenericValues {
     }
 
 
+    fun isUserProfileComplete(fragment: FragmentWelcome, param: UseInfoGeneralResultListener) {
+
+        FirbaseReadHandler().getCurrentUserInfo(object : UseInfoGeneralResultListener{
+            override fun onSuccess(userInfoGeneral: UserModel) {
+
+                Log.d("GenericValues", "getCurrentUserInfo succcess");
+
+                val gsonValue = Gson().toJson(userInfoGeneral)
+                    val sharedPreference =  fragment.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
+                    val editor = sharedPreference.edit()
+                    editor.putString("USER_INFO",gsonValue)
+                    editor.apply()
+                param.onSuccess(userInfoGeneral)
+                navigateToNext(fragment)
+            }
+
+            override fun onFailure(e: Exception) {
+                Log.d("GenericValues", "getCurrentUserInfo exception");
+                param.onFailure(e)
+
+                navigateToNext(fragment)
+            }
+        })
+    }
 
 
-    fun isUserProfileComplete(fragment: FragmentWelcome) {
+    fun navigateToNext(fragment: FragmentWelcome) {
 
         val sharedPreference = fragment.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
@@ -82,45 +107,47 @@ class GenericValues {
 //            if (userModel.skipReferalCode == true){
 //                fragment.startActivity(Intent(fragment, FragmentReferralMobile::class.java));
 //            } else
-            if (!userModel.emailId.isNullOrEmpty()){
-                fragment.startActivity(Intent(fragment, FragmentEmailAddress::class.java));
-            } else
-            if (!userModel.firstName.isNullOrEmpty()){
-                fragment.startActivity(Intent(fragment, FragmentFullNameMobile::class.java));
-            } else
-            if (!userModel.secondName.isNullOrEmpty()){
-                fragment.startActivity(Intent(fragment, FragmentFullNameMobile::class.java));
-            } else
-            if (!userModel.dob.isNullOrEmpty()){
-                fragment.startActivity(Intent(fragment, FragmentDate::class.java));
-            } else
-            if (userModel.skipUsername == true){
-                fragment.startActivity(Intent(fragment, FragmentUserName::class.java));
-            } else
-            if (!userModel.profilePic.isNullOrEmpty()){
-                fragment.startActivity(Intent(fragment, FragmentImgSelction::class.java));
-            } else
-            if (userModel.skipBio == true){
-                fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
-            } else
-            if (userModel.skipGender == true){
-                fragment.startActivity(Intent(fragment, FlightsActivity::class.java));
-            }  else
-            if (userModel.skipRelationshipStatus == true){
-                fragment.startActivity(Intent(fragment, FragmentEnterMobile::class.java));
-            } else
-            if (userModel.skipChildren == true){
-                fragment.startActivity(Intent(fragment, ChildrenActivity::class.java));
-            } else
-            if (userModel.skipOccupation == true){
-                fragment.startActivity(Intent(fragment, FragmentOccupation::class.java));
-            } else
-            if (userModel.skipReligiousBeliefs == true){
-                fragment.startActivity(Intent(fragment, RelegionActivity::class.java));
-            } else
-            if (userModel.skipHobbiesAndInterest == true){
-                fragment.startActivity(Intent(fragment, FragmentHobbies::class.java));
-            }
+                if (userModel.emailId.isNullOrEmpty()){
+                    fragment.startActivity(Intent(fragment, FragmentEmailAddress::class.java));
+                } else
+                    if (userModel.firstName.isNullOrEmpty()){
+                        fragment.startActivity(Intent(fragment, FragmentFullNameMobile::class.java));
+                    } else
+                        if (userModel.secondName.isNullOrEmpty()){
+                            fragment.startActivity(Intent(fragment, FragmentFullNameMobile::class.java));
+                        } else
+                            if (userModel.dob.isNullOrEmpty()){
+                                fragment.startActivity(Intent(fragment, FragmentDate::class.java));
+                            } else
+                                if (userModel.skipUsername == true){
+                                    fragment.startActivity(Intent(fragment, FragmentUserName::class.java));
+                                } else
+                                    if (!userModel.profilePic.isNullOrEmpty()){
+                                        fragment.startActivity(Intent(fragment, FragmentImgSelction::class.java));
+                                    } else
+                                        if (userModel.skipBio == true){
+                                            fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
+                                        } else
+                                            if (userModel.skipGender == true){
+                                                fragment.startActivity(Intent(fragment, FlightsActivity::class.java));
+                                            }  else
+                                                if (userModel.skipRelationshipStatus == true){
+                                                    fragment.startActivity(Intent(fragment, FragmentEnterMobile::class.java));
+                                                } else
+                                                    if (userModel.skipChildren == true){
+                                                        fragment.startActivity(Intent(fragment, ChildrenActivity::class.java));
+                                                    } else
+                                                        if (userModel.skipOccupation == true){
+                                                            fragment.startActivity(Intent(fragment, FragmentOccupation::class.java));
+                                                        } else
+                                                            if (userModel.skipReligiousBeliefs == true){
+                                                                fragment.startActivity(Intent(fragment, RelegionActivity::class.java));
+                                                            } else
+                                                                if (userModel.skipHobbiesAndInterest == true){
+                                                                    fragment.startActivity(Intent(fragment, FragmentHobbies::class.java));
+                                                                }else {
+                                                                        fragment.startActivity(Intent(fragment, FragmentHomePage::class.java));
+                                                                    }
         }
     }
 

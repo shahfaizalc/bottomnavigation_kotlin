@@ -64,6 +64,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
 
                 fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
 
+
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
@@ -73,8 +74,12 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
 
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
+                    Toast.makeText(context, "Invalid request... kindly check the entered number.", Toast.LENGTH_LONG).show()
+
                 } else if (e is FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
+                    Toast.makeText(context, "The SMS quota for the project has been exceeded", Toast.LENGTH_LONG).show()
+
                 }
 
                 // Show a message and update the UI
@@ -94,7 +99,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
                 storedVerificationId = verificationId
                 resendToken = token
 
-                verifyPhoneNumberWithCode(verificationId,"123123")
+                verifyPhoneNumberWithCode(verificationId,"")
             }
         }
         // [END phone_auth_callbacks]
@@ -102,21 +107,19 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
 
     private fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {
         // [START verify_with_code]
-        val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
-        Log.d(TAG, "credential:${credential.smsCode}")
+//        val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
+//        Log.d(TAG, "credential:${credential.smsCode}")
         // [END verify_with_code]
 
 
-        val gsonValue = Gson().toJson(credential)
+        val gsonValue = Gson().toJson(verificationId)
 
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
-        editor.putString("AUTH_INFO",gsonValue)
+        editor.putString("AUTH_INFO",verificationId)
         editor.putString("phoneNumber",ideaTitle)
         editor.apply()
-
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
-
     }
 
 
@@ -140,9 +143,15 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
         Log.d(TAG, "signInUserClicked:")
 
         startPhoneNumberVerification(ideaTitle!!)
-
     }
 
+
+    fun signUpUserClicked() {
+        // fragmentSignin.finish()
+        Log.d(TAG, "signUpUserClicked:")
+        startPhoneNumberVerification(ideaTitle!!)
+
+    }
     private fun textFormat(input : String) {
 
         val number = input.replaceFirst ("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
@@ -155,6 +164,9 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
     private fun startPhoneNumberVerification(phoneNumber: String) {
         Log.d(TAG, "signUpUserClicked:phoneNumber"+phoneNumber)
         // [START start_phone_auth]
+        Toast.makeText(context, "Please wait... we are authenticating your account", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Please wait... we are  authenticating your account", Toast.LENGTH_LONG).show()
+
         val options = PhoneAuthOptions.newBuilder(auth)
                 .setPhoneNumber(phoneNumber)       // Phone number to verify
                 .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
@@ -165,12 +177,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
         // [END start_phone_auth]
     }
 
-    fun signUpUserClicked() {
-       // fragmentSignin.finish()
-        Log.d(TAG, "signUpUserClicked:")
-        startPhoneNumberVerification(ideaTitle!!)
 
-    }
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()

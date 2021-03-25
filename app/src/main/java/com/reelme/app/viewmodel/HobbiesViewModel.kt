@@ -112,15 +112,24 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO", gsonValue)
         editor.apply()
+
+        Toast.makeText(context, "Please wait... we are saving your data", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Please wait... we are saving your data", Toast.LENGTH_LONG).show()
+
+
         FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener{
             override fun onSuccess() {
                 fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
                 Log.d("Authenticaiton token", "onSuccess")
+                Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).show()
+
             }
 
             override fun onFailure(e: Exception) {
                 fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
                 Log.d("Authenticaiton token", "Exception"+e)
+                Toast.makeText(context, "Failed to save your profile", Toast.LENGTH_LONG).show()
+
             }
         })
     }

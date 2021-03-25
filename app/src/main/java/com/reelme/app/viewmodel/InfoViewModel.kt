@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.reelme.app.view.*
 import com.itravis.ticketexchange.listeners.DateListener
 import com.itravis.ticketexchange.listeners.TimeListener
-import com.itravis.ticketexchange.utils.DatePickerEvent
+import com.reelme.app.util.DatePickerEvent
 import com.itravis.ticketexchange.utils.TimePickerEvent
 
 

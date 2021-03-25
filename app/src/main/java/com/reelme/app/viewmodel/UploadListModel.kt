@@ -55,6 +55,7 @@ class UploadListModel(internal var context: Context,
             field = progressBarVisible
             notifyPropertyChanged(BR.progressBarVisible)
         }
+
     @get:Bindable
     var msg: String? = null
         set(msg) {

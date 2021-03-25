@@ -9,6 +9,7 @@ import androidx.databinding.Bindable
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
@@ -37,12 +38,12 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
         return sharedPreference.getString("phoneNumber","")
     }
 
-    private fun getSMS(): String {
+    private fun getSMS(code : String): String {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("AUTH_INFO", "");
 
         try {
-            authCredential = Gson().fromJson(coronaJson, PhoneAuthCredential::class.java)
+            authCredential = PhoneAuthProvider.getCredential(coronaJson, code)
             Log.d(TAG, "sms code "+authCredential.smsCode)
             smsotp = "" + (authCredential.smsCode)
             return "" + (authCredential.smsCode)
@@ -61,7 +62,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
 
     @get:Bindable
-    var smsotp: String? = getSMS()
+    var smsotp: String? = ""
         set(price) {
             field = price
             notifyPropertyChanged(BR.smsotp)
@@ -85,7 +86,9 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
                         // Sign in failed, display a message and update the UI
                         Log.w(TAG, "signInWithCredential:failure", task.exception)
                         if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                        // The verification code entered was invalid
+                            Toast.makeText(context, "The verification code entered was invalid", Toast.LENGTH_LONG).show()
+
+                            // The verification code entered was invalid
                         }
                         // Update UI
                     }
@@ -95,6 +98,8 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
     fun signInUserClicked() {
       //  fragmentSignin.finish()
+        getSMS(smsotp!!)
+
         signInWithPhoneAuthCredential(authCredential)
 
     }
@@ -102,6 +107,8 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
     fun signUpUserClicked() {
       //  fragmentSignin.finish()
+        getSMS(smsotp!!)
+
         signInWithPhoneAuthCredential(authCredential)
     }
 

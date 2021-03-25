@@ -42,7 +42,6 @@
             android:paddingStart="@dimen/dimen_16"
             android:paddingEnd="@dimen/dimen_16">
 
-
             <EditText
                 android:id="@+id/phonenumberEntery"
                 android:layout_width="wrap_content"
@@ -97,6 +96,7 @@
                 android:textSize="@dimen/dimen_12" />
 
             <View
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/dimen_8"
