@@ -133,7 +133,7 @@ class GenericValues {
                                                 fragment.startActivity(Intent(fragment, FlightsActivity::class.java));
                                             }  else
                                                 if (userModel.skipRelationshipStatus == true){
-                                                    fragment.startActivity(Intent(fragment, FragmentEnterMobile::class.java));
+                                                    fragment.startActivity(Intent(fragment, RelationshipActivity::class.java));
                                                 } else
                                                     if (userModel.skipChildren == true){
                                                         fragment.startActivity(Intent(fragment, ChildrenActivity::class.java));
