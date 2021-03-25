@@ -24,7 +24,8 @@ class UploadListModel(internal var context: Context,
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
-    var openChooserLiveData = MutableLiveData<Boolean>()
+    private var openChooserLiveData = MutableLiveData<Boolean>()
+    private var skipLiveData = MutableLiveData<Boolean>()
 
 
     init {
@@ -82,10 +83,20 @@ class UploadListModel(internal var context: Context,
         return openChooserLiveData
     }
 
-    fun onSkipButtonClicked() {
-        // fragmentSignin.finish()
-        Toast.makeText(context,"Yet to Do", Toast.LENGTH_SHORT).apply {setGravity(Gravity.TOP, 0, 0); show() }
+
+    fun onSkipButtonClicked() = View.OnClickListener {
+        skipLiveData.setValue(true);
     }
+
+    fun initSkip(): LiveData<Boolean> {
+        return skipLiveData
+    }
+
+
+//    fun onSkipButtonClicked() {
+//        // fragmentSignin.finish()
+//        Toast.makeText(context,"Yet to Do", Toast.LENGTH_SHORT).apply {setGravity(Gravity.TOP, 0, 0); show() }
+//    }
 
     fun registerListeners() {
         networkStateHandler?.registerNetWorkStateBroadCast(context)
@@ -95,6 +106,7 @@ class UploadListModel(internal var context: Context,
     fun unRegisterListeners() {
         networkStateHandler?.unRegisterNetWorkStateBroadCast(context)
     }
+
 
     override fun networkChangeReceived(state: Boolean) {
 

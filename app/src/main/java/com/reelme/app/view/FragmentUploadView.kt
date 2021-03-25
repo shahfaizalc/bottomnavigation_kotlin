@@ -41,6 +41,11 @@ class FragmentUploadView : AppCompatActivity() {
         binding.yearList = areaViewModel
         activity = this
         binding.yearList!!.initFileChooser().observe(this, { showFileChooser() })
+
+        binding.yearList!!.initSkip().observe(this, {
+            startActivity(Intent(activity, FragmentBioMobile::class.java));
+        })
+
         getUserInfo()
     }
 

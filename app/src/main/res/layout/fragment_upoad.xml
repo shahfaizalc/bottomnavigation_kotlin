@@ -95,6 +95,20 @@
                         app:drawableStartCompat="@drawable/ic_camera_icon" />
                 </LinearLayout>
             </LinearLayout>
+
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/appTitleTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_32"
+                android:text="@string/home_skip"
+                android:textColor="@color/white"
+                android:onClick="@{yearList.onSkipButtonClicked()}"
+                android:textStyle="bold" />
+
+
 <!--            <TextView-->
 <!--                android:id="@+id/appTitleTxt"-->
 <!--                android:layout_width="match_parent"-->
