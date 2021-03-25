@@ -13,117 +13,108 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black"
-        android:orientation="vertical"
-        android:weightSum="2">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/dimen_20"
-            android:layout_weight="1"
-            android:gravity="center|bottom"
+            android:layout_height="match_parent"
+            android:background="@color/black"
             android:orientation="vertical">
 
+
             <ImageView
-                android:src="@drawable/applogocoloroutline"
+                android:layout_marginTop="100dp"
                 android:layout_width="240dp"
                 android:layout_height="240dp"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:src="@drawable/applogocoloroutline"
                 android:textColor="@color/com_facebook_blue"
                 android:textSize="@dimen/dimen_48"
                 android:textStyle="bold|italic" />
 
             <TextView
-                android:layout_margin="@dimen/dimen_4"
-                android:textSize="@dimen/dimen_16"
-                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_4"
                 android:text="@string/home_welcomestring2"
-                 />
-            <TextView
-                android:layout_margin="@dimen/dimen_4"
-                android:textSize="@dimen/dimen_16"
                 android:textColor="@color/white"
+                android:textSize="@dimen/dimen_16" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_4"
                 android:text="@string/home_welcomestring3"
-                />
-            <TextView
-                android:layout_margin="@dimen/dimen_4"
-                android:textSize="@dimen/dimen_16"
                 android:textColor="@color/white"
+                android:textSize="@dimen/dimen_16" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_4"
                 android:text="@string/home_welcomestring4"
-                />
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_16" />
 
+
+            <Button
+                android:layout_marginTop="@dimen/dimen_36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/dimen_16"
+                android:layout_marginRight="@dimen/dimen_16"
+                android:background="@drawable/button_black"
+                android:onClick="@{() -> homeData.signInUserClicked()}"
+                android:paddingStart="@dimen/dimen_28"
+                android:paddingTop="@dimen/dimen_12"
+                android:paddingEnd="@dimen/dimen_28"
+                android:paddingBottom="@dimen/dimen_12"
+                android:text="Get Started"
+                android:textColor="@color/smoke2" />
+
+
+            <!--        <LinearLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="0dp"-->
+            <!--            android:layout_marginBottom="@dimen/dimen_20"-->
+            <!--            android:layout_weight="1"-->
+            <!--            android:gravity="bottom"-->
+            <!--            android:orientation="horizontal">-->
+
+            <!--            <Button-->
+            <!--                android:textColor="@color/smoke2"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="@dimen/dimen_16"-->
+            <!--                android:layout_marginTop="@dimen/dimen_8"-->
+            <!--                android:paddingTop="@dimen/dimen_20"-->
+            <!--                android:paddingBottom="@dimen/dimen_20"-->
+            <!--                android:layout_marginRight="@dimen/dimen_16"-->
+            <!--                android:background="@drawable/circular_bg_blue_8"-->
+            <!--                android:onClick="@{() -> homeData.signUpUserClicked()}"-->
+            <!--                android:text="@string/signUpText"-->
+            <!--                android:textStyle="bold" />-->
+
+            <!--            <Button-->
+            <!--                android:textColor="@color/smoke2"-->
+            <!--                android:paddingTop="@dimen/dimen_20"-->
+            <!--                android:paddingBottom="@dimen/dimen_20"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="@dimen/dimen_16"-->
+            <!--                android:layout_marginTop="@dimen/dimen_8"-->
+            <!--                android:layout_marginRight="@dimen/dimen_16"-->
+            <!--                android:background="@drawable/circular_bg_blue_8"-->
+            <!--                android:onClick="@{() -> homeData.signInUserClicked()}"-->
+            <!--                android:text="Get Started"-->
+            <!--                android:textStyle="bold" />-->
+            <!--        </LinearLayout>-->
         </LinearLayout>
-
-        <Button
-            android:textColor="@color/smoke2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_16"
-            android:paddingTop="@dimen/dimen_12"
-            android:paddingBottom="@dimen/dimen_12"
-            android:paddingStart="@dimen/dimen_28"
-            android:paddingEnd="@dimen/dimen_28"
-
-            android:layout_gravity="center_horizontal"
-            android:layout_marginRight="@dimen/dimen_16"
-            android:background="@drawable/button_black"
-            android:onClick="@{() -> homeData.signInUserClicked()}"
-            android:text="Get Started" />
-
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_marginBottom="@dimen/dimen_20"-->
-<!--            android:layout_weight="1"-->
-<!--            android:gravity="bottom"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <Button-->
-<!--                android:textColor="@color/smoke2"-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="@dimen/dimen_16"-->
-<!--                android:layout_marginTop="@dimen/dimen_8"-->
-<!--                android:paddingTop="@dimen/dimen_20"-->
-<!--                android:paddingBottom="@dimen/dimen_20"-->
-<!--                android:layout_marginRight="@dimen/dimen_16"-->
-<!--                android:background="@drawable/circular_bg_blue_8"-->
-<!--                android:onClick="@{() -> homeData.signUpUserClicked()}"-->
-<!--                android:text="@string/signUpText"-->
-<!--                android:textStyle="bold" />-->
-
-<!--            <Button-->
-<!--                android:textColor="@color/smoke2"-->
-<!--                android:paddingTop="@dimen/dimen_20"-->
-<!--                android:paddingBottom="@dimen/dimen_20"-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="@dimen/dimen_16"-->
-<!--                android:layout_marginTop="@dimen/dimen_8"-->
-<!--                android:layout_marginRight="@dimen/dimen_16"-->
-<!--                android:background="@drawable/circular_bg_blue_8"-->
-<!--                android:onClick="@{() -> homeData.signInUserClicked()}"-->
-<!--                android:text="Get Started"-->
-<!--                android:textStyle="bold" />-->
-<!--        </LinearLayout>-->
-    </LinearLayout>
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"

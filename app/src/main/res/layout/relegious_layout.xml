@@ -1,89 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black"
-        android:weightSum="12"
-        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_weight="10"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:background="@color/black"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="10">
 
-        <TextView
-            android:layout_marginTop="@dimen/dimen_32"
-            android:textSize="@dimen/dimen_32"
-            android:padding="@dimen/dimen_16"
-            android:textStyle="bold"
-            android:textColor="@color/white"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:background="@color/black"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_32"
+                    android:padding="@dimen/dimen_16"
+                    android:text="@string/home_religiousTitle"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_32"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/flights_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp" />
+
+                <Button
+                    android:id="@+id/nextBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_32"
+                    android:layout_marginRight="@dimen/dimen_16"
+                    android:background="@drawable/button_black"
+                    android:paddingTop="@dimen/dimen_12"
+                    android:paddingBottom="@dimen/dimen_12"
+                    android:paddingStart="@dimen/dimen_28"
+                    android:paddingEnd="@dimen/dimen_28"
+                    android:text="Next ->"
+                    android:textColor="@color/smoke2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/home_genderSubTitle2"
+                    android:padding="@dimen/dimen_16"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/colorBlacklight" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/black"
+                android:gravity="bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/skipBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dimen_16"
+                    android:text="@string/home_skip"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/home_religiousTitle"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/flights_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"/>
-
-        <Button
-            android:layout_marginTop="@dimen/dimen_32"
-            android:id="@+id/nextBtn"
-            android:textColor="@color/smoke2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_16"
-            android:paddingTop="@dimen/dimen_20"
-            android:paddingEnd="@dimen/dimen_32"
-            android:paddingStart="@dimen/dimen_32"
-            android:paddingBottom="@dimen/dimen_20"
-            android:layout_marginRight="@dimen/dimen_16"
-            android:background="@drawable/button_black"
-            android:text="Next ->" />
-
-        <TextView
-            android:textColor="@color/white"
-            android:padding="@dimen/dimen_16"
-            android:textColorHint="@color/colorBlacklight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/home_genderSubTitle2"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center_vertical"
-        android:background="@color/black"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/skipBtn"
-            android:paddingStart="@dimen/dimen_16"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_skip" />
-
-    </LinearLayout>
-    </LinearLayout>
-    <ProgressBar
-        android:visibility="invisible"
-        android:id="@+id/progressbar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminate="true" />
-</FrameLayout></layout>
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="invisible" />
+    </FrameLayout>
+</layout>

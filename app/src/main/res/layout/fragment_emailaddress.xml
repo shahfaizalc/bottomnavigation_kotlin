@@ -28,7 +28,7 @@
         android:orientation="vertical">
 
     <TextView
-                android:layout_marginTop="@dimen/dimen_32"
+                android:layout_marginTop="@dimen/dimen_48"
                 android:textSize="@dimen/dimen_32"
                 android:padding="@dimen/dimen_16"
                 android:textStyle="bold"
@@ -48,12 +48,13 @@
                 />
 
         <EditText
+            android:singleLine="true"
             android:text="@={homeData.userEmail}"
-            android:textSize="@dimen/dimen_24"
-            android:padding="@dimen/dimen_16"
+            android:textSize="@dimen/dimen_32"
+            android:layout_margin="@dimen/dimen_16"
             android:textColor="@color/white"
             android:textColorHint="@color/colorBlacklight"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/home_emailMobileSubTitle2"/>
 
@@ -66,8 +67,8 @@
             android:layout_marginLeft="@dimen/dimen_16"
             android:paddingTop="@dimen/dimen_12"
             android:paddingBottom="@dimen/dimen_12"
-            android:paddingStart="@dimen/dimen_48"
-            android:paddingEnd="@dimen/dimen_48"
+            android:paddingStart="@dimen/dimen_28"
+            android:paddingEnd="@dimen/dimen_28"
             android:layout_marginRight="@dimen/dimen_16"
             android:background="@drawable/button_black"
             android:onClick="@{() -> homeData.signUpUserClicked()}"
@@ -82,13 +83,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:textSize="@dimen/dimen_16"
+                android:id="@+id/terms"
                 android:paddingStart="@dimen/dimen_16"
-                android:textStyle="bold"
                 android:textColor="@color/colorBlacklight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home_emailskip" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
