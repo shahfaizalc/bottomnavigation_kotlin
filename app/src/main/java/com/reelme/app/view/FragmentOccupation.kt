@@ -34,7 +34,7 @@ class FragmentOccupation : Activity() {
     private fun setupAutoCompleteView(mContentViewBinding: FragmentOccupationBinding) {
         val animalList= mContentViewBinding!!.homeData!!.prepareData()
          adapter  = ArrayAdapter<String>(
-                 this, android.R.layout.simple_spinner_item,
+                 this, android.R.layout.simple_spinner_dropdown_item,
                  animalList)
         mContentViewBinding.flightsRv.setAdapter(adapter)
         mContentViewBinding.flightsRv.setTextColor(Color.WHITE)

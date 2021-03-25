@@ -71,6 +71,7 @@ class FragmentUploadView : AppCompatActivity() {
 //        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
 
         val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
         val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(pickPhoto, FILE_SELECT_CODE)
     }
