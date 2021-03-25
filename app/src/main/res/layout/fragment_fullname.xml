@@ -20,7 +20,7 @@
         android:orientation="vertical">
 
             <TextView
-                android:layout_marginTop="@dimen/dimen_32"
+                android:layout_marginTop="@dimen/dimen_48"
                 android:textSize="@dimen/dimen_32"
                 android:padding="@dimen/dimen_16"
                 android:textStyle="bold"
@@ -40,12 +40,13 @@
                 />
 
         <EditText
+            android:layout_marginTop="@dimen/dimen_24"
             android:textColor="@color/white"
             android:text="@={homeData.firstName}"
             android:textSize="@dimen/dimen_36"
-            android:padding="@dimen/dimen_16"
+            android:layout_margin="@dimen/dimen_16"
             android:textColorHint="@color/colorBlacklight"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/home_fullnameSubTitle2"/>
 
@@ -53,9 +54,9 @@
             android:textColor="@color/white"
             android:text="@={homeData.lastName}"
             android:textSize="@dimen/dimen_36"
-            android:padding="@dimen/dimen_16"
+            android:layout_margin="@dimen/dimen_16"
             android:textColorHint="@color/colorBlacklight"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/home_fullnameSubTitle3"/>
 

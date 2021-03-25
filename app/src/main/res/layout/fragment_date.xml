@@ -20,7 +20,7 @@
         android:orientation="vertical">
 
             <TextView
-                android:layout_marginTop="@dimen/dimen_32"
+                android:layout_marginTop="@dimen/dimen_48"
                 android:textSize="@dimen/dimen_32"
                 android:padding="@dimen/dimen_16"
                 android:textStyle="bold"
