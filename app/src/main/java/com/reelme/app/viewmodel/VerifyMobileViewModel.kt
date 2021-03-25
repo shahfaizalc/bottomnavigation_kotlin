@@ -3,6 +3,7 @@ package com.reelme.app.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -74,6 +75,8 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(fragmentSignin) { task ->
+
+                    progressBarVisible = View.INVISIBLE
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithCredential:success")
@@ -81,7 +84,9 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
                         val user = task.result?.user
 
                         auth = Firebase.auth
+
                         setUserInfo(getPhoneNumber()!!)
+
                     } else {
                         // Sign in failed, display a message and update the UI
                         Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -93,12 +98,16 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
                         // Update UI
                     }
                 }
+                .addOnFailureListener {
+                    progressBarVisible = View.INVISIBLE
+                }
     }
     // [END sign_in_with_phone]
 
     fun signInUserClicked() {
       //  fragmentSignin.finish()
         getSMS(smsotp!!)
+        progressBarVisible = View.VISIBLE
 
         signInWithPhoneAuthCredential(authCredential)
 
@@ -108,6 +117,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
     fun signUpUserClicked() {
       //  fragmentSignin.finish()
         getSMS(smsotp!!)
+        progressBarVisible = View.VISIBLE
 
         signInWithPhoneAuthCredential(authCredential)
     }
@@ -126,6 +136,13 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
     }
 
+
+    @get:Bindable
+    var progressBarVisible = View.INVISIBLE
+        set(progressBarVisible) {
+            field = progressBarVisible
+            notifyPropertyChanged(BR.progressBarVisible)
+        }
 
 
     private fun networkHandler() {

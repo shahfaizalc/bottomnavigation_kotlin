@@ -27,11 +27,16 @@ class WelcomeViewModel(private val context: Context, private val fragmentSignin:
     fun signInUserClicked() {
        // fragmentSignin.finish()
        // fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEnterMobile::class.java));
+        progressBarVisible = View.VISIBLE
+
         GenericValues().isUserProfileComplete(fragmentSignin, object : UseInfoGeneralResultListener{
             override fun onSuccess(userInfoGeneral: UserModel) {
+                progressBarVisible = View.INVISIBLE
             }
 
             override fun onFailure(e: Exception) {
+                progressBarVisible = View.INVISIBLE
+                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEnterMobile::class.java));
             }
         })
     }
@@ -39,6 +44,7 @@ class WelcomeViewModel(private val context: Context, private val fragmentSignin:
 
     fun signUpUserClicked() {
        // fragmentSignin.finish()
+        progressBarVisible = View.VISIBLE
 
         GenericValues().isUserProfileComplete(fragmentSignin,object : UseInfoGeneralResultListener {
             override fun onSuccess(userInfoGeneral: UserModel) {
@@ -53,7 +59,6 @@ class WelcomeViewModel(private val context: Context, private val fragmentSignin:
         })
 
         // fragmentSignin.startActivity(Intent(fragmentSignin, FragmentRegistration::class.java));
-
     }
 
     private fun networkHandler() {

@@ -3,6 +3,7 @@ package com.reelme.app.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -10,7 +11,9 @@ import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
+import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.pojos.UserModel
+import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.view.*
 
 class RefferalMobileViewModel(private val context: Context, private val fragmentSignin: FragmentReferralMobile) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -67,6 +70,7 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
 
     fun setUserInfo(){
 
+        progressBarVisible = View.VISIBLE
 
         val gsonValue = Gson().toJson(userDetails)
 
@@ -74,12 +78,31 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO",gsonValue)
         editor.apply()
+        FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
+            override fun onSuccess() {
+                progressBarVisible = View.INVISIBLE
+                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
+                Log.d("Authenticaiton token", "onSuccess")
+                Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).show()
 
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
+            }
 
+            override fun onFailure(e: Exception) {
+             //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+                progressBarVisible = View.INVISIBLE
+                Log.d("Authenticaiton token", "Exception"+e)
+                Toast.makeText(context, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).show()
 
+            }
+        })
     }
 
+    @get:Bindable
+    var progressBarVisible = View.INVISIBLE
+        set(progressBarVisible) {
+            field = progressBarVisible
+            notifyPropertyChanged(BR.progressBarVisible)
+        }
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()

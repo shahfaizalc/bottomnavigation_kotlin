@@ -10,6 +10,11 @@
             type="com.reelme.app.viewmodel.RefferalMobileViewModel" />
     </data>
 
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -92,4 +97,11 @@
         </LinearLayout>
 
     </LinearLayout>
-</layout>
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="@{homeData.progressBarVisible}" />
+</FrameLayout></layout>

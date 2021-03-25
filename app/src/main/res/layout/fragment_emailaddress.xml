@@ -9,6 +9,10 @@
             type="com.reelme.app.viewmodel.EmailAddressViewModel" />
     </data>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,7 +49,7 @@
 
         <EditText
             android:text="@={homeData.userEmail}"
-            android:textSize="@dimen/dimen_36"
+            android:textSize="@dimen/dimen_24"
             android:padding="@dimen/dimen_16"
             android:textColor="@color/white"
             android:textColorHint="@color/colorBlacklight"
@@ -87,5 +91,14 @@
                 android:text="@string/home_emailskip" />
 
         </LinearLayout>
-    </LinearLayout>
+
+     </LinearLayout>
+     <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="@{homeData.progressBarVisible}" />
+    </FrameLayout>
 </layout>

@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -13,12 +15,15 @@ import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.adapter.RelegiousRecyclerViewAdapter
 import com.reelme.app.databinding.RelegiousLayoutBinding
+import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.pojos.ReligiousBelief
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
+import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import java.util.*
 
 class RelegionActivity : Activity() {
+    lateinit var activity  : Activity
     private var adapter: RelegiousRecyclerViewAdapter? = null
     private var binding: RelegiousLayoutBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,20 +34,19 @@ class RelegionActivity : Activity() {
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         adapter = RelegiousRecyclerViewAdapter(prepareData(), this)
         binding!!.flightsRv.adapter = adapter
+        activity = this
 
         binding!!.nextBtn.setOnClickListener {
             if(adapter!!.getSelectedItem()>=0) {
                 userDetails.religiousBeliefs = prepareData()[adapter!!.getSelectedItem()].religious
                 setUserInfo()
-                startActivity(Intent(this@RelegionActivity, FragmentHobbies::class.java))            }
+            }
         }
 
         binding!!.skipBtn.setOnClickListener {
             userDetails.skipReligiousBeliefs = true
             setUserInfo()
-            startActivity(Intent(this@RelegionActivity, FragmentHobbies::class.java))
         }
-
 
         getUserInfo()
 
@@ -72,12 +76,30 @@ class RelegionActivity : Activity() {
 
     private fun setUserInfo(){
 
+        binding!!.progressbar.visibility= View.VISIBLE
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO",gsonValue)
         editor.apply()
 
+        FirbaseWriteHandlerActivity(this).updateUserInfo(userDetails, object : EmptyResultListener {
+            override fun onSuccess() {
+                binding!!.progressbar.visibility= View.INVISIBLE
+                startActivity(Intent(this@RelegionActivity, RelationshipActivity::class.java))
+                Log.d("Authenticaiton token", "onSuccess")
+                Toast.makeText(activity, "we have successfully saved your profile", Toast.LENGTH_LONG).show()
+
+            }
+
+            override fun onFailure(e: Exception) {
+                binding!!.progressbar.visibility= View.INVISIBLE
+                //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+                Log.d("Authenticaiton token", "Exception"+e)
+                Toast.makeText(activity, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).show()
+
+            }
+        })
     }
 
 

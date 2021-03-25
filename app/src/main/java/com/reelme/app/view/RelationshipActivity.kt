@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -13,17 +15,21 @@ import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.adapter.RelationshipRecyclerViewAdapter
 import com.reelme.app.databinding.RelationshipLayoutBinding
+import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.pojos.RelationshipStatus
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
+import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import java.util.*
 
 class RelationshipActivity : Activity() {
 
+    lateinit var activity : Activity
     private var adapter: RelationshipRecyclerViewAdapter? = null
     private var binding: RelationshipLayoutBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        activity = this
         binding = DataBindingUtil.setContentView(this, R.layout.relationship_layout)
         binding!!.flightsRv.layoutManager = LinearLayoutManager(this)
         binding!!.flightsRv.addItemDecoration(
@@ -34,14 +40,12 @@ class RelationshipActivity : Activity() {
             if(adapter!!.getSelectedItem()>=0) {
                 userDetails.relationshipStatus = prepareData()[adapter!!.getSelectedItem()].relationship
                 setUserInfo()
-                startActivity(Intent(this@RelationshipActivity, ChildrenActivity::class.java))
             }
         }
 
         binding!!.skipBtn.setOnClickListener {
             userDetails.skipRelationshipStatus = true
             setUserInfo()
-            startActivity(Intent(this@RelationshipActivity, ChildrenActivity::class.java))
         }
 
         getUserInfo()
@@ -71,12 +75,30 @@ class RelationshipActivity : Activity() {
 
     private fun setUserInfo(){
 
+        binding!!.progressbar.visibility= View.VISIBLE
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO",gsonValue)
         editor.apply()
 
+        FirbaseWriteHandlerActivity(this).updateUserInfo(userDetails, object : EmptyResultListener {
+            override fun onSuccess() {
+                binding!!.progressbar.visibility= View.INVISIBLE
+                startActivity(Intent(activity, ChildrenActivity::class.java));
+                Log.d("Authenticaiton token", "onSuccess")
+                Toast.makeText(activity, "we have successfully saved your profile", Toast.LENGTH_LONG).show()
+
+            }
+
+            override fun onFailure(e: Exception) {
+                binding!!.progressbar.visibility= View.INVISIBLE
+                //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+                Log.d("Authenticaiton token", "Exception"+e)
+                Toast.makeText(activity, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).show()
+
+            }
+        })
     }
 
 }

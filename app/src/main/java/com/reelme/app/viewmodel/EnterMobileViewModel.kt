@@ -3,6 +3,7 @@ package com.reelme.app.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -61,6 +62,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
                 var editor = sharedPreference.edit()
                 editor.putString("AUTH_INFO",gsonValue)
                 editor.apply()
+                progressBarVisible = View.INVISIBLE
 
                 fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
 
@@ -71,6 +73,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
                 // This callback is invoked in an invalid request for verification is made,
                 // for instance if the the phone number format is not valid.
                 Log.w(TAG, "onVerificationFailed", e)
+                progressBarVisible = View.INVISIBLE
 
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
@@ -119,6 +122,8 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
         editor.putString("AUTH_INFO",verificationId)
         editor.putString("phoneNumber",ideaTitle)
         editor.apply()
+        progressBarVisible = View.INVISIBLE
+
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentVerifyMobile::class.java));
     }
 
@@ -141,14 +146,17 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
     fun signInUserClicked() {
        // fragmentSignin.finish()
         Log.d(TAG, "signInUserClicked:")
+        progressBarVisible = View.VISIBLE
 
         startPhoneNumberVerification(ideaTitle!!)
+
     }
 
 
     fun signUpUserClicked() {
         // fragmentSignin.finish()
         Log.d(TAG, "signUpUserClicked:")
+        progressBarVisible = View.VISIBLE
         startPhoneNumberVerification(ideaTitle!!)
 
     }
@@ -198,6 +206,14 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
             showToast(R.string.network_ErrorMsg)
         }
     }
+
+
+    @get:Bindable
+    var progressBarVisible = View.INVISIBLE
+        set(progressBarVisible) {
+            field = progressBarVisible
+            notifyPropertyChanged(BR.progressBarVisible)
+        }
 
     private fun showToast(id: Int) {
         Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).show()
