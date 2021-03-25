@@ -37,7 +37,7 @@ class WelcomeViewModel(private val context: Context, private val fragmentSignin:
 
             override fun onFailure(e: Exception) {
                 progressBarVisible = View.INVISIBLE
-                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEnterMobile::class.java));
+              //  fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEnterMobile::class.java));
             }
         })
     }
@@ -54,7 +54,7 @@ class WelcomeViewModel(private val context: Context, private val fragmentSignin:
 
             override fun onFailure(e: Exception) {
                 progressBarVisible = View.INVISIBLE
-                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEnterMobile::class.java));
+             //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEnterMobile::class.java));
 
             }
         })

@@ -96,12 +96,8 @@ class GenericValues {
 
         try {
             userModel = Gson().fromJson(coronaJson, UserModel::class.java)
-        } catch (e: java.lang.Exception) {
-            Log.d("Authenticaiton token", "Exception$e");
-            fragment.startActivity(Intent(fragment, FragmentEnterMobile::class.java));
-        }
 
-        userModel.notNull {
+         userModel.notNull {
             if (userModel.phoneNumber.isEmpty()){
                 fragment.startActivity(Intent(fragment, FragmentEnterMobile::class.java));
             } else
@@ -149,6 +145,11 @@ class GenericValues {
                                                                 }else {
                                                                         fragment.startActivity(Intent(fragment, FragmentHomePage::class.java));
                                                                     }
+        }
+
+        } catch (e: java.lang.Exception) {
+            Log.d("Authenticaiton token", "Exception$e");
+            fragment.startActivity(Intent(fragment, FragmentEnterMobile::class.java));
         }
     }
 
