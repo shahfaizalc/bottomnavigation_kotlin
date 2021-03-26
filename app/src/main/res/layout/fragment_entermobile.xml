@@ -51,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
+                android:letterSpacing="@integer/material_motion_duration_medium_2"
                 android:maxLength="14"
                 android:text="@={homeData.ideaTitle}"
                 android:textColor="@android:color/transparent"
@@ -64,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:text="@={homeData.ideaTitle22}"
                 android:textColor="@color/white"
-                android:textSize="@dimen/dimen_36"
+                android:textSize="@dimen/dimen_32"
                 android:textStyle="bold" />
         </FrameLayout>
 

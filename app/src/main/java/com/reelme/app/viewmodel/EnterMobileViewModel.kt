@@ -14,11 +14,17 @@ import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
+import com.google.i18n.phonenumbers.NumberParseException
+import com.google.i18n.phonenumbers.PhoneNumberUtil
+import com.google.i18n.phonenumbers.Phonemetadata
+import com.google.i18n.phonenumbers.Phonenumber
 import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.view.*
+import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 class EnterMobileViewModel(private val context: Context, private val fragmentSignin: FragmentEnterMobile) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
@@ -142,7 +148,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
     var ideaTitle: String? = ""
         set(price) {
             field = price
-            textFormat(price!!)
+            getFormattedNumber(price!!)
             notifyPropertyChanged(BR.ideaTitle)
         }
 
@@ -163,14 +169,33 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
         startPhoneNumberVerification(ideaTitle!!)
 
     }
-    private fun textFormat(input : String) {
+//    private fun textFormat(input : String) {
+//
+//        val number = input.replace("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
+//
+//        println(number);
+//    }
 
-        val number = input.replace("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
+    private fun getFormattedNumber(phoneNumber: String): String? {
+        var phoneNumber: String? = phoneNumber
+        val phoneNumberUtil = PhoneNumberUtil.getInstance()
+        val numberFormat = Phonemetadata.NumberFormat()
+        numberFormat.pattern = "(\\d{3})(\\d{3})(\\d+)"
+        numberFormat.format = "($1) $2-$3"
+        val newNumberFormats: MutableList<Phonemetadata.NumberFormat> = ArrayList()
+        newNumberFormats.add(numberFormat)
+        var phoneNumberPN: Phonenumber.PhoneNumber? = null
+        try {
+            phoneNumberPN = phoneNumberUtil.parse(phoneNumber, Locale.US.getCountry())
+            phoneNumber = phoneNumberUtil.formatByPattern(phoneNumberPN, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL, newNumberFormats)
+            Log.d("number buumber","buumber "+phoneNumber)
+        } catch (e: NumberParseException) {
+            e.printStackTrace()
+        }
+        ideaTitle22 = phoneNumber
 
-        println(number);
-        ideaTitle22 = number
+        return phoneNumber
     }
-
 
 
 

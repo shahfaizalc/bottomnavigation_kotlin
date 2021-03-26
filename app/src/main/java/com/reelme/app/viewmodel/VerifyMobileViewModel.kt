@@ -8,15 +8,16 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import com.facebook.FacebookSdk.getApplicationContext
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
+import com.google.i18n.phonenumbers.NumberParseException
+import com.google.i18n.phonenumbers.PhoneNumberUtil
+import com.google.i18n.phonenumbers.Phonemetadata
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
 import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
@@ -24,7 +25,9 @@ import com.reelme.app.listeners.UseInfoGeneralResultListener
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
 import com.reelme.app.view.*
+import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 
 class VerifyMobileViewModel(private val context: Context, private val fragmentSignin: FragmentVerifyMobile) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -93,6 +96,29 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
         return sharedPreference.getString("phoneNumber", "")
     }
 
+    private fun getPhoneNumberUI(): String? {
+        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        return getFormattedNumber(sharedPreference.getString("phoneNumber", "")!!)
+    }
+
+    private fun getFormattedNumber(phoneNumber: String): String? {
+        var phoneNumber: String? = phoneNumber
+        val phoneNumberUtil = PhoneNumberUtil.getInstance()
+        val numberFormat = Phonemetadata.NumberFormat()
+        numberFormat.pattern = "(\\d{3})(\\d{3})(\\d{4})"
+        numberFormat.format = "($1) $2-$3"
+        val newNumberFormats: MutableList<Phonemetadata.NumberFormat> = ArrayList()
+        newNumberFormats.add(numberFormat)
+        var phoneNumberPN: PhoneNumber? = null
+        try {
+            phoneNumberPN = phoneNumberUtil.parse(phoneNumber, Locale.US.getCountry())
+            phoneNumber = phoneNumberUtil.formatByPattern(phoneNumberPN, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL, newNumberFormats)
+        } catch (e: NumberParseException) {
+            e.printStackTrace()
+        }
+        return phoneNumber
+    }
+
     private fun getTokenNumber(): PhoneAuthProvider.ForceResendingToken? {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         return Gson().fromJson(sharedPreference.getString("token", ""), PhoneAuthProvider.ForceResendingToken::class.java)
@@ -116,7 +142,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
 
     @get:Bindable
-    var ideaTitle: String? = getPhoneNumber()
+    var ideaTitle: String? = getPhoneNumberUI()
         set(price) {
             field = price
             notifyPropertyChanged(BR.ideaTitle)

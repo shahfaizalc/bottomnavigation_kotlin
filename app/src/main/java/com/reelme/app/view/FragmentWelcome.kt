@@ -2,10 +2,17 @@ package com.reelme.app.view
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
+import com.google.i18n.phonenumbers.NumberParseException
+import com.google.i18n.phonenumbers.PhoneNumberUtil
+import com.google.i18n.phonenumbers.Phonemetadata
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentWelcomeBinding
 import com.reelme.app.viewmodel.WelcomeViewModel
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FragmentWelcome : Activity() {
@@ -30,4 +37,7 @@ class FragmentWelcome : Activity() {
         super.onStop()
         areaViewModel.unRegisterListeners()
     }
+
+
+
 }
