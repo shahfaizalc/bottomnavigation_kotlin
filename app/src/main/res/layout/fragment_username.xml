@@ -51,10 +51,11 @@
             android:textColor="@color/white"
             android:text="@={homeData.userName}"
             android:layout_marginTop="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_16"
             android:textSize="@dimen/dimen_36"
             android:layout_marginStart="@dimen/dimen_16"
             android:textColorHint="@color/colorBlacklight"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/home_userSubTitle2"/>
 

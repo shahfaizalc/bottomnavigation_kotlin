@@ -2,7 +2,10 @@ package com.reelme.app.utils
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
+import android.provider.MediaStore
 import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
@@ -17,6 +20,7 @@ import com.reelme.app.pojos.UserModel
 import com.reelme.app.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
 import com.reelme.app.utils.Constants.BASEURL_COLLECTION_PROFILEPIC
 import com.reelme.app.listeners.StringResultListener
+import java.io.ByteArrayOutputStream
 
 
 class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
@@ -58,6 +62,57 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
                 }
     }
 
+
+    fun coompressjpeg(path: Uri?, param: StringResultListener){
+
+        val progressDialog = ProgressDialog(fragmentBase)
+        progressDialog.setTitle("Uploading")
+        progressDialog.show()
+
+        val storage = FirebaseStorage.getInstance()
+
+        // Create a storage reference from our app
+
+        val storageReference = storage.reference;
+        val filename ="userfiles/"+System.currentTimeMillis()+".jpg";
+
+        val mountainImagesRef = storageReference.child(filename)
+
+        val bmp = MediaStore.Images.Media.getBitmap(fragmentBase.contentResolver, path);
+        val baos =  ByteArrayOutputStream();
+
+        bmp.compress(Bitmap.CompressFormat.JPEG, 25, baos);
+
+        val data = baos.toByteArray();
+
+
+        var uploadTask = mountainImagesRef.putBytes(data)
+
+        uploadTask.addOnSuccessListener {
+
+            Toast.makeText(fragmentBase, "Upload successful", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+            progressDialog.dismiss()
+            it.metadata!!.reference!!.downloadUrl.toString()
+            param.onSuccess(it.metadata!!.reference!!.downloadUrl.toString())
+
+
+        }.addOnFailureListener {
+            Log.d("Uploading", "" + it)
+            Toast.makeText(fragmentBase, "Upload Failed -> $it", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+            progressDialog.dismiss()
+            param.onFailure(it)
+
+
+        }.addOnProgressListener { taskSnapshot ->
+            //calculating progress percentage
+            val progress = 100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount
+
+            //displaying percentage in progress dialog
+            progressDialog.setMessage("Uploaded " + progress.toInt() + "%...")
+        };
+    }
+
+
     fun uploadToStorage(path: Uri?, param: StringResultListener) {
 
         val filePath = path
@@ -75,7 +130,7 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
 
             // Create a storage reference from our app
 
-            val storageReference = storage.getReference();
+            val storageReference = storage.reference;
 
             val riversRef = storageReference.child(filename)
             riversRef.putFile(filePath)

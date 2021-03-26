@@ -19,14 +19,18 @@ android {
         versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        generatedDensities = []
+      //  generatedDensities = []
 
     }
 
     // Flag to tell aapt to keep the attribute ids around
-    aaptOptions {
-        additionalParameters "--no-version-vectors"
-    }
+//    aaptOptions {
+//        additionalParameters "--no-version-vectors"
+//    }
+
+//    aaptOptions {
+//        cruncherEnabled = False
+//    }
 
     lintOptions {
         checkReleaseBuilds false

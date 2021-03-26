@@ -83,11 +83,14 @@ class FragmentUploadView : AppCompatActivity() {
         var path = ""
         if (resultCode === RESULT_OK) {
             if (requestCode === FILE_SELECT_CODE) {
-                val clipData = data!!.getClipData()
+                val clipData = data!!.clipData
                 //null and not null path
                 if (clipData == null) {
                     path += data.data
-                    FirbaseWriteHandlerActivity(this).uploadToStorage(data.data, object: StringResultListener {
+
+
+
+                    FirbaseWriteHandlerActivity(this).coompressjpeg(data.data, object: StringResultListener {
                         override fun onSuccess(url: String) {
 
                             userDetails.profilePic = url
@@ -103,8 +106,8 @@ class FragmentUploadView : AppCompatActivity() {
                         val item = clipData.getItemAt(i)
                         val uri = item.uri
                         path += uri.toString() + "\n"
-                        Log.d("dump", "dump" + path)
-                        FirbaseWriteHandlerActivity(this).uploadToStorage(uri, object: StringResultListener {
+                        Log.d("dump", "dump$path")
+                        FirbaseWriteHandlerActivity(this).coompressjpeg(uri, object: StringResultListener {
                             override fun onSuccess(url: String) {
                                 userDetails.profilePic = url
                                 setUserInfo()

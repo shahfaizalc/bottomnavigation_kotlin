@@ -14,7 +14,9 @@ import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.pojos.UserModel
+import com.reelme.app.utils.EnumValidator
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
+import com.reelme.app.utils.Validator
 import com.reelme.app.view.*
 
 class UsernameViewModel(private val context: Context, private val fragmentSignin: FragmentUserName) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
@@ -34,7 +36,12 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
       if(!userName.isNullOrEmpty()) {
           userDetails.skipUsername = false
           userDetails.username = userName
-          setUserInfo()
+
+          if(Validator().validate(userName, EnumValidator.USER_NAME_PATTERN)){
+              setUserInfo()
+          }else{
+              Toast.makeText(context, "Enter valid username", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+          }
       }
     }
 
@@ -45,7 +52,12 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
         if(!userName.isNullOrEmpty()) {
             userDetails.skipUsername = false
             userDetails.username = userName
-            setUserInfo()
+
+            if(Validator().validate(userName, EnumValidator.USER_NAME_PATTERN)){
+                setUserInfo()
+            }else{
+                Toast.makeText(context, "Enter valid username", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+            }
         }
     }
 
@@ -115,6 +127,11 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
             field = price
             notifyPropertyChanged(BR.userName)
         }
+//
+//   fun nameValidatee(){
+//       /^[a-zA-Z0-9]+([_ -]?[a-zA-Z0-9])*$/
+//
+//   }
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
