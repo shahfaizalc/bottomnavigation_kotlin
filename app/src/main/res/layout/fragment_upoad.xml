@@ -41,7 +41,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dimen_32"
                     android:background="@drawable/roundedbg"
-                    android:src="@drawable/profilepic">
+                    android:src="@drawable/profiledefault">
 
                 </com.reelme.app.util.ImageViewRounded>
 

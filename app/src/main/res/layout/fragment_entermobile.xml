@@ -37,37 +37,61 @@
             android:textColor="@color/white"
             android:textSize="@dimen/dimen_16" />
 
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_24"
             android:layout_marginBottom="@dimen/dimen_20"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/dimen_16"
-            android:paddingEnd="@dimen/dimen_16">
-
-            <EditText
-                android:id="@+id/phonenumberEntery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:letterSpacing="@integer/material_motion_duration_medium_2"
-                android:maxLength="14"
-                android:text="@={homeData.ideaTitle}"
-                android:textColor="@android:color/transparent"
-                android:hint="@string/home_enterMobilePostfix"
-                android:textColorHint="@color/colorBlacklight"
-                android:textSize="@dimen/dimen_36"
-                android:textStyle="bold" />
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_height="wrap_content">
 
             <TextView
+                android:visibility="gone"
+                android:id="@+id/placeholderplus"
+                android:layout_alignParentStart="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@={homeData.ideaTitle22}"
+                android:text="@string/home_enterMobilePrefix"
+                android:layout_centerVertical="true"
                 android:textColor="@color/white"
-                android:textSize="@dimen/dimen_32"
-                android:textStyle="bold" />
-        </FrameLayout>
+                android:textSize="@dimen/dimen_36" />
+
+            <FrameLayout
+                android:layout_marginStart="@dimen/dimen_2"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/placeholderplus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/dimen_16">
+
+                <EditText
+                    android:cursorVisible="false"
+                    android:id="@+id/phonenumberEntery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLength="14"
+                    android:text="@={homeData.ideaTitle}"
+                    android:textColor="@android:color/transparent"
+                    android:hint="@string/home_enterMobilePostfix"
+                    android:textColorHint="@color/colorBlacklight"
+                    android:textSize="@dimen/dimen_36"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={homeData.ideaTitle22}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_32"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+
+        </RelativeLayout>
+
+
+
 
 
         <Button
