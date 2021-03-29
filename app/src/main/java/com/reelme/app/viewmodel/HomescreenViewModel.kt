@@ -25,13 +25,13 @@ class HomescreenViewModel(private val context: Context, private val fragmentSign
 
     fun signInUserClicked() {
        // fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEnterMobile::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDemographics::class.java));
     }
 
 
     fun signUpUserClicked() {
        // fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentRegistration::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDemographics::class.java));
 
     }
 

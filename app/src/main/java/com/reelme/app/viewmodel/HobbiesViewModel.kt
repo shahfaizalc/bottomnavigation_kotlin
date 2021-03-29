@@ -51,7 +51,6 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
             userDetails.hobbiesAndInterest = posititonSelected
             setUserInfo()
 
-         //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
         }
     }
 

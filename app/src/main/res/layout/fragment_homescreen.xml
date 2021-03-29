@@ -43,14 +43,16 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Home..."
                  />
-            <TextView
+
+            <Button
                 android:layout_margin="@dimen/dimen_4"
                 android:textSize="@dimen/dimen_16"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Coming Soon"
+                android:onClick="@{() -> homeData.signUpUserClicked()}"
+                android:text="demography"
                 />
 
         </LinearLayout>
