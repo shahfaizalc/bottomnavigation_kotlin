@@ -59,6 +59,10 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:name="com.reelme.app.view.FragmentDeleteAccount"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
             android:name="com.reelme.app.view.FragmentSavedDiscussions"
             android:windowSoftInputMode="adjustPan" />
 

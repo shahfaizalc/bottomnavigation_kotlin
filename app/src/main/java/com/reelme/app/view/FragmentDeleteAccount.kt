@@ -2,7 +2,11 @@ package com.reelme.app.view
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentDeleteaccountBinding
 import com.reelme.app.databinding.FragmentDemographicsBinding
@@ -23,6 +27,7 @@ class FragmentDeleteAccount : Activity() {
         val binding : FragmentDeleteaccountBinding = DataBindingUtil.setContentView(this, R.layout.fragment_deleteaccount)
         areaViewModel = DeleteAccountViewModel(this, this)
         binding.homeData = areaViewModel
+
     }
 
     override fun onResume() {

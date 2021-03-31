@@ -31,8 +31,7 @@ class HomescreenViewModel(private val context: Context, private val fragmentSign
 
     fun signUpUserClicked() {
        // fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDemographics::class.java));
-
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDeleteAccount::class.java));
     }
 
     private fun networkHandler() {
