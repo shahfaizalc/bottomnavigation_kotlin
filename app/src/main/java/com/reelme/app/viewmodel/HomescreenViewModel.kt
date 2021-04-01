@@ -37,6 +37,11 @@ class HomescreenViewModel(private val context: Context, private val fragmentSign
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEditProfile::class.java));
     }
 
+    fun signUserprofileClicked() {
+        // fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentUserProfile::class.java));
+    }
+
     fun signOffClicked() {
         // fragmentSignin.finish()
         mAuth.signOut()

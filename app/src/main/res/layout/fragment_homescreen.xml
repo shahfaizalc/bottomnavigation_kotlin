@@ -91,6 +91,18 @@
                 android:text="Edit Profile"
                 />
 
+            <Button
+                android:background="@drawable/b_black"
+                android:layout_margin="@dimen/dimen_4"
+                android:textSize="@dimen/dimen_16"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:onClick="@{() -> homeData.signUserprofileClicked()}"
+                android:text="User Profile"
+                />
+
         </LinearLayout>
     </LinearLayout>
 </layout>

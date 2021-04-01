@@ -95,6 +95,10 @@
 
 
         <activity
+            android:name="com.reelme.app.view.FragmentUserProfile"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
             android:name="com.reelme.app.view.RelegionActivity"
             android:windowSoftInputMode="adjustPan" />
 
