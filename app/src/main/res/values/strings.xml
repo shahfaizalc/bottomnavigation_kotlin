@@ -88,6 +88,13 @@
     <string name="demography_hobbiesTitle">Hobbies &amp; Interests?</string>
 
 
+
+    <string name="deactivate"><b>Deactivate account</b>\n<p style="ine-height:2em">This can be temporary.</p>\nYour account will be disabled and your names and your reels will be removed from most things you\'ve shared. You will be able to continue using Messenger.</string>
+    <string name="deleteaccoount"><b>Delete account.</b>\n<p style="ine-height:2em">This is permanent.</p>\nWhen you delete ReelMe account. You won\'t be able to retrieve the content or information that you\'e shared on ReelMe. Your messanger and all your messages will also be deleted</string>
+
+
+
+
     <string name="home_welcomestring2">Real people.</string>
     <string name="home_welcomestring3">Real Connection.</string>
     <string name="home_welcomestring4">Real Community.</string>

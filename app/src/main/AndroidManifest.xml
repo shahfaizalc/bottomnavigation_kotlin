@@ -66,6 +66,10 @@
             android:name="com.reelme.app.view.FragmentSavedDiscussions"
             android:windowSoftInputMode="adjustPan" />
 
+
+        <activity
+            android:name="com.reelme.app.view.FragmentEditProfile"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.reelme.app.view.FragmentVerifyMobile"
             android:windowSoftInputMode="adjustPan" />

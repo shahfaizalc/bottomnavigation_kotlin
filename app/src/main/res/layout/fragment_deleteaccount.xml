@@ -54,6 +54,7 @@
                     android:textSize="@dimen/dimen_16" />
 
                 <RadioGroup
+                    android:layout_margin="@dimen/dimen_16"
                     android:id="@+id/split_type_radio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -63,20 +64,25 @@
                     android:orientation="vertical">
 
                     <RadioButton
+                        android:padding="@dimen/dimen_8"
+                        android:background="@drawable/circular_bg_border_disable"
                         android:id="@+id/deactivate_acc"
                         android:gravity="top"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Deactivate account\nThis can be temporary\nYour acccount will be disabled and your namess and your reels will be removed from most things you\'ve shared. You will be able to continue using Messenger. "/>
+                        android:text="@string/deactivate"/>
 
                     <RadioButton
+                        android:padding="@dimen/dimen_8"
+                        android:layout_marginTop="@dimen/dimen_20"
+                        android:background="@drawable/circular_bg_border_disable"
                         android:id="@+id/delete_acc"
                         android:gravity="top"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Delete acccount.\nThis is permanent.\nWhen you delete ReelMe account. You won\'t be able to retrieve the content or information that you\'e shared on ReelMe. Your messanger and all your messages will also be deleted"/>
+                        android:text="@string/deleteaccoount"/>
 
                 </RadioGroup>
 
