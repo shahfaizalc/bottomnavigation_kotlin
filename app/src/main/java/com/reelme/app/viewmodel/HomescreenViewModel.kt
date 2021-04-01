@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
 import androidx.databinding.BaseObservable
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
@@ -17,10 +18,13 @@ class HomescreenViewModel(private val context: Context, private val fragmentSign
     private var networkStateHandler: NetworkChangeHandler? = null
 
     private var isInternetConnected: Boolean = false
+    private lateinit var mAuth: FirebaseAuth
 
     init {
         networkHandler()
         getUserInfo()
+        mAuth = FirebaseAuth.getInstance()
+
     }
 
     fun signInUserClicked() {
@@ -31,6 +35,18 @@ class HomescreenViewModel(private val context: Context, private val fragmentSign
     fun signEditUserClicked() {
         // fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEditProfile::class.java));
+    }
+
+    fun signOffClicked() {
+        // fragmentSignin.finish()
+        mAuth.signOut()
+        val sharedPreference =  fragmentSignin.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putString("USER_INFO","")
+        editor.apply()
+
+
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentWelcome::class.java));
     }
 
 

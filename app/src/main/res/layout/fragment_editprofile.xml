@@ -53,13 +53,13 @@
                     android:layout_marginTop="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="6">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
+                        android:layout_weight="5"
+                        android:layout_gravity="center_vertical"
                         android:text="Profile Completed 100%"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_16"
@@ -111,7 +111,8 @@
                     android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"                       android:textColor="@color/white"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:textColor="@color/white"
                     android:background="@color/colorBlacklight" />
 
                 <TextView
@@ -134,17 +135,19 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"                       android:textColor="@color/white"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:textColor="@color/white"
                     android:background="@color/colorBlacklight" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_margin="@dimen/dimen_16"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_16"
                     android:text="hello Emila Clarke"
                     android:textColor="@color/colorBlacklight"
                     android:textSize="@dimen/dimen_16"
@@ -202,10 +205,10 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"                       android:textColor="@color/white"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:textColor="@color/white"
                     android:background="@color/colorBlacklight" />
 
 
@@ -229,10 +232,10 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"                       android:textColor="@color/white"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:textColor="@color/white"
                     android:background="@color/colorBlacklight" />
 
 
@@ -240,18 +243,28 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:text="Country of orgin"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16" />
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:text="Country of Origin"
+                    android:textColor="@color/colorBlacklight"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:text="hello@kdkd.com"
+                    android:text="hello Emila Clarke"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16" />
+                    android:textSize="@dimen/dimen_16"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:textColor="@color/white"
+                    android:background="@color/colorBlacklight" />
 
 
                 <TextView
@@ -260,21 +273,15 @@
                     android:layout_margin="@dimen/dimen_16"
                     android:text="Add Your Social Media"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16" />
+                    android:textStyle="bold"
+                    android:textSize="@dimen/dimen_24" />
 
-                <TextView
+                <View
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:text="Add Your Social Media"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:text="hello@kdkd.com"
+                    android:layout_height="5dp"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:background="@drawable/group782"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
 
@@ -282,12 +289,57 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
                     android:layout_margin="@dimen/dimen_16"
-                    android:layout_marginTop="@dimen/dimen_24"
-                    android:text="@string/home_genderSubTitle2"
+                    android:text="Instagram"
+                    android:textColor="@color/colorBlacklight"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:text="Instagram"
+                    android:drawablePadding="@dimen/dimen_8"
+                    android:drawableStart="@drawable/ic_url_icon"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16" />
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:textColor="@color/white"
+                    android:background="@color/colorBlacklight" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_16"
+                    android:text="Instagram"
+                    android:textColor="@color/colorBlacklight"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:text="Instagram"
+                    android:drawableStart="@drawable/ic_url_icon"
+                    android:drawablePadding="@dimen/dimen_8"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:textColor="@color/white"
+                    android:background="@color/colorBlacklight" />
 
 
                 <Button

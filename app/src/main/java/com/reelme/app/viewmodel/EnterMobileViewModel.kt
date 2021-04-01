@@ -198,20 +198,27 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
     }
 
 
-
     private fun startPhoneNumberVerification(phoneNumber: String) {
-        Log.d(TAG, "signUpUserClicked:phoneNumber"+phoneNumber)
+        Log.d(TAG, "signUpUserClicked:phoneNumber" + phoneNumber)
         // [START start_phone_auth]
-        Toast.makeText(context, "Please wait... we are  authenticating your account", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+        if (phoneNumber.isNullOrEmpty()) {
 
-        val options = PhoneAuthOptions.newBuilder(auth)
-                .setPhoneNumber(phoneNumber)       // Phone number to verify
-                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                .setActivity(fragmentSignin)                 // Activity (for callback binding)
-                .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
-                .build()
-        PhoneAuthProvider.verifyPhoneNumber(options)
-        // [END start_phone_auth]
+            Toast.makeText(context,"Kindly enter your phone number",Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 50); show()}
+            progressBarVisible = View.INVISIBLE
+
+        } else {
+            Toast.makeText(context, "Please wait... we are  authenticating your account", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+            val options = PhoneAuthOptions.newBuilder(auth)
+                    .setPhoneNumber(phoneNumber)       // Phone number to verify
+                    .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                    .setActivity(fragmentSignin)                 // Activity (for callback binding)
+                    .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
+                    .build()
+            PhoneAuthProvider.verifyPhoneNumber(options)
+            // [END start_phone_auth]
+        }
+
+
     }
 
 
