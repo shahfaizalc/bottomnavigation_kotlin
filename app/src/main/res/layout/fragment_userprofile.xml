@@ -48,7 +48,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
@@ -87,76 +87,15 @@
                     android:textSize="@dimen/dimen_16" />
 
                 <TextView
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:textColorHint="@color/colorBlacklight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:text="Name"
-                    android:textColor="@color/colorBlacklight"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="Emila Clarke"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:text="Username"
-                    android:textColor="@color/colorBlacklight"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:text="hello Emila Clarke"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="hello Emila Clarke"
-                    android:textColor="@color/colorBlacklight"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
+                    android:hint="@string/home_userSubTitle3"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -166,7 +105,37 @@
                         android:layout_margin="@dimen/dimen_16"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Bio"
+                        android:text="Influencer"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:text="Add a bio to your profile"
+                        android:textColor="@color/colorBlacklight"
+                        android:textSize="@dimen/dimen_16" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Influencer"
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_16" />
@@ -187,216 +156,12 @@
 
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:text="Email Address"
-                    android:textColor="@color/colorBlacklight"
-                    android:textStyle="bold" />
-
-                <TextView
+                    android:textColorHint="@color/colorBlacklight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:text="hello Emila Clarke"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:text="Phone Number"
-                    android:textColor="@color/colorBlacklight"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:text="hello Emila Clarke"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
-
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:text="Country of Origin"
-                    android:textColor="@color/colorBlacklight"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:text="hello Emila Clarke"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:text="Add Your Social Media"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/dimen_24" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="5dp"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:background="@drawable/group782"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:text="Instagram"
-                    android:textColor="@color/colorBlacklight"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:text="Instagram"
-                    android:drawablePadding="@dimen/dimen_8"
-                    android:drawableStart="@drawable/ic_url_icon"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:text="Instagram"
-                    android:textColor="@color/colorBlacklight"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:text="Instagram"
-                    android:drawableStart="@drawable/ic_url_icon"
-                    android:drawablePadding="@dimen/dimen_8"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
-
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_16"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:layout_marginRight="@dimen/dimen_16"
-                    android:background="@drawable/button_black"
-                    android:onClick="@{() -> homeData.signUpUserClicked()}"
-                    android:paddingStart="@dimen/dimen_28"
-                    android:paddingTop="@dimen/dimen_12"
-                    android:paddingEnd="@dimen/dimen_28"
-                    android:paddingBottom="@dimen/dimen_12"
-                    android:text="Next ->"
-                    android:textColor="@color/smoke2" />
-
-
-                <!--        <LinearLayout-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="0dp"-->
-                <!--            android:layout_marginBottom="@dimen/dimen_20"-->
-                <!--            android:layout_weight="1"-->
-                <!--            android:gravity="bottom"-->
-                <!--            android:orientation="horizontal">-->
-
-                <!--            <Button-->
-                <!--                android:textColor="@color/smoke2"-->
-                <!--                android:layout_weight="1"-->
-                <!--                android:layout_width="0dp"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:layout_marginLeft="@dimen/dimen_16"-->
-                <!--                android:layout_marginTop="@dimen/dimen_8"-->
-                <!--                android:paddingTop="@dimen/dimen_20"-->
-                <!--                android:paddingBottom="@dimen/dimen_20"-->
-                <!--                android:layout_marginRight="@dimen/dimen_16"-->
-                <!--                android:background="@drawable/circular_bg_blue_8"-->
-                <!--                android:onClick="@{() -> homeData.signUpUserClicked()}"-->
-                <!--                android:text="@string/signUpText"-->
-                <!--                android:textStyle="bold" />-->
-
-                <!--            <Button-->
-                <!--                android:textColor="@color/smoke2"-->
-                <!--                android:paddingTop="@dimen/dimen_20"-->
-                <!--                android:paddingBottom="@dimen/dimen_20"-->
-                <!--                android:layout_weight="1"-->
-                <!--                android:layout_width="0dp"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:layout_marginLeft="@dimen/dimen_16"-->
-                <!--                android:layout_marginTop="@dimen/dimen_8"-->
-                <!--                android:layout_marginRight="@dimen/dimen_16"-->
-                <!--                android:background="@drawable/circular_bg_blue_8"-->
-                <!--                android:onClick="@{() -> homeData.signInUserClicked()}"-->
-                <!--                android:text="Get Started"-->
-                <!--                android:textStyle="bold" />-->
-                <!--        </LinearLayout>-->
+                    android:hint="@string/home_userSubTitle3"/>
             </LinearLayout>
 
             <ProgressBar
