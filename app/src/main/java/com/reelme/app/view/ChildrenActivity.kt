@@ -92,6 +92,7 @@ class ChildrenActivity : AppCompatActivity() {
                 binding!!.progressbar.visibility= View.INVISIBLE
 
                 if(isEdit){
+                    setResult(2, Intent())
                     finish()
                 } else{
                     startActivity(Intent(activity, FragmentOccupation::class.java));

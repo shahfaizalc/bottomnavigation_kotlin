@@ -91,7 +91,9 @@ class RelationshipActivity : AppCompatActivity() {
             override fun onSuccess() {
                 binding!!.progressbar.visibility= View.INVISIBLE
                 if(isEdit){
+                    setResult(2, Intent())
                     finish()
+
                 } else{
                     startActivity(Intent(activity, ChildrenActivity::class.java));
                 }

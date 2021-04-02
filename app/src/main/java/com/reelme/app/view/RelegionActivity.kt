@@ -91,6 +91,7 @@ class RelegionActivity : AppCompatActivity() {
             override fun onSuccess() {
                 binding!!.progressbar.visibility= View.INVISIBLE
                 if(isEdit){
+                    setResult(2, Intent())
                     finish()
                 } else{
                     startActivity(Intent(this@RelegionActivity, FragmentHobbies::class.java));

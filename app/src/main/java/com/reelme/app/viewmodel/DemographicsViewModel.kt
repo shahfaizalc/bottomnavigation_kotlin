@@ -63,7 +63,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //            setUserInfo()
 //        }
         setEditShare()
-        fragmentSignin.startActivity(Intent(fragmentSignin, GenderActivity::class.java));
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, GenderActivity::class.java),2);
 
     }
 
@@ -79,7 +79,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //            setUserInfo()
 //        }
         setEditShare()
-        fragmentSignin.startActivity(Intent(fragmentSignin, RelationshipActivity::class.java));
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, RelationshipActivity::class.java),2);
 
     }
 
@@ -95,7 +95,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //            setUserInfo()
 //        }
         setEditShare()
-        fragmentSignin.startActivity(Intent(fragmentSignin, ChildrenActivity::class.java));
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, ChildrenActivity::class.java),2);
 
     }
 
@@ -111,7 +111,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //            setUserInfo()
 //        }
         setEditShare()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentOccupation::class.java));
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentOccupation::class.java),2);
 
     }
 
@@ -127,7 +127,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //            setUserInfo()
 //        }
         setEditShare()
-        fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, RelegionActivity::class.java),2);
 
     }
 
@@ -136,7 +136,6 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
     @get:Bindable
     var hobbiesTitle: String? = userDetails.hobbiesAndInterest
         set(price) {
-            Log.d("Authentication token price", price)
 
             field = price
             notifyPropertyChanged(BR.hobbiesTitle)
@@ -147,7 +146,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //            setUserInfo()
 //        }
         setEditShare()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHobbies::class.java));
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentHobbies::class.java),2);
 
     }
 
@@ -225,6 +224,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
                 if(isEdit){
+                    fragmentSignin.setResult(2, Intent())
                     fragmentSignin.finish()
                 } else{
                     fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));

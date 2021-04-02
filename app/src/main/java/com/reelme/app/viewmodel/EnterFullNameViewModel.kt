@@ -104,6 +104,7 @@ class EnterFullNameViewModel(private val context: Context, private val fragmentS
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
                 if(isEdit){
+                    fragmentSignin.setResult(2, Intent())
                     fragmentSignin.finish()
                 } else{
                     fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));

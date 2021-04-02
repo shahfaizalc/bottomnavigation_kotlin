@@ -101,6 +101,7 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
                 if(isEdit){
+                    fragmentSignin.setResult(2, Intent())
                     fragmentSignin.finish()
                 } else{
                     fragmentSignin.startActivity(Intent(fragmentSignin, FragmentFullNameMobile::class.java));

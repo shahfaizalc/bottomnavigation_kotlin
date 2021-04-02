@@ -101,6 +101,7 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
                 if(isEdit){
+                    fragmentSignin.setResult(2, Intent())
                     fragmentSignin.finish()
                 } else{
                     fragmentSignin.startActivity(Intent(fragmentSignin, FragmentUploadView::class.java));

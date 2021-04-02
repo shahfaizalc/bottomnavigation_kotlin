@@ -87,6 +87,7 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
                 if(isEdit){
+                    fragmentSignin.setResult(2, Intent())
                     fragmentSignin.finish()
                 } else{
                     fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
