@@ -50,6 +50,12 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 
     }
 
+    @get:Bindable
+    var genderTitle: String? = userDetails.gender
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.genderTitle)
+        }
 
     fun genderClicked() {
         //  fragmentSignin.finish()
@@ -61,7 +67,12 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 
     }
 
-
+    @get:Bindable
+    var relationshipTitle: String? = userDetails.relationshipStatus
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.relationshipTitle)
+        }
     fun relationshipClicked() {
         //  fragmentSignin.finish()
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
@@ -72,7 +83,12 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 
     }
 
-
+    @get:Bindable
+    var childrenTitle: String? = userDetails.children
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.childrenTitle)
+        }
     fun childrenClicked() {
         //  fragmentSignin.finish()
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
@@ -83,7 +99,12 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 
     }
 
-
+    @get:Bindable
+    var occupationTitle: String? = userDetails.occupation
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.occupationTitle)
+        }
     fun occupationClicked() {
         //  fragmentSignin.finish()
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
@@ -94,7 +115,12 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 
     }
 
-
+    @get:Bindable
+    var religiousTitle: String? = userDetails.religiousBeliefs
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.religiousTitle)
+        }
     fun religiousClicked() {
         //  fragmentSignin.finish()
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
@@ -105,20 +131,28 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 
     }
 
+
+
+    @get:Bindable
+    var hobbiesTitle: String? = userDetails.hobbiesAndInterest
+        set(price) {
+            Log.d("Authentication token price", price)
+
+            field = price
+            notifyPropertyChanged(BR.hobbiesTitle)
+        }
     fun hobbiesClicked() {
         //  fragmentSignin.finish()
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
 //            setUserInfo()
 //        }
-
-
         setEditShare()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHobbies::class.java));
 
     }
 
 
-    fun setEditShare(){
+    private fun setEditShare(){
 
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
@@ -156,6 +190,15 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+
+           childrenTitle =   userDetails.children
+           relationshipTitle =  userDetails.relationshipStatus
+           religiousTitle =   userDetails.religiousBeliefs
+           genderTitle = userDetails.gender
+           occupationTitle =  userDetails.occupation
+           hobbiesTitle = userDetails.hobbiesAndInterest
+
+
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }
