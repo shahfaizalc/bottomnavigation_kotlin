@@ -40,6 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_48"
+                    android:onClick="@{() -> homeData.genderClicked()}"
                     android:text="@string/demography_genderTitle"
                     android:textColor="@color/colorBlacklight"
                     android:textSize="@dimen/dimen_32"
@@ -49,6 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:onClick="@{() -> homeData.genderClicked()}"
                     android:text="Female"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -58,6 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_20"
+                    android:onClick="@{() -> homeData.relationshipClicked()}"
                     android:text="@string/demography_relationshipTitle"
                     android:textColor="@color/colorBlacklight"
                     android:textSize="@dimen/dimen_32"
@@ -67,6 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:onClick="@{() -> homeData.relationshipClicked()}"
                     android:text="Female"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -76,6 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_20"
+                    android:onClick="@{() -> homeData.childrenClicked()}"
                     android:text="@string/demography_childrenTitle"
                     android:textColor="@color/colorBlacklight"
                     android:textSize="@dimen/dimen_32"
@@ -85,6 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:onClick="@{() -> homeData.childrenClicked()}"
                     android:text="Female"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -94,6 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_20"
+                    android:onClick="@{() -> homeData.occupationClicked()}"
                     android:text="@string/demography_occupationTitle"
                     android:textColor="@color/colorBlacklight"
                     android:textSize="@dimen/dimen_32"
@@ -103,6 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:onClick="@{() -> homeData.occupationClicked()}"
                     android:text="Female"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -112,6 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_20"
+                    android:onClick="@{() -> homeData.religiousClicked()}"
                     android:text="@string/demography_religiousTitle"
                     android:textColor="@color/colorBlacklight"
                     android:textSize="@dimen/dimen_32"
@@ -121,6 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:onClick="@{() -> homeData.religiousClicked()}"
                     android:text="Female"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -130,6 +140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_20"
+                    android:onClick="@{() -> homeData.hobbiesClicked()}"
                     android:text="@string/demography_hobbiesTitle"
                     android:textColor="@color/colorBlacklight"
                     android:textSize="@dimen/dimen_32"
@@ -139,6 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:onClick="@{() -> homeData.hobbiesClicked()}"
                     android:text="Female"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -153,7 +165,6 @@
                     android:text="@string/home_genderSubTitle2"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
-
 
 
                 <Button

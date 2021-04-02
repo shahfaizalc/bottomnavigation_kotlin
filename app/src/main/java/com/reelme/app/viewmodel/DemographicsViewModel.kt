@@ -31,22 +31,89 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
     }
 
     fun signInUserClicked() {
-       // fragmentSignin.finish()
 
-       if( isValidName(firstName!!) && isValidName(lastName!!)){
-           setUserInfo()
-       }
+    //    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+
+        // fragmentSignin.finish()
+
+//       if( isValidName(firstName!!) && isValidName(lastName!!)){
+//           setUserInfo()
+//       }
     }
 
 
     fun signUpUserClicked() {
       //  fragmentSignin.finish()
-        if( isValidName(firstName!!) && isValidName(lastName!!)){
-            setUserInfo()
-        }
+//        if( isValidName(firstName!!) && isValidName(lastName!!)){
+//            setUserInfo()
+//        }
+
     }
 
 
+    fun genderClicked() {
+        //  fragmentSignin.finish()
+//        if( isValidName(firstName!!) && isValidName(lastName!!)){
+//            setUserInfo()
+//        }
+
+        fragmentSignin.startActivity(Intent(fragmentSignin, FlightsActivity::class.java));
+
+    }
+
+
+    fun relationshipClicked() {
+        //  fragmentSignin.finish()
+//        if( isValidName(firstName!!) && isValidName(lastName!!)){
+//            setUserInfo()
+//        }
+
+        fragmentSignin.startActivity(Intent(fragmentSignin, RelationshipActivity::class.java));
+
+    }
+
+
+    fun childrenClicked() {
+        //  fragmentSignin.finish()
+//        if( isValidName(firstName!!) && isValidName(lastName!!)){
+//            setUserInfo()
+//        }
+
+        fragmentSignin.startActivity(Intent(fragmentSignin, ChildrenActivity::class.java));
+
+    }
+
+
+    fun occupationClicked() {
+        //  fragmentSignin.finish()
+//        if( isValidName(firstName!!) && isValidName(lastName!!)){
+//            setUserInfo()
+//        }
+
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentOccupation::class.java));
+
+    }
+
+
+    fun religiousClicked() {
+        //  fragmentSignin.finish()
+//        if( isValidName(firstName!!) && isValidName(lastName!!)){
+//            setUserInfo()
+//        }
+
+        fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
+
+    }
+
+    fun hobbiesClicked() {
+        //  fragmentSignin.finish()
+//        if( isValidName(firstName!!) && isValidName(lastName!!)){
+//            setUserInfo()
+//        }
+
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHobbies::class.java));
+
+    }
 
     private fun isValidName(name : String): Boolean {
 
@@ -75,7 +142,6 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
-            signInUserClicked()
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }

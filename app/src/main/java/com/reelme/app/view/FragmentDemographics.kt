@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentDemographicsBinding
-import com.reelme.app.databinding.FragmentFullnameBinding
 import com.reelme.app.viewmodel.DemographicsViewModel
 import com.reelme.app.viewmodel.EnterFullNameViewModel
 

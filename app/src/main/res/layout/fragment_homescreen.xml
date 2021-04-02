@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:onClick="@{() -> homeData.signUpUserClicked()}"
+                android:onClick="@{() -> homeData.signInUserClicked()}"
                 android:text="demography"
                 />
 
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:onClick="@{() -> homeData.signInUserClicked()}"
+                android:onClick="@{() -> homeData.signUpUserClicked()}"
                 android:text="delete account"
                 />
 
