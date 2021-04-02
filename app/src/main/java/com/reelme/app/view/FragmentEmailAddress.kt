@@ -7,13 +7,14 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.reelme.app.R
 import com.reelme.app.databinding.*
 import com.reelme.app.viewmodel.*
 
 
-class FragmentEmailAddress : Activity() {
+class FragmentEmailAddress : AppCompatActivity() {
 
     @Transient
     internal lateinit var areaViewModel: EmailAddressViewModel

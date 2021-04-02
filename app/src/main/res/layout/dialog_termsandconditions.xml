@@ -31,7 +31,7 @@
             android:text="@string/termsAndConditions"
             android:textColor="@color/black" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btndialog"
             android:layout_below="@+id/msgtandc"
             android:layout_centerHorizontal="true"

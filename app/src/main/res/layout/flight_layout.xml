@@ -36,7 +36,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_marginTop="@dimen/dimen_32"
             android:id="@+id/nextBtn"
             android:textColor="@color/smoke2"

@@ -49,10 +49,12 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
     }
 
     lateinit var userDetails : UserModel
+    private var isEdit = false
 
     private fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
+        isEdit = sharedPreference.getBoolean("IS_EDIT",false)
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
@@ -79,11 +81,17 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO",gsonValue)
+        editor.putBoolean("IS_EDIT",false)
         editor.apply()
         FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
-                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
+                if(isEdit){
+                    fragmentSignin.finish()
+                } else{
+                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
+                }
+
                 Log.d("Authenticaiton token", "onSuccess")
                 Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 

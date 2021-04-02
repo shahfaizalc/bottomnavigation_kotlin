@@ -23,7 +23,7 @@ import com.reelme.app.util.GenericValues
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import java.util.*
 
-class RelegionActivity : Activity() {
+class RelegionActivity : AppCompatActivity() {
     lateinit var activity  : Activity
     private var adapter: RelegiousRecyclerViewAdapter? = null
     private var binding: RelegiousLayoutBinding? = null
@@ -61,10 +61,12 @@ class RelegionActivity : Activity() {
     }
 
     lateinit var userDetails : UserModel
+    private var isEdit = false;
 
     private fun getUserInfo() {
         val sharedPreference = getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
+        isEdit = sharedPreference.getBoolean("IS_EDIT",false)
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
@@ -82,12 +84,18 @@ class RelegionActivity : Activity() {
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO",gsonValue)
+        editor.putBoolean("IS_EDIT",false)
         editor.apply()
 
         FirbaseWriteHandlerActivity(this).updateUserInfo(userDetails, object : EmptyResultListener {
             override fun onSuccess() {
                 binding!!.progressbar.visibility= View.INVISIBLE
-                startActivity(Intent(this@RelegionActivity, FragmentHobbies::class.java))
+                if(isEdit){
+                    finish()
+                } else{
+                    startActivity(Intent(this@RelegionActivity, FragmentHobbies::class.java));
+                }
+
                 Log.d("Authenticaiton token", "onSuccess")
                 Toast.makeText(activity, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 

@@ -2,13 +2,14 @@ package com.reelme.app.view
 
 import android.app.Activity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.reelme.app.R
 import com.reelme.app.viewmodel.BioViewModel
 import com.reelme.app.databinding.FragmentBioBinding
 
 
-class FragmentBioMobile : Activity() {
+class FragmentBioMobile : AppCompatActivity() {
 
     @Transient
     lateinit internal var areaViewModel: BioViewModel

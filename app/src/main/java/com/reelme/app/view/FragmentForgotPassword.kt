@@ -2,13 +2,14 @@ package com.reelme.app.view
 
 import android.app.Activity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentForgotpasswordBinding
 import com.reelme.app.viewmodel.ForgotPasswordViewModel
 
 
-class FragmentForgotPassword : Activity() {
+class FragmentForgotPassword : AppCompatActivity() {
 
     @Transient
     lateinit internal var areaViewModel: ForgotPasswordViewModel

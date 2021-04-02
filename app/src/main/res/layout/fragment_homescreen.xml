@@ -42,7 +42,7 @@
                  />
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:background="@drawable/b_black"
                 android:layout_margin="@dimen/dimen_4"
                 android:textSize="@dimen/dimen_16"
@@ -55,7 +55,7 @@
                 />
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_margin="@dimen/dimen_4"
                 android:textSize="@dimen/dimen_16"
                 android:background="@drawable/b_black"
@@ -67,7 +67,7 @@
                 android:text="demography"
                 />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_margin="@dimen/dimen_4"
                 android:background="@drawable/b_black"
                 android:textSize="@dimen/dimen_16"
@@ -79,7 +79,7 @@
                 android:text="delete account"
                 />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:background="@drawable/b_black"
                 android:layout_margin="@dimen/dimen_4"
                 android:textSize="@dimen/dimen_16"
@@ -91,7 +91,7 @@
                 android:text="Edit Profile"
                 />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:background="@drawable/b_black"
                 android:layout_margin="@dimen/dimen_4"
                 android:textSize="@dimen/dimen_16"

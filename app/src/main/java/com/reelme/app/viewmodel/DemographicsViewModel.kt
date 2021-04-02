@@ -56,8 +56,8 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
 //            setUserInfo()
 //        }
-
-        fragmentSignin.startActivity(Intent(fragmentSignin, FlightsActivity::class.java));
+        setEditShare()
+        fragmentSignin.startActivity(Intent(fragmentSignin, GenderActivity::class.java));
 
     }
 
@@ -67,7 +67,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
 //            setUserInfo()
 //        }
-
+        setEditShare()
         fragmentSignin.startActivity(Intent(fragmentSignin, RelationshipActivity::class.java));
 
     }
@@ -78,7 +78,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
 //            setUserInfo()
 //        }
-
+        setEditShare()
         fragmentSignin.startActivity(Intent(fragmentSignin, ChildrenActivity::class.java));
 
     }
@@ -89,7 +89,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
 //            setUserInfo()
 //        }
-
+        setEditShare()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentOccupation::class.java));
 
     }
@@ -100,7 +100,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
 //            setUserInfo()
 //        }
-
+        setEditShare()
         fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java));
 
     }
@@ -111,7 +111,19 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 //            setUserInfo()
 //        }
 
+
+        setEditShare()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHobbies::class.java));
+
+    }
+
+
+    fun setEditShare(){
+
+        val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putBoolean("IS_EDIT",true)
+        editor.apply()
 
     }
 
@@ -133,10 +145,12 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
     }
 
     lateinit var userDetails : UserModel
+    private var isEdit = false;
 
     private fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
+        isEdit = sharedPreference.getBoolean("IS_EDIT",false)
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
@@ -158,6 +172,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO",gsonValue)
+        editor.putBoolean("IS_EDIT",false)
         editor.apply()
 
         Toast.makeText(context, "Please wait... we are saving your data", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
@@ -166,7 +181,12 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
         FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
-                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
+                if(isEdit){
+                    fragmentSignin.finish()
+                } else{
+                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
+                }
+
                 Log.d("Authenticaiton token", "onSuccess")
                 Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 

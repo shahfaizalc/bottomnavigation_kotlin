@@ -55,7 +55,7 @@
                 android:textColorHint="@color/colorGrey"
                 android:textSize="@dimen/dimen_12" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/nextBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

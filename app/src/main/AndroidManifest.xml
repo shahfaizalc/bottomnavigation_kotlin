@@ -86,7 +86,7 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.reelme.app.view.FlightsActivity"
+            android:name="com.reelme.app.view.GenderActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity

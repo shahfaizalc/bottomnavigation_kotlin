@@ -3,6 +3,7 @@ package com.reelme.app.view
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
@@ -15,7 +16,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class FragmentWelcome : Activity() {
+class FragmentWelcome : AppCompatActivity() {
 
     @Transient
     lateinit internal var areaViewModel: WelcomeViewModel

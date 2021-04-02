@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -14,7 +15,7 @@ import com.reelme.app.utils.OTP_Receiver
 import com.reelme.app.viewmodel.VerifyMobileViewModel
 
 
-class FragmentVerifyMobile : Activity() {
+class FragmentVerifyMobile : AppCompatActivity() {
     private val REQ_USER_CONSENT = 200
     @Transient
     lateinit internal var areaViewModel: VerifyMobileViewModel

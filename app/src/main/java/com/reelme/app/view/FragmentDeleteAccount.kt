@@ -16,7 +16,7 @@ import com.reelme.app.viewmodel.DemographicsViewModel
 import com.reelme.app.viewmodel.EnterFullNameViewModel
 
 
-class FragmentDeleteAccount : Activity() {
+class FragmentDeleteAccount : AppCompatActivity() {
 
     @Transient
     internal lateinit var areaViewModel: DeleteAccountViewModel

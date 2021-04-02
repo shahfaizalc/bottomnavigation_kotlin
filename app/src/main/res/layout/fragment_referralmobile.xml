@@ -58,7 +58,7 @@
                 android:hint="@string/home_referralMobileSubTitle2"/>
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_marginTop="@dimen/dimen_16"
                 android:textColor="@color/smoke2"
                 android:layout_width="wrap_content"

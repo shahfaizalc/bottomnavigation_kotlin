@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentHobbiesBinding
@@ -13,7 +14,7 @@ import com.reelme.app.databinding.FragmentOccupationBinding
 import com.reelme.app.viewmodel.HobbiesViewModel
 
 
-class FragmentHobbies : Activity() {
+class FragmentHobbies : AppCompatActivity() {
 
     @Transient
     lateinit internal var areaViewModel: HobbiesViewModel

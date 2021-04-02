@@ -85,11 +85,13 @@ class HomescreenViewModel(private val context: Context, private val fragmentSign
     }
 
     lateinit var userDetails : UserModel
+    private  var isEdit = false;
 
     private fun getUserInfo() {
         Log.d("Authenticaiton token", "getUserInfo")
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
+        isEdit = sharedPreference.getBoolean("IS_EDIT",false)
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)

@@ -2,13 +2,14 @@ package com.reelme.app.view
 
 import android.app.Activity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentNewchallengeBinding
 import com.reelme.app.viewmodel.NewChallengeViewModel
 
 
-class FragmentNewChallenge : Activity() {
+class FragmentNewChallenge : AppCompatActivity() {
 
     var binding: FragmentNewchallengeBinding? = null
 

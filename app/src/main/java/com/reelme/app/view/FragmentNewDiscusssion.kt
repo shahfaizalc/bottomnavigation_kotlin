@@ -2,13 +2,14 @@ package com.reelme.app.view
 
 import android.app.Activity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentNewdiscussionBinding
 import com.reelme.app.viewmodel.NewDiscussionViewModel
 
 
-class FragmentNewDiscusssion : Activity() {
+class FragmentNewDiscusssion : AppCompatActivity() {
 
     var binding: FragmentNewdiscussionBinding? = null
 

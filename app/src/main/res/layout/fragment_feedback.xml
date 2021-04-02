@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:textColor="@color/white"
                 android:visibility="@{homeData.showSignUpBtn}"
                 android:layout_width="match_parent"

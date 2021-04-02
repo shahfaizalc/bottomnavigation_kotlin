@@ -74,10 +74,12 @@ class DateViewModel(private val context: Context, private val fragmentSignin: Fr
     }
 
     lateinit var userDetails : UserModel
+    private var isEdit = false;
 
     private fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
+        isEdit = sharedPreference.getBoolean("IS_EDIT",false)
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
@@ -98,6 +100,7 @@ class DateViewModel(private val context: Context, private val fragmentSignin: Fr
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO", gsonValue)
+        editor.putBoolean("IS_EDIT",false)
         editor.apply()
         Toast.makeText(context, "Please wait... we are saving your data", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
@@ -105,7 +108,12 @@ class DateViewModel(private val context: Context, private val fragmentSignin: Fr
         FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
-                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentUserName::class.java));
+                if(isEdit){
+                    fragmentSignin.finish()
+                } else{
+                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentUserName::class.java));
+                }
+
                 Log.d("Authenticaiton token", "onSuccess")
                 Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
