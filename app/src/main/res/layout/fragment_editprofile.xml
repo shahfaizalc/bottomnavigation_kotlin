@@ -54,6 +54,39 @@
 
                 </LinearLayout>
 
+            <FrameLayout
+                android:layout_marginTop="@dimen/dimen_20"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:orientation="horizontal"
+                android:onClick="@{() -> homeData.signChangePhotoClicked()}"
+                android:layout_gravity="center">
+
+                <com.reelme.app.util.ImageViewRounded
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:src="@drawable/profilepic"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_camera_icon"/>
+
+            </FrameLayout>
+
+                <TextView
+                    android:onClick="@{() -> homeData.signChangePhotoClicked()}"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Change Photo"
+                    android:textColor="@color/white"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -301,7 +334,7 @@
                     android:textStyle="bold" />
 
                 <View
-                    android:layout_width="260dp"
+                    android:layout_width="250dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"

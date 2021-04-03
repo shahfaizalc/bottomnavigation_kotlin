@@ -96,7 +96,7 @@ class GenericValues {
 
             fragment.startActivity(Intent(fragment, FragmentEnterMobile::class.java));
             return;
-            
+
         } else {
 
             val sharedPreference = fragment.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

@@ -30,130 +30,161 @@
         </receiver>
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.activities.Main2Activity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentForgotPassword"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentSignin"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentWelcome"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentNewDiscusssion"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentNewChallenge"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentDemographics"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name="com.reelme.app.view.FragmentDeleteAccount"
+            android:screenOrientation= "sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name="com.reelme.app.view.FragmentSavedDiscussions"
+            android:screenOrientation= "sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentEditProfile"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentVerifyMobile"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentBioMobile"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentImgSelction"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentUserName"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.GenderActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.RelationshipActivity"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentUserProfile"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.RelegionActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentOccupation"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.ChildrenActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentReferralMobile"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentEmailAddress"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentUploadView"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentFullNameMobile"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentDate"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentHomePage"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentHobbies"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentEnterMobile"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentFeedBack"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentPrivacy"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.activities.LaunchActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

@@ -53,6 +53,20 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
     }
 
+
+    fun signChangePhotoClicked() {
+        // fragmentSignin.finish()
+//
+//       if( isValidName(firstName!!) && isValidName(lastName!!)){
+//           setUserInfo()
+//       }
+
+        setEditShare()
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentUploadView::class.java),2);
+
+    }
+
+
     fun signInUserBioClicked() {
         // fragmentSignin.finish()
 //
