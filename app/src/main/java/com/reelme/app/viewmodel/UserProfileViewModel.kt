@@ -147,7 +147,7 @@ class UserProfileViewModel(private val context: Context, private val fragmentSig
     }
 
     @get:Bindable
-    var firstName: String? = ""
+    var firstName: String? = userDetails.firstName
         set(price) {
             field = price
             notifyPropertyChanged(BR.firstName)

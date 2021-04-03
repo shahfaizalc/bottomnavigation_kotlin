@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -58,8 +59,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="5"
                         android:text="Profile Completed 100%"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_16"
@@ -87,81 +88,125 @@
                     android:textSize="@dimen/dimen_16" />
 
                 <TextView
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:textColorHint="@color/colorBlacklight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/home_userSubTitle3"/>
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="@{homeData.firstName}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_20"
+                    android:textStyle="bold" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_16"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:layout_marginStart="@dimen/dimen_16"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="25">
 
                     <TextView
+                        android:drawablePadding="@dimen/dimen_4"
+                        android:layout_toStartOf="@+id/divider2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_16"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
+                        android:layout_weight="12"
+                        android:gravity="center_vertical|end"
+                        android:layout_gravity="center_vertical|end"
                         android:text="Influencer"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
                         android:textStyle="bold"
+                        app:drawableStartCompat="@drawable/circular_bg_white_16" />
+
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_centerInParent="true"
+                        android:layout_width="1dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="@dimen/dimen_16"
+                        android:layout_marginEnd="@dimen/dimen_16"
+                        android:layout_weight=".2"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_16" />
 
                     <TextView
-                        android:textStyle="bold"
+                        android:layout_toEndOf="@+id/divider2"
+                        app:drawableStartCompat="@drawable/circular_bg_white_16"
+                        android:drawablePadding="@dimen/dimen_4"
+                        android:layout_gravity="center_vertical|end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_16"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|end"
-                        android:text="Add a bio to your profile"
-                        android:textColor="@color/colorBlacklight"
-                        android:textSize="@dimen/dimen_16" />
+                        android:gravity="center_vertical|start"
+                        android:text="Level 6"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
+                        android:textStyle="bold" />
 
-                </LinearLayout>
+                </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_16"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:layout_marginStart="@dimen/dimen_16"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="25">
 
                     <TextView
+                        android:drawablePadding="@dimen/dimen_4"
+                        android:layout_toStartOf="@+id/divider1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_16"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
+                        android:layout_weight="12"
+                        android:gravity="center_vertical|end"
+                        android:layout_gravity="center_vertical|end"
                         android:text="Influencer"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
                         android:textStyle="bold"
+                        app:drawableStartCompat="@drawable/ic_star" />
+
+                    <View
+                        android:id="@+id/divider1"
+                        android:layout_centerInParent="true"
+                        android:layout_width="1dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="@dimen/dimen_16"
+                        android:layout_marginEnd="@dimen/dimen_16"
+                        android:layout_weight=".2"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_16" />
 
                     <TextView
-                        android:textStyle="bold"
+                        android:layout_toEndOf="@+id/divider1"
+                        android:drawableStart="@drawable/ic_group_692"
+                        android:drawablePadding="@dimen/dimen_4"
+                        android:layout_gravity="center_vertical|end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_16"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|end"
-                        android:text="Add a bio to your profile"
-                        android:textColor="@color/colorBlacklight"
-                        android:textSize="@dimen/dimen_16" />
+                        android:gravity="center_vertical|start"
+                        android:text="Level 6"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
+                        android:textStyle="bold" />
 
-
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <TextView
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:textColorHint="@color/colorBlacklight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/home_userSubTitle3"/>
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:hint="@string/home_userSubTitle3"
+                    android:textColorHint="@color/colorBlacklight" />
             </LinearLayout>
 
             <ProgressBar
