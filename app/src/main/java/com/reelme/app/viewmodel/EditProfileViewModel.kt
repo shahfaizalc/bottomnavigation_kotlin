@@ -54,6 +54,20 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
     }
 
 
+    fun signEditSaveClicked() {
+        // fragmentSignin.finish()
+//
+//       if( isValidName(firstName!!) && isValidName(lastName!!)){
+//           setUserInfo()
+//       }
+        fragmentSignin.finish()
+
+       // setEditShare()
+      //  fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentUploadView::class.java),2);
+
+    }
+
+
     fun signChangePhotoClicked() {
         // fragmentSignin.finish()
 //
@@ -194,6 +208,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
     var usernameTitle: String? = userDetails.username
         set(price) {
             field = price
+            usernameTitleId = "reelme.co/"+ userDetails.username
             notifyPropertyChanged(BR.usernameTitle)
         }
 
