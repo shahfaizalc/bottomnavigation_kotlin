@@ -14,6 +14,7 @@ import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.fragments.BaseFragment
 import com.reelme.app.model_sales.Authenticaiton
+import com.reelme.app.pojos.UserModel
 import com.reelme.app.utils.FragmentHistory
 import com.reelme.app.utils.Utils
 import com.reelme.app.view.*
@@ -28,8 +29,8 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
 
     internal var toolbar: Toolbar? = null
 
-    private val mTabIconsSelected = intArrayOf(R.drawable.tab_home,
-            R.drawable.tab_group, R.drawable.tab_event, R.drawable.tab_account)
+    private val mTabIconsSelected = intArrayOf(R.drawable.ic_home,
+            R.drawable.ic_user_whilte, R.drawable.ic_reel, R.drawable.ic_links,R.drawable.ic_search)
 
 
     internal lateinit var TABS: ArrayList<String>
@@ -52,6 +53,8 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
             add("Share")
             add("News")
             add("Profile")
+            add("Profile2")
+
         }
 
 
@@ -105,16 +108,17 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
             updateTabSelection(0)
         } else {
             bottomTabLayout!!.visibility = View.GONE
-            switchTab(3)
-            updateTabSelection(3)
+            switchTab(2)
+            updateTabSelection(2)
         }
     }
 
     fun doGetCoronaUpdate(): Boolean {
+
         val sharedPreference = getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val coronaJson = sharedPreference.getString("AUTH_INFO", "");
+        val coronaJson = sharedPreference.getString("USER_INFO", "");
         try {
-            Gson().fromJson(coronaJson, Authenticaiton::class.java)
+            Gson().fromJson(coronaJson, UserModel::class.java)
             return true;
         } catch (e: java.lang.Exception) {
             return false
@@ -274,6 +278,8 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
             FragNavController.TAB2 -> return FragmentDiscussions()
             FragNavController.TAB3 -> return FragmentGoal()
             FragNavController.TAB4 -> return FragmentProfile()
+            FragNavController.TAB5 -> return FragmentProfile()
+
         }
         throw IllegalStateException("Need to send an index that we know")
     }

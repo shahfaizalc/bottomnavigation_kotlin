@@ -12,6 +12,7 @@ import com.reelme.app.listeners.UseInfoGeneralResultListener
 import com.reelme.app.pojos.*
 import com.reelme.app.view.*
 import java.util.*
+import com.reelme.app.activities.Main2Activity;
 
 class GenericValues {
 
@@ -153,7 +154,7 @@ class GenericValues {
                                                                             if (userModel.hobbiesAndInterest.isNullOrEmpty()) {
                                                                                 fragment.startActivity(Intent(fragment, FragmentHobbies::class.java));
                                                                             } else {
-                                                                                fragment.startActivity(Intent(fragment, FragmentHomePage::class.java));
+                                                                                fragment.startActivity(Intent(fragment, Main2Activity::class.java));
                                                                             }
                 }
 

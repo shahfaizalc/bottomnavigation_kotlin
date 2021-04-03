@@ -904,8 +904,9 @@ private constructor(internal var builder: Builder, savedInstanceState: Bundle?) 
         val TAB2 = 1
         val TAB3 = 2
         val TAB4 = 3
+        val TAB5 = 4
 
-        private val MAX_NUM_TABS = 4
+        private val MAX_NUM_TABS = 5
 
         // Extras used to store savedInstanceState
         private val EXTRA_TAG_COUNT = FragNavController::class.java.name + ":EXTRA_TAG_COUNT"
