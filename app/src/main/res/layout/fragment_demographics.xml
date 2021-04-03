@@ -51,6 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
                     android:onClick="@{() -> homeData.genderClicked()}"
+                    android:textStyle="bold"
                     android:text="@={homeData.genderTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -71,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
                     android:onClick="@{() -> homeData.relationshipClicked()}"
+                    android:textStyle="bold"
                     android:text="@={homeData.relationshipTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -91,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
                     android:onClick="@{() -> homeData.childrenClicked()}"
+                    android:textStyle="bold"
                     android:text="@={homeData.childrenTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -112,6 +115,7 @@
                     android:layout_margin="@dimen/dimen_16"
                     android:onClick="@{() -> homeData.occupationClicked()}"
                     android:text="@={homeData.occupationTitle}"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
 
@@ -131,6 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
                     android:onClick="@{() -> homeData.religiousClicked()}"
+                    android:textStyle="bold"
                     android:text="@={homeData.religiousTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -151,6 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
                     android:onClick="@{() -> homeData.hobbiesClicked()}"
+                    android:textStyle="bold"
                     android:text="@={homeData.hobbiesTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -164,24 +170,7 @@
                     android:layout_marginTop="@dimen/dimen_24"
                     android:text="@string/home_genderSubTitle2"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16" />
-
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_16"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:layout_marginRight="@dimen/dimen_16"
-                    android:background="@drawable/button_black"
-                    android:onClick="@{() -> homeData.signUpUserClicked()}"
-                    android:paddingStart="@dimen/dimen_28"
-                    android:paddingTop="@dimen/dimen_12"
-                    android:paddingEnd="@dimen/dimen_28"
-                    android:paddingBottom="@dimen/dimen_12"
-                    android:text="Next ->"
-                    android:textColor="@color/smoke2" />
-
+                    android:textSize="@dimen/dimen_12" />
 
                 <!--        <LinearLayout-->
                 <!--            android:layout_width="match_parent"-->

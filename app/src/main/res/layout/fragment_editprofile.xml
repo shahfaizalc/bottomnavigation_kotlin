@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -17,7 +18,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -25,22 +26,41 @@
                 android:background="@color/black"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:layout_marginTop="@dimen/dimen_24"
-                    android:text="Edit Profile"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="Edit Profile"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:textStyle="bold"
+                        app:srcCompat="@drawable/check" />
+
+                </LinearLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_48"
                     android:text="Edit Your Demographics"
+                    android:onClick="@{() -> homeData.signInUserClicked()}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_20"
                     android:textStyle="bold" />
@@ -48,6 +68,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:onClick="@{() -> homeData.signInUserClicked()}"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_16"
@@ -58,8 +79,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="5"
                         android:text="Profile Completed 100%"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_16"
@@ -100,7 +121,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_8"
-                    android:layout_marginEnd="@dimen/dimen_16"                    android:text="Emila Clarke"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:text="@={homeData.nameTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
@@ -108,18 +130,18 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:background="@color/colorBlacklight"
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:text="Username"
+                    android:text="User Name"
                     android:textColor="@color/colorBlacklight"
                     android:textStyle="bold" />
 
@@ -127,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:text="hello Emila Clarke"
+                    android:text="@={homeData.usernameTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
@@ -136,19 +158,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:background="@color/colorBlacklight"
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="hello Emila Clarke"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:text="@={homeData.usernameTitleId}"
                     android:textColor="@color/colorBlacklight"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
@@ -166,12 +188,12 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:text="Bio"
-                        android:textStyle="bold"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/dimen_16" />
+                        android:textSize="@dimen/dimen_16"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:textStyle="bold"
+                        android:onClick="@{() -> homeData.signInUserBioClicked()}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_16"
@@ -179,8 +201,8 @@
                         android:gravity="center_vertical|end"
                         android:text="Add a bio to your profile"
                         android:textColor="@color/colorBlacklight"
-                        android:textSize="@dimen/dimen_16" />
-
+                        android:textSize="@dimen/dimen_16"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -197,7 +219,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:text="hello Emila Clarke"
+                    android:text="@={homeData.emailTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
@@ -206,10 +228,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:background="@color/colorBlacklight"
+                    android:textColor="@color/white" />
 
 
                 <TextView
@@ -224,7 +246,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:text="hello Emila Clarke"
+                    android:text="@={homeData.phoneTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
@@ -233,11 +255,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
-
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:background="@color/colorBlacklight"
+                    android:textColor="@color/white" />
 
 
                 <TextView
@@ -261,23 +282,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:background="@color/colorBlacklight"
+                    android:textColor="@color/white" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:layout_marginBottom="@dimen/dimen_4"
                     android:text="Add Your Social Media"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/dimen_24" />
+                    android:textSize="@dimen/dimen_24"
+                    android:textStyle="bold" />
 
                 <View
-                    android:layout_width="wrap_content"
+                    android:layout_width="260dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
@@ -294,25 +318,26 @@
                     android:textColor="@color/colorBlacklight"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:text="Instagram"
-                    android:drawablePadding="@dimen/dimen_8"
                     android:drawableStart="@drawable/ic_url_icon"
+                    android:drawablePadding="@dimen/dimen_8"
+                    android:text="Instagram"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:background="@color/colorBlacklight"
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -322,24 +347,26 @@
                     android:textColor="@color/colorBlacklight"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:text="Instagram"
                     android:drawableStart="@drawable/ic_url_icon"
+                    android:background="@android:color/transparent"
                     android:drawablePadding="@dimen/dimen_8"
+                    android:text="Instagram"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
+
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:textColor="@color/white"
-                    android:background="@color/colorBlacklight" />
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:background="@color/colorBlacklight"
+                    android:textColor="@color/white" />
 
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -354,7 +381,7 @@
                     android:paddingTop="@dimen/dimen_12"
                     android:paddingEnd="@dimen/dimen_28"
                     android:paddingBottom="@dimen/dimen_12"
-                    android:text="Next ->"
+                    android:text="DELETE ACCOUNT"
                     android:textColor="@color/smoke2" />
 
 

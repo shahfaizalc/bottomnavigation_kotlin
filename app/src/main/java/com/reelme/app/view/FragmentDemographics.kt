@@ -39,8 +39,7 @@ class FragmentDemographics : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==2)
         {
-            Log.d("Authentication token requestCode", "code$requestCode")
-
+            areaViewModel.getUserInfo()
         }
     }
 }

@@ -9,6 +9,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
@@ -57,13 +58,24 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
 
         if(id == R.id.deactivate_acc){
             Log.d("Authentication acc", "deactivate")
-
+            deleteUser = false
         }else if(id == R.id.delete_acc){
             Log.d("Authentication acc","delete")
+            deleteUser = true
+            val currentUser = FirebaseAuth.getInstance().currentUser
+         //   currentUser.delete().
 
         }
 
     }
+
+    @get:Bindable
+    var deleteUser: Boolean = false
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.deleteUser)
+        }
+
 
     private fun isValidName(name: String): Boolean {
 

@@ -19,7 +19,8 @@ import com.reelme.app.view.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class EditProfileViewModel(private val context: Context, private val fragmentSignin: FragmentEditProfile) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class EditProfileViewModel(private val context: Context, private val fragmentSignin: FragmentEditProfile) :
+        BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
@@ -30,20 +31,45 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
         getUserInfo()
     }
 
-    fun signInUserClicked() {
-       // fragmentSignin.finish()
 
-       if( isValidName(firstName!!) && isValidName(lastName!!)){
-           setUserInfo()
-       }
+    private fun setEditShare(){
+
+        val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putBoolean("IS_EDIT",true)
+        editor.apply()
+
     }
 
 
+    fun signInUserClicked() {
+       // fragmentSignin.finish()
+//
+//       if( isValidName(firstName!!) && isValidName(lastName!!)){
+//           setUserInfo()
+//       }
+
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDemographics::class.java));
+
+    }
+
+    fun signInUserBioClicked() {
+        // fragmentSignin.finish()
+//
+//       if( isValidName(firstName!!) && isValidName(lastName!!)){
+//           setUserInfo()
+//       }
+
+        setEditShare()
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentBioMobile::class.java),2);
+
+    }
+
     fun signUpUserClicked() {
       //  fragmentSignin.finish()
-        if( isValidName(firstName!!) && isValidName(lastName!!)){
-            setUserInfo()
-        }
+       // if( isValidName(firstName!!) && isValidName(lastName!!)){
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDeleteAccount::class.java));
+       // }
     }
 
 
@@ -77,7 +103,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
-            signInUserClicked()
+            //signInUserClicked()
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }
@@ -85,9 +111,6 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
     fun setUserInfo(){
         progressBarVisible = View.VISIBLE
-
-        userDetails.firstName = firstName
-        userDetails.secondName = lastName
 
         val gsonValue = Gson().toJson(userDetails)
 
@@ -147,19 +170,40 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
     }
 
     @get:Bindable
-    var firstName: String? = ""
+    var nameTitle: String? = userDetails.firstName
         set(price) {
             field = price
-            notifyPropertyChanged(BR.firstName)
+            notifyPropertyChanged(BR.nameTitle)
         }
 
     @get:Bindable
-    var lastName: String? = ""
+    var usernameTitle: String? = userDetails.username
         set(price) {
             field = price
-            notifyPropertyChanged(BR.lastName)
+            notifyPropertyChanged(BR.usernameTitle)
         }
 
+    @get:Bindable
+    var usernameTitleId: String? = "reelme.co/"+ userDetails.username
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.usernameTitleId)
+        }
+
+
+    @get:Bindable
+    var emailTitle: String? = userDetails.emailId
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.emailTitle)
+        }
+
+    @get:Bindable
+    var phoneTitle: String? = userDetails.phoneNumber
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.phoneTitle)
+        }
 
     private fun showToast(id: Int) {
         Toast.makeText(context, context.resources.getString(id), Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }

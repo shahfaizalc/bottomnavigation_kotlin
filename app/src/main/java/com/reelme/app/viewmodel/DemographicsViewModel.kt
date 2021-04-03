@@ -140,6 +140,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
             field = price
             notifyPropertyChanged(BR.hobbiesTitle)
         }
+
     fun hobbiesClicked() {
         //  fragmentSignin.finish()
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
@@ -180,7 +181,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
     lateinit var userDetails : UserModel
     private var isEdit = false;
 
-    private fun getUserInfo() {
+     fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
         isEdit = sharedPreference.getBoolean("IS_EDIT",false)
