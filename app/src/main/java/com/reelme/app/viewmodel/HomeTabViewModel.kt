@@ -16,6 +16,7 @@ import com.reelme.app.adapter.ViewPagerAdapter
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
+import com.reelme.app.utils.Validator
 import com.reelme.app.view.FragmentDate
 import com.reelme.app.view.FragmentHomeTab
 import com.reelme.app.view.*
@@ -57,6 +58,7 @@ class HomeTabViewModel(private val  fragmentSignin: FragmentHomeTab) : BaseObser
 
     lateinit var userDetails : UserModel
     private var isEdit = false;
+    var percentage =""
 
     private fun getUserInfo() {
         val sharedPreference = fragmentSignin.activity!!.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
@@ -67,12 +69,26 @@ class HomeTabViewModel(private val  fragmentSignin: FragmentHomeTab) : BaseObser
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+            percentage = Validator().profileRate(userDetails).toString()
+            percentof = " $percentage"
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }
     }
 
+    @get:Bindable
+    var photo: String? = userDetails.profilePic
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.photo)
+        }
 
+    @get:Bindable
+    var percentof: String? = " "+ Validator().profileRate(userDetails).toString()
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.percentof)
+        }
 
     @get:Bindable
     var firstName: String? = userDetails.firstName

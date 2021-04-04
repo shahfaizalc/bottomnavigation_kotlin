@@ -223,8 +223,16 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
     var percentof: String? = " "+Validator().profileRate(userDetails).toString()
         set(price) {
             field = price
-            notifyPropertyChanged(BR.nameTitle)
+            notifyPropertyChanged(BR.percentof)
         }
+
+    @get:Bindable
+    var photo: String? = userDetails.profilePic
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.photo)
+        }
+
 
     @get:Bindable
     var nameTitle: String? = userDetails.firstName

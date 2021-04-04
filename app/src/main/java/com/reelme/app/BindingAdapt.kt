@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -285,9 +286,10 @@ fun loadAdapterx(textView: TextView, profileInfoViewModel: RegistrationModel) {
 fun loadImage(view: ImageView, imageUrl: String?) {
     val i = TextUtils.isEmpty(imageUrl)
 
+    Log.d("tag", "onSpecialClick: $imageUrl onSpecialClick $i")
 
     if (i) {
-        view.setImageDrawable(view.getContext().getDrawable(R.drawable.placeholder_profile))
+        view.setImageDrawable(ContextCompat.getDrawable(view.context,R.drawable.placeholder_profile))
     } else {
         Picasso.get()
                 .load(imageUrl)

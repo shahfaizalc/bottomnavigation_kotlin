@@ -31,15 +31,15 @@ fun setUpWithViewpager(tabLayout: TabLayout, viewPager: ViewPager) {
     }
 }
 
-/**
- *
- * @param view Image view
- * @param imageUrl image url
- */
-@BindingAdapter("app:imageUrl")
-fun loadImage(view: ImageView, imageUrl: String) {
-    Picasso.get().load(imageUrl).into(view)
-}
+///**
+// *
+// * @param view Image view
+// * @param imageUrl image url
+// */
+//@BindingAdapter("app:imageUrl")
+//fun loadImage(view: ImageView, imageUrl: String) {
+//    Picasso.get().load(imageUrl).into(view)
+//}
 
 /**
  * To show the list of sales items in recyclerview

@@ -73,7 +73,7 @@
                                     android:layout_width="150dp"
                                     android:layout_height="150dp"
                                     android:background="@drawable/roundedbg"
-                                    android:src="@drawable/profilepic" />
+                                    app:imageUrl="@{homeData.photo}" />
 
                                 <androidx.appcompat.widget.AppCompatImageView
                                     android:layout_width="wrap_content"
@@ -103,14 +103,38 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dimen_16"
-                            android:layout_marginEnd="@dimen/dimen_16">
+                            android:layout_marginTop="@dimen/dimen_16"
+                            android:layout_marginEnd="@dimen/dimen_16"
+                            android:onClick="@{() -> homeData.signInUserClicked()}">
 
                             <TextView
+                                android:id="@+id/percenttittle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
-                                android:text="Profile Completed 100%"
+                                android:text="Profile Completed"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/dimen_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/percenttittle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toEndOf="@+id/percenttittle"
+                                android:text="@={homeData.percentof}"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/dimen_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toEndOf="@+id/percenttittle2"
+                                android:text="%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/dimen_16"
                                 android:textStyle="bold" />

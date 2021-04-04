@@ -55,65 +55,65 @@
 
                 </LinearLayout>
 
-            <FrameLayout
-                android:layout_marginTop="@dimen/dimen_20"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:orientation="horizontal"
-                android:onClick="@{() -> homeData.signChangePhotoClicked()}"
-                android:layout_gravity="center">
-
-                <com.reelme.app.util.ImageViewRounded
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
+                <FrameLayout
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/profilepic"/>
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:onClick="@{() -> homeData.signChangePhotoClicked()}"
+                    android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera_icon"/>
+                    <com.reelme.app.util.ImageViewRounded
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        app:imageUrl="@{homeData.photo}"/>
 
-            </FrameLayout>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:src="@drawable/ic_camera_icon" />
+
+                </FrameLayout>
 
                 <TextView
-                    android:onClick="@{() -> homeData.signChangePhotoClicked()}"
-                    android:layout_marginTop="@dimen/dimen_8"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{() -> homeData.signChangePhotoClicked()}"
                     android:text="Change Photo"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_48"
-                    android:text="Edit Your Demographics"
                     android:onClick="@{() -> homeData.signInUserClicked()}"
+                    android:text="Edit Your Demographics"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_20"
                     android:textStyle="bold" />
 
 
                 <RelativeLayout
-                    android:onClick="@{() -> homeData.signInUserClicked()}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_16"
-                    android:layout_marginEnd="@dimen/dimen_16">
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:onClick="@{() -> homeData.signInUserClicked()}">
 
                     <TextView
                         android:id="@+id/percenttittle"
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
                         android:text="Profile Completed"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_16"
@@ -121,32 +121,31 @@
 
                     <TextView
                         android:id="@+id/percenttittle2"
-                        android:layout_toEndOf="@+id/percenttittle"
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/percenttittle"
                         android:text="@={homeData.percentof}"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_16"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_toEndOf="@+id/percenttittle2"
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/percenttittle2"
                         android:text="%"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_16"
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:src="@android:drawable/ic_menu_info_details"
-                        />
+                        android:layout_centerVertical="true"
+                        android:src="@android:drawable/ic_menu_info_details" />
 
                 </RelativeLayout>
 
@@ -169,12 +168,12 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginEnd="@dimen/dimen_16"
+                    android:background="@android:color/transparent"
                     android:text="@={homeData.nameTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
@@ -199,10 +198,10 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:background="@android:color/transparent"
                     android:text="@={homeData.usernameTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
@@ -247,12 +246,12 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:onClick="@{() -> homeData.signInUserBioClicked()}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_16"
                         android:layout_weight="1"
                         android:gravity="center_vertical|end"
+                        android:onClick="@{() -> homeData.signInUserBioClicked()}"
                         android:text="Add a bio to your profile"
                         android:textColor="@color/colorBlacklight"
                         android:textSize="@dimen/dimen_16"
@@ -270,10 +269,10 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:background="@android:color/transparent"
                     android:text="@={homeData.emailTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
@@ -346,8 +345,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_16"
                     android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
                     android:layout_marginBottom="@dimen/dimen_4"
                     android:text="Add Your Social Media"
@@ -374,10 +373,10 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
+                    android:background="@android:color/transparent"
                     android:drawableStart="@drawable/ic_url_icon"
                     android:drawablePadding="@dimen/dimen_8"
                     android:text="Instagram"
@@ -406,8 +405,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:drawableStart="@drawable/ic_url_icon"
                     android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/ic_url_icon"
                     android:drawablePadding="@dimen/dimen_8"
                     android:text="Instagram"
                     android:textColor="@color/white"
@@ -438,7 +437,6 @@
                     android:paddingBottom="@dimen/dimen_12"
                     android:text="DELETE ACCOUNT"
                     android:textColor="@color/smoke2" />
-
 
 
                 <!--            <Button-->
