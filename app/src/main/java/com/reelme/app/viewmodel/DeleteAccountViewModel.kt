@@ -7,12 +7,15 @@ import android.view.Gravity
 import android.view.View
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import com.facebook.FacebookSdk
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
+import com.reelme.app.activities.LaunchActivity
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.pojos.UserModel
@@ -20,6 +23,7 @@ import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.view.FragmentDate
 import com.reelme.app.view.FragmentDeleteAccount
 import com.reelme.app.view.FragmentFullNameMobile
+import com.reelme.app.view.FragmentWelcome
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -40,17 +44,44 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
     fun signInUserClicked() {
        // fragmentSignin.finish()
 
-       if( isValidName(firstName!!) && isValidName(lastName!!)){
-           setUserInfo()
-       }
+//       if( isValidName(firstName!!) && isValidName(lastName!!)){
+//           setUserInfo()
+//       }
+
+        if(deleteUser){
+            val user = FirebaseAuth.getInstance().currentUser
+
+            val intent = Intent(fragmentSignin, LaunchActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            fragmentSignin.startActivity(intent)
+
+
+//            user.delete()
+//                    .addOnCompleteListener { task ->
+//                        if (task.isSuccessful) {
+//                            Log.d("TAG", "User account deleted.")
+//                           // userDetails = UserModel();
+//                           // setUserInfo()
+//                            val intent = Intent(fragmentSignin, LaunchActivity::class.java)
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                            fragmentSignin.startActivity(intent)
+//
+//                        }
+//                    }
+
+
+        }
+
+
     }
 
 
-    fun signUpUserClicked() {
-      //  fragmentSignin.finish()
-        if( isValidName(firstName!!) && isValidName(lastName!!)){
-            setUserInfo()
-        }
+    fun cancelDeleteClicked() {
+        fragmentSignin.finish()
+//        if( isValidName(firstName!!) && isValidName(lastName!!)){
+//            setUserInfo()
+//        }
+
     }
 
     fun onSplitTypeChanged(radioGroup: RadioGroup?, id: Int) {
@@ -62,9 +93,6 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
         }else if(id == R.id.delete_acc){
             Log.d("Authentication acc","delete")
             deleteUser = true
-            val currentUser = FirebaseAuth.getInstance().currentUser
-         //   currentUser.delete().
-
         }
 
     }
@@ -115,9 +143,6 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
     fun setUserInfo(){
         progressBarVisible = View.VISIBLE
 
-        userDetails.firstName = firstName
-        userDetails.secondName = lastName
-
         val gsonValue = Gson().toJson(userDetails)
 
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
@@ -132,12 +157,18 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
         FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
-                if(isEdit){
-                    fragmentSignin.setResult(2, Intent())
-                    fragmentSignin.finish()
-                } else{
-                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
-                }
+
+                val intent = Intent(fragmentSignin, FragmentDate::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                fragmentSignin.startActivity(intent)
+
+
+//                if(isEdit){
+//                    fragmentSignin.setResult(2, Intent())
+//                    fragmentSignin.finish()
+//                } else{
+//                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
+//                }
 
                 Log.d("Authenticaiton token", "onSuccess")
                 Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
@@ -175,19 +206,19 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
         }
     }
 
-    @get:Bindable
-    var firstName: String? = ""
-        set(price) {
-            field = price
-            notifyPropertyChanged(BR.firstName)
-        }
-
-    @get:Bindable
-    var lastName: String? = ""
-        set(price) {
-            field = price
-            notifyPropertyChanged(BR.lastName)
-        }
+//    @get:Bindable
+//    var firstName: String? = ""
+//        set(price) {
+//            field = price
+//            notifyPropertyChanged(BR.firstName)
+//        }
+//
+//    @get:Bindable
+//    var lastName: String? = ""
+//        set(price) {
+//            field = price
+//            notifyPropertyChanged(BR.lastName)
+//        }
 
 
     private fun showToast(id: Int) {
