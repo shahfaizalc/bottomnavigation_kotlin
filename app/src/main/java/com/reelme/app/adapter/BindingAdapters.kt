@@ -2,6 +2,8 @@ package com.reelme.app.adapter
 
 
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
@@ -54,6 +56,18 @@ fun adapter(recyclerView: RecyclerView, salesViewModel: SalesViewModel) {
     recyclerView.adapter = listAdapter
     salesViewModel.saleItemsAdapter = listAdapter
     salesViewModel.linearLayoutManager= linearLayoutManager
+}
+
+
+@BindingAdapter("layoutMarginBottom")
+fun setLayoutMarginBottom(view: View, dimen: Float) {
+    val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
+    layoutParams.marginStart = dimen.toInt()
+    layoutParams.marginEnd = dimen.toInt()
+    layoutParams.topMargin = dimen.toInt()
+    layoutParams.bottomMargin = dimen.toInt()
+
+    view.layoutParams = layoutParams
 }
 
 

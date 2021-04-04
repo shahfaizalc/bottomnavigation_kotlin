@@ -14,7 +14,9 @@ import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.pojos.UserModel
+import com.reelme.app.utils.EnumValidator
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
+import com.reelme.app.utils.Validator
 import com.reelme.app.view.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -56,11 +58,15 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
     fun signEditSaveClicked() {
         // fragmentSignin.finish()
-//
-//       if( isValidName(firstName!!) && isValidName(lastName!!)){
-//           setUserInfo()
-//       }
-        fragmentSignin.finish()
+
+       if( Validator().validate(nameTitle, EnumValidator.NAME_PATTERN) && Validator().validate(usernameTitle, EnumValidator.USER_NAME_PATTERN)
+               && Validator().validate(emailTitle, EnumValidator.EMAIL_PATTERN) ){
+        //   setUserInfo()
+           fragmentSignin.finish()
+       } else{
+           Toast.makeText(context, "Kindly check email, username and name", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+
+       }
 
        // setEditShare()
       //  fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentUploadView::class.java),2);
@@ -121,6 +127,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
     lateinit var userDetails : UserModel
     private var isEdit = false;
+    var percentage =""
 
     private fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
@@ -131,14 +138,28 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+            percentage = Validator().profileRate(userDetails).toString()
+            percentof = " $percentage"
+            Log.d("Authenticaiton token", "2percentage$percentage")
+
             //signInUserClicked()
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }
+
+
+
+        Log.d("Authenticaiton token", "percentage$percentage")
+
     }
 
     fun setUserInfo(){
         progressBarVisible = View.VISIBLE
+
+        userDetails.firstName = nameTitle
+        userDetails.username = usernameTitleId
+        userDetails.emailId = emailTitle
+
 
         val gsonValue = Gson().toJson(userDetails)
 
@@ -154,12 +175,12 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
         FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
-                if(isEdit){
-                    fragmentSignin.setResult(2, Intent())
+               // if(isEdit){
+                 //   fragmentSignin.setResult(2, Intent())
                     fragmentSignin.finish()
-                } else{
-                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
-                }
+//                } else{
+//                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
+//                }
 
                 Log.d("Authenticaiton token", "onSuccess")
                 Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
@@ -196,6 +217,14 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
             showToast(R.string.network_ErrorMsg)
         }
     }
+
+
+    @get:Bindable
+    var percentof: String? = " "+Validator().profileRate(userDetails).toString()
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.nameTitle)
+        }
 
     @get:Bindable
     var nameTitle: String? = userDetails.firstName

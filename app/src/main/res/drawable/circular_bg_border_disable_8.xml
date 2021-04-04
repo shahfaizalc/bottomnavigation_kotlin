@@ -8,9 +8,9 @@
         android:topLeftRadius="@dimen/dimen_16"
         android:topRightRadius="@dimen/dimen_16" />
     <padding
-        android:bottomLeftRadius="@dimen/dimen_16"
-        android:bottomRightRadius="@dimen/dimen_16"
-        android:topLeftRadius="@dimen/dimen_16"
-        android:topRightRadius="@dimen/dimen_16"/>
+        android:bottomLeftRadius="@dimen/dimen_24"
+        android:bottomRightRadius="@dimen/dimen_24"
+        android:topLeftRadius="@dimen/dimen_24"
+        android:topRightRadius="@dimen/dimen_24"/>
 
 </shape>
