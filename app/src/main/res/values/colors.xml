@@ -73,5 +73,6 @@
     <color name="colorchat1">#A9CCE3</color>
 
     <color name="colorchat2">#D5DBDB</color>
-
+    <color name= "tabSelect">#D03212</color>
+    <color name= "tabNotSelect">#F09381</color>
 </resources>

@@ -276,7 +276,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
 
             FragNavController.TAB1 -> return FragmentChallenges()
             FragNavController.TAB2 -> return FragmentDiscussions()
-            FragNavController.TAB3 -> return FragmentGoal()
+            FragNavController.TAB3 -> return FragmentHomeTab()
             FragNavController.TAB4 -> return FragmentProfile()
             FragNavController.TAB5 -> return FragmentProfile()
 

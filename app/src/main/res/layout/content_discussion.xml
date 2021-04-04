@@ -18,11 +18,23 @@
             android:id="@+id/viewA"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_gradiant_oneside_violet_lite"
+            android:background="@color/black"
             android:orientation="vertical">
+            <TextView
+                android:textSize="@dimen/dimen_36"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@android:color/transparent"
+                android:text="Coming Soon" />
 
 
             <androidx.appcompat.widget.SearchView
+                android:visibility="gone"
                 android:id="@+id/search1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,12 +49,14 @@
 
 
             <View
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:background="@drawable/bottom_line" />
 
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_marginStart="@dimen/dimen_8"
                 android:id="@+id/footer"
                 android:layout_width="match_parent"
@@ -101,6 +115,7 @@
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:visibility="gone"
             android:onClick="@{adSearchModel.onNextButtonClick}"
             android:id="@+id/floating_action_button"
             android:layout_width="wrap_content"
