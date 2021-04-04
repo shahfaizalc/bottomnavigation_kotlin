@@ -50,6 +50,11 @@ class HomeTabViewModel(private val  fragmentSignin: FragmentHomeTab) : BaseObser
     }
 
 
+    fun signInUserClicked() {
+        // fragmentSignin.finish()
+        fragmentSignin.startActivity(Intent(fragmentSignin.activity, FragmentEditProfile::class.java));
+    }
+
     lateinit var userDetails : UserModel
     private var isEdit = false;
 

@@ -80,6 +80,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="end|bottom"
                                     android:layout_margin="@dimen/dimen_16"
+                                    android:onClick="@{() -> homeData.signInUserClicked()}"
                                     android:background="@drawable/ic_group_681" />
 
 
