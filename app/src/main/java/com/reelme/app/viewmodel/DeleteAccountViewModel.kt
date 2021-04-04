@@ -47,8 +47,12 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
 //       if( isValidName(firstName!!) && isValidName(lastName!!)){
 //           setUserInfo()
 //       }
+        Toast.makeText(context, "Yet to implement", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
 
         if(deleteUser){
+
+
+
             val user = FirebaseAuth.getInstance().currentUser
 
             val intent = Intent(fragmentSignin, LaunchActivity::class.java)

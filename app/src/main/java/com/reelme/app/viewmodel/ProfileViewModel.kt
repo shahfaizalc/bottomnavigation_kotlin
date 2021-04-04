@@ -4,17 +4,23 @@ import android.content.Context
 import android.content.Intent
 import android.preference.PreferenceManager
 import android.util.Log
+import android.view.Gravity
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
+import com.reelme.app.activities.LaunchActivity
 import com.reelme.app.handler.NetworkChangeHandler
+import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.model2.Profile
+import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
 import com.reelme.app.util.MultipleClickHandler
+import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.view.*
 
 
@@ -175,13 +181,31 @@ class ProfileViewModel(internal val activity:
         if (!handleMultipleClicks()) {
             FirebaseAuth.getInstance().signOut();
             PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
-
+            setUserInfo();
             activity.finish();
-            var intent = Intent(activity, FragmentWelcome::class.java);
+
+            val intent = Intent(activity, FragmentWelcome::class.java);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             activity.startActivity(intent);
 
         }
     }
+
+
+
+    private fun setUserInfo(){
+        var userModel = UserModel()
+
+        val gsonValue = Gson().toJson(userModel)
+        val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putString("USER_INFO", gsonValue)
+        editor.putBoolean("IS_EDIT", false)
+        editor.apply()
+
+
+    }
+
 
     fun registerListeners() {
         networkStateHandler!!.registerNetWorkStateBroadCast(context)
