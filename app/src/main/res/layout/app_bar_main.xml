@@ -23,7 +23,7 @@
 
     <FrameLayout
         android:id="@+id/fragment_place"
-        android:name="com.merpay.sale.setup.fragmentSetup.FragmentParent"
+        android:name="com.reelme.app.setup.fragmentSetup.FragmentParent"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -23,7 +23,7 @@ class FragmentHomeTab : BaseFragment() {
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
         if (binding == null) {
             binding = ActivityHometabBinding.inflate(inflater, container, false)
-            val areaViewModel = HomeTabViewModel()
+            val areaViewModel = HomeTabViewModel(this)
             binding!!.homeData = areaViewModel
             binding!!.homeData!!.setPagerAdapter(adapter)
         }

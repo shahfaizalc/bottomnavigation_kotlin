@@ -9,9 +9,9 @@
         <item>Profile</item>
     </array>
     <array name="tabs">
-        <item name="tab_men">Men</item>
-        <item name="app_women">All</item>
-        <item name="app_all">Women</item>
+        <item name="tab_men">My Reels</item>
+        <item name="app_women">Drafts</item>
+        <item name="app_all">Bookmarked</item>
     </array>
     <string-array name="tab_challange">
         <item>access to care ultra sound</item>
