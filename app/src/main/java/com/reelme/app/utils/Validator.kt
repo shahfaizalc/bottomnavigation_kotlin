@@ -46,16 +46,13 @@ class Validator {
 
     fun profileRate( user : UserModel): Int {
 
-        val items = 15;
-        var count =15;
+        val items = 14;
+        var count =14;
 
         if (user.phoneNumber.isNullOrEmpty()){
             count--;
         }
-         if (user.referalCode.isNullOrEmpty()){
-            count--;
 
-        }
           if (user.emailId.isNullOrEmpty()){
             count--;
 

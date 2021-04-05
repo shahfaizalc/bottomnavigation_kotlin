@@ -282,6 +282,25 @@ fun loadAdapterx(textView: TextView, profileInfoViewModel: RegistrationModel) {
 
 
 
+@BindingAdapter("app:loadImageprofile")
+fun loadImageprofile(view: ImageView, imageUrl: String?) {
+    val i = TextUtils.isEmpty(imageUrl)
+
+    Log.d("tag", "onSpecialClick: $imageUrl onSpecialClick $i")
+
+    if (i) {
+        view.setImageDrawable(ContextCompat.getDrawable(view.context,R.drawable.placeholder_profile))
+    } else {
+        Picasso.get()
+                .load(imageUrl)
+                .resize(150, 150)
+                .error(R.drawable.placeholder_profile)
+                .placeholder(R.drawable.placeholder_profile)
+                .into(view)
+    }
+}
+
+
 @BindingAdapter("app:imageUrl")
 fun loadImage(view: ImageView, imageUrl: String?) {
     val i = TextUtils.isEmpty(imageUrl)

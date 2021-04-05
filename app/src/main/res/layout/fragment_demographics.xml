@@ -31,7 +31,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_24"
-                    android:text="Female Female Female"
+                    android:text="@={homeData.firstName}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
 
@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginTop="@dimen/dimen_48"
+                    android:layout_marginTop="@dimen/dimen_32"
                     android:onClick="@{() -> homeData.genderClicked()}"
                     android:text="@string/demography_genderTitle"
                     android:textColor="@color/colorBlacklight"

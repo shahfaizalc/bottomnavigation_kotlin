@@ -268,7 +268,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
     }
 
     @get:Bindable
-    var firstName: String? = ""
+    var firstName: String? = userDetails.firstName + "\'s Demographics"
         set(price) {
             field = price
             notifyPropertyChanged(BR.firstName)

@@ -104,8 +104,8 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     private fun showTab() {
 
         if (doGetCoronaUpdate()) {
-            switchTab(0)
-            updateTabSelection(0)
+            switchTab(2)
+            updateTabSelection(2)
         } else {
             bottomTabLayout!!.visibility = View.GONE
             switchTab(2)

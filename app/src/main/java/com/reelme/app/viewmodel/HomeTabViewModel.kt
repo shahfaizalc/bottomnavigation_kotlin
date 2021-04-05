@@ -97,6 +97,15 @@ class HomeTabViewModel(private val  fragmentSignin: FragmentHomeTab) : BaseObser
             notifyPropertyChanged(BR.firstName)
         }
 
+
+    @get:Bindable
+    var bio: String? = userDetails.bio
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.bio)
+        }
+
+
     private fun showToast(id: Int) {
         Toast.makeText(fragmentSignin.context, fragmentSignin.resources.getString(id), Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
     }
