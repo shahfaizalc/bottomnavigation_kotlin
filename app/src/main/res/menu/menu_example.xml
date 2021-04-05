@@ -1,19 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/share_ic"
-        android:icon="@drawable/share"
-        android:title="Share Profile" />
-    <item android:id="@+id/settings_ic"
-        android:icon="@drawable/settings"
-        android:title="Settings" />
-    <item android:id="@+id/refer_ic"
-        android:icon="@drawable/information"
-        android:title="Refer &amp; Earn" />
-    <item android:id="@+id/influnce_ic"
-        android:icon="@drawable/information"
-        android:title="Influencer payout" />
-    <item android:id="@+id/mail"
-        android:icon="@drawable/information"
-        android:title="Logout" />
-</menu>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/dots_vertical"
+        android:title="menu"
+        app:showAsAction="always">
+        <menu>
+
+            <item
+                android:id="@+id/share_ic"
+                android:icon="@drawable/share"
+                android:title="Share Profile" />
+            <item
+                android:id="@+id/settings_ic"
+                android:icon="@drawable/settings"
+                android:title="Settings" />
+            <item
+                android:id="@+id/refer_ic"
+                android:icon="@drawable/information"
+                android:title="Refer &amp; Earn" />
+            <item
+                android:id="@+id/influnce_ic"
+                android:icon="@drawable/information"
+                android:title="Influencer payout" />
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/information"
+                android:title="Logout" />
+        </menu>
+    </item>
+</menu><!--<menu xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto">-->
+    <!--<item-->
+    <!--    android:icon="@drawable/your_icon"-->
+    <!--    android:title="menu"-->
+    <!--    app:showAsAction="always">-->
+    <!--    <menu>-->
+
+    <!--        <item-->
+    <!--            android:id="@+id/action_menu1"-->
+    <!--            android:orderInCategory="1"-->
+    <!--            android:title="menu 1" />-->
+
+    <!--        <item-->
+    <!--            android:id="@+id/action_menu2"-->
+    <!--            android:orderInCategory="2"-->
+    <!--            android:title="menu 2" />-->
+
+    <!--    </menu>-->
+    <!--</item>-->
+    <!--</menu>-->

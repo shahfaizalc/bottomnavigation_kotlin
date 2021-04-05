@@ -9,22 +9,19 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.viewpager.widget.PagerAdapter
 import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.adapter.ViewPagerAdapter
-import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.pojos.UserModel
-import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.utils.Validator
-import com.reelme.app.view.FragmentDate
+import com.reelme.app.view.FragmentEditProfile
 import com.reelme.app.view.FragmentHomeTab
-import com.reelme.app.view.*
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 
-class HomeTabViewModel(private val  fragmentSignin: FragmentHomeTab) : BaseObservable() {
+class HomeTabViewModel(private val fragmentSignin: FragmentHomeTab) : BaseObservable() {
 
     /**
      * TAG
@@ -45,6 +42,7 @@ class HomeTabViewModel(private val  fragmentSignin: FragmentHomeTab) : BaseObser
         this.adapter = adapter
         notifyPropertyChanged(BR.pagerAdapter)
     }
+    private val name = MutableLiveData<String>()
 
     init {
         getUserInfo()
@@ -56,6 +54,10 @@ class HomeTabViewModel(private val  fragmentSignin: FragmentHomeTab) : BaseObser
         fragmentSignin.startActivity(Intent(fragmentSignin.activity, FragmentEditProfile::class.java));
     }
 
+    fun getName(): LiveData<String?> {
+        return name
+    }
+
     lateinit var userDetails : UserModel
     private var isEdit = false;
     var percentage =""
@@ -63,12 +65,16 @@ class HomeTabViewModel(private val  fragmentSignin: FragmentHomeTab) : BaseObser
     private fun getUserInfo() {
         val sharedPreference = fragmentSignin.activity!!.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
-        isEdit = sharedPreference.getBoolean("IS_EDIT",false)
+        isEdit = sharedPreference.getBoolean("IS_EDIT", false)
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+
+            name!!.postValue(userDetails.firstName);
+
+
             percentage = Validator().profileRate(userDetails).toString()
             percentof = " $percentage"
         } catch (e: java.lang.Exception) {
@@ -116,4 +122,19 @@ class HomeTabViewModel(private val  fragmentSignin: FragmentHomeTab) : BaseObser
             field = progressBarVisible
             notifyPropertyChanged(BR.progressBarVisible)
         }
+
+
+     fun setUserInfo(){
+        var userModel = UserModel()
+
+        val gsonValue = Gson().toJson(userModel)
+        val sharedPreference =  fragmentSignin.context!!.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putString("USER_INFO", gsonValue)
+        editor.putBoolean("IS_EDIT", false)
+        editor.apply()
+
+
+    }
+
 }

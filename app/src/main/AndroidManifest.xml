@@ -175,6 +175,13 @@
 
         <activity
             android:screenOrientation= "sensorPortrait"
+            android:name="com.reelme.app.view.FragmentSettingsList"
+            android:windowSoftInputMode="adjustPan" />
+
+
+
+        <activity
+            android:screenOrientation= "sensorPortrait"
             android:name="com.reelme.app.view.FragmentFeedBack"
             android:windowSoftInputMode="adjustPan" />
 

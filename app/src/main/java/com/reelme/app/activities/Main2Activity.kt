@@ -300,7 +300,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     }
 
 
-    fun updateToolbarTitle(title: String) {
+    override fun updateToolbarTitle(title: String) {
 
 
         supportActionBar!!.title = title

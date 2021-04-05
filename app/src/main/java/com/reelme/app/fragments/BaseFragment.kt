@@ -31,6 +31,7 @@ open class BaseFragment : Fragment() {
         fun switchTab(position : Int)
         fun viewBottom(viewState : Int)
         fun viewToolbar(b: Boolean)
+        fun updateToolbarTitle(title: String)
     }
 
     companion object {
