@@ -9,23 +9,23 @@
 
             <item
                 android:id="@+id/share_ic"
-                android:icon="@drawable/share"
+                android:icon="@drawable/ic_mask_group_111"
                 android:title="Share Profile" />
             <item
                 android:id="@+id/settings_ic"
-                android:icon="@drawable/settings"
+                android:icon="@drawable/ic_mask_group_112"
                 android:title="Settings" />
             <item
                 android:id="@+id/refer_ic"
-                android:icon="@drawable/information"
+                android:icon="@drawable/ic_mask_group_124"
                 android:title="Refer &amp; Earn" />
             <item
                 android:id="@+id/influnce_ic"
-                android:icon="@drawable/information"
+                android:icon="@drawable/ic_mask_group_125"
                 android:title="Influencer payout" />
             <item
                 android:id="@+id/logout"
-                android:icon="@drawable/information"
+                android:icon="@drawable/ic_mask_group_114"
                 android:title="Logout" />
         </menu>
     </item>

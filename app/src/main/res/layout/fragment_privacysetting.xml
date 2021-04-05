@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="homeData"
+            type="com.reelme.app.viewmodel.PrivacySettingViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:fillViewport="true">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_24"
+                    android:text="Privacy Settings "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:textStyle="bold"
+                    android:text="Discoverability"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_24" />
+
+                <View
+                    android:layout_width="160dp"
+                    android:layout_height="5dp"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:background="@drawable/group782" />
+
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:text="Private Account"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:text="Suggest Your Account to Others"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text"
+                    android:textColor="@color/white"/>
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:layout_marginBottom="@dimen/dimen_8"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:textStyle="bold"
+                    android:text="Safety"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_24" />
+
+                <View
+                    android:layout_width="70dp"
+                    android:layout_height="5dp"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:background="@drawable/group782" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Allow Your Reels to be Downloaded"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
+                         />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:text="On"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
+                         />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Who can send you direct message"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
+                         />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:text="Friends"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
+                         />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Who can view Your linked Reels"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:text="Only Me"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Who can Comment on Your Reels"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
+                         />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:text="Everyone"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
+                         />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_24"
+                    android:textStyle="bold"
+                    android:text="Blocked Accounts"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_24" />
+
+                <!--        <LinearLayout-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="0dp"-->
+                <!--            android:layout_marginBottom="@dimen/dimen_20"-->
+                <!--            android:layout_weight="1"-->
+                <!--            android:gravity="bottom"-->
+                <!--            android:orientation="horizontal">-->
+
+                <!--            <Button-->
+                <!--                android:textColor="@color/smoke2"-->
+                <!--                android:layout_weight="1"-->
+                <!--                android:layout_width="0dp"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginLeft="@dimen/dimen_16"-->
+                <!--                android:layout_marginTop="@dimen/dimen_8"-->
+                <!--                android:paddingTop="@dimen/dimen_20"-->
+                <!--                android:paddingBottom="@dimen/dimen_20"-->
+                <!--                android:layout_marginRight="@dimen/dimen_16"-->
+                <!--                android:background="@drawable/circular_bg_blue_8"-->
+                <!--                android:onClick="@{() -> homeData.signUpUserClicked()}"-->
+                <!--                android:text="@string/signUpText"-->
+                <!--                android:textStyle="bold" />-->
+
+                <!--            <Button-->
+                <!--                android:textColor="@color/smoke2"-->
+                <!--                android:paddingTop="@dimen/dimen_20"-->
+                <!--                android:paddingBottom="@dimen/dimen_20"-->
+                <!--                android:layout_weight="1"-->
+                <!--                android:layout_width="0dp"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginLeft="@dimen/dimen_16"-->
+                <!--                android:layout_marginTop="@dimen/dimen_8"-->
+                <!--                android:layout_marginRight="@dimen/dimen_16"-->
+                <!--                android:background="@drawable/circular_bg_blue_8"-->
+                <!--                android:onClick="@{() -> homeData.signInUserClicked()}"-->
+                <!--                android:text="Get Started"-->
+                <!--                android:textStyle="bold" />-->
+                <!--        </LinearLayout>-->
+            </LinearLayout>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="@{homeData.progressBarVisible}" />
+        </FrameLayout>
+    </ScrollView>
+</layout>

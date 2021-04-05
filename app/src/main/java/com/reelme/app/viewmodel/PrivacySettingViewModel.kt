@@ -19,7 +19,7 @@ import com.reelme.app.view.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class SettingListViewModel(private val context: Context, private val fragmentSignin: FragmentSettingsList) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class PrivacySettingViewModel(private val context: Context, private val fragmentSignin: FragmentPrivacySetting) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
 
@@ -79,7 +79,7 @@ class SettingListViewModel(private val context: Context, private val fragmentSig
 //            setUserInfo()
 //        }
         setEditShare()
-        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentPrivacySetting::class.java),2);
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, RelationshipActivity::class.java),2);
 
     }
 
