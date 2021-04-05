@@ -245,10 +245,9 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
 
 
     override fun onTabTransaction(fragment: Fragment?, index: Int) {
+        viewToolbar(true)
         // If we have a backstack, show the back button
         if (supportActionBar != null && mNavController != null) {
-
-
             updateToolbar()
 
         }
@@ -279,7 +278,6 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
             FragNavController.TAB3 -> return FragmentHomeTab()
             FragNavController.TAB4 -> return FragmentChallenges()
             FragNavController.TAB5 -> return FragmentProfile()
-
         }
         throw IllegalStateException("Need to send an index that we know")
     }

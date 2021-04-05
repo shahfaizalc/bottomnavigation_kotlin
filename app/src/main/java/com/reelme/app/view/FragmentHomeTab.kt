@@ -1,21 +1,25 @@
 package com.reelme.app.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
-import com.reelme.app.adapter.ViewPagerAdapter
-import com.reelme.app.util.Constants
-import com.reelme.app.viewmodel.HomeTabViewModel
 import com.reelme.app.R
+import com.reelme.app.adapter.ViewPagerAdapter
 import com.reelme.app.databinding.ActivityHometabBinding
 import com.reelme.app.fragments.BaseFragment
+import com.reelme.app.util.Constants
+import com.reelme.app.viewmodel.HomeTabViewModel
+
 
 class FragmentHomeTab : BaseFragment() {
 
     internal var binding: ActivityHometabBinding? = null
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return bindView(inflater, container)
     }
@@ -39,4 +43,10 @@ class FragmentHomeTab : BaseFragment() {
             }
             return adapter
         }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.menu_example, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 }
