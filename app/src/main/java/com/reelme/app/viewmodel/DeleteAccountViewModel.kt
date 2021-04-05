@@ -47,7 +47,7 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
 //       if( isValidName(firstName!!) && isValidName(lastName!!)){
 //           setUserInfo()
 //       }
-        Toast.makeText(context, "Yet to implement", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+     //   Toast.makeText(context, "Yet to implement", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
 
         if(deleteUser){
 
@@ -59,36 +59,47 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
 
             val userUid = user!!.uid
 
-            user.delete().addOnSuccessListener {
-                Log.d("TAG", "User  deleted.$it")
 
-            }.addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d("TAG", "User account deleted.")
-                           // userDetails = UserModel();
-                           // setUserInfo()
+            // userDetails = UserModel();
+            // setUserInfo()
 
-                            val myDB = FirebaseFirestore.getInstance()
-                            val collection = myDB.collection(Constants.BASEURL_COLLECTION_GEN_PROFILEINFO)
+            val myDB = FirebaseFirestore.getInstance()
+            val collection = myDB.collection(Constants.BASEURL_COLLECTION_GEN_PROFILEINFO)
 
-                            collection.document(userUid)
-                                    .delete()
-                                    .addOnSuccessListener(OnSuccessListener<Void?> {
-                                        Log.d(TAG, "DocumentSnapshot successfully deleted!")
-                                        val intent = Intent(fragmentSignin, LaunchActivity::class.java)
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                        fragmentSignin.startActivity(intent)
-                                    })
-                                    .addOnFailureListener(OnFailureListener {
-                                        e -> Log.w(TAG, "Error deleting document", e)
-                                    })
+            collection.document(userUid)
+                    .delete()
+                    .addOnSuccessListener {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!")
 
+                        user.delete().addOnSuccessListener {
+                            Log.d(TAG, "User  deleted.$it")
 
+                        }.addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d(TAG, "User account deleted.")
+                                val intent = Intent(fragmentSignin, LaunchActivity::class.java)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                fragmentSignin.startActivity(intent)
+                            }
+                        }.addOnFailureListener {
+                            OnFailureListener { e ->
+                                Log.w(TAG, "Error deleting user", e)
+                            }
                         }
-                    }.addOnFailureListener { OnFailureListener { e ->
-                Log.w(TAG, "Error deleting user", e)
-            }
+
+
                     }
+                    .addOnFailureListener(OnFailureListener { e ->
+                        Log.w(TAG, "Error deleting document", e)
+                    })
+
+
+
+
+
+
+
+
         } else {
             userDetails.isDeactivated = true
             setUserInfo()
@@ -111,10 +122,10 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
         val rr = radioGroup!!.checkedRadioButtonId
 
         if(id == R.id.deactivate_acc){
-            Log.d("Authentication acc", "deactivate")
+            Log.d(TAG, "deactivate")
             deleteUser = false
         }else if(id == R.id.delete_acc){
-            Log.d("Authentication acc", "delete")
+            Log.d(TAG, "delete")
             deleteUser = true
         }
 
@@ -155,11 +166,11 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            Log.d("Authentication token", auth.emailId)
+            Log.d(TAG, auth.emailId)
             userDetails = (auth as UserModel)
           //  signInUserClicked()
         } catch (e: java.lang.Exception) {
-            Log.d("Authenticaiton token", "Exception")
+            Log.d(TAG, "Exception")
         }
     }
 
@@ -186,14 +197,14 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
                 fragmentSignin.startActivity(intent)
 
 
-                Log.d("Authenticaiton token", "onSuccess")
+                Log.d(TAG, "onSuccess")
                 Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
 
             }
 
             override fun onFailure(e: Exception) {
                 progressBarVisible = View.INVISIBLE
-                Log.d("Authenticaiton token", "Exception" + e)
+                Log.d(TAG, "Exception" + e)
                 Toast.makeText(context, "Failed to save your profile", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
 
             }
@@ -248,7 +259,7 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
         }
 
     companion object {
-        private const val TAG = "PhoneAuthActivity"
+        private const val TAG = "DeleteAccountViewModel"
     }
 }
 
