@@ -1,7 +1,5 @@
 package com.reelme.app.pojos
 
-import java.util.*
-
 data class UserModel(
         var phoneNumber: String = "",
         var referalCode: String? ="",
@@ -26,5 +24,6 @@ data class UserModel(
         var religiousBeliefs: String?="",
         var skipReligiousBeliefs: Boolean? = false,
         var hobbiesAndInterest: String?="",
-        var skipHobbiesAndInterest: Boolean? = false
+        var skipHobbiesAndInterest: Boolean? = false,
+        var isDeactivated: Boolean? = false
 )

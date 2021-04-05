@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.BaseObservable
 import com.google.gson.Gson
 import com.reelme.app.R
+import com.reelme.app.activities.Main2Activity
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.pojos.UserModel
@@ -41,7 +42,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
     fun onSkipButtonClicked() {
         // fragmentSignin.finish()
         userDetails.skipHobbiesAndInterest = true
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin, Main2Activity::class.java));
 
     }
 
@@ -125,7 +126,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
                     fragmentSignin.setResult(2, Intent())
                     fragmentSignin.finish()
                 } else {
-                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+                    fragmentSignin.startActivity(Intent(fragmentSignin, Main2Activity::class.java));
                 }
 
                 Log.d("Authenticaiton token", "onSuccess")
