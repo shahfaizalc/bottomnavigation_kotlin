@@ -147,14 +147,14 @@ class EnterFullNameViewModel(private val context: Context, private val fragmentS
     }
 
     @get:Bindable
-    var firstName: String? = ""
+    var firstName: String? = userDetails.firstName
         set(price) {
             field = price
             notifyPropertyChanged(BR.firstName)
         }
 
     @get:Bindable
-    var lastName: String? = ""
+    var lastName: String? =  userDetails.secondName
         set(price) {
             field = price
             notifyPropertyChanged(BR.lastName)

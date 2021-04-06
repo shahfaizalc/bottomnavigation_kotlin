@@ -147,7 +147,7 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
     }
 
     @get:Bindable
-    var userEmail: String? = ""
+    var userEmail: String? = userDetails.emailId
         set(price) {
             field = price
             notifyPropertyChanged(BR.userEmail)

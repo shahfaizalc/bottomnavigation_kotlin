@@ -122,7 +122,7 @@ class BioViewModel(private val context: Context, private val fragmentSignin: Fra
 
 
     @get:Bindable
-    var bio: String? = ""
+    var bio: String? = userDetails.bio
         set(price) {
             field = price
             notifyPropertyChanged(BR.bio)

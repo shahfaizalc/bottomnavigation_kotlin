@@ -100,8 +100,10 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
 
 
 
-        } else {
+        }
+        else {
             userDetails.isDeactivated = true
+
             setUserInfo()
 
         }
@@ -192,9 +194,12 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
 
-                val intent = Intent(fragmentSignin, FragmentDate::class.java)
+                val intent = Intent(fragmentSignin, LaunchActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 fragmentSignin.startActivity(intent)
+                FirebaseAuth.getInstance().signOut();
+
+
 
 
                 Log.d(TAG, "onSuccess")

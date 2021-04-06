@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.google.firebase.FirebaseException
@@ -24,6 +25,7 @@ import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.UseInfoGeneralResultListener
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
+import com.reelme.app.util.notNull
 import com.reelme.app.view.*
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -172,7 +174,50 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
                         auth = Firebase.auth
 
-                        setUserInfo(getPhoneNumber()!!)
+
+
+                        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+                        val coronaJson = sharedPreference.getString("USER_INFO", "");
+                        isEdit = sharedPreference.getBoolean("IS_EDIT", false)
+
+                        try {
+                            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
+                           // Log.d("Authentication token", auth?.emailId)
+                            userDetails = (auth as UserModel)
+                            if(userDetails==null){
+                                setUserInfo(getPhoneNumber()!!)
+
+                            } else if(userDetails.isDeactivated!!){
+                                val builder = AlertDialog.Builder(fragmentSignin)
+                                //set title for alert dialog
+                                builder.setTitle("Deactivated")
+                                //set message for alert dialog
+                                builder.setMessage("Your account is deactivated. Click \'yes\'to activate it again")
+
+                                //performing positive action
+                                builder.setPositiveButton("Yes"){dialogInterface, which ->
+                                    setUserInfo(getPhoneNumber()!!)
+                                }
+                                //performing cancel action
+                                builder.setNeutralButton("Cancel"){dialogInterface , which ->
+                                    Toast.makeText(fragmentSignin.applicationContext,"clicked cancel\n operation cancel",Toast.LENGTH_LONG).show()
+                                }
+
+
+                                // Create the AlertDialog
+                                val alertDialog: AlertDialog = builder.create()
+                                // Set other dialog properties
+                                alertDialog.setCancelable(false)
+                                alertDialog.show()
+                            } else{
+                                setUserInfo(getPhoneNumber()!!)
+                            }
+                        } catch (e: java.lang.Exception) {
+                            Log.d("Authenticaiton token", "Exception")
+                            setUserInfo(getPhoneNumber()!!)
+
+                        }
+
 
                     } else {
                         // Sign in failed, display a message and update the UI
@@ -218,6 +263,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
         val userModel = UserModel()
         userModel.phoneNumber = phoneNumber
+        userModel.isDeactivated = false
 
         val gsonValue = Gson().toJson(userModel)
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
@@ -236,6 +282,24 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
             }
         })
 
+    }
+
+
+    lateinit var userDetails : UserModel
+    private  var isEdit = false;
+
+    private fun getUserInfo() {
+        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        val coronaJson = sharedPreference.getString("USER_INFO", "");
+        isEdit = sharedPreference.getBoolean("IS_EDIT", false)
+
+        try {
+            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
+            Log.d("Authentication token", auth.emailId)
+            userDetails = (auth as UserModel)
+        } catch (e: java.lang.Exception) {
+            Log.d("Authenticaiton token", "Exception")
+        }
     }
 
 

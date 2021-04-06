@@ -130,7 +130,7 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
 
 
     @get:Bindable
-    var userName: String? = ""
+    var userName: String? = userDetails.username
         set(price) {
             field = price
             notifyPropertyChanged(BR.userName)
