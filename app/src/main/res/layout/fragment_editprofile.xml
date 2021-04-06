@@ -428,6 +428,7 @@
                     android:layout_marginLeft="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_16"
                     android:layout_marginRight="@dimen/dimen_16"
+                    android:layout_marginBottom="@dimen/dimen_28"
                     android:background="@drawable/button_black"
                     android:onClick="@{() -> homeData.signUpUserClicked()}"
                     android:paddingStart="@dimen/dimen_28"

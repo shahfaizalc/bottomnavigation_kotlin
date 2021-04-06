@@ -112,10 +112,11 @@
                     android:paddingTop="@dimen/dimen_12"
                     android:paddingEnd="@dimen/dimen_28"
                     android:paddingBottom="@dimen/dimen_12"
-                    android:text="Continue to acccount deactivation"
+                    android:text="Continue to deactivation"
                     android:textColor="@color/smoke2" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
