@@ -31,6 +31,7 @@ class GenderActivity : AppCompatActivity() {
     private var binding: FlightLayoutBinding? = null
 
     private var isEdit = false;
+    private var selectedPosition = -1;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,8 @@ class GenderActivity : AppCompatActivity() {
         binding!!.flightsRv.layoutManager = LinearLayoutManager(this)
         binding!!.flightsRv.addItemDecoration(
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        adapter = FlightsRecyclerViewAdapter(prepareData()!!, this)
+        getUserInfo()
+        adapter = FlightsRecyclerViewAdapter(prepareData()!!, this,selectedPosition)
         binding!!.flightsRv.adapter = adapter
         binding!!.nextBtn.setOnClickListener {
 
@@ -58,7 +60,6 @@ class GenderActivity : AppCompatActivity() {
 
 
 
-        getUserInfo()
     }
 
 
@@ -81,6 +82,21 @@ class GenderActivity : AppCompatActivity() {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+            if (isEdit) {
+                if (!userDetails.gender.isNullOrEmpty()) {
+                    val items = prepareData();
+
+                    for ((index, value) in items!!.withIndex()) {
+                        if (value.gender.equals(userDetails.gender)) {
+                            selectedPosition = index
+                        }
+                    }
+
+                } else {
+                    selectedPosition = -1
+
+                }
+            }
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }

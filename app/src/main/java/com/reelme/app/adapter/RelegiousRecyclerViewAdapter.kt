@@ -14,10 +14,10 @@ import com.reelme.app.model.Flight
 import com.reelme.app.pojos.ReligiousBelief
 
 
-class RelegiousRecyclerViewAdapter(flsLst: List<ReligiousBelief>, ctx: Context) : RecyclerView.Adapter<RelegiousRecyclerViewAdapter.ViewHolder>(), RelegiousEventListener {
+class RelegiousRecyclerViewAdapter(flsLst: List<ReligiousBelief>, ctx: Context, i: Int) : RecyclerView.Adapter<RelegiousRecyclerViewAdapter.ViewHolder>(), RelegiousEventListener {
     private val flightsList: List<ReligiousBelief>
     private val context: Context
-    var selectedPosition=-1;
+    var selectedPosition=i;
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ViewHolder {
         val binding: RelegiousItemLayoutBinding = DataBindingUtil.inflate(

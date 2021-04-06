@@ -14,10 +14,10 @@ import com.reelme.app.listeners.FlightsEventListener
 import com.reelme.app.pojos.Gender
 
 
-class FlightsRecyclerViewAdapter(flsLst: List<Gender>, ctx: Context) : RecyclerView.Adapter<FlightsRecyclerViewAdapter.ViewHolder>(), FlightsEventListener {
+class FlightsRecyclerViewAdapter(flsLst: List<Gender>, ctx: Context, i: Int) : RecyclerView.Adapter<FlightsRecyclerViewAdapter.ViewHolder>(), FlightsEventListener {
     private val flightsList: List<Gender> = flsLst
     private val context: Context = ctx
-    var selectedPosition = -1;
+    var selectedPosition = i;
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ViewHolder {
         val binding: FlightItemLayoutBinding = DataBindingUtil.inflate(

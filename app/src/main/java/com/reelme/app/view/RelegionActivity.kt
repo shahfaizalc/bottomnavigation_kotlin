@@ -27,13 +27,16 @@ class RelegionActivity : AppCompatActivity() {
     lateinit var activity  : Activity
     private var adapter: RelegiousRecyclerViewAdapter? = null
     private var binding: RelegiousLayoutBinding? = null
+    private var selectedPosition = -1;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.relegious_layout)
         binding!!.flightsRv.layoutManager = LinearLayoutManager(this)
         binding!!.flightsRv.addItemDecoration(
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        adapter = RelegiousRecyclerViewAdapter(prepareData(), this)
+        getUserInfo()
+        adapter = RelegiousRecyclerViewAdapter(prepareData(), this,selectedPosition)
         binding!!.flightsRv.adapter = adapter
         activity = this
 
@@ -49,7 +52,6 @@ class RelegionActivity : AppCompatActivity() {
             setUserInfo()
         }
 
-        getUserInfo()
 
     }
 
@@ -72,6 +74,21 @@ class RelegionActivity : AppCompatActivity() {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+            if (isEdit) {
+                if (!userDetails.religiousBeliefs.isNullOrEmpty()) {
+                    val items = prepareData();
+
+                    for ((index, value) in items.withIndex()) {
+                        if (value.religious.equals(userDetails.religiousBeliefs)) {
+                            selectedPosition = index
+                        }
+                    }
+
+                } else {
+                    selectedPosition = -1
+
+                }
+            }
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }

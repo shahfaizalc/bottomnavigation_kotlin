@@ -14,10 +14,10 @@ import com.reelme.app.model.Flight
 import com.reelme.app.pojos.Child
 
 
-class ChildrenRecyclerViewAdapter(flsLst: List<Child>, ctx: Context) : RecyclerView.Adapter<ChildrenRecyclerViewAdapter.ViewHolder>(), ChildrenEventListener {
+class ChildrenRecyclerViewAdapter(flsLst: List<Child>, ctx: Context, i: Int) : RecyclerView.Adapter<ChildrenRecyclerViewAdapter.ViewHolder>(), ChildrenEventListener {
     private val flightsList: List<Child>
     private val context: Context
-    var selectedPosition=-1;
+    var selectedPosition=i;
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ViewHolder {
         val binding: ChildrenItemLayoutBinding = DataBindingUtil.inflate(
