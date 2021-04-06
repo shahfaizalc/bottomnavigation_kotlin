@@ -5,19 +5,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.reelme.app.databinding.RelationshipItemLayoutBinding
 import com.reelme.app.listeners.RelationshipEventListener
-import com.reelme.app.model.Flight
 import com.reelme.app.pojos.RelationshipStatus
 
 
-class RelationshipRecyclerViewAdapter(flsLst: List<RelationshipStatus>, ctx: Context) : RecyclerView.Adapter<RelationshipRecyclerViewAdapter.ViewHolder>(), RelationshipEventListener {
-    private val flightsList: List<RelationshipStatus>
-    private val context: Context
-    var selectedPosition=-1;
+class RelationshipRecyclerViewAdapter(flsLst: List<RelationshipStatus>, ctx: Context, i: Int) : RecyclerView.Adapter<RelationshipRecyclerViewAdapter.ViewHolder>(), RelationshipEventListener {
+    private val flightsList: List<RelationshipStatus> = flsLst
+    private val context: Context = ctx
+    var selectedPosition=i;
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ViewHolder {
         val binding: RelationshipItemLayoutBinding = DataBindingUtil.inflate(
@@ -40,19 +38,10 @@ class RelationshipRecyclerViewAdapter(flsLst: List<RelationshipStatus>, ctx: Con
         return flightsList.size
     }
 
-    inner class ViewHolder(flightItemLayoutBinding: RelationshipItemLayoutBinding) : RecyclerView.ViewHolder(flightItemLayoutBinding.getRoot()) {
-        var flightItemBinding: RelationshipItemLayoutBinding
+    inner class ViewHolder(flightItemLayoutBinding: RelationshipItemLayoutBinding) : RecyclerView.ViewHolder(flightItemLayoutBinding.root) {
+        var flightItemBinding: RelationshipItemLayoutBinding = flightItemLayoutBinding
 
-        init {
-            flightItemBinding = flightItemLayoutBinding
-        }
     }
-
-    init {
-        flightsList = flsLst
-        context = ctx
-    }
-
 
 
     override fun bookFlight(f: RelationshipStatus, view: View?, itemPosition: Int) {
@@ -64,4 +53,7 @@ class RelationshipRecyclerViewAdapter(flsLst: List<RelationshipStatus>, ctx: Con
 
     fun getSelectedItem() = selectedPosition
 
+    fun setSelectedItem(stackTraceElement: Int){
+        selectedPosition = stackTraceElement
+    }
 }

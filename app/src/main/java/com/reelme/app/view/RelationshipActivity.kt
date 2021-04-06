@@ -21,13 +21,13 @@ import com.reelme.app.pojos.RelationshipStatus
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
-import java.util.*
 
 class RelationshipActivity : AppCompatActivity() {
 
     lateinit var activity : Activity
     private var adapter: RelationshipRecyclerViewAdapter? = null
     private var binding: RelationshipLayoutBinding? = null
+    private var selectedPosition = -1;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity = this
@@ -35,7 +35,8 @@ class RelationshipActivity : AppCompatActivity() {
         binding!!.flightsRv.layoutManager = LinearLayoutManager(this)
         binding!!.flightsRv.addItemDecoration(
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        adapter = RelationshipRecyclerViewAdapter(prepareData(), this)
+        getUserInfo()
+        adapter = RelationshipRecyclerViewAdapter(prepareData(), this,selectedPosition)
         binding!!.flightsRv.adapter = adapter
         binding!!.nextBtn.setOnClickListener {
             if(adapter!!.getSelectedItem()>=0) {
@@ -49,7 +50,6 @@ class RelationshipActivity : AppCompatActivity() {
             setUserInfo()
         }
 
-        getUserInfo()
     }
 
     private fun prepareData(): List<RelationshipStatus> {
@@ -72,6 +72,21 @@ class RelationshipActivity : AppCompatActivity() {
             Log.d("Authentication token", auth.emailId)
 
             userDetails = (auth as UserModel)
+            if (isEdit) {
+                if (!userDetails.relationshipStatus.isNullOrEmpty()) {
+                    val items = prepareData();
+
+                    for ((index, value) in items.withIndex()) {
+                        if (value.relationship.equals(userDetails.relationshipStatus)) {
+                            selectedPosition = index
+                        }
+                    }
+
+                } else {
+                    selectedPosition = -1
+
+                }
+            }
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }
