@@ -12,7 +12,7 @@
     <dimen name="dimen_36">36dp</dimen>
     <dimen name="dimen_48">48dp</dimen>
     <dimen name="dimen_100">100dp</dimen>
-    <integer name="gallery_columns">3</integer>
+    <integer name="gallery_columns">1</integer>
     <dimen name="dimen_80dp">80dp</dimen>
 
 </resources>

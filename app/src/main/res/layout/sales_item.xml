@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:visibility="gone"
                     android:minWidth="200dp"
                     android:minHeight="200dp"
                     android:layout_width="match_parent"
@@ -64,6 +65,14 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.reelme.app.util.ImageViewRounded
+                    app:imageUrl="@{postData.photo}"
+                    android:layout_width="@dimen/dimen_48"
+                    android:layout_height="@dimen/dimen_48"
+                    android:layout_gravity="top|start"
+                    android:scaleType="fitXY" />
+
 
                 <ImageView
                     android:visibility="@{saleState}"

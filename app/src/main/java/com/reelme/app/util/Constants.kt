@@ -9,6 +9,10 @@ object Constants {
     //List of fragments to add on TABS in order
     val SALE_FRAGMENTS = arrayOf(SaleMenFragment(), SaleAllFragment(), SaleWomenFragment())
 
+
+    val FOLLOW_FRAGMENTS = arrayOf(SaleMenFragment(), SaleAllFragment())
+
+
     //key
     val SOLDOUT = "sold_out"
 

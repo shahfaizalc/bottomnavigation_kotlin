@@ -13,6 +13,13 @@
         <item name="app_women">Drafts</item>
         <item name="app_all">Bookmarked</item>
     </array>
+
+
+    <array name="tabs_follow">
+        <item name="tab_men">Followers</item>
+        <item name="app_women">Following</item>
+    </array>
+
     <string-array name="tab_challange">
         <item>access to care ultra sound</item>
         <item>Setup Customer Service Communities</item>
