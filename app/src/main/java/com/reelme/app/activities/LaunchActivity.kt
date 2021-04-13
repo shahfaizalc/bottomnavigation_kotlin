@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.reelme.app.view.FragmentSplash
 import com.reelme.app.view.FragmentVerification
 import com.reelme.app.view.FragmentWelcome
 
@@ -24,7 +25,7 @@ public class LaunchActivity : AppCompatActivity() {
 //            }
 //        } else {
             finish()
-            startActivity(Intent(this, FragmentWelcome::class.java))
+            startActivity(Intent(this, FragmentSplash::class.java))
        // }
     }
 }

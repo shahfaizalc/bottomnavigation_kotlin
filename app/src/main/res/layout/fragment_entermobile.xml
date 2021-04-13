@@ -65,6 +65,7 @@
                 android:paddingEnd="@dimen/dimen_16">
 
                 <EditText
+                    android:background="@android:color/transparent"
                     android:cursorVisible="false"
                     android:id="@+id/phonenumberEntery"
                     android:layout_width="wrap_content"

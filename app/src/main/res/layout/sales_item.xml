@@ -30,121 +30,64 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/dimen_4"
+        app:cardBackgroundColor="@color/black"
         card_view:cardCornerRadius="4dp">
 
         <LinearLayout
+            android:weightSum="10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <FrameLayout
-                android:id="@+id/framelayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:visibility="gone"
-                    android:minWidth="200dp"
-                    android:minHeight="200dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/prg_registerScreen_product_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_marginEnd="0dp"
-                        android:minWidth="200dp"
-                        android:minHeight="200dp"
-                        android:scaleType="fitXY"
-                        app:imageUrl="@{postData.photo}"
-                        app:layout_constraintDimensionRatio="H,1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <com.reelme.app.util.ImageViewRounded
-                    app:imageUrl="@{postData.photo}"
-                    android:layout_width="@dimen/dimen_48"
-                    android:layout_height="@dimen/dimen_48"
-                    android:layout_gravity="top|start"
-                    android:scaleType="fitXY" />
+            <com.reelme.app.util.ImageViewRounded
+                android:layout_weight="1"
+                app:imageUrl="@{postData.photo}"
+                android:layout_width="@dimen/dimen_48"
+                android:layout_height="@dimen/dimen_48"
+                android:layout_gravity="top|start"
+                android:scaleType="fitXY" />
 
 
-                <ImageView
-                    android:visibility="@{saleState}"
-                    android:layout_width="@dimen/dimen_80dp"
-                    android:layout_height="@dimen/dimen_80dp"
-                    android:layout_gravity="top|start"
-                    android:scaleType="fitXY" />
-
-                <TextView
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|start"
-                    android:layout_margin="@dimen/dimen_8"
-                    android:scaleType="fitXY"
-                    android:text="@{postData.name}"
-                    android:textColor="@color/colorWhite" />
-            </FrameLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_weight="5"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_4"
-                android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/likesImg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"
-                    android:src="@drawable/like" />
+                android:layout_margin="@dimen/dimen_8"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/likesText"
+                    android:textColor="@color/smoke2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/likesImg"
-                    android:text="@{Integer.toString(postData.num_likes)}"
+                    android:text="johnwick"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:visibility="gone"
-                    android:id="@+id/saleImg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/likesText"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"
-                    android:src="@drawable/comment" />
-
                 <TextView
-                    android:visibility="gone"
+                    android:textColor="@color/smoke2"
+                    android:id="@+id/likesText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/saleImg"
-                    android:text="@{Integer.toString(postData.num_comments)}" />
+                    android:text="taylor"
+                    android:textSize="@dimen/dimen_16"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-                <TextView
-                    android:visibility="gone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:text="@{`$ ` +Integer.toString(postData.price)}"
-                    android:textStyle="bold"
-                    tools:background="@color/colorPrimary" />
-            </RelativeLayout>
+            <androidx.appcompat.widget.AppCompatButton
+              android:layout_weight="4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dimen_16"
+                android:background="@drawable/button_black"
+                android:paddingTop="@dimen/dimen_4"
+                android:paddingBottom="@dimen/dimen_4"
+                android:text="Following"
+                android:textColor="@color/smoke2" />
+
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

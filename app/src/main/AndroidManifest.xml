@@ -167,6 +167,11 @@
             android:name="com.reelme.app.view.FragmentHobbies"
             android:windowSoftInputMode="adjustPan" />
 
+        <activity
+            android:screenOrientation= "sensorPortrait"
+            android:name="com.reelme.app.view.FragmentSplash"
+            android:windowSoftInputMode="adjustPan" />
+
 
         <activity
             android:screenOrientation= "sensorPortrait"
