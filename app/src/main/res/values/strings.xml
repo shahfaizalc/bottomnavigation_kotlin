@@ -73,8 +73,8 @@
     <string name="home_genderSubTitle2">This will help ReelMe provide you with better connections and a content. Other user will not see this information but it can be used to filter the content you see.</string>
 
 
-    <string name="home_religiousTitle">Religious beliefs</string>
-    <string name="home_relationshipTitle">Relationship\nstatus</string>
+    <string name="home_religiousTitle">Religious Beliefs?</string>
+    <string name="home_relationshipTitle">Relationship\nStatus?</string>
     <string name="home_childrenTitle">Do you have\nchildren?</string>
     <string name="home_occupationTitle">What is your\nOccupation?</string>
 
@@ -85,7 +85,7 @@
     <string name="home_userSubTitle3">www.reelme.com/username</string>
 
 
-    <string name="home_hobbiesTitle">Hobbies &amp; Interests</string>
+    <string name="home_hobbiesTitle">Hobbies &amp;\nInterests?</string>
     <string name="home_hobbiesSubTitle">Hobbies &amp; Interests</string>
 
 
