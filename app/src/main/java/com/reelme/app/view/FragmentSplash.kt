@@ -1,24 +1,18 @@
 package com.reelme.app.view
 
-import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
-import com.google.i18n.phonenumbers.NumberParseException
-import com.google.i18n.phonenumbers.PhoneNumberUtil
-import com.google.i18n.phonenumbers.Phonemetadata
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentSplashBinding
-import com.reelme.app.databinding.FragmentWelcomeBinding
 import com.reelme.app.viewmodel.SplashViewModel
-import com.reelme.app.viewmodel.WelcomeViewModel
+import java.security.AccessController.getContext
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class FragmentSplash : AppCompatActivity() {
@@ -34,7 +28,14 @@ class FragmentSplash : AppCompatActivity() {
         binding.homeData = areaViewModel
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, FragmentWelcome::class.java))
+
+            val intent = Intent(this, FragmentWelcome::class.java);
+
+            val bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle()
+            startActivity(intent, bundle)
+
+//            startActivity(intent, bundle)
             finish()
         }, 2000)
     }

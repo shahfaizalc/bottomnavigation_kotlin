@@ -2,7 +2,9 @@ package com.reelme.app.view
 
 import android.app.Activity
 import android.os.Bundle
+import android.transition.Explode
 import android.util.Log
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.i18n.phonenumbers.NumberParseException
@@ -22,6 +24,7 @@ class FragmentWelcome : AppCompatActivity() {
     lateinit internal var areaViewModel: WelcomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
         val binding : FragmentWelcomeBinding = DataBindingUtil.setContentView(this, R.layout.fragment_welcome)

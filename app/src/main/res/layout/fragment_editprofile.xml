@@ -378,8 +378,8 @@
                     android:background="@android:color/transparent"
                     android:drawableStart="@drawable/ic_url_icon"
                     android:drawablePadding="@dimen/dimen_8"
-                    android:text="Instagram"
-                    android:textColor="@color/white"
+                    android:hint="instagram"
+                    android:textColorHint="@color/smoke2"                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -396,7 +396,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:text="Instagram"
+                    android:text="Youtube"
                     android:textColor="@color/colorBlacklight"
                     android:textStyle="bold" />
 
@@ -407,7 +407,8 @@
                     android:background="@android:color/transparent"
                     android:drawableStart="@drawable/ic_url_icon"
                     android:drawablePadding="@dimen/dimen_8"
-                    android:text="Instagram"
+                    android:hint="youtube"
+                    android:textColorHint="@color/smoke2"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
