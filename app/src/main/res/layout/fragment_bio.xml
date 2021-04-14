@@ -52,6 +52,7 @@
             android:text="@={homeData.bio}"
             android:textSize="@dimen/dimen_16"
             android:padding="@dimen/dimen_16"
+             android:maxLength="80"
             android:textColorHint="@color/colorBlacklight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
