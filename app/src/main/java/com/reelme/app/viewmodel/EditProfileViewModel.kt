@@ -99,6 +99,31 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
     }
 
+    fun signInUserEmailClicked() {
+        // fragmentSignin.finish()
+//
+//       if( isValidName(firstName!!) && isValidName(lastName!!)){
+//           setUserInfo()
+//       }
+
+        setEditShare()
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentEmailAddress::class.java),2);
+
+    }
+
+    fun signInUserNameClicked() {
+        // fragmentSignin.finish()
+//
+//       if( isValidName(firstName!!) && isValidName(lastName!!)){
+//           setUserInfo()
+//       }
+
+        setEditShare()
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentUserName::class.java),2);
+
+    }
+
+
     fun signUpUserClicked() {
       //  fragmentSignin.finish()
        // if( isValidName(firstName!!) && isValidName(lastName!!)){

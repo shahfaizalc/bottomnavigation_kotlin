@@ -32,7 +32,8 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
       //  fragmentSignin.finish()
         userDetails.skipReferalCode = false;
         userDetails.referalCode=firstName
-        setUserInfo()    }
+        setUserInfo()
+    }
 
 
     fun signUpUserClicked() {
@@ -94,15 +95,15 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
                 }
 
                 Log.d("Authenticaiton token", "onSuccess")
-                Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+             //   Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
             }
 
             override fun onFailure(e: Exception) {
              //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
                 progressBarVisible = View.INVISIBLE
-                Log.d("Authenticaiton token", "Exception"+e)
-                Toast.makeText(context, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+                Log.d("Authenticaiton token", "Exception$e")
+                Toast.makeText(context, "Failed to update your profile.. please try again later", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
             }
         })

@@ -133,7 +133,16 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
     var userName: String? = userDetails.username
         set(price) {
             field = price
+            userNameLength = (price!!.length.toString())+"/30"
+
             notifyPropertyChanged(BR.userName)
+        }
+
+    @get:Bindable
+    var userNameLength: String? = (userName!!.length.toString())+"/30"
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.userNameLength)
         }
 //
 //   fun nameValidatee(){

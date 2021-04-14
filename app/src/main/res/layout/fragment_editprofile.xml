@@ -64,7 +64,7 @@
                     android:orientation="horizontal">
 
                     <com.reelme.app.util.ImageViewRounded
-                        android:background="@drawable/layer_profile_outline"
+                        android:background="@drawable/ic_layer_2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -196,7 +196,7 @@
                     android:textColor="@color/colorBlacklight"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
@@ -204,6 +204,7 @@
                     android:text="@={homeData.usernameTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
+                    android:onClick="@{() -> homeData.signInUserNameClicked()}"
                     android:textStyle="bold" />
 
                 <View
@@ -267,7 +268,8 @@
                     android:textColor="@color/colorBlacklight"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
+                    android:onClick="@{() -> homeData.signInUserEmailClicked()}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
