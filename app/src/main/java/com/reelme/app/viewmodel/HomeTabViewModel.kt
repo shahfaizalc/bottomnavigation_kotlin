@@ -97,7 +97,7 @@ class HomeTabViewModel(private val fragmentSignin: FragmentHomeTab) : BaseObserv
         }
 
     @get:Bindable
-    var firstName: String? = userDetails.firstName
+    var firstName: String? = userDetails.username
         set(price) {
             field = price
             notifyPropertyChanged(BR.firstName)
