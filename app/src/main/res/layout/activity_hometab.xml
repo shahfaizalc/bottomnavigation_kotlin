@@ -60,6 +60,7 @@
                                 android:layout_marginEnd="@dimen/dimen_16"
                                 android:layout_toStartOf="@+id/divider3"
                                 android:text="233k\nFollowers"
+                                android:textStyle="bold"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/dimen_16" />
 
@@ -94,6 +95,7 @@
                                 android:layout_gravity="center_vertical|end"
                                 android:layout_marginStart="@dimen/dimen_16"
                                 android:layout_toEndOf="@+id/divider3"
+                                android:textStyle="bold"
                                 android:text="233k\nFollowing"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/dimen_16" />
