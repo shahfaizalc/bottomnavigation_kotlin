@@ -83,6 +83,7 @@ class GenderActivity : AppCompatActivity() {
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
             if (isEdit) {
+                binding!!.skipBtn.visibility = View.GONE
                 if (!userDetails.gender.isNullOrEmpty()) {
                     val items = prepareData();
 

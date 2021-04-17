@@ -133,6 +133,10 @@ class FragmentUploadView : AppCompatActivity() {
         val coronaJson = sharedPreference.getString("USER_INFO", "");
         isEdit = sharedPreference.getBoolean("IS_EDIT",false)
 
+        if(isEdit){
+            binding.skipBtnUpload.visibility = View.GONE
+        }
+
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)

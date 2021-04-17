@@ -94,13 +94,29 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
         return occupationList;
     }
 
+
+
     lateinit var userDetails : UserModel
     private  var isEdit = false;
+
+
+    @get:Bindable
+    var skipVisibility: Int? =  if (isEdit) View.GONE else  View.VISIBLE
+
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.skipVisibility)
+        }
+
 
     private fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
         isEdit = sharedPreference.getBoolean("IS_EDIT",false)
+
+        if(isEdit){
+            skipVisibility = View.GONE
+        }
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)

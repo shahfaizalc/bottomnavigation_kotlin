@@ -74,6 +74,7 @@ class ChildrenActivity : AppCompatActivity() {
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
             if (isEdit) {
+                binding!!.skipBtn.visibility = View.GONE
                 if (!userDetails.children.isNullOrEmpty()) {
                     val items = prepareData();
 

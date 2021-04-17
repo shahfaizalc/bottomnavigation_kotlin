@@ -4,9 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
 import com.google.gson.Gson
+import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.activities.Main2Activity
 import com.reelme.app.handler.NetworkChangeHandler
@@ -94,10 +97,23 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
     lateinit var userDetails : UserModel
     private  var isEdit = false;
 
+    @get:Bindable
+    var skipVisibility: Int? =  if (isEdit) View.GONE else  View.VISIBLE
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.skipVisibility)
+        }
+
+
+
     private fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
         isEdit = sharedPreference.getBoolean("IS_EDIT", false)
+
+        if(isEdit){
+            skipVisibility = View.GONE
+        }
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)

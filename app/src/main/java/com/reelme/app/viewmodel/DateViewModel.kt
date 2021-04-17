@@ -81,6 +81,7 @@ class DateViewModel(private val context: Context, private val fragmentSignin: Fr
         val coronaJson = sharedPreference.getString("USER_INFO", "");
         isEdit = sharedPreference.getBoolean("IS_EDIT",false)
 
+
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)

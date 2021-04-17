@@ -62,6 +62,14 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
     }
 
 
+    @get:Bindable
+    var skipVisibility: Int? = View.VISIBLE
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.skipVisibility)
+        }
+
+
     fun onSkipButtonClicked() {
         // fragmentSignin.finish()
         userDetails.skipUsername = true
@@ -75,6 +83,10 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
         isEdit = sharedPreference.getBoolean("IS_EDIT",false)
+
+        if(isEdit){
+            skipVisibility = View.GONE
+        }
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
@@ -100,6 +112,7 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
         FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
+
                 if(isEdit){
                     fragmentSignin.setResult(2, Intent())
                     fragmentSignin.finish()

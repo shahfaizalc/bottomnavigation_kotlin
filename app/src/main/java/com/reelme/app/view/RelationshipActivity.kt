@@ -73,6 +73,7 @@ class RelationshipActivity : AppCompatActivity() {
 
             userDetails = (auth as UserModel)
             if (isEdit) {
+                binding!!.skipBtn.visibility = View.GONE
                 if (!userDetails.relationshipStatus.isNullOrEmpty()) {
                     val items = prepareData();
 

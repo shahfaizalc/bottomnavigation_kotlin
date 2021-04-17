@@ -75,6 +75,7 @@ class RelegionActivity : AppCompatActivity() {
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
             if (isEdit) {
+                binding!!.skipBtn.visibility = View.GONE
                 if (!userDetails.religiousBeliefs.isNullOrEmpty()) {
                     val items = prepareData();
 
