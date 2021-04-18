@@ -98,6 +98,7 @@
 
 
             <TextView
+                android:visibility="@{yearList.skipVisible}"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/skipBtnUpload"
                 android:layout_width="match_parent"

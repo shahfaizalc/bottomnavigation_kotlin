@@ -26,6 +26,7 @@ class UploadListModel(internal var context: Context,
 
     private var openChooserLiveData = MutableLiveData<Boolean>()
     private var skipLiveData = MutableLiveData<Boolean>()
+    private var isEdit = View.VISIBLE;
 
 
     init {
@@ -50,6 +51,17 @@ class UploadListModel(internal var context: Context,
             field = msg
             notifyPropertyChanged(BR.msgView)
         }
+
+
+
+    @get:Bindable
+    var skipVisible = isEdit
+        set(progressBarVisible) {
+            field = progressBarVisible
+            notifyPropertyChanged(BR.skipVisible)
+        }
+
+
 
     @get:Bindable
     var progressBarVisible = View.INVISIBLE

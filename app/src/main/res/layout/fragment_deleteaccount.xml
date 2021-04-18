@@ -119,7 +119,7 @@
                     android:paddingTop="@dimen/dimen_12"
                     android:paddingEnd="@dimen/dimen_28"
                     android:paddingBottom="@dimen/dimen_12"
-                    android:text="Continue to deactivation"
+                    android:text="Continue -->"
                     android:textColor="@color/smoke2" />
 
                 <androidx.appcompat.widget.AppCompatButton

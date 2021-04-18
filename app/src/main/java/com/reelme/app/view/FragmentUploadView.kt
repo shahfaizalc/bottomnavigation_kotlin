@@ -36,7 +36,7 @@ class FragmentUploadView : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: FragmentUpoadBinding = DataBindingUtil.setContentView(this, R.layout.fragment_upoad)
+        binding = DataBindingUtil.setContentView(this, R.layout.fragment_upoad)
         areaViewModel = UploadListModel(this, this)
         binding.yearList = areaViewModel
         activity = this
@@ -134,7 +134,8 @@ class FragmentUploadView : AppCompatActivity() {
         isEdit = sharedPreference.getBoolean("IS_EDIT",false)
 
         if(isEdit){
-            binding.skipBtnUpload.visibility = View.GONE
+            binding.yearList?.skipVisible = View.GONE
+          //  binding.skipBtnUpload.visibility = View.GONE
         }
 
         try {

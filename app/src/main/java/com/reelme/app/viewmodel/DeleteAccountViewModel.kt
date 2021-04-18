@@ -90,15 +90,8 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
 
                     }
                     .addOnFailureListener(OnFailureListener { e ->
-                        Log.w(TAG, "Error deleting document", e)
+                        Log.d(TAG, "Error deleting document", e)
                     })
-
-
-
-
-
-
-
 
         }
         else {
@@ -198,8 +191,6 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 fragmentSignin.startActivity(intent)
                 FirebaseAuth.getInstance().signOut();
-
-
 
 
                 Log.d(TAG, "onSuccess")

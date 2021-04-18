@@ -25,5 +25,9 @@ data class UserModel(
         var skipReligiousBeliefs: Boolean? = false,
         var hobbiesAndInterest: String?="",
         var skipHobbiesAndInterest: Boolean? = false,
-        var isDeactivated: Boolean? = false
-)
+        var isDeactivated: Boolean? = false,
+        var country: String? ="",
+        var instagram: String? ="",
+        var youtube: String? ="",
+
+        )

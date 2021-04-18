@@ -196,7 +196,7 @@
                     android:textColor="@color/colorBlacklight"
                     android:textStyle="bold" />
 
-                <TextView
+                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
@@ -204,7 +204,6 @@
                     android:text="@={homeData.usernameTitle}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
-                    android:onClick="@{() -> homeData.signInUserNameClicked()}"
                     android:textStyle="bold" />
 
                 <View
@@ -268,8 +267,7 @@
                     android:textColor="@color/colorBlacklight"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:onClick="@{() -> homeData.signInUserEmailClicked()}"
+                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
@@ -328,7 +326,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:text="hello Emila Clarke"
+                    android:text="India"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
@@ -381,7 +379,9 @@
                     android:drawableStart="@drawable/ic_url_icon"
                     android:drawablePadding="@dimen/dimen_8"
                     android:hint="instagram"
-                    android:textColorHint="@color/smoke2"                    android:textColor="@color/white"
+                    android:text="@={homeData.instagramId}"
+                    android:textColorHint="@color/smoke2"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -410,6 +410,7 @@
                     android:drawableStart="@drawable/ic_url_icon"
                     android:drawablePadding="@dimen/dimen_8"
                     android:hint="youtube"
+                    android:text="@={homeData.youtubeId}"
                     android:textColorHint="@color/smoke2"
                     android:textColor="@color/white"
                     android:textStyle="bold" />

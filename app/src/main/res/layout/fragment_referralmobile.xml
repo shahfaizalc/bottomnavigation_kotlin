@@ -52,6 +52,7 @@
             <EditText
                 android:textSize="@dimen/dimen_36"
                 android:padding="@dimen/dimen_16"
+                android:maxLength="6"
                 android:textColor="@color/white"
                 android:textColorHint="@color/colorBlacklight"
                 android:layout_width="wrap_content"

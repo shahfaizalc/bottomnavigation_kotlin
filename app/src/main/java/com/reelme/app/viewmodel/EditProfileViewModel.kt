@@ -61,8 +61,8 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
        if( Validator().validate(nameTitle, EnumValidator.NAME_PATTERN) && Validator().validate(usernameTitle, EnumValidator.USER_NAME_PATTERN)
                && Validator().validate(emailTitle, EnumValidator.EMAIL_PATTERN) ){
-        //   setUserInfo()
-           fragmentSignin.finish()
+           setUserInfo()
+          // fragmentSignin.finish()
        } else{
            Toast.makeText(context, "Kindly check email, username and name", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
@@ -182,8 +182,10 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
         progressBarVisible = View.VISIBLE
 
         userDetails.firstName = nameTitle
-        userDetails.username = usernameTitleId
+        userDetails.username = usernameTitle
         userDetails.emailId = emailTitle
+        userDetails.instagram = instagramId
+        userDetails.youtube = youtubeId
 
 
         val gsonValue = Gson().toJson(userDetails)
@@ -281,6 +283,19 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
             notifyPropertyChanged(BR.usernameTitleId)
         }
 
+    @get:Bindable
+    var instagramId: String? = userDetails.instagram
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.instagramId)
+        }
+
+    @get:Bindable
+    var youtubeId: String? = userDetails.youtube
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.youtubeId)
+        }
 
     @get:Bindable
     var emailTitle: String? = userDetails.emailId
