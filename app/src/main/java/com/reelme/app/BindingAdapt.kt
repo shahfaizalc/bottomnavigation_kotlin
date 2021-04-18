@@ -24,6 +24,8 @@ import com.reelme.app.viewmodel.*
 import com.squareup.picasso.Picasso
 
 
+
+
 @BindingAdapter( "app:searchAdapter", "app:searchRecycler")
 fun adapter(searchView: SearchView ,countriesViewModel: GoalModel,recyclerView: RecyclerView) {
 

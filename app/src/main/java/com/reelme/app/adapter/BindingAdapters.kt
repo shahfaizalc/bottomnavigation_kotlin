@@ -4,7 +4,6 @@ package com.reelme.app.adapter
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,8 +12,21 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.reelme.app.R
 import com.reelme.app.viewmodel.SalesViewModel
-import com.squareup.picasso.Picasso
 
+
+@BindingAdapter("data")
+fun <T> setRecyclerViewProperties(recyclerView: RecyclerView, items: List<T>) {
+    if (recyclerView.adapter is BindableAdapter<*>) {
+        (recyclerView.adapter as BindableAdapter<T>).setData(items)
+    }
+}
+
+@BindingAdapter("changedPositions")
+fun <T> setDataChanged(recyclerView: RecyclerView, positions: Set<Int>) {
+    if (recyclerView.adapter is BindableAdapter<*>) {
+        (recyclerView.adapter as BindableAdapter<T>).changedPositions(positions)
+    }
+}
 
 /**
  * To setup view pager

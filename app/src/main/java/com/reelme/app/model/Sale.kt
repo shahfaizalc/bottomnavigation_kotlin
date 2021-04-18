@@ -6,14 +6,14 @@ class Sale {
 
     var price: Int = 0
 
-    var name: String? = null
+    var name: String? = "test"
 
-    var photo: String? = null
+    var photo: String? = "kdkfasd"
 
-    var id: String? = null
+    var id: String? = "dfas"
 
     var num_likes: Int = 0
 
-    var status: String? = null
+    var status: String? = "dafsdfa"
 
 }
