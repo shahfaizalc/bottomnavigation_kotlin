@@ -326,7 +326,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:text="India"
+                    android:text="@={homeData.countryid}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />

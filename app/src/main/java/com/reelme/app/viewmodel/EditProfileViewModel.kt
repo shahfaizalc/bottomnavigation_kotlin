@@ -36,9 +36,9 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
     private fun setEditShare(){
 
-        val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
+        val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
-        editor.putBoolean("IS_EDIT",true)
+        editor.putBoolean("IS_EDIT", true)
         editor.apply()
 
     }
@@ -82,7 +82,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 //       }
 
         setEditShare()
-        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentUploadView::class.java),2);
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentUploadView::class.java), 2);
 
     }
 
@@ -95,7 +95,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 //       }
 
         setEditShare()
-        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentBioMobile::class.java),2);
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentBioMobile::class.java), 2);
 
     }
 
@@ -107,7 +107,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 //       }
 
         setEditShare()
-        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentEmailAddress::class.java),2);
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentEmailAddress::class.java), 2);
 
     }
 
@@ -119,7 +119,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 //       }
 
         setEditShare()
-        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentUserName::class.java),2);
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentUserName::class.java), 2);
 
     }
 
@@ -133,7 +133,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
 
 
-    private fun isValidName(name : String): Boolean {
+    private fun isValidName(name: String): Boolean {
 
         val regex = "^\\p{L}+[\\p{L}\\p{Z}\\p{P}]{0,}"
 
@@ -157,7 +157,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
     private fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
-        isEdit = sharedPreference.getBoolean("IS_EDIT",false)
+        isEdit = sharedPreference.getBoolean("IS_EDIT", false)
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
@@ -184,16 +184,17 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
         userDetails.firstName = nameTitle
         userDetails.username = usernameTitle
         userDetails.emailId = emailTitle
-        userDetails.instagram = instagramId
+        userDetails.instagramLink = instagramId
         userDetails.youtube = youtubeId
+        userDetails.countryOrigin = countryid
 
 
         val gsonValue = Gson().toJson(userDetails)
 
-        val sharedPreference =  context.getSharedPreferences("AUTH_INFO",Context.MODE_PRIVATE)
+        val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
-        editor.putString("USER_INFO",gsonValue)
-        editor.putBoolean("IS_EDIT",false)
+        editor.putString("USER_INFO", gsonValue)
+        editor.putBoolean("IS_EDIT", false)
         editor.apply()
 
         Toast.makeText(context, "Please wait... we are saving your data", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
@@ -202,23 +203,24 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
         FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
-               // if(isEdit){
-                 //   fragmentSignin.setResult(2, Intent())
-                    fragmentSignin.finish()
+                // if(isEdit){
+                //   fragmentSignin.setResult(2, Intent())
+                
+                fragmentSignin.finish()
 //                } else{
 //                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
 //                }
 
                 Log.d("Authenticaiton token", "onSuccess")
-                Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+                Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
 
             }
 
             override fun onFailure(e: Exception) {
                 progressBarVisible = View.INVISIBLE
-             //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
-                Log.d("Authenticaiton token", "Exception"+e)
-                Toast.makeText(context, "Failed to save your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+                //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+                Log.d("Authenticaiton token", "Exception" + e)
+                Toast.makeText(context, "Failed to save your profile", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
 
             }
         })
@@ -284,7 +286,15 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
         }
 
     @get:Bindable
-    var instagramId: String? = userDetails.instagram
+    var countryid: String? = userDetails.countryOrigin
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.countryid)
+        }
+
+
+    @get:Bindable
+    var instagramId: String? = userDetails.instagramLink
         set(price) {
             field = price
             notifyPropertyChanged(BR.instagramId)
