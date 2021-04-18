@@ -97,6 +97,16 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
     lateinit var userDetails : UserModel
     private  var isEdit = false;
 
+
+    @get:Bindable
+    var hintTextOccupation = if (userDetails.hobbiesAndInterest.isNullOrEmpty()) "Pick your hobbies & interests" else  userDetails.hobbiesAndInterest
+        set(progressBarVisible) {
+            field = progressBarVisible
+            notifyPropertyChanged(BR.hintTextOccupation)
+        }
+
+
+
     @get:Bindable
     var skipVisibility: Int? =  if (isEdit) View.GONE else  View.VISIBLE
         set(price) {

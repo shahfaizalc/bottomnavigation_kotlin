@@ -101,6 +101,14 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
 
 
     @get:Bindable
+    var hintTextOccupation = if (userDetails.occupation.isNullOrEmpty()) "Pick your Occupation" else  userDetails.occupation
+        set(progressBarVisible) {
+            field = progressBarVisible
+            notifyPropertyChanged(BR.hintTextOccupation)
+        }
+
+
+    @get:Bindable
     var skipVisibility: Int? =  if (isEdit) View.GONE else  View.VISIBLE
 
         set(price) {

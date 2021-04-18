@@ -41,7 +41,7 @@
                 android:layout_margin="@dimen/dimen_16"
                 android:background="@drawable/rounded_edittext"
                 android:drawableEnd="@android:drawable/ic_menu_search"
-                android:hint="@string/pick_your_hobbies_amp_interests"
+                android:hint="@{homeData.hintTextOccupation}"
                 android:inputType="none"
                 android:padding="@dimen/dimen_8"
                 android:textColor="@color/white"
