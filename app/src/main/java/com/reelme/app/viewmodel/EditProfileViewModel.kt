@@ -205,7 +205,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
                 progressBarVisible = View.INVISIBLE
                 // if(isEdit){
                 //   fragmentSignin.setResult(2, Intent())
-                
+
                 fragmentSignin.finish()
 //                } else{
 //                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));

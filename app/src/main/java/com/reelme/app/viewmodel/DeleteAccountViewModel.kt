@@ -2,6 +2,7 @@ package com.reelme.app.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -59,6 +60,10 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
 
             val userUid = user!!.uid
 
+            Toast.makeText(context, "Please wait... Delete user in progress", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+
+
+            Log.d(TAG, "User to be deleted$userUid")
 
             // userDetails = UserModel();
             // setUserInfo()
@@ -76,14 +81,29 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
 
                         }.addOnCompleteListener { task ->
                             if (task.isSuccessful) {
+                                Toast.makeText(context, "User account deleted.", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
                                 Log.d(TAG, "User account deleted.")
+                                clearUSerDAta();
                                 val intent = Intent(fragmentSignin, LaunchActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                 fragmentSignin.startActivity(intent)
+
                             }
                         }.addOnFailureListener {
+                            Log.d(TAG, "Error deleting useraddOnFailureListener $it.message")
+                            clearUSerDAta()
+                            FirebaseAuth.getInstance().signOut();
+                            PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
+
+                            val intent = Intent(fragmentSignin, LaunchActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            fragmentSignin.startActivity(intent)
+
+
                             OnFailureListener { e ->
-                                Log.w(TAG, "Error deleting user", e)
+                                Log.d(TAG, "Error deleting user", e)
+                            //    Toast.makeText(context, "Error while deleting ... please try again later", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+
                             }
                         }
 
@@ -91,6 +111,8 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
                     }
                     .addOnFailureListener(OnFailureListener { e ->
                         Log.d(TAG, "Error deleting document", e)
+                        Toast.makeText(context, "Error while deleting ... please try again later", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+
                     })
 
         }
@@ -101,6 +123,17 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
 
         }
 
+
+    }
+
+    fun clearUSerDAta(){
+        val gsonValue = Gson().toJson("")
+
+        val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putString("USER_INFO", gsonValue)
+        editor.putBoolean("IS_EDIT", false)
+        editor.apply()
 
     }
 

@@ -112,9 +112,9 @@ class GenericValues {
                     if (userModel.phoneNumber.isEmpty()) {
                         fragment.startActivity(Intent(fragment, FragmentEnterMobile::class.java));
                     } else
-                        if (userModel.skipReferalCode != true) {
-                            fragment.startActivity(Intent(fragment, FragmentReferralMobile::class.java));
-                        } else
+//                        if (userModel.skipReferalCode != true) {
+//                            fragment.startActivity(Intent(fragment, FragmentReferralMobile::class.java));
+//                        } else
                             if (userModel.emailId.isNullOrEmpty()) {
                                 fragment.startActivity(Intent(fragment, FragmentEmailAddress::class.java));
                             } else
