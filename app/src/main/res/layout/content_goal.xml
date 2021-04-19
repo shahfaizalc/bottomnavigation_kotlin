@@ -22,19 +22,20 @@
             android:orientation="vertical">
 
             <TextView
-                android:textSize="@dimen/dimen_36"
-                android:textStyle="bold"
+                android:textSize="@dimen/dimen_16"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/dimen_8"
+                android:layout_margin="@dimen/dimen_16"
                 android:background="@android:color/transparent"
-                android:text="Coming Soon" />
+                android:text="New Connection Request" />
+
 
 
             <androidx.appcompat.widget.SearchView
+                android:layoutDirection="rtl"
                 android:id="@+id/search1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,7 +46,8 @@
                 android:clickable="true"
                 app:searchRecycler="@{recyclerUser}"
                 app:searchAdapter="@{adSearchModel}"
-                app:queryHint="Search Discussion"/>
+                android:theme="@android:style/Theme.Holo"
+                app:queryHint="Search People"/>
 
 
             <View
@@ -70,10 +72,10 @@
                     android:layout_marginEnd="@dimen/dimen_8"
                     android:layout_toStartOf="@+id/sendButton"
                     android:background="@android:color/transparent"
-                    android:text="All Goals" />
+                    android:text="People You Follow" />
                 <TextView
                     android:onClick="@{adSearchModel.onFilterClearClick()}"
-                    android:visibility="@{adSearchModel.showClearFilter}"
+                    android:visibility="gone"
                     android:paddingStart="@dimen/dimen_4"
                     android:paddingEnd="@dimen/dimen_4"
                     android:paddingTop="@dimen/dimen_2"
@@ -90,6 +92,7 @@
                     android:background="@drawable/circular_bg"
                     android:text="@string/clear" />
                 <ImageButton
+                    android:visibility="gone"
                     android:onClick="@{adSearchModel.onFilterClick()}"
                     android:background="@android:color/transparent"
                     android:id="@+id/sendButton"

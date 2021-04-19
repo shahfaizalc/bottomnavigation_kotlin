@@ -51,7 +51,8 @@
     <color name="paleGreen">#5499C7</color>
     <color name="green2">#7FB3D5</color>
 
-
+    #
+    <color name="blacklight2">#313131</color>
 
     <!--<color name="colorPrimary">#008577</color>-->
     <!--<color name="colorPrimaryDark">#00574B</color>-->
