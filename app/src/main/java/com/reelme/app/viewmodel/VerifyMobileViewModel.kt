@@ -188,7 +188,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
                                 setUserInfo(getPhoneNumber()!!)
 
                             } else if(userDetails.isBlocked!!){
-                                Toast.makeText(fragmentSignin.applicationContext,"You are blocked.Kindly contact customer care",Toast.LENGTH_LONG).show()
+                                Toast.makeText(fragmentSignin.applicationContext,"Your Account is blocked.\nKindly contact customer care",Toast.LENGTH_LONG).show()
 
                             } else if(userDetails.isDeactivated!!){
                                 val builder = AlertDialog.Builder(fragmentSignin)

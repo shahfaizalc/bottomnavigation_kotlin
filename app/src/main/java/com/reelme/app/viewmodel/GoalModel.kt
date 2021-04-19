@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
@@ -26,12 +27,13 @@ import com.reelme.app.model_sales.Authenticaiton
 import com.reelme.app.model_sales.goal.Goals
 import com.reelme.app.view.*
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.reelme.app.model_sales.goal.Record
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class GoalModel(internal var activity: FragmentActivity,
+class GoalModel(internal var activity: AppCompatActivity,
                 internal val fragmentProfileInfo: FragmentGoal) // To show list of user images (Gallery)
     : BaseObservable() {
 
@@ -46,7 +48,6 @@ class GoalModel(internal var activity: FragmentActivity,
 
 
     init {
-        fragmentProfileInfo.mFragmentNavigation.viewToolbar(true);
         talentProfilesList = ObservableArrayList()
         doGetTalents()
     }
@@ -237,13 +238,44 @@ class GoalModel(internal var activity: FragmentActivity,
 
         Log.d(TAG, "DOIT doGetTalents: searchMode: " + searchMode)
 
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://philipscrm--pocinc.my.salesforce.com/services/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .build()
-        postsService = retrofit.create(GetServiceNews::class.java)
-        sendPost(getAccessToken())
+
+        var goals2 = Record()
+        goals2.businessClusterC = "hello"
+        goals2.descriptionC = "ddeed"
+        goals2.id = "internet connecct"
+        goals2.name = "name"
+        goals2.priorityC = "priotiry"
+
+        var goals = Record()
+        goals.businessClusterC = "hello"
+        goals.descriptionC = "ddeed"
+        goals.id = "internet connecct"
+        goals.name = "name"
+        goals.priorityC = "priotiry"
+
+
+        var goals1 = Record()
+        goals1.businessClusterC = "kjda"
+        goals1.descriptionC = "ddeefasdd"
+        goals1.id = "intfasdernet connecct"
+        goals1.name = "naasdfdme"
+        goals1.priorityC = "fasd"
+
+
+        var listRecoded = ArrayList<Record>()
+        listRecoded.add(goals)
+        listRecoded.add(goals2)
+        listRecoded.add(goals1)
+
+        talentProfilesList.addAll(listRecoded)
+
+//        val retrofit = Retrofit.Builder()
+//                .baseUrl("https://philipscrm--pocinc.my.salesforce.com/services/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+//                .build()
+//        postsService = retrofit.create(GetServiceNews::class.java)
+//        sendPost(getAccessToken())
 
 
     }

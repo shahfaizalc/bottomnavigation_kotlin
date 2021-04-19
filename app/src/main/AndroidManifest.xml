@@ -146,6 +146,11 @@
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
 
+
+        <activity
+            android:name=".view.FragmentGoal"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.FragmentEnterMobile"
             android:screenOrientation="sensorPortrait"

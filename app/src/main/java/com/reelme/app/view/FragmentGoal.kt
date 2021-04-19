@@ -1,46 +1,35 @@
 package com.reelme.app.view
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 
 import com.reelme.app.R
 import com.reelme.app.databinding.ContentGoalBinding
-import com.reelme.app.fragments.BaseFragment
 import com.reelme.app.viewmodel.GoalModel
 
 
-class FragmentGoal : BaseFragment() {
+class FragmentGoal : AppCompatActivity() {
 
-    var binding: ContentGoalBinding? = null;
+    @Transient
+    lateinit internal var areaViewModel: GoalModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        return bindView(inflater, container)
+        val binding : ContentGoalBinding = DataBindingUtil.setContentView(this, R.layout.content_goal)
+        areaViewModel = GoalModel(this, this)
+        binding.adSearchModel = areaViewModel
     }
-
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        if (binding == null) {
-            binding = DataBindingUtil.inflate(inflater, R.layout.content_goal, container, false)
-            val areaViewModel = GoalModel(activity!!, this)
-            binding?.adSearchModel = areaViewModel
-        }
-        return binding!!.root
-    }
-
 
     override fun onResume() {
-        Log.d("on Resume","on Resuem called")
         super.onResume()
+      //  areaViewModel.registerListeners()
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
+      //  areaViewModel.unRegisterListeners()
     }
-
-
 }
+
