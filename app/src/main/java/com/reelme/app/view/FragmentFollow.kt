@@ -1,107 +1,37 @@
 package com.reelme.app.view
 
-import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.view.*
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+
 import com.reelme.app.R
-import com.reelme.app.adapter.ViewPagerAdapter
-import com.reelme.app.databinding.ActivityFollowBinding
-import com.reelme.app.databinding.ActivityHometabBinding
-import com.reelme.app.fragments.BaseFragment
-import com.reelme.app.util.Constants
-import com.reelme.app.viewmodel.ActivityFollowViewModel
-import com.reelme.app.viewmodel.HomeTabViewModel
+import com.reelme.app.databinding.ContentFollowBinding
+import com.reelme.app.databinding.ContentGoalBinding
+import com.reelme.app.viewmodel.FollowModel
+import com.reelme.app.viewmodel.GoalModel
 
 
-class FragmentFollow : BaseFragment() {
+class FragmentFollow : AppCompatActivity() {
 
-    internal var binding: ActivityFollowBinding? = null
-
+    @Transient
+    lateinit internal var areaViewModel: FollowModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return bindView(inflater, container)
-    }
 
-    private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
-        if (binding == null) {
-            binding = ActivityFollowBinding.inflate(inflater, container, false)
-            val areaViewModel = ActivityFollowViewModel(this)
-            binding!!.homeData = areaViewModel
-            binding!!.homeData!!.setPagerAdapter(adapter)
-
-            binding!!.homeData!!.getName().observe(this) { name -> setTitle(name) }
-        }
-
-        return binding!!.root
+        val binding : ContentFollowBinding = DataBindingUtil.setContentView(this, R.layout.content_follow)
+        areaViewModel = FollowModel(this, this)
+        binding.adSearchModel = areaViewModel
     }
 
-    private fun setTitle(name: String?) {
-        this.mFragmentNavigation.updateToolbarTitle(name!!+"\'s Profile")
+    override fun onResume() {
+        super.onResume()
+      //  areaViewModel.registerListeners()
     }
 
-    val adapter: ViewPagerAdapter
-        get() {
-            val adapter = ViewPagerAdapter(activity!!.supportFragmentManager)
-            val number = resources.getStringArray(R.array.tabs_follow)
-            for (i in number.indices) {
-                adapter.addFrag(Constants.FOLLOW_FRAGMENTS[i] as Fragment, number[i])
-            }
-            return adapter
-        }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        menu.clear()
-        inflater.inflate(R.menu.menu_example, menu)
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onStop() {
+        super.onStop()
+      //  areaViewModel.unRegisterListeners()
     }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.share_ic -> {
-                Toast.makeText(context, "click on setting", Toast.LENGTH_LONG).show()
-                true
-            }
-            R.id.settings_ic ->{
-                val intent = Intent(activity, FragmentSettingsList::class.java);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                activity!!.startActivity(intent);
-                return true
-            }
-            R.id.refer_ic ->{
-                return true
-            }
-            R.id.influnce_ic ->{
-                return true
-            }
-
-            R.id.logout ->{
-                logout()
-                Toast.makeText(context, "Logout", Toast.LENGTH_LONG).show()
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-
-    fun logout() {
-            FirebaseAuth.getInstance().signOut();
-            PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
-            binding!!.homeData!!.setUserInfo();
-            activity!!.finish();
-
-            val intent = Intent(activity, FragmentWelcome::class.java);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            activity!!.startActivity(intent);
-
-    }
-
 }
+

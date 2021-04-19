@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <variable
             name="mainDataModel"
-            type="com.reelme.app.viewmodel.GoalModel" />
+            type="com.reelme.app.viewmodel.FollowModel" />
 
         <variable
             name="countriesInfoModel"
@@ -17,11 +17,11 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <variable
             name="simpleListAdapter"
-            type="com.reelme.app.adapter.GoalAdapter" />
+            type="com.reelme.app.adapter.FollowAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.reelme.app.listeners.GoalEventListener" />
+            type="com.reelme.app.listeners.FollowEventListener" />
 
         <variable
             name="keyWordsTag"
@@ -52,12 +52,12 @@ xmlns:tools="http://schemas.android.com/tools">
 
             <com.reelme.app.util.ImageViewRounded
                 android:id="@+id/imgviewround"
-                android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
                 app:imageUrl="@{countriesInfoModel.priorityC}"
                 android:layout_width="@dimen/dimen_48"
                 android:layout_height="@dimen/dimen_48"
-                android:layout_gravity="center"
+                android:layout_gravity="center_vertical"
                 android:scaleType="fitXY" />
 
 
@@ -67,7 +67,7 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/connectbtn"
+                android:layout_toLeftOf="@id/acceptbtn"
                 android:layout_margin="@dimen/dimen_8"
                 android:orientation="vertical">
 
@@ -90,18 +90,32 @@ xmlns:tools="http://schemas.android.com/tools">
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/connectbtn"
+                android:id="@+id/acceptbtn"
+                android:layout_toLeftOf="@id/rejectbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginStart="@dimen/dimen_16"
+                android:layout_marginBottom="@dimen/dimen_16"
+                android:layout_marginEnd="@dimen/dimen_4"
+                android:background="@drawable/button_black_short"
+                android:text="Accept"
+                android:textColor="@color/smoke2" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/rejectbtn"
                 android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/dimen_16"
                 android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginStart="@dimen/dimen_4"
                 android:layout_marginBottom="@dimen/dimen_16"
-                android:layout_marginEnd="@dimen/dimen_4"
-                android:background="@drawable/button_black_short"
-                android:text="Connect"
+                android:layout_marginEnd="@dimen/dimen_4"                android:background="@drawable/button_black_short"
+                android:text="Reject"
                 android:textColor="@color/smoke2" />
 
 
