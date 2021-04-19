@@ -1,8 +1,6 @@
 package com.reelme.app.util
 
-import com.reelme.app.view.SaleAllFragment
-import com.reelme.app.view.SaleMenFragment
-import com.reelme.app.view.SaleWomenFragment
+import com.reelme.app.view.*
 
 object Constants {
 
@@ -10,7 +8,7 @@ object Constants {
     val SALE_FRAGMENTS = arrayOf(SaleMenFragment(), SaleAllFragment(), SaleWomenFragment())
 
 
-    val FOLLOW_FRAGMENTS = arrayOf(SaleMenFragment(), SaleAllFragment())
+    val FOLLOW_FRAGMENTS = arrayOf(FragmentMyFollow(), FragmentMyFollow())
 
 
     //key
