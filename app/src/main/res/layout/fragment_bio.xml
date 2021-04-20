@@ -28,6 +28,8 @@
             android:orientation="vertical">
 
             <TextView
+                android:fontFamily="@font/futurastdbold"
+                android:lineSpacingExtra="@dimen/dimen_12"
                 android:layout_marginTop="@dimen/dimen_48"
                 android:textSize="@dimen/dimen_32"
                 android:padding="@dimen/dimen_16"
@@ -47,18 +49,41 @@
                 android:text="@string/home_bioSubTitle"
                 />
 
-         <EditText
-            android:textColor="@color/white"
-            android:text="@={homeData.bio}"
-            android:textSize="@dimen/dimen_16"
-            android:padding="@dimen/dimen_16"
-             android:maxLength="80"
-            android:textColorHint="@color/colorBlacklight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/home_bioSubTitle2"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <EditText
+                    android:fontFamily="@font/futurastdbold"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_16"
+                    android:layout_weight="2"
+                    android:hint="@string/home_bioSubTitle2"                    android:text="@={homeData.bio}"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/colorBlacklight"
+                    android:textSize="@dimen/dimen_16"
+                    android:gravity="center_vertical"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_16"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|end"
+                    android:text="@={homeData.userNameLength}"
+                    android:textColor="@color/colorBlacklight"
+                    android:textSize="@dimen/dimen_16"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:fontFamily="@font/futurastdbold"
             android:layout_marginTop="@dimen/dimen_32"
             android:textColor="@color/smoke2"
             android:layout_width="wrap_content"
@@ -73,6 +98,7 @@
             android:onClick="@{() -> homeData.signUpUserClicked()}"
                 android:drawablePadding="@dimen/dimen_4"
                 android:drawableEnd="@drawable/ic_rightarrow"
+                android:textSize="@dimen/dimen_12"
                 android:text="Next" />
     </LinearLayout>
 

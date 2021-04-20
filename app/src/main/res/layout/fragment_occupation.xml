@@ -31,6 +31,8 @@
 
 
                 <TextView
+                    android:lineSpacingExtra="@dimen/dimen_12"
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_32"
@@ -42,6 +44,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                  android:fontFamily="@font/futubk"
                     android:id="@+id/flights_rv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -56,6 +59,7 @@
                     android:textSize="@dimen/dimen_12" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:fontFamily="@font/futurastdbold"
                     android:id="@+id/nextBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,10 +74,12 @@
                     android:paddingBottom="@dimen/dimen_12"
                     android:drawablePadding="@dimen/dimen_4"
                     android:drawableEnd="@drawable/ic_rightarrow"
+                    android:textSize="@dimen/dimen_12"
                     android:text="Next"
                     android:textColor="@color/smoke2" />
 
                 <TextView
+                  android:fontFamily="@font/futubk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_20"
@@ -93,6 +99,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                   android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="@{() -> homeData.onSkipButtonClicked()}"

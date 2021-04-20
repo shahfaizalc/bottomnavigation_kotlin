@@ -70,6 +70,7 @@
             android:onClick="@{() -> homeData.signUpUserClicked()}"
             android:drawablePadding="@dimen/dimen_4"
             android:drawableEnd="@drawable/ic_rightarrow"
+            android:textSize="@dimen/dimen_12"
             android:text="NEXT" />
 
 

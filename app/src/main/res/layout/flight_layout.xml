@@ -19,6 +19,8 @@
         android:orientation="vertical">
 
     <TextView
+        android:fontFamily="@font/futurastdbold"
+        android:lineSpacingExtra="@dimen/dimen_12"
             android:layout_marginTop="@dimen/dimen_32"
             android:textSize="@dimen/dimen_32"
             android:padding="@dimen/dimen_16"
@@ -37,6 +39,7 @@
             android:layout_marginRight="8dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:fontFamily="@font/futurastdbold"
             android:layout_marginTop="@dimen/dimen_32"
             android:id="@+id/nextBtn"
             android:textColor="@color/smoke2"
@@ -51,9 +54,11 @@
             android:drawablePadding="@dimen/dimen_4"
             android:drawableEnd="@drawable/ic_rightarrow"
             android:background="@drawable/button_black"
+            android:textSize="@dimen/dimen_12"
             android:text="Next" />
 
         <TextView
+            android:fontFamily="@font/futubk"
             android:textSize="@dimen/dimen_12"
             android:padding="@dimen/dimen_16"
             android:textColor="@color/white"
@@ -71,6 +76,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:fontFamily="@font/futurastdbold"
                 android:id="@+id/skipBtn"
                 android:paddingStart="@dimen/dimen_16"
                 android:textStyle="bold"

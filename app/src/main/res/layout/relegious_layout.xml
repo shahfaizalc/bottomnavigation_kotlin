@@ -22,6 +22,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_48"
                     android:padding="@dimen/dimen_16"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="@string/home_religiousTitle"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_32"
@@ -36,6 +37,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/nextBtn"
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_16"
@@ -44,6 +46,7 @@
                     android:background="@drawable/button_black"
                     android:paddingStart="@dimen/dimen_28"
                     android:paddingTop="@dimen/dimen_12"
+                    android:textSize="@dimen/dimen_12"
                     android:paddingEnd="@dimen/dimen_28"
                     android:paddingBottom="@dimen/dimen_12"
                     android:drawablePadding="@dimen/dimen_4"
@@ -52,6 +55,7 @@
                     android:textColor="@color/smoke2" />
 
                 <TextView
+                    android:fontFamily="@font/futubk"
                     android:textSize="@dimen/dimen_12"
                     android:layout_marginTop="@dimen/dimen_8"
                     android:layout_width="wrap_content"
@@ -61,6 +65,7 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_marginTop="@dimen/dimen_32"
                     android:layout_marginBottom="@dimen/dimen_32"
                     android:id="@+id/skipBtn"

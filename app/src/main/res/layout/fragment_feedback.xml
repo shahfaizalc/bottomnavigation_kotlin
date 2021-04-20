@@ -63,7 +63,7 @@
                 android:background="@color/yellow"
                 android:onClick="@{homeData.datePickerClick()}"
                 android:layout_marginTop="5dp"
-                android:textSize="@dimen/dimen_16"
+                android:textSize="@dimen/dimen_12"
                 android:textStyle="bold"
                 android:id="@+id/loginButton" />
             <ProgressBar

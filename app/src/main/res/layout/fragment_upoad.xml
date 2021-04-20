@@ -55,6 +55,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:fontFamily="@font/futurastdbold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dimen_16"
@@ -75,6 +76,7 @@
                         app:drawableStartCompat="@drawable/ic_upload" />
 
                     <TextView
+                        android:fontFamily="@font/futurastdbold"
                         android:textSize="@dimen/dimen_12"
                         android:gravity="center"
                         android:layout_width="0dp"

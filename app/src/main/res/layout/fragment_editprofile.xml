@@ -439,6 +439,7 @@
                     android:paddingTop="@dimen/dimen_12"
                     android:paddingEnd="@dimen/dimen_28"
                     android:paddingBottom="@dimen/dimen_12"
+                    android:textSize="@dimen/dimen_12"
                     android:text="DELETE ACCOUNT"
                     android:textColor="@color/smoke2" />
 

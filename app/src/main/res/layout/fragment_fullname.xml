@@ -84,6 +84,7 @@
             android:background="@drawable/button_black"
             android:onClick="@{() -> homeData.signUpUserClicked()}"
             android:drawablePadding="@dimen/dimen_4"
+            android:textSize="@dimen/dimen_12"
             android:drawableEnd="@drawable/ic_rightarrow"
             android:text="Next" />
 

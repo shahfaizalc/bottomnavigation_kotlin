@@ -124,10 +124,17 @@ class BioViewModel(private val context: Context, private val fragmentSignin: Fra
     @get:Bindable
     var bio: String? = userDetails.bio
         set(price) {
+            userNameLength = (price!!.length.toString())+"/80"
             field = price
             notifyPropertyChanged(BR.bio)
         }
 
+    @get:Bindable
+    var userNameLength: String? = (bio!!.length.toString())+"/80"
+        set(price) {
+            field = price
+            notifyPropertyChanged(BR.userNameLength)
+        }
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()

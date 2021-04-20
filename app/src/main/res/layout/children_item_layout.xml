@@ -24,6 +24,7 @@
         android:onClick="@{(thisView) -> itemClickListener.bookFlight(flight, thisView,itemPosition)}"
         tools:context="com.reelme.app.view.GenderActivity">
         <TextView
+            android:fontFamily="@font/futurastdbold"
             android:gravity="start"
             android:textColor="@{isValid ?  @color/white  : @color/colorBlacklight }"
             android:id="@+id/air_lines"

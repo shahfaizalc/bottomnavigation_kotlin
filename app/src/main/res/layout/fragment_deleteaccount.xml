@@ -122,6 +122,7 @@
                     android:paddingBottom="@dimen/dimen_12"
                     android:drawablePadding="@dimen/dimen_4"
                     android:drawableEnd="@drawable/ic_rightarrow"
+                    android:textSize="@dimen/dimen_12"
                     android:text="Continue"
                     android:textColor="@color/smoke2" />
 
@@ -140,6 +141,7 @@
                     android:paddingTop="@dimen/dimen_12"
                     android:paddingEnd="@dimen/dimen_28"
                     android:paddingBottom="@dimen/dimen_12"
+                    android:textSize="@dimen/dimen_12"
                     android:text="CANCEL"
                     android:textColor="@color/smoke2" />
 
