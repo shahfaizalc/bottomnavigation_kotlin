@@ -4,15 +4,17 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.reelme.app.adapter.MyFollowAdapter
+import com.reelme.app.adapter.MyFollowingAdapter
 import com.reelme.app.utils.EndlessRecyclerViewScrollListener
 import com.reelme.app.viewmodel.MyFollowModel
+import com.reelme.app.viewmodel.MyFollowingModel
 
 
 /**
  *  Class to handle recyclerview scroll listner and to initiate server call
  */
-class RecyclerLoadMoreMyFollowHandler(private val countriesViewModel: MyFollowModel,
-                                      private val listViewAdapter: MyFollowAdapter) {
+class RecyclerLoadMoreMyFollowingHandler(private val countriesViewModel: MyFollowingModel,
+                                         private val listViewAdapter: MyFollowingAdapter) {
 
     private val TAG = "Discussion"
 

@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <variable
             name="mainDataModel"
-            type="com.reelme.app.viewmodel.MyFollowModel" />
+            type="com.reelme.app.viewmodel.MyFollowingModel" />
 
         <variable
             name="countriesInfoModel"
@@ -17,11 +17,11 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <variable
             name="simpleListAdapter"
-            type="com.reelme.app.adapter.MyFollowAdapter" />
+            type="com.reelme.app.adapter.MyFollowingAdapter" />
 
         <variable
             name="itemClickListener"
-            type="com.reelme.app.listeners.MyFollowEventListener" />
+            type="com.reelme.app.listeners.MyFollowingEventListener" />
 
         <variable
             name="keyWordsTag"

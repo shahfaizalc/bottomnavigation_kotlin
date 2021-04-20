@@ -9,24 +9,21 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.reelme.app.R
 import com.reelme.app.databinding.ListItemMyfollowBinding
-import com.reelme.app.databinding.ListItemMyfollowingBinding
 import com.reelme.app.listeners.MyFollowEventListener
-import com.reelme.app.listeners.MyFollowingEventListener
 import com.reelme.app.viewmodel.MyFollowModel
-import com.reelme.app.viewmodel.MyFollowingModel
 
 /**
  * Country recycler view adapter to view list of items
  */
-class MyFollowingAdapter(private val adSearchModel: MyFollowingModel) :
-        MyFollowingEventListener, RecyclerView.Adapter<MyFollowingAdapter.ViewHolder>(){
+class MyFollowAdapter(private val adSearchModel: MyFollowModel) :
+    MyFollowEventListener, RecyclerView.Adapter<MyFollowAdapter.ViewHolder>(){
 
     private val TAG = "ArtistRecyclerAdapter"
 
     lateinit var context:Context
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int)
-            = ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_myfollowing,
+            = ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_myfollow,
             viewGroup, false))
 
 
@@ -54,14 +51,14 @@ class MyFollowingAdapter(private val adSearchModel: MyFollowingModel) :
     override fun getItemViewType(position: Int) = position.let { position }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding: ListItemMyfollowingBinding? = null
+        var binding: ListItemMyfollowBinding? = null
 
         init {
             binding = DataBindingUtil.bind(itemView)
         }
     }
 
-    override fun onClickAdSearchListItem(countriesViewModel: MyFollowingModel, position: Int) {
+    override fun onClickAdSearchListItem(countriesViewModel: MyFollowModel, position: Int) {
         Log.d(TAG,"Click: "+ countriesViewModel.talentProfilesList[position].name)
       //  countriesViewModel.openFragment2(countriesViewModel.talentProfilesList[position],position)
 

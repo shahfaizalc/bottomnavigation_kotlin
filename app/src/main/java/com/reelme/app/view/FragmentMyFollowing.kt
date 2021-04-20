@@ -10,7 +10,7 @@ import com.reelme.app.fragments.BaseFragment
 import com.reelme.app.viewmodel.*
 
 
-class FragmentMyFollow : BaseFragment() {
+class FragmentMyFollowing : BaseFragment() {
 
     @Transient
     lateinit internal var areaViewModel: MyFollowModel
@@ -18,7 +18,7 @@ class FragmentMyFollow : BaseFragment() {
     /**
      * Binding
      */
-    internal var binding: ContentMyfollowBinding? = null
+    internal var binding: ContentMyfollowingBinding? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return bindView(inflater, container)
@@ -26,19 +26,19 @@ class FragmentMyFollow : BaseFragment() {
 
     private fun bindView(inflater: LayoutInflater, container: ViewGroup?): View {
         if (binding == null) {
-            binding = ContentMyfollowBinding.inflate(inflater, container, false)
-            val areaViewModel = MyFollowModel(this.activity!!)
+            binding = ContentMyfollowingBinding.inflate(inflater, container, false)
+            val areaViewModel = MyFollowingModel(this.activity!!)
             binding!!.adSearchModel = areaViewModel
         }
 
         return binding!!.root
     }
 
-
-    private fun setBindingAttributes(areaViewModel: MyFollowModel) {
-        binding!!.adSearchModel = areaViewModel
-
-    }
+//
+//    private fun setBindingAttributes(areaViewModel: MyFollowModel) {
+//        binding!!.adSearchModel = areaViewModel
+//
+//    }
 
 
     override fun onResume() {

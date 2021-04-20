@@ -8,7 +8,7 @@ object Constants {
     val SALE_FRAGMENTS = arrayOf(SaleMenFragment(), SaleAllFragment(), SaleWomenFragment())
 
 
-    val FOLLOW_FRAGMENTS = arrayOf(FragmentMyFollow(), FragmentMyFollow())
+    val FOLLOW_FRAGMENTS = arrayOf(FragmentMyFollow(), FragmentMyFollowing())
 
 
     //key

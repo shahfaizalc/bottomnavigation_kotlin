@@ -26,14 +26,88 @@ import com.squareup.picasso.Picasso
 
 
 
+@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView, countriesViewModel: MyFollowModel, recyclerView: RecyclerView) {
+
+    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
+    val listAdapter = MyFollowAdapter(countriesViewModel)
+    val bindingAdapter = RecyclerLoadMoreMyFollowHandler(countriesViewModel, listAdapter)
+    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+
+
+    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
+    recyclerView.adapter = listAdapter
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach1")
+        }
+
+        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+            Log.d("rach", "rach2")
+        }
+
+        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach3")
+            bindingAdapter.resetRecycleView(recyclerView)
+            if(countriesViewModel.resetScrrollListener) {
+                bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+                countriesViewModel.resetScrrollListener = false
+            }
+
+        }
+
+        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+            Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+    });
+
+    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(s: String?): Boolean {
+            if(s.isNullOrEmpty()){
+                countriesViewModel.doGetTalents()
+            } else {
+                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                    countriesViewModel.searchMode = SearchMode.SEARCH
+                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                    countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
+                }
+                //   countriesViewModel.doGetTalentsSearch(s)
+                bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+                searchView.setQuery("", false);
+                searchView.clearFocus();
+            }
+            return false
+        }
+
+        override fun onQueryTextChange(strQuery: String): Boolean {
+//            if(strQuery.isNullOrEmpty()){
+//                if(countriesViewModel.searchMode.ordinal == SearchMode.SEARCH.ordinal){
+//                    countriesViewModel.searchMode = SearchMode.DEFAULT
+//                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORYANDSEARCH.ordinal)){
+//                    countriesViewModel.searchMode = SearchMode.CATEGORY
+//                }
+//                countriesViewModel.doGetTalents()
+//
+//            }
+            return false
+        }
+    })
+}
 
 
 @BindingAdapter( "app:searchAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView ,countriesViewModel: MyFollowingModel,recyclerView: RecyclerView) {
+fun adapter(searchView: SearchView, countriesViewModel: MyFollowingModel, recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = MyFollowingAdapter(countriesViewModel)
-    val bindingAdapter = RecyclerLoadMoreMyFollowHandler(countriesViewModel, listAdapter)
+    val bindingAdapter = RecyclerLoadMoreMyFollowingHandler(countriesViewModel, listAdapter)
     bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
 
 
