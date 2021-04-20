@@ -62,7 +62,7 @@
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".view.FragmentSavedDiscussions"
+            android:name=".view.FragmentTopusers"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
         <activity

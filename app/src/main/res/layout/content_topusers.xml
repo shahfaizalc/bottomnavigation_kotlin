@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="adSearchModel"
+            type="com.reelme.app.viewmodel.TopusersModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/viewA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:orientation="vertical">
+
+
+
+
+            <androidx.appcompat.widget.SearchView
+                android:layoutDirection="rtl"
+                android:id="@+id/search1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@drawable/circular_bg_white"
+                android:clickable="true"
+                app:searchRecycler="@{recyclerUser}"
+                app:searchAdapter="@{adSearchModel}"
+                android:theme="@android:style/Theme.Holo"
+                app:queryHint="Search People"/>
+
+
+            <TextView
+                android:textSize="@dimen/dimen_16"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="@dimen/dimen_16"
+                android:background="@android:color/transparent"
+                android:text="Top Users" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:background="@drawable/bottom_line" />
+
+            <RelativeLayout
+                android:layout_marginStart="@dimen/dimen_8"
+                android:id="@+id/footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:visibility="gone"
+                    android:layout_centerVertical="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/smoke2"
+                    android:id="@+id/messageEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dimen_8"
+                    android:layout_toStartOf="@+id/sendButton"
+                    android:background="@android:color/transparent"
+                    android:text="People You Follow" />
+                <TextView
+                    android:onClick="@{adSearchModel.onFilterClearClick()}"
+                    android:visibility="gone"
+                    android:paddingStart="@dimen/dimen_4"
+                    android:paddingEnd="@dimen/dimen_4"
+                    android:paddingTop="@dimen/dimen_2"
+                    android:paddingBottom="@dimen/dimen_2"
+                    android:layout_toStartOf="@+id/sendButton"
+                    android:layout_centerVertical="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlacklight"
+                    android:drawableTint="@color/colorBlacklight"
+                    android:id="@+id/clearFilter"
+                    android:layout_width="wrap_content"
+                    android:drawableEnd="@drawable/close_small"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circular_bg"
+                    android:text="@string/clear" />
+                <ImageButton
+                    android:visibility="gone"
+                    android:onClick="@{adSearchModel.onFilterClick()}"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/sendButton"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/refresh"
+                    android:tint="@color/darkBlue"/>
+
+            </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@android:color/transparent"
+                android:scrollbars="vertical" />
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:visibility="gone"
+            android:onClick="@{adSearchModel.onNextButtonClick}"
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_anchor="@id/viewA"
+            app:backgroundTint="@color/colorPrimary"
+            android:tint="@color/white"
+            app:layout_anchorGravity="bottom|right|end"
+            app:srcCompat="@drawable/plus" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
