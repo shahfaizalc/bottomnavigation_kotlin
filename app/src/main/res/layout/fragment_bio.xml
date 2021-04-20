@@ -62,7 +62,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
                     android:layout_weight="2"
-                    android:hint="@string/home_bioSubTitle2"                    android:text="@={homeData.bio}"
+                    android:hint="@string/home_bioSubTitle2"
+                    android:text="@={homeData.bio}"
                     android:textColor="@color/white"
                     android:textColorHint="@color/colorBlacklight"
                     android:textSize="@dimen/dimen_16"
@@ -111,6 +112,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:fontFamily="@font/futurastdbold"
             android:onClick="@{() -> homeData.onSkipButtonClicked()}"
             android:paddingStart="@dimen/dimen_16"
             android:textStyle="bold"

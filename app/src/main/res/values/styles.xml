@@ -9,10 +9,18 @@
         <item name="windowActionBar">false</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:itemTextAppearance">@style/menu_item_color</item>
+        <item name="android:fontFamily">@font/futurastdbold</item>
+        <item name="android:textSize">@dimen/dimen_12</item>
 <!--        <item name="colorAccent">@color/white</item>-->
 <!--        <item name="actionMenuTextColor">@color/white</item>-->
 
     </style>
+
+    <style name="menu_item_color">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

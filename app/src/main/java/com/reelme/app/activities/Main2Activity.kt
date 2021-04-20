@@ -2,18 +2,17 @@ package com.reelme.app.activities
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.fragments.BaseFragment
-import com.reelme.app.model_sales.Authenticaiton
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.utils.FragmentHistory
 import com.reelme.app.utils.Utils
@@ -30,7 +29,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     internal var toolbar: Toolbar? = null
 
     private val mTabIconsSelected = intArrayOf(R.drawable.ic_home,
-            R.drawable.ic_user_whilte, R.drawable.ic_reel, R.drawable.ic_links,R.drawable.ic_search)
+            R.drawable.ic_user_whilte, R.drawable.ic_reel, R.drawable.ic_links, R.drawable.ic_search)
 
 
     internal lateinit var TABS: ArrayList<String>
@@ -302,8 +301,20 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
 
     override fun updateToolbarTitle(title: String) {
 
+        val v: View =layoutInflater.inflate(R.layout.action_bar_home, null)
 
-        supportActionBar!!.title = title
+        val p = ActionBar.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                Gravity.CENTER)
+
+        (v.findViewById<View>(R.id.title) as TextView).text = title
+
+        supportActionBar!!.setCustomView(v, p);
+        supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM;
+        supportActionBar!!.setDisplayShowTitleEnabled(true);
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+
 
     }
 
