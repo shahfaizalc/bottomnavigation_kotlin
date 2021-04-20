@@ -17,10 +17,7 @@ import com.reelme.app.BR
 import com.reelme.app.adapter.ViewPagerAdapter
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.utils.Validator
-import com.reelme.app.view.FragmentEditProfile
-import com.reelme.app.view.FragmentFollow
-import com.reelme.app.view.FragmentGoal
-import com.reelme.app.view.FragmentHomeTab
+import com.reelme.app.view.*
 
 
 class HomeTabViewModel(private val fragmentSignin: FragmentHomeTab) : BaseObservable() {
@@ -53,7 +50,7 @@ class HomeTabViewModel(private val fragmentSignin: FragmentHomeTab) : BaseObserv
 
     fun signInUserClicked() {
         // fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin.activity, FragmentFollow::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin.activity, FragmentEditProfile::class.java));
     }
 
     fun getName(): LiveData<String?> {

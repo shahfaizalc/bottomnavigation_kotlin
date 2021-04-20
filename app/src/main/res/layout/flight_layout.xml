@@ -48,8 +48,10 @@
             android:paddingStart="@dimen/dimen_28"
             android:paddingEnd="@dimen/dimen_28"
             android:layout_marginRight="@dimen/dimen_16"
+            android:drawablePadding="@dimen/dimen_4"
+            android:drawableEnd="@drawable/ic_rightarrow"
             android:background="@drawable/button_black"
-            android:text="Next ->" />
+            android:text="Next" />
 
         <TextView
             android:textSize="@dimen/dimen_12"

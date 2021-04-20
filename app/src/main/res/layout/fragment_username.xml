@@ -30,6 +30,7 @@
 
 
                 <TextView
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_48"
@@ -40,6 +41,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:fontFamily="@font/futubk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -53,6 +55,7 @@
                     android:weightSum="2">
 
                     <EditText
+                        android:fontFamily="@font/futurastdbold"
                         android:background="@android:color/transparent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -93,6 +96,7 @@
                     android:textSize="@dimen/dimen_36" />
 
                 <TextView
+                    android:fontFamily="@font/futubk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -100,6 +104,7 @@
                     android:textColorHint="@color/colorBlacklight" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_16"
@@ -111,7 +116,9 @@
                     android:paddingTop="@dimen/dimen_12"
                     android:paddingEnd="@dimen/dimen_28"
                     android:paddingBottom="@dimen/dimen_12"
-                    android:text="NEXT ->"
+                    android:drawablePadding="@dimen/dimen_4"
+                    android:text="NEXT"
+                    android:drawableEnd="@drawable/ic_rightarrow"
                     android:textColor="@color/smoke2" />
 
 
@@ -126,6 +133,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:fontFamily="@font/futubk"
                     android:visibility="@{homeData.skipVisibility}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

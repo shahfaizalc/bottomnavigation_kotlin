@@ -28,6 +28,8 @@
         android:orientation="vertical">
 
     <TextView
+        android:lineSpacingExtra="@dimen/dimen_12"
+        android:fontFamily="@font/futurastdbold"
                 android:layout_marginTop="@dimen/dimen_48"
                 android:textSize="@dimen/dimen_32"
                 android:padding="@dimen/dimen_16"
@@ -39,6 +41,7 @@
                  />
 
             <TextView
+                android:fontFamily="@font/futubk"
                 android:padding="@dimen/dimen_16"
                 android:textSize="@dimen/dimen_16"
                 android:textColor="@color/white"
@@ -48,6 +51,7 @@
                 />
 
         <EditText
+            android:fontFamily="@font/futubk"
             android:singleLine="true"
             android:text="@={homeData.userEmail}"
             android:textSize="@dimen/dimen_32"
@@ -60,6 +64,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
+            android:fontFamily="@font/futurastdbold"
             android:layout_marginTop="@dimen/dimen_16"
             android:textColor="@color/smoke2"
             android:layout_width="wrap_content"
@@ -72,7 +77,9 @@
             android:layout_marginRight="@dimen/dimen_16"
             android:background="@drawable/button_black"
             android:onClick="@{() -> homeData.signUpUserClicked()}"
-            android:text="CONTINUE ->" />
+            android:drawablePadding="@dimen/dimen_4"
+            android:drawableEnd="@drawable/ic_rightarrow"
+            android:text="CONTINUE" />
     </LinearLayout>
         <LinearLayout
             android:layout_weight="2"
@@ -83,6 +90,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:fontFamily="@font/futubk"
                 android:id="@+id/terms"
                 android:paddingStart="@dimen/dimen_16"
                 android:textColor="@color/colorBlacklight"

@@ -144,7 +144,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
 
     @get:Bindable
-    var ideaTitle: String? = getPhoneNumberUI()
+    var ideaTitle: String? ="Text sent to "+ getPhoneNumberUI()
         set(price) {
             field = price
             notifyPropertyChanged(BR.ideaTitle)

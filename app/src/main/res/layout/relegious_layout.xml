@@ -46,7 +46,9 @@
                     android:paddingTop="@dimen/dimen_12"
                     android:paddingEnd="@dimen/dimen_28"
                     android:paddingBottom="@dimen/dimen_12"
-                    android:text="Next ->"
+                    android:drawablePadding="@dimen/dimen_4"
+                    android:drawableEnd="@drawable/ic_rightarrow"
+                    android:text="Next"
                     android:textColor="@color/smoke2" />
 
                 <TextView

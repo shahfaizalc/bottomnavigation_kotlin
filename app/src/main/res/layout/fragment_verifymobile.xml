@@ -24,8 +24,9 @@
                 android:layout_marginTop="@dimen/dimen_48"
                 android:textSize="@dimen/dimen_32"
                 android:padding="@dimen/dimen_16"
-                android:textStyle="bold"
+                android:fontFamily="@font/futurastdbold"
                 android:textColor="@color/white"
+                android:lineSpacingExtra="@dimen/dimen_12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_verifyMobileTitle"
@@ -34,6 +35,7 @@
             <TextView
                 android:paddingStart="@dimen/dimen_16"
                 android:textSize="@dimen/dimen_16"
+                android:fontFamily="@font/futubk"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,6 +56,8 @@
             android:textColor="@color/white"
             android:textSize="@dimen/dimen_36"
             android:padding="@dimen/dimen_16"
+            android:textStyle="bold"
+            android:fontFamily="@font/futubk"
             android:textColorHint="@color/colorBlacklight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,6 +68,7 @@
             android:hint="000000"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:fontFamily="@font/futurastdbold"
             android:layout_marginTop="@dimen/dimen_16"
             android:textColor="@color/smoke2"
             android:layout_width="wrap_content"
@@ -73,12 +78,16 @@
             android:paddingBottom="@dimen/dimen_12"
             android:paddingStart="@dimen/dimen_28"
             android:paddingEnd="@dimen/dimen_28"
+            android:textSize="@dimen/dimen_12"
             android:layout_marginRight="@dimen/dimen_16"
             android:background="@drawable/button_black"
             android:onClick="@{() -> homeData.signUpUserClicked()}"
-            android:text="Verify ->" />
+            android:drawablePadding="@dimen/dimen_4"
+            android:drawableEnd="@drawable/ic_rightarrow"
+            android:text="Verify" />
 
         <TextView
+            android:fontFamily="@font/futubk"
             android:layout_margin="@dimen/dimen_20"
             android:textSize="@dimen/dimen_16"
             android:textColor="@color/white"

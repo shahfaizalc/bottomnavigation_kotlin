@@ -20,19 +20,21 @@
         android:orientation="vertical">
 
         <TextView
+            android:lineSpacingExtra="@dimen/dimen_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_48"
             android:padding="@dimen/dimen_16"
+            android:fontFamily="@font/futurastdbold"
             android:text="@string/home_enterMobileTitle"
             android:textColor="@color/white"
-            android:textSize="@dimen/dimen_32"
-            android:textStyle="bold" />
+            android:textSize="@dimen/dimen_32" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/dimen_16"
+            android:fontFamily="@font/futubk"
             android:text="@string/home_enterMobileSubTitle"
             android:textColor="@color/white"
             android:textSize="@dimen/dimen_16" />
@@ -45,6 +47,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:fontFamily="@font/futurastdbold"
                 android:visibility="gone"
                 android:id="@+id/placeholderplus"
                 android:layout_alignParentStart="true"
@@ -63,7 +66,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:letterSpacing="0.1"
+                    android:fontFamily="@font/futurastdbold"
                     android:background="@android:color/transparent"
                     android:cursorVisible="false"
                     android:id="@+id/phonenumberEntery"
@@ -79,7 +82,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:letterSpacing="0.1"
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@={homeData.ideaTitle22}"
@@ -106,7 +109,9 @@
             android:paddingTop="@dimen/dimen_12"
             android:paddingEnd="@dimen/dimen_48"
             android:paddingBottom="@dimen/dimen_12"
-            android:text="Next -->"
+            android:drawableEnd="@drawable/ic_rightarrow"
+            android:drawablePadding="@dimen/dimen_4"
+            android:text="Next"
             android:textColor="@color/smoke2" />
 
 

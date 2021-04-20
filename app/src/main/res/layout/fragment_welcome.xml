@@ -37,6 +37,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/dimen_4"
                 android:text="@string/home_welcomestring2"
+                android:fontFamily="@font/futubk"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dimen_16" />
 
@@ -45,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/dimen_4"
+                android:fontFamily="@font/futubk"
                 android:text="@string/home_welcomestring3"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dimen_16" />
@@ -54,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/dimen_4"
+                android:fontFamily="@font/futubk"
                 android:text="@string/home_welcomestring4"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dimen_16" />
@@ -63,16 +66,17 @@
                 android:layout_marginTop="@dimen/dimen_36"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/dimen_16"
-                android:layout_marginRight="@dimen/dimen_16"
-                android:background="@drawable/button_black"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/button_black_short"
                 android:onClick="@{() -> homeData.signInUserClicked()}"
-                android:paddingStart="@dimen/dimen_28"
                 android:paddingTop="@dimen/dimen_12"
-                android:paddingEnd="@dimen/dimen_28"
                 android:paddingBottom="@dimen/dimen_12"
+                android:paddingEnd="@dimen/dimen_20"
+                android:paddingStart="@dimen/dimen_20"
+                android:fontFamily="@font/futurastdbold"
                 android:text="Get Started"
+                android:textSize="@dimen/dimen_12"
                 android:textColor="@color/smoke2" />
 
 

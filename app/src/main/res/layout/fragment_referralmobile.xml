@@ -30,10 +30,11 @@
             android:orientation="vertical">
 
             <TextView
+                android:fontFamily="@font/futurastdbold"
+                android:lineSpacingExtra="@dimen/dimen_12"
                 android:layout_marginTop="@dimen/dimen_48"
                 android:textSize="@dimen/dimen_32"
                 android:padding="@dimen/dimen_16"
-                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,6 +42,7 @@
                 />
 
             <TextView
+                android:fontFamily="@font/futubk"
                 android:padding="@dimen/dimen_16"
                 android:textSize="@dimen/dimen_16"
                 android:textColor="@color/white"
@@ -50,6 +52,7 @@
                 />
 
             <EditText
+                android:fontFamily="@font/futubk"
                 android:textSize="@dimen/dimen_36"
                 android:padding="@dimen/dimen_16"
                 android:maxLength="6"
@@ -61,6 +64,7 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
+                android:fontFamily="@font/futurastdbold"
                 android:layout_marginTop="@dimen/dimen_16"
                 android:textColor="@color/smoke2"
                 android:layout_width="wrap_content"
@@ -73,7 +77,9 @@
                 android:layout_marginRight="@dimen/dimen_16"
                 android:background="@drawable/button_black"
                 android:onClick="@{() -> homeData.signUpUserClicked()}"
-                android:text="CONTINUE ->" />
+                android:drawablePadding="@dimen/dimen_4"
+                android:drawableEnd="@drawable/ic_rightarrow"
+                android:text="CONTINUE"/>
 
 
 
