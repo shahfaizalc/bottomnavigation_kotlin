@@ -81,14 +81,15 @@ class DateViewModel(private val context: Context, private val fragmentSignin: Fr
         val coronaJson = sharedPreference.getString("USER_INFO", "");
         isEdit = sharedPreference.getBoolean("IS_EDIT",false)
 
-        if(!isEdit && !userDetails.dob.isNullOrEmpty()){
-            fragmentSignin.startActivity(Intent(fragmentSignin, FragmentUserName::class.java))
-        }
+
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+            if(!isEdit && !userDetails.dob.isNullOrEmpty()){
+                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentUserName::class.java))
+            }
             signInUserClicked()
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")

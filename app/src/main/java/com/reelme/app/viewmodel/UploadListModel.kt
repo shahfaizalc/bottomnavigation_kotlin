@@ -1,29 +1,29 @@
 package com.reelme.app.viewmodel
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
-import com.reelme.app.BR
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.facebook.FacebookSdk.getApplicationContext
 import com.google.gson.Gson
+import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.listeners.StringResultListener
 import com.reelme.app.pojos.UserModel
-import com.reelme.app.util.GenericValues
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.view.FragmentBioMobile
-import com.reelme.app.view.FragmentFullNameMobile
 import com.reelme.app.view.FragmentUploadView
-import java.net.URI
 
 
 class UploadListModel(internal var context: Context,
@@ -40,6 +40,7 @@ class UploadListModel(internal var context: Context,
 
     private var skipLiveData = MutableLiveData<Boolean>()
 
+   private  var isImageUploadedd = false;
 
     private var imageUrl : Uri = Uri.EMPTY
 
@@ -105,24 +106,65 @@ class UploadListModel(internal var context: Context,
         //  fragmentSignin.finish()
         Log.d("Authentication urll", imageUrl.toString())
 
-                            FirbaseWriteHandlerActivity(fragment).coompressjpeg(imageUrl, object: StringResultListener {
-                        override fun onSuccess(url: String) {
-                            Log.d("Authentication url", url)
+//        FirbaseWriteHandlerActivity(fragment).coompressjpeg(imageUrl, object : StringResultListener {
+//            override fun onSuccess(url: String) {
+//                Log.d("Authentication url", url)
+//
+//                userDetails.profilePic = url
+//                setUserInfo()
+//            }
+//
+//            override fun onFailure(e: Exception) {
+//            }
+//        });
+        if(isImageUploadedd){
+            setUserInfo()
 
-                            userDetails.profilePic = url
-                            setUserInfo()
-                        }
+        } else{
+            Toast.makeText(fragment, "Please Take Picture & upload ", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
-                        override fun onFailure(e: Exception) {
-                        }
-                    });
-       // setUserInfo()
-     //   fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
+        }
+
+
+        //   fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
     }
 
 
     fun openFileChosser() = View.OnClickListener {
-        openChooserLiveData.setValue(true);
+
+        Log.d("Authentication urll", "df "+imageUrl.toString())
+
+        if(!imageUrl.toString().isEmpty()){
+            progressBarVisible = View.VISIBLE
+            FirbaseWriteHandlerActivity(fragment).coompressjpeg(imageUrl, object : StringResultListener {
+                override fun onSuccess(url: String) {
+                    Log.d("coompressjpeg onSuccess url", url)
+                    Toast.makeText(fragment, " Upload Successful", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+                    progressBarVisible = View.INVISIBLE
+
+                    userDetails.profilePic = url
+
+                    isImageUploadedd = true
+                  //  setUserInfo()
+                }
+
+                override fun onFailure(e: Exception) {
+                    Toast.makeText(fragment, "Failed to upload your profile.. please try again later", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+                    progressBarVisible = View.INVISIBLE
+
+                }
+            });
+        } else{
+            Toast.makeText(fragment, "Please Take Picture ", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+
+        }
+
+
+
+
+        // setUserInfo()
+        //   fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
+      //  openChooserLiveData.setValue(true);
     }
 
     fun initFileChooser(): LiveData<Boolean> {
@@ -131,7 +173,9 @@ class UploadListModel(internal var context: Context,
 
 
     fun openFileChosserCamera() = View.OnClickListener {
-        openChooserCamera.setValue(true);
+
+        alertDialog()
+      //  openChooserCamera.setValue(true);
     }
 
     fun initFileChooserCamera(): LiveData<Boolean> {
@@ -206,6 +250,7 @@ class UploadListModel(internal var context: Context,
 
 
     private fun setUserInfo(){
+        progressBarVisible = View.VISIBLE
 
         Toast.makeText(fragment, "we are saving your profile picture", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
@@ -224,14 +269,14 @@ class UploadListModel(internal var context: Context,
                     fragment.setResult(2, Intent())
                     fragment.finish()
                 } else {
-                   // GenericValues().navigateToNext(fragment)
+                    // GenericValues().navigateToNext(fragment)
                     fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
                 }
 
-                        //  fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
+                //  fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
                 Log.d("Authenticaiton token", "onSuccess")
                 Toast.makeText(fragment, "we have successfully saved your profile piture", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
-
+                progressBarVisible= View.INVISIBLE
             }
 
             override fun onFailure(e: Exception) {
@@ -239,11 +284,46 @@ class UploadListModel(internal var context: Context,
                 //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
                 Log.d("Authenticaiton token", "Exception" + e)
                 Toast.makeText(fragment, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+                progressBarVisible= View.INVISIBLE
 
             }
         })
 
 
+    }
+
+
+    private fun alertDialog(){
+        val builder: AlertDialog.Builder = AlertDialog.Builder(fragment)
+        builder.setTitle("")
+        builder.setMessage("Choose Image")
+
+        //Yes Button
+
+        //Yes Button
+        builder.setPositiveButton("Camera", DialogInterface.OnClickListener { dialog, which ->
+            Log.i("Code2care ", "Camera button Clicked!")
+            dialog.dismiss()
+            openChooserCamera.setValue(true);
+
+        })
+
+        //No Button
+
+        //No Button
+        builder.setNegativeButton("Gallery", DialogInterface.OnClickListener { dialog, which ->
+            Log.i("Code2care ", "Gallery button Clicked!")
+            dialog.dismiss()
+            openChooserLiveData.setValue(true)
+        })
+        //Cancel Button
+        //Cancel Button
+        builder.setNeutralButton("Cancel", DialogInterface.OnClickListener { dialog, which ->
+            Log.i("Code2care ", "Cancel button Clicked!")
+            dialog.dismiss()
+        })
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.show()
     }
 
 }

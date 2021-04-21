@@ -107,9 +107,9 @@
 
 
 
-    <string name="home_welcomestring2">Reel People.</string>
+    <string name="home_welcomestring2">Real People.</string>
     <string name="home_welcomestring3">Reel Connection.</string>
-    <string name="home_welcomestring4">Reel Community.</string>
+    <string name="home_welcomestring4">Real Community.</string>
     <string name="app_title">Ticket Exchange</string>
     <string name="network_ErrorMsg">You appear to be offline. Please check your internet settings.</string>
     <string name="invalid_email_ErrorMsg">Kindly enter valid E-Mail address</string>
