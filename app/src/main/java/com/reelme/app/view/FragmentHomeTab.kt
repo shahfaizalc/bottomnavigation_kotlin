@@ -1,10 +1,12 @@
 package com.reelme.app.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.*
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.reelme.app.R
@@ -105,6 +107,19 @@ class FragmentHomeTab : BaseFragment() {
     override fun onResume() {
         super.onResume()
         System.out.println("hometabretern")
+
+        val sharedPreference = this.activity!!.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        var  isEdit = sharedPreference.getBoolean("HAS_CHANGES", false)
+
+        if(isEdit){
+                val sharedPreference = this.activity!!.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+                val editor = sharedPreference.edit()
+                editor.putBoolean("HAS_CHANGES",false)
+                editor.apply()
+                recreate(this.activity!!)
+        }
+
     }
+
 
 }

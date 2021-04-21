@@ -45,7 +45,6 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
 
     fun signInUserClicked() {
-       // fragmentSignin.finish()
 //
 //       if( isValidName(firstName!!) && isValidName(lastName!!)){
 //           setUserInfo()
@@ -57,12 +56,10 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
 
     fun signEditSaveClicked() {
-        // fragmentSignin.finish()
 
        if( Validator().validate(nameTitle, EnumValidator.NAME_PATTERN) && Validator().validate(usernameTitle, EnumValidator.USER_NAME_PATTERN)
                && Validator().validate(emailTitle, EnumValidator.EMAIL_PATTERN) ){
            setUserInfo()
-          // fragmentSignin.finish()
        } else{
            Toast.makeText(context, "Kindly check email, username and name", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
@@ -75,7 +72,6 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
 
     fun signChangePhotoClicked() {
-        // fragmentSignin.finish()
 //
 //       if( isValidName(firstName!!) && isValidName(lastName!!)){
 //           setUserInfo()
@@ -88,7 +84,6 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
 
     fun signInUserBioClicked() {
-        // fragmentSignin.finish()
 //
 //       if( isValidName(firstName!!) && isValidName(lastName!!)){
 //           setUserInfo()
@@ -100,7 +95,6 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
     }
 
     fun signInUserEmailClicked() {
-        // fragmentSignin.finish()
 //
 //       if( isValidName(firstName!!) && isValidName(lastName!!)){
 //           setUserInfo()
@@ -112,7 +106,6 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
     }
 
     fun signInUserNameClicked() {
-        // fragmentSignin.finish()
 //
 //       if( isValidName(firstName!!) && isValidName(lastName!!)){
 //           setUserInfo()
@@ -125,7 +118,6 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
 
     fun signUpUserClicked() {
-      //  fragmentSignin.finish()
        // if( isValidName(firstName!!) && isValidName(lastName!!)){
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDeleteAccount::class.java));
        // }
@@ -154,7 +146,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
     private var isEdit = false;
     var percentage =""
 
-    private fun getUserInfo() {
+    fun getUserInfo() {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
         isEdit = sharedPreference.getBoolean("IS_EDIT", false)
@@ -166,7 +158,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
             percentage = Validator().profileRate(userDetails).toString()
             percentof = " $percentage"
             Log.d("Authenticaiton token", "2percentage$percentage")
-
+            photo = userDetails.profilePic
             //signInUserClicked()
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
@@ -206,7 +198,13 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
                 // if(isEdit){
                 //   fragmentSignin.setResult(2, Intent())
 
+                val sharedPreference = fragmentSignin.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+                val editor = sharedPreference.edit()
+                editor.putBoolean("HAS_CHANGES",true)
+                editor.apply()
                 fragmentSignin.finish()
+
+
 //                } else{
 //                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java));
 //                }
