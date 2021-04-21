@@ -75,6 +75,11 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             userDetails = (auth as UserModel)
+
+            if(!isEdit && !userDetails.emailId.isNullOrEmpty()){
+                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentFullNameMobile::class.java))
+            }
+
         } catch (e: java.lang.Exception) {
             Log.d(RefferalMobileViewModel.TAG, "Exception$e")
         }

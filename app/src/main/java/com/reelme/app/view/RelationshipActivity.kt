@@ -72,6 +72,11 @@ class RelationshipActivity : AppCompatActivity() {
             Log.d("Authentication token", auth.emailId)
 
             userDetails = (auth as UserModel)
+
+            if(!isEdit && !userDetails.relationshipStatus.isNullOrEmpty()){
+                startActivity(Intent(this, ChildrenActivity::class.java))
+            }
+
             if (isEdit) {
                 binding!!.skipBtn.visibility = View.GONE
                 if (!userDetails.relationshipStatus.isNullOrEmpty()) {

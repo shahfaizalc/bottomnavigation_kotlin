@@ -74,6 +74,9 @@ class RelegionActivity : AppCompatActivity() {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+            if(!isEdit && !userDetails.religiousBeliefs.isNullOrEmpty()){
+                startActivity(Intent(this, FragmentHobbies::class.java))
+            }
             if (isEdit) {
                 binding!!.skipBtn.visibility = View.GONE
                 if (!userDetails.religiousBeliefs.isNullOrEmpty()) {

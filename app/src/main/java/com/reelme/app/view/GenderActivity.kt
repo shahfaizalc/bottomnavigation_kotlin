@@ -82,6 +82,10 @@ class GenderActivity : AppCompatActivity() {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+            if(!isEdit && !userDetails.gender.isNullOrEmpty()){
+                startActivity(Intent(this, RelationshipActivity::class.java))
+                return
+            }
             if (isEdit) {
                 binding!!.skipBtn.visibility = View.GONE
                 if (!userDetails.gender.isNullOrEmpty()) {

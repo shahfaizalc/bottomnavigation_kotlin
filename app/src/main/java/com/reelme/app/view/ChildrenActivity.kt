@@ -73,6 +73,12 @@ class ChildrenActivity : AppCompatActivity() {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+
+            if(!isEdit && !userDetails.children.isNullOrEmpty()){
+                startActivity(Intent(this, FragmentOccupation::class.java))
+                return
+            }
+
             if (isEdit) {
                 binding!!.skipBtn.visibility = View.GONE
                 if (!userDetails.children.isNullOrEmpty()) {

@@ -70,6 +70,11 @@ class BioViewModel(private val context: Context, private val fragmentSignin: Fra
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+
+            if(!isEdit && !userDetails.bio.isNullOrEmpty()){
+                fragmentSignin.startActivity(Intent(fragmentSignin, GenderActivity::class.java))
+            }
+
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }

@@ -1,29 +1,21 @@
 package com.reelme.app.view
 
+import android.Manifest
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.database.Cursor
-import android.graphics.Bitmap
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.Gravity
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentUpoadBinding
-import com.reelme.app.listeners.EmptyResultListener
-import com.reelme.app.pojos.UserModel
-import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.viewmodel.UploadListModel
-import com.squareup.picasso.Picasso
-import java.io.File
-import java.io.FileInputStream
 
 
 class FragmentUploadView : AppCompatActivity() {
@@ -32,7 +24,7 @@ class FragmentUploadView : AppCompatActivity() {
 
     lateinit var binding: FragmentUpoadBinding
 
-    lateinit var activity  : Activity
+    lateinit var activity: Activity
 
 
     @Transient
@@ -49,8 +41,6 @@ class FragmentUploadView : AppCompatActivity() {
         binding.yearList!!.initSkip().observe(this, {
             startActivity(Intent(activity, FragmentBioMobile::class.java));
         })
-
-        getUserInfo()
     }
 
     override fun onResume() {
@@ -63,22 +53,48 @@ class FragmentUploadView : AppCompatActivity() {
         areaViewModel.unRegisterListeners()
     }
 
+
+    private fun checkIfAlreadyhavePermission(): Boolean {
+        val result = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+        return result == PackageManager.PERMISSION_GRANTED
+    }
+
+
     private val FILE_SELECT_CODE = 0
 
     private fun showFileChooser() {
-//        val intent = Intent()
-//        intent.action = Intent.ACTION_OPEN_DOCUMENT
-//        intent.addCategory(Intent.CATEGORY_OPENABLE)
-//        intent.type = "*/*"
-//        val extraMimeTypes = arrayOf("application/pdf", "application/doc")
-//        intent.putExtra(Intent.EXTRA_MIME_TYPES, extraMimeTypes)
-//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
 
-        val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val galleryPermissions = arrayOf<String>(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
-        val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(pickPhoto, FILE_SELECT_CODE)
+        if (checkIfAlreadyhavePermission()) {
+            val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+            val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(pickPhoto, FILE_SELECT_CODE)
+
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    2)
+        }
     }
+
+//        val clipData = data!!.clipData
+//
+//        val selectedImage: Uri = data.data!!
+//        val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+//        val cursor = contentResolver.query(selectedImage, filePathColumn, null, null, null)
+//        cursor!!.moveToFirst()
+//        val columnIndex = cursor!!.getColumnIndex(filePathColumn[0])
+//        val picturePath = cursor!!.getString(columnIndex)
+//        cursor.close()
+//
+//
+//        Log.d(TAG, "dump12221 $picturePath");
+//
+//        binding.profileimg.setImageBitmap(BitmapFactory.decodeFile(picturePath))
+//
+//
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -92,18 +108,20 @@ class FragmentUploadView : AppCompatActivity() {
                 if (clipData == null) {
                     path += data.data
 
+                    val selectedImage: Uri = data.data!!
+                    val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+                    val cursor = contentResolver.query(selectedImage, filePathColumn, null, null, null)
+                    cursor!!.moveToFirst()
+                    val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+                    val picturePath = cursor.getString(columnIndex)
+                    cursor.close()
 
 
-//                    FirbaseWriteHandlerActivity(this).coompressjpeg(data.data, object: StringResultListener {
-//                        override fun onSuccess(url: String) {
-//
-//                            userDetails.profilePic = url
-//                            setUserInfo()
-//                        }
-//
-//                        override fun onFailure(e: Exception) {
-//                        }
-//                    });
+                    Log.d(TAG, "dump12221 $picturePath");
+
+                    binding.profileimg.setImageBitmap(BitmapFactory.decodeFile(picturePath))
+
+                    binding.yearList!!.setImageUrl(data.data!!)
 
                 } else {
                     for (i in 0 until clipData.itemCount) {
@@ -113,31 +131,19 @@ class FragmentUploadView : AppCompatActivity() {
                         path += uri.toString() + "\n"
                         Log.d(TAG, "dump  $item.uri.path")
 
-                        val fileColumns = arrayOf(MediaStore.Images.Media.DATA)
-                        val cursor: Cursor? = contentResolver.query(uri, fileColumns, null, null, null)
+                        val selectedImage: Uri = data.data!!
+                        val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+                        val cursor = contentResolver.query(selectedImage, filePathColumn, null, null, null)
                         cursor!!.moveToFirst()
-                        val cIndex: Int = cursor.getColumnIndex(fileColumns[0])
-                        val picturePath: String = cursor.getString(cIndex)
-cursor.close()
-
-                        Log.d(TAG, "dump  $picturePath")
-
-                        Picasso.get()
-                                .load(picturePath).rotate(150.0F)
-                                .error(R.drawable.placeholder_profile)
-                                .placeholder(R.drawable.placeholder_profile)
-                                .into(binding.profileimg)
+                        val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+                        val picturePath = cursor.getString(columnIndex)
+                        cursor.close()
 
 
-//                        FirbaseWriteHandlerActivity(this).coompressjpeg(uri, object: StringResultListener {
-//                            override fun onSuccess(url: String) {
-//                                userDetails.profilePic = url
-//                                setUserInfo()
-//                            }
-//
-//                            override fun onFailure(e: Exception) {
-//                            }
-//                        });
+                        Log.d(TAG, "dump12221 $picturePath");
+
+                        binding.profileimg.setImageBitmap(BitmapFactory.decodeFile(picturePath))
+                        binding.yearList!!.setImageUrl(data.data!!)
 
                     }
                 }
@@ -146,65 +152,4 @@ cursor.close()
     }
 
 
-
-    lateinit var userDetails : UserModel
-    private var isEdit = false;
-
-    private fun getUserInfo() {
-        val sharedPreference = getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val coronaJson = sharedPreference.getString("USER_INFO", "");
-        isEdit = sharedPreference.getBoolean("IS_EDIT", false)
-
-        if(isEdit){
-            binding.yearList?.skipVisible = View.GONE
-          //  binding.skipBtnUpload.visibility = View.GONE
-        }
-
-        try {
-            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            Log.d("Authentication token", auth.emailId)
-
-            userDetails = (auth as UserModel)
-        } catch (e: java.lang.Exception) {
-            Log.d("Authenticaiton token", "Exception")
-        }
-    }
-
-    private fun setUserInfo(){
-
-        Toast.makeText(activity, "we are saving your profile picture", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
-
-       // binding!!.progressbar.visibility= View.VISIBLE
-        val gsonValue = Gson().toJson(userDetails)
-        val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val editor = sharedPreference.edit()
-        editor.putString("USER_INFO", gsonValue)
-        editor.putBoolean("IS_EDIT", false)
-        editor.apply()
-
-        FirbaseWriteHandlerActivity(this).updateUserInfo(userDetails, object : EmptyResultListener {
-            override fun onSuccess() {
-                //  binding!!.progressbar.visibility= View.INVISIBLE
-                if (isEdit) {
-                    setResult(2, Intent())
-                    finish()
-                } else {
-                    startActivity(Intent(activity, FragmentBioMobile::class.java));
-                }
-
-                startActivity(Intent(activity, FragmentBioMobile::class.java));
-                Log.d("Authenticaiton token", "onSuccess")
-                Toast.makeText(activity, "we have successfully saved your profile piture", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
-
-            }
-
-            override fun onFailure(e: Exception) {
-                //   binding!!.progressbar.visibility= View.INVISIBLE
-                //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
-                Log.d("Authenticaiton token", "Exception" + e)
-                Toast.makeText(activity, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
-
-            }
-        })
-    }
 }

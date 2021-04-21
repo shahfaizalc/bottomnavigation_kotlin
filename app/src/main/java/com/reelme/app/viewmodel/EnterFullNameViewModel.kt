@@ -77,7 +77,11 @@ class EnterFullNameViewModel(private val context: Context, private val fragmentS
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
-            signInUserClicked()
+
+            if(!isEdit && !userDetails.firstName.isNullOrEmpty()){
+                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDate::class.java))
+            }
+            //signInUserClicked()
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }

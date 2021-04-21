@@ -130,6 +130,10 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
+
+            if(!isEdit && !userDetails.occupation.isNullOrEmpty()){
+                fragmentSignin.startActivity(Intent(fragmentSignin, RelegionActivity::class.java))
+            }
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
         }
