@@ -52,6 +52,7 @@
                             android:weightSum="25">
 
                             <TextView
+                                android:fontFamily="@font/futurastdbold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -59,9 +60,7 @@
                                 android:layout_marginEnd="@dimen/dimen_16"
                                 android:layout_toStartOf="@+id/divider3"
                                 android:text="233k\nFollowers"
-                                android:textStyle="bold"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/dimen_16" />
+                                android:textColor="@color/white" />
 
                             <FrameLayout
                                 android:id="@+id/divider3"
@@ -95,10 +94,8 @@
                                 android:layout_gravity="center_vertical|end"
                                 android:layout_marginStart="@dimen/dimen_16"
                                 android:layout_toEndOf="@+id/divider3"
-                                android:textStyle="bold"
                                 android:text="233k\nFollowing"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/dimen_16" />
+                                android:textColor="@color/white" />
 
                         </RelativeLayout>
 

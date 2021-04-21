@@ -78,39 +78,6 @@
                         android:gravity="center"
                         android:src="@drawable/ic_camera_icon" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_16"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/futurastdbold"
-                            android:gravity="center_vertical"
-                            android:text="Bio"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dimen_16"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_16"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/futurastdbold"
-                            android:gravity="center_vertical|end"
-                            android:onClick="@{() -> homeData.signInUserBioClicked()}"
-                            android:text="Add a bio to your profile"
-                            android:textColor="@color/colorBlacklight"
-                            android:textSize="@dimen/dimen_16"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
                 </FrameLayout>
 
                 <TextView
@@ -271,6 +238,39 @@
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:fontFamily="@font/futurastdbold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Bio"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:fontFamily="@font/futurastdbold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:onClick="@{() -> homeData.signInUserBioClicked()}"
+                        android:text="Add a bio to your profile"
+                        android:textColor="@color/colorBlacklight"
+                        android:textSize="@dimen/dimen_16"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
 
                 <TextView
                     android:fontFamily="@font/futurastdbold"
@@ -374,7 +374,7 @@
                     android:textStyle="bold" />
 
                 <View
-                    android:layout_width="240dp"
+                    android:layout_width="250dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"

@@ -24,6 +24,8 @@ class FragmentEditProfile : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         areaViewModel.registerListeners()
+        System.out.println("returnretern")
+
     }
 
     override fun onStop() {

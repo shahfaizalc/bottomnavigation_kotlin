@@ -90,7 +90,7 @@ class FragmentHomeTab : BaseFragment() {
     }
 
 
-    fun logout() {
+    private fun logout() {
             FirebaseAuth.getInstance().signOut();
             PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
             binding!!.homeData!!.setUserInfo();
@@ -100,6 +100,11 @@ class FragmentHomeTab : BaseFragment() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             activity!!.startActivity(intent);
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        System.out.println("hometabretern")
     }
 
 }
