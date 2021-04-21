@@ -254,9 +254,6 @@ fun adapter(searchView: SearchView ,countriesViewModel: FollowModel,recyclerView
 }
 
 
-
-
-
 @BindingAdapter( "app:searchAdapter", "app:searchRecycler")
 fun adapter(searchView: SearchView ,countriesViewModel: TopusersModel,recyclerView: RecyclerView) {
 
@@ -331,10 +328,6 @@ fun adapter(searchView: SearchView ,countriesViewModel: TopusersModel,recyclerVi
         }
     })
 }
-
-
-
-
 
 
 
@@ -565,8 +558,6 @@ fun adapter(searchView: SearchView ,countriesViewModel: DiscussionModel,recycler
 }
 
 
-
-
     @BindingAdapter("app:clickableString")
 fun loadAdapterx(textView: TextView, profileInfoViewModel: RegistrationModel) {
     val ss = SpannableString(textView.getText())
@@ -592,7 +583,6 @@ fun loadAdapterx(textView: TextView, profileInfoViewModel: RegistrationModel) {
 
 
 }
-
 
 
 

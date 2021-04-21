@@ -20,9 +20,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="@dimen/dimen_8"
         android:onClick="@{(thisView) -> itemClickListener.bookFlight(flight, thisView,itemPosition)}"
         tools:context="com.reelme.app.view.GenderActivity">
         <TextView
+            android:textSize="@dimen/dimen_16"
             android:fontFamily="@font/futurastdbold"
             android:gravity="start"
             android:textColor="@{isValid ?  @color/white  : @color/colorBlacklight }"

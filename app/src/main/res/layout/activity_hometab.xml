@@ -20,8 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/black"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/collapse_toolbar"
@@ -81,7 +80,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="end|bottom"
-                                    android:layout_margin="@dimen/dimen_16"
+                                    android:layout_margin="@dimen/dimen_12"
                                     android:onClick="@{() -> homeData.signInUserClicked()}"
                                     android:background="@drawable/ic_group_681" />
 
@@ -89,6 +88,7 @@
                             </FrameLayout>
 
                             <TextView
+                                android:fontFamily="@font/futurastdbold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -111,6 +111,7 @@
                             android:onClick="@{() -> homeData.signInUserClicked()}">
 
                             <TextView
+                                android:fontFamily="@font/futubk"
                                 android:id="@+id/percenttittle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -122,6 +123,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:fontFamily="@font/futubk"
                                 android:id="@+id/percenttittle2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -133,6 +135,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:fontFamily="@font/futubk"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -143,8 +146,8 @@
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/dimen_20"
+                                android:layout_height="@dimen/dimen_20"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
                                 android:src="@android:drawable/ic_menu_info_details" />
@@ -154,6 +157,7 @@
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="5dp"
+                            android:layout_marginTop="@dimen/dimen_4"
                             android:layout_marginStart="@dimen/dimen_16"
                             android:layout_marginEnd="@dimen/dimen_16"
                             android:background="@drawable/group782"
@@ -161,6 +165,7 @@
                             android:textSize="@dimen/dimen_16" />
 
                         <TextView
+                            android:fontFamily="@font/futurastdbold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -181,6 +186,7 @@
                             android:weightSum="25">
 
                             <TextView
+                                android:fontFamily="@font/futubk"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical|end"
@@ -205,6 +211,7 @@
                                 android:textSize="@dimen/dimen_16" />
 
                             <TextView
+                                android:fontFamily="@font/futubk"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical|end"
@@ -227,13 +234,14 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:fontFamily="@font/futubk"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical|end"
                                 android:layout_toStartOf="@+id/divider1"
                                 android:drawablePadding="@dimen/dimen_4"
                                 android:gravity="center_vertical|end"
-                                android:text="Total points"
+                                android:text="Total points:145"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/dimen_16"
                                 app:drawableStartCompat="@drawable/ic_star" />
@@ -251,6 +259,7 @@
                                 android:textSize="@dimen/dimen_16" />
 
                             <TextView
+                                android:fontFamily="@font/futubk"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical|end"
@@ -265,6 +274,7 @@
                         </RelativeLayout>
 
                         <TextView
+                            android:fontFamily="@font/futubk"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"

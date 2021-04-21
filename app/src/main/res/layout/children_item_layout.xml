@@ -16,6 +16,7 @@
             type="com.reelme.app.listeners.ChildrenEventListener"/>
     </data>
     <RelativeLayout
+        android:layout_marginBottom="@dimen/dimen_8"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +25,7 @@
         android:onClick="@{(thisView) -> itemClickListener.bookFlight(flight, thisView,itemPosition)}"
         tools:context="com.reelme.app.view.GenderActivity">
         <TextView
+            android:textSize="@dimen/dimen_16"
             android:fontFamily="@font/futurastdbold"
             android:gravity="start"
             android:textColor="@{isValid ?  @color/white  : @color/colorBlacklight }"

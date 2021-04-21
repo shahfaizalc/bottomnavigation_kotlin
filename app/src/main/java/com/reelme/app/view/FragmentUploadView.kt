@@ -3,6 +3,9 @@ package com.reelme.app.view
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -15,11 +18,12 @@ import com.google.gson.Gson
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentUpoadBinding
 import com.reelme.app.listeners.EmptyResultListener
-import com.reelme.app.listeners.StringResultListener
-import com.reelme.app.listeners.UseInfoGeneralResultListener
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.viewmodel.UploadListModel
+import com.squareup.picasso.Picasso
+import java.io.File
+import java.io.FileInputStream
 
 
 class FragmentUploadView : AppCompatActivity() {
@@ -90,32 +94,50 @@ class FragmentUploadView : AppCompatActivity() {
 
 
 
-                    FirbaseWriteHandlerActivity(this).coompressjpeg(data.data, object: StringResultListener {
-                        override fun onSuccess(url: String) {
-
-                            userDetails.profilePic = url
-                            setUserInfo()
-                        }
-
-                        override fun onFailure(e: Exception) {
-                        }
-                    });
+//                    FirbaseWriteHandlerActivity(this).coompressjpeg(data.data, object: StringResultListener {
+//                        override fun onSuccess(url: String) {
+//
+//                            userDetails.profilePic = url
+//                            setUserInfo()
+//                        }
+//
+//                        override fun onFailure(e: Exception) {
+//                        }
+//                    });
 
                 } else {
                     for (i in 0 until clipData.itemCount) {
                         val item = clipData.getItemAt(i)
+
                         val uri = item.uri
                         path += uri.toString() + "\n"
-                        Log.d("dump", "dump$path")
-                        FirbaseWriteHandlerActivity(this).coompressjpeg(uri, object: StringResultListener {
-                            override fun onSuccess(url: String) {
-                                userDetails.profilePic = url
-                                setUserInfo()
-                            }
+                        Log.d(TAG, "dump  $item.uri.path")
 
-                            override fun onFailure(e: Exception) {
-                            }
-                        });
+                        val fileColumns = arrayOf(MediaStore.Images.Media.DATA)
+                        val cursor: Cursor? = contentResolver.query(uri, fileColumns, null, null, null)
+                        cursor!!.moveToFirst()
+                        val cIndex: Int = cursor.getColumnIndex(fileColumns[0])
+                        val picturePath: String = cursor.getString(cIndex)
+cursor.close()
+
+                        Log.d(TAG, "dump  $picturePath")
+
+                        Picasso.get()
+                                .load(picturePath).rotate(150.0F)
+                                .error(R.drawable.placeholder_profile)
+                                .placeholder(R.drawable.placeholder_profile)
+                                .into(binding.profileimg)
+
+
+//                        FirbaseWriteHandlerActivity(this).coompressjpeg(uri, object: StringResultListener {
+//                            override fun onSuccess(url: String) {
+//                                userDetails.profilePic = url
+//                                setUserInfo()
+//                            }
+//
+//                            override fun onFailure(e: Exception) {
+//                            }
+//                        });
 
                     }
                 }
@@ -131,7 +153,7 @@ class FragmentUploadView : AppCompatActivity() {
     private fun getUserInfo() {
         val sharedPreference = getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("USER_INFO", "");
-        isEdit = sharedPreference.getBoolean("IS_EDIT",false)
+        isEdit = sharedPreference.getBoolean("IS_EDIT", false)
 
         if(isEdit){
             binding.yearList?.skipVisible = View.GONE
@@ -156,31 +178,31 @@ class FragmentUploadView : AppCompatActivity() {
         val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
-        editor.putString("USER_INFO",gsonValue)
-        editor.putBoolean("IS_EDIT",false)
+        editor.putString("USER_INFO", gsonValue)
+        editor.putBoolean("IS_EDIT", false)
         editor.apply()
 
         FirbaseWriteHandlerActivity(this).updateUserInfo(userDetails, object : EmptyResultListener {
             override fun onSuccess() {
-              //  binding!!.progressbar.visibility= View.INVISIBLE
-                if(isEdit){
+                //  binding!!.progressbar.visibility= View.INVISIBLE
+                if (isEdit) {
                     setResult(2, Intent())
                     finish()
-                } else{
+                } else {
                     startActivity(Intent(activity, FragmentBioMobile::class.java));
                 }
 
                 startActivity(Intent(activity, FragmentBioMobile::class.java));
                 Log.d("Authenticaiton token", "onSuccess")
-                Toast.makeText(activity, "we have successfully saved your profile piture", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+                Toast.makeText(activity, "we have successfully saved your profile piture", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
 
             }
 
             override fun onFailure(e: Exception) {
-             //   binding!!.progressbar.visibility= View.INVISIBLE
+                //   binding!!.progressbar.visibility= View.INVISIBLE
                 //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
-                Log.d("Authenticaiton token", "Exception"+e)
-                Toast.makeText(activity, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+                Log.d("Authenticaiton token", "Exception" + e)
+                Toast.makeText(activity, "Failed to save your profile.. please try again later", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
 
             }
         })

@@ -33,6 +33,7 @@
                     android:weightSum="6">
 
                     <TextView
+                        android:fontFamily="@font/futubk"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_16"
@@ -40,8 +41,7 @@
                         android:gravity="center_vertical|center_horizontal"
                         android:text="Edit Profile"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/dimen_16"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/dimen_20"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="0dp"
@@ -81,6 +81,7 @@
                 </FrameLayout>
 
                 <TextView
+                    android:fontFamily="@font/futubk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_8"
@@ -90,6 +91,7 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:fontFamily="@font/futubk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -110,6 +112,7 @@
                     android:onClick="@{() -> homeData.signInUserClicked()}">
 
                     <TextView
+                        android:fontFamily="@font/futubk"
                         android:id="@+id/percenttittle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -121,6 +124,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/futubk"
                         android:id="@+id/percenttittle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -132,6 +136,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/futubk"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -158,6 +163,7 @@
                     android:background="@drawable/group782" />
 
                 <TextView
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -167,6 +173,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -179,6 +186,7 @@
                     android:textStyle="bold" />
 
                 <View
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -189,6 +197,7 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -197,6 +206,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
@@ -216,6 +226,7 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -234,6 +245,7 @@
                     android:weightSum="2">
 
                     <TextView
+                        android:fontFamily="@font/futurastdbold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_16"
@@ -245,6 +257,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/futurastdbold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_16"
@@ -260,6 +273,7 @@
 
 
                 <TextView
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -268,6 +282,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
@@ -288,6 +303,7 @@
 
 
                 <TextView
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -296,6 +312,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
@@ -315,6 +332,7 @@
 
 
                 <TextView
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -328,6 +346,7 @@
                     android:layout_margin="@dimen/dimen_16"
                     android:background="@android:color/transparent"
                     android:text="@={homeData.countryid}"
+                    android:fontFamily="@font/futurastdbold"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16"
                     android:textStyle="bold" />
@@ -342,6 +361,7 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -367,6 +387,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="Instagram"
                     android:textColor="@color/colorBlacklight"
                     android:textStyle="bold" />
@@ -378,6 +399,7 @@
                     android:background="@android:color/transparent"
                     android:drawableStart="@drawable/ic_url_icon"
                     android:drawablePadding="@dimen/dimen_8"
+                    android:fontFamily="@font/futurastdbold"
                     android:hint="instagram"
                     android:text="@={homeData.instagramId}"
                     android:textColorHint="@color/smoke2"
@@ -395,6 +417,7 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
@@ -403,6 +426,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -427,6 +451,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_16"
