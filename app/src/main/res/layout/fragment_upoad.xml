@@ -87,7 +87,7 @@
                         android:layout_marginRight="@dimen/dimen_16"
                         android:background="@drawable/button_black"
                         app:drawableTint="@color/white"
-                        android:onClick="@{yearList.openFileChosser()}"
+                        android:onClick="@{yearList.openFileChosserCamera()}"
                         android:paddingStart="@dimen/dimen_28"
                         android:paddingTop="@dimen/dimen_16"
                         android:paddingBottom="@dimen/dimen_16"

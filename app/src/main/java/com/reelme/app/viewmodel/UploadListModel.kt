@@ -35,6 +35,9 @@ class UploadListModel(internal var context: Context,
     private var networkStateHandler: NetworkChangeHandler? = null
 
     private var openChooserLiveData = MutableLiveData<Boolean>()
+
+    private var openChooserCamera = MutableLiveData<Boolean>()
+
     private var skipLiveData = MutableLiveData<Boolean>()
 
 
@@ -124,6 +127,15 @@ class UploadListModel(internal var context: Context,
 
     fun initFileChooser(): LiveData<Boolean> {
         return openChooserLiveData
+    }
+
+
+    fun openFileChosserCamera() = View.OnClickListener {
+        openChooserCamera.setValue(true);
+    }
+
+    fun initFileChooserCamera(): LiveData<Boolean> {
+        return openChooserCamera
     }
 
 

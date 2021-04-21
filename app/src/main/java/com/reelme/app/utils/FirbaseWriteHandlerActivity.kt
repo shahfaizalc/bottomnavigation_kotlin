@@ -2,7 +2,9 @@ package com.reelme.app.utils
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Context
 import android.graphics.Bitmap
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
@@ -47,7 +49,26 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
 
     }
 
+
+    fun isNetworkAvailable(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return connectivityManager.activeNetworkInfo != null && connectivityManager.activeNetworkInfo.isConnected
+    }
+
+
     fun updateUserInfo(userInfo: UserModel, emptyResultListener: EmptyResultListener) {
+
+       if( !isNetworkAvailable(fragmentBase)){
+
+            Toast.makeText(fragmentBase,"You appear to be offline. Please check your internet settings.",Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 50); show() }
+           var e = Exception()
+
+           emptyResultListener.onFailure(e)
+
+        }
+
+
+
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
         collection.document(currentFirebaseUser!!.uid).set(userInfo)
@@ -99,7 +120,7 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
             }
             Log.d("Uploading:isComplete><><", downUrl.result.toString())
 
-            param.onSuccess( downUrl.result.toString())
+            param.onSuccess(downUrl.result.toString())
 
          }.addOnFailureListener {
             Log.d("Uploading", "" + it)
