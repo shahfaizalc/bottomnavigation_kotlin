@@ -71,7 +71,7 @@ class HomeTabViewModel(private val fragmentSignin: FragmentHomeTab) : BaseObserv
             Log.d("Authentication token", auth.emailId)
             userDetails = (auth as UserModel)
 
-            name.postValue(userDetails.username);
+            name.postValue(userDetails.firstName);
 
 
             percentage = Validator().profileRate(userDetails).toString()
