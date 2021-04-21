@@ -30,7 +30,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_24"
                     android:text="Delete Account"
                     android:textColor="@color/white"
@@ -44,16 +43,19 @@
                     android:background="@color/colorBlacklight"
                     />
                 <TextView
+                    android:lineSpacingExtra="@dimen/dimen_12"
+                    android:fontFamily="@font/futurastdbold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginTop="@dimen/dimen_48"
+                    android:layout_marginTop="@dimen/dimen_16"
                     android:text="Deactivating or deleting your ReelMe Account."
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_24"
+                    android:textSize="@dimen/dimen_20"
                     android:textStyle="bold" />
 
                 <View
+                    android:layout_marginTop="@dimen/dimen_4"
                     android:layout_width="wrap_content"
                     android:layout_height="5dp"
                     android:layout_marginStart="@dimen/dimen_16"
@@ -63,6 +65,7 @@
                     android:textSize="@dimen/dimen_16" />
 
                 <TextView
+                    android:fontFamily="@font/futubk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
@@ -111,10 +114,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_16"
-                    android:layout_marginTop="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_8"
                     android:layout_marginRight="@dimen/dimen_16"
                     android:layout_marginBottom="@dimen/dimen_24"
-                    android:background="@drawable/button_black_large"
+                    android:background="@drawable/button_black"
                     android:onClick="@{() -> homeData.signInUserClicked()}"
                     android:paddingStart="@dimen/dimen_28"
                     android:paddingTop="@dimen/dimen_12"
