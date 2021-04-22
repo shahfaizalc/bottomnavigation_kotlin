@@ -12,6 +12,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textSize="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_16"
         android:fontFamily="@font/futubk"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white" />

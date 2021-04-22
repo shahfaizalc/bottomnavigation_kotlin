@@ -13,6 +13,7 @@ import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.EmptyResultListener
+import com.reelme.app.listeners.StringResultListener
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.utils.EnumValidator
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
@@ -54,8 +55,25 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
             userDetails.username = userName
 
             if(Validator().validate(userName, EnumValidator.USER_NAME_PATTERN)){
-                setUserInfo()
-            }else{
+                FirbaseWriteHandlerActivity(fragmentSignin).doGetEvents(userName!!,object : StringResultListener {
+
+
+                    override fun onSuccess(url: String) {
+                        if(url.equals("0")){
+                            setUserInfo()
+                            // Toast.makeText(context, "Username available ", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+
+                        } else{
+                            Toast.makeText(context, "Username already taken", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+
+                        }
+                    }
+
+                    override fun onFailure(e: Exception) {
+                        Toast.makeText(context, e.localizedMessage, Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+
+                    }
+                })            }else{
                 Toast.makeText(context, "Enter valid username", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
             }
         }

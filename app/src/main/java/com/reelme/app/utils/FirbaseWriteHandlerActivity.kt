@@ -10,12 +10,14 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.*
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.listeners.StringResultListener
@@ -201,7 +203,34 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
     }
 
 
+    fun doGetEvents(username: String, param: StringResultListener) {
 
+        val db = FirebaseFirestore.getInstance()
+        val query = db.collection("users");
+        query.whereEqualTo("username", username)//.whereEqualTo("showDate", showDate)
+                .get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    val any = if (task.isSuccessful) {
+
+                        for (document in task.result!!) {
+
+                            Log.d(TAG, "Successful getting documentss: " +document.data)
+
+                        }
+
+
+                    } else {
+                        Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
+                    }
+                }).addOnFailureListener(OnFailureListener {
+                    exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage)
+                    param.onFailure( exception)
+
+                })
+                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu.documents.size)
+                    param.onSuccess(""+valu.documents.size)
+                })
+    }
 
 
 

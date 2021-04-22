@@ -241,7 +241,9 @@ class UploadListModel(internal var context: Context,
             Log.d("Authentication token", auth.emailId)
 
             userDetails = (auth as UserModel)
-
+            if(!isEdit && !userDetails.profilePic.isNullOrEmpty()){
+                fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java))
+            }
 
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")
