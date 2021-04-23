@@ -73,13 +73,24 @@ class SettingListViewModel(private val context: Context, private val fragmentSig
             field = price
             notifyPropertyChanged(BR.relationshipTitle)
         }
-    fun relationshipClicked() {
+
+    fun privacySettingClicked() {
         //  fragmentSignin.finish()
 //        if( isValidName(firstName!!) && isValidName(lastName!!)){
 //            setUserInfo()
 //        }
         setEditShare()
         fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentPrivacySetting::class.java),2);
+
+    }
+
+    fun notifySettingClicked() {
+        //  fragmentSignin.finish()
+//        if( isValidName(firstName!!) && isValidName(lastName!!)){
+//            setUserInfo()
+//        }
+        setEditShare()
+        fragmentSignin.startActivityForResult(Intent(fragmentSignin, FragmentNotificationSetting::class.java),2);
 
     }
 

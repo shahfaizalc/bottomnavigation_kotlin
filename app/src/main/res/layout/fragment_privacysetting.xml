@@ -34,7 +34,7 @@
                     android:layout_marginTop="@dimen/dimen_24"
                     android:text="Privacy Settings "
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16" />
+                    android:textSize="@dimen/dimen_20" />
 
                 <TextView
                     android:fontFamily="@font/futurastdbold"

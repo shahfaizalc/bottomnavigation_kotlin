@@ -170,6 +170,13 @@
             android:name=".view.FragmentSettingsList"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".view.FragmentRefer"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustPan" />
+
+
         <activity
             android:name=".view.FragmentPrivacySetting"
             android:screenOrientation="sensorPortrait"
@@ -178,7 +185,12 @@
             android:name=".view.FragmentFeedBack"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
+            android:name=".view.FragmentNotificationSetting"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustPan" />
+       <activity
             android:name=".view.FragmentPrivacy"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />

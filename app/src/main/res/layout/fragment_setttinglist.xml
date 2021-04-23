@@ -17,7 +17,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,6 +31,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_24"
+                    android:fontFamily="@font/futubk"
                     android:text="Settings"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -40,6 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_32"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="Settings"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_24"
@@ -48,8 +50,8 @@
                 <View
                     android:layout_width="100dp"
                     android:layout_height="5dp"
-                    android:layout_marginTop="@dimen/dimen_4"
                     android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_4"
                     android:layout_marginEnd="@dimen/dimen_16"
                     android:background="@drawable/group782" />
 
@@ -57,23 +59,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:onClick="@{() -> homeData.relationshipClicked()}"
+                    android:fontFamily="@font/futurastdbold"
+                    android:onClick="@{() -> homeData.privacySettingClicked()}"
                     android:text="Privacy Settings"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
-
+                    android:textSize="@dimen/dimen_16" />
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:fontFamily="@font/futurastdbold"
+                    android:onClick="@{() -> homeData.notifySettingClicked()}"
                     android:text="Notification Settings"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
-
+                    android:textSize="@dimen/dimen_16" />
 
 
                 <TextView
@@ -81,15 +82,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_20"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="Community Guidelines"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_24"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/dimen_24" />
+
                 <View
-                    android:layout_width="250dp"
+                    android:layout_width="275dp"
                     android:layout_height="5dp"
-                    android:layout_marginTop="@dimen/dimen_4"
                     android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_4"
                     android:layout_marginEnd="@dimen/dimen_16"
                     android:background="@drawable/group782" />
 
@@ -97,27 +99,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="Cookie Policy"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/dimen_16" />
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="Privacy Policy for Younger Users"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16"
-                    android:textStyle="bold"
-                    android:text="Open Source"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
 
@@ -125,7 +118,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/futurastdbold"
+                    android:text="Open Source"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_16"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_16"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="Intellectual Property Policy"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -134,16 +137,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="Law Inforcement"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_16" />
+                    android:textSize="@dimen/dimen_16"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="Privacy Policy"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -152,7 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="Terms of Service"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_16" />
@@ -162,20 +166,20 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_24"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="Language Preference"
                     android:textColor="@color/colorBlacklight"
-                    android:textStyle="bold"
                     android:textSize="@dimen/dimen_20" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
                     android:layout_marginBottom="@dimen/dimen_16"
-                    android:layout_marginStart="@dimen/dimen_16"
+                    android:fontFamily="@font/futurastdbold"
                     android:text="English"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
                     android:textSize="@dimen/dimen_24" />
 
                 <!--        <LinearLayout-->

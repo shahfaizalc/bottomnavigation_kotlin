@@ -76,8 +76,10 @@ class FragmentHomeTab : BaseFragment() {
                 return true
             }
             R.id.refer_ic ->{
-                return true
-            }
+                val intent = Intent(activity, FragmentRefer::class.java);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                activity!!.startActivity(intent);
+                return true            }
             R.id.influnce_ic ->{
                 return true
             }
