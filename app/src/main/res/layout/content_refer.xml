@@ -22,7 +22,8 @@
             android:orientation="vertical">
 
             <TextView
-                android:textSize="@dimen/dimen_16"
+                android:fontFamily="@font/futubk"
+                android:textSize="@dimen/dimen_20"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -30,9 +31,50 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/dimen_16"
                 android:background="@android:color/transparent"
-                android:text="Follow Requests" />
+                android:text="Refer &amp; Earn" />
 
+            <TextView
+                android:textSize="@dimen/dimen_24"
+                android:textColor="@color/white"
+                android:fontFamily="@font/futurastdbold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="@dimen/dimen_16"
+                android:background="@android:color/transparent"
+                android:text="Invite Friends to ReelMe" />
 
+            <TextView
+                android:fontFamily="@font/futubk"
+                android:textSize="@dimen/dimen_16"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16"
+                android:layout_marginEnd="@dimen/dimen_16"
+                android:layout_marginBottom="@dimen/dimen_16"
+                android:background="@android:color/transparent"
+                android:text="Attract new users to ReelMe and get a chance to earn a percentage of the ad revenue generated from the users you refer. Revenue will be calculated once you reach Influencer status." />
+            <TextView
+                android:fontFamily="@font/futubk"
+                android:textSize="@dimen/dimen_16"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16"
+                android:background="@android:color/transparent"
+                android:text="To receive ad revenue as an Influencer, you need to be at least 18 years old, or have a legal guardian older than 18 years of age who can handle your payments." />
+
+            <TextView
+                android:fontFamily="@font/futurastdbold"
+                android:textSize="@dimen/dimen_16"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/dimen_16"
+                android:background="@android:color/transparent"
+                android:text="Phone Contacts" />
 
             <androidx.appcompat.widget.SearchView
                 android:layoutDirection="rtl"
