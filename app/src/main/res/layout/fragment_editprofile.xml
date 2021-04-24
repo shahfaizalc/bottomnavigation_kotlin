@@ -157,12 +157,16 @@
 
                 </RelativeLayout>
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="5dp"
+                <ProgressBar
+                    android:id="@+id/progressprofile"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:background="@drawable/group782" />
+                    xmlns:tools="http://schemas.android.com/tools"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:progressDrawable="@drawable/gradient_progress"
+                    />
 
                 <TextView
                     android:fontFamily="@font/futurastdbold"

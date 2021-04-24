@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
@@ -28,6 +30,12 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
     private var networkStateHandler: NetworkChangeHandler? = null
 
     private var isInternetConnected: Boolean = false
+
+    private val progresPercentage = MutableLiveData<Int>()
+
+    fun getProgressValue(): LiveData<Int?> {
+        return progresPercentage
+    }
 
     init {
         networkHandler()
@@ -276,9 +284,18 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
     @get:Bindable
     var percentof: String? = " "+Validator().profileRate(userDetails).toString()
         set(price) {
+            progresPercentage.postValue(Validator().profileRate(userDetails));
+
             field = price
             notifyPropertyChanged(BR.percentof)
         }
+
+//    @get:Bindable
+//    var percentofProgress: Int = (Validator().profileRate(userDetails))
+//        set(price) {
+//            field = price
+//            notifyPropertyChanged(BR.percentofProgress)
+//        }
 
     @get:Bindable
     var photo: String? = userDetails.profilePic

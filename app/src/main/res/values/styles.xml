@@ -17,6 +17,12 @@
 
     </style>
 
+    <style name="MyProgressBarTwo" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorControlHighlight">#ff6d00</item>
+        <item name="android:progressDrawable">@drawable/gradient_progress</item>
+        <item name="android:minWidth">200dp</item>
+    </style>
+
     <style name="menu_item_color">
         <item name="android:textColor">@color/black</item>
     </style>

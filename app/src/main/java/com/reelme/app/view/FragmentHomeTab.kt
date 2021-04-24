@@ -38,6 +38,8 @@ class FragmentHomeTab : BaseFragment() {
             binding!!.homeData!!.setPagerAdapter(adapter)
 
             binding!!.homeData!!.getName().observe(this) { name -> setTitle(name) }
+            binding!!.homeData!!.getProgressValue().observe(this) { name -> binding!!.progressprofile.progress = (name!!) }
+
         }
 
         return binding!!.root

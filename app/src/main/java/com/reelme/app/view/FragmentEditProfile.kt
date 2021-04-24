@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentEditprofileBinding
@@ -22,6 +21,7 @@ class FragmentEditProfile : AppCompatActivity() {
         val binding : FragmentEditprofileBinding = DataBindingUtil.setContentView(this, R.layout.fragment_editprofile)
         areaViewModel = EditProfileViewModel(this, this)
         binding.homeData = areaViewModel
+        binding.homeData!!.getProgressValue().observe(this) { name -> binding.progressprofile.progress = (name!!) }
     }
 
     override fun onStart() {

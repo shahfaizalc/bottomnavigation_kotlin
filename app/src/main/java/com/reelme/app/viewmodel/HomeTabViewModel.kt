@@ -32,6 +32,12 @@ class HomeTabViewModel(private val fragmentSignin: FragmentHomeTab) : BaseObserv
      */
     private var adapter: ViewPagerAdapter? = null
 
+    private val progresPercentage = MutableLiveData<Int>()
+
+    fun getProgressValue(): LiveData<Int?> {
+        return progresPercentage
+    }
+
     val pagerAdapter: PagerAdapter?
         @Bindable
         get() = adapter
@@ -92,6 +98,7 @@ class HomeTabViewModel(private val fragmentSignin: FragmentHomeTab) : BaseObserv
     var percentof: String? = " "+ Validator().profileRate(userDetails).toString()
         set(price) {
             field = price
+            progresPercentage.postValue(Validator().profileRate(userDetails))
             notifyPropertyChanged(BR.percentof)
         }
 
