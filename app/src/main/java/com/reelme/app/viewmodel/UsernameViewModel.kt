@@ -55,25 +55,36 @@ class UsernameViewModel(private val context: Context, private val fragmentSignin
             userDetails.username = userName
 
             if(Validator().validate(userName, EnumValidator.USER_NAME_PATTERN)){
-                FirbaseWriteHandlerActivity(fragmentSignin).doGetEvents(userName!!,object : StringResultListener {
+
+                if(userDetails.username.equals( userName)){
+                    setUserInfo()
+
+                } else{
+                    FirbaseWriteHandlerActivity(fragmentSignin).doGetEvents(userName!!,object : StringResultListener {
 
 
-                    override fun onSuccess(url: String) {
-                        if(url.equals("0")){
-                            setUserInfo()
-                            // Toast.makeText(context, "Username available ", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+                        override fun onSuccess(url: String) {
+                            if(url.equals("0")){
+                                setUserInfo()
+                                // Toast.makeText(context, "Username available ", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
-                        } else{
-                            Toast.makeText(context, "Username already taken", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+                            } else{
+                                Toast.makeText(context, "Username already taken", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+
+                            }
+                        }
+
+                        override fun onFailure(e: Exception) {
+                            Toast.makeText(context, e.localizedMessage, Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
                         }
-                    }
+                    })
+                }
 
-                    override fun onFailure(e: Exception) {
-                        Toast.makeText(context, e.localizedMessage, Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
-                    }
-                })            }else{
+
+
+            }else{
                 Toast.makeText(context, "Enter valid username", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
             }
         }

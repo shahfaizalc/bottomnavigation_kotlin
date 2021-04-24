@@ -115,7 +115,7 @@ class GenericValues {
 //                        if (userModel.skipReferalCode != true) {
 //                            fragment.startActivity(Intent(fragment, FragmentReferralMobile::class.java));
 //                        } else
-                            if (userModel.emailId.isNullOrEmpty()) {
+                            if (userModel.emailId.isNullOrEmpty()  ) {
                                 fragment.startActivity(Intent(fragment, FragmentEmailAddress::class.java));
                             } else
                                 if (userModel.firstName.isNullOrEmpty()) {
@@ -127,31 +127,31 @@ class GenericValues {
                                         if (userModel.dob.isNullOrEmpty()) {
                                             fragment.startActivity(Intent(fragment, FragmentDate::class.java));
                                         } else
-                                            if (userModel.username.isNullOrEmpty()) {
+                                            if (userModel.username.isNullOrEmpty() && userModel.skipUsername==false) {
                                                 fragment.startActivity(Intent(fragment, FragmentUserName::class.java));
                                             } else
                                                 if (userModel.profilePic.isNullOrEmpty()) {
                                                     fragment.startActivity(Intent(fragment, FragmentUploadView::class.java));
                                                 } else
-                                                    if (userModel.bio.isNullOrEmpty()) {
+                                                    if (userModel.bio.isNullOrEmpty() && userModel.skipBio==false) {
                                                         fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
                                                     } else
-                                                        if (userModel.gender.isNullOrEmpty()) {
+                                                        if (userModel.gender.isNullOrEmpty()&& userModel.skipGender==false) {
                                                             fragment.startActivity(Intent(fragment, GenderActivity::class.java));
                                                         } else
-                                                            if (userModel.relationshipStatus.isNullOrEmpty()) {
+                                                            if (userModel.relationshipStatus.isNullOrEmpty() && userModel.skipRelationshipStatus==false) {
                                                                 fragment.startActivity(Intent(fragment, RelationshipActivity::class.java));
                                                             } else
-                                                                if (userModel.children.isNullOrEmpty()) {
+                                                                if (userModel.children.isNullOrEmpty()&&userModel.skipChildren == false) {
                                                                     fragment.startActivity(Intent(fragment, ChildrenActivity::class.java));
                                                                 } else
-                                                                    if (userModel.occupation.isNullOrEmpty()) {
+                                                                    if (userModel.occupation.isNullOrEmpty() && userModel.skipOccupation == false) {
                                                                         fragment.startActivity(Intent(fragment, FragmentOccupation::class.java));
                                                                     } else
-                                                                        if (userModel.religiousBeliefs.isNullOrEmpty()) {
+                                                                        if (userModel.religiousBeliefs.isNullOrEmpty() && userModel.skipReligiousBeliefs == false) {
                                                                             fragment.startActivity(Intent(fragment, RelegionActivity::class.java));
                                                                         } else
-                                                                            if (userModel.hobbiesAndInterest.isNullOrEmpty()) {
+                                                                            if (userModel.hobbiesAndInterest.isNullOrEmpty() && userModel.skipHobbiesAndInterest == false) {
                                                                                 fragment.startActivity(Intent(fragment, FragmentHobbies::class.java));
                                                                             } else {
                                                                                 fragment.startActivity(Intent(fragment, Main2Activity::class.java));
