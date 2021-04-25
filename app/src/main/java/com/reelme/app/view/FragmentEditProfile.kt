@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentEditprofileBinding
@@ -28,11 +29,24 @@ class FragmentEditProfile : AppCompatActivity() {
         super.onStart()
         areaViewModel.registerListeners()
     }
+
     override fun onResume() {
         super.onResume()
-        System.out.println("returnretern")
-    }
+        System.out.println("hometabretern")
 
+        val sharedPreference = getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+        val isEdit = sharedPreference.getBoolean("HAS_CHANGES_EDIT", false)
+
+        if(isEdit){
+            areaViewModel.getUserInfo()
+
+            val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+            val editor = sharedPreference.edit()
+            editor.putBoolean("HAS_CHANGES_EDIT",false)
+            editor.apply()
+        }
+
+    }
     override fun onStop() {
         super.onStop()
         areaViewModel.unRegisterListeners()

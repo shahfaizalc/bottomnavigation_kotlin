@@ -36,11 +36,17 @@ class FragmentDemographics : AppCompatActivity() {
         areaViewModel.unRegisterListeners()
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==2)
         {
             areaViewModel.getUserInfo()
+            val sharedPreference =  getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+            val editor = sharedPreference.edit()
+            editor.putBoolean("HAS_CHANGES",true)
+            editor.putBoolean("HAS_CHANGES_EDIT",true)
+            editor.apply()
         }
     }
 }

@@ -36,7 +36,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
 
     fun signInUserClicked() {
         // fragmentSignin.finish()
-        if(!posititonSelected.isNullOrEmpty()) {
+        if(!posititonSelected.isEmpty()) {
             userDetails.hobbiesAndInterest = posititonSelected
             setUserInfo()
         }

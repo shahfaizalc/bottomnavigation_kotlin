@@ -85,6 +85,30 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
                 }
     }
 
+    fun updateUserInfoitems(userInfo: Map<String, String?>, emptyResultListener: EmptyResultListener) {
+
+        if( !isNetworkAvailable(fragmentBase)){
+
+            Toast.makeText(fragmentBase,"You appear to be offline. Please check your internet settings.",Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 50); show() }
+            var e = Exception()
+
+            emptyResultListener.onFailure(e)
+
+        }
+
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
+        collection.document(currentFirebaseUser!!.uid).update(userInfo)
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
 
     fun coompressjpeg(path: Uri?, param: StringResultListener) {
 

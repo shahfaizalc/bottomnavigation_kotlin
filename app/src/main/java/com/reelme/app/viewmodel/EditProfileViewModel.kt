@@ -208,12 +208,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
     fun setUserInfo(){
         progressBarVisible = View.VISIBLE
 
-        userDetails.firstName = nameTitle
-        userDetails.username = usernameTitle
-        userDetails.emailId = emailTitle
-        userDetails.instagramLink = instagramId
-        userDetails.youtube = youtubeId
-        userDetails.countryOrigin = countryid
+
 
 
         val gsonValue = Gson().toJson(userDetails)
@@ -227,7 +222,13 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
         Toast.makeText(context, "Please wait... we are saving your data", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
 
 
-        FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
+        FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfoitems(mapOf(
+                "firstName" to nameTitle,
+                "username" to usernameTitle,
+                "emailId" to emailTitle,
+                "instagramLink" to instagramId,
+                "youtube" to youtubeId,
+                "countryOrigin" to countryid), object : EmptyResultListener {
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
                 // if(isEdit){
