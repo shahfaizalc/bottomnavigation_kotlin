@@ -47,7 +47,22 @@
 
                 </com.reelme.app.util.ImageViewRounded>
 
+                <TextView
+                    android:fontFamily="@font/futurastdbold"
+                    android:textSize="@dimen/dimen_12"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_16"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/button_black"
+                    app:drawableTint="@color/white"
+                    android:onClick="@{yearList.openFileChosserCamera()}"
+                    android:padding="@dimen/dimen_16"
 
+                    android:text=" TAKE PICTURE"
+                    android:textColor="@color/smoke2"
+                    app:drawableStartCompat="@drawable/ic_camera_icon" />
                 <LinearLayout
                     android:gravity="center_horizontal"
                     android:layout_width="match_parent"

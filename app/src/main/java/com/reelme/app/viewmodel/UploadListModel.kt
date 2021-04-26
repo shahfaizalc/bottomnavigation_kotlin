@@ -40,8 +40,6 @@ class UploadListModel(internal var context: Context,
 
     private var skipLiveData = MutableLiveData<Boolean>()
 
-   private  var isImageUploadedd = false;
-
     private var imageUrl : Uri = Uri.EMPTY
 
     public fun setImageUrl(url: Uri){
@@ -106,34 +104,6 @@ class UploadListModel(internal var context: Context,
         //  fragmentSignin.finish()
         Log.d("Authentication urll", imageUrl.toString())
 
-//        FirbaseWriteHandlerActivity(fragment).coompressjpeg(imageUrl, object : StringResultListener {
-//            override fun onSuccess(url: String) {
-//                Log.d("Authentication url", url)
-//
-//                userDetails.profilePic = url
-//                setUserInfo()
-//            }
-//
-//            override fun onFailure(e: Exception) {
-//            }
-//        });
-        if(isImageUploadedd){
-            setUserInfo()
-
-        } else{
-            Toast.makeText(fragment, "Please Take Picture & upload ", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
-
-        }
-
-
-        //   fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
-    }
-
-
-    fun openFileChosser() = View.OnClickListener {
-
-        Log.d("Authentication urll", "df "+imageUrl.toString())
-
         if(!imageUrl.toString().isEmpty()){
             progressBarVisible = View.VISIBLE
             FirbaseWriteHandlerActivity(fragment).coompressjpeg(imageUrl, object : StringResultListener {
@@ -144,8 +114,7 @@ class UploadListModel(internal var context: Context,
 
                     userDetails.profilePic = url
 
-                    isImageUploadedd = true
-                  //  setUserInfo()
+                    setUserInfo()
                 }
 
                 override fun onFailure(e: Exception) {
@@ -161,8 +130,12 @@ class UploadListModel(internal var context: Context,
 
 
 
+        //   fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
+    }
 
-        // setUserInfo()
+
+    fun openFileChosser() = View.OnClickListener {
+     // setUserInfo()
         //   fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
       //  openChooserLiveData.setValue(true);
     }
