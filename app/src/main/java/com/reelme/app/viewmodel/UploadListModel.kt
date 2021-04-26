@@ -133,13 +133,6 @@ class UploadListModel(internal var context: Context,
         //   fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
     }
 
-
-    fun openFileChosser() = View.OnClickListener {
-     // setUserInfo()
-        //   fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
-      //  openChooserLiveData.setValue(true);
-    }
-
     fun initFileChooser(): LiveData<Boolean> {
         return openChooserLiveData
     }
