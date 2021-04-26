@@ -16,7 +16,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 public class ImageViewRounded extends AppCompatImageView {
 
-    private int borderWidth = 4;
+    private int borderWidth = 8;
     private int viewWidth;
     private int viewHeight;
     private Bitmap image;
@@ -48,7 +48,7 @@ public class ImageViewRounded extends AppCompatImageView {
         paint.setAntiAlias(true);
 
         paintBorder = new Paint();
-        setBorderColor(Color.WHITE);
+        setBorderColor(Color.BLACK);
         paintBorder.setAntiAlias(true);
         this.setLayerType(LAYER_TYPE_SOFTWARE, paintBorder);
 
