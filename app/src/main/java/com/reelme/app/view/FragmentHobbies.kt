@@ -11,6 +11,8 @@ import androidx.databinding.DataBindingUtil
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentHobbiesBinding
 import com.reelme.app.viewmodel.HobbiesViewModel
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FragmentHobbies : AppCompatActivity() {
@@ -31,7 +33,7 @@ class FragmentHobbies : AppCompatActivity() {
 
 
     private fun setupAutoCompleteView(mContentViewBinding: FragmentHobbiesBinding) {
-        val animalList= mContentViewBinding!!.homeData!!.prepareData()
+        val animalList= mContentViewBinding.homeData!!.prepareData()
 //        adapter  = ArrayAdapter<String>(
 //                this, android.R.layout.simple_spinner_dropdown_item,
 //                animalList)
@@ -46,12 +48,14 @@ class FragmentHobbies : AppCompatActivity() {
         mContentViewBinding.flightsRv.threshold = 2
         mContentViewBinding.flightsRv.setTokenizer(CommaTokenizer())
 
-
-
         mContentViewBinding.flightsRv.onItemClickListener =
                 AdapterView.OnItemClickListener { parent, arg1, position, id ->
                     val selected = parent.getItemAtPosition(position)
-                    mContentViewBinding!!.homeData!!.posititonSelected = selected as String;
+
+                    val myList = Arrays.asList(mContentViewBinding.flightsRv.text.split(","))
+
+                    println(myList)
+                    mContentViewBinding.homeData!!.posititonSelected=(selected as String);
                     Log.d("posititonSelectedaa ", "posititonSelected$selected")
 
                 }

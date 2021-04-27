@@ -133,13 +133,7 @@ class PrivacySettingViewModel(private val context: Context, private val fragment
 
 
 
-    @get:Bindable
-    var hobbiesTitle: String? = userDetails.hobbiesAndInterest
-        set(price) {
 
-            field = price
-            notifyPropertyChanged(BR.hobbiesTitle)
-        }
 
     fun hobbiesClicked() {
         //  fragmentSignin.finish()
@@ -196,7 +190,6 @@ class PrivacySettingViewModel(private val context: Context, private val fragment
            religiousTitle =   userDetails.religiousBeliefs
            genderTitle = userDetails.gender
            occupationTitle =  userDetails.occupation
-           hobbiesTitle = userDetails.hobbiesAndInterest
 
 
         } catch (e: java.lang.Exception) {
