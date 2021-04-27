@@ -23,7 +23,7 @@ data class UserModel(
         var skipOccupation: Boolean? = false,
         var religiousBeliefs: String?="",
         var skipReligiousBeliefs: Boolean? = false,
-        var hobbiesAndInterest: String?="",
+        var hobbiesAndInterest: List<String> = emptyList<String>(),
         var skipHobbiesAndInterest: Boolean? = false,
         var isDeactivated: Boolean? = false,
         var countryOrigin: String? ="",

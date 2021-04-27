@@ -2,6 +2,7 @@ package com.reelme.app.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -134,7 +135,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 
 
     @get:Bindable
-    var hobbiesTitle: String? = userDetails.hobbiesAndInterest
+    var hobbiesTitle: String? = TextUtils.join(", ",userDetails.hobbiesAndInterest)
         set(price) {
 
             field = price
@@ -196,7 +197,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
            religiousTitle =   userDetails.religiousBeliefs
            genderTitle = userDetails.gender
            occupationTitle =  userDetails.occupation
-           hobbiesTitle = userDetails.hobbiesAndInterest
+           hobbiesTitle = TextUtils.join(", ",userDetails.hobbiesAndInterest  )
 
 
         } catch (e: java.lang.Exception) {

@@ -2,6 +2,7 @@ package com.reelme.app.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -25,7 +26,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
 
     private var isInternetConnected: Boolean = false
 
-    var posititonSelected = ""
+    var posititonSelected : List<String> = emptyList<String>()
 
     init {
         networkHandler()
@@ -99,7 +100,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
 
 
     @get:Bindable
-    var hintTextOccupation = if (userDetails.hobbiesAndInterest.isNullOrEmpty()) "Pick your hobbies & interests" else  userDetails.hobbiesAndInterest
+    var hintTextOccupation = if (userDetails.hobbiesAndInterest.isNullOrEmpty()) "Pick your hobbies & interests" else  TextUtils.join(", ",userDetails.hobbiesAndInterest)
         set(progressBarVisible) {
             field = progressBarVisible
             notifyPropertyChanged(BR.hintTextOccupation)
