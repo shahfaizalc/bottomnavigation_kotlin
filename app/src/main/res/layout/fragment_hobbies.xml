@@ -36,7 +36,7 @@
                 android:textSize="@dimen/dimen_32"
                 android:textStyle="bold" />
 
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            <androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView
                 android:fontFamily="@font/futubk"
                 android:id="@+id/flights_rv"
                 android:layout_width="match_parent"
