@@ -135,7 +135,7 @@ class DemographicsViewModel(private val context: Context, private val fragmentSi
 
 
     @get:Bindable
-    var hobbiesTitle: String? = TextUtils.join(", ",userDetails.hobbiesAndInterest)
+    var hobbiesTitle: String? =  userDetails.hobbiesAndInterest.joinToString()
         set(price) {
 
             field = price

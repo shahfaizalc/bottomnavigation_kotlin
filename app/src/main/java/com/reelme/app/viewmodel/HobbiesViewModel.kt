@@ -100,7 +100,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
 
 
     @get:Bindable
-    var hintTextOccupation = if (userDetails.hobbiesAndInterest.isNullOrEmpty()) "" else  TextUtils.join(", ",userDetails.hobbiesAndInterest)
+    var hintTextOccupation = if (userDetails.hobbiesAndInterest.isNullOrEmpty()) "" else  userDetails.hobbiesAndInterest.joinToString()
         set(progressBarVisible) {
             field = progressBarVisible
             notifyPropertyChanged(BR.hintTextOccupation)
