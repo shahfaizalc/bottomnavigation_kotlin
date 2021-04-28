@@ -28,7 +28,10 @@
     </style>
 
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="android:fitsSystemWindows">true</item>
+
+    </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
 
@@ -38,6 +41,7 @@
         <item name="tabPaddingEnd">0dp</item>
         <item name="tabGravity">fill</item>
         <item name="tabMode">fixed</item>
+        <item name="android:background">@color/black</item>
     </style>
 
     <style name="chipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">

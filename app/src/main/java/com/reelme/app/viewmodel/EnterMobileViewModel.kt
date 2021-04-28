@@ -45,7 +45,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
         // [END initialize_auth]
 
         if(!auth.uid.isNullOrEmpty()){
-            fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+            fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomeTab::class.java));
         }
 
 

@@ -100,7 +100,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
 
 
     @get:Bindable
-    var hintTextOccupation = if (userDetails.hobbiesAndInterest.isNullOrEmpty()) "Pick your hobbies & interests" else  TextUtils.join(", ",userDetails.hobbiesAndInterest)
+    var hintTextOccupation = if (userDetails.hobbiesAndInterest.isNullOrEmpty()) "" else  TextUtils.join(", ",userDetails.hobbiesAndInterest)
         set(progressBarVisible) {
             field = progressBarVisible
             notifyPropertyChanged(BR.hintTextOccupation)
@@ -165,7 +165,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
             }
 
             override fun onFailure(e: Exception) {
-                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomeTab::class.java));
                 Log.d("Authenticaiton token", "Exception" + e)
                 Toast.makeText(context, "Failed to save your profile", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
 
