@@ -6,17 +6,17 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:text="Example"
-        android:gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textSize="@dimen/dimen_16"
-        android:paddingTop="@dimen/dimen_16"
         android:layout_marginTop="@dimen/dimen_16"
+        android:ellipsize="end"
         android:fontFamily="@font/futubk"
+        android:gravity="center_horizontal"
+        android:maxLines="1"
+        android:paddingTop="@dimen/dimen_16"
+        android:text="Example"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_16" />
 
 </RelativeLayout>
