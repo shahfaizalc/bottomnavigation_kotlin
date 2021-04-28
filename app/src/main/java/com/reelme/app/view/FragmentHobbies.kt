@@ -52,10 +52,21 @@ class FragmentHobbies : AppCompatActivity() {
                 AdapterView.OnItemClickListener { parent, arg1, position, id ->
                     val selected = parent.getItemAtPosition(position)
 
-                    val myList = mContentViewBinding.flightsRv.text.split(",")
+                    val myList = mContentViewBinding.flightsRv.text.trim().split(",")
+
+                    var filteredMyList = ArrayList<String>()
+
+                    for (item in myList) {
+
+                        if(item.trim().isNotEmpty()){
+                          filteredMyList.add(item)
+                        }
+                        print(item)
+                    }
+
 
                     println(myList)
-                    mContentViewBinding.homeData!!.posititonSelected = myList
+                    mContentViewBinding.homeData!!.posititonSelected = filteredMyList
                     Log.d("posititonSelectedaa ", "posititonSelected$selected")
 
                 }
