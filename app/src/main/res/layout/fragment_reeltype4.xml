@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="homeData"
+            type="com.reelme.app.viewmodel.ReelTypeMobileViewModel" />
+    </data>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/ic_blor_image"
+                android:layout_weight="4">
+
+
+                <ImageView
+                    android:layout_alignParentStart="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_48"
+                    android:padding="@dimen/dimen_16"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/ic_leftarrow"/>
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_48"
+                    android:fontFamily="@font/futurastdbold"
+                    android:lineSpacingExtra="@dimen/dimen_12"
+                    android:padding="@dimen/dimen_16"
+                    android:text="Daily\nBonus\nReels"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_32" />
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:background="@android:color/transparent"
+                android:layout_weight="2"
+                android:id="@+id/progressprofile"
+                android:layout_marginStart="@dimen/dimen_16"
+                android:layout_marginEnd="@dimen/dimen_16"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:src="@drawable/group782"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/ic_blor_image"
+                android:layout_weight="4">
+
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_48"
+                    android:fontFamily="@font/futurastdbold"
+                    android:lineSpacingExtra="@dimen/dimen_12"
+                    android:padding="@dimen/dimen_16"
+                    android:text="Choose\nYour\nAdventures"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_32" />
+
+                <ImageView
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_48"
+                    android:padding="@dimen/dimen_16"
+                    android:src="@drawable/ic_rightarrow"/>
+
+
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="@{homeData.progressBarVisible}" />
+    </FrameLayout>
+</layout>

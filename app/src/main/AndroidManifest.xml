@@ -194,8 +194,15 @@
             android:name=".view.FragmentPrivacy"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
+
+<!--        <activity-->
+<!--            android:name=".view.FragmentReelType4"-->
+<!--            android:screenOrientation="sensorPortrait"-->
+<!--            android:windowSoftInputMode="adjustPan" />-->
+
+
         <activity
-            android:name=".activities.LaunchActivity"
+            android:name=".view.FragmentReelType4"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
