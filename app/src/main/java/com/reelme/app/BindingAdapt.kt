@@ -14,6 +14,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableList
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.reelme.app.adapter.*
@@ -103,7 +104,9 @@ fun adapter(searchView: SearchView ,countriesViewModel: ReferModel,recyclerView:
 @BindingAdapter( "app:searchAdapter")
 fun adapter(recyclerView: RecyclerView ,countriesViewModel: DailyBonusReelsModel) {
 
-    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
+    val linearLayoutManager = GridLayoutManager(recyclerView.context, 1, GridLayoutManager.HORIZONTAL, false)
+
+   // val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = DailyBonusReelsAdapter(countriesViewModel)
     val bindingAdapter = RecyclerLoadMoreDailyHandler(countriesViewModel, listAdapter)
     bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
