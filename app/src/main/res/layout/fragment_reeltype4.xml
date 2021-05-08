@@ -29,7 +29,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@drawable/group_1355"
-                android:layout_weight="4">
+                android:layout_weight="4"
+                android:onClick="@{() -> homeData.signUpUserClicked()}"
+                >
 
 
                 <ImageView
@@ -69,6 +71,8 @@
                 />
 
             <RelativeLayout
+                android:onClick="@{() -> homeData.signInUserClicked()}"
+
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@drawable/group_1355"

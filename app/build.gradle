@@ -132,6 +132,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.8.0")
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.google.android.gms:play-services-ads:20.1.0'
 
 // add these lines in your app build.gradle
     implementation 'com.google.android.gms:play-services-auth:19.0.0'

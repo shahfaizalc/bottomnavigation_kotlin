@@ -9,7 +9,7 @@ import com.reelme.app.databinding.FragmentReeltype4Binding
 import com.reelme.app.viewmodel.ReelTypeMobileViewModel
 
 
-class FragmentReelType4 : AppCompatActivity() {
+class FragmentReelType1 : AppCompatActivity() {
 
     @Transient
     lateinit internal var areaViewModel: ReelTypeMobileViewModel

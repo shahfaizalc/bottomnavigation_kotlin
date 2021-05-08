@@ -25,6 +25,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
+        <meta-data
+            android:name= "com.google.android.gms.ads.APPLICATION_ID"
+            android:value= "ca-app-pub-7218101052695054~8775403367"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -195,14 +199,14 @@
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
 
-<!--        <activity-->
-<!--            android:name=".view.FragmentReelType4"-->
-<!--            android:screenOrientation="sensorPortrait"-->
-<!--            android:windowSoftInputMode="adjustPan" />-->
+        <activity
+            android:name=".view.FragmentDailyBonusReels"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustPan" />
 
 
         <activity
-            android:name=".view.FragmentDailyBonusReels"
+            android:name=".view.FragmentReelType1"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
