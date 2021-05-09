@@ -35,7 +35,7 @@ class FragmentDailyBonusReels : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         var binding : ContentDailybonusreelsBinding = DataBindingUtil.setContentView(this, R.layout.content_dailybonusreels)
         areaViewModel = DailyBonusReelsModel(this)
-        binding!!.adSearchModel = areaViewModel
+        binding.adSearchModel = areaViewModel
 
         val firbaseWriteHandlerActivity = FirbaseWriteHandlerActivity(this)
         firbaseWriteHandlerActivity.doGetBonusTopics(object : BonusTopicsResultListener{

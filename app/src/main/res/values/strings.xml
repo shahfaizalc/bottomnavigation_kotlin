@@ -347,6 +347,7 @@ Welcome to Grads!
     <string name="banner_id">514835722463089_514969325783062</string>
     <string name="pick_your_occupation">Pick your Occupation</string>
     <string name="pick_your_hobbies_amp_interests"><![CDATA[Pick your hobbies & interests]]></string>
+    <string name="swipe_to_record">SWIPE TO RECORD</string>
 
 
 </resources>

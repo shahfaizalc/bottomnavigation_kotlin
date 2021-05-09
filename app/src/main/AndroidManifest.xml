@@ -206,7 +206,7 @@
 
 
         <activity
-            android:name=".view.FragmentReelType1"
+            android:name=".view.FragmentReelDailyBonus"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
