@@ -42,7 +42,7 @@
                     android:fontFamily="@font/futurastdbold"
                     android:lineSpacingExtra="@dimen/dimen_12"
                     android:padding="@dimen/dimen_16"
-                    android:text="Daily\nBonus\nReels"
+                    android:text="@{homeData.headline1title}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_28" />
 
@@ -54,7 +54,7 @@
                     android:fontFamily="@font/futurastdbold"
                     android:lineSpacingExtra="@dimen/dimen_12"
                     android:padding="@dimen/dimen_16"
-                    android:text="200 points"
+                    android:text="@{homeData.headline1Points}"
                     android:textColor="@color/white"/>
 
                 <TextView
@@ -103,7 +103,7 @@
                     android:fontFamily="@font/futurastdbold"
                     android:lineSpacingExtra="@dimen/dimen_12"
                     android:padding="@dimen/dimen_16"
-                    android:text="Choose\nYour\nAdventures"
+                    android:text="@{homeData.headline2title}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_28" />
 
@@ -116,7 +116,7 @@
                     android:fontFamily="@font/futurastdbold"
                     android:lineSpacingExtra="@dimen/dimen_12"
                     android:padding="@dimen/dimen_16"
-                    android:text="200 points"
+                    android:text="@{homeData.headline2Points}"
                     android:textColor="@color/white"/>
 
 

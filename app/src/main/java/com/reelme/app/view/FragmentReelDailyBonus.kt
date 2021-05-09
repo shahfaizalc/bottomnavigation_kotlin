@@ -60,19 +60,7 @@ class FragmentReelDailyBonus : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
-        val firbaseWriteHandlerActivity = FirbaseWriteHandlerActivity(this)
-        firbaseWriteHandlerActivity.doGetBonusTopics(object : BonusTopicsResultListener {
 
-
-            override fun onSuccess(url: List<BonusTopics>) {
-                Log.d("TAG", "Success bonus topics size " +url.size)
-            }
-
-            override fun onFailure(e: Exception) {
-                Log.d("TAG", "Failure bonus topics size " +e.message)
-
-            }
-        })
     }
 
     override fun onResume() {

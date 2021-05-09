@@ -21,7 +21,9 @@ import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentReeltype4Binding
 import com.reelme.app.handler.NetworkChangeHandler
+import com.reelme.app.listeners.BonusTopicsResultListener
 import com.reelme.app.listeners.EmptyResultListener
+import com.reelme.app.model2.BonusTopics
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.MultipleClickHandler.Companion.handleMultipleClicks
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
@@ -33,15 +35,11 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
 
     private var isInternetConnected: Boolean = false
 
-    // from ad mob test id
-    private val AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"
+    var headline1_Points = "";
+    var  headline1_title = "";
+    var  headline2_Points = "";
+    var headline2_title = "";
 
-    // from ad mob
-    // private val AD_UNIT_ID = "ca-app-pub-7218101052695054/1826851631"
-
-    private var mInterstitialAd: InterstitialAd? = null
-
-    private var mAdIsLoading: Boolean = false
 
     init {
         networkHandler()
@@ -60,83 +58,61 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
                         .build()
         )
 
-        loadAd()
+
+        loadData()
     }
 
-    private fun loadAd() {
-        val adRequest = AdRequest.Builder().build()
+    var dailyBonusTopics = ArrayList<BonusTopics>();
 
-        InterstitialAd.load(
-                fragmentSignin, AD_UNIT_ID, adRequest,
-                object : InterstitialAdLoadCallback() {
-                    override fun onAdFailedToLoad(adError: LoadAdError) {
-                        Log.d(TAG, adError?.message)
-                        mInterstitialAd = null
-                        mAdIsLoading = false
-                        val error = "domain: ${adError.domain}, code: ${adError.code}, " +
-                                "message: ${adError.message}"
 
-                        Log.d(TAG, "Ad was not loaded.$error")
 
-                        Toast.makeText(
-                                fragmentSignin,
-                                "onAdFailedToLoad() with error $error",
-                                Toast.LENGTH_SHORT
-                        ).show()
+
+
+    private fun loadData() {
+        val firbaseWriteHandlerActivity = FirbaseWriteHandlerActivity(fragmentSignin)
+        firbaseWriteHandlerActivity.doGetBonusTopics(object : BonusTopicsResultListener {
+
+            override fun onSuccess(url: List<BonusTopics>) {
+                Log.d("TAG", "Success bonus topics size " +url.size)
+                dailyBonusTopics.addAll(url);
+                when {
+                    url.isEmpty() -> {
+                        return
                     }
-
-                    override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                        Log.d(TAG, "Ad was loaded.")
-                        mInterstitialAd = interstitialAd
-                        mAdIsLoading = false
-                        Toast.makeText(fragmentSignin, "onAdLoaded()", Toast.LENGTH_SHORT).show()
+                    dailyBonusTopics.size>1 -> {
+                        headline1Points = dailyBonusTopics[0].points.toString();
+                        headline1title = dailyBonusTopics[0].topicDescription
+                        headline2Points = dailyBonusTopics[1].points.toString()
+                        headline2title = dailyBonusTopics[1].topicDescription
+                        headline1_Points = dailyBonusTopics[0].points.toString();
+                        headline1_title = dailyBonusTopics[0].topicDescription
+                        headline2_Points = dailyBonusTopics[1].points.toString()
+                        headline2_title = dailyBonusTopics[1].topicDescription
                     }
-                }
-        )
-
-    }
-
-    private fun showInterstitial() {
-        if (mInterstitialAd != null) {
-            mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
-                override fun onAdDismissedFullScreenContent() {
-                    Log.d(TAG, "Ad was dismissed.")
-                    // Don't forget to set the ad reference to null so you
-                    // don't show the ad a second time.
-                    mInterstitialAd = null
-                    loadAd()
-                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDailyBonusReels::class.java));
-                }
-
-                override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
-                    Log.d(TAG, "Ad failed to show.")
-                    // Don't forget to set the ad reference to null so you
-                    // don't show the ad a second time.
-                    mInterstitialAd = null
-                }
-
-                override fun onAdShowedFullScreenContent() {
-                    Log.d(TAG, "Ad showed fullscreen content.")
-                    // Called when ad is dismissed.
+                    dailyBonusTopics.size==1 -> {
+                        headline1Points = dailyBonusTopics[0].points.toString();
+                        headline1title = dailyBonusTopics[0].topicDescription
+                        headline1_Points = dailyBonusTopics[0].points.toString();
+                        headline1_title = dailyBonusTopics[0].topicDescription
+                    }
                 }
             }
-            mInterstitialAd?.show(fragmentSignin)
-        } else {
-            Toast.makeText(fragmentSignin, "Ad wasn't loaded.", Toast.LENGTH_SHORT).show()
-            loadAd()
-        }
-    }
+
+            override fun onFailure(e: Exception) {
+                Log.d("TAG", "Failure bonus topics size " +e.message)
+
+            }
+        })    }
 
 
-   public fun signInUserClicked() {
+    public fun signInUserClicked() {
         //  fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDailyBonusReels::class.java));
+       // fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDailyBonusReels::class.java));
 
     }
 
 
    public fun signUpUserClicked() {
-        onFilterClick()
     }
 
 
@@ -216,6 +192,35 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
             notifyPropertyChanged(BR.progressBarVisible)
         }
 
+    @get:Bindable
+    var headline1Points = headline1_Points
+        set(progressBarVisible) {
+            field = progressBarVisible
+            notifyPropertyChanged(BR.headline1Points)
+        }
+    @get:Bindable
+    var headline2Points = headline2_Points
+        set(progressBarVisible) {
+            field = progressBarVisible
+            notifyPropertyChanged(BR.headline2Points)
+        }
+    @get:Bindable
+    var headline1title = headline1_title
+        set(progressBarVisible) {
+            field = progressBarVisible
+            notifyPropertyChanged(BR.headline1title)
+        }
+    @get:Bindable
+    var headline2title = headline2_title
+        set(progressBarVisible) {
+            field = progressBarVisible
+            notifyPropertyChanged(BR.headline2title)
+        }
+
+
+
+
+
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()
     }
@@ -241,26 +246,7 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
     }
 
 
-    fun onFilterClick() {
 
-        if (!handleMultipleClicks()) {
-
-            val dialog = Dialog(context)
-            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setCancelable(false)
-            dialog.setContentView(R.layout.dialog_googlead)
-
-            val btndialogYes: TextView = dialog.findViewById(R.id.share_yes) as TextView
-            btndialogYes.setOnClickListener {
-                showInterstitial();
-                dialog.dismiss()
-            }
-
-            val btndialogNo: TextView = dialog.findViewById(R.id.share_no) as TextView
-            btndialogNo.setOnClickListener { dialog.dismiss() }
-            dialog.show()
-        }
-    }
 
     companion object {
 
