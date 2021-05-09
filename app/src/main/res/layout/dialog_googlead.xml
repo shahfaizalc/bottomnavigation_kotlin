@@ -14,6 +14,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:fontFamily="@font/futurabold"
             android:id="@+id/titletandc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,11 +42,17 @@
                 android:gravity="center"
                 android:layout_margin="@dimen/dimen_12"
                 android:background="@drawable/button_small"
-                android:text="Yes"
-                android:textColor="@color/black" />
+                android:fontFamily="@font/futurabold"
+                android:text="YES"
+                android:padding="@dimen/dimen_4"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
 
 
             <TextView
+                android:padding="@dimen/dimen_4"
+                android:fontFamily="@font/futurabold"
+                android:textStyle="bold"
                 android:id="@+id/share_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,8 +60,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/dimen_12"
                 android:background="@drawable/button_small"
-                android:text="no"
-                android:textColor="@color/black" />
+                android:text="NO"
+                android:textColor="@color/white" />
         </LinearLayout>
 
 

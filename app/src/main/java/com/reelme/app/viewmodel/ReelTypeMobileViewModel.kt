@@ -93,6 +93,7 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
                     }
                 }
         )
+
     }
 
     private fun showInterstitial() {
@@ -104,6 +105,7 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
                     // don't show the ad a second time.
                     mInterstitialAd = null
                     loadAd()
+                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDailyBonusReels::class.java));
                 }
 
                 override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
@@ -121,18 +123,19 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
             mInterstitialAd?.show(fragmentSignin)
         } else {
             Toast.makeText(fragmentSignin, "Ad wasn't loaded.", Toast.LENGTH_SHORT).show()
+            loadAd()
         }
     }
 
 
-    fun signInUserClicked() {
+   public fun signInUserClicked() {
         //  fragmentSignin.finish()
         fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDailyBonusReels::class.java));
 
     }
 
 
-    fun signUpUserClicked() {
+   public fun signUpUserClicked() {
         onFilterClick()
     }
 
@@ -261,7 +264,7 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
 
     companion object {
 
-        val TAG = "RefferalMobileViewModel"
+        val TAG = "ReelTypeMobileViewModel"
 
     }
 }

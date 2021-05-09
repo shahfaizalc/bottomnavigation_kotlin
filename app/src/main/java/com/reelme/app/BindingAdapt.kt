@@ -148,6 +148,54 @@ fun adapter(recyclerView: RecyclerView ,countriesViewModel: DailyBonusReelsModel
 }
 
 
+@BindingAdapter( "app:searchAdapter")
+fun adapter(recyclerView: RecyclerView ,countriesViewModel: ChooseYourAdventuresModel) {
+
+    val linearLayoutManager = GridLayoutManager(recyclerView.context, 1, GridLayoutManager.HORIZONTAL, false)
+
+    // val linearLayoutManager = LinearLayoutManager(recyclerView.context)
+    val listAdapter = ChooseYourAdventureAdapter(countriesViewModel)
+    val bindingAdapter = RecyclerLoadMoreAdventureHandler(countriesViewModel, listAdapter)
+    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+
+
+    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
+    recyclerView.adapter = listAdapter
+    countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach1")
+        }
+
+        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+            Log.d("rach", "rach2")
+        }
+
+        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach3")
+            bindingAdapter.resetRecycleView(recyclerView)
+            if(countriesViewModel.resetScrrollListener) {
+                bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+                countriesViewModel.resetScrrollListener = false
+            }
+
+        }
+
+        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+            Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+    });
+
+}
+
+
+
 @BindingAdapter( "app:searchAdapter", "app:searchRecycler")
 fun adapter(searchView: SearchView, countriesViewModel: MyFollowModel, recyclerView: RecyclerView) {
 

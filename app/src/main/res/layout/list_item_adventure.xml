@@ -1,0 +1,146 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="mainDataModel"
+            type="com.reelme.app.viewmodel.ChooseYourAdventuresModel" />
+
+        <variable
+            name="countriesInfoModel"
+            type="com.reelme.app.model_sales.goal.Record" />
+
+        <variable
+            name="itemPosition"
+            type="java.lang.Integer" />
+
+        <variable
+            name="simpleListAdapter"
+            type="com.reelme.app.adapter.ChooseYourAdventureAdapter" />
+
+        <variable
+            name="itemClickListener"
+            type="com.reelme.app.listeners.ChooseYourAdventureEventListener" />
+
+        <variable
+            name="keyWordsTag"
+            type="java.lang.String" />
+
+        <variable
+            name="postDate"
+            type="java.lang.String" />
+
+    </data>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimen_16"
+            android:background="@color/black"
+            android:orientation="vertical"
+            android:weightSum="9">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:background="@drawable/group_1355">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/dimen_48"
+                    android:drawableStart="@drawable/ic_swipe"
+                    android:drawablePadding="@dimen/dimen_4"
+                    android:fontFamily="@font/futubk"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dimen_16"
+                    android:text="swipe to record"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/dimen_48"
+                    android:fontFamily="@font/futurastdbold"
+                    android:lineSpacingExtra="@dimen/dimen_12"
+                    android:padding="@dimen/dimen_16"
+                    android:text="Choose\nYour\nAdventures"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_32" />
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/progressprofile"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/dimen_48"
+                android:layout_marginEnd="@dimen/dimen_48"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/group782" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:background="@drawable/group_1355">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/dimen_48"
+                    android:fontFamily="@font/futurastdbold"
+                    android:lineSpacingExtra="@dimen/dimen_12"
+                    android:padding="@dimen/dimen_16"
+                    android:text="Choose\nYour\nAdventures"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_32" />
+
+                <TextView
+                    android:drawablePadding="@dimen/dimen_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/dimen_48"
+                    android:drawableEnd="@drawable/ic_swipe_2"
+                    android:fontFamily="@font/futubk"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dimen_16"
+                    android:text="swipe to record"
+                    android:textColor="@color/white" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</layout>
