@@ -130,7 +130,6 @@ class FragmentReelDailyBonus : AppCompatActivity() {
 
                 Log.d("fai", "You have swipped left counter" + (abs(counterList[2] - counterList[0]) > 50))
 
-                if (abs(counterList[2] - counterList[0]) > 50) {
                     if (counterList[0] > counterList[2]) {
                         // is swipe up
                         if (areaViewModel.totalItems != (areaViewModel.endItem + 1)) {
@@ -146,13 +145,13 @@ class FragmentReelDailyBonus : AppCompatActivity() {
                         if (areaViewModel.endItem > 1) {
                             flipCard()
                             if (areaViewModel.totalItems != 3) {
-                                areaViewModel.loadBothItems(areaViewModel.endItem - 2, areaViewModel.endItem - 1)
+                                areaViewModel.loadBothItems(areaViewModel.startItem - 2, areaViewModel.endItem - 2)
                             } else {
                                 areaViewModel.loadSingleItem(areaViewModel.endItem - 1)
                             }
                         }
                     }
-                }
+
             }
             counter = 0
             counterList.clear()
