@@ -86,11 +86,11 @@ class FragmentReelDailyBonus : AppCompatActivity() {
     }
 
     private fun findViews() {
-        mCardBackLayout = binding.swipeDaily2
-        mCardFrontLayout = binding.swipeAdventures
+        mCardBackLayout = binding.fliplayout
+        mCardFrontLayout = binding.fliplayout2
     }
 
-    fun flipCard() {
+    private fun flipCard() {
         mIsBackVisible = if (!mIsBackVisible) {
             mSetRightOut!!.setTarget(mCardFrontLayout)
             mSetLeftIn!!.setTarget(mCardBackLayout)
