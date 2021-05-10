@@ -1,9 +1,9 @@
 package com.reelme.app.view
 
+import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
 import android.os.Bundle
-import android.util.Log
 import android.view.GestureDetector
-import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
@@ -11,12 +11,7 @@ import androidx.databinding.DataBindingUtil
 import com.reelme.app.GestureListener
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentReeldailybonusBinding
-import com.reelme.app.databinding.FragmentReeltype4Binding
-import com.reelme.app.listeners.BonusTopicsResultListener
-import com.reelme.app.model2.BonusTopics
-import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.viewmodel.ReelDailyBonusMobileViewModel
-import com.reelme.app.viewmodel.ReelTypeMobileViewModel
 
 
 class FragmentReelDailyBonus : AppCompatActivity() {
@@ -24,12 +19,15 @@ class FragmentReelDailyBonus : AppCompatActivity() {
     @Transient
     lateinit internal var areaViewModel: ReelDailyBonusMobileViewModel
 
+    @Transient
+    lateinit var binding : FragmentReeldailybonusBinding ;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
 
         super.onCreate(savedInstanceState)
 
-        val binding : FragmentReeldailybonusBinding = DataBindingUtil.setContentView(this, R.layout.fragment_reeldailybonus)
+         binding  = DataBindingUtil.setContentView(this, R.layout.fragment_reeldailybonus)
         areaViewModel = ReelDailyBonusMobileViewModel(this, this)
         var activity = this;
         binding.homeData = areaViewModel
@@ -60,7 +58,52 @@ class FragmentReelDailyBonus : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
+        findViews();
+        loadAnimations();
+        changeCameraDistance();
+        flipCard()
 
+    }
+
+    private var mSetRightOut: AnimatorSet? = null
+    private var mSetLeftIn: AnimatorSet? = null
+    private var mIsBackVisible = false
+    private var mCardFrontLayout: View? = null
+    private var mCardBackLayout: View? = null
+
+
+    private fun changeCameraDistance() {
+        val distance = 8000
+        val scale = resources.displayMetrics.density * distance
+        mCardFrontLayout!!.cameraDistance = scale
+        mCardBackLayout!!.cameraDistance = scale
+
+    }
+
+    private fun loadAnimations() {
+        mSetRightOut = AnimatorInflater.loadAnimator(this, R.animator.card_flip_left_in) as AnimatorSet
+        mSetLeftIn = AnimatorInflater.loadAnimator(this, R.animator.card_flip_left_out) as AnimatorSet
+    }
+
+    private fun findViews() {
+        mCardBackLayout = binding.swipeDaily2
+        mCardFrontLayout = binding.swipeAdventures
+    }
+
+    fun flipCard() {
+        mIsBackVisible = if (!mIsBackVisible) {
+            mSetRightOut!!.setTarget(mCardFrontLayout)
+            mSetLeftIn!!.setTarget(mCardBackLayout)
+            mSetRightOut!!.start()
+            mSetLeftIn!!.start()
+            true
+        } else {
+            mSetRightOut!!.setTarget(mCardBackLayout)
+            mSetLeftIn!!.setTarget(mCardFrontLayout)
+            mSetRightOut!!.start()
+            mSetLeftIn!!.start()
+            false
+        }
     }
 
     override fun onResume() {

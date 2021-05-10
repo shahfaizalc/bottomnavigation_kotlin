@@ -18,6 +18,7 @@
         android:background="@color/black">
 
         <LinearLayout
+            android:id="@+id/fliplayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/dimen_16"
