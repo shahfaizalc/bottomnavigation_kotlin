@@ -17,125 +17,255 @@
         android:layout_height="match_parent"
         android:background="@color/black">
 
-        <LinearLayout
-            android:id="@+id/fliplayout"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/dimen_16"
-            android:background="@color/black"
-            android:orientation="vertical"
-            android:weightSum="10">
+            >
 
-            <RelativeLayout
-                android:id="@+id/swipeDaily2"
+            <LinearLayout
+                android:layout_above="@id/scrollformore"
+                android:id="@+id/fliplayout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:background="@drawable/group_1355">
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dimen_16"
+                android:background="@color/black"
+                android:orientation="vertical"
+                android:weightSum="9">
 
-                <TextView
-                    android:id="@+id/titledaily"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="@dimen/dimen_28"
-                    android:fontFamily="@font/futurastdbold"
-                    android:lineSpacingExtra="@dimen/dimen_12"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@{homeData.headline1title}"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_28" />
+                <RelativeLayout
+                    android:id="@+id/swipeDaily2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/group_1355">
 
-                <TextView
-                    android:layout_below="@+id/titledaily"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:fontFamily="@font/futurastdbold"
-                    android:lineSpacingExtra="@dimen/dimen_12"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@{homeData.headline1Points}"
-                    android:textColor="@color/white"/>
+                    <TextView
+                        android:id="@+id/titledaily"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="@dimen/dimen_28"
+                        android:fontFamily="@font/futurastdbold"
+                        android:lineSpacingExtra="@dimen/dimen_12"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@{homeData.headline1title}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_28" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="@dimen/dimen_48"
-                    android:drawablePadding="@dimen/dimen_4"
-                    android:fontFamily="@font/futubk"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@string/swipe_to_record"
-                    android:textColor="@color/white"
-                    app:drawableStartCompat="@drawable/ic_swipe" />
+                    <TextView
+                        android:layout_below="@+id/titledaily"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/futurastdbold"
+                        android:lineSpacingExtra="@dimen/dimen_12"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@{homeData.headline1Points}"
+                        android:textColor="@color/white"/>
 
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="@dimen/dimen_48"
+                        android:drawablePadding="@dimen/dimen_4"
+                        android:fontFamily="@font/futubk"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@string/swipe_to_record"
+                        android:textColor="@color/white"
+                        app:drawableStartCompat="@drawable/ic_swipe" />
 
-            <ImageView
-                android:id="@+id/progressprofile"
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/progressprofile"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/dimen_48"
+                    android:layout_marginEnd="@dimen/dimen_48"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/group782" />
+
+                <RelativeLayout
+
+                    android:id="@+id/swipeAdventures"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/group_1355">
+
+                    <TextView
+                        android:id="@+id/titleadv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="@dimen/dimen_28"
+                        android:fontFamily="@font/futurastdbold"
+                        android:lineSpacingExtra="@dimen/dimen_12"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@{homeData.headline2title}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_28" />
+
+
+                    <TextView
+                        android:layout_below="@+id/titleadv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/futurastdbold"
+                        android:lineSpacingExtra="@dimen/dimen_12"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@{homeData.headline2Points}"
+                        android:textColor="@color/white"/>
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="@dimen/dimen_48"
+                        android:drawablePadding="@dimen/dimen_4"
+                        android:fontFamily="@font/futubk"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@string/swipe_to_record"
+                        android:textColor="@color/white"
+                        app:drawableEndCompat="@drawable/ic_swipe_2" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_above="@id/scrollformore"
+                android:id="@+id/fliplayout2"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="@dimen/dimen_48"
-                android:layout_marginEnd="@dimen/dimen_48"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:src="@drawable/group782" />
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dimen_16"
+                android:background="@color/black"
+                android:orientation="vertical"
+                android:weightSum="9">
 
-            <RelativeLayout
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/group_1355">
 
-                android:id="@+id/swipeAdventures"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:background="@drawable/group_1355">
+                    <TextView
+                        android:id="@+id/titledaily1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="@dimen/dimen_28"
+                        android:fontFamily="@font/futurastdbold"
+                        android:lineSpacingExtra="@dimen/dimen_12"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@{homeData.headline1title}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_28" />
 
-                <TextView
-                    android:id="@+id/titleadv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="@dimen/dimen_28"
-                    android:fontFamily="@font/futurastdbold"
-                    android:lineSpacingExtra="@dimen/dimen_12"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@{homeData.headline2title}"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_28" />
+                    <TextView
+                        android:layout_below="@+id/titledaily1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/futurastdbold"
+                        android:lineSpacingExtra="@dimen/dimen_12"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@{homeData.headline1Points}"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="@dimen/dimen_48"
+                        android:drawablePadding="@dimen/dimen_4"
+                        android:fontFamily="@font/futubk"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@string/swipe_to_record"
+                        android:textColor="@color/white"
+                        app:drawableStartCompat="@drawable/ic_swipe" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/progressprofile1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/dimen_48"
+                    android:layout_marginEnd="@dimen/dimen_48"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/group782" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/group_1355">
+
+                    <TextView
+                        android:id="@+id/titleadv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="@dimen/dimen_28"
+                        android:fontFamily="@font/futurastdbold"
+                        android:lineSpacingExtra="@dimen/dimen_12"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@{homeData.headline2title}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_28" />
 
 
-                <TextView
-                    android:layout_below="@+id/titleadv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:fontFamily="@font/futurastdbold"
-                    android:lineSpacingExtra="@dimen/dimen_12"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@{homeData.headline2Points}"
-                    android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_below="@+id/titleadv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/futurastdbold"
+                        android:lineSpacingExtra="@dimen/dimen_12"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@{homeData.headline2Points}"
+                        android:textColor="@color/white"/>
 
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="@dimen/dimen_48"
-                    android:drawablePadding="@dimen/dimen_4"
-                    android:fontFamily="@font/futubk"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@string/swipe_to_record"
-                    android:textColor="@color/white"
-                    app:drawableEndCompat="@drawable/ic_swipe_2" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="@dimen/dimen_48"
+                        android:drawablePadding="@dimen/dimen_4"
+                        android:fontFamily="@font/futubk"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dimen_16"
+                        android:text="@string/swipe_to_record"
+                        android:textColor="@color/white"
+                        app:drawableEndCompat="@drawable/ic_swipe_2" />
 
-            </RelativeLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
             <TextView
+                android:id="@+id/scrollformore"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:fontFamily="@font/futurastdbold"
@@ -143,132 +273,8 @@
                 android:text="Scroll for more"
                 android:textColor="@color/white" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/fliplayout2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/dimen_16"
-            android:background="@color/black"
-            android:orientation="vertical"
-            android:weightSum="10">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:background="@drawable/group_1355">
-
-                <TextView
-                    android:id="@+id/titledaily1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="@dimen/dimen_28"
-                    android:fontFamily="@font/futurastdbold"
-                    android:lineSpacingExtra="@dimen/dimen_12"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@{homeData.headline1title}"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_28" />
-
-                <TextView
-                    android:layout_below="@+id/titledaily1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:fontFamily="@font/futurastdbold"
-                    android:lineSpacingExtra="@dimen/dimen_12"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@{homeData.headline1Points}"
-                    android:textColor="@color/white"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="@dimen/dimen_48"
-                    android:drawablePadding="@dimen/dimen_4"
-                    android:fontFamily="@font/futubk"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@string/swipe_to_record"
-                    android:textColor="@color/white"
-                    app:drawableStartCompat="@drawable/ic_swipe" />
-
-            </RelativeLayout>
-
-            <ImageView
-                android:id="@+id/progressprofile1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="@dimen/dimen_48"
-                android:layout_marginEnd="@dimen/dimen_48"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:src="@drawable/group782" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:background="@drawable/group_1355">
-
-                <TextView
-                    android:id="@+id/titleadv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="@dimen/dimen_28"
-                    android:fontFamily="@font/futurastdbold"
-                    android:lineSpacingExtra="@dimen/dimen_12"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@{homeData.headline2title}"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_28" />
-
-
-                <TextView
-                    android:layout_below="@+id/titleadv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:fontFamily="@font/futurastdbold"
-                    android:lineSpacingExtra="@dimen/dimen_12"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@{homeData.headline2Points}"
-                    android:textColor="@color/white"/>
-
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="@dimen/dimen_48"
-                    android:drawablePadding="@dimen/dimen_4"
-                    android:fontFamily="@font/futubk"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/dimen_16"
-                    android:text="@string/swipe_to_record"
-                    android:textColor="@color/white"
-                    app:drawableEndCompat="@drawable/ic_swipe_2" />
-
-            </RelativeLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="@font/futurastdbold"
-                android:gravity="center"
-                android:text="Scroll for more"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"
