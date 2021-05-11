@@ -109,12 +109,33 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
             val btndialogYes: TextView = dialog.findViewById(R.id.share_yes) as TextView
             btndialogYes.setOnClickListener {
                 dialog.dismiss()
+                onWhySkipClick()
+
             }
 
             val btndialogNo: TextView = dialog.findViewById(R.id.share_no) as TextView
             btndialogNo.setOnClickListener { dialog.dismiss() }
             dialog.show()
         }
+    }
+
+
+    private fun onWhySkipClick() {
+
+            val dialog = Dialog(context)
+            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.dialog_whyskip)
+
+            val btndialogYes: TextView = dialog.findViewById(R.id.share_yes) as TextView
+            btndialogYes.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            val btndialogNo: TextView = dialog.findViewById(R.id.share_no) as TextView
+            btndialogNo.setOnClickListener { dialog.dismiss() }
+            dialog.show()
+
     }
 
     fun loadSingleItem(item: Int) {
