@@ -82,15 +82,6 @@ class FragmentReelAdventures : AppCompatActivity() {
     }
 
 
-    private fun changeCameraDistance() {
-        val distance = 8000
-        val scale = resources.displayMetrics.density * distance
-        mCardFrontLayout!!.cameraDistance = scale
-        mCardBackLayout!!.cameraDistance = scale
-
-    }
-
-
     fun loadItems() {
         Log.d("fai", "You have  counter$counter")
 
