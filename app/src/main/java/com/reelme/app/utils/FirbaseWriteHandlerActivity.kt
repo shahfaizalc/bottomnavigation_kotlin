@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.*
 import com.google.gson.GsonBuilder
+import com.reelme.app.listeners.AdventureTopicsResultListener
 import com.reelme.app.listeners.BonusTopicsResultListener
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.listeners.StringResultListener
@@ -303,7 +304,7 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
 
     fun doGetAdventureTopics( param: AdventureTopicsResultListener) {
 
-        var bonusTopics: ArrayList<BonusTopics> =  ArrayList<BonusTopics>()
+        var bonusTopics: ArrayList<AdventuresTopics> =  ArrayList<AdventuresTopics>()
 
         val db = FirebaseFirestore.getInstance()
         val query = db.collection("adventureTopics");
@@ -319,7 +320,7 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
                             val gson = GsonBuilder().create()
                             val json = gson.toJson(document.data)
 
-                            val userInfoGeneral = gson.fromJson<BonusTopics>(json, AdventuresTopics::class.java)
+                            val userInfoGeneral = gson.fromJson<AdventuresTopics>(json, AdventuresTopics::class.java)
                             Log.d("Faizal" ,userInfoGeneral.topicDescription);
 
                             bonusTopics.add(userInfoGeneral)
