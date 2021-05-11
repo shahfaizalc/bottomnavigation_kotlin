@@ -1,10 +1,12 @@
 package com.reelme.app.viewmodel
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
@@ -20,6 +22,7 @@ import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.model2.AdventuresTopics
 import com.reelme.app.model2.BonusTopics
 import com.reelme.app.pojos.UserModel
+import com.reelme.app.util.MultipleClickHandler
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.view.*
 
@@ -92,6 +95,26 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
 
             }
         })
+    }
+
+    fun onFilterClick() {
+
+        if (!MultipleClickHandler.handleMultipleClicks()) {
+
+            val dialog = Dialog(context)
+            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.dialog_googlead)
+
+            val btndialogYes: TextView = dialog.findViewById(R.id.share_yes) as TextView
+            btndialogYes.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            val btndialogNo: TextView = dialog.findViewById(R.id.share_no) as TextView
+            btndialogNo.setOnClickListener { dialog.dismiss() }
+            dialog.show()
+        }
     }
 
     fun loadSingleItem(item: Int) {

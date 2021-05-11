@@ -19,7 +19,6 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
-import com.reelme.app.databinding.FragmentReeltype4Binding
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.pojos.UserModel

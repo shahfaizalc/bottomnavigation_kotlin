@@ -79,11 +79,6 @@ class FragmentReelAdventures : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
-        findViews();
-        loadAnimations();
-        changeCameraDistance();
-
-
     }
 
 
@@ -95,32 +90,6 @@ class FragmentReelAdventures : AppCompatActivity() {
 
     }
 
-    private fun loadAnimations() {
-        mSetRightOut = AnimatorInflater.loadAnimator(this, R.animator.card_flip_left_in) as AnimatorSet
-        mSetLeftIn = AnimatorInflater.loadAnimator(this, R.animator.card_flip_left_out) as AnimatorSet
-    }
-
-    private fun findViews() {
-        mCardBackLayout = binding.fliplayout
-        mCardFrontLayout = binding.fliplayout2
-    }
-
-    private fun flipCard() {
-        mIsBackVisible = if (!mIsBackVisible) {
-            mSetRightOut!!.setTarget(mCardFrontLayout)
-            mSetLeftIn!!.setTarget(mCardBackLayout)
-            mSetRightOut!!.start()
-            mSetLeftIn!!.start()
-            true
-        } else {
-            mSetRightOut!!.setTarget(mCardBackLayout)
-            mSetLeftIn!!.setTarget(mCardFrontLayout)
-            mSetRightOut!!.start()
-            mSetLeftIn!!.start()
-            false
-        }
-        // loadItems()
-    }
 
     fun loadItems() {
         Log.d("fai", "You have  counter$counter")
@@ -136,7 +105,6 @@ class FragmentReelAdventures : AppCompatActivity() {
                     if (counterList[0] > counterList[2]) {
                         // is swipe up
                         if (areaViewModel.totalItems != (areaViewModel.endItem + 1)) {
-                            flipCard()
                             if (areaViewModel.endItem + 1 != areaViewModel.totalItems) {
                                 areaViewModel.loadBothItems(areaViewModel.endItem + 1, areaViewModel.endItem + 2)
                             } else {
@@ -146,7 +114,6 @@ class FragmentReelAdventures : AppCompatActivity() {
                     } else {
                         // is swipe down
                         if (areaViewModel.endItem > 1) {
-                            flipCard()
                             if (areaViewModel.totalItems != 3) {
                                 areaViewModel.loadBothItems(areaViewModel.startItem - 2, areaViewModel.endItem - 2)
                             } else {

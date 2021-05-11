@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import com.reelme.app.GestureListener
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentReeltype4Binding
+import com.reelme.app.util.MultipleClickHandler
 import com.reelme.app.viewmodel.ReelTypeMobileViewModel
 
 
@@ -36,7 +37,10 @@ class FragmentReelType1 : AppCompatActivity() {
              override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                  gdt.onTouchEvent(event);
                  Log.d("fai", "You have swipped left swipeDaily")
-                 binding.homeData!!.onFilterClick()
+
+                     binding.homeData!!.onFilterClick()
+
+
                  return true
              }
 
@@ -46,7 +50,11 @@ class FragmentReelType1 : AppCompatActivity() {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 gdt.onTouchEvent(event);
                 Log.d("fai", "You have swipped left swipeAdventures")
-                binding.homeData!!.signInUserClicked()
+
+
+                if (!MultipleClickHandler.handleMultipleClicks()) {
+                    binding.homeData!!.signInUserClicked()
+                }
 
                 return true
             }
