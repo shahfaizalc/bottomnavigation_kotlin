@@ -23,6 +23,7 @@ import com.google.gson.GsonBuilder
 import com.reelme.app.listeners.BonusTopicsResultListener
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.listeners.StringResultListener
+import com.reelme.app.model2.AdventuresTopics
 import com.reelme.app.model2.BonusTopics
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
@@ -299,6 +300,45 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
                 }
     }
 
+
+    fun doGetAdventureTopics( param: AdventureTopicsResultListener) {
+
+        var bonusTopics: ArrayList<BonusTopics> =  ArrayList<BonusTopics>()
+
+        val db = FirebaseFirestore.getInstance()
+        val query = db.collection("adventureTopics");
+        query.whereEqualTo("enabled", true)//.whereEqualTo("showDate", showDate)
+                .get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    val any = if (task.isSuccessful) {
+
+                        for (document in task.result!!) {
+
+                            Log.d(TAG, "Successful getting documentss: " +document.data)
+
+                            val gson = GsonBuilder().create()
+                            val json = gson.toJson(document.data)
+
+                            val userInfoGeneral = gson.fromJson<BonusTopics>(json, AdventuresTopics::class.java)
+                            Log.d("Faizal" ,userInfoGeneral.topicDescription);
+
+                            bonusTopics.add(userInfoGeneral)
+                        }
+
+
+                    } else {
+                        Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
+                    }
+                }).addOnFailureListener(OnFailureListener {
+                    exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage)
+                    param.onFailure( exception)
+
+                })
+                .addOnSuccessListener { valu ->
+                    Log.d(TAG, "Success getting"+bonusTopics.size+ " documents: " + valu.documents.size)
+                    param.onSuccess(bonusTopics)
+                }
+    }
 
 
     companion object {

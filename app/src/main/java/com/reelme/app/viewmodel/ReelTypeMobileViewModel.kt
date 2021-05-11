@@ -105,7 +105,7 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
                     // don't show the ad a second time.
                     mInterstitialAd = null
                     loadAd()
-                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDailyBonusReels::class.java));
+                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReelDailyBonus::class.java));
                 }
 
                 override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
@@ -130,7 +130,7 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
 
    public fun signInUserClicked() {
         //  fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentDailyBonusReels::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReelAdventures::class.java));
 
     }
 

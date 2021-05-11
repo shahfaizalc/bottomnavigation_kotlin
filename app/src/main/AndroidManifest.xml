@@ -200,13 +200,23 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:name=".view.FragmentReelDailyBonus"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".view.FragmentReelAdventures"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
             android:name=".view.FragmentDailyBonusReels"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
 
 
         <activity
-            android:name=".view.FragmentReelDailyBonus"
+            android:name=".view.FragmentReelType1"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

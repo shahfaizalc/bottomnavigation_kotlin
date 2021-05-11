@@ -14,14 +14,16 @@ import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
+import com.reelme.app.listeners.AdventureTopicsResultListener
 import com.reelme.app.listeners.BonusTopicsResultListener
 import com.reelme.app.listeners.EmptyResultListener
+import com.reelme.app.model2.AdventuresTopics
 import com.reelme.app.model2.BonusTopics
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.view.*
 
-class ReelDailyBonusMobileViewModel(private val context: Context, private val fragmentSignin: FragmentReelDailyBonus)
+class ReelAdventuresMobileViewModel(private val context: Context, private val fragmentSignin: FragmentReelAdventures)
     : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
@@ -55,7 +57,7 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
         loadData()
     }
 
-    var dailyBonusTopics = ArrayList<BonusTopics>();
+    var dailyBonusTopics = ArrayList<AdventuresTopics>();
     var totalItems = 0
     var startItem = 0;
     var endItem = 1
@@ -63,9 +65,9 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
 
     private fun loadData() {
         val firbaseWriteHandlerActivity = FirbaseWriteHandlerActivity(fragmentSignin)
-        firbaseWriteHandlerActivity.doGetBonusTopics(object : BonusTopicsResultListener {
+        firbaseWriteHandlerActivity.doGetAdventureTopics(object : AdventureTopicsResultListener {
 
-            override fun onSuccess(url: List<BonusTopics>) {
+            override fun onSuccess(url: List<AdventuresTopics>) {
                 Log.d("TAG", "Success bonus topics size " + url.size)
                 dailyBonusTopics.addAll(url);
                 totalItems = url.size
