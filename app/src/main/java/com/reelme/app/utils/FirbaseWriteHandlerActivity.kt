@@ -26,9 +26,11 @@ import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.listeners.StringResultListener
 import com.reelme.app.model2.AdventuresTopics
 import com.reelme.app.model2.BonusTopics
+import com.reelme.app.model2.SkipTopics
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
 import com.reelme.app.utils.Constants.BASEURL_COLLECTION_PROFILEPIC
+import com.reelme.app.utils.Constants.BASEURL_COLLECTION_TOPICS_SKIP
 import java.io.ByteArrayOutputStream
 
 
@@ -46,12 +48,12 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
         val ref = storageReference.child(BASEURL_COLLECTION_PROFILEPIC + currentFirebaseUser!!.uid)
         ref.putFile(filePath)
                 .addOnSuccessListener {
-                    Toast.makeText(fragmentBase, "Image successfully uploaded", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+                    Toast.makeText(fragmentBase, "Image successfully uploaded", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
                     emptyResultListener.onSuccess()
                 }
                 .addOnFailureListener { e ->
                     emptyResultListener.onFailure(e)
-                    Toast.makeText(fragmentBase, "Failed to upload. Please try again later " + e.message, Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+                    Toast.makeText(fragmentBase, "Failed to upload. Please try again later " + e.message, Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
                 }
 
     }
@@ -62,19 +64,39 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
         return connectivityManager.activeNetworkInfo != null && connectivityManager.activeNetworkInfo!!.isConnected
     }
 
+    fun updateSkipTopics(userInfo: SkipTopics, emptyResultListener: EmptyResultListener) {
+
+        if (!isNetworkAvailable(fragmentBase)) {
+
+            Toast.makeText(fragmentBase, "You appear to be offline. Please check your internet settings.", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 50); show() }
+            var e = Exception()
+            emptyResultListener.onFailure(e)
+        }
+
+        val myDB = FirebaseFirestore.getInstance()
+        val collection = myDB.collection(BASEURL_COLLECTION_TOPICS_SKIP)
+        collection.document(userInfo.topicId+currentFirebaseUser!!.uid).set(userInfo)
+                .addOnSuccessListener {
+                    emptyResultListener.onSuccess()
+
+                    Log.d(TAG, "DocumentSnapshot added ")
+                }
+                .addOnFailureListener { e ->
+                    emptyResultListener.onFailure(e)
+                    Log.w(TAG, "Error in adding document", e)
+                }
+    }
+
+
 
     fun updateUserInfo(userInfo: UserModel, emptyResultListener: EmptyResultListener) {
 
-       if( !isNetworkAvailable(fragmentBase)){
+        if (!isNetworkAvailable(fragmentBase)) {
 
-            Toast.makeText(fragmentBase,"You appear to be offline. Please check your internet settings.",Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 50); show() }
-           var e = Exception()
-
-           emptyResultListener.onFailure(e)
-
+            Toast.makeText(fragmentBase, "You appear to be offline. Please check your internet settings.", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 50); show() }
+            var e = Exception()
+            emptyResultListener.onFailure(e)
         }
-
-
 
         val myDB = FirebaseFirestore.getInstance()
         val collection = myDB.collection(BASEURL_COLLECTION_GEN_PROFILEINFO)
@@ -92,9 +114,9 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
 
     fun updateUserInfoitems(userInfo: Map<String, String?>, emptyResultListener: EmptyResultListener) {
 
-        if( !isNetworkAvailable(fragmentBase)){
+        if (!isNetworkAvailable(fragmentBase)) {
 
-            Toast.makeText(fragmentBase,"You appear to be offline. Please check your internet settings.",Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 50); show() }
+            Toast.makeText(fragmentBase, "You appear to be offline. Please check your internet settings.", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 50); show() }
             var e = Exception()
 
             emptyResultListener.onFailure(e)
@@ -146,14 +168,14 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
             progressDialog.dismiss()
 
             val downUrl: Task<Uri> = it.metadata!!.reference!!.downloadUrl
-            while(!downUrl.isComplete){
+            while (!downUrl.isComplete) {
                 Log.i("Uploading:", "isNotComplete")
             }
             Log.d("Uploading:isComplete><><", downUrl.result.toString())
 
             param.onSuccess(downUrl.result.toString())
 
-         }.addOnFailureListener {
+        }.addOnFailureListener {
             Log.d("Uploading", "" + it)
             Toast.makeText(fragmentBase, "Upload Failed -> $it", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
             progressDialog.dismiss()
@@ -182,8 +204,8 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
             progressDialog.setTitle("Uploading")
             progressDialog.show()
 
-            var filename ="userfiles/"+System.currentTimeMillis()+".jpg";
-          var filepath = "gs://reelme-bf98e.appspot.com/"+filename
+            var filename = "userfiles/" + System.currentTimeMillis() + ".jpg";
+            var filepath = "gs://reelme-bf98e.appspot.com/" + filename
 
 
             val storage = FirebaseStorage.getInstance()
@@ -243,7 +265,7 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
 
                         for (document in task.result!!) {
 
-                            Log.d(TAG, "Successful getting documentss: " +document.data)
+                            Log.d(TAG, "Successful getting documentss: " + document.data)
 
                         }
 
@@ -251,20 +273,21 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
                     } else {
                         Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
                     }
-                }).addOnFailureListener(OnFailureListener {
-                    exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage)
-                    param.onFailure( exception)
+                }).addOnFailureListener(OnFailureListener { exception ->
+                    Log.d(TAG, "Failure getting documents: " + exception.localizedMessage)
+                    param.onFailure(exception)
 
                 })
-                .addOnSuccessListener(OnSuccessListener { valu -> Log.d(TAG, "Success getting documents: " + valu.documents.size)
-                    param.onSuccess(""+valu.documents.size)
+                .addOnSuccessListener(OnSuccessListener { valu ->
+                    Log.d(TAG, "Success getting documents: " + valu.documents.size)
+                    param.onSuccess("" + valu.documents.size)
                 })
     }
 
 
-    fun doGetBonusTopics( param: BonusTopicsResultListener) {
+    fun doGetBonusTopics(param: BonusTopicsResultListener) {
 
-        var bonusTopics: ArrayList<BonusTopics> =  ArrayList<BonusTopics>()
+        var bonusTopics: ArrayList<BonusTopics> = ArrayList<BonusTopics>()
 
         val db = FirebaseFirestore.getInstance()
         val query = db.collection("bonusTopics");
@@ -275,13 +298,13 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
 
                         for (document in task.result!!) {
 
-                            Log.d(TAG, "Successful getting documentss: " +document.data)
+                            Log.d(TAG, "Successful getting documentss: " + document.data)
 
                             val gson = GsonBuilder().create()
                             val json = gson.toJson(document.data)
 
                             val userInfoGeneral = gson.fromJson<BonusTopics>(json, BonusTopics::class.java)
-                            Log.d("Faizal" ,userInfoGeneral.topicDescription);
+                            Log.d("Faizal", userInfoGeneral.topicDescription);
 
                             bonusTopics.add(userInfoGeneral)
                         }
@@ -290,21 +313,21 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
                     } else {
                         Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
                     }
-                }).addOnFailureListener(OnFailureListener {
-                    exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage)
-                    param.onFailure( exception)
+                }).addOnFailureListener(OnFailureListener { exception ->
+                    Log.d(TAG, "Failure getting documents: " + exception.localizedMessage)
+                    param.onFailure(exception)
 
                 })
                 .addOnSuccessListener { valu ->
-                    Log.d(TAG, "Success getting"+bonusTopics.size+ " documents: " + valu.documents.size)
+                    Log.d(TAG, "Success getting" + bonusTopics.size + " documents: " + valu.documents.size)
                     param.onSuccess(bonusTopics)
                 }
     }
 
 
-    fun doGetAdventureTopics( param: AdventureTopicsResultListener) {
+    fun doGetAdventureTopics(param: AdventureTopicsResultListener) {
 
-        var bonusTopics: ArrayList<AdventuresTopics> =  ArrayList<AdventuresTopics>()
+        var bonusTopics: ArrayList<AdventuresTopics> = ArrayList<AdventuresTopics>()
 
         val db = FirebaseFirestore.getInstance()
         val query = db.collection("adventureTopics");
@@ -315,13 +338,14 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
 
                         for (document in task.result!!) {
 
-                            Log.d(TAG, "Successful getting documentss: " +document.data)
+
+                            Log.d(TAG, "Successful getting documentss: " +document.id+" "+ document.data)
 
                             val gson = GsonBuilder().create()
                             val json = gson.toJson(document.data)
 
                             val userInfoGeneral = gson.fromJson<AdventuresTopics>(json, AdventuresTopics::class.java)
-                            Log.d("Faizal" ,userInfoGeneral.topicDescription);
+                            Log.d("Faizal", userInfoGeneral.topicDescription);
 
                             bonusTopics.add(userInfoGeneral)
                         }
@@ -330,13 +354,13 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
                     } else {
                         Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
                     }
-                }).addOnFailureListener(OnFailureListener {
-                    exception -> Log.d(TAG, "Failure getting documents: " + exception.localizedMessage)
-                    param.onFailure( exception)
+                }).addOnFailureListener(OnFailureListener { exception ->
+                    Log.d(TAG, "Failure getting documents: " + exception.localizedMessage)
+                    param.onFailure(exception)
 
                 })
                 .addOnSuccessListener { valu ->
-                    Log.d(TAG, "Success getting"+bonusTopics.size+ " documents: " + valu.documents.size)
+                    Log.d(TAG, "Success getting" + bonusTopics.size + " documents: " + valu.documents.size)
                     param.onSuccess(bonusTopics)
                 }
     }

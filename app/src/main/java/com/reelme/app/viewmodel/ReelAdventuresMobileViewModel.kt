@@ -13,15 +13,17 @@ import androidx.databinding.Bindable
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.AdventureTopicsResultListener
-import com.reelme.app.listeners.BonusTopicsResultListener
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.model2.AdventuresTopics
-import com.reelme.app.model2.BonusTopics
+import com.reelme.app.model2.SkipTopics
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.MultipleClickHandler
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
@@ -44,8 +46,7 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
 
     private var mAdIsLoading: Boolean = false
 
-
-
+    private val currentFirebaseUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
     var headline1_Points = "";
     var headline1_title = "";
@@ -58,7 +59,7 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
         getUserInfo()
 
         // Initialize the Mobile Ads SDK.
-      //  MobileAds.initialize(fragmentSignin) {}
+        //  MobileAds.initialize(fragmentSignin) {}
 
         // Set your test devices. Check your logcat output for the hashed device ID to
         // get test ads on a physical device. e.g.
@@ -84,9 +85,6 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
         )
 
         loadAd()
-
-
-
         loadData()
     }
 
@@ -132,7 +130,7 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
                     // don't show the ad a second time.
                     mInterstitialAd = null
                     loadAd()
-                   // fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReelDailyBonus::class.java));
+                    // fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReelDailyBonus::class.java));
                 }
 
                 override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
@@ -153,7 +151,6 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
             loadAd()
         }
     }
-
 
 
     var dailyBonusTopics = ArrayList<AdventuresTopics>();
@@ -193,7 +190,15 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
         })
     }
 
-    fun onFilterClick() {
+    fun onTypeAClick() {
+        onFilterClick(dailyBonusTopics[startItem])
+    }
+
+    fun onTypeBClick() {
+        onFilterClick(dailyBonusTopics[endItem])
+    }
+
+    private fun onFilterClick(adventuresTopics: AdventuresTopics) {
 
         if (!MultipleClickHandler.handleMultipleClicks()) {
 
@@ -205,7 +210,7 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
             val btndialogYes: TextView = dialog.findViewById(R.id.share_yes) as TextView
             btndialogYes.setOnClickListener {
                 dialog.dismiss()
-                onWhySkipClick()
+                onWhySkipClick(adventuresTopics)
 
             }
 
@@ -216,24 +221,28 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
     }
 
 
-    private fun onWhySkipClick() {
+    private fun onWhySkipClick(adventuresTopics: AdventuresTopics) {
 
-            val dialog = Dialog(context)
-            // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setCancelable(false)
-            dialog.setContentView(R.layout.dialog_whyskip)
+        val dialog = Dialog(context)
+        // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.dialog_whyskip)
 
-            val btndialogYes: TextView = dialog.findViewById(R.id.share_yes) as TextView
-            btndialogYes.setOnClickListener {
-                dialog.dismiss()
-                showInterstitial()
-            }
+        val btndialogYes: TextView = dialog.findViewById(R.id.share_yes) as TextView
+        btndialogYes.setOnClickListener {
+            dialog.dismiss()
+            saveSkipState(adventuresTopics,0)
+            //  showInterstitial()
+        }
 
-            val btndialogNo: TextView = dialog.findViewById(R.id.share_no) as TextView
-            btndialogNo.setOnClickListener {
-                dialog.dismiss()
-                showInterstitial() }
-            dialog.show()
+        val btndialogNo: TextView = dialog.findViewById(R.id.share_no) as TextView
+        btndialogNo.setOnClickListener {
+            dialog.dismiss()
+            saveSkipState(adventuresTopics,1)
+
+            showInterstitial()
+        }
+        dialog.show()
 
     }
 
@@ -302,6 +311,39 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
             field = price
             notifyPropertyChanged(BR.firstName)
         }
+
+    private fun saveSkipState(adventuresTopics: AdventuresTopics, i: Int) {
+
+        var skipTopics = SkipTopics(System.currentTimeMillis(), neverShow = false,showInEnd = true,
+                adventuresTopics.topicId,currentFirebaseUser!!.uid)
+        if(i==1){
+            skipTopics = SkipTopics(System.currentTimeMillis(),neverShow = true, showInEnd = false,
+                    adventuresTopics.topicId,currentFirebaseUser.uid)
+        }
+
+        progressBarVisible = View.VISIBLE
+
+        FirbaseWriteHandlerActivity(fragmentSignin).updateSkipTopics(skipTopics, object : EmptyResultListener {
+            override fun onSuccess() {
+                progressBarVisible = View.INVISIBLE
+
+                // fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
+
+
+                Log.d("updateSkipTopics token", "onSuccess")
+                //   Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+
+            }
+
+            override fun onFailure(e: Exception) {
+                //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+                progressBarVisible = View.INVISIBLE
+                Log.d("updateSkipTopics token", "Exception$e")
+                Toast.makeText(context, "Failed to update your profile.. please try again later", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+
+            }
+        })
+    }
 
 
     fun setUserInfo() {

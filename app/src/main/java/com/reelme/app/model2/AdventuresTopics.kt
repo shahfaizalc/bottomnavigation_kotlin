@@ -8,6 +8,8 @@ data class AdventuresTopics (
         var points: Int = 0,
         var createdDate: Timestamp,
         var maskedPoints: Int =0,
-        var type :String =""
+        var type :String ="",
+        var topicId:String = "",
+
 
 )

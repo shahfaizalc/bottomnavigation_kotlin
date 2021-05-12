@@ -51,7 +51,6 @@ class FragmentReelAdventures : AppCompatActivity() {
 
         val gdt = GestureDetector(activity, GestureListener())
 
-
         binding.swipeAdventures.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 gdt.onTouchEvent(event);
