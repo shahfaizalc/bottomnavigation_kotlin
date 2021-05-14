@@ -121,7 +121,7 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
 
     }
 
-    private fun showInterstitial() {
+    private fun showInterstitial(i: Int) {
         if (mInterstitialAd != null) {
             mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
@@ -130,6 +130,14 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
                     // don't show the ad a second time.
                     mInterstitialAd = null
                     loadAd()
+
+                    if (i == 0) {
+                        loadMoreA()
+                    } else {
+                        loadMoreB()
+                    }
+
+
                     // fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReelDailyBonus::class.java));
                 }
 
@@ -154,16 +162,61 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
 
 
     var adventureBonusTopics = ArrayList<AdventuresTopics>();
-    var adventuresTopicsTypeA = ArrayList<AdventuresTopics>();
-    var adventuresTopicsTypeB = ArrayList<AdventuresTopics>();
 
     var skipTopics = ArrayList<SkipTopics>();
 
 
     var totalItems = 0
     var aItem = 0;
-    var bItem = 1
+    var bItem = 0
 
+    fun loadMoreA() {
+        var typeAAdded = false;
+        for ((count, topics) in adventureBonusTopics.withIndex()) {
+            if (count > aItem) {
+                var isAvailable = false
+                for (skipTopic in skipTopics) {
+                    if (skipTopic.topicId == topics.topicId) {
+                        isAvailable = true
+                    }
+                }
+
+                if (!isAvailable) {
+                    if (topics.type.equals("A", true)) {
+                        if (!typeAAdded) {
+
+                            loadTypeAItem(topics, count)
+                            typeAAdded = true
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun loadMoreB() {
+        var typeBAdded = false;
+        for ((count, topics) in adventureBonusTopics.withIndex()) {
+            if (count > aItem) {
+                var isAvailable = false
+                for (skipTopic in skipTopics) {
+                    if (skipTopic.topicId == topics.topicId) {
+                        isAvailable = true
+                    }
+                }
+
+                if (!isAvailable) {
+                    if (topics.type.equals("B", true)) {
+                        if (!typeBAdded) {
+                            loadTypeBItems(topics, count)
+                            typeBAdded = true
+                        }
+
+                    }
+                }
+            }
+        }
+    }
 
     private fun loadData() {
         val firbaseWriteHandlerActivity = FirbaseWriteHandlerActivity(fragmentSignin)
@@ -185,18 +238,36 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
                                 return
                             }
                             adventureBonusTopics.size > 0 -> {
-                                for((count, topics) in adventureBonusTopics.withIndex()){
-                                    if(topics.type.equals("A",true)){
-                                        loadTypeAItem(topics, count)
-                                    } else {
-                                        loadTypeBItems(topics, count)
+                                var typeAAdded = false;
+                                var typeBAdded = false;
+                                for ((count, topics) in adventureBonusTopics.withIndex()) {
+
+                                    var isAvailable = false
+                                    for (skipTopic in skipTopics) {
+                                        if (skipTopic.topicId == topics.topicId) {
+                                            isAvailable = true
+                                        }
+                                    }
+
+                                    if (!isAvailable) {
+                                        if (topics.type.equals("A", true)) {
+                                            if (!typeAAdded) {
+                                                loadTypeAItem(topics, count)
+                                                typeAAdded = true
+                                            }
+
+                                        } else {
+                                            if (!typeBAdded) {
+                                                loadTypeBItems(topics, count)
+                                                typeBAdded = true
+                                            }
+
+                                        }
                                     }
                                 }
-
                             }
                         }
                     }
-
 
                     override fun onFailure(e: Exception) {
                         Log.d("TAG", "Failure bonus topics size " + e.message)
@@ -212,14 +283,14 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
     }
 
     fun onTypeAClick() {
-        onFilterClick(adventureBonusTopics[aItem])
+        onFilterClick(adventureBonusTopics[aItem], 0)
     }
 
     fun onTypeBClick() {
-        onFilterClick(adventureBonusTopics[bItem])
+        onFilterClick(adventureBonusTopics[bItem], 1)
     }
 
-    private fun onFilterClick(adventuresTopics: AdventuresTopics) {
+    private fun onFilterClick(adventuresTopics: AdventuresTopics, i: Int) {
 
         if (!MultipleClickHandler.handleMultipleClicks()) {
 
@@ -231,7 +302,7 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
             val btndialogYes: TextView = dialog.findViewById(R.id.share_yes) as TextView
             btndialogYes.setOnClickListener {
                 dialog.dismiss()
-                onWhySkipClick(adventuresTopics)
+                onWhySkipClick(adventuresTopics, i)
 
             }
 
@@ -242,7 +313,7 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
     }
 
 
-    private fun onWhySkipClick(adventuresTopics: AdventuresTopics) {
+    private fun onWhySkipClick(adventuresTopics: AdventuresTopics, i: Int) {
 
         val dialog = Dialog(context)
         // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -253,15 +324,14 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
         btndialogYes.setOnClickListener {
             dialog.dismiss()
             saveSkipState(adventuresTopics, 0)
-            //  showInterstitial()
+            showInterstitial(i)
         }
 
         val btndialogNo: TextView = dialog.findViewById(R.id.share_no) as TextView
         btndialogNo.setOnClickListener {
             dialog.dismiss()
             saveSkipState(adventuresTopics, 1)
-
-            showInterstitial()
+            showInterstitial(i)
         }
         dialog.show()
 

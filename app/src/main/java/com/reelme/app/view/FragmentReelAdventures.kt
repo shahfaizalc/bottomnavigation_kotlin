@@ -50,7 +50,7 @@ class FragmentReelAdventures : AppCompatActivity() {
         binding.swipeAdventures.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 gdt.onTouchEvent(event);
-                Log.d("fai", "You have swipped left swipeDaily")
+                Log.d("fai", "You have swipped left Type A")
                 counter++
                 counterList.add(event!!.getY())
              //   loadItems()
@@ -64,7 +64,7 @@ class FragmentReelAdventures : AppCompatActivity() {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 gdt.onTouchEvent(event);
 
-                Log.d("fai", "You have swipped left swipeAdventures" + event!!.getY())
+                Log.d("fai", "You have swipped left Type B" + event!!.getY())
                 counter++
                 counterList.add(event!!.getY())
               //  loadItems()
