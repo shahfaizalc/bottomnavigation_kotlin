@@ -366,8 +366,8 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
         var bonusTopics: ArrayList<SkipTopics> = ArrayList<SkipTopics>()
 
         val db = FirebaseFirestore.getInstance()
-        val query = db.collection("topicsSkip"+currentFirebaseUser!!.uid);
-        query.whereEqualTo("uid", currentFirebaseUser.uid)//.whereEqualTo("showDate", showDate)
+        val query = db.collection("topicsSkip");
+        query.whereEqualTo("uid", currentFirebaseUser!!.uid)//.whereEqualTo("showDate", showDate)
                 .get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                     val any = if (task.isSuccessful) {
@@ -380,7 +380,7 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
                             val gson = GsonBuilder().create()
                             val json = gson.toJson(document.data)
 
-                            val userInfoGeneral = gson.fromJson<SkipTopics>(json, SkipTopics::class.java::class.java)
+                            val userInfoGeneral = gson.fromJson<SkipTopics>(json, SkipTopics::class.java)
                             Log.d("skip","topic"+ userInfoGeneral.topicId);
 
                             bonusTopics.add(userInfoGeneral)
