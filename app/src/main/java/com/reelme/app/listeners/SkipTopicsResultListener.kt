@@ -2,9 +2,10 @@ package com.reelme.app.listeners
 
 import com.reelme.app.model2.AdventuresTopics
 import com.reelme.app.model2.BonusTopics
+import com.reelme.app.model2.SkipTopics
 
-interface AdventureTopicsResultListener {
+interface SkipTopicsResultListener {
 
-    fun onSuccess(adventureList : List<AdventuresTopics>)
+    fun onSuccess(url : List<SkipTopics>)
     fun onFailure(e: Exception)
 }

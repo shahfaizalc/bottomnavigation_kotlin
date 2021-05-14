@@ -13,7 +13,6 @@ import androidx.databinding.Bindable
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.gson.Gson
@@ -22,6 +21,7 @@ import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.AdventureTopicsResultListener
 import com.reelme.app.listeners.EmptyResultListener
+import com.reelme.app.listeners.SkipTopicsResultListener
 import com.reelme.app.model2.AdventuresTopics
 import com.reelme.app.model2.SkipTopics
 import com.reelme.app.pojos.UserModel
@@ -153,49 +153,70 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
     }
 
 
-    var dailyBonusTopics = ArrayList<AdventuresTopics>();
+    var adventureBonusTopics = ArrayList<AdventuresTopics>();
+    var adventuresTopicsTypeA = ArrayList<AdventuresTopics>();
+    var adventuresTopicsTypeB = ArrayList<AdventuresTopics>();
+
+    var skipTopics = ArrayList<SkipTopics>();
+
+
     var totalItems = 0
-    var startItem = 0;
-    var endItem = 1
+    var aItem = 0;
+    var bItem = 1
 
 
     private fun loadData() {
         val firbaseWriteHandlerActivity = FirbaseWriteHandlerActivity(fragmentSignin)
-        firbaseWriteHandlerActivity.doGetAdventureTopics(object : AdventureTopicsResultListener {
 
-            override fun onSuccess(url: List<AdventuresTopics>) {
-                Log.d("TAG", "Success bonus topics size " + url.size)
-                dailyBonusTopics.addAll(url);
-                totalItems = url.size
-                when {
-                    url.isEmpty() -> {
-                        startItem = -1
-                        endItem = -1
-                        return
+        firbaseWriteHandlerActivity.doGetSkipTopics(object : SkipTopicsResultListener {
+            override fun onSuccess(url: List<SkipTopics>) {
+                skipTopics.addAll(url)
+
+                firbaseWriteHandlerActivity.doGetAdventureTopics(object : AdventureTopicsResultListener {
+
+                    override fun onSuccess(adventureList: List<AdventuresTopics>) {
+                        Log.d("TAG", "Success bonus topics size " + adventureList.size)
+                        adventureBonusTopics.addAll(adventureList);
+                        totalItems = adventureList.size
+                        when {
+                            adventureList.isEmpty() -> {
+                                aItem = -1
+                                bItem = -1
+                                return
+                            }
+                            adventureBonusTopics.size > 0 -> {
+                                for((count, topics) in adventureBonusTopics.withIndex()){
+                                    if(topics.type.equals("A",true)){
+                                        loadTypeAItem(topics, count)
+                                    } else {
+                                        loadTypeBItems(topics, count)
+                                    }
+                                }
+
+                            }
+                        }
                     }
-                    dailyBonusTopics.size > 1 -> {
-                        loadBothItems(0, 1)
+
+
+                    override fun onFailure(e: Exception) {
+                        Log.d("TAG", "Failure bonus topics size " + e.message)
+
                     }
-                    dailyBonusTopics.size == 1 -> {
-                        loadSingleItem(0)
-                    }
-                }
+                })
+
             }
 
-
             override fun onFailure(e: Exception) {
-                Log.d("TAG", "Failure bonus topics size " + e.message)
-
             }
         })
     }
 
     fun onTypeAClick() {
-        onFilterClick(dailyBonusTopics[startItem])
+        onFilterClick(adventureBonusTopics[aItem])
     }
 
     fun onTypeBClick() {
-        onFilterClick(dailyBonusTopics[endItem])
+        onFilterClick(adventureBonusTopics[bItem])
     }
 
     private fun onFilterClick(adventuresTopics: AdventuresTopics) {
@@ -231,14 +252,14 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
         val btndialogYes: TextView = dialog.findViewById(R.id.share_yes) as TextView
         btndialogYes.setOnClickListener {
             dialog.dismiss()
-            saveSkipState(adventuresTopics,0)
+            saveSkipState(adventuresTopics, 0)
             //  showInterstitial()
         }
 
         val btndialogNo: TextView = dialog.findViewById(R.id.share_no) as TextView
         btndialogNo.setOnClickListener {
             dialog.dismiss()
-            saveSkipState(adventuresTopics,1)
+            saveSkipState(adventuresTopics, 1)
 
             showInterstitial()
         }
@@ -246,28 +267,31 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
 
     }
 
-    fun loadSingleItem(item: Int) {
-        headline1Points = dailyBonusTopics[item].points.toString();
-        headline1title = dailyBonusTopics[item].topicDescription
-        headline1_Points = dailyBonusTopics[item].points.toString();
-        headline1_title = dailyBonusTopics[item].topicDescription
-
-        startItem = item
-        endItem = item
+    fun loadTypeAItem(item: AdventuresTopics, count: Int) {
+        headline1Points = item.points.toString();
+        headline1title = item.topicDescription
+        aItem = count
     }
 
-    fun loadBothItems(item1: Int, item2: Int) {
-        headline1Points = dailyBonusTopics[item1].points.toString();
-        headline1title = dailyBonusTopics[item1].topicDescription
-        headline2Points = dailyBonusTopics[item2].points.toString()
-        headline2title = dailyBonusTopics[item2].topicDescription
-        headline1_Points = dailyBonusTopics[item1].points.toString();
-        headline1_title = dailyBonusTopics[item1].topicDescription
-        headline2_Points = dailyBonusTopics[item2].points.toString()
-        headline2_title = dailyBonusTopics[item2].topicDescription
+    fun loadTypeBItems(item2: AdventuresTopics, count: Int) {
+        headline2Points = item2.points.toString()
+        headline2title = item2.topicDescription
+        aItem = count
+    }
 
-        startItem = item1
-        endItem = item2
+
+    fun loadBothItems(item1: Int, item2: Int) {
+        headline1Points = adventureBonusTopics[item1].points.toString();
+        headline1title = adventureBonusTopics[item1].topicDescription
+        headline2Points = adventureBonusTopics[item2].points.toString()
+        headline2title = adventureBonusTopics[item2].topicDescription
+        headline1_Points = adventureBonusTopics[item1].points.toString();
+        headline1_title = adventureBonusTopics[item1].topicDescription
+        headline2_Points = adventureBonusTopics[item2].points.toString()
+        headline2_title = adventureBonusTopics[item2].topicDescription
+
+        aItem = item1
+        bItem = item2
     }
 
     public fun signInUserClicked() {
@@ -314,11 +338,11 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
 
     private fun saveSkipState(adventuresTopics: AdventuresTopics, i: Int) {
 
-        var skipTopics = SkipTopics(System.currentTimeMillis(), neverShow = false,showInEnd = true,
-                adventuresTopics.topicId,currentFirebaseUser!!.uid)
-        if(i==1){
-            skipTopics = SkipTopics(System.currentTimeMillis(),neverShow = true, showInEnd = false,
-                    adventuresTopics.topicId,currentFirebaseUser.uid)
+        var skipTopics = SkipTopics(System.currentTimeMillis(), neverShow = false, showInEnd = true,
+                adventuresTopics.topicId, currentFirebaseUser!!.uid)
+        if (i == 1) {
+            skipTopics = SkipTopics(System.currentTimeMillis(), neverShow = true, showInEnd = false,
+                    adventuresTopics.topicId, currentFirebaseUser.uid)
         }
 
         progressBarVisible = View.VISIBLE

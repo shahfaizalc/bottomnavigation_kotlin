@@ -20,10 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.*
 import com.google.gson.GsonBuilder
-import com.reelme.app.listeners.AdventureTopicsResultListener
-import com.reelme.app.listeners.BonusTopicsResultListener
-import com.reelme.app.listeners.EmptyResultListener
-import com.reelme.app.listeners.StringResultListener
+import com.reelme.app.listeners.*
 import com.reelme.app.model2.AdventuresTopics
 import com.reelme.app.model2.BonusTopics
 import com.reelme.app.model2.SkipTopics
@@ -331,13 +328,12 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
 
         val db = FirebaseFirestore.getInstance()
         val query = db.collection("adventureTopics");
-        query.whereEqualTo("enabled", true)//.whereEqualTo("showDate", showDate)
+        query.whereEqualTo("enabled", true)//.whereEqualTo("enabled", true)
                 .get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                     val any = if (task.isSuccessful) {
 
                         for (document in task.result!!) {
-
 
                             Log.d(TAG, "Successful getting documentss: " +document.id+" "+ document.data)
 
@@ -365,6 +361,45 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
                 }
     }
 
+    fun doGetSkipTopics(param: SkipTopicsResultListener) {
+
+        var bonusTopics: ArrayList<SkipTopics> = ArrayList<SkipTopics>()
+
+        val db = FirebaseFirestore.getInstance()
+        val query = db.collection("topicsSkip"+currentFirebaseUser!!.uid);
+        query.whereEqualTo("uid", currentFirebaseUser.uid)//.whereEqualTo("showDate", showDate)
+                .get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    val any = if (task.isSuccessful) {
+
+                        for (document in task.result!!) {
+
+
+                            Log.d(TAG, "Successful getting documentss: " +document.id+" "+ document.data)
+
+                            val gson = GsonBuilder().create()
+                            val json = gson.toJson(document.data)
+
+                            val userInfoGeneral = gson.fromJson<SkipTopics>(json, SkipTopics::class.java::class.java)
+                            Log.d("skip","topic"+ userInfoGeneral.topicId);
+
+                            bonusTopics.add(userInfoGeneral)
+                        }
+
+
+                    } else {
+                        Log.d(TAG, "Error getting documentss: " + task.exception!!.message)
+                    }
+                }).addOnFailureListener(OnFailureListener { exception ->
+                    Log.d(TAG, "Failure getting documents: " + exception.localizedMessage)
+                    param.onFailure(exception)
+
+                })
+                .addOnSuccessListener { valu ->
+                    Log.d(TAG, "Success getting" + bonusTopics.size + " documents: " + valu.documents.size)
+                    param.onSuccess(bonusTopics)
+                }
+    }
 
     companion object {
 
