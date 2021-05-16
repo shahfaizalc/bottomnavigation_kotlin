@@ -128,7 +128,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            Log.d("Authentication token", auth.emailId)
+            Log.d("Authentication token", auth.emailId!!)
             userDetails = (auth as UserModel)
             if(!isEdit && !userDetails.hobbiesAndInterest.isNullOrEmpty()){
                 fragmentSignin.startActivity(Intent(fragmentSignin, Main2Activity::class.java))

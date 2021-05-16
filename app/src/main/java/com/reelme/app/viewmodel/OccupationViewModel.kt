@@ -128,7 +128,7 @@ class OccupationViewModel(private val context: Context, private val fragmentSign
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            Log.d("Authentication token", auth.emailId)
+            Log.d("Authentication token", auth.emailId!!)
             userDetails = (auth as UserModel)
 
             if(!isEdit && !userDetails.occupation.isNullOrEmpty()){

@@ -72,7 +72,7 @@ class RelegionActivity : AppCompatActivity() {
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            Log.d("Authentication token", auth.emailId)
+            Log.d("Authentication token", auth.emailId!!)
             userDetails = (auth as UserModel)
             if(!isEdit && !userDetails.religiousBeliefs.isNullOrEmpty()){
                 startActivity(Intent(this, FragmentHobbies::class.java))

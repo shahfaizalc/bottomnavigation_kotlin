@@ -68,7 +68,7 @@ class BioViewModel(private val context: Context, private val fragmentSignin: Fra
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            Log.d("Authentication token", auth.emailId)
+            Log.d("Authentication token", auth.emailId!!)
             userDetails = (auth as UserModel)
 
             if(!isEdit && !userDetails.bio.isNullOrEmpty()){

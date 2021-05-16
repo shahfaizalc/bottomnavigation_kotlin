@@ -188,7 +188,7 @@ class EditProfileViewModel(private val context: Context, private val fragmentSig
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            Log.d("Authentication token", auth.emailId)
+            Log.d("Authentication token", auth.emailId!!)
             userDetails = (auth as UserModel)
             percentage = Validator().profileRate(userDetails).toString()
             percentof = " $percentage"

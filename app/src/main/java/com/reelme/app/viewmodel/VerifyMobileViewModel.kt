@@ -298,7 +298,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            Log.d("Authentication token", auth.emailId)
+            Log.d("Authentication token", auth.emailId!!)
             userDetails = (auth as UserModel)
         } catch (e: java.lang.Exception) {
             Log.d("Authenticaiton token", "Exception")

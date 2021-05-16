@@ -7,11 +7,11 @@ apply plugin: 'com.google.gms.google-services'
 
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.reelme.app"
-        minSdkVersion 24
-        targetSdkVersion 29
+        minSdkVersion 23
+        targetSdkVersion 30
         versionCode 21
         versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -139,6 +139,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth-api-phone:17.5.0'
     implementation "androidx.room:room-runtime:2.2.6"
     kapt  "androidx.room:room-compiler:2.2.6"
+
+    implementation 'com.karumi:dexter:4.2.0'
 
 }
 repositories {

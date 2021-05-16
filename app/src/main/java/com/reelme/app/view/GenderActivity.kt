@@ -80,7 +80,7 @@ class GenderActivity : AppCompatActivity() {
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            Log.d("Authentication token", auth.emailId)
+            Log.d("Authentication token", auth.emailId!!)
             userDetails = (auth as UserModel)
             if(!isEdit && !userDetails.gender.isNullOrEmpty()){
                 startActivity(Intent(this, RelationshipActivity::class.java))

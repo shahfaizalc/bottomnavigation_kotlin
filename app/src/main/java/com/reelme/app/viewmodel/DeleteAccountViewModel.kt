@@ -194,7 +194,7 @@ class DeleteAccountViewModel(private val context: Context, private val fragmentS
 
         try {
             val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            Log.d(TAG, auth.emailId)
+            Log.d(TAG, auth.emailId!!)
             userDetails = (auth as UserModel)
           //  signInUserClicked()
         } catch (e: java.lang.Exception) {
