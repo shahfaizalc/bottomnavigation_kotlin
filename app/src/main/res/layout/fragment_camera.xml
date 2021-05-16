@@ -20,8 +20,8 @@
 
     <com.reelme.app.view.camera.AutoFitTextureView
         android:id="@+id/mTextureView"
-        android:layout_width="79dp"
-        android:layout_height="109dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="@+id/mRecordVideo"
         app:layout_constraintEnd_toStartOf="@+id/mRecordVideo"
         app:layout_constraintHorizontal_bias="0.496"
