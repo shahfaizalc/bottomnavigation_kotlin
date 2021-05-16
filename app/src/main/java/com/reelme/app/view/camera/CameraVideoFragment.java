@@ -367,7 +367,8 @@ public abstract class CameraVideoFragment extends BaseFragment {
     /**
      * Tries to open a {@link CameraDevice}. The result is listened by `mStateCallback`.
      */
-    private void openCamera(int width, int height) {
+    protected void openCamera(int width, int height) {
+        setCameraParams(width,height);
         final Activity activity = getActivity();
         if (null == activity || activity.isFinishing()) {
             return;
@@ -381,7 +382,7 @@ public abstract class CameraVideoFragment extends BaseFragment {
             /**
              * default front camera will activate
              */
-            String cameraId = manager.getCameraIdList()[0];
+            String cameraId = manager.getCameraIdList()[getCameraMode()];
 
             CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
             StreamConfigurationMap map = characteristics
@@ -417,6 +418,31 @@ public abstract class CameraVideoFragment extends BaseFragment {
         }
     }
 
+    int cameraType = 1;
+    int camWidth;
+    int camHeight;
+
+    private void setCameraParams(int width, int height) {
+        camWidth = width;
+        camHeight = height;
+    }
+
+    public int getCameraParamsWidth(){
+        return camWidth;
+    }
+
+    public int getCameraParamsHeight(){
+      return camHeight;
+    }
+
+    public  void setCameraMode(int type){
+        this.cameraType = type;
+    }
+
+    public int getCameraMode()  {
+        return cameraType;
+    }
+
     /**
      * Create directory and return file
      * returning video file
@@ -446,7 +472,7 @@ public abstract class CameraVideoFragment extends BaseFragment {
     /**
      * close camera and release object
      */
-    private void closeCamera() {
+    public void closeCamera() {
         try {
             mCameraOpenCloseLock.acquire();
             closePreviewSession();

@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
+
 import androidx.fragment.app.Fragment;
+
 import com.reelme.app.R;
 import com.reelme.app.view.camera.AutoFitTextureView;
 import com.reelme.app.view.camera.CameraVideoFragment;
 import com.reelme.app.view.camera.MyDraw;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -28,6 +31,8 @@ public class CameraFragment extends CameraVideoFragment {
     VideoView mVideoView;
     ImageView mPlayVideo;
     Unbinder unbinder;
+
+    ImageView cameraFlip;
     private String mOutputFilePath;
 
     public CameraFragment() {
@@ -59,7 +64,7 @@ public class CameraFragment extends CameraVideoFragment {
         View view = inflater.inflate(R.layout.fragment_camera, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        md = new MyDraw(getContext(),null);
+        md = new MyDraw(getContext(), null);
 
         mTextureView = new AutoFitTextureView(getContext());
         mVideoView = view.findViewById(R.id.mVideoView);
@@ -88,6 +93,17 @@ public class CameraFragment extends CameraVideoFragment {
                 //Receive out put file here
                 mOutputFilePath = getCurrentFile().getAbsolutePath();
             }
+        });
+
+        cameraFlip = view.findViewById(R.id.cameraFlip);
+        cameraFlip.setOnClickListener(v -> {
+            if (getCameraMode() == 0) {
+                setCameraMode(1);
+            } else {
+                setCameraMode(0);
+            }
+            closeCamera();
+            openCamera(getCameraParamsWidth(), getCameraParamsHeight());
         });
 
         return view;
