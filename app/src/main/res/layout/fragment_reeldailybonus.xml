@@ -75,7 +75,7 @@
                         android:padding="@dimen/dimen_16"
                         android:text="@string/swipe_to_record"
                         android:textColor="@color/white"
-                        app:drawableStartCompat="@drawable/ic_swipe" />
+                        app:drawableStartCompat="@drawable/ic_swipe_2" />
 
                 </RelativeLayout>
 
@@ -136,7 +136,7 @@
                         android:padding="@dimen/dimen_16"
                         android:text="@string/swipe_to_record"
                         android:textColor="@color/white"
-                        app:drawableEndCompat="@drawable/ic_swipe_2" />
+                        app:drawableEndCompat="@drawable/ic_swipe" />
 
                 </RelativeLayout>
 
@@ -195,7 +195,7 @@
                         android:padding="@dimen/dimen_16"
                         android:text="@string/swipe_to_record"
                         android:textColor="@color/white"
-                        app:drawableStartCompat="@drawable/ic_swipe" />
+                        app:drawableStartCompat="@drawable/ic_swipe_2" />
 
                 </RelativeLayout>
 
@@ -254,7 +254,7 @@
                         android:padding="@dimen/dimen_16"
                         android:text="@string/swipe_to_record"
                         android:textColor="@color/white"
-                        app:drawableEndCompat="@drawable/ic_swipe_2" />
+                        app:drawableEndCompat="@drawable/ic_swipe" />
 
                 </RelativeLayout>
 

@@ -63,6 +63,27 @@ class GenericValues {
         return Gson().fromJson(jsonString, listType)
     }
 
+    fun preferenceUserProfile(fragment: Activity, param: UseInfoGeneralResultListener) {
+
+        FirbaseReadHandler().getCurrentUserInfo(object : UseInfoGeneralResultListener {
+            override fun onSuccess(userInfoGeneral: UserModel) {
+
+                Log.d("GenericValues", "getCurrentUserInfo succcess");
+
+                val gsonValue = Gson().toJson(userInfoGeneral)
+                val sharedPreference = fragment.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+                val editor = sharedPreference.edit()
+                editor.putString("USER_INFO", gsonValue)
+                editor.apply()
+                param.onSuccess(userInfoGeneral)
+            }
+
+            override fun onFailure(e: Exception) {
+                Log.d("GenericValues", "getCurrentUserInfo exception"+e.message);
+                param.onFailure(e)
+            }
+        })
+    }
 
     fun isUserProfileComplete(fragment: Activity, param: UseInfoGeneralResultListener) {
 
@@ -112,11 +133,11 @@ class GenericValues {
                     if (userModel.phoneNumber.isEmpty()) {
                         fragment.startActivity(Intent(fragment, FragmentEnterMobile::class.java));
                     } else
-                        if (userModel.skipReferalCode == false && userModel.emailId.isNullOrEmpty()  ) {
-                            fragment.startActivity(Intent(fragment, FragmentReferralMobile::class.java));
+                        if (userModel.emailId.isNullOrEmpty()) {
+                            fragment.startActivity(Intent(fragment, FragmentEmailAddress::class.java));
                         } else
-                            if (userModel.emailId.isNullOrEmpty()  ) {
-                                fragment.startActivity(Intent(fragment, FragmentEmailAddress::class.java));
+                            if (userModel.skipReferalCode == false && userModel.firstName.isNullOrEmpty()) {
+                                fragment.startActivity(Intent(fragment, FragmentReferralMobile::class.java));
                             } else
                                 if (userModel.firstName.isNullOrEmpty()) {
                                     fragment.startActivity(Intent(fragment, FragmentFullNameMobile::class.java));
@@ -127,22 +148,22 @@ class GenericValues {
                                         if (userModel.dob.isNullOrEmpty()) {
                                             fragment.startActivity(Intent(fragment, FragmentDate::class.java));
                                         } else
-                                            if (userModel.username.isNullOrEmpty() && userModel.skipUsername==false) {
+                                            if (userModel.username.isNullOrEmpty() && userModel.skipUsername == false) {
                                                 fragment.startActivity(Intent(fragment, FragmentUserName::class.java));
                                             } else
                                                 if (userModel.profilePic.isNullOrEmpty()) {
                                                     fragment.startActivity(Intent(fragment, FragmentUploadView::class.java));
                                                 } else
-                                                    if (userModel.bio.isNullOrEmpty() && userModel.skipBio==false) {
+                                                    if (userModel.bio.isNullOrEmpty() && userModel.skipBio == false) {
                                                         fragment.startActivity(Intent(fragment, FragmentBioMobile::class.java));
                                                     } else
-                                                        if (userModel.gender.isNullOrEmpty()&& userModel.skipGender==false) {
+                                                        if (userModel.gender.isNullOrEmpty() && userModel.skipGender == false) {
                                                             fragment.startActivity(Intent(fragment, GenderActivity::class.java));
                                                         } else
-                                                            if (userModel.relationshipStatus.isNullOrEmpty() && userModel.skipRelationshipStatus==false) {
+                                                            if (userModel.relationshipStatus.isNullOrEmpty() && userModel.skipRelationshipStatus == false) {
                                                                 fragment.startActivity(Intent(fragment, RelationshipActivity::class.java));
                                                             } else
-                                                                if (userModel.children.isNullOrEmpty()&&userModel.skipChildren == false) {
+                                                                if (userModel.children.isNullOrEmpty() && userModel.skipChildren == false) {
                                                                     fragment.startActivity(Intent(fragment, ChildrenActivity::class.java));
                                                                 } else
                                                                     if (userModel.occupation.isNullOrEmpty() && userModel.skipOccupation == false) {

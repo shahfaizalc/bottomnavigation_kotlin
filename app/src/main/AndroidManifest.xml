@@ -222,7 +222,7 @@
 
 
         <activity
-            android:name=".view.RecordActivity"
+            android:name=".activities.LaunchActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

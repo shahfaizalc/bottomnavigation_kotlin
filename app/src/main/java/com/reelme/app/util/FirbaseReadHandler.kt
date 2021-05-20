@@ -9,8 +9,10 @@ import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 import com.reelme.app.listeners.UseInfoGeneralResultListener
 import com.reelme.app.pojos.UserModel
@@ -18,7 +20,7 @@ import com.reelme.app.utils.Constants.BASEURL_COLLECTION_GEN_PROFILEINFO
 
 
 class FirbaseReadHandler {
-    private val currentFirebaseUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+    private val currentFirebaseUser = Firebase.auth.currentUser
 
     fun getCurrentUserInfo(useInfoGeneralResultListener: UseInfoGeneralResultListener) {
 

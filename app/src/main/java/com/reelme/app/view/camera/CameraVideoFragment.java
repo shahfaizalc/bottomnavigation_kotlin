@@ -15,7 +15,11 @@ import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraMetadata;
+import android.hardware.camera2.CaptureFailure;
 import android.hardware.camera2.CaptureRequest;
+import android.hardware.camera2.CaptureResult;
+import android.hardware.camera2.TotalCaptureResult;
+import android.hardware.camera2.params.Face;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
@@ -36,6 +40,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.gms.vision.CameraSource;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -418,7 +423,7 @@ public abstract class CameraVideoFragment extends BaseFragment {
         }
     }
 
-    int cameraType = 1;
+    int cameraType = CameraSource.CAMERA_FACING_FRONT;
     int camWidth;
     int camHeight;
 
@@ -536,15 +541,76 @@ public abstract class CameraVideoFragment extends BaseFragment {
             setUpCaptureRequestBuilder(mPreviewBuilder);
             HandlerThread thread = new HandlerThread("CameraPreview");
             thread.start();
-            mPreviewSession.setRepeatingRequest(mPreviewBuilder.build(), null, mBackgroundHandler);
+            CameraCaptureSession.CaptureCallback callback = new CameraCaptureSession.CaptureCallback() {
+                @Override
+                public void onCaptureStarted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, long timestamp, long frameNumber) {
+                    super.onCaptureStarted(session, request, timestamp, frameNumber);
+                    Log.d(TAG,"onCaptureStarted");
+                }
+
+                @Override
+                public void onCaptureProgressed(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull CaptureResult partialResult) {
+                    super.onCaptureProgressed(session, request, partialResult);
+                    Log.d(TAG,"onCaptureProgressed");
+
+                }
+
+                @Override
+                public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull TotalCaptureResult result) {
+                    super.onCaptureCompleted(session, request, result);
+
+                    Log.d(TAG,"onCaptureCompleted" + result.get(CaptureResult.STATISTICS_FACES));
+
+                    Integer mode = result.get(CaptureResult.STATISTICS_FACE_DETECT_MODE);
+                    Face[] faces = result.get(CaptureResult.STATISTICS_FACES);
+                    if(faces != null && mode != null) {
+                        Log.e(TAG, "faces : " + faces.length + " , mode : " + mode);
+                    }
+
+                }
+
+                @Override
+                public void onCaptureFailed(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull CaptureFailure failure) {
+                    super.onCaptureFailed(session, request, failure);
+                    Log.d(TAG,"onCaptureFailed");
+
+                }
+
+                @Override
+                public void onCaptureSequenceCompleted(@NonNull CameraCaptureSession session, int sequenceId, long frameNumber) {
+                    super.onCaptureSequenceCompleted(session, sequenceId, frameNumber);
+                    Log.d(TAG,"onCaptureSequenceCompleted");
+
+                }
+
+                @Override
+                public void onCaptureSequenceAborted(@NonNull CameraCaptureSession session, int sequenceId) {
+                    super.onCaptureSequenceAborted(session, sequenceId);
+                    Log.d(TAG,"onCaptureSequenceAborted");
+
+                }
+
+                @Override
+                public void onCaptureBufferLost(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull Surface target, long frameNumber) {
+                    super.onCaptureBufferLost(session, request, target, frameNumber);
+                    Log.d(TAG,"onCaptureBufferLost");
+                }
+            };
+            mPreviewSession.setRepeatingRequest(mPreviewBuilder.build(), callback, mBackgroundHandler);
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
     }
 
     private void setUpCaptureRequestBuilder(CaptureRequest.Builder builder) {
-        builder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
+     //   builder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
+
+        builder.set(CaptureRequest.STATISTICS_FACE_DETECT_MODE,
+                CameraMetadata.STATISTICS_FACE_DETECT_MODE_FULL);
     }
+
+
+
 
     /**
      * Configures the necessary {@link Matrix} transformation to `mTextureView`.

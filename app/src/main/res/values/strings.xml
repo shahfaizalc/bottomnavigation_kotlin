@@ -342,6 +342,8 @@ Welcome to Grads!
     <string name="interstitial_id1">ca-app-pub-7218101052695054/3112013140</string>
 
 
+    <string name="swipe_to_record">SWIPE TO RECORD</string>
+    <string name="swipe_to_select">SWIPE TO SELECT</string>
 
 
 
@@ -352,7 +354,6 @@ Welcome to Grads!
     <string name="banner_id">514835722463089_514969325783062</string>
     <string name="pick_your_occupation">Pick your Occupation</string>
     <string name="pick_your_hobbies_amp_interests"><![CDATA[Pick your hobbies & interests]]></string>
-    <string name="swipe_to_record">SWIPE TO RECORD</string>
 
 
 </resources>

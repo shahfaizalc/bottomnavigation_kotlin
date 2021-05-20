@@ -25,7 +25,6 @@ import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.UseInfoGeneralResultListener
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
-import com.reelme.app.util.notNull
 import com.reelme.app.view.*
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -91,6 +90,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
                 }
             }
             // [END phone_auth_callbacks]
+
         }
 
     private fun getPhoneNumber(): String? {
@@ -171,55 +171,11 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
                         Log.d(TAG, "signInWithCredential:success")
 
                         val user = task.result?.user
-
                         auth = Firebase.auth
 
+                        Log.d(TAG, "signInWithCredential:success"+Firebase.auth.currentUser)
 
-
-                        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-                        val coronaJson = sharedPreference.getString("USER_INFO", "");
-                        isEdit = sharedPreference.getBoolean("IS_EDIT", false)
-
-                        try {
-                            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-                           // Log.d("Authentication token", auth?.emailId)
-                            userDetails = (auth as UserModel)
-                            if(userDetails==null){
-                                setUserInfo(getPhoneNumber()!!)
-
-                            } else if(userDetails.isBlocked!!){
-                                Toast.makeText(fragmentSignin.applicationContext,"Your Account is blocked.\nKindly contact customer care",Toast.LENGTH_LONG).show()
-
-                            } else if(userDetails.isDeactivated!!){
-                                val builder = AlertDialog.Builder(fragmentSignin)
-                                //set title for alert dialog
-                                builder.setTitle("Deactivated")
-                                //set message for alert dialog
-                                builder.setMessage("Your account is deactivated. Click \'yes\'to activate it again")
-
-                                //performing positive action
-                                builder.setPositiveButton("Yes"){dialogInterface, which ->
-                                    setUserInfo(getPhoneNumber()!!)
-                                }
-                                //performing cancel action
-                                builder.setNeutralButton("Cancel"){dialogInterface , which ->
-                                    Toast.makeText(fragmentSignin.applicationContext,"clicked cancel\n operation cancel",Toast.LENGTH_LONG).show()
-                                }
-
-
-                                // Create the AlertDialog
-                                val alertDialog: AlertDialog = builder.create()
-                                // Set other dialog properties
-                                alertDialog.setCancelable(false)
-                                alertDialog.show()
-                            } else{
-                                setUserInfo(getPhoneNumber()!!)
-                            }
-                        } catch (e: java.lang.Exception) {
-                            Log.d("Authenticaiton token", "Exception")
-                            setUserInfo(getPhoneNumber()!!)
-
-                        }
+                        getUserInfo()
 
 
                     } else {
@@ -236,6 +192,53 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
                 .addOnFailureListener {
                     progressBarVisible = View.INVISIBLE
                 }
+    }
+
+    private fun loginProcess() {
+                                val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+                                val coronaJson = sharedPreference.getString("USER_INFO", "");
+                                isEdit = sharedPreference.getBoolean("IS_EDIT", false)
+
+                                try {
+                                    val authValue = Gson().fromJson(coronaJson, UserModel::class.java)
+                                   // Log.d("Authentication token", auth?.emailId)
+                                    userDetails = (authValue as UserModel)
+                                    if(null == userDetails){
+                                        setUserInfo(getPhoneNumber()!!)
+
+                                    } else if(userDetails.isBlocked!!){
+                                        Toast.makeText(fragmentSignin.applicationContext,"Your Account is blocked.\nKindly contact customer care",Toast.LENGTH_LONG).show()
+
+                                    } else if(userDetails.isDeactivated!!){
+                                        val builder = AlertDialog.Builder(fragmentSignin)
+                                        //set title for alert dialog
+                                        builder.setTitle("Deactivated")
+                                        //set message for alert dialog
+                                        builder.setMessage("Your account is deactivated. Click \'yes\'to activate it again")
+
+                                        //performing positive action
+                                        builder.setPositiveButton("Yes"){dialogInterface, which ->
+                                            setUserInfo(getPhoneNumber()!!)
+                                        }
+                                        //performing cancel action
+                                        builder.setNeutralButton("Cancel"){dialogInterface , which ->
+                                            Toast.makeText(fragmentSignin.applicationContext,"clicked cancel\n operation cancel",Toast.LENGTH_LONG).show()
+                                        }
+
+
+                                        // Create the AlertDialog
+                                        val alertDialog: AlertDialog = builder.create()
+                                        // Set other dialog properties
+                                        alertDialog.setCancelable(false)
+                                        alertDialog.show()
+                                    } else{
+                                        setUserInfo(getPhoneNumber()!!)
+                                    }
+                                } catch (e: java.lang.Exception) {
+                                    Log.d("Authenticaiton token", "Exception"+e.message)
+                                    setUserInfo(getPhoneNumber()!!)
+
+                                }
     }
     // [END sign_in_with_phone]
 
@@ -264,26 +267,28 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
     fun setUserInfo(phoneNumber: String){
 
-        val userModel = UserModel()
-        userModel.phoneNumber = phoneNumber
-        userModel.isDeactivated = false
+        userDetails.phoneNumber = phoneNumber
+        userDetails.isDeactivated = false
 
-        val gsonValue = Gson().toJson(userModel)
+        val gsonValue = Gson().toJson(userDetails)
         val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("USER_INFO", gsonValue)
         editor.apply()
 
-        GenericValues().isUserProfileComplete(fragmentSignin, object : UseInfoGeneralResultListener {
-            override fun onSuccess(userInfoGeneral: UserModel) {
-                progressBarVisible = View.INVISIBLE
-            }
+        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
+        progressBarVisible = View.INVISIBLE
 
-            override fun onFailure(e: Exception) {
-                progressBarVisible = View.INVISIBLE
-                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
-            }
-        })
+//        GenericValues().isUserProfileComplete(fragmentSignin, object : UseInfoGeneralResultListener {
+//            override fun onSuccess(userInfoGeneral: UserModel) {
+//                progressBarVisible = View.INVISIBLE
+//            }
+//
+//            override fun onFailure(e: Exception) {
+//                progressBarVisible = View.INVISIBLE
+//                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReferralMobile::class.java));
+//            }
+//        })
 
     }
 
@@ -292,17 +297,30 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
     private  var isEdit = false;
 
     private fun getUserInfo() {
-        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val coronaJson = sharedPreference.getString("USER_INFO", "");
-        isEdit = sharedPreference.getBoolean("IS_EDIT", false)
 
-        try {
-            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            Log.d("Authentication token", auth.emailId!!)
-            userDetails = (auth as UserModel)
-        } catch (e: java.lang.Exception) {
-            Log.d("Authenticaiton token", "Exception")
-        }
+        GenericValues().preferenceUserProfile(fragmentSignin, object : UseInfoGeneralResultListener{
+            override fun onSuccess(userInfoGeneral: UserModel) {
+                Log.d(TAG, "Success data fetch")
+                loginProcess()
+            }
+
+            override fun onFailure(e: Exception) {
+                Log.d(TAG, "Exception${e.message}")
+                showToast(R.string.errorMsgGeneric)
+                fragmentSignin.finish()
+            }
+        })
+//        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+//        val coronaJson = sharedPreference.getString("USER_INFO", "");
+//        isEdit = sharedPreference.getBoolean("IS_EDIT", false)
+//
+//        try {
+//            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
+//            Log.d("Authentication token", auth.emailId!!)
+//            userDetails = (auth as UserModel)
+//        } catch (e: java.lang.Exception) {
+//            Log.d("Authenticaiton token", "Exception")
+//        }
     }
 
 

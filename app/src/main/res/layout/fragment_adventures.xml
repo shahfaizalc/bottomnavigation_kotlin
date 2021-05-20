@@ -79,7 +79,7 @@
                             android:padding="@dimen/dimen_16"
                             android:text="@string/swipe_to_record"
                             android:textColor="@color/white"
-                            app:drawableStartCompat="@drawable/ic_swipe" />
+                            app:drawableStartCompat="@drawable/ic_swipe_2" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -169,7 +169,7 @@
                             android:padding="@dimen/dimen_16"
                             android:text="@string/swipe_to_record"
                             android:textColor="@color/white"
-                            app:drawableEndCompat="@drawable/ic_swipe_2" />
+                            app:drawableEndCompat="@drawable/ic_swipe" />
 
 
                     </RelativeLayout>
