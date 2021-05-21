@@ -296,7 +296,7 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
 
             val dialog = Dialog(context)
             // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setCancelable(false)
+            dialog.setCancelable(true)
             dialog.setContentView(R.layout.dialog_googlead)
 
             val btndialogYes: TextView = dialog.findViewById(R.id.share_yes) as TextView
@@ -317,7 +317,7 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
 
         val dialog = Dialog(context,android.R.style.Theme_Black_NoTitleBar_Fullscreen)
         // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false)
+        dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_whyskip)
 
         val btndialogYes: TextView = dialog.findViewById(R.id.share_yes) as TextView

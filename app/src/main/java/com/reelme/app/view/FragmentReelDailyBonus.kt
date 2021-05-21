@@ -20,6 +20,8 @@ import kotlin.math.abs
 
 class FragmentReelDailyBonus : AppCompatActivity() {
 
+    private  val TAG = "FragmentReelDailyBonus"
+
     @Transient
     lateinit internal var areaViewModel: ReelDailyBonusMobileViewModel
 
@@ -52,7 +54,7 @@ class FragmentReelDailyBonus : AppCompatActivity() {
         binding.fliplayout.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 gdt.onTouchEvent(event);
-                Log.d("fai", "You have swipped left swipeDaily")
+                Log.d(TAG, "You have swipped left swipeDaily")
                 counter++
                 counterList.add(event!!.getY())
                 loadItems()
@@ -66,7 +68,7 @@ class FragmentReelDailyBonus : AppCompatActivity() {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 gdt.onTouchEvent(event);
 
-                Log.d("fai", "You have swipped left swipeAdventures" + event!!.getY())
+                Log.d(TAG, "You have swipped left swipeAdventures" + event!!.getY())
                 counter++
                 counterList.add(event!!.getY())
                 loadItems()
@@ -126,9 +128,9 @@ class FragmentReelDailyBonus : AppCompatActivity() {
 
             if (!handleMultipleClicks()) {
 
-                Log.d("fai", "You have swipped left counter" + ((counterList[2] - counterList[0])))
+                Log.d(TAG, "You have swipped left counter" + ((counterList[2] - counterList[0])))
 
-                Log.d("fai", "You have swipped left counter" + (abs(counterList[2] - counterList[0]) > 50))
+                Log.d(TAG, "You have swipped left counter" + (abs(counterList[2] - counterList[0]) > 50))
 
                     if (counterList[0] > counterList[2]) {
                         // is swipe up
