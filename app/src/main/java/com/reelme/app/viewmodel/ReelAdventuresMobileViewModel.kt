@@ -114,7 +114,7 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
                         Log.d(ReelTypeMobileViewModel.TAG, "Ad was loaded.")
                         mInterstitialAd = interstitialAd
                         mAdIsLoading = false
-                        Toast.makeText(fragmentSignin, "onAdLoaded()", Toast.LENGTH_SHORT).show()
+                      //  Toast.makeText(fragmentSignin, "onAdLoaded()", Toast.LENGTH_SHORT).show()
                     }
                 }
         )

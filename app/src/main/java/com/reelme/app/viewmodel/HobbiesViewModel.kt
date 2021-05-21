@@ -46,6 +46,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
     fun onSkipButtonClicked() {
         // fragmentSignin.finish()
         userDetails.skipHobbiesAndInterest = true
+        fragmentSignin.finishAffinity()
         fragmentSignin.startActivity(Intent(fragmentSignin, Main2Activity::class.java));
 
     }
@@ -131,6 +132,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
             Log.d("Authentication token", auth.emailId!!)
             userDetails = (auth as UserModel)
             if(!isEdit && !userDetails.hobbiesAndInterest.isNullOrEmpty()){
+                fragmentSignin.finishAffinity()
                 fragmentSignin.startActivity(Intent(fragmentSignin, Main2Activity::class.java))
             }
         } catch (e: java.lang.Exception) {
@@ -156,6 +158,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
                     fragmentSignin.setResult(2, Intent())
                     fragmentSignin.finish()
                 } else {
+                    fragmentSignin.finishAffinity()
                     fragmentSignin.startActivity(Intent(fragmentSignin, Main2Activity::class.java));
                 }
 

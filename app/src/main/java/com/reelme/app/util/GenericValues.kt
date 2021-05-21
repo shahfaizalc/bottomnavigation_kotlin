@@ -151,7 +151,7 @@ class GenericValues {
                                             if (userModel.username.isNullOrEmpty() && userModel.skipUsername == false) {
                                                 fragment.startActivity(Intent(fragment, FragmentUserName::class.java));
                                             } else
-                                                if (userModel.profilePic.isNullOrEmpty()) {
+                                                if (userModel.profilePic.isNullOrEmpty()&& userModel.skipProfilePic == false) {
                                                     fragment.startActivity(Intent(fragment, FragmentUploadView::class.java));
                                                 } else
                                                     if (userModel.bio.isNullOrEmpty() && userModel.skipBio == false) {
@@ -175,6 +175,7 @@ class GenericValues {
                                                                             if (userModel.hobbiesAndInterest.isNullOrEmpty() && userModel.skipHobbiesAndInterest == false) {
                                                                                 fragment.startActivity(Intent(fragment, FragmentHobbies::class.java));
                                                                             } else {
+                                                                                fragment.finishAffinity()
                                                                                 fragment.startActivity(Intent(fragment, Main2Activity::class.java));
                                                                             }
                 }

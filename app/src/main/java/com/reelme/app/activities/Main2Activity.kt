@@ -28,8 +28,12 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
 
     internal var toolbar: Toolbar? = null
 
-    private val mTabIconsSelected = intArrayOf(R.drawable.ic_home,
-            R.drawable.ic_user_whilte, R.drawable.ic_reel, R.drawable.ic_links, R.drawable.ic_search)
+    private val mTabIconsSelected = intArrayOf(R.drawable.ic_apptab_home_selected,
+            R.drawable.ic_apptab_profile_selected, R.drawable.ic_apptab_record_selected, R.drawable.ic_apptab_send_selected, R.drawable.ic_apptab_search_selected)
+
+
+    private val mTabIconsSelect = intArrayOf(R.drawable.ic_apptab_home_select,
+            R.drawable.ic_apptab_profile_select, R.drawable.ic_apptab_record_select, R.drawable.ic_apptab_send_select, R.drawable.ic_apptab_search_select)
 
 
     internal lateinit var TABS: ArrayList<String>
@@ -103,12 +107,12 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     private fun showTab() {
 
         if (doGetCoronaUpdate()) {
-            switchTab(0)
-            updateTabSelection(0)
+            switchTab(1)
+            updateTabSelection(1)
         } else {
             bottomTabLayout!!.visibility = View.GONE
-            switchTab(0)
-            updateTabSelection(0)
+            switchTab(1)
+            updateTabSelection(1)
         }
     }
 
@@ -149,7 +153,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     private fun getTabView(position: Int): View {
         val view = LayoutInflater.from(this@Main2Activity).inflate(R.layout.tab_item_bottom, null)
         val icon = view.findViewById(R.id.tab_icon) as ImageView
-        icon.setImageDrawable(Utils.setDrawableSelector(this@Main2Activity, mTabIconsSelected[position], mTabIconsSelected[position]))
+        icon.setImageDrawable(Utils.setDrawableSelector(this@Main2Activity, mTabIconsSelect[position], mTabIconsSelected[position]))
         return view
     }
 
@@ -272,8 +276,8 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     override fun getRootFragment(index: Int): Fragment {
         when (index) {
 
-            FragNavController.TAB1 -> return FragmentHomeTab()
-            FragNavController.TAB2 -> return FragmentDiscussions()
+            FragNavController.TAB1 -> return FragmentDiscussions()
+            FragNavController.TAB2 -> return FragmentHomeTab()
             FragNavController.TAB3 -> return FragmentChallenges()
             FragNavController.TAB4 -> return FragmentChallenges()
             FragNavController.TAB5 -> return FragmentProfile()
@@ -317,6 +321,8 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
 
 
     }
+
+
 
 
 }

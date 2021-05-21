@@ -133,7 +133,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
         try {
             authCredential = PhoneAuthProvider.getCredential(coronaJson, code)
             Log.d(TAG, "sms code " + authCredential.smsCode)
-            smsotp = "" + (authCredential.smsCode)
+           // smsotp = "" + (authCredential.smsCode)
             return "" + (authCredential.smsCode)
         } catch (e: java.lang.Exception) {
             Log.d(TAG, "Exception")
@@ -156,6 +156,13 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
         set(price) {
             field = price
             notifyPropertyChanged(BR.smsotp)
+            if(smsotp!!.length == 6){
+                Log.d(TAG, "signInWithCredential:smsotp:")
+                signUpUserClicked()
+            } else{
+                Log.d(TAG, "signInWithCredential:smsotp->"+smsotp!!.length)
+
+            }
         }
 
 

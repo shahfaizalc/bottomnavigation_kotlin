@@ -108,7 +108,7 @@ class UploadListModel(internal var context: Context,
             progressBarVisible = View.VISIBLE
             FirbaseWriteHandlerActivity(fragment).coompressjpeg(imageUrl, object : StringResultListener {
                 override fun onSuccess(url: String) {
-                    Log.d("coompressjpeg onSuccess url", url)
+                    Log.d("coompressjpeg", url)
                     Toast.makeText(fragment, " Upload Successful", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
                     progressBarVisible = View.INVISIBLE
 
@@ -150,7 +150,9 @@ class UploadListModel(internal var context: Context,
 
 
     fun onSkipButtonClicked() = View.OnClickListener {
-        skipLiveData.setValue(true);
+        userDetails.skipProfilePic = true
+        setUserInfo()
+       // skipLiveData.setValue(true);
     }
 
     fun initSkip(): LiveData<Boolean> {

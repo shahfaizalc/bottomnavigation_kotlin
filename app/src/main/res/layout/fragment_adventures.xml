@@ -32,6 +32,7 @@
                 android:weightSum="9">
 
                 <RelativeLayout
+                    android:layout_margin="@dimen/dimen_16"
                     android:id="@+id/swipeDaily2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -88,9 +89,9 @@
                             android:layout_marginTop="@dimen/dimen_48"
                             android:fontFamily="@font/futurastdbold"
                             android:gravity="center_vertical"
+                            android:onClick="@{() -> homeData.onTypeAClick()}"
                             android:padding="@dimen/dimen_16"
                             android:text="@string/home_skip"
-                            android:onClick="@{() -> homeData.onTypeAClick()}"
                             android:textColor="@color/white" />
 
                     </RelativeLayout>
@@ -108,7 +109,7 @@
                     android:src="@drawable/group782" />
 
                 <RelativeLayout
-
+                    android:layout_margin="@dimen/dimen_16"
                     android:id="@+id/swipeAdventures"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

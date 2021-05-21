@@ -29,5 +29,6 @@ data class UserModel(
         var countryOrigin: String? ="",
         var instagramLink: String? ="",
         var youtube: String? ="",
-        var isBlocked: Boolean? = false
+        var isBlocked: Boolean? = false,
+        var skipProfilePic: Boolean? = false,
         )

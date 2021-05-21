@@ -88,7 +88,7 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
                         Log.d(TAG, "Ad was loaded.")
                         mInterstitialAd = interstitialAd
                         mAdIsLoading = false
-                        Toast.makeText(fragmentSignin, "onAdLoaded()", Toast.LENGTH_SHORT).show()
+                      //  Toast.makeText(fragmentSignin, "onAdLoaded()", Toast.LENGTH_SHORT).show()
                     }
                 }
         )
