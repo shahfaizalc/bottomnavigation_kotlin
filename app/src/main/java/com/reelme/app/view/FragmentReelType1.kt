@@ -40,7 +40,6 @@ class FragmentReelType1 : AppCompatActivity() {
 
                      binding.homeData!!.onFilterClick()
 
-
                  return true
              }
 

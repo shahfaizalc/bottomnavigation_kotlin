@@ -151,15 +151,18 @@ class ChallengeModel(internal var activity: FragmentActivity,
 
     fun doGetTalents() {
 
-        Log.d(TAG, "DOIT doGetTalents: searchMode: " + searchMode)
+        val intent = Intent(activity, FragmentReelType1::class.java)
+        activity.startActivity(intent)
 
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://philipscrm--pocinc.my.salesforce.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .build()
-        postsService = retrofit.create(GetServiceNews::class.java)
-        sendPost(getAccessToken())
+//        Log.d(TAG, "DOIT doGetTalents: searchMode: " + searchMode)
+//
+//        val retrofit = Retrofit.Builder()
+//                .baseUrl("https://philipscrm--pocinc.my.salesforce.com/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+//                .build()
+//        postsService = retrofit.create(GetServiceNews::class.java)
+//        sendPost(getAccessToken())
 
 
     }

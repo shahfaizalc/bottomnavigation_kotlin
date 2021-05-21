@@ -1,6 +1,7 @@
 package com.reelme.app.view
 
 import android.animation.AnimatorSet
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
@@ -12,6 +13,8 @@ import androidx.databinding.DataBindingUtil
 import com.reelme.app.GestureListener
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentAdventuresBinding
+import com.reelme.app.model_sales.goal.Record
+import com.reelme.app.util.MultipleClickHandler
 import com.reelme.app.util.MultipleClickHandler.Companion.handleMultipleClicks
 import com.reelme.app.viewmodel.ReelAdventuresMobileViewModel
 import kotlin.math.abs
@@ -54,6 +57,7 @@ class FragmentReelAdventures : AppCompatActivity() {
                 counter++
                 counterList.add(event!!.getY())
              //   loadItems()
+                startRecording()
                 return true
             }
 
@@ -68,6 +72,7 @@ class FragmentReelAdventures : AppCompatActivity() {
                 counter++
                 counterList.add(event!!.getY())
               //  loadItems()
+                startRecording();
                 return true
             }
         })
@@ -76,6 +81,10 @@ class FragmentReelAdventures : AppCompatActivity() {
 
     }
 
+   fun startRecording(){
+       if (!handleMultipleClicks()) {
+           startActivity(Intent(this, RecordActivity::class.java));
+       }}
 
 //    fun loadItems() {
 //        Log.d("fai", "You have  counter$counter")

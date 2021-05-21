@@ -1,9 +1,12 @@
 package com.reelme.app.view;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.fragment.app.Fragment;
@@ -37,6 +41,8 @@ public class CameraFragment extends CameraVideoFragment {
     ImageView mRecordVideo;
     VideoView mVideoView;
     ImageView mPlayVideo;
+
+    ImageView mPutMask;
 
     ImageView cameraFlip;
     private String mOutputFilePath;
@@ -84,6 +90,17 @@ public class CameraFragment extends CameraVideoFragment {
 
         mTextureView = new AutoFitTextureView(getContext());
         mVideoView = view.findViewById(R.id.mVideoView);
+        mPutMask = view.findViewById(R.id.putMask);
+
+        mPutMask.setOnClickListener(v -> {
+            Toast toast = Toast.makeText(getActivity().getApplicationContext(), "Yet to be implemented", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            View toastView = toast.getView();
+            toastView.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+            TextView text = toastView.findViewById(android.R.id.message);
+            text.setTextColor(Color.WHITE);
+            toast.show();
+        });
 
 
         mPlayVideo = view.findViewById(R.id.mPlayVideo);
@@ -94,6 +111,12 @@ public class CameraFragment extends CameraVideoFragment {
 
         mRecordVideo = view.findViewById(R.id.mRecordVideo);
         mRecordVideo.setOnClickListener(v -> {
+            txtProgress.setVisibility(View.VISIBLE);
+
+            progressBar.setVisibility(View.VISIBLE);
+
+            startCountdown();
+
             if (mIsRecordingVideo) {
                 try {
                     md.setPause(true);
@@ -129,47 +152,49 @@ public class CameraFragment extends CameraVideoFragment {
         txtProgress2 =  view.findViewById(R.id.txtProgress2);
 
         progressBar2 =  view.findViewById(R.id.progressBar2);
-        startCountdown();
+        //startCountdown();
 
         return view;
     }
 
 
     void startCountdown(){
-        new Thread(() -> {
-            while (pStatus <= 5) {
-                handler.post(() -> {
-                    progressBar.setProgress(pStatus);
-                    txtProgress.setText(""+(5-pStatus));
-                });
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        if(pStatus <= 5){
+            new Thread(() -> {
+                while (pStatus <= 5) {
+                    handler.post(() -> {
+                        progressBar.setProgress(pStatus);
+                        txtProgress.setText(""+(5-pStatus));
+                    });
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    pStatus++;
                 }
-                pStatus++;
-            }
-            mIsRecordingVideo = true;
 
-            int minutes = (MAX_VIDEO_DURATION / 1000);
-            int h = minutes/60;
-            int m = minutes%60;
-            getActivity().runOnUiThread(() -> {
 
-                progressBar2.setProgress(minutes);
-                txtProgress2.setText(String.format("%02d:%02d",h,m));
-                txtProgress2.setVisibility(View.VISIBLE);
+                int minutes = (MAX_VIDEO_DURATION / 1000);
+                int h = minutes/60;
+                int m = minutes%60;
+                getActivity().runOnUiThread(() -> {
 
-            });
+                    progressBar2.setProgress(minutes);
+                    txtProgress2.setText(String.format("%02d:%02d",h,m));
+                    txtProgress2.setVisibility(View.VISIBLE);
 
-            Message msg = mHandler.obtainMessage(ID_TIME_COUNT, 1,
-                    MAX_VIDEO_DURATION / 1000);
-            mHandler.sendMessage(msg);
+                });
+
+                Message msg = mHandler.obtainMessage(ID_TIME_COUNT, 1,
+                        MAX_VIDEO_DURATION / 1000);
+                mHandler.sendMessage(msg);
 //            startRecordingVideo();
 
-            hideProgress();
+                hideProgress();
 
-        }).start();
+            }).start();
+        }
     }
 
 
@@ -183,7 +208,12 @@ public class CameraFragment extends CameraVideoFragment {
                         if (msg.arg1 > msg.arg2) {
                             // mTvTimeCount.setVisibility(View.INVISIBLE);
                             txtProgress2.setText("00:00");
-                           // stopRecord();
+                            try {
+                                stopRecordingVideo();
+                                prepareViews();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         } else {
                             int minutes = (msg.arg2 - msg.arg1);
                             int h = minutes/60;

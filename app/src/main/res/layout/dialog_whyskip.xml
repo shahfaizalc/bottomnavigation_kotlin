@@ -6,6 +6,7 @@
     android:padding="@dimen/dimen_24">
 
     <LinearLayout
+        android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/group_1355"
@@ -34,10 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="@dimen/dimen_12"
-            android:background="@drawable/button_black"
+            android:background="@drawable/ic_path_1328"
             android:fontFamily="@font/futurabold"
             android:gravity="center"
-            android:padding="@dimen/dimen_8"
             android:text="I don\'t want to answer this right now"
             android:textColor="@color/white"
             android:textStyle="bold" />
@@ -49,10 +49,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="@dimen/dimen_12"
-            android:background="@drawable/button_black"
+            android:background="@drawable/ic_path_1328"
             android:fontFamily="@font/futurabold"
             android:gravity="center"
-            android:padding="@dimen/dimen_8"
             android:text="This doesn\'t apply to me"
             android:textColor="@color/white"
             android:textStyle="bold"

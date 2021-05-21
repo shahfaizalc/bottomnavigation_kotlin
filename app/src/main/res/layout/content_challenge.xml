@@ -32,7 +32,7 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/dimen_8"
                 android:background="@android:color/transparent"
-                android:text="Coming Soon" />
+                android:text="" />
 
 
 

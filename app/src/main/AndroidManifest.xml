@@ -221,8 +221,20 @@
             android:windowSoftInputMode="adjustPan" />
 
 
+
+
+<!--        <activity-->
+<!--            android:name=".view.RecordActivity"-->
+<!--            android:screenOrientation="sensorPortrait"-->
+<!--            android:windowSoftInputMode="adjustPan" />-->
+
         <activity
-            android:name=".activities.LaunchActivity"
+            android:name=".view.FragmentReelType1"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".view.RecordActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

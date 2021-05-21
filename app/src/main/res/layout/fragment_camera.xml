@@ -31,10 +31,10 @@
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="@+id/mRecordVideo12"
             app:layout_constraintEnd_toStartOf="@+id/mRecordVideo12"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/mRecordVideo12"
-            app:layout_constraintVertical_bias="0.666" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <LinearLayout
             android:id="@+id/mRecordVideo12"
@@ -56,7 +56,7 @@
                 android:layout_marginBottom="24dp"
                 android:layout_weight="1"
                 android:contentDescription="play stop"
-                android:src="@drawable/ic_reel" />
+                android:src="@drawable/reelme_logo" />
 
             <ImageView
                 android:id="@+id/mRecordVideo"
@@ -120,13 +120,15 @@
             android:layout_height="100dp"
             android:layout_centerInParent="true"
             android:indeterminate="false"
+            android:visibility="gone"
             android:max="5"
-            android:progress="2"
+            android:progress="0"
             android:progressDrawable="@drawable/custom_progress"
             android:secondaryProgress="0" />
 
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/txtProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -152,8 +154,8 @@
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:indeterminate="false"
-            android:max="20"
-            android:progress="10"
+            android:max="120"
+            android:progress="0"
             android:secondaryProgress="0" />
 
         <TextView

@@ -315,7 +315,7 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
 
     private fun onWhySkipClick(adventuresTopics: AdventuresTopics, i: Int) {
 
-        val dialog = Dialog(context)
+        val dialog = Dialog(context,android.R.style.Theme_Black_NoTitleBar_Fullscreen)
         // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.dialog_whyskip)
@@ -440,41 +440,41 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
     }
 
 
-    fun setUserInfo() {
-
-        progressBarVisible = View.VISIBLE
-
-        val gsonValue = Gson().toJson(userDetails)
-
-        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val editor = sharedPreference.edit()
-        editor.putString("USER_INFO", gsonValue)
-        editor.putBoolean("IS_EDIT", false)
-        editor.apply()
-        FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
-            override fun onSuccess() {
-                progressBarVisible = View.INVISIBLE
-                if (isEdit) {
-                    fragmentSignin.setResult(2, Intent())
-                    fragmentSignin.finish()
-                } else {
-                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
-                }
-
-                Log.d("Authenticaiton token", "onSuccess")
-                //   Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
-
-            }
-
-            override fun onFailure(e: Exception) {
-                //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
-                progressBarVisible = View.INVISIBLE
-                Log.d("Authenticaiton token", "Exception$e")
-                Toast.makeText(context, "Failed to update your profile.. please try again later", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
-
-            }
-        })
-    }
+//    fun setUserInfo() {
+//
+//        progressBarVisible = View.VISIBLE
+//
+//        val gsonValue = Gson().toJson(userDetails)
+//
+//        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+//        val editor = sharedPreference.edit()
+//        editor.putString("USER_INFO", gsonValue)
+//        editor.putBoolean("IS_EDIT", false)
+//        editor.apply()
+//        FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
+//            override fun onSuccess() {
+//                progressBarVisible = View.INVISIBLE
+//                if (isEdit) {
+//                    fragmentSignin.setResult(2, Intent())
+//                    fragmentSignin.finish()
+//                } else {
+//                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
+//                }
+//
+//                Log.d("Authenticaiton token", "onSuccess")
+//                //   Toast.makeText(context, "we have successfully saved your profile", Toast.LENGTH_LONG).apply {setGravity(Gravity.TOP, 0, 0); show() }
+//
+//            }
+//
+//            override fun onFailure(e: Exception) {
+//                //   fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomePage::class.java));
+//                progressBarVisible = View.INVISIBLE
+//                Log.d("Authenticaiton token", "Exception$e")
+//                Toast.makeText(context, "Failed to update your profile.. please try again later", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+//
+//            }
+//        })
+//    }
 
     @get:Bindable
     var progressBarVisible = View.INVISIBLE

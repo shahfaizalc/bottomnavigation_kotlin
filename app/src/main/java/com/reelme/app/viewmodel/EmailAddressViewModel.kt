@@ -92,8 +92,30 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
         }
     }
 
-
     fun setUserInfo() {
+
+        if (!isEdit) {
+            if (userDetails.emailId.isNullOrEmpty()) {
+                validDataSave()
+            } else if (userDetails.emailId == userEmail) {
+                GenericValues().navigateToNext(fragmentSignin)
+            } else {
+                Toast.makeText(fragmentSignin, "Enter valid Email Address", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+
+            }
+        } else {
+
+            if (userDetails.emailId == userEmail) {
+                //Toast.makeText(fragmentSignin, "It's your Email Id", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+                fragmentSignin.finish();
+            } else {
+                validDataSave()
+            }
+        }
+
+    }
+
+    private fun validDataSave() {
         userDetails.emailId = userEmail
 
         progressBarVisible = View.VISIBLE
@@ -168,7 +190,7 @@ class EmailAddressViewModel(private val context: Context, private val fragmentSi
     }
 
     @get:Bindable
-    var userEmail: String? = userDetails.emailId
+    var userEmail: String? = if(isEdit) userDetails.emailId else ""
         set(price) {
             field = price
             notifyPropertyChanged(BR.userEmail)

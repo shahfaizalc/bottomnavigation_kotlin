@@ -244,7 +244,8 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
 
         if (!handleMultipleClicks()) {
 
-            val dialog = Dialog(context)
+            val dialog = Dialog(context,android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+
             // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setCancelable(false)
             dialog.setContentView(R.layout.dialog_googlead)

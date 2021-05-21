@@ -134,7 +134,7 @@ class FragmentReelDailyBonus : AppCompatActivity() {
                         // is swipe up
                         if (areaViewModel.totalItems != (areaViewModel.endItem + 1)) {
                             flipCard()
-                            if (areaViewModel.endItem + 1 != areaViewModel.totalItems) {
+                            if (areaViewModel.endItem + 2 != areaViewModel.totalItems) {
                                 areaViewModel.loadBothItems(areaViewModel.endItem + 1, areaViewModel.endItem + 2)
                             } else {
                                 areaViewModel.loadSingleItem(areaViewModel.endItem + 1)

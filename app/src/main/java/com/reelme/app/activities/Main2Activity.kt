@@ -103,12 +103,12 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     private fun showTab() {
 
         if (doGetCoronaUpdate()) {
-            switchTab(2)
-            updateTabSelection(2)
+            switchTab(0)
+            updateTabSelection(0)
         } else {
             bottomTabLayout!!.visibility = View.GONE
-            switchTab(2)
-            updateTabSelection(2)
+            switchTab(0)
+            updateTabSelection(0)
         }
     }
 
@@ -272,9 +272,9 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     override fun getRootFragment(index: Int): Fragment {
         when (index) {
 
-            FragNavController.TAB1 -> return FragmentChallenges()
+            FragNavController.TAB1 -> return FragmentHomeTab()
             FragNavController.TAB2 -> return FragmentDiscussions()
-            FragNavController.TAB3 -> return FragmentHomeTab()
+            FragNavController.TAB3 -> return FragmentChallenges()
             FragNavController.TAB4 -> return FragmentChallenges()
             FragNavController.TAB5 -> return FragmentProfile()
         }
