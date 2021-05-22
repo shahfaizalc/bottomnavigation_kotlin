@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -15,102 +15,85 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black"
-        android:weightSum="12"
-        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_weight="10"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:background="@color/black"
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_48"
                 android:fontFamily="@font/futurastdbold"
                 android:lineSpacingExtra="@dimen/dimen_12"
-                android:layout_marginTop="@dimen/dimen_48"
-                android:textSize="@dimen/dimen_32"
                 android:padding="@dimen/dimen_16"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/home_referralMobileTitle"
-                />
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_32" />
 
             <TextView
-                android:fontFamily="@font/futubk"
-                android:padding="@dimen/dimen_16"
-                android:textSize="@dimen/dimen_16"
-                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/futubk"
+                android:padding="@dimen/dimen_16"
                 android:text="@string/home_referralMobileSubTitle"
-                />
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_16" />
 
             <EditText
-                android:fontFamily="@font/futubk"
-                android:textSize="@dimen/dimen_36"
-                android:padding="@dimen/dimen_16"
-                android:maxLength="6"
-                android:textColor="@color/white"
-                android:textColorHint="@color/colorBlacklight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/home_referralMobileSubTitle2"/>
+                android:fontFamily="@font/futubk"
+                android:hint="@string/home_referralMobileSubTitle2"
+                android:maxLength="6"
+                android:padding="@dimen/dimen_16"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorBlacklight"
+                android:textSize="@dimen/dimen_36" />
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:fontFamily="@font/futurastdbold"
-                android:layout_marginTop="@dimen/dimen_16"
-                android:textColor="@color/smoke2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_16"
-                android:paddingTop="@dimen/dimen_12"
-                android:paddingBottom="@dimen/dimen_12"
-                android:paddingStart="@dimen/dimen_28"
-                android:paddingEnd="@dimen/dimen_28"
+                android:layout_marginTop="@dimen/dimen_16"
                 android:layout_marginRight="@dimen/dimen_16"
                 android:background="@drawable/button_black"
-                android:onClick="@{() -> homeData.signUpUserClicked()}"
-                android:drawablePadding="@dimen/dimen_4"
                 android:drawableEnd="@drawable/ic_rightarrow"
-                android:textSize="@dimen/dimen_12"
-                android:text="CONTINUE"/>
+                android:drawablePadding="@dimen/dimen_4"
+                android:fontFamily="@font/futurastdbold"
+                android:onClick="@{() -> homeData.signUpUserClicked()}"
+                android:paddingStart="@dimen/dimen_28"
+                android:paddingTop="@dimen/dimen_12"
+                android:paddingEnd="@dimen/dimen_28"
+                android:paddingBottom="@dimen/dimen_12"
+                android:text="CONTINUE"
+                android:textColor="@color/smoke2"
+                android:textSize="@dimen/dimen_12" />
 
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:background="@color/black"
-            android:orientation="vertical">
 
             <TextView
-                android:onClick="@{() -> homeData.onSkipButtonClicked()}"
-                android:paddingStart="@dimen/dimen_16"
-                android:textStyle="bold"
-                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/home_skip" />
+                android:layout_marginTop="@dimen/dimen_16"
+                android:fontFamily="@font/futurastdbold"
+                android:onClick="@{() -> homeData.onSkipButtonClicked()}"
+                android:paddingStart="@dimen/dimen_16"
+                android:text="I don't have one"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_16" />
+
 
         </LinearLayout>
 
-    </LinearLayout>
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminate="true"
-        android:visibility="@{homeData.progressBarVisible}" />
-</FrameLayout></layout>
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="@{homeData.progressBarVisible}" />
+    </FrameLayout>
+</layout>

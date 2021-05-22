@@ -151,8 +151,8 @@ class ChallengeModel(internal var activity: FragmentActivity,
 
     fun doGetTalents() {
 
-        val intent = Intent(activity, FragmentReelType1::class.java)
-        activity.startActivity(intent)
+//        val intent = Intent(activity, FragmentReelType1::class.java)
+//        activity.startActivity(intent)
 
 //        Log.d(TAG, "DOIT doGetTalents: searchMode: " + searchMode)
 //

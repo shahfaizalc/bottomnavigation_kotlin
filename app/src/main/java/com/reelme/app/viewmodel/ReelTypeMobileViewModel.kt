@@ -47,7 +47,7 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
         getUserInfo()
 
         // Initialize the Mobile Ads SDK.
-        MobileAds.initialize(fragmentSignin) {}
+        MobileAds.initialize(fragmentSignin.activity) {}
 
         // Set your test devices. Check your logcat output for the hashed device ID to
         // get test ads on a physical device. e.g.
@@ -66,7 +66,7 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
         val adRequest = AdRequest.Builder().build()
 
         InterstitialAd.load(
-                fragmentSignin, AD_UNIT_ID, adRequest,
+                fragmentSignin.activity!!, AD_UNIT_ID, adRequest,
                 object : InterstitialAdLoadCallback() {
                     override fun onAdFailedToLoad(adError: LoadAdError) {
                         Log.d(TAG, adError?.message)
@@ -78,7 +78,7 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
                         Log.d(TAG, "Ad was not loaded.$error")
 
                         Toast.makeText(
-                                fragmentSignin,
+                                fragmentSignin.context,
                                 "onAdFailedToLoad() with error $error",
                                 Toast.LENGTH_SHORT
                         ).show()
@@ -104,7 +104,7 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
                     // don't show the ad a second time.
                     mInterstitialAd = null
                     loadAd()
-                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReelDailyBonus::class.java));
+                    fragmentSignin.startActivity(Intent(fragmentSignin.activity!!, FragmentReelDailyBonus::class.java));
                 }
 
                 override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
@@ -119,9 +119,9 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
                     // Called when ad is dismissed.
                 }
             }
-            mInterstitialAd?.show(fragmentSignin)
+            mInterstitialAd?.show(fragmentSignin.activity)
         } else {
-            Toast.makeText(fragmentSignin, "Ad wasn't loaded.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(fragmentSignin.activity, "Ad wasn't loaded.", Toast.LENGTH_SHORT).show()
             loadAd()
         }
     }
@@ -129,7 +129,7 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
 
    public fun signInUserClicked() {
         //  fragmentSignin.finish()
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentReelAdventures::class.java));
+        fragmentSignin.startActivity(Intent(fragmentSignin.activity!!, FragmentReelAdventures::class.java));
 
     }
 
@@ -183,14 +183,14 @@ class ReelTypeMobileViewModel(private val context: Context, private val fragment
         editor.putString("USER_INFO",gsonValue)
         editor.putBoolean("IS_EDIT",false)
         editor.apply()
-        FirbaseWriteHandlerActivity(fragmentSignin).updateUserInfo(userDetails, object : EmptyResultListener {
+        FirbaseWriteHandlerActivity(fragmentSignin.activity!!).updateUserInfo(userDetails, object : EmptyResultListener {
             override fun onSuccess() {
                 progressBarVisible = View.INVISIBLE
                 if(isEdit){
-                    fragmentSignin.setResult(2, Intent())
-                    fragmentSignin.finish()
+                    fragmentSignin.activity?.setResult(2, Intent())
+                    fragmentSignin.activity?.finish()
                 } else{
-                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
+                    fragmentSignin.startActivity(Intent(fragmentSignin.activity, FragmentEmailAddress::class.java));
                 }
 
                 Log.d("Authenticaiton token", "onSuccess")

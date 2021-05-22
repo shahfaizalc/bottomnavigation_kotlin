@@ -6,8 +6,6 @@
     android:layout_height="match_parent">
 
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -36,6 +34,7 @@
             app:layout_constraintTop_toTopOf="@+id/mRecordVideo12"
             app:layout_constraintVertical_bias="1.0" />
 
+
         <LinearLayout
             android:id="@+id/mRecordVideo12"
             android:layout_width="match_parent"
@@ -49,13 +48,13 @@
 
             <ImageView
                 android:id="@+id/putMask"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="24dp"
                 android:layout_weight="1"
-                android:contentDescription="play stop"
                 android:src="@drawable/reelme_logo" />
 
             <ImageView
@@ -71,8 +70,8 @@
 
             <ImageView
                 android:id="@+id/cameraFlip"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="24dp"
@@ -120,15 +119,14 @@
             android:layout_height="100dp"
             android:layout_centerInParent="true"
             android:indeterminate="false"
-            android:visibility="gone"
             android:max="5"
             android:progress="0"
             android:progressDrawable="@drawable/custom_progress"
-            android:secondaryProgress="0" />
+            android:secondaryProgress="0"
+            android:visibility="gone" />
 
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/txtProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,7 +134,8 @@
             android:layout_centerInParent="true"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/white"
-            android:textSize="32dp" />
+            android:textSize="32dp"
+            android:visibility="gone" />
     </RelativeLayout>
 
 

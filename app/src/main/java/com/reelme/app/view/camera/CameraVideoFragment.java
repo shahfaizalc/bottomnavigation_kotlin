@@ -713,11 +713,11 @@ public abstract class CameraVideoFragment extends BaseFragment {
                 public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
                     mPreviewSession = cameraCaptureSession;
                     updatePreview();
-                    getActivity().runOnUiThread(() -> {
+                   // getActivity().runOnUiThread(() -> {
                         mIsRecordingVideo = true;
                         // Start recording
                         mMediaRecorder.start();
-                    });
+                //    });
                 }
 
                 @Override

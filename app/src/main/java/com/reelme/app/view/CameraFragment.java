@@ -47,7 +47,7 @@ public class CameraFragment extends CameraVideoFragment {
     ImageView cameraFlip;
     private String mOutputFilePath;
 
-    private static final int MAX_VIDEO_DURATION = 20 * 1000;
+    private static final int MAX_VIDEO_DURATION = 120 * 1000;
 
     private ProgressBar progressBar;
     private int pStatus = 0;
