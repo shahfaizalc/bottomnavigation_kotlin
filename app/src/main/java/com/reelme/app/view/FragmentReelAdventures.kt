@@ -13,11 +13,8 @@ import androidx.databinding.DataBindingUtil
 import com.reelme.app.GestureListener
 import com.reelme.app.R
 import com.reelme.app.databinding.FragmentAdventuresBinding
-import com.reelme.app.model_sales.goal.Record
-import com.reelme.app.util.MultipleClickHandler
 import com.reelme.app.util.MultipleClickHandler.Companion.handleMultipleClicks
 import com.reelme.app.viewmodel.ReelAdventuresMobileViewModel
-import kotlin.math.abs
 
 
 class FragmentReelAdventures : AppCompatActivity() {

@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.ObservableArrayList
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.gson.Gson
@@ -17,6 +18,7 @@ import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.BonusTopicsResultListener
 import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.model2.BonusTopics
+import com.reelme.app.model_sales.goal.Record
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.view.*
@@ -27,16 +29,13 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
     private var networkStateHandler: NetworkChangeHandler? = null
 
     private var isInternetConnected: Boolean = false
+    var dailyBonusTopics: ObservableArrayList<BonusTopics>
 
-    var headline1_Points = "";
-    var headline1_title = "";
-    var headline2_Points = "";
-    var headline2_title = "";
-
-
+    var fragment = FragmentReelDailyBonus()
     init {
         networkHandler()
         getUserInfo()
+        fragment = fragmentSignin;
 
         // Initialize the Mobile Ads SDK.
       //  MobileAds.initialize(fragmentSignin) {}
@@ -51,14 +50,11 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
 //                        .build()
 //        )
 
+        dailyBonusTopics = ObservableArrayList()
 
         loadData()
     }
 
-    var dailyBonusTopics = ArrayList<BonusTopics>();
-    var totalItems = 0
-    var startItem = 0;
-    var endItem = 1
 
 
     private fun loadData() {
@@ -68,20 +64,6 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
             override fun onSuccess(url: List<BonusTopics>) {
                 Log.d("TAG", "Success bonus topics size " + url.size)
                 dailyBonusTopics.addAll(url);
-                totalItems = url.size
-                when {
-                    url.isEmpty() -> {
-                        startItem = -1
-                        endItem = -1
-                        return
-                    }
-                    dailyBonusTopics.size > 1 -> {
-                        loadBothItems(0, 1)
-                    }
-                    dailyBonusTopics.size == 1 -> {
-                        loadSingleItem(0)
-                    }
-                }
             }
 
 
@@ -92,29 +74,7 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
         })
     }
 
-    fun loadSingleItem(item: Int) {
-        headline1Points = dailyBonusTopics[item].points.toString();
-        headline1title = dailyBonusTopics[item].topicDescription
-        headline1_Points = dailyBonusTopics[item].points.toString();
-        headline1_title = dailyBonusTopics[item].topicDescription
 
-        startItem = item
-        endItem = item
-    }
-
-    fun loadBothItems(item1: Int, item2: Int) {
-        headline1Points = dailyBonusTopics[item1].points.toString();
-        headline1title = dailyBonusTopics[item1].topicDescription
-        headline2Points = dailyBonusTopics[item2].points.toString()
-        headline2title = dailyBonusTopics[item2].topicDescription
-        headline1_Points = dailyBonusTopics[item1].points.toString();
-        headline1_title = dailyBonusTopics[item1].topicDescription
-        headline2_Points = dailyBonusTopics[item2].points.toString()
-        headline2_title = dailyBonusTopics[item2].topicDescription
-
-        startItem = item1
-        endItem = item2
-    }
 
     public fun signInUserClicked() {
         //  fragmentSignin.finish()
@@ -201,35 +161,6 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
             field = progressBarVisible
             notifyPropertyChanged(BR.progressBarVisible)
         }
-
-    @get:Bindable
-    var headline1Points = headline1_Points
-        set(progressBarVisible) {
-            field = progressBarVisible
-            notifyPropertyChanged(BR.headline1Points)
-        }
-
-    @get:Bindable
-    var headline2Points = headline2_Points
-        set(progressBarVisible) {
-            field = progressBarVisible
-            notifyPropertyChanged(BR.headline2Points)
-        }
-
-    @get:Bindable
-    var headline1title = headline1_title
-        set(progressBarVisible) {
-            field = progressBarVisible
-            notifyPropertyChanged(BR.headline1title)
-        }
-
-    @get:Bindable
-    var headline2title = headline2_title
-        set(progressBarVisible) {
-            field = progressBarVisible
-            notifyPropertyChanged(BR.headline2title)
-        }
-
 
     private fun networkHandler() {
         networkStateHandler = NetworkChangeHandler()

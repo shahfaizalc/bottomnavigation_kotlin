@@ -215,10 +215,10 @@
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
 
-        <activity
-            android:name=".view.FragmentDailyBonusReels"
-            android:screenOrientation="sensorPortrait"
-            android:windowSoftInputMode="adjustPan" />
+<!--        <activity-->
+<!--            android:name=".view.FragmentDailyBonusReels"-->
+<!--            android:screenOrientation="sensorPortrait"-->
+<!--            android:windowSoftInputMode="adjustPan" />-->
 
 
 

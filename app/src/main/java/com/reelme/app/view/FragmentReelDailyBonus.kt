@@ -57,7 +57,7 @@ class FragmentReelDailyBonus : AppCompatActivity() {
                 Log.d(TAG, "You have swipped left swipeDaily")
                 counter++
                 counterList.add(event!!.getY())
-                loadItems()
+               // loadItems()
                 return true
             }
 
@@ -71,7 +71,7 @@ class FragmentReelDailyBonus : AppCompatActivity() {
                 Log.d(TAG, "You have swipped left swipeAdventures" + event!!.getY())
                 counter++
                 counterList.add(event!!.getY())
-                loadItems()
+               // loadItems()
                 return true
             }
         })
@@ -121,45 +121,45 @@ class FragmentReelDailyBonus : AppCompatActivity() {
         // loadItems()
     }
 
-    fun loadItems() {
-        Log.d("fai", "You have  counter$counter")
-
-        if (counter == 3) {
-
-            if (!handleMultipleClicks()) {
-
-                Log.d(TAG, "You have swipped left counter" + ((counterList[2] - counterList[0])))
-
-                Log.d(TAG, "You have swipped left counter" + (abs(counterList[2] - counterList[0]) > 50))
-
-                    if (counterList[0] > counterList[2]) {
-                        // is swipe up
-                        if (areaViewModel.totalItems != (areaViewModel.endItem + 1)) {
-                            flipCard()
-                            if (areaViewModel.endItem + 2 != areaViewModel.totalItems) {
-                                areaViewModel.loadBothItems(areaViewModel.endItem + 1, areaViewModel.endItem + 2)
-                            } else {
-                                areaViewModel.loadSingleItem(areaViewModel.endItem + 1)
-                            }
-                        }
-                    } else {
-                        // is swipe down
-                        if (areaViewModel.endItem > 1) {
-                            flipCard()
-                            if (areaViewModel.totalItems != 3) {
-                                areaViewModel.loadBothItems(areaViewModel.startItem - 2, areaViewModel.endItem - 2)
-                            } else {
-                                areaViewModel.loadSingleItem(areaViewModel.endItem - 1)
-                            }
-                        }
-                    }
-
-            }
-            counter = 0
-            counterList.clear()
-
-        }
-    }
+//    fun loadItems() {
+//        Log.d("fai", "You have  counter$counter")
+//
+//        if (counter == 3) {
+//
+//            if (!handleMultipleClicks()) {
+//
+//                Log.d(TAG, "You have swipped left counter" + ((counterList[2] - counterList[0])))
+//
+//                Log.d(TAG, "You have swipped left counter" + (abs(counterList[2] - counterList[0]) > 50))
+//
+//                    if (counterList[0] > counterList[2]) {
+//                        // is swipe up
+//                        if (areaViewModel.totalItems != (areaViewModel.endItem + 1)) {
+//                            flipCard()
+//                            if (areaViewModel.endItem + 2 != areaViewModel.totalItems) {
+//                                areaViewModel.loadBothItems(areaViewModel.endItem + 1, areaViewModel.endItem + 2)
+//                            } else {
+//                                areaViewModel.loadSingleItem(areaViewModel.endItem + 1)
+//                            }
+//                        }
+//                    } else {
+//                        // is swipe down
+//                        if (areaViewModel.endItem > 1) {
+//                            flipCard()
+//                            if (areaViewModel.totalItems != 3) {
+//                                areaViewModel.loadBothItems(areaViewModel.startItem - 2, areaViewModel.endItem - 2)
+//                            } else {
+//                                areaViewModel.loadSingleItem(areaViewModel.endItem - 1)
+//                            }
+//                        }
+//                    }
+//
+//            }
+//            counter = 0
+//            counterList.clear()
+//
+//        }
+//    }
 
     override fun onResume() {
         super.onResume()

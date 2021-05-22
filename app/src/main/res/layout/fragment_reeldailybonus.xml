@@ -17,13 +17,25 @@
         android:layout_height="match_parent"
         android:background="@color/black">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginBottom="@dimen/dimen_32"
+            android:background="@android:color/transparent"
+            android:scrollbars="vertical"
+            app:searchAdapter="@{homeData}" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
+            android:visibility="gone">
+
 
             <LinearLayout
-                android:layout_above="@id/scrollformore"
                 android:id="@+id/fliplayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -48,20 +60,18 @@
                         android:fontFamily="@font/futurastdbold"
                         android:lineSpacingExtra="@dimen/dimen_12"
                         android:padding="@dimen/dimen_16"
-                        android:text="@{homeData.headline1title}"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_28" />
 
                     <TextView
-                        android:layout_below="@+id/titledaily"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/titledaily"
                         android:layout_alignParentStart="true"
                         android:fontFamily="@font/futurastdbold"
                         android:lineSpacingExtra="@dimen/dimen_12"
                         android:padding="@dimen/dimen_16"
-                        android:text="@{homeData.headline1Points}"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -106,22 +116,19 @@
                         android:fontFamily="@font/futurastdbold"
                         android:lineSpacingExtra="@dimen/dimen_12"
                         android:padding="@dimen/dimen_16"
-                        android:text="@{homeData.headline2title}"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_28" />
 
 
                     <TextView
-                        android:layout_below="@+id/titleadv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/titleadv"
                         android:layout_alignParentStart="true"
                         android:fontFamily="@font/futurastdbold"
                         android:lineSpacingExtra="@dimen/dimen_12"
                         android:padding="@dimen/dimen_16"
-                        android:text="@{homeData.headline2Points}"
-                        android:textColor="@color/white"/>
-
+                        android:textColor="@color/white" />
 
 
                     <TextView
@@ -144,7 +151,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_above="@id/scrollformore"
                 android:id="@+id/fliplayout2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -154,9 +160,9 @@
                 android:weightSum="9">
 
                 <RelativeLayout
-                    android:layout_margin="@dimen/dimen_16"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_margin="@dimen/dimen_16"
                     android:layout_weight="4"
                     android:background="@drawable/group_1355">
 
@@ -169,20 +175,18 @@
                         android:fontFamily="@font/futurastdbold"
                         android:lineSpacingExtra="@dimen/dimen_12"
                         android:padding="@dimen/dimen_16"
-                        android:text="@{homeData.headline1title}"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_28" />
 
                     <TextView
-                        android:layout_below="@+id/titledaily1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/titledaily1"
                         android:layout_alignParentStart="true"
                         android:fontFamily="@font/futurastdbold"
                         android:lineSpacingExtra="@dimen/dimen_12"
                         android:padding="@dimen/dimen_16"
-                        android:text="@{homeData.headline1Points}"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -211,9 +215,9 @@
                     android:src="@drawable/group782" />
 
                 <RelativeLayout
-                    android:layout_margin="@dimen/dimen_16"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_margin="@dimen/dimen_16"
                     android:layout_weight="4"
                     android:background="@drawable/group_1355">
 
@@ -226,22 +230,19 @@
                         android:fontFamily="@font/futurastdbold"
                         android:lineSpacingExtra="@dimen/dimen_12"
                         android:padding="@dimen/dimen_16"
-                        android:text="@{homeData.headline2title}"
                         android:textColor="@color/white"
                         android:textSize="@dimen/dimen_28" />
 
 
                     <TextView
-                        android:layout_below="@+id/titleadv1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/titleadv1"
                         android:layout_alignParentStart="true"
                         android:fontFamily="@font/futurastdbold"
                         android:lineSpacingExtra="@dimen/dimen_12"
                         android:padding="@dimen/dimen_16"
-                        android:text="@{homeData.headline2Points}"
-                        android:textColor="@color/white"/>
-
+                        android:textColor="@color/white" />
 
 
                     <TextView
@@ -262,21 +263,18 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/scrollformore"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="@font/futurastdbold"
-                android:gravity="center"
-                android:text="Scroll for more"
-                android:textColor="@color/white" />
-
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/scrollformore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_margin="@dimen/dimen_16"
+            android:fontFamily="@font/futurastdbold"
+            android:gravity="center"
+            android:text="Scroll for more"
+            android:textColor="@color/white" />
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"

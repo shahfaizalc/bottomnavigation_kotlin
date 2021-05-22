@@ -6,5 +6,6 @@ data class BonusTopics (
         val topicDescription: String = "",
         var enabled: Boolean = true,
         var points: Int = 0,
-        var createdDate: Timestamp
+        var createdDate: Timestamp,
+        var topicId : String =""
 )

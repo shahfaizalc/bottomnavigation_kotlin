@@ -1,5 +1,6 @@
 package com.reelme.app
 
+import android.content.Intent
 import android.graphics.Color
 import android.text.SpannableString
 import android.text.Spanned
@@ -8,25 +9,32 @@ import android.text.TextUtils
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
-import android.widget.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.reelme.app.adapter.*
 import com.reelme.app.handler.*
 import com.reelme.app.model.CountriesInfoModel
 import com.reelme.app.model.SearchMode
+import com.reelme.app.model2.BonusTopics
+import com.reelme.app.util.SnapHelperOneByOne
+import com.reelme.app.view.RecordActivity
+import com.reelme.app.view.RelegionActivity
 import com.reelme.app.viewmodel.*
 import com.squareup.picasso.Picasso
 
 
-@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView ,countriesViewModel: ReferModel,recyclerView: RecyclerView) {
+@BindingAdapter("app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView, countriesViewModel: ReferModel, recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = ReferAdapter(countriesViewModel)
@@ -48,7 +56,7 @@ fun adapter(searchView: SearchView ,countriesViewModel: ReferModel,recyclerView:
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
-            if(countriesViewModel.resetScrrollListener) {
+            if (countriesViewModel.resetScrrollListener) {
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 countriesViewModel.resetScrrollListener = false
             }
@@ -69,12 +77,12 @@ fun adapter(searchView: SearchView ,countriesViewModel: ReferModel,recyclerView:
 
     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(s: String?): Boolean {
-            if(s.isNullOrEmpty()){
+            if (s.isNullOrEmpty()) {
                 countriesViewModel.doGetTalents()
             } else {
-                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                if (countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal) {
                     countriesViewModel.searchMode = SearchMode.SEARCH
-                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                } else if (countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)) {
                     countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
                 }
                 //   countriesViewModel.doGetTalentsSearch(s)
@@ -100,20 +108,106 @@ fun adapter(searchView: SearchView ,countriesViewModel: ReferModel,recyclerView:
     })
 }
 
+@BindingAdapter("touchListener","appcontext")
+fun setTouchListener(self: View, value: BonusTopics,reelDailyBonus:ReelDailyBonusMobileViewModel) {
+    self.setOnTouchListener { _, event -> // Check if the button is PRESSED
 
-@BindingAdapter( "app:searchAdapter")
-fun adapter(recyclerView: RecyclerView ,countriesViewModel: DailyBonusReelsModel) {
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            //do some thing
+            Log.d("faizay", "setTouchListener ACTION_DOWN "+value.topicId)
+            reelDailyBonus.fragment.startActivity(
+                    Intent(reelDailyBonus.fragment, RecordActivity::class.java))
 
-    val linearLayoutManager = GridLayoutManager(recyclerView.context, 1, GridLayoutManager.HORIZONTAL, false)
+        } // Check if the button is RELEASED
+        else if (event.action == MotionEvent.ACTION_UP) {
+            //do some thing
+            Log.d("faizay", "setTouchListener ACTION_UP"+value.topicId)
 
-   // val linearLayoutManager = LinearLayoutManager(recyclerView.context)
+        } else if (event.action == MotionEvent.ACTION_SCROLL) {
+            //do some thing
+            Log.d("faizay", "setTouchListener ACTION_SCROLL"+value.topicId)
+
+        }
+            Log.d("faizay", "setTouchListener ACTION_-"+event.action)
+
+
+        false
+    }
+}
+
+@BindingAdapter("app:searchAdapter")
+fun adapter(recyclerView: RecyclerView, countriesViewModel: ReelDailyBonusMobileViewModel) {
+
+ //     val linearLayoutManager = GridLayoutManager(recyclerView.context, 2, GridLayoutManager.VERTICAL, false)
+
+//    linearLayoutManager.spanSizeLookup = object : SpanSizeLookup() {
+//        override fun getSpanSize(position: Int): Int {
+//            val mod = position % 6
+//            return if (position == 0 || position == 1) 1 else if (position < 6) 2 else if (mod == 0 || mod == 1) 2 else 1
+//        }
+//    }
+
+  //  recyclerView.layoutManager = linearLayoutManager
+
+
+    Log.d("faizay", "faizay")
+    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
+    val listAdapter = ReelDailyBonusAdapter(countriesViewModel)
+    val bindingAdapter = RecyclerLoadMoreReelDailyHandler(countriesViewModel, listAdapter)
+    bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+
+    recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
+    recyclerView.adapter = listAdapter
+    val linearSnapHelper: LinearSnapHelper = SnapHelperOneByOne()
+    linearSnapHelper.attachToRecyclerView(recyclerView)
+    countriesViewModel.dailyBonusTopics.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
+        override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach1")
+        }
+
+        override fun onItemRangeMoved(sender: ObservableList<CountriesInfoModel>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+            Log.d("rach", "rach2")
+        }
+
+        override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach3")
+            bindingAdapter.resetRecycleView(recyclerView)
+//            if (countriesViewModel.resetScrrollListener) {
+//                bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
+//                countriesViewModel.resetScrrollListener = false
+//            }
+
+        }
+
+        override fun onItemRangeChanged(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
+            Log.d("rach", "rach4")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+        override fun onChanged(sender: ObservableList<CountriesInfoModel>?) {
+            Log.d("rach", "rach5")
+            bindingAdapter.resetRecycleView(recyclerView)
+        }
+
+    });
+
+}
+
+
+@BindingAdapter("app:searchAdapter")
+fun adapter(recyclerView: RecyclerView, countriesViewModel: DailyBonusReelsModel) {
+
+  //  val linearLayoutManager = GridLayoutManager(recyclerView.context, 1, GridLayoutManager.HORIZONTAL, false)
+
+    val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = DailyBonusReelsAdapter(countriesViewModel)
     val bindingAdapter = RecyclerLoadMoreDailyHandler(countriesViewModel, listAdapter)
     bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
 
-
     recyclerView.layoutManager = linearLayoutManager as RecyclerView.LayoutManager
     recyclerView.adapter = listAdapter
+    val linearSnapHelper: LinearSnapHelper = SnapHelperOneByOne()
+    linearSnapHelper.attachToRecyclerView(recyclerView)
     countriesViewModel.talentProfilesList.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableList<CountriesInfoModel>>() {
         override fun onItemRangeRemoved(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach1")
@@ -126,7 +220,7 @@ fun adapter(recyclerView: RecyclerView ,countriesViewModel: DailyBonusReelsModel
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
-            if(countriesViewModel.resetScrrollListener) {
+            if (countriesViewModel.resetScrrollListener) {
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 countriesViewModel.resetScrrollListener = false
             }
@@ -148,8 +242,8 @@ fun adapter(recyclerView: RecyclerView ,countriesViewModel: DailyBonusReelsModel
 }
 
 
-@BindingAdapter( "app:searchAdapter")
-fun adapter(recyclerView: RecyclerView ,countriesViewModel: ChooseYourAdventuresModel) {
+@BindingAdapter("app:searchAdapter")
+fun adapter(recyclerView: RecyclerView, countriesViewModel: ChooseYourAdventuresModel) {
 
     val linearLayoutManager = GridLayoutManager(recyclerView.context, 1, GridLayoutManager.HORIZONTAL, false)
 
@@ -173,7 +267,7 @@ fun adapter(recyclerView: RecyclerView ,countriesViewModel: ChooseYourAdventures
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
-            if(countriesViewModel.resetScrrollListener) {
+            if (countriesViewModel.resetScrrollListener) {
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 countriesViewModel.resetScrrollListener = false
             }
@@ -196,7 +290,7 @@ fun adapter(recyclerView: RecyclerView ,countriesViewModel: ChooseYourAdventures
 
 
 
-@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
+@BindingAdapter("app:searchAdapter", "app:searchRecycler")
 fun adapter(searchView: SearchView, countriesViewModel: MyFollowModel, recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
@@ -219,7 +313,7 @@ fun adapter(searchView: SearchView, countriesViewModel: MyFollowModel, recyclerV
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
-            if(countriesViewModel.resetScrrollListener) {
+            if (countriesViewModel.resetScrrollListener) {
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 countriesViewModel.resetScrrollListener = false
             }
@@ -240,12 +334,12 @@ fun adapter(searchView: SearchView, countriesViewModel: MyFollowModel, recyclerV
 
     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(s: String?): Boolean {
-            if(s.isNullOrEmpty()){
+            if (s.isNullOrEmpty()) {
                 countriesViewModel.doGetTalents()
             } else {
-                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                if (countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal) {
                     countriesViewModel.searchMode = SearchMode.SEARCH
-                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                } else if (countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)) {
                     countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
                 }
                 //   countriesViewModel.doGetTalentsSearch(s)
@@ -272,7 +366,7 @@ fun adapter(searchView: SearchView, countriesViewModel: MyFollowModel, recyclerV
 }
 
 
-@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
+@BindingAdapter("app:searchAdapter", "app:searchRecycler")
 fun adapter(searchView: SearchView, countriesViewModel: MyFollowingModel, recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
@@ -295,7 +389,7 @@ fun adapter(searchView: SearchView, countriesViewModel: MyFollowingModel, recycl
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
-            if(countriesViewModel.resetScrrollListener) {
+            if (countriesViewModel.resetScrrollListener) {
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 countriesViewModel.resetScrrollListener = false
             }
@@ -316,12 +410,12 @@ fun adapter(searchView: SearchView, countriesViewModel: MyFollowingModel, recycl
 
     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(s: String?): Boolean {
-            if(s.isNullOrEmpty()){
+            if (s.isNullOrEmpty()) {
                 countriesViewModel.doGetTalents()
             } else {
-                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                if (countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal) {
                     countriesViewModel.searchMode = SearchMode.SEARCH
-                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                } else if (countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)) {
                     countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
                 }
                 //   countriesViewModel.doGetTalentsSearch(s)
@@ -348,8 +442,8 @@ fun adapter(searchView: SearchView, countriesViewModel: MyFollowingModel, recycl
 }
 
 
-@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView ,countriesViewModel: FollowModel,recyclerView: RecyclerView) {
+@BindingAdapter("app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView, countriesViewModel: FollowModel, recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = FollowAdapter(countriesViewModel)
@@ -371,7 +465,7 @@ fun adapter(searchView: SearchView ,countriesViewModel: FollowModel,recyclerView
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
-            if(countriesViewModel.resetScrrollListener) {
+            if (countriesViewModel.resetScrrollListener) {
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 countriesViewModel.resetScrrollListener = false
             }
@@ -392,12 +486,12 @@ fun adapter(searchView: SearchView ,countriesViewModel: FollowModel,recyclerView
 
     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(s: String?): Boolean {
-            if(s.isNullOrEmpty()){
+            if (s.isNullOrEmpty()) {
                 countriesViewModel.doGetTalents()
             } else {
-                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                if (countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal) {
                     countriesViewModel.searchMode = SearchMode.SEARCH
-                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                } else if (countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)) {
                     countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
                 }
                 //   countriesViewModel.doGetTalentsSearch(s)
@@ -424,8 +518,8 @@ fun adapter(searchView: SearchView ,countriesViewModel: FollowModel,recyclerView
 }
 
 
-@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView ,countriesViewModel: TopusersModel,recyclerView: RecyclerView) {
+@BindingAdapter("app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView, countriesViewModel: TopusersModel, recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = TopusersAdapter(countriesViewModel)
@@ -447,7 +541,7 @@ fun adapter(searchView: SearchView ,countriesViewModel: TopusersModel,recyclerVi
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
-            if(countriesViewModel.resetScrrollListener) {
+            if (countriesViewModel.resetScrrollListener) {
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 countriesViewModel.resetScrrollListener = false
             }
@@ -468,12 +562,12 @@ fun adapter(searchView: SearchView ,countriesViewModel: TopusersModel,recyclerVi
 
     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(s: String?): Boolean {
-            if(s.isNullOrEmpty()){
+            if (s.isNullOrEmpty()) {
                 countriesViewModel.doGetTalents()
             } else {
-                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                if (countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal) {
                     countriesViewModel.searchMode = SearchMode.SEARCH
-                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                } else if (countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)) {
                     countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
                 }
                 //   countriesViewModel.doGetTalentsSearch(s)
@@ -501,8 +595,8 @@ fun adapter(searchView: SearchView ,countriesViewModel: TopusersModel,recyclerVi
 
 
 
-@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView ,countriesViewModel: GoalModel,recyclerView: RecyclerView) {
+@BindingAdapter("app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView, countriesViewModel: GoalModel, recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = GoalAdapter(countriesViewModel)
@@ -524,7 +618,7 @@ fun adapter(searchView: SearchView ,countriesViewModel: GoalModel,recyclerView: 
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
-            if(countriesViewModel.resetScrrollListener) {
+            if (countriesViewModel.resetScrrollListener) {
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 countriesViewModel.resetScrrollListener = false
             }
@@ -545,12 +639,12 @@ fun adapter(searchView: SearchView ,countriesViewModel: GoalModel,recyclerView: 
 
     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(s: String?): Boolean {
-            if(s.isNullOrEmpty()){
+            if (s.isNullOrEmpty()) {
                 countriesViewModel.doGetTalents()
             } else {
-                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                if (countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal) {
                     countriesViewModel.searchMode = SearchMode.SEARCH
-                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                } else if (countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)) {
                     countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
                 }
                 //   countriesViewModel.doGetTalentsSearch(s)
@@ -577,8 +671,8 @@ fun adapter(searchView: SearchView ,countriesViewModel: GoalModel,recyclerView: 
 }
 
 
-@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView ,countriesViewModel: ChallengeModel,recyclerView: RecyclerView) {
+@BindingAdapter("app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView, countriesViewModel: ChallengeModel, recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = ChallengeAdapter(countriesViewModel)
@@ -600,7 +694,7 @@ fun adapter(searchView: SearchView ,countriesViewModel: ChallengeModel,recyclerV
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
-            if(countriesViewModel.resetScrrollListener) {
+            if (countriesViewModel.resetScrrollListener) {
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 countriesViewModel.resetScrrollListener = false
             }
@@ -621,12 +715,12 @@ fun adapter(searchView: SearchView ,countriesViewModel: ChallengeModel,recyclerV
 
     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(s: String?): Boolean {
-            if(s.isNullOrEmpty()){
+            if (s.isNullOrEmpty()) {
                 countriesViewModel.doGetTalents()
             } else {
-                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                if (countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal) {
                     countriesViewModel.searchMode = SearchMode.SEARCH
-                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                } else if (countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)) {
                     countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
                 }
                 //   countriesViewModel.doGetTalentsSearch(s)
@@ -652,8 +746,8 @@ fun adapter(searchView: SearchView ,countriesViewModel: ChallengeModel,recyclerV
     })
 }
 
-@BindingAdapter( "app:searchAdapter", "app:searchRecycler")
-fun adapter(searchView: SearchView ,countriesViewModel: DiscussionModel,recyclerView: RecyclerView) {
+@BindingAdapter("app:searchAdapter", "app:searchRecycler")
+fun adapter(searchView: SearchView, countriesViewModel: DiscussionModel, recyclerView: RecyclerView) {
 
     val linearLayoutManager = LinearLayoutManager(recyclerView.context)
     val listAdapter = DiscussionAdapter(countriesViewModel)
@@ -675,7 +769,7 @@ fun adapter(searchView: SearchView ,countriesViewModel: DiscussionModel,recycler
         override fun onItemRangeInserted(sender: ObservableList<CountriesInfoModel>?, positionStart: Int, itemCount: Int) {
             Log.d("rach", "rach3")
             bindingAdapter.resetRecycleView(recyclerView)
-            if(countriesViewModel.resetScrrollListener) {
+            if (countriesViewModel.resetScrrollListener) {
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 countriesViewModel.resetScrrollListener = false
             }
@@ -696,15 +790,15 @@ fun adapter(searchView: SearchView ,countriesViewModel: DiscussionModel,recycler
 
     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(s: String?): Boolean {
-            if(s.isNullOrEmpty()){
+            if (s.isNullOrEmpty()) {
                 countriesViewModel.doGetTalents()
             } else {
-                if(countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal){
+                if (countriesViewModel.searchMode.ordinal == SearchMode.DEFAULT.ordinal) {
                     countriesViewModel.searchMode = SearchMode.SEARCH
-                } else if(countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)){
+                } else if (countriesViewModel.searchMode.ordinal == (SearchMode.CATEGORY.ordinal)) {
                     countriesViewModel.searchMode = SearchMode.CATEGORYANDSEARCH
                 }
-             //   countriesViewModel.doGetTalentsSearch(s)
+                //   countriesViewModel.doGetTalentsSearch(s)
                 bindingAdapter.scrollListener(recyclerView, linearLayoutManager)
                 searchView.setQuery("", false);
                 searchView.clearFocus();
@@ -763,7 +857,7 @@ fun loadImageprofile(view: ImageView, imageUrl: String?) {
     Log.d("tag", "onSpecialClick: $imageUrl onSpecialClick $i")
 
     if (i) {
-        view.setImageDrawable(ContextCompat.getDrawable(view.context,R.drawable.placeholder_profile))
+        view.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.placeholder_profile))
     } else {
         Picasso.get()
                 .load(imageUrl)
@@ -782,7 +876,7 @@ fun loadImage(view: ImageView, imageUrl: String?) {
     Log.d("tag", "onSpecialClick: $imageUrl onSpecialClick $i")
 
     if (i) {
-        view.setImageDrawable(ContextCompat.getDrawable(view.context,R.drawable.placeholder_profile))
+        view.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.placeholder_profile))
     } else {
         Picasso.get()
                 .load(imageUrl)
@@ -793,7 +887,7 @@ fun loadImage(view: ImageView, imageUrl: String?) {
     }
 }
 
-@BindingAdapter("app:viewModel","app:position")
+@BindingAdapter("app:viewModel", "app:position")
 fun loadImage(view: ImageView, imageUrl: DiscussionModel, position: Int) {
 
    // view.isSelected = imageUrl.isBookmarked(postDiscussion)!!
@@ -802,7 +896,7 @@ fun loadImage(view: ImageView, imageUrl: DiscussionModel, position: Int) {
 }
 
 
-@BindingAdapter("app:viewModel","app:position")
+@BindingAdapter("app:viewModel", "app:position")
 fun loadImage(view: ImageView, imageUrl: ChallengeModel, position: Int) {
 
     // view.isSelected = imageUrl.isBookmarked(postDiscussion)!!
