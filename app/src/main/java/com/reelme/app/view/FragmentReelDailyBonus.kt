@@ -2,6 +2,7 @@ package com.reelme.app.view
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
@@ -57,7 +58,13 @@ class FragmentReelDailyBonus : AppCompatActivity() {
                 Log.d(TAG, "You have swipped left swipeDaily")
                 counter++
                 counterList.add(event!!.getY())
-               // loadItems()
+                if (event!!.action == MotionEvent.ACTION_MOVE) {
+                    //do some thing
+                    Log.d(TAG, "setTouchListener ACTION_MOVE")
+                    startRecording()
+                } else {
+                    Log.d(TAG, "setTouchListener ACTION_-" + event!!.action)
+                }
                 return true
             }
 
@@ -71,7 +78,14 @@ class FragmentReelDailyBonus : AppCompatActivity() {
                 Log.d(TAG, "You have swipped left swipeAdventures" + event!!.getY())
                 counter++
                 counterList.add(event!!.getY())
-               // loadItems()
+                if (event!!.action == MotionEvent.ACTION_MOVE) {
+                    //do some thing
+                    Log.d(TAG, "setTouchListener ACTION_MOVE")
+                    startRecording()
+                } else {
+                    Log.d(TAG, "setTouchListener ACTION_-" + event!!.action)
+                }
+
                 return true
             }
         })
@@ -85,7 +99,12 @@ class FragmentReelDailyBonus : AppCompatActivity() {
 
     }
 
+    fun startRecording(){
+        if (!handleMultipleClicks()) {
+            startActivity(Intent(this, RecordActivity::class.java));
+        }}
 
+    
     private fun changeCameraDistance() {
         val distance = 8000
         val scale = resources.displayMetrics.density * distance
