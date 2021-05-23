@@ -46,8 +46,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
     fun onSkipButtonClicked() {
         // fragmentSignin.finish()
         userDetails.skipHobbiesAndInterest = true
-        fragmentSignin.finishAffinity()
-        fragmentSignin.startActivity(Intent(fragmentSignin, Main2Activity::class.java));
+        setUserInfo()
 
     }
 
