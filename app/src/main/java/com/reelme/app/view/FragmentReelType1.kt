@@ -1,5 +1,6 @@
 package com.reelme.app.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -15,13 +16,15 @@ import com.reelme.app.viewmodel.ChallengeModel
 import com.reelme.app.viewmodel.ReelTypeMobileViewModel
 
 
-class FragmentReelType1: BaseFragment() {
+class FragmentReelType1 : BaseFragment() {
 
     @Transient
     lateinit internal var areaViewModel: ReelTypeMobileViewModel
 
 
-     var binding : FragmentReeltype4Binding? = null;
+    var binding: FragmentReeltype4Binding? = null;
+
+    private val TAG = "FragmentReelType1";
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -40,8 +43,16 @@ class FragmentReelType1: BaseFragment() {
             binding?.swipeDaily2!!.setOnTouchListener(object : View.OnTouchListener {
                 override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                     gdt.onTouchEvent(event);
-                    Log.d("fai", "You have swipped left swipeDaily")
-                    binding?.homeData!!.onFilterClick()
+                    Log.d(TAG, "You have swipped left swipeDaily")
+                    if (event!!.action == MotionEvent.ACTION_MOVE) {
+                        //do some thing
+                        Log.d(TAG, "setTouchListener ACTION_MOVE")
+                        binding?.homeData!!.onFilterClick()
+                    } else {
+                        Log.d(TAG, "setTouchListener ACTION_-" + event!!.action)
+
+                    }
+
                     return true
                 }
             })
@@ -49,10 +60,18 @@ class FragmentReelType1: BaseFragment() {
             binding?.swipeAdventures!!.setOnTouchListener(object : View.OnTouchListener {
                 override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                     gdt.onTouchEvent(event);
-                    Log.d("fai", "You have swipped left swipeAdventures")
-                    if (!MultipleClickHandler.handleMultipleClicks()) {
-                        binding?.homeData!!.signInUserClicked()
+                    Log.d(TAG, "You have swipped left swipeAdventures")
+                    if (event!!.action == MotionEvent.ACTION_MOVE) {
+                        //do some thing
+                        Log.d(TAG, "setTouchListener ACTION_MOVE")
+                        if (!MultipleClickHandler.handleMultipleClicks()) {
+                            binding?.homeData!!.signInUserClicked()
+                        }
+                    } else {
+                        Log.d(TAG, "setTouchListener ACTION_-" + event!!.action)
+
                     }
+
                     return true
                 }
             })

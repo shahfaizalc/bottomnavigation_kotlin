@@ -56,6 +56,10 @@ class ReelDailyBonusMobileViewModel(private val context: Context, private val fr
     }
 
 
+    fun  customBackButton(){
+        fragmentSignin.onBackPressed()
+    }
+
 
     private fun loadData() {
         val firbaseWriteHandlerActivity = FirbaseWriteHandlerActivity(fragmentSignin)

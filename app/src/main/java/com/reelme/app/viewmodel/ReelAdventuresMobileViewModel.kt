@@ -282,6 +282,12 @@ class ReelAdventuresMobileViewModel(private val context: Context, private val fr
         })
     }
 
+
+   fun  customBackButton(){
+       fragmentSignin.onBackPressed()
+   }
+
+
     fun onTypeAClick() {
         onFilterClick(adventureBonusTopics[aItem], 0)
     }

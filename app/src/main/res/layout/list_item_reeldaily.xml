@@ -61,7 +61,10 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_margin="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:layout_marginBottom="@dimen/dimen_20"
                 android:layout_weight="4"
                 android:background="@drawable/group_1355">
 
@@ -71,12 +74,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="@dimen/dimen_28"
+                    android:layout_marginTop="@dimen/dimen_20"
                     android:fontFamily="@font/futurastdbold"
                     android:lineSpacingExtra="@dimen/dimen_12"
                     android:padding="@dimen/dimen_16"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_24" />
+                    android:textSize="@dimen/dimen_20" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -84,6 +87,9 @@
                     android:layout_below="@+id/titledaily1"
                     android:layout_alignParentStart="true"
                     android:fontFamily="@font/futurastdbold"
+                    android:text="@{Integer.toString(countriesInfoModel.points)}"
+                    android:gravity="center_vertical"
+                    app:drawableStartCompat="@android:drawable/btn_star"
                     android:lineSpacingExtra="@dimen/dimen_12"
                     android:padding="@dimen/dimen_16"
                     android:textColor="@color/white" />
@@ -120,7 +126,10 @@
                 android:visibility="@{dailyReelItemVisible}"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_margin="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:layout_marginBottom="@dimen/dimen_8"
                 android:layout_weight="4"
                 android:background="@drawable/group_1355">
 
@@ -130,21 +139,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="@dimen/dimen_28"
+                    android:layout_marginTop="@dimen/dimen_20"
                     android:fontFamily="@font/futurastdbold"
                     android:lineSpacingExtra="@dimen/dimen_12"
                     android:padding="@dimen/dimen_16"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dimen_24" />
+                    android:textSize="@dimen/dimen_20" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@{Integer.toString(countriesInfoModel.points)}"
                     android:layout_below="@+id/titleadv1"
                     android:layout_alignParentStart="true"
                     android:fontFamily="@font/futurastdbold"
                     android:lineSpacingExtra="@dimen/dimen_12"
+                    android:gravity="center_vertical"
+                    app:drawableStartCompat="@android:drawable/btn_star"
                     android:padding="@dimen/dimen_16"
                     android:textColor="@color/white" />
 

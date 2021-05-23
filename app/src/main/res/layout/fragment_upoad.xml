@@ -39,6 +39,7 @@
                     android:id="@+id/profileimg"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
+                    android:scaleType="fitXY"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dimen_32"
                     android:src="@drawable/profiledefault"

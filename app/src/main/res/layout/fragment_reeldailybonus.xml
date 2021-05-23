@@ -17,13 +17,16 @@
         android:layout_height="match_parent"
         android:background="@color/black">
 
+
+
         <androidx.recyclerview.widget.RecyclerView
+
             android:id="@+id/recyclerUser"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/dimen_8"
             android:layout_marginStart="@dimen/dimen_8"
-            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_36"
             android:layout_marginBottom="@dimen/dimen_32"
             android:background="@android:color/transparent"
             android:scrollbars="vertical"
@@ -265,6 +268,36 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/futubk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16"
+                android:layout_weight="5"
+                android:text="Daily Bonus Reels"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_20"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_alignParentStart="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16"
+                android:layout_weight="1"
+                android:tint="@color/white"
+                android:gravity="center_vertical|end"
+                android:onClick="@{() -> homeData.customBackButton()}"
+                android:textStyle="bold"
+                app:srcCompat="@drawable/ic_arrow_back" />
+
+        </RelativeLayout>
         <TextView
             android:id="@+id/scrollformore"
             android:layout_width="wrap_content"

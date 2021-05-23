@@ -28,7 +28,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="6">
 
@@ -67,6 +67,7 @@
 
                     <com.reelme.app.util.ImageViewRounded
                         android:background="@drawable/ic_layer_2"
+                        android:scaleType="fitXY"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"

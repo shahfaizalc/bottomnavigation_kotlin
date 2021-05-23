@@ -32,7 +32,42 @@
                 android:weightSum="9">
 
                 <RelativeLayout
-                    android:layout_margin="@dimen/dimen_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/futubk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="5"
+                        android:text="Choose Your Adventure"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_20"/>
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_alignParentStart="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:tint="@color/white"
+                        android:gravity="center_vertical|end"
+                        android:onClick="@{() -> homeData.customBackButton()}"
+                        android:textStyle="bold"
+                        app:srcCompat="@drawable/ic_arrow_back" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:layout_marginStart="@dimen/dimen_24"
+                    android:layout_marginEnd="@dimen/dimen_24"
+                    android:layout_marginBottom="@dimen/dimen_20"
                     android:id="@+id/swipeDaily2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -44,13 +79,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
-                        android:layout_marginTop="@dimen/dimen_28"
+                        android:layout_marginTop="@dimen/dimen_20"
                         android:fontFamily="@font/futurastdbold"
-                        android:lineSpacingExtra="@dimen/dimen_12"
+                        android:lineSpacingExtra="@dimen/dimen_4"
                         android:padding="@dimen/dimen_16"
                         android:text="@{homeData.headline1title}"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/dimen_24" />
+                        android:textSize="@dimen/dimen_20" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -59,6 +94,8 @@
                         android:layout_alignParentStart="true"
                         android:fontFamily="@font/futurastdbold"
                         android:lineSpacingExtra="@dimen/dimen_12"
+                        android:gravity="center_vertical"
+                        app:drawableStartCompat="@android:drawable/btn_star"
                         android:padding="@dimen/dimen_16"
                         android:text="@{homeData.headline1Points}"
                         android:textColor="@color/white" />
@@ -109,7 +146,11 @@
                     android:src="@drawable/group782" />
 
                 <RelativeLayout
-                    android:layout_margin="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:layout_marginStart="@dimen/dimen_24"
+                    android:layout_marginEnd="@dimen/dimen_24"
+                    android:layout_marginBottom="@dimen/dimen_8"
+
                     android:id="@+id/swipeAdventures"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -121,13 +162,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
-                        android:layout_marginTop="@dimen/dimen_28"
+                        android:layout_marginTop="@dimen/dimen_20"
                         android:fontFamily="@font/futurastdbold"
-                        android:lineSpacingExtra="@dimen/dimen_12"
+                        android:lineSpacingExtra="@dimen/dimen_4"
                         android:padding="@dimen/dimen_16"
                         android:text="@{homeData.headline2title}"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/dimen_24" />
+                        android:textSize="@dimen/dimen_20" />
 
 
                     <TextView
@@ -139,7 +180,9 @@
                         android:lineSpacingExtra="@dimen/dimen_12"
                         android:padding="@dimen/dimen_16"
                         android:text="@{homeData.headline2Points}"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:gravity="center_vertical"
+                        app:drawableStartCompat="@android:drawable/btn_star" />
 
 
                     <RelativeLayout

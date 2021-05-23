@@ -70,6 +70,7 @@
                                 android:gravity="center">
 
                                 <com.reelme.app.util.ImageViewRounded
+                                    android:scaleType="fitXY"
                                     android:layout_width="150dp"
                                     android:layout_height="150dp"
                                     android:background="@drawable/ic_layer_2"
