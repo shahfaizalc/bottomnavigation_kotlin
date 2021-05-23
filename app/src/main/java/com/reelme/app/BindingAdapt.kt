@@ -26,6 +26,7 @@ import com.reelme.app.handler.*
 import com.reelme.app.model.CountriesInfoModel
 import com.reelme.app.model.SearchMode
 import com.reelme.app.model2.BonusTopics
+import com.reelme.app.util.MultipleClickHandler
 import com.reelme.app.util.SnapHelperOneByOne
 import com.reelme.app.view.RecordActivity
 import com.reelme.app.view.RelegionActivity
@@ -110,28 +111,28 @@ fun adapter(searchView: SearchView, countriesViewModel: ReferModel, recyclerView
 
 @BindingAdapter("touchListener","appcontext")
 fun setTouchListener(self: View, value: BonusTopics,reelDailyBonus:ReelDailyBonusMobileViewModel) {
+
+
     self.setOnTouchListener { _, event -> // Check if the button is PRESSED
 
         if (event.action == MotionEvent.ACTION_DOWN) {
             //do some thing
             Log.d("faizay", "setTouchListener ACTION_DOWN "+value.topicId)
-            reelDailyBonus.fragment.startActivity(
-                    Intent(reelDailyBonus.fragment, RecordActivity::class.java))
 
         } // Check if the button is RELEASED
-        else if (event.action == MotionEvent.ACTION_UP) {
+        else if (event.action == MotionEvent.ACTION_MOVE) {
+            if (!MultipleClickHandler.handleMultipleClicks()) {
+                reelDailyBonus.fragment.startActivity(
+                        Intent(reelDailyBonus.fragment, RecordActivity::class.java))
+            }
             //do some thing
-            Log.d("faizay", "setTouchListener ACTION_UP"+value.topicId)
-
-        } else if (event.action == MotionEvent.ACTION_SCROLL) {
-            //do some thing
-            Log.d("faizay", "setTouchListener ACTION_SCROLL"+value.topicId)
+            Log.d("faizay", "setTouchListener ACTION_MOVE"+value.topicId)
 
         }
             Log.d("faizay", "setTouchListener ACTION_-"+event.action)
 
 
-        false
+        true
     }
 }
 

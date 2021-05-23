@@ -25,7 +25,8 @@
 
 
             <com.reelme.app.util.ImageViewRounded
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"

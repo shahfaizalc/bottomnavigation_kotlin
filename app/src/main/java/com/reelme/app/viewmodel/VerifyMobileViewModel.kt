@@ -27,6 +27,7 @@ import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.listeners.UseInfoGeneralResultListener
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
+import com.reelme.app.util.MultipleClickHandler
 import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.view.*
 import java.util.*
@@ -277,18 +278,21 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
 
     fun setUserInfo(phoneNumber: String){
+        if (!MultipleClickHandler.handleMultipleClicks()) {
+            userDetails.phoneNumber = phoneNumber
+            userDetails.isDeactivated = false
 
-        userDetails.phoneNumber = phoneNumber
-        userDetails.isDeactivated = false
+            val gsonValue = Gson().toJson(userDetails)
+            val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
+            val editor = sharedPreference.edit()
+            editor.putString("USER_INFO", gsonValue)
+            editor.apply()
 
-        val gsonValue = Gson().toJson(userDetails)
-        val sharedPreference =  context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val editor = sharedPreference.edit()
-        editor.putString("USER_INFO", gsonValue)
-        editor.apply()
+            fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
+            progressBarVisible = View.INVISIBLE
+        }
 
-        fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
-        progressBarVisible = View.INVISIBLE
+
 
 //        GenericValues().isUserProfileComplete(fragmentSignin, object : UseInfoGeneralResultListener {
 //            override fun onSuccess(userInfoGeneral: UserModel) {

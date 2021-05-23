@@ -104,7 +104,7 @@ class FragmentReelDailyBonus : AppCompatActivity() {
             startActivity(Intent(this, RecordActivity::class.java));
         }}
 
-    
+
     private fun changeCameraDistance() {
         val distance = 8000
         val scale = resources.displayMetrics.density * distance

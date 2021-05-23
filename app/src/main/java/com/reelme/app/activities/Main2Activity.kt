@@ -29,7 +29,7 @@ class Main2Activity : BaseActivity(), BaseFragment.FragmentNavigation,
     internal var toolbar: Toolbar? = null
 
     private val mTabIconsSelected = intArrayOf(R.drawable.ic_apptab_home_selected,
-            R.drawable.ic_apptab_profile_selected, R.drawable.ic_apptab_record_selected, R.drawable.ic_apptab_send_selected, R.drawable.ic_apptab_search_selected)
+            R.drawable.ic_apptab_profile_selected, R.drawable.apptab_record_selected2, R.drawable.ic_apptab_send_selected, R.drawable.ic_apptab_search_selected)
 
 
     private val mTabIconsSelect = intArrayOf(R.drawable.ic_apptab_home_select,

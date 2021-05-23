@@ -27,16 +27,16 @@ class SalesItemsRepository {
         val mutableLiveData = MutableLiveData<List<Sale>>()
 
         //retrofit service
-        val service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService::class.java)
-
-        val responseObservable = getResponseType(requestType, service)
-        if (null == responseObservable) {
-            resultListener.onError("unknown host url")
-            return mutableLiveData
-        }
-        responseObservable.subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getObserver(resultListener, mutableLiveData))
+//        val service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService::class.java)
+//
+//        val responseObservable = getResponseType(requestType, service)
+//        if (null == responseObservable) {
+//            resultListener.onError("unknown host url")
+//            return mutableLiveData
+//        }
+//        responseObservable.subscribeOn(Schedulers.newThread())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(getObserver(resultListener, mutableLiveData))
         return mutableLiveData
     }
 
