@@ -79,7 +79,6 @@ class HomeTabViewModel(private val fragmentSignin: FragmentHomeTab) : BaseObserv
 
             name.postValue(userDetails.firstName);
 
-
             percentage = Validator().profileRate(userDetails).toString()
             percentof = " $percentage"
         } catch (e: java.lang.Exception) {

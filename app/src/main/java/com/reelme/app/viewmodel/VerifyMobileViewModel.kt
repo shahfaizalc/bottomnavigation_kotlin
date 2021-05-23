@@ -21,10 +21,13 @@ import com.google.i18n.phonenumbers.Phonemetadata
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
 import com.reelme.app.BR
 import com.reelme.app.R
+import com.reelme.app.activities.Main2Activity
 import com.reelme.app.handler.NetworkChangeHandler
+import com.reelme.app.listeners.EmptyResultListener
 import com.reelme.app.listeners.UseInfoGeneralResultListener
 import com.reelme.app.pojos.UserModel
 import com.reelme.app.util.GenericValues
+import com.reelme.app.utils.FirbaseWriteHandlerActivity
 import com.reelme.app.view.*
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -243,6 +246,7 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
                                     }
                                 } catch (e: java.lang.Exception) {
                                     Log.d("Authenticaiton token", "Exception"+e.message)
+                                    userDetails = UserModel()
                                     setUserInfo(getPhoneNumber()!!)
 
                                 }
@@ -313,8 +317,14 @@ class VerifyMobileViewModel(private val context: Context, private val fragmentSi
 
             override fun onFailure(e: Exception) {
                 Log.d(TAG, "Exception${e.message}")
-                showToast(R.string.errorMsgGeneric)
-                fragmentSignin.finish()
+                if(e.message.equals("Document not found")) {
+                    loginProcess()
+                } else{
+                    showToast(R.string.errorMsgGeneric)
+                    fragmentSignin.finish()
+                }
+
+
             }
         })
 //        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

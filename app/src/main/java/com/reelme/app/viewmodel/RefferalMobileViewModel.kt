@@ -91,7 +91,7 @@ class RefferalMobileViewModel(private val context: Context, private val fragment
                     fragmentSignin.setResult(2, Intent())
                     fragmentSignin.finish()
                 } else{
-                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentEmailAddress::class.java));
+                    fragmentSignin.startActivity(Intent(fragmentSignin, FragmentFullNameMobile::class.java));
                 }
 
                 Log.d("Authenticaiton token", "onSuccess")

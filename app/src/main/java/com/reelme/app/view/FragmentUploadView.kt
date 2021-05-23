@@ -42,13 +42,13 @@ class FragmentUploadView : AppCompatActivity() {
         areaViewModel = UploadListModel(this, this)
         binding.yearList = areaViewModel
         activity = this
-        binding.yearList!!.initFileChooser().observe(this, { showFileChooser() })
-        binding.yearList!!.initFileChooserCamera().observe(this, { showFileChooserCamera() })
+        binding.yearList!!.initFileChooser().observe(this) { showFileChooser() }
+        binding.yearList!!.initFileChooserCamera().observe(this) { showFileChooserCamera() }
 
 
-        binding.yearList!!.initSkip().observe(this, {
+        binding.yearList!!.initSkip().observe(this) {
             startActivity(Intent(activity, FragmentBioMobile::class.java));
-        })
+        }
     }
 
     override fun onResume() {
@@ -64,6 +64,11 @@ class FragmentUploadView : AppCompatActivity() {
 
     private fun checkIfAlreadyhavePermission(): Boolean {
         val result = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+        return result == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun checkIfAlreadyhavePermissionCamera(): Boolean {
+        val result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
         return result == PackageManager.PERMISSION_GRANTED
     }
 
@@ -93,9 +98,29 @@ class FragmentUploadView : AppCompatActivity() {
     var fileSelectedUri = Uri.EMPTY
     private fun showFileChooserCamera() {
 
-        val galleryPermissions = arrayOf<String>(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val galleryPermissions = arrayOf<String>(Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
-        if (checkIfAlreadyhavePermission()) {
+        if (!checkIfAlreadyhavePermissionCamera()) {
+//            ActivityCompat.requestPermissions(this,
+//                    arrayOf(Manifest.permission.CAMERA),
+//                    3)
+//            val list = listOf<String>(
+//                    Manifest.permission.CAMERA,
+//                    Manifest.permission.READ_CONTACTS,
+//                    Manifest.permission.READ_EXTERNAL_STORAGE,
+//                    Manifest.permission.SEND_SMS,
+//                    Manifest.permission.READ_CALENDAR
+//            )
+
+            ActivityCompat.requestPermissions(this, galleryPermissions, 3);
+
+        } else if (!checkIfAlreadyhavePermission()) {
+
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    2)
+
+        } else if (checkIfAlreadyhavePermissionCamera() && checkIfAlreadyhavePermission()) {
             val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
             val isDeviceSupportCamera: Boolean = this.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)
@@ -106,12 +131,11 @@ class FragmentUploadView : AppCompatActivity() {
                     fileSelected = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS + "/attachments")!!.path,
                             System.currentTimeMillis().toString() + ".jpg")
 //            fileUri = Uri.fromFile(file)
-                   var fileUri = FileProvider.getUriForFile(this, this.applicationContext.packageName + ".provider", fileSelected)
+                    var fileUri = FileProvider.getUriForFile(this, this.applicationContext.packageName + ".provider", fileSelected)
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
-                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
-                        takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-                    }
-
+//                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+//                        takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+//                    }
                     startActivityForResult(takePictureIntent, FILE_SELECT_CODE_CAMERA)
                 }
 
@@ -119,10 +143,6 @@ class FragmentUploadView : AppCompatActivity() {
                 Toast.makeText(this, "camera not supported", Toast.LENGTH_SHORT).show()
             }
 
-        } else {
-            ActivityCompat.requestPermissions(this,
-                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                    2)
         }
     }
 
@@ -200,12 +220,11 @@ class FragmentUploadView : AppCompatActivity() {
 
                     }
                 }
-            }
-            else if (requestCode === FILE_SELECT_CODE_CAMERA){
+            } else if (requestCode === FILE_SELECT_CODE_CAMERA) {
 
-                    val myBitmap = BitmapFactory.decodeFile(fileSelected.absolutePath)
-                    binding.profileimg.setImageBitmap(myBitmap)
-                    binding.yearList!!.setImageUrl(Uri.fromFile(fileSelected))
+                val myBitmap = BitmapFactory.decodeFile(fileSelected.absolutePath)
+                binding.profileimg.setImageBitmap(myBitmap)
+                binding.yearList!!.setImageUrl(Uri.fromFile(fileSelected))
 
 
                 Log.d(TAG, "dump12221 ${fileSelected.absolutePath}");

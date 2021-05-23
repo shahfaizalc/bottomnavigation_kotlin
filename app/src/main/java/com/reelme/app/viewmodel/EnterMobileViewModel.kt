@@ -20,6 +20,7 @@ import com.google.i18n.phonenumbers.Phonemetadata
 import com.google.i18n.phonenumbers.Phonenumber
 import com.reelme.app.BR
 import com.reelme.app.R
+import com.reelme.app.activities.Main2Activity
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.view.*
 import java.util.*
@@ -45,7 +46,7 @@ class EnterMobileViewModel(private val context: Context, private val fragmentSig
         // [END initialize_auth]
 
         if(!auth.uid.isNullOrEmpty()){
-            fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomeTab::class.java));
+            fragmentSignin.startActivity(Intent(fragmentSignin, Main2Activity::class.java));
         }
 
 

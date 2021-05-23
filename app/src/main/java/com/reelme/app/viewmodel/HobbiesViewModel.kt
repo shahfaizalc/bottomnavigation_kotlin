@@ -168,7 +168,7 @@ class HobbiesViewModel(private val context: Context, private val fragmentSignin:
             }
 
             override fun onFailure(e: Exception) {
-                fragmentSignin.startActivity(Intent(fragmentSignin, FragmentHomeTab::class.java));
+                fragmentSignin.startActivity(Intent(fragmentSignin, Main2Activity::class.java));
                 Log.d("Authenticaiton token", "Exception" + e)
                 Toast.makeText(context, "Failed to save your profile", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
 
