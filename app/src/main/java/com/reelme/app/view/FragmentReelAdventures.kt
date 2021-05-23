@@ -18,6 +18,7 @@ import com.reelme.app.viewmodel.ReelAdventuresMobileViewModel
 
 
 class FragmentReelAdventures : AppCompatActivity() {
+    private val TAG = "FragmentReelAdventures";
 
     @Transient
     lateinit internal var areaViewModel: ReelAdventuresMobileViewModel
@@ -54,7 +55,16 @@ class FragmentReelAdventures : AppCompatActivity() {
                 counter++
                 counterList.add(event!!.getY())
              //   loadItems()
-                startRecording()
+
+                if (event!!.action == MotionEvent.ACTION_MOVE) {
+                    //do some thing
+                    Log.d(TAG, "setTouchListener ACTION_MOVE")
+                    startRecording()
+                } else {
+                    Log.d(TAG, "setTouchListener ACTION_-" + event!!.action)
+                }
+
+
                 return true
             }
 
@@ -69,7 +79,13 @@ class FragmentReelAdventures : AppCompatActivity() {
                 counter++
                 counterList.add(event!!.getY())
               //  loadItems()
-                startRecording();
+                if (event!!.action == MotionEvent.ACTION_MOVE) {
+                    //do some thing
+                    Log.d(TAG, "setTouchListener ACTION_MOVE")
+                    startRecording()
+                } else {
+                    Log.d(TAG, "setTouchListener ACTION_-" + event!!.action)
+                }
                 return true
             }
         })
