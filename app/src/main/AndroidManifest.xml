@@ -234,10 +234,10 @@
 
 
 
-        <activity
-            android:name=".deepar.ARMainActivity"
-            android:screenOrientation="sensorPortrait"
-            android:windowSoftInputMode="adjustPan" />
+<!--        <activity-->
+<!--            android:name=".deepar.ARMainActivity"-->
+<!--            android:screenOrientation="sensorPortrait"-->
+<!--            android:windowSoftInputMode="adjustPan" />-->
 
         <activity
             android:name=".view.FragmentReelType1"
@@ -245,7 +245,7 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".activities.LaunchActivity"
+                    android:name=".deepar.ARMainActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

@@ -46,6 +46,7 @@ import ai.deepar.ar.AREventListener;
 import ai.deepar.ar.CameraResolutionPreset;
 import ai.deepar.ar.DeepAR;
 import ai.deepar.ar.DeepARImageFormat;
+
 import com.reelme.app.R;
 
 public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.Callback, AREventListener {
@@ -56,23 +57,19 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private ByteBuffer[] buffers;
     private int currentBuffer = 0;
-    private static final int NUMBER_OF_BUFFERS=2;
+    private static final int NUMBER_OF_BUFFERS = 2;
 
     private DeepAR deepAR;
 
-    private int currentMask=0;
-    private int currentEffect=0;
-    private int currentFilter=0;
-
-    private int screenOrientation;
+    private int currentMask = 0;
+    private int currentEffect = 0;
+    private int currentFilter = 0;
 
     ArrayList<String> masks;
-    ArrayList<String> effects;
-    ArrayList<String> filters;
 
-    private int activeFilterType = 0;
+
     private boolean recording = false;
-    private boolean currentSwitchRecording = false;
+    // private boolean currentSwitchRecording = false;
     private String recordingPath = Environment.getExternalStorageDirectory() + File.separator + "video.mp4";
 
     @Override
@@ -87,7 +84,7 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
                 ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO },
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO},
                     1);
         } else {
             // Permission has already been granted
@@ -117,48 +114,12 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
     private void initializeFilters() {
         masks = new ArrayList<>();
         masks.add("none");
-        masks.add("aviators");
-        masks.add("bigmouth");
-        masks.add("dalmatian");
-        masks.add("flowers");
-        masks.add("koala");
         masks.add("lion");
-        masks.add("smallface");
-        masks.add("teddycigar");
-        masks.add("background_segmentation");
-        masks.add("tripleface");
-        masks.add("sleepingmask");
-        masks.add("fatify");
-        masks.add("obama");
-        masks.add("mudmask");
-        masks.add("pug");
-        masks.add("slash");
-        masks.add("twistedface");
-        masks.add("grumpycat");
 
-        effects = new ArrayList<>();
-        effects.add("none");
-        effects.add("fire");
-        effects.add("rain");
-        effects.add("heart");
-        effects.add("blizzard");
-
-        filters = new ArrayList<>();
-        filters.add("none");
-        filters.add("filmcolorperfection");
-        filters.add("tv80");
-        filters.add("drawingmanga");
-        filters.add("sepia");
-        filters.add("bleachbypass");
     }
 
     private void initalizeViews() {
         ImageButton previousMask = findViewById(R.id.previousMask);
-        ImageButton nextMask = findViewById(R.id.nextMask);
-
-        final RadioButton radioMasks = findViewById(R.id.masks);
-        final RadioButton radioEffects = findViewById(R.id.effects);
-        final RadioButton radioFilters = findViewById(R.id.filters);
 
         SurfaceView arView = findViewById(R.id.surface);
 
@@ -187,7 +148,7 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
         switchCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lensFacing = lensFacing ==  CameraSelector.LENS_FACING_FRONT ?  CameraSelector.LENS_FACING_BACK :  CameraSelector.LENS_FACING_FRONT ;
+                lensFacing = lensFacing == CameraSelector.LENS_FACING_FRONT ? CameraSelector.LENS_FACING_BACK : CameraSelector.LENS_FACING_FRONT;
                 //unbind immediately to avoid mirrored frame.
                 ProcessCameraProvider cameraProvider = null;
                 try {
@@ -214,108 +175,46 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
         });
 
 
-
-        final TextView screenShotModeButton = findViewById(R.id.screenshotModeButton);
-        final TextView recordModeBtn = findViewById(R.id.recordModeButton);
-
-        recordModeBtn.getBackground().setAlpha(0x00);
-        screenShotModeButton.getBackground().setAlpha(0xA0);
-
-        screenShotModeButton.setOnClickListener(new View.OnClickListener() {
+        screenshotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currentSwitchRecording) {
-                    if(recording) {
-                        Toast.makeText(getApplicationContext(), "Cannot switch to screenshots while recording!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    recordModeBtn.getBackground().setAlpha(0x00);
-                    screenShotModeButton.getBackground().setAlpha(0xA0);
-                    screenshotBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            deepAR.takeScreenshot();
-                        }
-                    });
-
-                    currentSwitchRecording = !currentSwitchRecording;
+                if (recording) {
+                    deepAR.stopVideoRecording();
+                    Toast.makeText(getApplicationContext(), "Saved video to: " + recordingPath, Toast.LENGTH_LONG).show();
+                } else {
+                    deepAR.startVideoRecording(recordingPath);
+                    Toast.makeText(getApplicationContext(), "Started video recording!", Toast.LENGTH_SHORT).show();
                 }
+                recording = !recording;
             }
         });
 
-
-
-        recordModeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!currentSwitchRecording) {
-
-                    recordModeBtn.getBackground().setAlpha(0xA0);
-                    screenShotModeButton.getBackground().setAlpha(0x00);
-                    screenshotBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(recording) {
-                                deepAR.stopVideoRecording();
-                                Toast.makeText(getApplicationContext(), "Saved video to: " + recordingPath, Toast.LENGTH_LONG).show();
-                            } else {
-                                deepAR.startVideoRecording(recordingPath);
-                                Toast.makeText(getApplicationContext(), "Started video recording!", Toast.LENGTH_SHORT).show();
-                            }
-                            recording = !recording;
-                        }
-                    });
-
-                    currentSwitchRecording = !currentSwitchRecording;
-                }
-            }
-        });
 
         previousMask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gotoPrevious();
+                if (currentMask == 0) {
+                    gotoNext();
+                } else {
+                    gotoPrevious();
+
+                }
             }
         });
 
-        nextMask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gotoNext();
-            }
-        });
-
-        radioMasks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                radioEffects.setChecked(false);
-                radioFilters.setChecked(false);
-                activeFilterType = 0;
-            }
-        });
-        radioEffects.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                radioMasks.setChecked(false);
-                radioFilters.setChecked(false);
-                activeFilterType = 1;
-            }
-        });
-        radioFilters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                radioEffects.setChecked(false);
-                radioMasks.setChecked(false);
-                activeFilterType = 2;
-            }
-        });
     }
-    /*
-            get interface orientation from
-            https://stackoverflow.com/questions/10380989/how-do-i-get-the-current-orientation-activityinfo-screen-orientation-of-an-a/10383164
-         */
+
+    private void gotoNext() {
+        currentMask = (currentMask + 1) % masks.size();
+        deepAR.switchEffect("mask", getFilterPath(masks.get(currentMask)));
+    }
+
+    private void gotoPrevious() {
+        currentMask = (currentMask - 1 + masks.size()) % masks.size();
+        deepAR.switchEffect("mask", getFilterPath(masks.get(currentMask)));
+    }
+
+
     private int getScreenOrientation() {
         int rotation = getWindowManager().getDefaultDisplay().getRotation();
         DisplayMetrics dm = new DisplayMetrics();
@@ -328,7 +227,7 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
                 || rotation == Surface.ROTATION_180) && height > width ||
                 (rotation == Surface.ROTATION_90
                         || rotation == Surface.ROTATION_270) && width > height) {
-            switch(rotation) {
+            switch (rotation) {
                 case Surface.ROTATION_0:
                     orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
                     break;
@@ -351,7 +250,7 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
         // if the device's natural orientation is landscape or if the device
         // is square:
         else {
-            switch(rotation) {
+            switch (rotation) {
                 case Surface.ROTATION_0:
                     orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
                     break;
@@ -374,9 +273,10 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
 
         return orientation;
     }
+
     private void initializeDeepAR() {
         deepAR = new DeepAR(this);
-        deepAR.setLicenseKey("your_license_key_here");
+        deepAR.setLicenseKey("bd81c27ae5d8e5efd41eafeae67671fcdd936bd3471774f8db9777f31462e77fd9548a969daa98c1");
         deepAR.initialize(this, this);
         setupCamera();
     }
@@ -401,9 +301,9 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
         int width;
         int height;
         int orientation = getScreenOrientation();
-        if (orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE || orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
+        if (orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE || orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
             width = cameraPreset.getWidth();
-            height =  cameraPreset.getHeight();
+            height = cameraPreset.getHeight();
         } else {
             width = cameraPreset.getHeight();
             height = cameraPreset.getWidth();
@@ -438,7 +338,7 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
 
                 buffers[currentBuffer].put(byteData);
                 buffers[currentBuffer].position(0);
-                if(deepAR != null) {
+                if (deepAR != null) {
                     deepAR.receiveFrame(buffers[currentBuffer],
                             image.getWidth(), image.getHeight(),
                             image.getImageInfo().getRotationDegrees(),
@@ -447,14 +347,14 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
                             image.getPlanes()[1].getPixelStride()
                     );
                 }
-                currentBuffer = ( currentBuffer + 1 ) % NUMBER_OF_BUFFERS;
+                currentBuffer = (currentBuffer + 1) % NUMBER_OF_BUFFERS;
                 image.close();
             }
         });
 
         CameraSelector cameraSelector = new CameraSelector.Builder().requireLensFacing(lensFacing).build();
         cameraProvider.unbindAll();
-        cameraProvider.bindToLifecycle((LifecycleOwner)this, cameraSelector, imageAnalysis);
+        cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, imageAnalysis);
 
     }
 
@@ -466,36 +366,10 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
         return "file:///android_asset/" + filterName;
     }
 
-    private void gotoNext() {
-        if (activeFilterType == 0) {
-            currentMask = (currentMask + 1) % masks.size();
-            deepAR.switchEffect("mask", getFilterPath(masks.get(currentMask)));
-        } else if (activeFilterType == 1) {
-            currentEffect = (currentEffect + 1) % effects.size();
-            deepAR.switchEffect("effect", getFilterPath(effects.get(currentEffect)));
-        } else if (activeFilterType == 2) {
-            currentFilter = (currentFilter + 1) % filters.size();
-            deepAR.switchEffect("filter", getFilterPath(filters.get(currentFilter)));
-        }
-    }
-
-    private void gotoPrevious() {
-        if (activeFilterType == 0) {
-            currentMask = (currentMask - 1 + masks.size()) % masks.size();
-            deepAR.switchEffect("mask", getFilterPath(masks.get(currentMask)));
-        } else if (activeFilterType == 1) {
-            currentEffect = (currentEffect - 1 + effects.size()) % effects.size();
-            deepAR.switchEffect("effect", getFilterPath(effects.get(currentEffect)));
-        } else if (activeFilterType == 2) {
-            currentFilter = (currentFilter - 1 + filters.size()) % filters.size();
-            deepAR.switchEffect("filter", getFilterPath(filters.get(currentFilter)));
-        }
-    }
 
     @Override
     protected void onStop() {
         recording = false;
-        currentSwitchRecording = false;
         ProcessCameraProvider cameraProvider = null;
         try {
             cameraProvider = cameraProviderFuture.get();
@@ -586,8 +460,6 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
     public void initialized() {
         // Restore effect state after deepar release
         deepAR.switchEffect("mask", getFilterPath(masks.get(currentMask)));
-        deepAR.switchEffect("effect", getFilterPath(effects.get(currentEffect)));
-        deepAR.switchEffect("filter", getFilterPath(filters.get(currentFilter)));
     }
 
     @Override
