@@ -9,17 +9,24 @@ import android.media.Image;
 import android.media.MediaScannerConnection;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Size;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,8 +44,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import ai.deepar.ar.ARErrorType;
@@ -48,8 +57,13 @@ import ai.deepar.ar.DeepAR;
 import ai.deepar.ar.DeepARImageFormat;
 
 import com.reelme.app.R;
+import com.reelme.app.trim.VideoTrimmerActivity;
+
+import static com.reelme.app.trim.Constants.EXTRA_VIDEO_PATH;
 
 public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.Callback, AREventListener {
+
+    public boolean mIsRecordingVideo;
 
     // Default camera lens value, change to CameraSelector.LENS_FACING_BACK to initialize with back camera
     private int defaultLensFacing = CameraSelector.LENS_FACING_FRONT;
@@ -58,6 +72,7 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
     private ByteBuffer[] buffers;
     private int currentBuffer = 0;
     private static final int NUMBER_OF_BUFFERS = 2;
+    private static final int ID_TIME_COUNT = 0x1006;
 
     private DeepAR deepAR;
 
@@ -66,17 +81,165 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
     private int currentFilter = 0;
 
     ArrayList<String> masks;
+    private static final int MAX_VIDEO_DURATION = 20 * 1000;
+    VideoView mVideoView;
+    ImageView mPlayVideo;
+    private String mOutputFilePath;
 
 
     private boolean recording = false;
     // private boolean currentSwitchRecording = false;
     private String recordingPath = Environment.getExternalStorageDirectory() + File.separator + "video.mp4";
 
+    private ProgressBar progressBar;
+    private int pStatus = 0;
+    private Handler handler = new Handler();
+
+    private TextView txtProgress;
+
+    private ProgressBar progressBar2;
+    private TextView txtProgress2;
+
+    private static final String VIDEO_DIRECTORY_NAME = "AndroidWave";
+
+    private File getOutputMediaFile() {
+
+        // External sdcard file location
+        File mediaStorageDir = new File(Environment.getExternalStorageDirectory(),
+                VIDEO_DIRECTORY_NAME);
+        // Create storage directory if it does not exist
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                Log.d("ARMainActivity", "Oops! Failed create "
+                        + VIDEO_DIRECTORY_NAME + " directory");
+                return null;
+            }
+        }
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
+                Locale.getDefault()).format(new Date());
+        File mediaFile;
+
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator
+                + "VID_" + timeStamp + ".mp4");
+        return mediaFile;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ar_activity_main);
+        mVideoView = findViewById(R.id.mVideoView);
+        mPlayVideo = findViewById(R.id.mPlayVideo);
+        txtProgress = findViewById(R.id.txtProgress);
+
+        progressBar = findViewById(R.id.progressBar);
+
+        txtProgress2 = findViewById(R.id.txtProgress2);
+
+        progressBar2 = findViewById(R.id.progressBar2);
+
+        mPlayVideo.setOnClickListener(v -> {
+            mVideoView.start();
+            mPlayVideo.setVisibility(View.GONE);
+        });
     }
+
+    void startCountdown() {
+        if (pStatus <= 5) {
+            new Thread(() -> {
+                while (pStatus <= 5) {
+                    handler.post(() -> {
+                        progressBar.setProgress(pStatus);
+                        txtProgress.setText("" + (5 - pStatus));
+                    });
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    pStatus++;
+                }
+
+
+                int minutes = (MAX_VIDEO_DURATION / 1000);
+                int h = minutes / 60;
+                int m = minutes % 60;
+                runOnUiThread(() -> {
+
+                    progressBar2.setProgress(minutes);
+                    txtProgress2.setText(String.format("%02d:%02d", h, m));
+                    txtProgress2.setVisibility(View.VISIBLE);
+
+                });
+
+                Message msg = mHandler.obtainMessage(ID_TIME_COUNT, 1,
+                        MAX_VIDEO_DURATION / 1000);
+                mHandler.sendMessage(msg);
+                recordingPath = getOutputMediaFile().getAbsolutePath();
+                deepAR.startVideoRecording(recordingPath);
+
+//            startRecordingVideo();
+
+                hideProgress();
+
+            }).start();
+        }
+    }
+
+    private void prepareViews() {
+        if (mVideoView.getVisibility() == View.GONE) {
+            mVideoView.setVisibility(View.VISIBLE);
+            mPlayVideo.setVisibility(View.VISIBLE);
+        }
+    }
+
+
+    private void hideProgress() {
+        runOnUiThread(() -> {
+            progressBar.setVisibility(View.GONE);
+            txtProgress.setVisibility(View.GONE);
+        });
+    }
+
+
+    private Handler mHandler = new Handler(Looper.myLooper()) {
+
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
+                case ID_TIME_COUNT:
+                    if (recording) {
+                        if (msg.arg1 > msg.arg2) {
+                            // mTvTimeCount.setVisibility(View.INVISIBLE);
+                            txtProgress2.setText("00:00");
+                            try {
+                                deepAR.stopVideoRecording();
+                                Toast.makeText(getApplicationContext(), "Saved video to: " + recordingPath, Toast.LENGTH_LONG).show();
+                                prepareViews();
+                                startTrimActivity();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            int minutes = (msg.arg2 - msg.arg1);
+                            int h = minutes / 60;
+                            int m = minutes % 60;
+
+                            progressBar2.setProgress(minutes);
+                            txtProgress2.setText(String.format("%02d:%02d", h, m));
+                            Message msg2 = mHandler.obtainMessage(ID_TIME_COUNT,
+                                    msg.arg1 + 1, msg.arg2);
+                            mHandler.sendMessageDelayed(msg2, 1000);
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    };
+
 
     @Override
     protected void onStart() {
@@ -84,7 +247,8 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
                 ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO},
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO},
                     1);
         } else {
             // Permission has already been granted
@@ -180,9 +344,15 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
             public void onClick(View v) {
                 if (recording) {
                     deepAR.stopVideoRecording();
+                    prepareViews();
                     Toast.makeText(getApplicationContext(), "Saved video to: " + recordingPath, Toast.LENGTH_LONG).show();
+                    startTrimActivity();
+               
                 } else {
-                    deepAR.startVideoRecording(recordingPath);
+                    txtProgress.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
+                    startCountdown();
+//                    deepAR.startVideoRecording(recordingPath);
                     Toast.makeText(getApplicationContext(), "Started video recording!", Toast.LENGTH_SHORT).show();
                 }
                 recording = !recording;
@@ -201,6 +371,22 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
                 }
             }
         });
+
+    }
+
+    private void startTrimActivity() {
+
+
+        MediaScannerConnection.scanFile(this, new String[] { recordingPath }, null,
+                (path, uri) ->{
+                    Log.i("TAG", "videooo "+uri.toString());
+
+                    Intent intent = new Intent(this, VideoTrimmerActivity.class);
+                    intent.putExtra(EXTRA_VIDEO_PATH, uri.toString());
+                    System.out.println("videoo "+uri.toString());
+                    startActivity(intent);
+                } );
+
 
     }
 

@@ -232,9 +232,13 @@
             android:name=".deepar.ARBasicActivity"
             android:label="@string/title_activity_basic"></activity>
 
+        <activity
+            android:name=".trim.VideoTrimmerActivity"
+            android:label="@string/title_activity_basic"></activity>
 
 
-<!--        <activity-->
+
+        <!--        <activity-->
 <!--            android:name=".deepar.ARMainActivity"-->
 <!--            android:screenOrientation="sensorPortrait"-->
 <!--            android:windowSoftInputMode="adjustPan" />-->

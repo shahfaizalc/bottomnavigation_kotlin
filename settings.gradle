@@ -1,1 +1,1 @@
-include ':app', ':deepar'
+include ':app', ':deepar', ':videotrimmer'

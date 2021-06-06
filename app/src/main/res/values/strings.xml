@@ -356,9 +356,13 @@ Welcome to Grads!
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="need_permission">Need permission</string>
+    <string name="app_settings">Settings</string>
 
+    <string name="str_cropping_video_please_wait">Cropping Video Please Wait</string>
+    <string name="toast_cannot_retrieve_selected_video">Can not retrieve selected video</string>
 
-<!-- fb ads -->
+    <!-- fb ads -->
     <string name="banner_id">514835722463089_514969325783062</string>
     <string name="pick_your_occupation">Pick your Occupation</string>
     <string name="pick_your_hobbies_amp_interests"><![CDATA[Pick your hobbies & interests]]></string>
