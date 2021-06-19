@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSelectVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/select_video" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginTop="?actionBarSize"
+            android:text="@string/thumb_image_for_cropped_video" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/selectedVideoThumb"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_160sdp" />
+
+    </LinearLayout>

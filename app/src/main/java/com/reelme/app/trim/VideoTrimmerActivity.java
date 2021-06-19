@@ -3,13 +3,11 @@ package com.reelme.app.trim;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.deep.videotrimmer.DeepVideoTrimmer;
 import com.deep.videotrimmer.interfaces.OnTrimVideoListener;
-import com.deep.videotrimmer.utils.FileUtils;
 import com.deep.videotrimmer.view.RangeSeekBarView;
 import com.reelme.app.R;
 
@@ -23,26 +21,14 @@ public class VideoTrimmerActivity extends BaseActivity implements OnTrimVideoLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView( R.layout.activity_video_trimmer);
-
-//        String path = "";
-//
-//        Uri uii = Uri.parse("content://com.android.providers.media.documents/document/video%3A480740");
-//        System.out.println("videoo "+uii);
-//
-//        path = FileUtils.getPath(this, uii);
+        setContentView(R.layout.activity_video_trimmer);
 
         Intent extraIntent = getIntent();
         String path = "";
 
         if (extraIntent != null) {
-            path =  extraIntent.getStringExtra(EXTRA_VIDEO_PATH);
+            path = extraIntent.getStringExtra(EXTRA_VIDEO_PATH);
         }
-
-        Log.i("TAG", "videoooTrim "+path);
-
-        path = FileUtils.getPath(this,  Uri.parse(path));
-
 
         mVideoTrimmer = ((DeepVideoTrimmer) findViewById(R.id.timeLine));
         timeLineBar = (RangeSeekBarView) findViewById(R.id.timeLineBar);
@@ -67,13 +53,10 @@ public class VideoTrimmerActivity extends BaseActivity implements OnTrimVideoLis
             }
         });
         Constants.croppedVideoURI = uri.toString();
-
-        System.out.println("uriString() "+uri.toString());
-
-//        Intent intent = new Intent();
-//        intent.setData(uri);
-//        setResult(RESULT_OK, intent);
-//        finish();
+        Intent intent = new Intent();
+        intent.setData(uri);
+        setResult(RESULT_OK, intent);
+        finish();
 
     }
 

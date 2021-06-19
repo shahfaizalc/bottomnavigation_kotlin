@@ -29,7 +29,8 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 
-class DeleteAccountViewModel(private val context: Context, private val fragmentSignin: FragmentDeleteAccount) : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
+class DeleteAccountViewModel(private val context: Context, private val fragmentSignin: FragmentDeleteAccount)
+    : BaseObservable(), NetworkChangeHandler.NetworkChangeListener {
 
     private var networkStateHandler: NetworkChangeHandler? = null
 

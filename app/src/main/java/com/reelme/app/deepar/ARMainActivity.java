@@ -57,6 +57,7 @@ import ai.deepar.ar.DeepAR;
 import ai.deepar.ar.DeepARImageFormat;
 
 import com.reelme.app.R;
+import com.reelme.app.trim.MainActivity;
 import com.reelme.app.trim.VideoTrimmerActivity;
 
 import static com.reelme.app.trim.Constants.EXTRA_VIDEO_PATH;
@@ -381,7 +382,7 @@ public class ARMainActivity extends AppCompatActivity implements SurfaceHolder.C
                 (path, uri) ->{
                     Log.i("TAG", "videooo "+uri.toString());
 
-                    Intent intent = new Intent(this, VideoTrimmerActivity.class);
+                    Intent intent = new Intent(this, MainActivity.class);
                     intent.putExtra(EXTRA_VIDEO_PATH, uri.toString());
                     System.out.println("videoo "+uri.toString());
                     startActivity(intent);

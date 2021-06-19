@@ -192,6 +192,67 @@ class FirbaseWriteHandlerActivity(private val fragmentBase: Activity) {
     }
 
 
+
+
+    fun uploadToStorageVideo(path: Uri?, param: StringResultListener) {
+
+        val filePath = path
+        if (filePath != null) {
+            //displaying a progress dialog while upload is going on
+            val progressDialog = ProgressDialog(fragmentBase)
+            progressDialog.setTitle("Uploading")
+            progressDialog.show()
+
+            var filename = "userfiles/" + System.currentTimeMillis() + ".mp4";
+            var filepath = "gs://reelme-bf98e.appspot.com/" + filename
+
+
+            val storage = FirebaseStorage.getInstance()
+
+            // Create a storage reference from our app
+
+            val storageReference = storage.reference;
+
+            val riversRef = storageReference.child(filename)
+            riversRef.putFile(filePath)
+                    .addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> {
+                        //if the upload is successfull
+                        //hiding the progress dialog
+                        progressDialog.dismiss()
+
+
+                        var ksk = it.metadata as StorageMetadata
+
+
+                        param.onSuccess(filepath)
+
+                        //and displaying a success toast
+                        Toast.makeText(fragmentBase, "File Uploaded ", Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+                    })
+                    .addOnFailureListener(OnFailureListener { exception ->
+                        //if the upload is not successfull
+                        //hiding the progress dialog
+                        progressDialog.dismiss()
+
+                        param.onFailure(exception)
+
+                        Log.d("Uploading", "" + exception)
+                        Log.d("Uploading", "" + exception.stackTrace)
+
+                        //and displaying error message
+                        Toast.makeText(fragmentBase, exception.message, Toast.LENGTH_LONG).apply { setGravity(Gravity.TOP, 0, 0); show() }
+                    })
+                    .addOnProgressListener(OnProgressListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                        //calculating progress percentage
+                        val progress = 100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount
+
+                        //displaying percentage in progress dialog
+                        progressDialog.setMessage("Uploaded " + progress.toInt() + "%...")
+                    })
+        }
+    }
+
+
     fun uploadToStorage(path: Uri?, param: StringResultListener) {
 
         val filePath = path

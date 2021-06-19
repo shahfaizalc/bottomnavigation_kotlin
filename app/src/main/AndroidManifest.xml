@@ -249,7 +249,7 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-                    android:name=".deepar.ARMainActivity"
+            android:name=".activities.LaunchActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
