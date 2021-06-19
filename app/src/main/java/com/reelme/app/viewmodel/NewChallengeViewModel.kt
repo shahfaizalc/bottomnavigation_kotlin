@@ -9,7 +9,6 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.google.gson.Gson
 import com.reelme.app.BR
-import com.reelme.app.GetServiceNews
 import com.reelme.app.R
 import com.reelme.app.handler.NetworkChangeHandler
 import com.reelme.app.listeners.MultipleClickListener
@@ -111,58 +110,15 @@ class NewChallengeViewModel(private val context: Context, private val fragmentSi
     }
 
 
-    lateinit var postsService: GetServiceNews
     private fun doSignInUser() {
 
         if (isInternetConnected) {
             showToast(R.string.network_ErrorMsg)
         } else {
-            val logging = HttpLoggingInterceptor()
-            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-
-            val httpClient: OkHttpClient.Builder = OkHttpClient.Builder()
-            httpClient.addInterceptor(logging)
-
-            val retrofit = Retrofit.Builder()
-                    .baseUrl("https://philipscrm--pocinc.my.salesforce.com/services/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(httpClient.build())
-                    .build()
-            postsService = retrofit.create(GetServiceNews::class.java)
-            sendPost()
-
-
         }
     }
 
-    private fun sendPost() {
 
-        Log.d("Authenticaiton token", "");
-
-
-        showProgresss(true)
-
-
-        val post = Newchallenge()
-        post.descriptionC = ideaBrief
-        post.nameC = ideaTitle
-
-        postsService.createQueryChallenge(post, "Bearer " + getAccessToken())!!
-                .enqueue(object : Callback<Newchallenge?> {
-                    override fun onResponse(call: Call<Newchallenge?>?, response: Response<Newchallenge?>) {
-                        response.body().toString()
-                         showProgresss(false)
-                        Toast.makeText(context,"Thanks for your idea. \n Idea added successfully to challenge.",Toast.LENGTH_LONG).show()
-                      //  fragmentSignin.finish()
-                    }
-
-
-                    override fun onFailure(call: Call<Newchallenge?>?, t: Throwable) {
-                        Log.d("Authenticaiton token", t.toString())
-                        showProgresss(false)
-                    }
-                })
-    }
 
     fun getAccessToken(): String {
         val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)

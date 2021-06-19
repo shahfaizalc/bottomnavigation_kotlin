@@ -5,7 +5,7 @@ import com.reelme.app.view.*
 object Constants {
 
     //List of fragments to add on TABS in order
-    val SALE_FRAGMENTS = arrayOf(SaleMenFragment(), SaleAllFragment(), SaleWomenFragment())
+    val SALE_FRAGMENTS = arrayOf(SaleAllFragment(), SaleAllFragment(), SaleAllFragment())
 
 
     val FOLLOW_FRAGMENTS = arrayOf(FragmentMyFollow(), FragmentMyFollowing())

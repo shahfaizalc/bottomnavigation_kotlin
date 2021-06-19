@@ -25,18 +25,6 @@ class SalesItemsRepository {
     fun getMutableLiveData(resultListener: ResultListener, requestType: RequestType): MutableLiveData<List<Sale>> {
         //Sales list
         val mutableLiveData = MutableLiveData<List<Sale>>()
-
-        //retrofit service
-//        val service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService::class.java)
-//
-//        val responseObservable = getResponseType(requestType, service)
-//        if (null == responseObservable) {
-//            resultListener.onError("unknown host url")
-//            return mutableLiveData
-//        }
-//        responseObservable.subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(getObserver(resultListener, mutableLiveData))
         return mutableLiveData
     }
 
@@ -61,14 +49,4 @@ class SalesItemsRepository {
         }
     }
 
-    private fun getResponseType(all: RequestType, service: GetDataService): Observable<List<Sale>>? {
-
-        var observable: Observable<List<Sale>>? = null
-        when (all) {
-            RequestType.ALL -> observable = service.saleAll
-            RequestType.MEN -> observable = service.saleMen
-            RequestType.WOMEN -> observable = service.saleWomen
-        }
-        return observable
-    }
 }

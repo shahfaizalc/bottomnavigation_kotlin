@@ -89,7 +89,7 @@ class ProfileViewModel(internal val activity:
         }
 
     @get:Bindable
-    var userName: String = "balasubramanian panneerselvan "
+    var userName: String = ""
         set(price) {
             field = price
             notifyPropertyChanged(BR.userName)
@@ -97,7 +97,7 @@ class ProfileViewModel(internal val activity:
         }
 
     @get:Bindable
-    var userEmail: String = "balasubramanian.panneerselvan@philips.com.incpoc"
+    var userEmail: String = ""
         set(price) {
             field = price
             notifyPropertyChanged(BR.userEmail)

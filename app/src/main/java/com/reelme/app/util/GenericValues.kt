@@ -20,16 +20,6 @@ class GenericValues {
         return ReadAssetFile().readAssetFile(fileName, context)
     }
 
-    fun genderToString(profile: Gender): String {
-        val gson = Gson();
-        return gson.toJson(profile)
-    }
-
-//    fun getGender(values: String, context: Context): List<Array<Gender>> {
-//
-//       val lists = listOf(Gson().fromJson(values, Array<Gender>::class.java))
-//        return  lists
-//    }
 
     fun getGender(jsonString: String, context: Context): ArrayList<GenderList> {
         val listType = object : TypeToken<ArrayList<GenderList>>() {}.type
@@ -187,18 +177,5 @@ class GenericValues {
         }
     }
 
-
-    private fun getUserInfo(context: FragmentWelcome): UserModel {
-        val sharedPreference = context.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val coronaJson = sharedPreference.getString("USER_INFO", "");
-
-        return try {
-            val auth = Gson().fromJson(coronaJson, UserModel::class.java)
-            (auth as UserModel)
-        } catch (e: java.lang.Exception) {
-            Log.d("Authenticaiton token", "Exception$e");
-            null!!
-        }
-    }
 
 }

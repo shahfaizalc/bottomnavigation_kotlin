@@ -59,18 +59,12 @@
             android:name=".view.FragmentForgotPassword"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".view.FragmentSignin"
-            android:screenOrientation="sensorPortrait"
-            android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".view.FragmentWelcome"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".view.FragmentNewDiscusssion"
-            android:screenOrientation="sensorPortrait"
-            android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".view.FragmentNewChallenge"
             android:screenOrientation="sensorPortrait"

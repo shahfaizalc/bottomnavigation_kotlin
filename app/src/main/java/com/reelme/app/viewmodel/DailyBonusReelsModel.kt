@@ -13,7 +13,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.Events.MyCustomEvent
-import com.reelme.app.GetServiceNews
 import com.reelme.app.model2.Bookmarks
 import com.reelme.app.model2.PostDiscussion
 import com.reelme.app.model2.Profile
@@ -200,10 +199,7 @@ class DailyBonusReelsModel(internal var activity: FragmentActivity) // To show l
 //        }
         doGetTalents()
     }
-
-    lateinit var postsService: GetServiceNews
-
-
+    
     fun getAccessToken(): String {
         val sharedPreference = activity.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
         val coronaJson = sharedPreference.getString("AUTH_INFO", "");
@@ -263,46 +259,6 @@ class DailyBonusReelsModel(internal var activity: FragmentActivity) // To show l
         listRecoded.add(goals1)
 
         talentProfilesList.addAll(listRecoded)
-
-//        val retrofit = Retrofit.Builder()
-//                .baseUrl("https://philipscrm--pocinc.my.salesforce.com/services/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-//                .build()
-//        postsService = retrofit.create(GetServiceNews::class.java)
-//        sendPost(getAccessToken())
-
-
-    }
-
-    private fun sendPost(accesstoken: String) {
-
-        //  showProgresss(true)
-        Log.d("Authenticaiton2 token", "send post");
-
-        runBlocking {
-            val handler = coroutineExceptionHandler()
-            GlobalScope.launch(handler) {
-                val repositories = withContext(Dispatchers.Default) {
-                    postsService.getQueryGoals("data/v49.0/query/?q=SELECT+id,name,Priority__c,Description__c,Business_Cluster__c+from+ICP_Goal__c", "Bearer "+accesstoken).await()
-                }
-                withContext(Dispatchers.Default) { coroutineSuccessHandler(repositories) }
-            }
-        }
-    }
-
-    private fun coroutineExceptionHandler() = CoroutineExceptionHandler { _, exception ->
-
-        Log.d("TAG", "coroutineHandler:exception ${exception}")
-
-    }
-
-    private fun coroutineSuccessHandler(response: Goals) {
-        Log.d("TAG", "coroutineHandler:Success ${response}")
-
-        var queries = response.records.size
-        Log.d("TAG", "coroutineHandler:Success ${queries}")
-        talentProfilesList.addAll(response.records)
 
 
     }

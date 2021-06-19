@@ -9,12 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
-import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.reelme.app.BR
 import com.reelme.app.Events.MyCustomEvent
-import com.reelme.app.GetServiceNews
 import com.reelme.app.model2.Bookmarks
 import com.reelme.app.model2.PostDiscussion
 import com.reelme.app.model2.Profile
@@ -26,11 +24,8 @@ import com.reelme.app.model.SearchMode
 import com.reelme.app.model_sales.Authenticaiton
 import com.reelme.app.model_sales.goal.Goals
 import com.reelme.app.view.*
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.reelme.app.model_sales.goal.Record
 import kotlinx.coroutines.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class TopusersModel(internal var activity: AppCompatActivity,
@@ -206,7 +201,6 @@ class TopusersModel(internal var activity: AppCompatActivity,
         doGetTalents()
     }
 
-    lateinit var postsService: GetServiceNews
 
 
     fun getAccessToken(): String {
@@ -221,30 +215,12 @@ class TopusersModel(internal var activity: AppCompatActivity,
         }
     }
 
-    fun getUserId(): String {
-        val sharedPreference = activity.getSharedPreferences("AUTH_INFO", Context.MODE_PRIVATE)
-        val coronaJson = sharedPreference.getString("AUTH_INFO", "");
-        try {
-            val auth = Gson().fromJson(coronaJson, Authenticaiton::class.java)
-            return auth.signature
-
-        } catch (e: java.lang.Exception) {
-            return ""
-        }
-    }
-
 
     fun doGetTalents() {
 
         Log.d(TAG, "DOIT doGetTalents: searchMode: " + searchMode)
 
 
-        var goals2 = Record()
-        goals2.businessClusterC = "hello"
-        goals2.descriptionC = "ddeed"
-        goals2.id = "internet connecct"
-        goals2.name = "name"
-        goals2.priorityC = "priotiry"
 
         var goals = Record()
         goals.businessClusterC = "hello"
@@ -254,79 +230,15 @@ class TopusersModel(internal var activity: AppCompatActivity,
         goals.priorityC = "priotiry"
 
 
-        var goals1 = Record()
-        goals1.businessClusterC = "kjda"
-        goals1.descriptionC = "ddeefasdd"
-        goals1.id = "intfasdernet connecct"
-        goals1.name = "naasdfdme"
-        goals1.priorityC = "fasd"
-
 
         var listRecoded = ArrayList<Record>()
         listRecoded.add(goals)
-        listRecoded.add(goals2)
-        listRecoded.add(goals1)
+
 
         talentProfilesList.addAll(listRecoded)
 
-//        val retrofit = Retrofit.Builder()
-//                .baseUrl("https://philipscrm--pocinc.my.salesforce.com/services/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-//                .build()
-//        postsService = retrofit.create(GetServiceNews::class.java)
-//        sendPost(getAccessToken())
-
-
     }
 
-    private fun sendPost(accesstoken: String) {
-
-        //  showProgresss(true)
-        Log.d("Authenticaiton2 token", "send post");
-
-        runBlocking {
-            val handler = coroutineExceptionHandler()
-            GlobalScope.launch(handler) {
-                val repositories = withContext(Dispatchers.Default) {
-                    postsService.getQueryGoals("data/v49.0/query/?q=SELECT+id,name,Priority__c,Description__c,Business_Cluster__c+from+ICP_Goal__c", "Bearer "+accesstoken).await()
-                }
-                withContext(Dispatchers.Default) { coroutineSuccessHandler(repositories) }
-            }
-        }
-    }
-
-    private fun coroutineExceptionHandler() = CoroutineExceptionHandler { _, exception ->
-
-        Log.d("TAG", "coroutineHandler:exception ${exception}")
-
-    }
-
-    private fun coroutineSuccessHandler(response: Goals) {
-        Log.d("TAG", "coroutineHandler:Success ${response}")
-
-        var queries = response.records.size
-        Log.d("TAG", "coroutineHandler:Success ${queries}")
-        talentProfilesList.addAll(response.records)
-
-
-    }
-
-
-    fun isBookmarked(postDiscussion: PostDiscussion): Boolean? {
-        var isFollow = false
-        postDiscussion.bookmarks.notNull {
-            val likes: MutableIterator<Bookmarks> = it.iterator()
-            while (likes.hasNext()) {
-                val name = likes.next()
-                if (name.markedById.equals(FirebaseAuth.getInstance().currentUser?.uid)) {
-                    isFollow = true
-                }
-            }
-        }
-
-        return isFollow
-    }
 }
 
 
